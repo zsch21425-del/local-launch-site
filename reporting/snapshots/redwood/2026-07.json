@@ -1,0 +1,62 @@
+{
+  "month": "2026-07",
+  "url": "https://redwood-site-jade.vercel.app",
+  "scan": {
+    "title": "Redwood Landscaping | Lawn Care &amp; Landscaping | Slater-Marietta SC",
+    "title_len": 70,
+    "meta_desc": true,
+    "h1": true,
+    "schema_types": [
+      "Answer",
+      "BreadcrumbList",
+      "City",
+      "FAQPage",
+      "GeoCoordinates",
+      "ListItem",
+      "LocalBusiness",
+      "Offer",
+      "OfferCatalog",
+      "OpeningHoursSpecification",
+      "PostalAddress",
+      "Question",
+      "Service",
+      "State"
+    ],
+    "schema_count": 58,
+    "https": true,
+    "viewport": true,
+    "word_count": 939,
+    "img_alt_pct": 100,
+    "subheadings": 24,
+    "faq_markup": true,
+    "response_s": 0.39,
+    "sitemap": true,
+    "robots": true
+  },
+  "manual": {},
+  "seo_score": 100,
+  "seo_detail": {
+    "Title tag": 10,
+    "Meta description": 10,
+    "H1 tag": 5,
+    "Content quality": 10,
+    "HTTPS/SSL": 10,
+    "Schema markup": 10,
+    "Mobile viewport": 5,
+    "Sitemap": 5,
+    "Robots.txt": 5,
+    "Page speed": 5,
+    "Image alt text": 10,
+    "Subheading structure": 10,
+    "FAQ markup": 5
+  },
+  "geo_score": 70,
+  "geo_detail": {
+    "Schema depth": 25,
+    "Entity grounding": 25,
+    "Content structure": 20,
+    "Review signals": 0,
+    "Citations": 0
+  },
+  "generated": "2026-07-18T22:53:02"
+}

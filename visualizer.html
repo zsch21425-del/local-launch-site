@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visualizer — Before & After Photos That Close Jobs | Local Launch</title>
+<meta name="description" content="Show customers exactly what their finished job looks like before you start. Better estimates. No surprises. The tool your competitors don't have.">
+<link rel="canonical" href="https://local-launch-site.vercel.app/visualizer.html">
+<meta property="og:title" content="Before & After Visualizer — Close More Jobs | Local Launch">
+<meta property="og:description" content="Upload a photo. Show the customer the finished result. Give an accurate estimate. Your competitors can't do this.">
+<meta name="theme-color" content="#1a1a16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --copper: #D4845B;
+  --copper-light: #E8A87C;
+  --teal: #2CD4A9;
+  --bg: #1a1a16;
+  --text: #FFFFFF;
+  --text-secondary: #E0DBD2;
+  --text-muted: #A89F94;
+  --surface: rgba(26,26,22,0.78);
+  --border: rgba(255,255,255,0.08);
+  --border-light: rgba(255,255,255,0.14);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html { color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body { overflow-x: hidden; background: var(--bg); }
+.font-display, h1, h2, h3 { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+/* ═══════════ PHOTO SECTION ═══════════ */
+.photo-section {
+  position: relative; padding: 80px 0; overflow: hidden;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+}
+.photo-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,26,22,0.55) 0%, rgba(26,26,22,0.35) 60%, rgba(26,26,22,0.6) 100%);
+}
+.photo-section > * { position: relative; z-index: 2; }
+
+#hero-section {
+  min-height: 75vh; display: flex; align-items: center;
+  background-image: url('https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=1920&q=80');
+}
+
+/* ═══════════ NAV ═══════════ */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(20,20,17,0.82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { width: 34px; height: 34px; border-radius: 8px; }
+.nav-logo span { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
+.nav-back { color: var(--teal); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-back:hover { color: #fff; }
+
+/* ═══════════ HERO TEXT ═══════════ */
+.hero-inner { max-width: 1200px; margin: 0 auto; padding: 100px 24px 0; width: 100%; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(44,212,169,0.18); border: 1px solid rgba(44,212,169,0.3); color: var(--teal); padding: 7px 18px; border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 24px; letter-spacing: 0.02em; }
+.hero-badge-dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.hero h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.06; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 18px; max-width: 720px; color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6); }
+.hero h1 .hl { color: #2CD4A9;
+  -webkit-text-stroke: 2px rgba(0,0,0,0.8);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.9); }
+.hero .sub { font-size: 18px; color: #fff; max-width: 540px; line-height: 1.6; font-weight: 500;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.8), 0 2px 12px rgba(0,0,0,0.7); }
+
+/* ═══════════ PITCH ROW ═══════════ */
+.pitch-section { padding: 0 0 60px; background: var(--bg); }
+.pitch-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1100px; margin: -40px auto 0; padding: 0 24px; position: relative; z-index: 5; }
+.pitch-card { background: rgba(30,30,25,0.95); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 22px; backdrop-filter: blur(20px); transition: border-color 0.3s, transform 0.2s; }
+.pitch-card:hover { border-color: rgba(44,212,169,0.25); transform: translateY(-2px); }
+.pitch-icon { margin-bottom: 16px; }
+.pitch-icon svg { width: 28px; height: 28px; }
+.pitch-card h3 { font-size: 17px; margin-bottom: 6px; color: #fff; letter-spacing: -0.01em; }
+.pitch-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+@media (max-width: 768px) { .pitch-row { grid-template-columns: 1fr; margin-top: -20px; } }
+
+/* ═══════════ MAIN CONTENT ═══════════ */
+.content-section { padding: 20px 0 80px; background: var(--bg); }
+.main { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+@media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+
+/* ═══════════ UPLOAD PANEL ═══════════ */
+.panel { display: flex; flex-direction: column; gap: 16px; }
+
+.upload-zone { border: 2px dashed rgba(44,212,169,0.25); border-radius: var(--radius); padding: 44px 24px; text-align: center; cursor: pointer; transition: all 0.3s; background: rgba(255,255,255,0.03); }
+.upload-zone:hover, .upload-zone.drag-over { border-color: var(--teal); background: rgba(44,212,169,0.05); }
+.upload-zone.has-image { border-style: solid; border-color: var(--teal); background: rgba(44,212,169,0.04); }
+.upload-icon svg { width: 32px; height: 32px; margin-bottom: 10px; color: var(--teal); opacity: 0.8; }
+.upload-text { font-size: 15px; color: var(--text-secondary); font-weight: 500; }
+.upload-hint { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+.photo-preview { display: none; }
+.photo-preview img { width: 100%; border-radius: var(--radius-sm); max-height: 180px; object-fit: cover; }
+
+.prompt-group { display: flex; flex-direction: column; gap: 6px; }
+.prompt-group label { font-size: 12px; font-weight: 600; color: var(--copper); text-transform: uppercase; letter-spacing: 0.06em; }
+.prompt-group textarea { width: 100%; padding: 14px 16px; border-radius: var(--radius-sm); border: 1.5px solid var(--border); background: rgba(255,255,255,0.03); color: #fff; font-size: 14px; font-family: 'Inter', sans-serif; resize: vertical; min-height: 80px; outline: none; }
+.prompt-group textarea:focus { border-color: var(--teal); }
+.prompt-group textarea::placeholder { color: var(--text-muted); }
+.char-count { font-size: 11px; color: var(--text-muted); text-align: right; }
+
+.btn-generate { width: 100%; padding: 18px; border-radius: 100px; border: none; background: var(--teal); color: #0D0D0B; font-size: 17px; font-weight: 700; font-family: 'Space Grotesk', system-ui, sans-serif; cursor: pointer; transition: all 0.3s; }
+.btn-generate:hover:not(:disabled) { background: #40E0B8; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(44,212,169,0.25); }
+.btn-generate:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn-reset { width: 100%; padding: 14px; border-radius: 100px; border: 1.5px solid var(--border-light); background: transparent; color: var(--text-muted); font-size: 14px; cursor: pointer; transition: all 0.2s; }
+.btn-reset:hover { border-color: var(--text-muted); color: #fff; }
+
+.gen-counter { font-size: 12px; color: var(--text-muted); text-align: center; }
+
+/* ═══════════ RESULT ═══════════ */
+.result-panel { display: none; }
+.result-panel.active { display: flex; flex-direction: column; gap: 16px; }
+
+.compare-slider { position: relative; overflow: hidden; border-radius: var(--radius); background: rgba(255,255,255,0.03); border: 1px solid var(--border); aspect-ratio: 4/3; cursor: ew-resize; }
+.compare-before { position: absolute; inset: 0; }
+.compare-before img { width: 100%; height: 100%; object-fit: cover; }
+.compare-after { position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; border-right: 2px solid var(--teal); }
+.compare-after img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+.compare-handle { position: absolute; top: 50%; transform: translate(-50%,-50%); width: 40px; height: 40px; background: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #0D0D0B; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.5); z-index: 2; pointer-events: none; }
+.drag-hint { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: rgba(255,255,255,0.7); font-size: 11px; padding: 4px 14px; border-radius: 20px; pointer-events: none; }
+.compare-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); }
+
+/* ═══════════ CTA CARD ═══════════ */
+.cta-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(44,212,169,0.15); border-radius: var(--radius); padding: 24px; text-align: center; }
+.cta-card h3 { font-size: 17px; color: var(--teal); margin-bottom: 6px; }
+.cta-card p { font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5; }
+.cta-card .btn { display: inline-flex; align-items: center; gap: 6px; background: var(--copper); color: #fff; padding: 13px 24px; border-radius: 100px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.3s; }
+.cta-card .btn:hover { background: var(--copper-light); transform: translateY(-1px); }
+
+/* ═══════════ SECOND PHOTO ═══════════ */
+#mid-section {
+  background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80');
+  padding: 60px 0;
+}
+#mid-section::before {
+  background: linear-gradient(180deg, rgba(26,26,22,0.5) 0%, rgba(26,26,22,0.3) 50%, rgba(26,26,22,0.5) 100%);
+}
+
+/* ═══════════ MODAL / LOADING ═══════════ */
+.modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.78); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+.modal-overlay.active { display: flex; }
+.modal { background: #2A2926; border: 1px solid var(--border-light); border-radius: var(--radius); padding: 32px; max-width: 400px; width: 90%; text-align: center; }
+.modal h3 { font-size: 20px; margin-bottom: 6px; color: #fff; }
+.modal p { color: var(--text-secondary); font-size: 14px; margin-bottom: 16px; }
+.modal input { width: 100%; padding: 13px 15px; border-radius: var(--radius-sm); margin-bottom: 10px; background: #32312E; border: 1.5px solid var(--border); color: #fff; font-size: 14px; outline: none; font-family: 'Inter', sans-serif; }
+.modal input:focus { border-color: var(--teal); }
+.modal input::placeholder { color: var(--text-muted); }
+.modal button { width: 100%; padding: 14px; border-radius: 100px; border: none; background: var(--teal); color: #0D0D0B; font-weight: 700; font-size: 15px; cursor: pointer; font-family: 'Space Grotesk', system-ui, sans-serif; }
+.modal button:hover { background: #40E0B8; }
+
+.loading-overlay { display: none; position: fixed; inset: 0; z-index: 150; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); align-items: center; justify-content: center; }
+.loading-overlay.active { display: flex; }
+.loading-spinner { text-align: center; padding: 36px; background: #2A2926; border-radius: var(--radius); border: 1px solid var(--border); }
+.spinner { width: 44px; height: 44px; border: 3px solid rgba(255,255,255,0.08); border-top-color: var(--teal); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { color: var(--text-secondary); font-size: 15px; font-weight: 500; }
+.loading-sub { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+
+.error-box { display: none; padding: 14px 16px; border-radius: var(--radius-sm); background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); color: #FCA5A5; font-size: 14px; }
+.error-box.active { display: block; }
+
+.ai-description { background: rgba(44,212,169,0.06); border: 1px solid rgba(44,212,169,0.12); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+/* ═══════════ FOOTER ═══════════ */
+.footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; background: var(--bg); }
+.footer span { font-size: 13px; color: var(--text-muted); }
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 28px; }
+  .hero .sub { font-size: 16px; }
+  .upload-zone { padding: 30px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="https://files-cdn.x.ai/LjN_t8nsRjGupxW8sLhD6w/file_28fcc442-b4ca-445b-beef-65b202415ce0.png" alt="LL">
+      <span>Local<span style="color:#D4845B">Launch</span></span>
+    </a>
+    <a href="/#edge" class="nav-back">← Back to site</a>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="photo-section" id="hero-section">
+  <div class="hero-inner">
+    <div class="hero">
+      <h1>Show every customer exactly what their job will <span class="hl">look like before you start.</span></h1>
+      <p class="sub">No more "I thought it would look different." No more estimate guesswork. Upload a photo, show them the finished result, and hand them a price they'll say yes to. Nobody else bidding the job can do this.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PITCH CARDS -->
+<div class="pitch-section">
+  <div class="pitch-row">
+    <div class="pitch-card">
+      <div class="pitch-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="3"/>
+          <line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/>
+          <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
+          <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
+        </svg>
+      </div>
+      <h3>Accurate Estimates</h3>
+      <p>You both see the same finished result. You both agree on scope. Your number is right the first time.</p>
+    </div>
+    <div class="pitch-card">
+      <div class="pitch-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="6" width="20" height="12" rx="2"/>
+          <path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/>
+        </svg>
+      </div>
+      <h3>Zero Surprises</h3>
+      <p>Customer knows exactly what they're getting. You know exactly what to build. Miscommunication disappears.</p>
+    </div>
+    <div class="pitch-card">
+      <div class="pitch-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <h3>Already Impressed</h3>
+      <p>When you walk in with AI-powered before-and-after previews, you're not another bid. You're the obvious choice.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content-section">
+<div class="main">
+  <!-- LEFT -->
+  <div class="panel">
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none">
+    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+      <div class="upload-icon" id="uploadIcon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+      </div>
+      <div class="upload-text" id="uploadText">Upload a photo of the job site</div>
+      <div class="upload-hint">JPG, PNG, or WebP — max 7MB</div>
+    </div>
+    <div class="photo-preview" id="photoPreview"><img id="previewImg" src="" alt="Preview"></div>
+    <div class="prompt-group">
+      <label>What work are you bidding?</label>
+      <textarea id="jobPrompt" placeholder="e.g. New stone patio with fire pit, fresh black mulch in beds, landscape lighting along the walkway..." maxlength="500" oninput="updateCharCount()"></textarea>
+      <div class="char-count"><span id="charCount">0</span>/500</div>
+    </div>
+    <button class="btn-generate" id="btnGenerate" onclick="generateVisualization()">Show Me the After — Free</button>
+    <button class="btn-reset" onclick="resetForm()">Start Over</button>
+    <div class="error-box" id="errorBox"></div>
+    <div class="gen-counter" id="genCounter">Free previews remaining: 3</div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="result-panel" id="resultPanel">
+    <div class="compare-slider" id="compareSlider">
+      <div class="compare-before"><img id="resultBefore" src="" alt="Before"></div>
+      <div class="compare-after" id="afterContainer" style="width:50%"><img id="resultAfter" src="" alt="After"></div>
+      <div class="compare-handle" id="compareHandle" style="left:50%">⟷</div>
+      <div class="drag-hint">← Drag to compare →</div>
+    </div>
+    <div class="compare-labels"><span>Before</span><span>AI Preview</span></div>
+    <div class="ai-description" id="aiDescription"></div>
+    <div class="cta-card">
+      <h3>Want this for every estimate?</h3>
+      <p>Show every customer a before-and-after. Hand them an accurate price. Close more jobs.</p>
+      <a href="/#contact" class="btn">Get This For Your Business →</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- MID PHOTO SECTION -->
+<section class="photo-section" id="mid-section">
+  <div style="max-width:600px;margin:0 auto;padding:0 24px;text-align:center;">
+    <h2 style="font-size:clamp(24px,3vw,34px);font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:12px;text-shadow:0 1px 16px rgba(0,0,0,0.4);">You're not just giving an estimate.</h2>
+    <p style="font-size:17px;color:#fff;font-weight:500;line-height:1.6;text-shadow:0 1px 14px rgba(0,0,0,0.4);">You're showing them the future. They see it. They want it. They sign. Nobody else who showed up to bid could do that.</p>
+  </div>
+</section>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <h3>Send for an estimate</h3>
+    <p>Enter your info. The customer gets the preview plus your accurate estimate.</p>
+    <input type="text" id="custName" placeholder="Your name" required>
+    <input type="email" id="custEmail" placeholder="Email address" required>
+    <input type="tel" id="custPhone" placeholder="Phone (optional)">
+    <button onclick="submitContact()">Send Estimate</button>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:12px;">No spam. Just the preview + your estimate.</p>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner">
+    <div class="spinner"></div>
+    <div class="loading-text">Building your preview...</div>
+    <div class="loading-sub">About 10 seconds</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer"><span>Local Launch © 2026 — Websites & SEO for the trades.</span></div>
+
+<script>
+let _selectedFile = null, _contactInfo = null, genCount = 0;
+const MAX_GENS = 3;
+const fileInput = document.getElementById('fileInput');
+const uploadZone = document.getElementById('uploadZone');
+
+uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
+uploadZone.addEventListener('drop', (e) => { e.preventDefault(); uploadZone.classList.remove('drag-over'); handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+function handleFile(file) {
+  if (!file.type.startsWith('image/')) { showError('Please upload an image file.'); return; }
+  if (file.size > 7_000_000) { showError('Image too large. Max 7MB.'); return; }
+  _selectedFile = file;
+  document.getElementById('uploadIcon').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;margin-bottom:10px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+  document.getElementById('uploadText').textContent = file.name;
+  uploadZone.classList.add('has-image');
+  const reader = new FileReader();
+  reader.onload = (e) => { document.getElementById('previewImg').src = e.target.result; document.getElementById('photoPreview').style.display = 'block'; };
+  reader.readAsDataURL(file);
+  hideError();
+}
+
+function updateCharCount() { document.getElementById('charCount').textContent = document.getElementById('jobPrompt').value.length; }
+
+async function generateVisualization() {
+  const file = _selectedFile || fileInput.files[0];
+  if (!file) { showError('Upload a photo first.'); return; }
+  if (file.size > 7_000_000) { showError('Image too large.'); return; }
+  if (genCount >= MAX_GENS) { showError('Free preview limit reached.'); return; }
+  if (genCount >= 1) {
+    if (_contactInfo && _contactInfo.name && _contactInfo.email) { doGenerate(_contactInfo); return; }
+    const n = document.getElementById('custName').value.trim(), e = document.getElementById('custEmail').value.trim();
+    if (n && e) { _contactInfo = { name: n, email: e, phone: document.getElementById('custPhone').value.trim() }; doGenerate(_contactInfo); return; }
+    showContactModal((info) => doGenerate(info)); return;
+  }
+  doGenerate(null);
+}
+
+async function doGenerate(ci) {
+  const file = _selectedFile || fileInput.files[0];
+  const prompt = document.getElementById('jobPrompt').value.trim() || 'Professional transformation with fresh landscaping, vibrant plants, and clean finishing';
+  showLoading(); hideError();
+  try {
+    const b64 = await fileToBase64(file);
+    const resp = await fetch('/api/visualize', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({image:b64, prompt_text:prompt, name:ci?.name||'', email:ci?.email||'', phone:ci?.phone||'', mode:'generate'}) });
+    const data = await resp.json();
+    hideLoading();
+    if (data.success) { genCount++; updateGenUI(); showResult(b64, data.after_image, data.description); }
+    else { showError(data.error || 'Something went wrong.'); }
+  } catch (err) { hideLoading(); showError('Network error. Try again.'); }
+}
+
+function showResult(beforeB64, afterB64, desc) {
+  document.getElementById('resultBefore').src = 'data:image/jpeg;base64,' + beforeB64;
+  document.getElementById('resultAfter').src = 'data:image/jpeg;base64,' + afterB64;
+  document.getElementById('aiDescription').textContent = desc || '';
+  document.getElementById('resultPanel').classList.add('active');
+  document.getElementById('afterContainer').style.width = '50%';
+  document.getElementById('compareHandle').style.left = '50%';
+  document.getElementById('resultPanel').scrollIntoView({behavior:'smooth'});
+}
+
+(function() {
+  const s = document.getElementById('compareSlider'), a = document.getElementById('afterContainer'), h = document.getElementById('compareHandle');
+  let d = false;
+  function u(cx) { if(!s)return; const r=s.getBoundingClientRect(); let p=((cx-r.left)/r.width)*100; p=Math.max(2,Math.min(98,p)); a.style.width=p+'%'; h.style.left=p+'%'; }
+  s.addEventListener('mousedown',(e)=>{d=true;u(e.clientX)});
+  s.addEventListener('touchstart',(e)=>{d=true;u(e.touches[0].clientX)});
+  document.addEventListener('mousemove',(e)=>{if(d)u(e.clientX)});
+  document.addEventListener('touchmove',(e)=>{if(d)u(e.touches[0].clientX)});
+  document.addEventListener('mouseup',()=>{d=false});document.addEventListener('touchend',()=>{d=false});
+})();
+
+function showContactModal(cb) { document.getElementById('contactModal').classList.add('active'); window._ccb = cb; }
+function submitContact() {
+  const n = document.getElementById('custName').value.trim(), e = document.getElementById('custEmail').value.trim();
+  if (!n || !e) return;
+  _contactInfo = { name:n, email:e, phone:document.getElementById('custPhone').value.trim() };
+  document.getElementById('contactModal').classList.remove('active');
+  if (window._ccb) window._ccb(_contactInfo);
+}
+function fileToBase64(file) { return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(file); }); }
+function showLoading() { document.getElementById('loadingOverlay').classList.add('active'); }
+function hideLoading() { document.getElementById('loadingOverlay').classList.remove('active'); }
+function showError(msg) { const el=document.getElementById('errorBox'); el.textContent=msg; el.classList.add('active'); }
+function hideError() { document.getElementById('errorBox').classList.remove('active'); }
+function updateGenUI() {
+  const rem = MAX_GENS - genCount;
+  document.getElementById('genCounter').textContent = rem > 0 ? `Free previews remaining: ${rem}` : 'Free previews used. Contact us for more!';
+  if (rem <= 0) { document.getElementById('btnGenerate').disabled = true; document.getElementById('btnGenerate').textContent = 'Limit Reached'; }
+}
+function resetForm() {
+  document.getElementById('resultPanel').classList.remove('active');
+  document.getElementById('photoPreview').style.display = 'none';
+  fileInput.value=''; _selectedFile=null; document.getElementById('jobPrompt').value='';
+  document.getElementById('uploadIcon').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;margin-bottom:10px;color:var(--teal);opacity:0.8;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>';
+  document.getElementById('uploadText').textContent='Upload a photo of the job site';
+  uploadZone.classList.remove('has-image');
+  hideError(); updateCharCount();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

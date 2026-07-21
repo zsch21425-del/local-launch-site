@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your Free Demo — Local Launch</title>
+<meta name="theme-color" content="#1B1A18">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E7PGEF4619"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E7PGEF4619');
+</script>
+<style>
+  :root{
+    --bg:#1B1A18;--bg2:#211F1C;--ink:#F2EFE9;--muted:#A6A093;--accent:#2AA8A8;
+    --green:#6FD0CC;--line:rgba(242,239,233,.09);--radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  header{
+    padding:20px clamp(20px,5vw,56px);
+    border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:12px;
+  }
+  header a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem}
+  header a:hover{color:var(--accent)}
+  main{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    padding:clamp(24px,5vw,60px);
+  }
+  .card{
+    background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:clamp(28px,5vw,48px);max-width:540px;width:100%;
+    animation:fadeUp .7s cubic-bezier(.2,.7,.2,1);
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+  h1{font-size:clamp(1.4rem,3vw,1.8rem);letter-spacing:-.02em;font-weight:800;margin-bottom:8px}
+  .sub{color:var(--muted);font-size:1rem;margin-bottom:32px}
+  .fld{margin-bottom:18px}
+  .fld label{display:block;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .fld input,.fld select{
+    width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;color:var(--ink);font-size:1rem;font-family:inherit;
+    transition:border-color .25s,box-shadow .25s;outline:none;
+  }
+  .fld input:focus,.fld select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(42,168,168,.14)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    padding:15px 28px;border-radius:99px;font-weight:700;font-size:.98rem;
+    border:none;cursor:pointer;width:100%;transition:transform .25s,box-shadow .25s;
+    background:var(--accent);color:#1B1A18;margin-top:6px;
+  }
+  .btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(42,168,168,.4)}
+  .foot{margin-top:28px;text-align:center;color:var(--muted);font-size:.82rem}
+  .foot a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+  <a href="/">← Local Launch</a>
+</header>
+<main>
+  <div class="card">
+    <h1>Get Your Free Demo</h1>
+    <p class="sub">See what a custom website and SEO audit would look like for your business — no obligation, no pitch.</p>
+    <form id="demoForm">
+      <div class="fld">
+        <label for="name">Your Name</label>
+        <input id="name" type="text" placeholder="John Smith" required>
+      </div>
+      <div class="fld">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="you@example.com" required>
+      </div>
+      <div class="fld">
+        <label for="interest">I'm interested in</label>
+        <select id="interest" required>
+          <option value="" disabled selected>Select one…</option>
+          <option value="SEO Audit">An SEO audit of my current site</option>
+          <option value="Webpage Demo">A webpage demo for my business</option>
+          <option value="Both">Both — audit + demo</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Send My Request →</button>
+    </form>
+    <div class="foot">I'll get back to you within 24 hours.<br><a href="/">local-launch-site.vercel.app</a></div>
+  </div>
+</main>
+<script>
+  var form = document.getElementById("demoForm");
+  if (form) form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = document.getElementById("name").value || "";
+    var email = document.getElementById("email").value || "";
+    var interest = document.getElementById("interest").value || "";
+    var body = "Name: " + name + "%0D%0AEmail: " + email + "%0D%0AInterest: " + interest;
+    window.open("mailto:zsch21425@gmail.com?subject=" + encodeURIComponent("Demo request — " + name) + "&body=" + body, "_blank");
+    window.location.href = "/thanks.html";
+  });
+</script>
+</body>
+</html>

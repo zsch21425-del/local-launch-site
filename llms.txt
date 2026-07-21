@@ -1,0 +1,23 @@
+# Local Launch — Websites & SEO for the Trades
+
+## About
+Local Launch builds custom websites and runs SEO for plumbing, mechanical, landscaping, electrical, roofing, HVAC, and trade businesses in Greenville, SC and Upstate South Carolina.
+
+## Core pages
+- Homepage: https://local-launch-site.vercel.app/
+- Pricing / Packages: https://local-launch-site.vercel.app/#pricing
+- FAQ: https://local-launch-site.vercel.app/#faq
+- Case Study (Redwood Landscaping): https://local-launch-site.vercel.app/#proof
+
+## Services
+- Custom trade business websites
+- SEO + local search optimization
+- AI receptionist / 24/7 call answering
+- AI Yard Visualizer (landscapers)
+- Google Business Profile optimization
+- Directory management (Yelp, BBB, Nextdoor, Apple, Bing)
+
+## Contact
+- Email: zsch21425@gmail.com
+- Based in Greenville, SC
+- No contracts — one-time builds from $300

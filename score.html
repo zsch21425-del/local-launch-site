@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free SEO Score — Local Launch</title>
+<meta name="theme-color" content="#1B1A18">
+<style>
+:root{--bg:#1B1A18;--panel:#26231F;--text:#F2EFE9;--muted:#A6A093;--accent:#2AA8A8;--green:#6FD0CC;--red:#E06C4F;--edge:rgba(255,255,255,.07);--glow:rgba(42,168,168,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sans-serif;line-height:1.6;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:40px 20px}
+h1{font-family:'Space Grotesk',Georgia,serif;font-size:2.2rem;line-height:1.2;margin-bottom:10px}
+h2{font-family:'Space Grotesk',Georgia,serif;font-size:1.3rem;margin-bottom:12px}
+.sub{color:var(--muted);font-size:1.05rem;margin-bottom:36px}
+a{color:var(--accent)}
+.hidden{display:none}
+nav{display:flex;align-items:center;padding:16px 24px;border-bottom:1px solid var(--edge)}
+nav .logo{font-family:'Space Grotesk',Georgia,serif;font-size:1.2rem;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-.02em}
+nav .logo span{color:var(--accent)}
+.tabs{display:flex;gap:2px;background:#26231F;border-radius:12px;padding:4px;margin-bottom:36px;border:1px solid rgba(255,255,255,.07)}
+.tab{flex:1;padding:14px;text-align:center;border-radius:10px;cursor:pointer;font-size:.92rem;font-weight:500;color:#A6A093;transition:all .15s;border:none;background:transparent;font-family:inherit;-webkit-appearance:none;-webkit-tap-highlight-color:transparent;outline:none}
+.tab.active{background:#2AA8A8!important;color:#0D1117!important;font-weight:700}
+.tab:hover:not(.active){color:#F2EFE9}
+.form-card{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:36px;margin-bottom:28px}
+.form-card label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.form-card input{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--edge);border-radius:10px;color:var(--text);font-size:1rem;font-family:inherit;margin-bottom:16px;transition:border .2s}
+.form-card input:focus{outline:none;border-color:var(--accent)}
+.form-card .btn{width:100%;padding:16px;background:var(--accent);color:#0D1117;border:none;border-radius:10px;font-size:1.05rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.form-card .btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.form-card .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.result-card{text-align:center;padding:48px 24px;border-radius:14px;background:var(--panel);border:1px solid var(--edge);margin-bottom:28px}
+.score-big{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.score-big .num{font-size:3.5rem;font-weight:800;font-family:'Space Grotesk',Georgia,serif}
+.score-good{border:6px solid var(--green);background:rgba(111,208,204,.08)} .score-good .num{color:var(--green)}
+.score-ok{border:6px solid var(--accent);background:var(--glow)} .score-ok .num{color:var(--accent)}
+.score-bad{border:6px solid var(--red);background:rgba(224,108,79,.08)} .score-bad .num{color:var(--red)}
+.lead-capture{background:linear-gradient(135deg,var(--panel) 0%,#1B1A18 100%);border:2px solid var(--accent);border-radius:14px;padding:36px;text-align:center;margin-bottom:28px}
+.lead-capture p{color:var(--muted);margin-bottom:20px;font-size:.95rem}
+.lead-capture input{width:100%;padding:14px 16px;background:var(--bg);border:1px solid var(--edge);border-radius:10px;color:var(--text);font-size:1rem;font-family:inherit;margin-bottom:12px;transition:border .2s}
+.lead-capture input:focus{outline:none;border-color:var(--accent)}
+.lead-capture .btn{width:100%;padding:16px;background:var(--accent);color:#0D1117;border:none;border-radius:10px;font-size:1.05rem;font-weight:700;cursor:pointer;font-family:inherit;margin-top:4px}
+.lead-capture .btn:hover{filter:brightness(1.1)}
+.lead-capture .btn:disabled{opacity:.5}
+.disclaimer{font-size:.72rem;color:var(--muted);margin-top:12px;text-align:center}
+footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:.78rem;border-top:1px solid var(--edge);margin-top:40px}
+.tease{color:var(--muted);font-size:.95rem;max-width:460px;margin:0 auto 8px;line-height:1.5}
+.pending-section{margin-bottom:28px}
+.pending-item{background:var(--panel);border-left:4px solid var(--muted);padding:14px 18px;margin-bottom:10px;border-radius:0 10px 10px 0}
+.pending-item .ph{font-weight:700;margin-bottom:4px;font-size:.88rem}
+.pending-item .pb{color:var(--muted);font-size:.82rem;line-height:1.4}
+.dir-item{background:var(--panel);border:1px solid var(--edge);border-radius:12px;padding:14px 18px;margin-bottom:6px;display:flex;gap:12px;align-items:center}
+.dir-item .arrow{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--glow);color:var(--accent);flex-shrink:0}
+.dir-item .info{flex:1}
+.dir-item .info .dname{font-weight:600;font-size:.9rem}
+.dir-item .info .dlink{font-size:.8rem;color:var(--muted)}
+.found-sites{background:var(--panel);border:1px solid var(--green);border-radius:10px;padding:14px 18px;margin-top:16px}
+</style>
+</head>
+<body>
+
+<nav><a href="/" class="logo">Local <span>Launch</span></a></nav>
+
+<div class="wrap" id="app">
+  <div id="step-input">
+    <h1>What's your SEO score?</h1>
+    <p class="sub">Get a free instant score — then we will send the full breakdown with a custom plan to fix every issue.</p>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('url')" id="tab-url">I have a website</button>
+      <button class="tab" onclick="switchTab('biz')" id="tab-biz">I do not have one yet</button>
+    </div>
+    <div class="form-card" id="form-url">
+      <label>Your website URL</label>
+      <input type="text" id="urlInput" placeholder="yourbusiness.com" autofocus>
+      <button class="btn" onclick="runScore()">See My Score</button>
+    </div>
+    <div class="form-card hidden" id="form-biz">
+      <label>Your business name</label>
+      <input type="text" id="bizName" placeholder="e.g. Smith's Plumbing">
+      <label>City &amp; State</label>
+      <input type="text" id="bizCity" placeholder="e.g. Greenville, SC">
+      <button class="btn" onclick="runAudit()">See My Score</button>
+    </div>
+  </div>
+
+  <div id="step-results" class="hidden">
+    <div class="result-card">
+      <div class="score-big" id="scoreCircle"><span class="num" id="scoreNum">—</span></div>
+      <h1 id="scoreHeadline"></h1>
+      <p class="tease" id="scoreTease"></p>
+    </div>
+    <h2 id="bdHead">Score breakdown</h2>
+    <div class="breakdown" id="breakdown"></div>
+    <h2 id="recHead">What to fix</h2>
+    <div id="recs"></div>
+    <div id="pendingSection" class="pending-section"></div>
+    <div id="dirSection"></div>
+    <div id="sitesSection"></div>
+    <div class="lead-capture">
+      <h2>We have your full results ready</h2>
+      <p>Enter your info and we will email you the complete breakdown — every factor scored, every fix prioritized, plus a quote to get you to 100.</p>
+      <input type="text" id="captureName" placeholder="Your name">
+      <input type="email" id="captureEmail" placeholder="you@email.com">
+      <input type="tel" id="capturePhone" placeholder="Phone (optional)">
+      <button class="btn" onclick="sendResults()">Send My Full Report</button>
+      <p class="disclaimer">No spam. One report. One follow-up from a human. You will hear from us within 24 hours.</p>
+    </div>
+    <p style="text-align:center"><a href="score.html" style="color:var(--muted);text-decoration:underline">Check another site</a></p>
+  </div>
+</div>
+
+<footer>
+  <p>Local Launch — Websites &amp; SEO for the Trades</p>
+  <p style="margin-top:4px">Greenville, SC &middot; zsch21425@gmail.com</p>
+</footer>
+
+<script>
+var currentTab="url",lastAudit=null,auditType="website";
+
+
+function addRec(parent,head,score,max,body){
+  var div=document.createElement("div");div.className="rec";
+  var h=document.createElement("div");h.className="rec-head";h.textContent=head+(max?" ("+score+"/"+max+")":"");
+  var b=document.createElement("div");b.className="rec-body";b.textContent=body||"";
+  div.appendChild(h);div.appendChild(b);
+  parent.appendChild(div);
+}
+function esc(s){if(!s)return"";var d=document.createElement("div");d.textContent=s;return d.innerHTML;}
+
+function switchTab(tab){
+  currentTab=tab;
+  var a=document.getElementById("tab-url"), b=document.getElementById("tab-biz");
+  a.classList.remove("active");b.classList.remove("active");
+  document.getElementById("tab-"+tab).classList.add("active");
+  document.getElementById("form-url").classList.toggle("hidden",tab!=="url");
+  document.getElementById("form-biz").classList.toggle("hidden",tab!=="biz");
+  if(tab==="biz"){document.getElementById("bizName").focus();}
+  document.getElementById("step-results").classList.add("hidden");
+  document.getElementById("step-input").classList.remove("hidden");
+}
+
+function showResult(){
+  document.getElementById("step-input").classList.add("hidden");
+  document.getElementById("step-results").classList.remove("hidden");
+  document.getElementById("captureName").value="";
+  document.getElementById("captureEmail").value="";
+  document.getElementById("capturePhone").value="";
+  document.getElementById("recs").innerHTML="";
+  document.getElementById("pendingSection").innerHTML="";
+  document.getElementById("dirSection").innerHTML="";
+  document.getElementById("sitesSection").innerHTML="";
+  document.getElementById("breakdown").innerHTML="";
+  document.getElementById("bdHead").classList.remove("hidden");
+  document.getElementById("recHead").classList.remove("hidden");
+}
+
+async function runScore(){
+  var url=document.getElementById("urlInput").value.trim();
+  if(!url)return;
+  auditType="website";
+  var btn=document.querySelector("#form-url .btn");btn.textContent="Scanning...";btn.disabled=true;
+  showResult();
+  document.getElementById("scoreNum").textContent="...";
+  document.getElementById("scoreHeadline").textContent="Scanning your site...";
+  document.getElementById("scoreTease").textContent=url;
+  document.getElementById("scoreCircle").className="score-big";
+  document.getElementById("bdHead").textContent="13-factor SEO audit";
+  document.getElementById("recHead").textContent="";
+  try{
+    var r=await fetch("/api/score",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({url:url})});
+    var d=await r.json();
+    lastAudit=d;
+    if(d.error){document.getElementById("scoreNum").textContent="?";document.getElementById("scoreHeadline").textContent="Could not scan";document.getElementById("scoreTease").textContent=d.error;return}
+    renderScore(d.score);
+    document.getElementById("bdHead").textContent="13-factor SEO audit (industry standard rubric)";
+    document.getElementById("recHead").textContent="What to fix";
+    showWebsiteBreakdown(d);
+  }catch(e){document.getElementById("scoreNum").textContent="?";document.getElementById("scoreHeadline").textContent="Error";}
+}
+
+function showWebsiteBreakdown(d){
+  var bd=document.getElementById("breakdown");bd.innerHTML="";
+  for(var f in d.breakdown){var p=d.breakdown[f],max=getMax(f),pct=(p/max)*100;var cls=pct===0?"factor-bad":pct<100?"factor-warn":"factor-good";bd.innerHTML+='<div class="factor '+cls+'"><span style="flex:0 0 115px;font-size:.78rem">'+esc(f)+'</span><div class="bar"><div class="fill" style="width:'+pct+'%"></div></div><span class="pts">'+p+"/"+max+'</span></div>';}
+  var recs=document.getElementById("recs");
+  if(!d.recommendations.length){
+    addRec(recs,'No major issues found',0,0,'Your site passes all 13 checks.');
+  }else{
+    recs.innerHTML="";
+    for(var i=0;i<d.recommendations.length;i++){
+      var r=d.recommendations[i];
+      addRec(recs,r.factor,r.score,r.max,r.advice);
+    }
+  }
+}
+
+async function runAudit(){
+  var name=document.getElementById("bizName").value.trim();
+  var city=document.getElementById("bizCity").value.trim();
+  if(!name||!city)return;
+  auditType="business";
+  var btn=document.querySelector("#form-biz .btn");btn.textContent="Auditing...";btn.disabled=true;
+  showResult();
+  document.getElementById("scoreNum").textContent="...";
+  document.getElementById("scoreHeadline").textContent="Auditing "+name+"...";
+  document.getElementById("scoreTease").textContent=city;
+  document.getElementById("scoreCircle").className="score-big";
+  document.getElementById("bdHead").textContent="Presence audit (local SEO rubric)";
+  document.getElementById("recHead").textContent="What is missing";
+  try{
+    var r=await fetch("/api/search",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:name,city:city})});
+    var d=await r.json();
+    lastAudit=d;
+    if(d.error){document.getElementById("scoreNum").textContent="?";document.getElementById("scoreHeadline").textContent="Error";return}
+    renderScore(d.score);
+    showBizBreakdown(d);
+  }catch(e){document.getElementById("scoreNum").textContent="?";document.getElementById("scoreHeadline").textContent="Error";}
+}
+
+function showBizBreakdown(d){
+  var bd=document.getElementById("breakdown");bd.innerHTML="";
+  (d.factors||[]).forEach(function(f){
+    var pct=f.max?(f.score/f.max)*100:0,cls=pct===0?"factor-bad":pct<100?"factor-warn":"factor-good";
+    bd.innerHTML+='<div class="factor '+cls+'"><span style="flex:0 0 115px;font-size:.78rem">'+esc(f.factor)+'</span><div class="bar"><div class="fill" style="width:'+pct+'%"></div></div><span class="pts">'+f.score+"/"+f.max+'</span></div>';
+  });
+
+  var recs=document.getElementById("recs");
+  // Show what we checked
+  var checkedDiv = document.getElementById("sitesSection");
+  var dc = d.domains_checked || [];
+  if(!d.has_website){
+    checkedDiv.innerHTML = '<div class="pending-item" style="border-left-color:var(--red);margin-top:20px"><div class="ph">No website found</div><div class="pb">Checked ' + dc.length + ' domain patterns' + (d.confidence==="low"?'. <strong>Low confidence</strong> — is this the right business name?':'') + '</div></div>';
+  }
+
+  if(d.missing&&d.missing.length){
+    recs.innerHTML="";d.missing.forEach(function(f){addRec(recs,f.factor,f.score,f.max,f.detail);});
+  }else{
+    recs.innerHTML='<div class="rec"><div class="rec-head">No gaps found</div><div class="rec-body">Your business shows strong online signals.</div></div>';
+  }
+
+  // Pending factors
+  var pending = (d.factors||[]).filter(function(f){return f.pending});
+  if(pending.length){
+    var ps = document.getElementById("pendingSection");
+    ps.innerHTML='<h2>Pending verification</h2>';
+    pending.forEach(function(f){
+      ps.innerHTML+='<div class="pending-item"><div class="ph">'+esc(f.factor)+' +'+f.max+' pts reserved</div><div class="pb">'+esc(f.detail)+'</div></div>';
+    });
+  }
+
+  // Directories
+  if(d.directories&&d.directories.length){
+    var ds = document.getElementById("dirSection");
+    ds.innerHTML='<h2>Claim these directories</h2>';
+    d.directories.forEach(function(dd){ds.innerHTML+='<div class="dir-item"><div class="arrow">&rarr;</div><div class="info"><div class="dname">'+esc(dd.name)+'</div><div class="dlink"><a href="'+esc(dd.url)+'" target="_blank" rel="noopener" style="color:var(--accent)">Search on '+esc(dd.name)+' &rarr;</a></div></div></div>';});
+  }
+
+  // Websites found
+  if(d.websites&&d.websites.length){
+    var ss = document.getElementById("sitesSection");
+    ss.innerHTML='<div class="found-sites"><strong style="color:var(--green)">Websites detected:</strong> ';
+    d.websites.forEach(function(w){ss.innerHTML+='<a href="'+esc(w)+'" target="_blank" rel="noopener" style="color:var(--accent);margin-left:8px">'+esc(w)+'</a>';});
+    ss.innerHTML+='</div>';
+  }
+
+  // Hide website-only sections
+  document.getElementById("bdHead").classList.remove("hidden");
+  document.getElementById("recHead").classList.remove("hidden");
+}
+
+function renderScore(s){
+  var cc="score-bad",cl="var(--red)",hl="There is work to do",tease="";
+  if(s>=80){cc="score-good";cl="var(--green)";hl="You are in great shape";tease="Well-optimized. A few fine-tuning opportunities remain.";}
+  else if(s>=50){cc="score-ok";cl="var(--accent)";hl="Solid foundation";tease="You have the basics, but several gaps are holding you back.";}
+  else if(s>=20){cc="score-bad";cl="var(--red)";hl="Big opportunity here";tease="Significant gaps detected. We know exactly how to fix every one.";}
+  else{cc="score-bad";cl="var(--red)";hl="You are invisible online";tease="Customers searching for your business find competitors instead.";}
+  document.getElementById("scoreCircle").className="score-big "+cc;
+  document.getElementById("scoreNum").style.color=cl;
+  animateNum(document.getElementById("scoreNum"),0,s,1200);
+  document.getElementById("scoreHeadline").textContent=hl;
+  document.getElementById("scoreTease").textContent=tease;
+}
+
+function animateNum(el,start,end,dur){
+  var t0=performance.now();
+  function step(now){var p=Math.min((now-t0)/dur,1);el.textContent=Math.round(start+(end-start)*p);if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+}
+
+function getMax(f){var m={"Title tag":10,"Meta description":10,"H1 tag":5,"Content quality":10,"HTTPS/SSL":10,"Schema markup":10,"Mobile viewport":5,"Sitemap":5,"Robots.txt":5,"Page speed":5,"Image alt text":10,"Subheading structure":10,"FAQ markup":5};return m[f]||10}
+
+function sendResults(){
+  var name=document.getElementById("captureName").value.trim();
+  var email=document.getElementById("captureEmail").value.trim();
+  var phone=document.getElementById("capturePhone").value.trim();
+  if(!email&&!phone){alert("Please enter at least your email or phone number.");return}
+  var subj="Full Audit Report",body="Name: "+encodeURIComponent(name||"(not given)")+"%0AEmail: "+encodeURIComponent(email||"(not given)")+"%0APhone: "+encodeURIComponent(phone||"(not given)")+"%0A%0A";
+  if(auditType==="website"&&lastAudit){
+    subj="SEO Audit — "+lastAudit.url;
+    body+="Website: "+encodeURIComponent(lastAudit.url||"")+"%0AScore: "+(lastAudit.score||"?")+"/100";
+    if(lastAudit.scan){body+="%0AWords: "+(lastAudit.scan.word_count||0)+"%0ASchema types: "+(lastAudit.scan.schema_types||[]).length;}
+    if(lastAudit.recommendations){body+="%0A%0ARecommendations: %0A";lastAudit.recommendations.forEach(function(r,i){body+=(i+1)+". "+encodeURIComponent(r.factor)+" ("+r.score+"/"+r.max+"): "+encodeURIComponent(r.advice)+"%0A";});}
+  }else if(lastAudit){
+    subj="Presence Audit — "+lastAudit.business;
+    body+="Business: "+encodeURIComponent(lastAudit.business||"")+"%0ACity: "+encodeURIComponent(lastAudit.city||"")+"%0AScore: "+(lastAudit.score||"?")+"/100";
+    if(lastAudit.factors){lastAudit.factors.forEach(function(f){body+="%0A- "+encodeURIComponent(f.factor+": "+f.score+"/"+f.max+" — "+f.detail);if(f.pending)body+=" [pending verification]";});}
+  }
+  var displayName = esc(name) || "we will be in touch";
+  var lc = document.querySelector(".lead-capture"); lc.innerHTML = "";
+  var h2 = document.createElement("h2"); h2.textContent = "Thanks, " + displayName + "!";
+  var p = document.createElement("p"); p.style.color = "var(--muted)"; p.textContent = "We will send your full report within 24 hours.";
+  lc.appendChild(h2); lc.appendChild(p);
+  window.location.href="mailto:zsch21425@gmail.com?subject="+encodeURIComponent(subj)+"&body="+body;
+}
+</script>

@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.python-version
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Vercel
+.vercel/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Large media
+*.mp4
+*.mov
+
+# Backups
+*.bak*
+*.backup*
+*_backup*
