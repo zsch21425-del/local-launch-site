@@ -681,15 +681,13 @@ const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 0.1, 200);
     camera.position.z = 22;
 
-    scene.fog = new THREE.FogExp2(0x1B1A18, 0.012);
-
     const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x1B1A18, 0);
+    renderer.setClearColor(0x000000, 0);
 
-    // Lighting
-    scene.add(new THREE.AmbientLight(0x334444, 1.0));
+    // Lighting — brighter to punch through the hero overlay
+    scene.add(new THREE.AmbientLight(0x445555, 1.4));
     const tealLight = new THREE.PointLight(0x2AA8A8, 8.5, 95);
     tealLight.position.set(12, 10, 14);
     scene.add(tealLight);
@@ -726,9 +724,9 @@ const scene = new THREE.Scene();
       const wireframe = i % 4 === 0;
 
       const geometry = geoPool[Math.floor(Math.random()*geoPool.length)]();
-      const material = wireframe
-        ? new THREE.MeshBasicMaterial({color, wireframe:true, transparent:true, opacity:0.55})
-        : new THREE.MeshStandardMaterial({color, metalness:0.92, roughness:0.15, transparent:true, opacity:0.85});
+      var material = wireframe
+              ? new THREE.MeshBasicMaterial({color:color, wireframe:true, transparent:true, opacity:0.7})
+              : new THREE.MeshStandardMaterial({color:color, metalness:0.92, roughness:0.15, emissive:color, emissiveIntensity:0.3, transparent:true, opacity:0.9});
 
       const mesh = new THREE.Mesh(geometry, material);
       const radius = 9 + Math.random()*14;
