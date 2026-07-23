@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Local Launch — Websites &amp; SEO for Small Businesses | Greenville, SC</title>
-<meta name="description" content="Local Launch builds custom websites and runs SEO for small businesses in Greenville &amp; Upstate SC. AI visualizers, AI receptionists, Google Business Profile optimization. One-time builds from $300 — no contracts.">
+<title>Local Launch — Websites &amp; SEO for the Trades</title>
+<meta name="description" content="Local Launch builds custom websites and runs SEO for plumbers, mechanics, landscapers, electricians, roofers, HVAC, and trades in Greenville &amp; Upstate SC. AI visualizers, AI receptionists, Google Business Profile optimization. One-time builds from $300 — no contracts.">
 <meta name="theme-color" content="#1B1A18">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7PGEF4619"></script>
@@ -105,7 +105,7 @@ gtag('config', 'G-E7PGEF4619');
     transition:transform .25s, box-shadow .25s!important;
   }
   .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(42,168,168,.35)}
-  @media(max-width:720px){ .nav-links a:not(.nav-cta):not(.nav-phone){display:none} }
+  @media(max-width:720px){ .nav-links a:not(.nav-cta){display:none} }
 
   /* ---------- hero ---------- */
   .hero{
@@ -116,10 +116,10 @@ gtag('config', 'G-E7PGEF4619');
   }
   /* pointer-events:none is critical: touches must pass through the canvas
      to the page so scrolling always works — the canvas is display-only */
-  #heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;touch-action:auto}
+  #heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;touch-action:auto}
   .hero::after{
-    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-    background:transparent;
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse 90% 70% at 50% 42%,transparent 30%,var(--bg) 100%);
   }
   .hero-inner{position:relative;z-index:2;max-width:960px}
   .hero-kicker{
@@ -365,7 +365,6 @@ gtag('config', 'G-E7PGEF4619');
     <span style="font-weight:800;letter-spacing:-.02em;font-size:1.08rem"><span style="color:#C9CED3">Local</span> <span style="color:var(--accent)">Launch</span></span>
   </div>
   <div class="nav-links">
-    <a href="tel:+15033585860" class="nav-phone" style="color:var(--ink);font-weight:700;font-size:.92rem;margin-right:8px">📞 (503) 358-5860</a>
     <a href="#proof">Results</a>
     <a href="#how">How It Works</a>
     <a href="#visualizer">AI Visualizer</a>
@@ -378,18 +377,17 @@ gtag('config', 'G-E7PGEF4619');
   <canvas id="heroCanvas"></canvas>
   <div class="hero-inner">
     <h1>
-      <span class="w" style="animation-delay:.05s">Websites</span>
-      <span class="w amber" style="animation-delay:.13s">&amp;</span>
-      <span class="w amber" style="animation-delay:.21s">SEO</span>
-      <span class="w" style="animation-delay:.29s">for</span>
-      <span class="w" style="animation-delay:.37s">Small</span>
-      <span class="w" style="animation-delay:.45s">Businesses</span><br>
-      <span class="w" style="animation-delay:.53s">Greenville</span>
-      <span class="w" style="animation-delay:.61s">&amp;</span>
-      <span class="w" style="animation-delay:.69s">Upstate</span>
-      <span class="w" style="animation-delay:.77s">SC</span>
+      <span class="w" style="animation-delay:.05s">Your</span>
+      <span class="w" style="animation-delay:.13s">competitors</span>
+      <span class="w" style="animation-delay:.21s">aren't</span>
+      <span class="w" style="animation-delay:.29s">better.</span><br>
+      <span class="w amber" style="animation-delay:.45s">They're</span>
+      <span class="w amber" style="animation-delay:.53s">just</span>
+      <span class="w amber" style="animation-delay:.61s">easier</span>
+      <span class="w amber" style="animation-delay:.69s">to</span>
+      <span class="w amber" style="animation-delay:.77s">find.</span>
     </h1>
-    <p class="hero-sub">One landscaping company went from <strong>invisible to page one of Google in six weeks</strong>. Custom websites, AI tools, and SEO — built for small businesses that want more customers without agency prices.</p>
+    <p class="hero-sub">I build websites and run SEO for plumbers, mechanics, landscapers, and trades. One landscaping company went from <strong>invisible to ranking on page one in six weeks</strong>. Yours can too.</p>
     <div class="hero-ctas">
       <a href="/score.html" class="btn btn-primary">See Your SEO Score</a>
       <div class="hero-dropdown">
@@ -401,17 +399,12 @@ gtag('config', 'G-E7PGEF4619');
         </div>
       </div>
     </div>
-    <div class="hero-trust" style="margin-top:28px;display:flex;align-items:center;gap:12px;font-size:.88rem;color:var(--muted);opacity:0;animation:fadeUp .9s 1.4s cubic-bezier(.2,.7,.2,1) forwards">
-      <span style="color:#F5A623;letter-spacing:2px">★★★★★</span>
-      <span>Trusted by small businesses in Greenville &amp; the Upstate</span>
-    </div>
   </div>
   <div class="hero-scrollhint" id="scrollHint">Scroll<span class="bar"></span></div>
 </header>
 
 <div class="marquee">
   <div class="marquee-track" id="marqueeTrack">
-    <span>Plumbers <i>·</i></span><span>Mechanics <i>·</i></span><span>Landscapers <i>·</i></span><span>Electricians <i>·</i></span><span>Roofers <i>·</i></span><span>HVAC <i>·</i></span><span>Painters <i>·</i></span><span>Concrete &amp; Paving <i>·</i></span>
     <span>Plumbers <i>·</i></span><span>Mechanics <i>·</i></span><span>Landscapers <i>·</i></span><span>Electricians <i>·</i></span><span>Roofers <i>·</i></span><span>HVAC <i>·</i></span><span>Painters <i>·</i></span><span>Concrete &amp; Paving <i>·</i></span>
   </div>
 </div>
@@ -608,8 +601,8 @@ gtag('config', 'G-E7PGEF4619');
         <p style="color:var(--muted);font-size:.97rem">Yes — every tier includes GBP optimization. I audit your profile, fix categories, add service areas, and set up Google Posts. If you don't have one yet, I provide the step-by-step walkthrough to get verified. Once you're live, reviews and rankings compound fast.</p>
       </div>
       <div class="cmp them reveal">
-        <h3>What small businesses do you work with?</h3>
-        <p style="color:var(--muted);font-size:.97rem">Plumbers, mechanics, landscapers, electricians, roofers, HVAC techs, painters, concrete contractors, pavers — any small business that serves local customers. I build the site around your specific services and the cities you work in.</p>
+        <h3>What trades do you work with?</h3>
+        <p style="color:var(--muted);font-size:.97rem">Plumbers, mechanics, landscapers, electricians, roofers, HVAC techs, painters, concrete contractors, pavers — any blue-collar trade that serves local customers. I build the site around your specific services and the cities you work in.</p>
       </div>
       <div class="cmp us reveal d1">
         <h3>How is this different from a marketing agency?</h3>
@@ -645,16 +638,11 @@ gtag('config', 'G-E7PGEF4619');
           <div class="fld"><label for="cf-phone">Phone</label><input id="cf-phone" type="tel" placeholder="(555) 555-5555"></div>
         </div>
         <div class="fld"><label for="cf-trade">Your Trade</label>
-          <input id="cf-trade" type="text" placeholder="e.g. Landscaping, Plumbing, Electrical…">
-        </div>
-        <div class="fld"><label for="cf-company">Company Name or Current Website</label>
-          <input id="cf-company" type="text" placeholder="e.g. Smith &amp; Sons Landscaping or smithandsons.com">
+          <select id="cf-trade">
+            <option>Landscaping</option><option>Plumbing</option><option>Auto / Mechanic</option><option>Electrical</option><option>Roofing</option><option>HVAC</option><option>Other</option>
+          </select>
         </div>
         <div class="fld"><label for="cf-msg">What do you need?</label><textarea id="cf-msg" rows="4" placeholder="Tell me about your business and what's not working…"></textarea></div>
-        <div style="text-align:center;margin-bottom:14px;font-size:.85rem;color:var(--muted)">
-          <span style="color:#F5A623;letter-spacing:2px">★★★★★</span> 
-          Trusted by small businesses across the Upstate
-        </div>
         <button type="submit" class="btn btn-primary" style="width:100%">Send It →</button>
       </form>
       <div class="guarantee"><span class="pulse"></span>I'll get back to you within 24 hours</div>
@@ -663,222 +651,134 @@ gtag('config', 'G-E7PGEF4619');
 </section>
 
 <footer>
-  <div style="margin-bottom:8px"><a href="tel:+15033585860" style="color:var(--ink);font-weight:700;font-size:1.05rem;text-decoration:none">📞 (503) 358-5860</a></div>
-  <div>Local Launch © 2026 — Websites &amp; SEO for small businesses in Greenville, SC.</div>
+  <div>Local Launch © 2026 — Websites &amp; SEO for the trades.</div>
   <div style="display:flex;gap:9px;align-items:center"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block"></span>Built fast. Runs cheap. Works 24/7.</div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
   "use strict";
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Three.js animated background ---------- */
+  /* ---------- 3D particle terrain hero (zero dependencies) ----------
+     A perspective-projected point grid rendered on canvas2d:
+     world-space grid -> wave displacement -> camera transform ->
+     perspective divide -> depth-scaled glowing sprites. */
   var canvas = document.getElementById("heroCanvas");
-  if (canvas && typeof THREE !== 'undefined') {
-const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 0.1, 200);
-    camera.position.z = 22;
+  if (canvas) {
+    var ctx2 = canvas.getContext("2d");
+    var isMobile = Math.min(window.innerWidth, window.innerHeight) < 700;
+    var COLS = isMobile ? 46 : 92, ROWS = isMobile ? 24 : 44;
+    var SPAN_X = 40, NEAR_Z = 1.6, SPAN_Z = 24;
+    var CAM_H = 4.2;                 // camera height above the plane
+    var W = 0, H = 0, DPR = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.75);
+    var FRAME_MS = isMobile ? 33 : 0;          // ~30fps on phones
+    var BLEND = isMobile ? "source-over" : "lighter";  // additive blending is costly on phones
+    var horizonY = 0.40;             // fraction of height where the terrain vanishes
 
-    const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
-
-    // Lighting — brighter to punch through the hero overlay
-    scene.add(new THREE.AmbientLight(0x445555, 1.4));
-    const tealLight = new THREE.PointLight(0x2AA8A8, 8.5, 95);
-    tealLight.position.set(12, 10, 14);
-    scene.add(tealLight);
-    const warmLight = new THREE.PointLight(0xff9d5c, 1.8, 60);
-    warmLight.position.set(-14, -8, -10);
-    scene.add(warmLight);
-    const orbitWarmLight = new THREE.PointLight(0xffb347, 2.6, 65);
-    orbitWarmLight.position.set(-12, -6, 10);
-    scene.add(orbitWarmLight);
-    const rimLight = new THREE.PointLight(0x3fd6d6, 2.2, 95);
-    rimLight.position.set(0, 0, 20);
-    scene.add(rimLight);
-
-    // Shape group
-    const group = new THREE.Group();
-    scene.add(group);
-
-    const tealColors = [0x2AA8A8, 0x3fd6d6, 0x1c7a7a];
-    const warmColors = [0xff9d5c, 0xffb347, 0xe07a3e];
-    const geoPool = [
-      ()=> new THREE.IcosahedronGeometry(1, 0),
-      ()=> new THREE.OctahedronGeometry(1, 0),
-      ()=> new THREE.TetrahedronGeometry(1, 0),
-      ()=> new THREE.TorusGeometry(0.8, 0.28, 8, 16),
-      ()=> new THREE.BoxGeometry(1.2, 1.2, 1.2),
-    ];
-
-    const SHAPE_COUNT = 32;
-    const shapes = [];
-    for(let i=0;i<SHAPE_COUNT;i++){
-      const isWarm = i % 3 === 0;
-      const palette = isWarm ? warmColors : tealColors;
-      const color = palette[Math.floor(Math.random()*palette.length)];
-      const wireframe = i % 4 === 0;
-
-      const geometry = geoPool[Math.floor(Math.random()*geoPool.length)]();
-      var material = wireframe
-              ? new THREE.MeshBasicMaterial({color:color, wireframe:true, transparent:true, opacity:0.7})
-              : new THREE.MeshStandardMaterial({color:color, metalness:0.92, roughness:0.15, emissive:color, emissiveIntensity:0.3, transparent:true, opacity:0.9});
-
-      const mesh = new THREE.Mesh(geometry, material);
-      const radius = 9 + Math.random()*14;
-      const theta = Math.random()*Math.PI*2;
-      const phi = Math.acos((Math.random()*2)-1);
-      mesh.position.set(
-        radius * Math.sin(phi) * Math.cos(theta),
-        radius * Math.sin(phi) * Math.sin(theta) * 0.6,
-        radius * Math.cos(phi) - 8
-      );
-      const scale = 0.75 + Math.random()*1.8;
-      mesh.scale.setScalar(scale);
-      mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
-
-      mesh.userData.spin = new THREE.Vector3(
-        (Math.random()-0.5)*0.006,
-        (Math.random()-0.5)*0.006,
-        (Math.random()-0.5)*0.006
-      );
-      mesh.userData.floatSpeed = 0.2 + Math.random()*0.4;
-      mesh.userData.floatOffset = Math.random()*Math.PI*2;
-      mesh.userData.baseY = mesh.position.y;
-
-      group.add(mesh);
-      shapes.push(mesh);
+    // Pre-rendered glow sprites in three brand colors
+    function makeSprite(color){
+      var s = document.createElement("canvas"); s.width = s.height = 48;
+      var g = s.getContext("2d");
+      var rg = g.createRadialGradient(24,24,0,24,24,24);
+      rg.addColorStop(0, "rgba(" + color + ",1)");
+      rg.addColorStop(0.35, "rgba(" + color + ",.75)");
+      rg.addColorStop(1, "rgba(" + color + ",0)");
+      g.fillStyle = rg; g.fillRect(0,0,48,48);
+      return s;
     }
+    var sprites = [makeSprite("214,209,198"), makeSprite("42,168,168"), makeSprite("111,208,204")];
 
-    // Pulsing radar rings
-    const rings = [];
-    const RING_COUNT = 6;
-    const RING_CYCLE = 7.5;
-    for(let i=0;i<RING_COUNT;i++){
-      const ringGeo = new THREE.RingGeometry(1, 1.05, 64);
-      const ringMat = new THREE.MeshBasicMaterial({color:0x3fd6d6, transparent:true, opacity:0.5, side:THREE.DoubleSide});
-      const ring = new THREE.Mesh(ringGeo, ringMat);
-      ring.position.set(0, 0, -6);
-      ring.userData.delay = i * (RING_CYCLE/RING_COUNT);
-      ring.userData.cycle = RING_CYCLE;
-      scene.add(ring);
-      rings.push(ring);
-    }
-
-    // Particles
-    const PARTICLE_COUNT = 500;
-    const positions = new Float32Array(PARTICLE_COUNT*3);
-    const speeds = new Float32Array(PARTICLE_COUNT);
-    const driftX = new Float32Array(PARTICLE_COUNT);
-    const driftZ = new Float32Array(PARTICLE_COUNT);
-    const driftOffset = new Float32Array(PARTICLE_COUNT);
-    for(let i=0;i<PARTICLE_COUNT;i++){
-      positions[i*3] = (Math.random()-0.5)*60;
-      positions[i*3+1] = (Math.random()-0.5)*40;
-      positions[i*3+2] = (Math.random()-0.5)*40 - 10;
-      speeds[i] = 0.0035 + Math.random()*0.006;
-      driftX[i] = 0.1 + Math.random()*0.22;
-      driftZ[i] = 0.08 + Math.random()*0.16;
-      driftOffset[i] = Math.random()*Math.PI*2;
-    }
-    const particleGeo = new THREE.BufferGeometry();
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    // glow sprite texture
-    const spriteCanvas = document.createElement('canvas');
-    spriteCanvas.width = 64; spriteCanvas.height = 64;
-    const ctx = spriteCanvas.getContext('2d');
-    const grad = ctx.createRadialGradient(32,32,0,32,32,32);
-    grad.addColorStop(0, 'rgba(255,255,255,1)');
-    grad.addColorStop(0.4, 'rgba(63,214,214,0.8)');
-    grad.addColorStop(1, 'rgba(63,214,214,0)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0,0,64,64);
-    const spriteTexture = new THREE.CanvasTexture(spriteCanvas);
-
-    const particleMat = new THREE.PointsMaterial({
-      size:0.5,
-      map:spriteTexture,
-      transparent:true,
-      opacity:0.75,
-      blending:THREE.AdditiveBlending,
-      depthWrite:false
-    });
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-
-    // Mouse parallax
-    let mouseX = 0, mouseY = 0;
-    window.addEventListener('mousemove', (e)=>{
-      mouseX = (e.clientX / window.innerWidth - 0.5);
-      mouseY = (e.clientY / window.innerHeight - 0.5);
-    });
-
-    let t = 0;
-    function animate(){
-      requestAnimationFrame(animate);
-      t += 0.016;
-
-      shapes.forEach(mesh=>{
-        mesh.rotation.x += mesh.userData.spin.x;
-        mesh.rotation.y += mesh.userData.spin.y;
-        mesh.rotation.z += mesh.userData.spin.z;
-        mesh.position.y = mesh.userData.baseY + Math.sin(t*mesh.userData.floatSpeed + mesh.userData.floatOffset) * 0.8;
-      });
-
-      rings.forEach(ring=>{
-        const local = ((t + ring.userData.delay) % ring.userData.cycle) / ring.userData.cycle;
-        const scale = 1 + local * 22;
-        ring.scale.setScalar(scale);
-        ring.material.opacity = Math.max(0, 0.55 * Math.pow(1 - local, 1.1));
-      });
-
-      const posAttr = particleGeo.attributes.position;
-      for(let i=0;i<PARTICLE_COUNT;i++){
-        let y = posAttr.array[i*3+1] + speeds[i];
-        if(y > 20) y = -20;
-        posAttr.array[i*3+1] = y;
-        posAttr.array[i*3] += Math.sin(t*0.2 + driftOffset[i]) * driftX[i] * 0.01;
-        posAttr.array[i*3+2] += Math.cos(t*0.15 + driftOffset[i]) * driftZ[i] * 0.01;
+    // Static per-point data: grid position + color choice + size jitter
+    var pts = [];
+    var seed = 1;
+    function rnd(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+    for (var zi = 0; zi < ROWS; zi++) {
+      for (var xi = 0; xi < COLS; xi++) {
+        var r = rnd();
+        pts.push({
+          x: (xi / (COLS - 1) - 0.5) * SPAN_X,
+          z: NEAR_Z + (zi / (ROWS - 1)) * SPAN_Z,
+          c: r < 0.10 ? 1 : (r < 0.15 ? 2 : 0),
+          j: 0.75 + rnd() * 0.6
+        });
       }
-      posAttr.needsUpdate = true;
-
-      group.rotation.y += 0.0009;
-      group.rotation.x = Math.sin(t*0.05) * 0.05;
-
-      camera.position.x += (mouseX*3 - camera.position.x) * 0.02;
-      camera.position.y += (-mouseY*2 - camera.position.y) * 0.02;
-      camera.lookAt(0,0,-8);
-
-      tealLight.position.x = Math.sin(t*0.3) * 14;
-      tealLight.position.y = Math.cos(t*0.25) * 10;
-
-      orbitWarmLight.position.x = Math.cos(t*0.22 + Math.PI) * 16;
-      orbitWarmLight.position.z = Math.sin(t*0.22 + Math.PI) * 16 - 4;
-      orbitWarmLight.position.y = Math.sin(t*0.18) * 8;
-
-      renderer.render(scene, camera);
     }
-    animate();
 
-    window.addEventListener('resize', ()=>{
-      camera.aspect = window.innerWidth/window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-  })();
-</script>
+    function resize(){
+      W = canvas.clientWidth || window.innerWidth;
+      H = canvas.clientHeight || window.innerHeight;
+      canvas.width = Math.round(W * DPR);
+      canvas.height = Math.round(H * DPR);
+      ctx2.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    window.addEventListener("resize", resize); resize();
 
-</body>
-</html>
+    var mouseX = 0, mouseY = 0, targX = 0, targY = 0;
+    // mouse-parallax only on hover devices; phones get the idle drift instead
+    if (window.matchMedia("(hover:hover)").matches) {
+      window.addEventListener("pointermove", function(e){
+        targX = (e.clientX / window.innerWidth - 0.5);
+        targY = (e.clientY / window.innerHeight - 0.5);
+      }, {passive:true});
+    }
+
+    var heroVisible = true;
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(function(entries){ heroVisible = entries[0].isIntersecting; }, {threshold: 0}).observe(canvas.parentElement);
+    }
+
+    var t0 = performance.now();
+    function drawFrame(t){
+      ctx2.clearRect(0, 0, W, H);
+      ctx2.globalCompositeOperation = BLEND;
+      var f = Math.min(W, H) * 1.05;          // focal length
+      var cx = W / 2, cy = H * horizonY;
+      mouseX += (targX - mouseX) * 0.05;
+      mouseY += (targY - mouseY) * 0.05;
+      var panX = mouseX * 4.5, panY = mouseY * 1.6;
+      var sway = Math.sin(t * 0.00008) * 2.4;  // slow idle drift so it moves without a mouse
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i];
+        // wave field
+        var y = Math.sin(p.x * 0.5 + t * 0.0011) * 0.6
+              + Math.cos(p.z * 0.55 + t * 0.0009) * 0.5
+              + Math.sin((p.x + p.z) * 0.28 + t * 0.0006) * 0.4;
+        var d = p.z;                            // depth
+        var sx = cx + ((p.x + panX + sway) * f) / (d * 6);
+        var sy = cy + ((CAM_H + panY - y) * f) / (d * 6);
+        if (sx < -20 || sx > W + 20 || sy < -20 || sy > H + 20) continue;
+        var size = Math.max(1.1, Math.min(7, (f * 0.055) / d)) * p.j;
+        var fade = Math.max(0, Math.min(1, 1.25 - d / (NEAR_Z + SPAN_Z)));  // fog: far points dim
+        var lift = Math.max(0, y) * 0.35;       // crests glow brighter
+        ctx2.globalAlpha = Math.min(0.72, fade * (0.34 + lift));
+        var sp = sprites[p.c];
+        ctx2.drawImage(sp, sx - size, sy - size, size * 2, size * 2);
+      }
+      ctx2.globalAlpha = 1;
+      ctx2.globalCompositeOperation = "source-over";
+    }
+
+    // Yield to scrolling: pause drawing while the user is actively scrolling
+    var lastScrollT = -9999, lastDraw = 0;
+    window.addEventListener("scroll", function(){ lastScrollT = performance.now(); }, {passive:true});
+    window.addEventListener("touchmove", function(){ lastScrollT = performance.now(); }, {passive:true});
+
+    if (prefersReduced) {
+      drawFrame(1200);   // single static frame, no motion
+    } else {
+      (function animate(now){
+        requestAnimationFrame(animate);
+        if (!heroVisible) return;
+        if (now - lastScrollT < 150) return;   // scrolling — stay out of the way
+        if (FRAME_MS && now - lastDraw < FRAME_MS) return;
+        lastDraw = now;
+        drawFrame(now - t0);
+      })(t0);
+    }
   }
-})();
-</script>
-/* ---------- cursor glow ---------- */
+
+  /* ---------- cursor glow ---------- */
   var glow = document.getElementById("cursorGlow");
   if (glow && window.matchMedia("(hover:hover)").matches) {
     window.addEventListener("pointermove", function(e){
@@ -980,35 +880,16 @@ const scene = new THREE.Scene();
 
   /* ---------- contact form (mailto handoff) ---------- */
   var form = document.getElementById("contactForm");
-  if (form) form.addEventListener("submit", async function(e){
+  if (form) form.addEventListener("submit", function(e){
     e.preventDefault();
-    var btn = form.querySelector("button[type=submit]");
-    var origText = btn.textContent;
-    btn.textContent = "Sending...";
-    btn.disabled = true;
-
     var name = document.getElementById("cf-name").value || "";
     var phone = document.getElementById("cf-phone").value || "";
     var trade = document.getElementById("cf-trade").value || "";
-    var company = document.getElementById("cf-company").value || "";
     var msg = document.getElementById("cf-msg").value || "";
-
-    try {
-      var resp = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, trade, company, message: msg })
-      });
-      if (resp.ok) {
-        window.location.href = "/thanks.html";
-      } else {
-        btn.textContent = "Error — try again";
-        btn.disabled = false;
-      }
-    } catch (err) {
-      btn.textContent = "Error — try again";
-      btn.disabled = false;
-    }
+    var body = "Name: " + name + "%0D%0APhone: " + phone + "%0D%0ATrade: " + trade + "%0D%0A%0D%0A" + encodeURIComponent(msg);
+    // Open mailto in background, redirect to thanks page
+    window.open("mailto:zsch21425@gmail.com?subject=" + encodeURIComponent("Local Launch inquiry — " + name) + "&body=" + body, "_blank");
+    window.location.href = "/thanks.html";
   });
 })();
 </script>
