@@ -681,14 +681,15 @@ const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 0.1, 200);
     camera.position.z = 22;
 
-    scene.fog = new THREE.FogExp2(0x0c0f12, 0.028);
+    scene.fog = new THREE.FogExp2(0x1B1A18, 0.012);
 
     const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x1B1A18, 0);
 
     // Lighting
-    scene.add(new THREE.AmbientLight(0x223333, 0.7));
+    scene.add(new THREE.AmbientLight(0x334444, 1.0));
     const tealLight = new THREE.PointLight(0x2AA8A8, 8.5, 95);
     tealLight.position.set(12, 10, 14);
     scene.add(tealLight);
