@@ -655,6 +655,7 @@ gtag('config', 'G-E7PGEF4619');
   <div style="display:flex;gap:9px;align-items:center"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block"></span>Built fast. Runs cheap. Works 24/7.</div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
   "use strict";
@@ -666,115 +667,28 @@ gtag('config', 'G-E7PGEF4619');
      perspective divide -> depth-scaled glowing sprites. */
   var canvas = document.getElementById("heroCanvas");
   if (canvas) {
-    var ctx2 = canvas.getContext("2d");
-    var isMobile = Math.min(window.innerWidth, window.innerHeight) < 700;
-    var COLS = isMobile ? 46 : 92, ROWS = isMobile ? 24 : 44;
-    var SPAN_X = 40, NEAR_Z = 1.6, SPAN_Z = 24;
-    var CAM_H = 4.2;                 // camera height above the plane
-    var W = 0, H = 0, DPR = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.75);
-    var FRAME_MS = isMobile ? 33 : 0;          // ~30fps on phones
-    var BLEND = isMobile ? "source-over" : "lighter";  // additive blending is costly on phones
-    var horizonY = 0.40;             // fraction of height where the terrain vanishes
-
-    // Pre-rendered glow sprites in three brand colors
-    function makeSprite(color){
-      var s = document.createElement("canvas"); s.width = s.height = 48;
-      var g = s.getContext("2d");
-      var rg = g.createRadialGradient(24,24,0,24,24,24);
-      rg.addColorStop(0, "rgba(" + color + ",1)");
-      rg.addColorStop(0.35, "rgba(" + color + ",.75)");
-      rg.addColorStop(1, "rgba(" + color + ",0)");
-      g.fillStyle = rg; g.fillRect(0,0,48,48);
-      return s;
-    }
-    var sprites = [makeSprite("214,209,198"), makeSprite("42,168,168"), makeSprite("111,208,204")];
-
-    // Static per-point data: grid position + color choice + size jitter
-    var pts = [];
-    var seed = 1;
-    function rnd(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
-    for (var zi = 0; zi < ROWS; zi++) {
-      for (var xi = 0; xi < COLS; xi++) {
-        var r = rnd();
-        pts.push({
-          x: (xi / (COLS - 1) - 0.5) * SPAN_X,
-          z: NEAR_Z + (zi / (ROWS - 1)) * SPAN_Z,
-          c: r < 0.10 ? 1 : (r < 0.15 ? 2 : 0),
-          j: 0.75 + rnd() * 0.6
-        });
-      }
-    }
-
-    function resize(){
-      W = canvas.clientWidth || window.innerWidth;
-      H = canvas.clientHeight || window.innerHeight;
-      canvas.width = Math.round(W * DPR);
-      canvas.height = Math.round(H * DPR);
-      ctx2.setTransform(DPR, 0, 0, DPR, 0, 0);
-    }
-    window.addEventListener("resize", resize); resize();
-
-    var mouseX = 0, mouseY = 0, targX = 0, targY = 0;
-    // mouse-parallax only on hover devices; phones get the idle drift instead
-    if (window.matchMedia("(hover:hover)").matches) {
-      window.addEventListener("pointermove", function(e){
-        targX = (e.clientX / window.innerWidth - 0.5);
-        targY = (e.clientY / window.innerHeight - 0.5);
-      }, {passive:true});
-    }
-
-    var heroVisible = true;
-    if (window.IntersectionObserver) {
-      new IntersectionObserver(function(entries){ heroVisible = entries[0].isIntersecting; }, {threshold: 0}).observe(canvas.parentElement);
-    }
-
-    var t0 = performance.now();
-    function drawFrame(t){
-      ctx2.clearRect(0, 0, W, H);
-      ctx2.globalCompositeOperation = BLEND;
-      var f = Math.min(W, H) * 1.05;          // focal length
-      var cx = W / 2, cy = H * horizonY;
-      mouseX += (targX - mouseX) * 0.05;
-      mouseY += (targY - mouseY) * 0.05;
-      var panX = mouseX * 4.5, panY = mouseY * 1.6;
-      var sway = Math.sin(t * 0.00008) * 2.4;  // slow idle drift so it moves without a mouse
-      for (var i = 0; i < pts.length; i++) {
-        var p = pts[i];
-        // wave field
-        var y = Math.sin(p.x * 0.5 + t * 0.0011) * 0.6
-              + Math.cos(p.z * 0.55 + t * 0.0009) * 0.5
-              + Math.sin((p.x + p.z) * 0.28 + t * 0.0006) * 0.4;
-        var d = p.z;                            // depth
-        var sx = cx + ((p.x + panX + sway) * f) / (d * 6);
-        var sy = cy + ((CAM_H + panY - y) * f) / (d * 6);
-        if (sx < -20 || sx > W + 20 || sy < -20 || sy > H + 20) continue;
-        var size = Math.max(1.1, Math.min(7, (f * 0.055) / d)) * p.j;
-        var fade = Math.max(0, Math.min(1, 1.25 - d / (NEAR_Z + SPAN_Z)));  // fog: far points dim
-        var lift = Math.max(0, y) * 0.35;       // crests glow brighter
-        ctx2.globalAlpha = Math.min(0.72, fade * (0.34 + lift));
-        var sp = sprites[p.c];
-        ctx2.drawImage(sp, sx - size, sy - size, size * 2, size * 2);
-      }
-      ctx2.globalAlpha = 1;
-      ctx2.globalCompositeOperation = "source-over";
-    }
-
-    // Yield to scrolling: pause drawing while the user is actively scrolling
-    var lastScrollT = -9999, lastDraw = 0;
-    window.addEventListener("scroll", function(){ lastScrollT = performance.now(); }, {passive:true});
-    window.addEventListener("touchmove", function(){ lastScrollT = performance.now(); }, {passive:true});
-
-    if (prefersReduced) {
-      drawFrame(1200);   // single static frame, no motion
+    /* ---------- Three.js test: bright cube ---------- */
+    if (typeof THREE === 'undefined') {
+      console.warn('THREE not loaded — canvas2D fallback disabled');
     } else {
-      (function animate(now){
-        requestAnimationFrame(animate);
-        if (!heroVisible) return;
-        if (now - lastScrollT < 150) return;   // scrolling — stay out of the way
-        if (FRAME_MS && now - lastDraw < FRAME_MS) return;
-        lastDraw = now;
-        drawFrame(now - t0);
-      })(t0);
+      var scene3 = new THREE.Scene();
+      var cam3 = new THREE.PerspectiveCamera(60, canvas.clientWidth / Math.max(canvas.clientHeight, 1), 0.1, 100);
+      cam3.position.z = 5;
+      var renderer3 = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
+      renderer3.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer3.setClearColor(0x000000, 0);
+      scene3.add(new THREE.AmbientLight(0xffffff, 1));
+      var box = new THREE.Mesh(
+        new THREE.BoxGeometry(2, 2, 2),
+        new THREE.MeshBasicMaterial({color:0x2AA8A8})
+      );
+      scene3.add(box);
+      (function anim(){
+        requestAnimationFrame(anim);
+        box.rotation.x += 0.01;
+        box.rotation.y += 0.01;
+        renderer3.render(scene3, cam3);
+      })();
     }
   }
 
