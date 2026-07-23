@@ -667,30 +667,155 @@ gtag('config', 'G-E7PGEF4619');
      perspective divide -> depth-scaled glowing sprites. */
   var canvas = document.getElementById("heroCanvas");
   if (canvas) {
-    /* ---------- Three.js test: bright cube ---------- */
+    /* ---------- Three.js animated background ---------- */
     if (typeof THREE === 'undefined') {
-      console.warn('THREE not loaded — canvas2D fallback disabled');
+      console.warn('THREE not loaded');
     } else {
+      var W3 = canvas.clientWidth, H3 = canvas.clientHeight;
       var scene3 = new THREE.Scene();
-      var cam3 = new THREE.PerspectiveCamera(60, canvas.clientWidth / Math.max(canvas.clientHeight, 1), 0.1, 100);
-      cam3.position.z = 5;
+      var cam3 = new THREE.PerspectiveCamera(55, W3 / Math.max(H3, 1), 0.1, 200);
+      cam3.position.z = 22;
       var renderer3 = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
-      renderer3.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer3.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer3.setSize(W3, H3);
       renderer3.setClearColor(0x000000, 0);
-      scene3.add(new THREE.AmbientLight(0xffffff, 1));
-      var box = new THREE.Mesh(
-        new THREE.BoxGeometry(2, 2, 2),
-        new THREE.MeshBasicMaterial({color:0x2AA8A8})
-      );
-      scene3.add(box);
-      (function anim(){
-        requestAnimationFrame(anim);
-        box.rotation.x += 0.01;
-        box.rotation.y += 0.01;
+
+      scene3.add(new THREE.AmbientLight(0x445555, 1.4));
+      var tealLight = new THREE.PointLight(0x2AA8A8, 8.5, 95);
+      tealLight.position.set(12, 10, 14);
+      scene3.add(tealLight);
+      var warmLight = new THREE.PointLight(0xff9d5c, 1.8, 60);
+      warmLight.position.set(-14, -8, -10);
+      scene3.add(warmLight);
+      var orbitWarmLight = new THREE.PointLight(0xffb347, 2.6, 65);
+      orbitWarmLight.position.set(-12, -6, 10);
+      scene3.add(orbitWarmLight);
+      var rimLight = new THREE.PointLight(0x3fd6d6, 2.2, 95);
+      rimLight.position.set(0, 0, 20);
+      scene3.add(rimLight);
+
+      var group = new THREE.Group();
+      scene3.add(group);
+      var tealColors = [0x2AA8A8, 0x3fd6d6, 0x1c7a7a];
+      var warmColors = [0xff9d5c, 0xffb347, 0xe07a3e];
+      var geoPool = [
+        function(){return new THREE.IcosahedronGeometry(1, 0)},
+        function(){return new THREE.OctahedronGeometry(1, 0)},
+        function(){return new THREE.TetrahedronGeometry(1, 0)},
+        function(){return new THREE.TorusGeometry(0.8, 0.28, 8, 16)},
+        function(){return new THREE.BoxGeometry(1.2, 1.2, 1.2)}
+      ];
+      var SHAPE_COUNT = 32;
+      var shapes = [];
+      for(var i=0;i<SHAPE_COUNT;i++){
+        var isWarm = i % 3 === 0;
+        var palette = isWarm ? warmColors : tealColors;
+        var color = palette[Math.floor(Math.random()*palette.length)];
+        var wireframe = i % 4 === 0;
+        var geometry = geoPool[Math.floor(Math.random()*geoPool.length)]();
+        var material = wireframe
+          ? new THREE.MeshBasicMaterial({color:color, wireframe:true, transparent:true, opacity:0.7})
+          : new THREE.MeshStandardMaterial({color:color, metalness:0.92, roughness:0.15, emissive:color, emissiveIntensity:0.3, transparent:true, opacity:0.9});
+        var mesh = new THREE.Mesh(geometry, material);
+        var radius = 9 + Math.random()*14;
+        var theta = Math.random()*Math.PI*2;
+        var phi = Math.acos((Math.random()*2)-1);
+        mesh.position.set(radius * Math.sin(phi) * Math.cos(theta), radius * Math.sin(phi) * Math.sin(theta) * 0.6, radius * Math.cos(phi) - 8);
+        var scale = 0.75 + Math.random()*1.8;
+        mesh.scale.setScalar(scale);
+        mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
+        mesh.userData.spin = new THREE.Vector3((Math.random()-0.5)*0.006, (Math.random()-0.5)*0.006, (Math.random()-0.5)*0.006);
+        mesh.userData.floatSpeed = 0.2 + Math.random()*0.4;
+        mesh.userData.floatOffset = Math.random()*Math.PI*2;
+        mesh.userData.baseY = mesh.position.y;
+        group.add(mesh);
+        shapes.push(mesh);
+      }
+      var RING_COUNT = 6, RING_CYCLE = 7.5;
+      var rings = [];
+      for(var i=0;i<RING_COUNT;i++){
+        var ringGeo = new THREE.RingGeometry(1, 1.05, 64);
+        var ringMat = new THREE.MeshBasicMaterial({color:0x3fd6d6, transparent:true, opacity:0.5, side:THREE.DoubleSide});
+        var ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.position.set(0, 0, -6);
+        ring.userData.delay = i * (RING_CYCLE/RING_COUNT);
+        ring.userData.cycle = RING_CYCLE;
+        scene3.add(ring);
+        rings.push(ring);
+      }
+      var PARTICLE_COUNT = 500;
+      var positions = new Float32Array(PARTICLE_COUNT*3);
+      var speeds = new Float32Array(PARTICLE_COUNT);
+      var driftX = new Float32Array(PARTICLE_COUNT);
+      for(var i=0;i<PARTICLE_COUNT;i++){
+        positions[i*3] = (Math.random()-0.5)*60;
+        positions[i*3+1] = (Math.random()-0.5)*40;
+        positions[i*3+2] = (Math.random()-0.5)*40 - 10;
+        speeds[i] = 0.004 + Math.random()*0.012;
+        driftX[i] = (Math.random()-0.5)*0.008;
+      }
+      var particleGeo = new THREE.BufferGeometry();
+      particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      var spriteCanvas = document.createElement('canvas');
+      spriteCanvas.width = 64; spriteCanvas.height = 64;
+      var ctx = spriteCanvas.getContext('2d');
+      var grad = ctx.createRadialGradient(32,32,0,32,32,32);
+      grad.addColorStop(0, 'rgba(255,255,255,1)');
+      grad.addColorStop(0.4, 'rgba(63,214,214,0.8)');
+      grad.addColorStop(1, 'rgba(63,214,214,0)');
+      ctx.fillStyle = grad; ctx.fillRect(0,0,64,64);
+      var spriteTexture = new THREE.CanvasTexture(spriteCanvas);
+      var particleMat = new THREE.PointsMaterial({
+        size:0.5, map:spriteTexture, transparent:true, opacity:0.75,
+        blending:THREE.AdditiveBlending, depthWrite:false
+      });
+      var particles = new THREE.Points(particleGeo, particleMat);
+      scene3.add(particles);
+      var mouseX = 0, mouseY = 0;
+      if (window.matchMedia("(hover:hover)").matches) {
+        window.addEventListener('mousemove', function(e){
+          mouseX = (e.clientX / window.innerWidth - 0.5);
+          mouseY = (e.clientY / window.innerHeight - 0.5);
+        });
+      }
+      var t3 = 0;
+      (function anim3(){
+        requestAnimationFrame(anim3);
+        t3 += 0.016;
+        for(var i=0;i<shapes.length;i++){
+          var mesh = shapes[i];
+          mesh.rotation.x += mesh.userData.spin.x;
+          mesh.rotation.y += mesh.userData.spin.y;
+          mesh.rotation.z += mesh.userData.spin.z;
+          mesh.position.y = mesh.userData.baseY + Math.sin(t3*mesh.userData.floatSpeed + mesh.userData.floatOffset) * 0.8;
+        }
+        for(var i=0;i<rings.length;i++){
+          var ring = rings[i];
+          var local = ((t3 + ring.userData.delay) % ring.userData.cycle) / ring.userData.cycle;
+          var s = 1 + local * 22;
+          ring.scale.setScalar(s);
+          ring.material.opacity = Math.max(0, 0.55 * (1 - Math.pow(local, 1.1)));
+        }
+        var posAttr = particleGeo.attributes.position;
+        for(var i=0;i<PARTICLE_COUNT;i++){
+          var y = posAttr.array[i*3+1] + speeds[i];
+          if(y > 20) y = -20;
+          posAttr.array[i*3+1] = y;
+          posAttr.array[i*3] += driftX[i];
+          if(posAttr.array[i*3] > 30) posAttr.array[i*3] = -30;
+          if(posAttr.array[i*3] < -30) posAttr.array[i*3] = 30;
+        }
+        posAttr.needsUpdate = true;
+        group.rotation.y += 0.0009;
+        group.rotation.x = Math.sin(t3*0.05) * 0.05;
+        cam3.position.x += (mouseX*3 - cam3.position.x) * 0.02;
+        cam3.position.y += (-mouseY*2 - cam3.position.y) * 0.02;
+        cam3.lookAt(0,0,-8);
+        tealLight.position.x = Math.sin(t3*0.3) * 14;
+        tealLight.position.y = Math.cos(t3*0.25) * 10;
         renderer3.render(scene3, cam3);
       })();
     }
-  }
 
   /* ---------- cursor glow ---------- */
   var glow = document.getElementById("cursorGlow");
