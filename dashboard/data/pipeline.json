@@ -1,0 +1,1915 @@
+{
+  "agency": {
+    "name": "Local Launch",
+    "tagline": "SEO-optimized websites for local businesses in Greenville, SC",
+    "phone": "(503) 358-5860",
+    "website": "https://locallaunchupstate.com",
+    "email": "zsch21425@gmail.com"
+  },
+  "pipeline": {
+    "stages": [
+      {
+        "id": "prospect",
+        "label": "Prospect",
+        "icon": "Search",
+        "color": "slate"
+      },
+      {
+        "id": "audit",
+        "label": "Audit",
+        "icon": "Clipboard",
+        "color": "blue"
+      },
+      {
+        "id": "pitch",
+        "label": "Pitch",
+        "icon": "Megaphone",
+        "color": "amber"
+      },
+      {
+        "id": "contacted",
+        "label": "Contacted",
+        "icon": "Phone",
+        "color": "violet"
+      },
+      {
+        "id": "response",
+        "label": "Response",
+        "icon": "MessageSquare",
+        "color": "emerald"
+      },
+      {
+        "id": "sale",
+        "label": "Sale",
+        "icon": "Trophy",
+        "color": "green"
+      },
+      {
+        "id": "build-launch",
+        "label": "Build & Launch",
+        "icon": "Rocket",
+        "color": "sky"
+      }
+    ]
+  },
+  "companies": [
+    {
+      "id": "omega-auto",
+      "name": "Omega Auto Sales",
+      "category": "Used Car Dealership (BHPH)",
+      "stage": "build-launch",
+      "location": "Anderson, SC",
+      "phone": "(864) 933-3987",
+      "website": "https://omega-auto-anderson.vercel.app",
+      "facebook": "https://www.facebook.com/100070186880976/",
+      "summary": "Buy-here-pay-here used car lot operating mostly through Facebook. Also offers window tinting and auto detailing as secondary services. In-house financing, takes trade-ins.",
+      "lastContact": "2026-08-05",
+      "lastUpdated": "2026-08-07",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "gbp-create",
+          "label": "Create Google Business Profile",
+          "stage": "audited",
+          "done": false,
+          "detail": "List as 'Omega Auto Sales' \u2014 Used Car Dealer + Auto Broker categories. Use correct address (confirm with client)."
+        },
+        {
+          "id": "name-standardize",
+          "label": "Standardize business name everywhere",
+          "stage": "audited",
+          "done": false,
+          "detail": "Pick ONE name \u2014 currently split between Omega Auto Sales, Omega Auto Club, Omega Rapp."
+        },
+        {
+          "id": "car-sales-page",
+          "label": "Build car sales landing page",
+          "stage": "website-built",
+          "done": true,
+          "detail": "Deployed omega-auto-anderson.vercel.app \u2014 hero, inventory, financing, trade-in, contact sections."
+        },
+        {
+          "id": "inventory-photos",
+          "label": "Get actual inventory photos from client",
+          "stage": "website-built",
+          "done": false,
+          "detail": "Currently using placeholder car cards. Need real photos + prices."
+        },
+        {
+          "id": "domain",
+          "label": "Register domain if client wants one",
+          "stage": "website-built",
+          "done": false,
+          "detail": "Currently on Vercel subdomain. Offer domain registration."
+        },
+        {
+          "id": "jsonld-schema",
+          "label": "Add AutoDealer JSON-LD schema",
+          "stage": "website-built",
+          "done": false,
+          "detail": "AutoDealer schema with geo coordinates, sameAs links, department schemas (Sales + Service)."
+        },
+        {
+          "id": "faq-schema",
+          "label": "Add FAQPage schema",
+          "stage": "website-built",
+          "done": false,
+          "detail": "Questions: 'Do you finance bad credit?' 'What down payment?' 'Do you take trade-ins?'"
+        },
+        {
+          "id": "gbp-reviews",
+          "label": "Start GBP review flywheel",
+          "stage": "live",
+          "done": false,
+          "detail": "Ask every buyer for Google review. Provide text template + direct review link."
+        },
+        {
+          "id": "bhph-page",
+          "label": "Build dedicated BHPH landing page",
+          "stage": "live",
+          "done": false,
+          "detail": "'Buy Here Pay Here Anderson SC' with full financing info and application form."
+        },
+        {
+          "id": "inventory-platforms",
+          "label": "Get listed on dealer platforms",
+          "stage": "live",
+          "done": false,
+          "detail": "Cars.com, Autotrader, CarGurus \u2014 instant backlinks + inventory visibility."
+        },
+        {
+          "id": "wikidata",
+          "label": "Create Wikidata entry",
+          "stage": "live",
+          "done": false,
+          "detail": "Free entity grounding for AI search engines. Links to GBP + website."
+        }
+      ],
+      "nextSteps": [
+        "Get actual inventory photos from client",
+        "Confirm exact business address",
+        "Confirm preferred business name",
+        "Register domain name",
+        "Set up GBP once address confirmed"
+      ],
+      "seoScore": {
+        "current": 2,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "mom-and-mop",
+      "name": "Mom & A Mop",
+      "category": "Cleaning Service",
+      "stage": "build-launch",
+      "location": "Greenville, SC",
+      "phone": "",
+      "website": "https://mom-and-mop.vercel.app",
+      "summary": "Showcase client \u2014 residential cleaning company. Full SEO-optimized site built and deployed. Serves as Local Launch's primary portfolio piece.",
+      "lastContact": "2026-07-15",
+      "lastUpdated": "2026-07-15",
+      "priority": "medium",
+      "playbook": [
+        {
+          "id": "mm-site",
+          "label": "Website built and deployed",
+          "stage": "live",
+          "done": true,
+          "detail": "mom-and-mop.vercel.app \u2014 full service business landing page."
+        },
+        {
+          "id": "mm-gbp",
+          "label": "Google Business Profile optimization",
+          "stage": "live",
+          "done": false,
+          "detail": "Set up GBP if not already done. Add service areas, categories, photos."
+        },
+        {
+          "id": "mm-reviews",
+          "label": "Review generation system",
+          "stage": "live",
+          "done": false,
+          "detail": "QR code flyers, email follow-up after service, direct review link."
+        },
+        {
+          "id": "mm-geo",
+          "label": "GEO optimization",
+          "stage": "live",
+          "done": false,
+          "detail": "JSON-LD schema, FAQ content, llms.txt, AI crawler whitelisting."
+        }
+      ],
+      "nextSteps": [
+        "Set up GBP if not done",
+        "Add JSON-LD LocalBusiness schema",
+        "Build review generation system"
+      ],
+      "seoScore": {
+        "current": 45,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "redwood",
+      "name": "Redwood Landscaping",
+      "category": "Landscaping",
+      "stage": "build-launch",
+      "location": "Greenville, SC",
+      "phone": "",
+      "website": "https://redwood-site-jade.vercel.app",
+      "summary": "Showcase client #2 \u2014 landscaping company in South Carolina. Full website deployed. GSC connected (siteOwner verified as of Aug 7).",
+      "lastContact": "2026-08-07",
+      "lastUpdated": "2026-08-07",
+      "priority": "low",
+      "playbook": [
+        {
+          "id": "rw-site",
+          "label": "Website built and deployed",
+          "stage": "live",
+          "done": true,
+          "detail": "redwood-site-jade.vercel.app \u2014 landscaping service page."
+        },
+        {
+          "id": "rw-gsc",
+          "label": "Google Search Console connected",
+          "stage": "live",
+          "done": true,
+          "detail": "Verified siteOwner as of Aug 7, 2026."
+        },
+        {
+          "id": "rw-gbp",
+          "label": "Google Business Profile optimization",
+          "stage": "live",
+          "done": false,
+          "detail": "Set up or optimize GBP with service areas and categories."
+        },
+        {
+          "id": "rw-schema",
+          "label": "Add LocalBusiness JSON-LD schema",
+          "stage": "live",
+          "done": false,
+          "detail": "Landscaping service schema with geo coordinates."
+        }
+      ],
+      "nextSteps": [
+        "GBP setup + optimization",
+        "Add JSON-LD schema",
+        "Do not touch unless explicitly asked (Zach directive)"
+      ],
+      "seoScore": {
+        "current": 55,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "bm-pressure",
+      "name": "B&M Pressure Washing",
+      "category": "Pressure Washing",
+      "stage": "pitch",
+      "location": "Fountain Inn, SC",
+      "phone": "(864) 804-8883",
+      "website": "",
+      "summary": "Family-owned LLC. JouwWeb site at bmpressurewashingllc.com is slow/not optimized. GBP not found. Yelp claimed (67 photos), Facebook 232 likes. Competitor Foothills Exterior dominates local search. Pitch: rebuild site + GBP + review system.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "bm-audit",
+          "label": "Run full SEO audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 8. G-Score 52. Competitor: Foothills Exterior."
+        },
+        {
+          "id": "bm-demo",
+          "label": "Build pressure washing demo site",
+          "stage": "audited",
+          "done": true,
+          "detail": "LIVE: https://bm-pressure-washing-demo.vercel.app \u2014 REBUILT Aug 9: dark glass motion template, AI before/after visualizer. Fixed: motion carries through, premium glass cards, no white backgrounds."
+        },
+        {
+          "id": "bm-pitch",
+          "label": "Draft pitch",
+          "stage": "audited",
+          "done": true,
+          "detail": "Pitch drafted Aug 8. Needs price fix ($350\u2192$300) and opener split."
+        },
+        {
+          "id": "bm-contact",
+          "label": "Get Zach approval and send",
+          "stage": "audited",
+          "done": false,
+          "detail": "Pitch needs Zach's final sign-off before sending to info@bmpressurewashingllc.com."
+        }
+      ],
+      "nextSteps": [
+        "\u2705 Supervisor reviewed \u2014 price fixed to $300, opener split",
+        "Ready for Zach final review",
+        "Email: info@bmpressurewashingllc.com"
+      ],
+      "seoScore": {
+        "current": 52,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "HIGH",
+      "pitchDraft": {
+        "subject": "B&M",
+        "body": "Hey,\n\nI was looking up pressure washing companies in Fountain Inn. B&M doesn't show up on Google Maps at all \u2014 and you've got the family-owned reputation the big guys can't touch. Meanwhile Foothills Exterior pops up first for every \"pressure washing near me\" search \u2014 that's where your calls are going.\n\nTwo things would fix this fast: a proper Google Business Profile so people actually find you, and a modern site that loads on phones \u2014 the JouwWeb one you're using now is slow and isn't helping you rank. The site, SEO, and Google setup together run $300 one-time. Monthly plans with extra help start at $49 \u2014 or you can just do the one-time fix-up with no monthly anything.\n\nHere's a preview of what a B&M site could look like: https://bm-pressure-washing-demo.vercel.app\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+        "channel": "Email",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "Demo live: https://bm-pressure-washing-demo.vercel.app. REBUILT Aug 9 (dark glass + AI visualizer). Price fixed from $350 to $300. Opener split. \u2705 Template quality resolved. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 52
+    },
+    {
+      "id": "yardsmith",
+      "name": "YardSmith Landscaping",
+      "category": "Landscaping",
+      "stage": "pitch",
+      "location": "Greenville, SC",
+      "phone": "(864) 686-9394",
+      "email": "jordan@yardsmithgvl.com",
+      "website": "yardsmithgvl.com (broken)",
+      "summary": "Active marketing, domain owned but site is a non-functional stub. Homepage returns redirect to broken /lander page. Could need rebuild or SEO/GEO opportunity.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
+      "playbook": [
+        {
+          "id": "ys-check",
+          "label": "Verify site status before contacting",
+          "stage": "audited",
+          "done": true,
+          "detail": "yardsmithgvl.com/lander still down (ERR_TUNNEL_CONNECTION_FAILED). Full rebuild needed."
+        },
+        {
+          "id": "ys-audit",
+          "label": "Run SEO audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 8. G-Score 42. Nextdoor Neighborhood Favorite = strong social proof."
+        },
+        {
+          "id": "ys-pitch",
+          "label": "Draft pitch",
+          "stage": "audited",
+          "done": true,
+          "detail": "Pitch drafted Aug 8. Minor fix needed: drop unverified '5-star' claim."
+        },
+        {
+          "id": "ys-contact",
+          "label": "Get Zach approval and contact Jordan",
+          "stage": "audited",
+          "done": false,
+          "detail": "Email jordan@yardsmithgvl.com or call (864) 686-9394 once pitch approved."
+        }
+      ],
+      "nextSteps": [
+        "\u2705 Supervisor reviewed \u2014 '5-star' removed",
+        "Ready for Zach final review",
+        "Email: jordan@yardsmithgvl.com"
+      ],
+      "seoScore": {
+        "current": 42,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "MEDIUM",
+      "pitchDraft": {
+        "subject": "Jordan",
+        "body": "Hey Jordan,\n\nSaw YardSmith is a Neighborhood Favorite on Nextdoor \u2014 that's the kind of thing you can't buy. But here's the problem: yardsmithgvl.com is down (looks like the /lander page isn't loading), so when someone searches \"landscaping Greenville\" on Google, they find your competitors instead of you.\n\nThat's a quick fix. I'd get the site back up \u2014 actually, build something that loads fast and works \u2014 then make sure your Nextdoor reputation shows up on Google too, where the customers actually are. $300 one-time covers the rebuild, Google setup, and ranking work. Monthly plans start at $49 if you want ongoing help, or you can do just the one-time fix-up.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+        "channel": "Email",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "\"5-star\" removed from pitch. Site rescue angle. Jordan clearly invested before \u2014 knows they need it. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 11
+    },
+    {
+      "id": "ab-landscaping",
+      "name": "A&B Landscaping Services",
+      "category": "Landscaping & Grading",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 978-3425",
+      "website": "",
+      "summary": "\u26a0\ufe0f ON HOLD \u2014 Phone mismatch: Scout lists (864) 978-3425 / (864) 607-2428 (SC area codes). Instagram uses (360) 303-8127 (WA area code). Needs human verification before audit. LLC-registered grading + landscaping.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium-high",
+      "playbook": [
+        {
+          "id": "ab-contact",
+          "label": "Make initial contact",
+          "stage": "prospected",
+          "done": false,
+          "detail": "Call (864) 978-3425 or (864) 607-2428. Pitch professional site for high-ticket grading work."
+        },
+        {
+          "id": "ab-audit",
+          "label": "Run SEO + competitor audit",
+          "stage": "contacted",
+          "done": false,
+          "detail": "Grading + landscaping keywords. Check GBP, local SERP."
+        }
+      ],
+      "nextSteps": [
+        "HELD \u2014 phone verify needed. Zach to call (864) 978-3425 / (864) 607-2428. Instagram uses WA (360) area code \u2014 discrepancy."
+      ],
+      "seoScore": null,
+      "prospectScore": "MEDIUM-HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 3
+    },
+    {
+      "id": "jacksons-junk",
+      "name": "Jackson's Junk and Stuff",
+      "category": "Junk Removal",
+      "stage": "pitch",
+      "location": "Greenville, SC (6-city area)",
+      "phone": "(864) 449-4987",
+      "website": "https://jacksons-junk.vercel.app",
+      "summary": "Family-owned by brothers Ryan & Zach Jackson. Wide 6-city service area. Active on Instagram with before/after photos. 'You don't lift it, we shift it.' Junk removal is competitive \u2014 a website = instant credibility.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "jj-audit",
+          "label": "Run SEO + competitor audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 8. G-Score 38. 6-city service area. Competitor: Junk King Greenville."
+        },
+        {
+          "id": "jj-demo",
+          "label": "Build junk removal demo site",
+          "stage": "audited",
+          "done": true,
+          "detail": "LIVE: https://jacksons-junk.vercel.app \u2014 dark glass motion template, 6 city pages + before/after gallery + AI visualizer. Deployed via npx vercel."
+        },
+        {
+          "id": "jj-pitch",
+          "label": "Draft pitch (call script + FB DM)",
+          "stage": "audited",
+          "done": true,
+          "detail": "Call script approved by Supervisor. FB DM backup ready."
+        },
+        {
+          "id": "jj-contact",
+          "label": "Get Zach approval and call",
+          "stage": "audited",
+          "done": false,
+          "detail": "Zach reviews pitch, then calls (864) 449-4987. No email available."
+        }
+      ],
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 clean pitch",
+        "Ready for Zach final review",
+        "\u26a0\ufe0f No email \u2014 phone call: (864) 449-4987",
+        "Demo LIVE: https://jacksons-junk.vercel.app"
+      ],
+      "seoScore": {
+        "current": 38,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "HIGH",
+      "pitchDraft": {
+        "subject": null,
+        "body": "\"Hey, is this Ryan or Zach? This is Zach from Local Launch. I came across Jackson's Junk and Stuff on Instagram \u2014 love the before-and-after shots. 'You don't lift it, we shift it' \u2014 great tagline.\n\nLook, the reason I'm calling: you guys cover six cities but don't have a website. Junk King Greenville is getting every Google search because they've got a site and you don't. I build websites for local businesses \u2014 for a junk removal company like yours, a site with a dedicated page for each city you serve would pull in the people searching 'junk removal Greenville' or 'Simpsonville junk hauling' who never find you right now.\n\nI put together a preview you can check out. I look forward to hearing from you.\"",
+        "channel": "Phone",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Brothers Ryan & Zach Jackson. No email \u2014 phone only. Great tagline. 6-city coverage area. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 24
+    },
+    {
+      "id": "lumberjack-tree",
+      "name": "Lumberjack Tree Service",
+      "category": "Tree Service",
+      "stage": "pitch",
+      "location": "Anderson, SC",
+      "phone": "(864) 642-7705",
+      "website": "",
+      "summary": "Anderson SC tree service, 24/7, est. 2014. G-Score 5/100. No website, no GBP, Yelp claimed. Owner Chris McCollum. 11-year LLC invisible online. Ghost lead \u2014 no Scout file.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "lt-audit-done",
+          "label": "Run SEO + GBP audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 5/100. Ghost \u2014 no lead file. Web research blocked."
+        },
+        {
+          "id": "lt-site",
+          "label": "Build tree service website",
+          "stage": "audited",
+          "done": false,
+          "detail": "Service menu, photo gallery, 24/7 emergency, service area map."
+        },
+        {
+          "id": "lt-gbp",
+          "label": "Create + optimize GBP",
+          "stage": "audited",
+          "done": false,
+          "detail": "Tree service categories, Anderson SC service area."
+        },
+        {
+          "id": "lt-contact",
+          "label": "Get Zach approval and contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Call Chris McCollum at (864) 642-7705. Pitch: 11 years in business, no website."
+        }
+      ],
+      "nextSteps": [
+        "@Supervisor approved pitch",
+        "Ready for Zach final review",
+        "Zach to send once approved"
+      ],
+      "seoScore": {
+        "current": 5,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "HIGH",
+      "pitchDraft": {
+        "subject": null,
+        "body": "\"Hey, is this Chris? This is Zach from Local Launch down in Simpsonville. I saw Lumberjack Tree Service has been going 11 years, 24/7 operation \u2014 that's exactly the kind of tree guy people want in an emergency.\n\nHere's the thing: you've been in business over a decade and you don't have a website. When someone's tree is on their roof at midnight and they search 'emergency tree removal Anderson,' they find whatever pops up \u2014 not you. I build simple sites for tree services that catch those searches. Full website, SEO, Google setup \u2014 $300 one-time, done. Monthly help after that is optional from $49, or just the one-time deal.\n\nI look forward to hearing from you.\"",
+        "channel": "Phone",
+        "status": "pending",
+        "confidence": 6,
+        "notes": "11-year LLC, 24/7 service. Chris McCollum. No email or social \u2014 phone only. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 5
+    },
+    {
+      "id": "kimbrells-plumbing",
+      "name": "Kimbrell's Plumbing",
+      "category": "Plumbing",
+      "stage": "pitch",
+      "location": "Greenville, SC",
+      "phone": "(864) 346-7220",
+      "website": "",
+      "summary": "Greenville SC plumbing, est. 2016. G-Score 12/100. No website, no GBP. 7 Yelp reviews all 5\u2605. Owner Daniel Kimbrell. Decade of happy customers, invisible to Google. Ghost lead \u2014 no Scout file.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "kp-audit-done",
+          "label": "Run SEO + GBP audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 12/100. Ghost \u2014 no lead file. Web research blocked."
+        },
+        {
+          "id": "kp-site",
+          "label": "Build plumbing service site",
+          "stage": "audited",
+          "done": false,
+          "detail": "Emergency contact, service list, service area. Highlight 5-star Yelp reputation."
+        },
+        {
+          "id": "kp-gbp",
+          "label": "Create + optimize GBP",
+          "stage": "audited",
+          "done": false,
+          "detail": "Plumber categories, Greenville/Greer service area."
+        },
+        {
+          "id": "kp-contact",
+          "label": "Get Zach approval and contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Call Daniel Kimbrell at (864) 346-7220. Reference stellar Yelp reviews."
+        }
+      ],
+      "nextSteps": [
+        "@Supervisor approved pitch",
+        "Ready for Zach final review",
+        "Zach to send once approved"
+      ],
+      "seoScore": {
+        "current": 12,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "HIGH",
+      "pitchDraft": {
+        "subject": null,
+        "body": "\"Hey, is this Daniel? This is Zach from Local Launch in Simpsonville. I was looking at plumbers in Greenville and came across your Yelp \u2014 7 reviews, all five stars, people raving about your pricing and how fast you are. That's a decade of happy customers.\n\nBut here's the thing: when someone searches 'plumber Greenville' on Google, you're not there. All those five-star reviews only help people already on Yelp \u2014 and 90% of people start on Google. I build simple plumbing sites that get you on the map. $300 one-time covers the site, SEO, and Google setup. Monthly plans after that start at $49, or just the one-time deal and you're done.\n\nI look forward to hearing from you.\"",
+        "channel": "Phone",
+        "status": "pending",
+        "confidence": 7,
+        "notes": "7\u00d7 5\u2605 Yelp since 2016. Daniel Kimbrell. No email \u2014 phone only. Strong reviews hook. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 12
+    },
+    {
+      "id": "mm-plumbing",
+      "name": "M&M Plumbing Services",
+      "category": "Plumbing",
+      "stage": "pitch",
+      "location": "Greenville, SC",
+      "phone": "(864) 386-4005",
+      "website": "",
+      "summary": "Greenville SC plumbing (29607). G-Score 8/100. No website, no GBP. 2 Yelp reviews (5.0) + Nextdoor recs. Owner Matt McAlister. Growing through referrals. Ghost lead \u2014 no Scout file.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium-high",
+      "playbook": [
+        {
+          "id": "mm-audit-done",
+          "label": "Run SEO + GBP audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 8/100. Ghost \u2014 no lead file. Web research blocked."
+        },
+        {
+          "id": "mm-site",
+          "label": "Build plumbing service site",
+          "stage": "audited",
+          "done": false,
+          "detail": "Professional credibility site. Service list, contact form, emergency number."
+        },
+        {
+          "id": "mm-gbp",
+          "label": "Create + optimize GBP",
+          "stage": "audited",
+          "done": false,
+          "detail": "Plumber categories, Greenville 29607 service area."
+        },
+        {
+          "id": "mm-contact",
+          "label": "Get Zach approval and contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Call Matt McAlister at (864) 386-4005. Position website as next growth step."
+        }
+      ],
+      "nextSteps": [
+        "@Supervisor approved pitch",
+        "Ready for Zach final review",
+        "Zach to send once approved"
+      ],
+      "seoScore": {
+        "current": 8,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "MEDIUM-HIGH",
+      "pitchDraft": {
+        "subject": null,
+        "body": "\"Hey, is this Matt? This is Zach from Local Launch in Simpsonville. I noticed M&M Plumbing has some solid Nextdoor recommendations and a couple perfect Yelp reviews \u2014 you're clearly doing something right.\n\nThe thing is, you're growing through referrals only. That works great until it doesn't. A simple website with your services and reviews means anyone searching 'plumber Greenville' can find you \u2014 not just the people who know someone who knows you. $300 one-time covers the site, SEO, and Google setup. Monthly help after that is optional from $49, or just the one-time deal.\n\nI look forward to hearing from you.\"",
+        "channel": "Phone",
+        "status": "pending",
+        "confidence": 6,
+        "notes": "Smaller operation. Matt McAlister. Referral-only growth angle. No email \u2014 phone only. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 8
+    },
+    {
+      "id": "test-plumbing",
+      "name": "Test Plumbing Co",
+      "category": "Plumbing",
+      "stage": "pitch",
+      "location": "Anderson, SC",
+      "phone": "",
+      "website": "",
+      "summary": "Inbound CRM inquiry. Zero online presence (G-Score 5/100). No website, no GBP, no citations. Target: leapfrog Glenn Plumbing in local search. Pitch drafted \u2014 full site + SEO + GBP for $300 one-time.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "tp-audit",
+          "label": "Run competitive analysis",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed. G-Score 5/100. Competitor: Glenn Plumbing."
+        },
+        {
+          "id": "tp-pitch",
+          "label": "Draft pitch",
+          "stage": "audited",
+          "done": true,
+          "detail": "Pitch drafted. $300 one-time + $49/mo optional. Handed off to revenue-gen Aug 9."
+        },
+        {
+          "id": "tp-demo",
+          "label": "Build plumbing demo site",
+          "stage": "audited",
+          "done": false,
+          "detail": "Not yet built. Plumbing template available."
+        },
+        {
+          "id": "tp-contact",
+          "label": "Get Zach approval and contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Awaiting Zach review."
+        }
+      ],
+      "nextSteps": [
+        "Pitch drafted, handed to revenue-gen Aug 9",
+        "Ready for Zach review"
+      ],
+      "seoScore": {
+        "current": 5,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "pitchDraft": {
+        "subject": null,
+        "body": "Full website + SEO + GBP setup. $300 one-time (site + SEO + Google setup). Monthly plans with receptionist, ads, leads start at $49/mo optional. Target: leapfrog Glenn Plumbing in local search.",
+        "channel": "Email",
+        "status": "pending",
+        "confidence": 7,
+        "notes": "Inbound CRM inquiry. Handed to revenue-gen Aug 9. Pitch needs expansion."
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 5
+    },
+    {
+      "id": "upstate-window",
+      "name": "Upstate Window Cleaning LLC",
+      "category": "Window Cleaning & Gutters",
+      "stage": "pitch",
+      "location": "Inman, SC",
+      "phone": "(864) 398-0766",
+      "email": "uscwindowcleaning@gmail.com",
+      "website": "",
+      "summary": "Inman SC window/gutter cleaning. G-Score 7/100. No website, no domain, GBP unverified. 358 FB likes + Nextdoor recs. Competitor: Fish Window Cleaning (national franchise). Pitch: 'Recommended on Nextdoor but invisible to Google.'",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "upstate-window-audit-done",
+          "label": "Run SEO + competitor audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 7/100. \u26a0\ufe0f GBP unverified (search engines blocked automated queries). Competitors named and verified."
+        },
+        {
+          "id": "uw-audit",
+          "label": "Run SEO + competitor audit",
+          "stage": "prospected",
+          "done": false,
+          "detail": "Window cleaning keywords: 'window cleaning Greenville SC', 'gutter cleaning Spartanburg'. Check GBP status and local SERP."
+        },
+        {
+          "id": "uw-contact",
+          "label": "Make initial contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Email uscwindowcleaning@gmail.com or call (864) 398-0766 once pitch drafted and approved."
+        }
+      ],
+      "nextSteps": [
+        "@Supervisor approved pitch",
+        "Ready for Zach final review",
+        "Zach to send once approved"
+      ],
+      "seoScore": {
+        "current": 7,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "HIGH",
+      "pitchDraft": {
+        "subject": "window cleaning in Inman",
+        "body": "Hey Austin \u2014 you're the name people recommend in the Powdersville groups, and you've got a solid Nextdoor reputation. But Google \"window cleaning Inman SC\" and you won't find yourself \u2014 just the franchise guys with websites.\n\nA clean site with your service areas catches those \"window cleaning near me\" searches. A Google Business Profile puts you on the map. $300 one-time covers the site, SEO, and Google setup. Monthly extras start at $49 \u2014 or just the one-time fix-up, no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Email",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Owner Austin Perry. Solid Nextdoor rep. Email available. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 7
+    },
+    {
+      "id": "my-titan",
+      "name": "My Titan Services LLC",
+      "category": "Multi-Service (Pressure Washing, Junk, Landscaping, Gutters, Moving)",
+      "stage": "pitch",
+      "location": "Simpsonville, SC",
+      "phone": "(864) 451-2744",
+      "website": "",
+      "summary": "Simpsonville SC multi-service: pressure washing, junk, landscaping, gutters, moving. G-Score 8/100. No website, no domain, GBP unverified. LLC + hiring. 5 service lines = 5x keyword gap. Competitors: Upstate Pro Wash, Junk King, Precision Landscape. Pitch: '5 services, zero search presence.'",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "my-titan-audit-done",
+          "label": "Run SEO + competitor audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 8/100. \u26a0\ufe0f GBP unverified (search engines blocked automated queries). Competitors named and verified."
+        },
+        {
+          "id": "mt-audit",
+          "label": "Run SEO + competitor audit",
+          "stage": "prospected",
+          "done": false,
+          "detail": "Multi-service audit: pressure washing, junk removal, landscaping, gutter keywords for Greenville/Spartanburg area."
+        },
+        {
+          "id": "mt-contact",
+          "label": "Make initial contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Call (864) 451-2744 once pitch drafted and approved."
+        }
+      ],
+      "nextSteps": [
+        "@Supervisor approved pitch",
+        "Ready for Zach final review",
+        "Zach to send once approved"
+      ],
+      "seoScore": {
+        "current": 8,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "HIGH",
+      "pitchDraft": {
+        "subject": null,
+        "body": "Hey Jameson \u2014 you run five services and you're hiring, but none of it shows up on Google. A site with a page per service pulls in each one's searches. $300 one-time gets you the site, SEO, and Google setup. I look forward to hearing from you.",
+        "channel": "FB DM",
+        "status": "pending",
+        "confidence": 7,
+        "notes": "Simpsonville-based = genuine local credibility. 5 services = multi-keyword SEO. No email \u2014 FB DM. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 8
+    },
+    {
+      "id": "lonts-disposal",
+      "name": "Lonts 24/7 Disposal",
+      "category": "Junk Removal",
+      "stage": "pitch",
+      "location": "Greer, SC",
+      "phone": "(864) 322-3377",
+      "website": "",
+      "summary": "Greer SC 24/7 junk removal. G-Score 12/100. No website, no domain, GBP unverified. Yelp 5.0\u2605 (27 photos). Competitors: 1-800-GOT-JUNK, Junk King Greenville. Pitch: '5-star Yelp reputation with nowhere to land.'",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium-high",
+      "playbook": [
+        {
+          "id": "lonts-disposal-audit-done",
+          "label": "Run SEO + competitor audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 12/100. \u26a0\ufe0f GBP unverified (search engines blocked automated queries). Competitors named and verified."
+        },
+        {
+          "id": "ld-audit",
+          "label": "Run SEO + competitor audit",
+          "stage": "prospected",
+          "done": false,
+          "detail": "Junk removal keywords: 'junk removal Greer SC', 'trash removal Taylors SC'. Check GBP and competitor landscape."
+        },
+        {
+          "id": "ld-contact",
+          "label": "Make initial contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Call (864) 322-3377 once pitch drafted and approved."
+        }
+      ],
+      "nextSteps": [
+        "@Supervisor approved pitch",
+        "Ready for Zach final review",
+        "Zach to send once approved"
+      ],
+      "seoScore": {
+        "current": 12,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "MEDIUM-HIGH",
+      "pitchDraft": {
+        "subject": null,
+        "body": "Hey \u2014 you've got a 5.0\u2605 Yelp rating and 24/7 service, but nobody searching Google knows it. A site that puts that reputation in front of \"junk removal Greer\" searches is $300 one-time, Google setup included. I look forward to hearing from you.",
+        "channel": "FB DM",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "5.0\u2605 Yelp, 27 photos. Best social proof in batch. No email \u2014 FB DM only. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 12
+    },
+    {
+      "id": "powells-junk",
+      "name": "Powell's Junk Removal LLC",
+      "category": "Junk Removal & Demolition",
+      "stage": "pitch",
+      "location": "Greenwood, SC",
+      "phone": "(864) 395-8498",
+      "website": "",
+      "summary": "Greenwood SC junk removal, Facebook-only. G-Score 4/100. No website, no domain, GBP unverified. Owner Blake Powell posts weekly before/after. \u26a0\ufe0f Greenwood is fringe Upstate \u2014 verify service area before pitching.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
+      "playbook": [
+        {
+          "id": "powells-junk-audit-done",
+          "label": "Run SEO + competitor audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 4/100. \u26a0\ufe0f GBP unverified (search engines blocked automated queries). Competitors named and verified."
+        },
+        {
+          "id": "pj-verify",
+          "label": "Verify Upstate service area coverage",
+          "stage": "prospected",
+          "done": false,
+          "detail": "Greenwood is outside core Upstate \u2014 confirm they serve Greenville/Easley/Oconee before investing audit time."
+        },
+        {
+          "id": "pj-audit",
+          "label": "Run SEO + competitor audit",
+          "stage": "prospected",
+          "done": false,
+          "detail": "Junk removal keywords for Greenwood/Easley area. Check GBP and local SERP."
+        },
+        {
+          "id": "pj-contact",
+          "label": "Make initial contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Call (864) 395-8498 or (864) 340-5039 once pitch drafted and approved."
+        }
+      ],
+      "nextSteps": [
+        "\u26a0\ufe0f CONDITIONAL \u2014 verify service area (Greenwood \u2192 Upstate coverage)",
+        "@Supervisor approved pitch content, hold for service area verification",
+        "Zach to confirm before sending"
+      ],
+      "seoScore": {
+        "current": 4,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "MEDIUM",
+      "pitchDraft": "Pitches/pitch-batch-2026-08-09.md",
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 4
+    },
+    {
+      "id": "fix-home",
+      "name": "FIX Home Projects LLC",
+      "category": "Handyman & Deck Building",
+      "stage": "pitch",
+      "location": "Greenville, SC",
+      "phone": "(864) 918-4947",
+      "email": "fixhomeprojects@gmail.com",
+      "website": "",
+      "summary": "Greenville SC custom decks/porches/handyman. G-Score 15/100 (highest in batch). No website, no domain, GBP unverified. 6-platform presence + Chamber of Commerce. $5-20K jobs. Competitors: Archadeck, Palmetto Outdoor Spaces. Pitch: 'Your Instagram shows beautiful work \u2014 but deck buyers search Google, not Instagram.'",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "fix-home-audit-done",
+          "label": "Run SEO + competitor audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 15/100. \u26a0\ufe0f GBP unverified (search engines blocked automated queries). Competitors named and verified."
+        },
+        {
+          "id": "fh-audit",
+          "label": "Run SEO + competitor audit",
+          "stage": "prospected",
+          "done": false,
+          "detail": "Deck builder keywords: 'deck builder Greenville SC', 'custom decks Greenville', 'screened porch builder Greenville'. Check GBP and local SERP."
+        },
+        {
+          "id": "fh-contact",
+          "label": "Make initial contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Email fixhomeprojects@gmail.com or call (864) 918-4947 once pitch drafted and approved."
+        }
+      ],
+      "nextSteps": [
+        "@Supervisor approved pitch",
+        "Ready for Zach final review",
+        "Zach to send once approved"
+      ],
+      "seoScore": {
+        "current": 15,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "HIGH",
+      "pitchDraft": {
+        "subject": "deck builder in Greenville",
+        "body": "Hey Shaun \u2014 your Instagram reels show off beautiful deck and porch builds, and you're Chamber-listed on top of it. But when someone Googles \"deck builder Greenville,\" they see Archadeck and Palmetto Outdoor Spaces \u2014 not you.\n\nAt $5-20K a job, that's a lot of money walking to whoever has a portfolio online. I'd build you a clean portfolio site with your project photos, plus get you on Google Maps. $300 one-time covers the site, SEO, and Google setup. Monthly extras start at $49 \u2014 or just the one-time fix-up, no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Email",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "Best prospect in pipeline. High-ticket deck building. Email available. Strongest G-Score (15). | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 15
+    },
+    {
+      "id": "greenville-cleaning",
+      "name": "Greenville Cleaning Company",
+      "category": "Residential Cleaning",
+      "stage": "pitch",
+      "location": "Greenville, SC",
+      "phone": "(864) 202-6431",
+      "email": "hello@greenville.cleaning",
+      "website": "greenville.cleaning (SUSPENDED \u2014 Bluehost)",
+      "summary": "Owns greenville.cleaning domain but site suspended (Bluehost). No GBP. No reviews. Facebook 196 likes. Non-toxic products angle. \u26a0\ufe0f Phone disputed: Scout (864)551-6802 vs Auditor (864)202-6431.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "gcc-audit-done",
+          "label": "Run SEO + GBP audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 12/100. Domain greenville.cleaning is premium \u2014 suspended but massive potential."
+        },
+        {
+          "id": "gcc-scout",
+          "label": "Scout: verify business details + ownership",
+          "stage": "audited",
+          "done": false,
+          "detail": "Confirm phone (864) 202-6431, verify Bluehost suspension, check if affiliated with Greenville Moving Co."
+        },
+        {
+          "id": "gcc-site",
+          "label": "Rebuild site on greenville.cleaning",
+          "stage": "audited",
+          "done": false,
+          "detail": "Unsuspend Bluehost or rebuild on Vercel. Domain IS the pitch."
+        },
+        {
+          "id": "gcc-gbp",
+          "label": "Create + optimize GBP",
+          "stage": "audited",
+          "done": false,
+          "detail": "Cleaning service categories, Greenville SC. Domain advantage compounds with GBP."
+        },
+        {
+          "id": "gcc-contact",
+          "label": "Get Zach approval and contact",
+          "stage": "audited",
+          "done": false,
+          "detail": "Call (864) 202-6431 or email hello@greenville.cleaning. Pitch: you own greenville.cleaning and it's suspended."
+        }
+      ],
+      "nextSteps": [
+        "\u26a0\ufe0f CONDITIONAL \u2014 phone dispute (864)551-6802 vs (864)202-6431",
+        "\u26a0\ufe0f G-Score corrected to 15 (was inflated 25)",
+        "Verify phone and re-audit before sending pitch",
+        "Domain greenville.cleaning is killer asset"
+      ],
+      "seoScore": {
+        "current": 15,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "MEDIUM",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 12
+    },
+    {
+      "id": "yaca-auto",
+      "name": "YACA Auto Mechanics",
+      "category": "Auto Repair",
+      "stage": "pitch",
+      "location": "Greer, SC",
+      "phone": "(864) 469-6828",
+      "website": "",
+      "summary": "Auto repair shop with a claimed Google Business Profile (4.8 stars, Latino-owned) but NO website and no link on the GBP. All 4 domain variants (yacaauto.com etc.) dead/no DNS. Absent from top-20 for 'auto repair Greer SC' \u2014 losing to Eastside Automotive, Collision Veterans. Pitch: build site + link GBP. G-Score 22/100, PURSUE Level 1.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "yaca-audit",
+          "label": "Run SEO + GBP audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 22/100. Claimed GBP 'YaCa Auto Mechanics LLC' 4.8 stars, no website linked. Competitor: Eastside Automotive."
+        },
+        {
+          "id": "yaca-pitch",
+          "label": "Draft pitch (phone script)",
+          "stage": "audited",
+          "done": true,
+          "detail": "Drafted Aug 9. Supervisor APPROVED 8/10. Phone-only channel (864) 469-6828."
+        },
+        {
+          "id": "yaca-contact",
+          "label": "Get Zach approval and call",
+          "stage": "audited",
+          "done": false,
+          "detail": "Zach reviews pitch, then calls (864) 469-6828. No email or FB found."
+        }
+      ],
+      "nextSteps": [
+        "\u26a0\ufe0f Ghost lead \u2014 no source files, appeared in pipeline without Supervisor review",
+        "Audit looks solid: G-Score 22, claimed GBP 4.8\u2605, no website",
+        "Ready for Zach review \u2014 call (864) 469-6828"
+      ],
+      "seoScore": {
+        "current": 22,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "HIGH",
+      "pitchDraft": {
+        "subject": null,
+        "body": "Auto repair shop with claimed GBP (4.8\u2605, Latino-owned) but no website. Domain variants dead. Pitch: build site + link GBP. Phone: (864) 469-6828.",
+        "channel": "Phone",
+        "status": "pending",
+        "confidence": 6,
+        "notes": "\u26a0\ufe0f Ghost lead \u2014 no source files. G-Score 22. GBP 4.8\u2605 is strong."
+      },
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 22
+    },
+    {
+      "id": "machado-handyman",
+      "name": "Machado Handyman and HVAC Solutions",
+      "category": "Handyman / HVAC",
+      "stage": "pitch",
+      "location": "Greenville, SC",
+      "phone": "(864) 704-4048",
+      "website": "",
+      "summary": "Handyman + HVAC. NO real website: machadohandyman.com dead (no DNS), machadohvac.com 302-redirects to an affiliate parking page (technicalaffiliate.com, 404). No confirmed GBP for this exact name (a 'MACHADO HVAC SERVICES LLC' listing exists but MD area code \u2014 unverified match). Losing to McCown, Dial Heating & Air. Pitch: build site + clean GBP. G-Score 4/100, PURSUE Level 2.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
+      "playbook": [
+        {
+          "id": "mach-audit",
+          "label": "Run SEO + GBP audit",
+          "stage": "audited",
+          "done": true,
+          "detail": "Completed Aug 9. G-Score 4/100. No confirmed GBP (naming overlap flagged). Competitor: McCown Company Heating & Air."
+        },
+        {
+          "id": "mach-pitch",
+          "label": "Draft pitch (phone script)",
+          "stage": "audited",
+          "done": true,
+          "detail": "Drafted Aug 9. Supervisor CONDITIONAL APPROVE \u2014 one-line fix applied (search overreach). Phone-only channel (864) 704-4048."
+        },
+        {
+          "id": "mach-contact",
+          "label": "Get Zach approval and call",
+          "stage": "audited",
+          "done": false,
+          "detail": "Zach reviews pitch, then calls (864) 704-4048. VERIFY phone/address on first contact (naming overlap)."
+        }
+      ],
+      "nextSteps": [
+        "\u26a0\ufe0f Ghost lead \u2014 no source files, appeared in pipeline without Supervisor review",
+        "\u26a0\ufe0f CONDITIONAL \u2014 GBP naming overlap (Machado HVAC Services LLC, MD area code)",
+        "Verify identity before contacting. G-Score 4, dead domains."
+      ],
+      "seoScore": {
+        "current": 4,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "prospectScore": "MEDIUM",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 4
+    },
+    {
+      "id": "randys-home",
+      "name": "Randy's Home Services",
+      "category": "Handyman",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 991-3739",
+      "website": "",
+      "summary": "Handyman services in Greenville. No website \u2014 all domain variants are parked/for-sale landers. Discovered via x_search citations.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "greenville-pro-painters",
+      "name": "Greenville Pro Painters",
+      "category": "Painting",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 523-8330",
+      "website": "",
+      "summary": "Painting services in Greenville. No website \u2014 domain is a for-sale lander. Discovered via x_search citations.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "unique-concrete",
+      "name": "Unique Concrete",
+      "category": "Concrete",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 304-3885",
+      "website": "",
+      "summary": "Concrete services in Greenville. No website \u2014 domain is a for-sale lander. Discovered via x_search citations.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "moriaan-construction",
+      "name": "Moriaan Construction Company LLC",
+      "category": "Concrete, Excavating & Landscaping",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 230-2465",
+      "website": "",
+      "summary": "Multi-service concrete/excavating/landscaping in Greenville. All domain variants dead. Discovered via x_search citations.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "MEDIUM",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "one-call-plumbing",
+      "name": "One Call Plumbing \u2014 Greenville",
+      "category": "Plumbing",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 310-4612",
+      "website": "",
+      "summary": "Greenville plumbing service. No website \u2014 name-matching domain resolves to unrelated Dublin OH company. Discovered via x_search citations.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "pro-kutz-lawn",
+      "name": "Pro Kutz Lawn Care & Landscaping",
+      "category": "Lawn Care & Landscaping",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 501-4137",
+      "website": "",
+      "summary": "Lawn care and landscaping in Greenville. No website. Discovered via Aug 10 Scout run.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-10",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "smith-irrigation",
+      "name": "Smith Irrigation",
+      "category": "Irrigation & Landscaping",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 346-9714",
+      "website": "",
+      "summary": "Irrigation and landscaping in Greenville. No website. Discovered via Aug 10 Scout run.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-10",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "country-life-tires",
+      "name": "Country Life Tires & Service",
+      "category": "Auto Repair & Tires",
+      "stage": "prospect",
+      "location": "Mauldin, SC",
+      "phone": "(864) 991-8707",
+      "website": "",
+      "summary": "Auto repair and tire service in Mauldin. No website. Discovered via Aug 10 Scout run.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-10",
+      "priority": "medium",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "MEDIUM",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "jtp-lawncare",
+      "name": "JTP Lawncare and Junk Removal",
+      "category": "Lawn Care & Junk Removal",
+      "stage": "prospect",
+      "location": "Fountain Inn, SC",
+      "phone": "(864) 219-0831",
+      "website": "",
+      "summary": "Lawn care and junk removal in Fountain Inn. No website. Discovered via Aug 10 Scout run.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-10",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "lands-tree-care",
+      "name": "Lands Tree Care",
+      "category": "Tree Service",
+      "stage": "prospect",
+      "location": "Anderson, SC",
+      "phone": "(864) 225-0325",
+      "website": "",
+      "summary": "Tree service in Anderson. No website. Discovered via Aug 10 Scout run.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-10",
+      "priority": "medium",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "MEDIUM",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "kens-plumbing",
+      "name": "Ken's Plumbing",
+      "category": "Plumbing",
+      "stage": "prospect",
+      "location": "Greenville, SC area",
+      "phone": "(864) 242-5511",
+      "website": "",
+      "summary": "Plumbing services in Greenville area. No website. Discovered via Aug 10 Scout run.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-10",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": [
+        "Awaiting audit"
+      ],
+      "seoScore": null,
+      "prospectScore": "HIGH",
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "jr-concrete",
+      "name": "JR Concrete",
+      "category": "Concrete",
+      "stage": "prospect",
+      "location": "Greenville, SC",
+      "phone": "(864) 494-6731",
+      "website": "",
+      "summary": "Greenville SC concrete contractor. 5\u2605 (31 Google reviews). No website. GBP-only presence.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 31 reviews with no website = prime target",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "prime-concrete",
+      "name": "Prime Concrete Solutions",
+      "category": "Concrete",
+      "stage": "prospect",
+      "location": "Simpsonville, SC",
+      "phone": "(864) 558-8008",
+      "website": "",
+      "summary": "Simpsonville SC concrete. 4.9\u2605 (70 Google reviews). No website. Very strong review base.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 70 reviews is massive for no-site concrete contractor",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "sandy-springs-detailing",
+      "name": "Sandy Spring's Detailing LLC",
+      "category": "Auto Detailing",
+      "stage": "prospect",
+      "location": "Pendleton, SC",
+      "phone": "(864) 309-1674",
+      "website": "",
+      "summary": "Pendleton SC mobile auto detailing. 5\u2605 (55 Google reviews). No website. Mobile service.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 mobile detailing, 55 reviews, zero web presence",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "locomotion-auto-detail",
+      "name": "Locomotion Auto Detail",
+      "category": "Auto Detailing",
+      "stage": "prospect",
+      "location": "Anderson, SC",
+      "phone": "(864) 749-4013",
+      "website": "",
+      "summary": "Anderson SC auto detailing. 5\u2605 (28 Google reviews). No website. Shop on E Mauldin St.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 Anderson auto detailer, 28 five-star reviews, no site",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "perpetual-painters",
+      "name": "Perpetual Painters LLC",
+      "category": "Painting",
+      "stage": "prospect",
+      "location": "Boiling Springs, SC",
+      "phone": "(864) 597-6450",
+      "website": "",
+      "summary": "Boiling Springs SC painting contractor. 5\u2605 (14 Google reviews). LLC. No website.",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium-high",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 LLC painting contractor, solid reviews, no site",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "blacks-paint",
+      "name": "Black's Paint Contracting",
+      "category": "Painting",
+      "stage": "prospect",
+      "location": "Spartanburg, SC",
+      "phone": "(864) 621-1833",
+      "website": "",
+      "summary": "Spartanburg SC painting contractor. 5\u2605 (11 Google reviews). No website. Established presence.",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium-high",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 Spartanburg painter, 11 five-star reviews, GBP-only",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "top-choice-fence",
+      "name": "Top Choice Fence & Decks",
+      "category": "Fencing & Decks",
+      "stage": "prospect",
+      "location": "Mauldin, SC",
+      "phone": "(864) 283-6425",
+      "website": "",
+      "summary": "Mauldin SC fencing and deck contractor. 4.2\u2605 (5 Google reviews). No website.",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 fence + deck combo, growing presence, no site",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "acorn-fencing",
+      "name": "Acorn Fencing & Repair",
+      "category": "Fencing",
+      "stage": "prospect",
+      "location": "Greer, SC",
+      "phone": "(864) 510-4593",
+      "website": "",
+      "summary": "Greer SC fencing contractor. 4.6\u2605 (21 Google reviews). No website. Established GBP.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 21 reviews, fencing niche, Greer-based, no site",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "adv-garage-door",
+      "name": "ADV Garage Door LLC",
+      "category": "Garage Door",
+      "stage": "prospect",
+      "location": "Lyman, SC",
+      "phone": "(864) 435-6497",
+      "website": "",
+      "summary": "Lyman SC garage door repair. 5\u2605 (15 Google reviews). LLC. No website.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 perfect 5-star garage door LLC, no web presence",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "johnsons-paint",
+      "name": "Johnson's Paint Contracting",
+      "category": "Painting",
+      "stage": "prospect",
+      "location": "Moore, SC",
+      "phone": "(864) 576-2435",
+      "website": "",
+      "summary": "Moore SC painting contractor. 5\u2605 (1 Google review). No website. Newer GBP \u2014 catch early.",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
+      "playbook": [],
+      "nextSteps": "Audit needed \u2014 newer painting contractor, Spartanburg area, no site",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "lightning-pest",
+      "name": "Lightning Pest & Termite Control",
+      "category": "Pest Control",
+      "stage": "prospect",
+      "location": "Elgin, TX",
+      "phone": "(512) 281-9686",
+      "website": "",
+      "summary": "Elgin TX (Austin area) pest control. 5\u2605 (4 Google reviews). No website. Out-of-state prospect.",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Austin-area pest control",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "eco-wash-systems",
+      "name": "Eco Wash Systems",
+      "category": "Pressure Washing",
+      "stage": "prospect",
+      "location": "Miami, FL",
+      "phone": "(305) 593-1557",
+      "website": "",
+      "summary": "Miami FL pressure washing. 4.8\u2605 (52 Google reviews). No website. Competitive Miami market.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Miami pressure washing, 52 reviews",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "titan-wash",
+      "name": "Titan Wash",
+      "category": "Pressure Washing",
+      "stage": "prospect",
+      "location": "Hialeah, FL",
+      "phone": "(786) 479-1262",
+      "website": "",
+      "summary": "Hialeah FL (Miami metro) pressure washing. 5\u2605 (8 Google reviews). No website.",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium-high",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Miami metro pressure washing",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "mr-painter-ga",
+      "name": "Mr. Painter Company LLC",
+      "category": "Painting",
+      "stage": "prospect",
+      "location": "Snellville, GA",
+      "phone": "(470) 314-7101",
+      "website": "",
+      "summary": "Snellville GA (Atlanta metro) painting contractor. 5\u2605 (71 Google reviews). LLC. No website.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Atlanta painting, 71 perfect reviews!",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "jpg-painting-ga",
+      "name": "JPG Painting",
+      "category": "Painting",
+      "stage": "prospect",
+      "location": "Mableton, GA",
+      "phone": "(404) 966-4797",
+      "website": "",
+      "summary": "Mableton GA (Atlanta metro) painting contractor. 5\u2605 (28 Google reviews). No website.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Atlanta painting, 28 reviews, no site",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "el-valle-junk",
+      "name": "El Valle Junk Removal",
+      "category": "Junk Removal",
+      "stage": "prospect",
+      "location": "Phoenix, AZ",
+      "phone": "(602) 639-2971",
+      "website": "",
+      "summary": "Phoenix AZ junk removal. 4.9\u2605 (15 Google reviews). No website. Growing Phoenix market.",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium-high",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Phoenix junk removal",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "mm-tree-services",
+      "name": "MM Tree Services",
+      "category": "Tree Service",
+      "stage": "prospect",
+      "location": "Hermitage, TN",
+      "phone": "(615) 719-4683",
+      "website": "",
+      "summary": "Hermitage TN (Nashville area) tree service. 5\u2605 (60 Google reviews). No website.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Nashville tree service, 60 perfect reviews",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "raleigh-handyman",
+      "name": "The Raleigh Handyman",
+      "category": "Handyman",
+      "stage": "prospect",
+      "location": "Raleigh, NC",
+      "phone": "(919) 210-1525",
+      "website": "",
+      "summary": "Raleigh NC handyman services. 4.9\u2605 (200 Google reviews). No website. Massive review base \u2014 prime target.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 200 reviews with no website is criminal",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "stallion-concrete",
+      "name": "The Stallion Concrete LLC",
+      "category": "Concrete",
+      "stage": "prospect",
+      "location": "Grove City, OH",
+      "phone": "(614) 743-8486",
+      "website": "",
+      "summary": "Grove City OH (Columbus area) concrete contractor. 5\u2605 (66 Google reviews). LLC. No website.",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Columbus concrete, 66 perfect reviews",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    },
+    {
+      "id": "baucom-auto-detailing",
+      "name": "Baucom Auto Detailing",
+      "category": "Auto Detailing",
+      "stage": "prospect",
+      "location": "Charlotte, NC",
+      "phone": "(743) 217-6176",
+      "website": "",
+      "summary": "Charlotte NC auto detailing. 5\u2605 (1 Google review). No website. Newer GBP \u2014 catch early.",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
+      "playbook": [],
+      "nextSteps": "Out-of-state audit needed \u2014 Charlotte auto detailing, newer business",
+      "seoScore": null,
+      "gScore": null,
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null
+    }
+  ],
+  "carLotsPipeline": {
+    "title": "Anderson Car Lots Pipeline",
+    "marketIntel": "8 independent BHPH lots identified. Zero competitors have JSON-LD schema or GEO optimization.",
+    "dealers": [
+      {
+        "id": "omega-auto-cl",
+        "name": "Omega Auto Sales",
+        "website": "omega-auto-anderson.vercel.app",
+        "status": "Demo built",
+        "notes": "No existing website. Demo page deployed. BHPH lot."
+      }
+    ],
+    "competitors": [
+      {
+        "name": "Family Auto of Anderson",
+        "website": "familyautoofanderson.com",
+        "hasSchema": false
+      },
+      {
+        "name": "A-1 Auto Sales",
+        "website": "a1autosalesofanderson.com",
+        "hasSchema": false
+      },
+      {
+        "name": "EZ Rides Auto Sales",
+        "website": "ezridesauto.com",
+        "hasSchema": false
+      },
+      {
+        "name": "Ellison Auto Group",
+        "website": "ellisonautogroup.com",
+        "hasSchema": false
+      },
+      {
+        "name": "Richardson Motors",
+        "website": "richardson-motors.com",
+        "hasSchema": false
+      },
+      {
+        "name": "Brewster Used Cars",
+        "website": "brewstersusedcars.com",
+        "hasSchema": false
+      },
+      {
+        "name": "A&D Auto Sales",
+        "website": "a-dautosales.com",
+        "hasSchema": false
+      },
+      {
+        "name": "One Stop Auto Group",
+        "website": "onestopautogroupsc.com",
+        "hasSchema": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,233 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+/*
+ * Light theme only. The dashboard sits on a warm off-white base so the mesh
+ * gradient behind the glass cards stays visible without fighting the content.
+ */
+:root {
+  --radius: 0.875rem;
+
+  --background: oklch(0.985 0.004 95);
+  --foreground: oklch(0.23 0.018 258);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.23 0.018 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.23 0.018 258);
+
+  /* Deep evergreen — the Local Launch primary. */
+  --primary: oklch(0.53 0.115 165);
+  --primary-foreground: oklch(0.99 0.005 165);
+
+  --secondary: oklch(0.955 0.006 250);
+  --secondary-foreground: oklch(0.3 0.02 258);
+
+  --muted: oklch(0.96 0.005 250);
+  --muted-foreground: oklch(0.52 0.017 256);
+
+  --accent: oklch(0.955 0.012 90);
+  --accent-foreground: oklch(0.3 0.02 258);
+
+  --destructive: oklch(0.58 0.2 25);
+
+  --border: oklch(0.9 0.006 255);
+  --input: oklch(0.9 0.006 255);
+  --ring: oklch(0.53 0.115 165);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/40;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Tabular figures keep the stat counters from jittering. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ----------------------------------------------------- motion background --- */
+
+@keyframes gradient-shift {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+@keyframes mesh-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(6%, -8%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-5%, 6%, 0) scale(0.94);
+  }
+}
+
+@keyframes mesh-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  40% {
+    transform: translate3d(-8%, 7%, 0) scale(0.92);
+  }
+  75% {
+    transform: translate3d(7%, 4%, 0) scale(1.14);
+  }
+}
+
+@keyframes mesh-drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.98);
+  }
+  50% {
+    transform: translate3d(5%, 9%, 0) scale(1.16);
+  }
+}
+
+@keyframes mesh-drift-d {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  45% {
+    transform: translate3d(-6%, -6%, 0) scale(0.95);
+  }
+}
+
+.animate-mesh-a {
+  animation: mesh-drift-a 26s ease-in-out infinite;
+}
+.animate-mesh-b {
+  animation: mesh-drift-b 32s ease-in-out infinite;
+}
+.animate-mesh-c {
+  animation: mesh-drift-c 38s ease-in-out infinite;
+}
+.animate-mesh-d {
+  animation: mesh-drift-d 30s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------ micro-anim --- */
+
+@keyframes stage-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animate-stage-pulse {
+  animation: stage-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-rise-in {
+  animation: rise-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-stage-pulse,
+  .animate-rise-in,
+  .animate-mesh-a,
+  .animate-mesh-b,
+  .animate-mesh-c,
+  .animate-mesh-d {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* --------------------------------------------------------------- scroll --- */
+
+.kanban-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.85 0.01 255) transparent;
+}
+
+.kanban-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.kanban-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kanban-scroll::-webkit-scrollbar-thumb {
+  background-color: oklch(0.85 0.01 255);
+  border-radius: 9999px;
+}
