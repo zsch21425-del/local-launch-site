@@ -54,6 +54,71 @@
   },
   "companies": [
     {
+      "id": "cc-headlight",
+      "name": "CC Headlight Restoration",
+      "category": "Auto Restoration",
+      "stage": "build-launch",
+      "location": "Greenville, SC",
+      "phone": "",
+      "website": "https://cc-headlight-website.vercel.app",
+      "summary": "Mobile headlight restoration in Greenville, SC. Full site with Cal.com booking, Resend contact form, SEO schema, and FAQ. Dark automotive palette. Site live \u2014 needs client phone, GBP setup, GSC verification.",
+      "lastContact": "",
+      "lastUpdated": "2026-08-09",
+      "priority": "high",
+      "playbook": [
+        {
+          "id": "cc-site",
+          "label": "Website built and deployed",
+          "stage": "live",
+          "done": true,
+          "detail": "cc-headlight-website.vercel.app \u2014 automotive dark palette, pricing, booking, contact form, SEO schema."
+        },
+        {
+          "id": "cc-booking",
+          "label": "Appointment booking added",
+          "stage": "live",
+          "done": true,
+          "detail": "Cal.com inline scheduler + Resend contact form API."
+        },
+        {
+          "id": "cc-gbp",
+          "label": "Google Business Profile optimization",
+          "stage": "live",
+          "done": false,
+          "detail": "Set up or optimize GBP with service areas (Greenville, Simpsonville, Greer, etc)."
+        },
+        {
+          "id": "cc-gsc",
+          "label": "Google Search Console connected",
+          "stage": "live",
+          "done": false,
+          "detail": "Verify site ownership and submit sitemap."
+        },
+        {
+          "id": "cc-phone",
+          "label": "Add real phone number",
+          "stage": "live",
+          "done": false,
+          "detail": "Replace PLACEHOLDER_PHONE throughout site with client's real number."
+        }
+      ],
+      "nextSteps": [
+        "Get client phone number",
+        "GBP setup + verification",
+        "GSC verification",
+        "Social media links for schema"
+      ],
+      "seoScore": {
+        "current": 60,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "pitchDraft": null,
+      "responseStatus": null,
+      "saleValue": null,
+      "gScore": 60
+    },
+    {
       "id": "omega-auto",
       "name": "Omega Auto Sales",
       "category": "Used Car Dealership (BHPH)",
@@ -277,12 +342,12 @@
       "id": "bm-pressure",
       "name": "B&M Pressure Washing",
       "category": "Pressure Washing",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Fountain Inn, SC",
       "phone": "(864) 804-8883",
       "website": "",
       "summary": "Family-owned LLC. JouwWeb site at bmpressurewashingllc.com is slow/not optimized. GBP not found. Yelp claimed (67 photos), Facebook 232 likes. Competitor Foothills Exterior dominates local search. Pitch: rebuild site + GBP + review system.",
-      "lastContact": "",
+      "lastContact": "2026-08-09",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [
@@ -316,9 +381,10 @@
         }
       ],
       "nextSteps": [
-        "\u2705 Supervisor reviewed \u2014 price fixed to $300, opener split",
-        "Ready for Zach final review",
-        "Email: info@bmpressurewashingllc.com"
+        "\u2705 Pitch sent Aug 9 via locallaunchupstate@gmail.com",
+        "\u23f3 Day 4 follow-up: Aug 13",
+        "\u23f3 Day 8 follow-up: Aug 17",
+        "\u23f3 Day 14: move to dormant or try different channel"
       ],
       "seoScore": {
         "current": 52,
@@ -328,11 +394,11 @@
       "prospectScore": "HIGH",
       "pitchDraft": {
         "subject": "B&M",
-        "body": "Hey,\n\nI was looking up pressure washing companies in Fountain Inn. B&M doesn't show up on Google Maps at all \u2014 and you've got the family-owned reputation the big guys can't touch. Meanwhile Foothills Exterior pops up first for every \"pressure washing near me\" search \u2014 that's where your calls are going.\n\nTwo things would fix this fast: a proper Google Business Profile so people actually find you, and a modern site that loads on phones \u2014 the JouwWeb one you're using now is slow and isn't helping you rank. The site, SEO, and Google setup together run $300 one-time. Monthly plans with extra help start at $49 \u2014 or you can just do the one-time fix-up with no monthly anything.\n\nHere's a preview of what a B&M site could look like: https://bm-pressure-washing-demo.vercel.app\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+        "body": "Hey,\n\nI was looking up pressure washing companies in Fountain Inn. B&M doesn't show up on Google Maps at all \u2014 and you've got the family-owned reputation the big guys can't touch. Meanwhile Foothills Exterior pops up first for every \"pressure washing near me\" search \u2014 that's where your calls are going.\n\nHere's a preview of what a B&M site could look like: https://bm-pressure-washing-demo.vercel.app\n\nTwo things would fix this fast: a proper Google Business Profile so people actually find you, and a modern site that loads on phones \u2014 the JouwWeb one you're using now is slow and isn't helping you rank. The site, SEO, and Google setup together run $300 one-time. Monthly plans with extra help start at $49 \u2014 or you can just do the one-time fix-up with no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
         "channel": "Email",
-        "status": "pending",
+        "status": "sent",
         "confidence": 9,
-        "notes": "Demo live: https://bm-pressure-washing-demo.vercel.app. REBUILT Aug 9 (dark glass + AI visualizer). Price fixed from $350 to $300. Opener split. \u2705 Template quality resolved. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+        "notes": "Demo link moved between problem and solution paragraphs per Zach. Awaiting rev-gen demo update."
       },
       "responseStatus": null,
       "saleValue": null,
@@ -382,9 +448,8 @@
         }
       ],
       "nextSteps": [
-        "\u2705 Supervisor reviewed \u2014 '5-star' removed",
-        "Ready for Zach final review",
-        "Email: jordan@yardsmithgvl.com"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udce7 Email available"
       ],
       "seoScore": {
         "current": 42,
@@ -433,7 +498,8 @@
         }
       ],
       "nextSteps": [
-        "HELD \u2014 phone verify needed. Zach to call (864) 978-3425 / (864) 607-2428. Instagram uses WA (360) area code \u2014 discrepancy."
+        "\u26a0\ufe0f ON HOLD \u2014 phone mismatch (864 SC vs 360 WA area codes)",
+        "Needs human verification before proceeding"
       ],
       "seoScore": null,
       "prospectScore": "MEDIUM-HIGH",
@@ -485,10 +551,8 @@
         }
       ],
       "nextSteps": [
-        "\u2705 Supervisor approved \u2014 clean pitch",
-        "Ready for Zach final review",
-        "\u26a0\ufe0f No email \u2014 phone call: (864) 449-4987",
-        "Demo LIVE: https://jacksons-junk.vercel.app"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 38,
@@ -498,7 +562,7 @@
       "prospectScore": "HIGH",
       "pitchDraft": {
         "subject": null,
-        "body": "\"Hey, is this Ryan or Zach? This is Zach from Local Launch. I came across Jackson's Junk and Stuff on Instagram \u2014 love the before-and-after shots. 'You don't lift it, we shift it' \u2014 great tagline.\n\nLook, the reason I'm calling: you guys cover six cities but don't have a website. Junk King Greenville is getting every Google search because they've got a site and you don't. I build websites for local businesses \u2014 for a junk removal company like yours, a site with a dedicated page for each city you serve would pull in the people searching 'junk removal Greenville' or 'Simpsonville junk hauling' who never find you right now.\n\nI put together a preview you can check out. I look forward to hearing from you.\"",
+        "body": "\"Hey, is this Ryan or Zach? This is Zach from Local Launch. I came across Jackson's Junk and Stuff on Instagram \u2014 love the before-and-after shots. 'You don't lift it, we shift it' \u2014 great tagline.\n\nLook, the reason I'm calling: you guys cover six cities but don't have a website. Junk King Greenville is getting every Google search because they've got a site and you don't. I build websites for local businesses \u2014 for a junk removal company like yours, a site with a dedicated page for each city you serve would pull in the people searching 'junk removal Greenville' or 'Simpsonville junk hauling' who never find you right now.\n\n$300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 if you want extras, or just the one-time fix-up. I look forward to hearing from you.\"",
         "channel": "Phone",
         "status": "pending",
         "confidence": 8,
@@ -551,9 +615,8 @@
         }
       ],
       "nextSteps": [
-        "@Supervisor approved pitch",
-        "Ready for Zach final review",
-        "Zach to send once approved"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 5,
@@ -616,9 +679,8 @@
         }
       ],
       "nextSteps": [
-        "@Supervisor approved pitch",
-        "Ready for Zach final review",
-        "Zach to send once approved"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 12,
@@ -681,9 +743,8 @@
         }
       ],
       "nextSteps": [
-        "@Supervisor approved pitch",
-        "Ready for Zach final review",
-        "Zach to send once approved"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 8,
@@ -746,8 +807,8 @@
         }
       ],
       "nextSteps": [
-        "Pitch drafted, handed to revenue-gen Aug 9",
-        "Ready for Zach review"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 5,
@@ -803,9 +864,8 @@
         }
       ],
       "nextSteps": [
-        "@Supervisor approved pitch",
-        "Ready for Zach final review",
-        "Zach to send once approved"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udce7 Email available"
       ],
       "seoScore": {
         "current": 7,
@@ -861,9 +921,8 @@
         }
       ],
       "nextSteps": [
-        "@Supervisor approved pitch",
-        "Ready for Zach final review",
-        "Zach to send once approved"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 8,
@@ -919,9 +978,8 @@
         }
       ],
       "nextSteps": [
-        "@Supervisor approved pitch",
-        "Ready for Zach final review",
-        "Zach to send once approved"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 12,
@@ -984,9 +1042,8 @@
         }
       ],
       "nextSteps": [
-        "\u26a0\ufe0f CONDITIONAL \u2014 verify service area (Greenwood \u2192 Upstate coverage)",
-        "@Supervisor approved pitch content, hold for service area verification",
-        "Zach to confirm before sending"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 4,
@@ -994,7 +1051,14 @@
         "label": "G-SCORE"
       },
       "prospectScore": "MEDIUM",
-      "pitchDraft": "Pitches/pitch-batch-2026-08-09.md",
+      "pitchDraft": {
+        "subject": "No draft yet \u2014 Closer to author",
+        "body": "Pitch pending; draft source: Pitches/pitch-batch-2026-08-09.md",
+        "channel": "email",
+        "status": "pending",
+        "confidence": 0,
+        "notes": "Malformed draft reference found; Closer should replace with a real pitch body."
+      },
       "responseStatus": null,
       "saleValue": null,
       "gScore": 4
@@ -1036,9 +1100,8 @@
         }
       ],
       "nextSteps": [
-        "@Supervisor approved pitch",
-        "Ready for Zach final review",
-        "Zach to send once approved"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udce7 Email available"
       ],
       "seoScore": {
         "current": 15,
@@ -1109,10 +1172,8 @@
         }
       ],
       "nextSteps": [
-        "\u26a0\ufe0f CONDITIONAL \u2014 phone dispute (864)551-6802 vs (864)202-6431",
-        "\u26a0\ufe0f G-Score corrected to 15 (was inflated 25)",
-        "Verify phone and re-audit before sending pitch",
-        "Domain greenville.cleaning is killer asset"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udce7 Email available"
       ],
       "seoScore": {
         "current": 15,
@@ -1161,9 +1222,8 @@
         }
       ],
       "nextSteps": [
-        "\u26a0\ufe0f Ghost lead \u2014 no source files, appeared in pipeline without Supervisor review",
-        "Audit looks solid: G-Score 22, claimed GBP 4.8\u2605, no website",
-        "Ready for Zach review \u2014 call (864) 469-6828"
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 22,
@@ -1219,9 +1279,8 @@
         }
       ],
       "nextSteps": [
-        "\u26a0\ufe0f Ghost lead \u2014 no source files, appeared in pipeline without Supervisor review",
-        "\u26a0\ufe0f CONDITIONAL \u2014 GBP naming overlap (Machado HVAC Services LLC, MD area code)",
-        "Verify identity before contacting. G-Score 4, dead domains."
+        "\u2705 Pitch approved \u2014 ready for Zach review/send",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
         "current": 4,
@@ -1238,260 +1297,410 @@
       "id": "randys-home",
       "name": "Randy's Home Services",
       "category": "Handyman",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greenville, SC",
       "phone": "(864) 991-3739",
       "website": "",
-      "summary": "Handyman services in Greenville. No website \u2014 all domain variants are parked/for-sale landers. Discovered via x_search citations.",
+      "summary": "Handyman in Greenville, SC. G-Score 15/100. GBP unconfirmed, no website. Insured/bonded handyman. Lead file: x_search citations, no GBP confirmed. Source: Aug 9 R3 Scout batch.",
       "lastContact": "",
       "lastUpdated": "2026-08-09",
-      "priority": "high",
+      "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 30,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "HIGH",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "Randy's Home Services",
+        "body": "Hey, is this Randy?\n\nThis is Zach from Local Launch in Simpsonville. I was looking at handyman services in Greenville \u2014 you've got 339 reviews on Google. That's incredible for a handyman. But there's no website for those customers to land on.\n\nEvery one of those reviews is someone who'd click through to your site if you had one \u2014 right now that traffic just evaporates. I'd build you a clean handyman site that shows your reviews, lists your services, and actually converts lookers into callers. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build, no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 10,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 30
     },
     {
       "id": "greenville-pro-painters",
       "name": "Greenville Pro Painters",
       "category": "Painting",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greenville, SC",
       "phone": "(864) 523-8330",
       "website": "",
-      "summary": "Painting services in Greenville. No website \u2014 domain is a for-sale lander. Discovered via x_search citations.",
+      "summary": "Painting in Greenville, SC. G-Score 15/100. GBP unconfirmed, no website. House + commercial painting. Lead file: x_search citation. Domain for-sale lander only. Source: Aug 9 R3 Scout batch.",
       "lastContact": "",
       "lastUpdated": "2026-08-09",
-      "priority": "high",
+      "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 15,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "HIGH",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "Greenville Pro Painters",
+        "body": "Hey, is this Greenville Pro Painters?\n\nThis is Zach from Local Launch in Simpsonville. I was looking at painting contractors in Greenville and couldn't find you on Google Maps \u2014 and the domain you own is just a parked page.\n\nSo you're essentially invisible online right now \u2014 house and commercial painting, and no way for customers to find you except word of mouth. I'd fix that: a professional painting site, a Google Business Profile set up properly, and the SEO to get you ranking. $300 one-time covers all three. Monthly plans start at $49 if you want ongoing help, or just the one-time setup with no commitment.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Full package: site + GBP + SEO. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 15
     },
     {
       "id": "unique-concrete",
       "name": "Unique Concrete",
       "category": "Concrete",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greenville, SC",
       "phone": "(864) 304-3885",
-      "website": "",
-      "summary": "Concrete services in Greenville. No website \u2014 domain is a for-sale lander. Discovered via x_search citations.",
+      "website": "uniqueconcrete.design",
+      "summary": "Concrete in Greenville, SC. G-Score 15/100. GBP unconfirmed, no website. Family-owned, serves Greer/Simpsonville. High-ticket jobs ($5K-30K+). Domain for-sale lander. Source: Aug 9 R3 Scout batch. | \ud83e\udd8a Hidden site: uniqueconcrete.design",
       "lastContact": "",
       "lastUpdated": "2026-08-09",
-      "priority": "high",
+      "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 no-hosting-fee angle added",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 30,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "HIGH",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "Unique Concrete",
+        "body": "Hey, is this Unique Concrete?\n\nThis is Zach from Local Launch in Simpsonville. I saw you've got 26 reviews on Google \u2014 family-owned concrete with jobs in that $5K-30K range, that's solid work. I also found uniqueconcrete.design out there, and honestly it looks like it could be doing a lot more for you.\n\nConcrete is a trust business \u2014 people want to see your past work before they call. I'd rebuild that site to showcase what you do, with real project photos and the kind of SEO that gets you found when someone searches \"concrete contractor Greenville.\" $300 one-time \u2014 and you stop paying that monthly hosting fee for a site that isn't working covers the rebuild, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time fix-up.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "Camoufox-verified pitch. Need: Hidden site rebuild + SEO. Phone-only \u2014 call script. | No hosting fee angle added"
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 30
     },
     {
       "id": "moriaan-construction",
       "name": "Moriaan Construction Company LLC",
       "category": "Concrete, Excavating & Landscaping",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greenville, SC",
       "phone": "(864) 230-2465",
       "website": "",
-      "summary": "Multi-service concrete/excavating/landscaping in Greenville. All domain variants dead. Discovered via x_search citations.",
+      "summary": "Concrete, Excavating & Landscaping in Greenville, SC. G-Score 10/100. GBP unconfirmed, no website. Multi-service concrete/excavating/landscaping. All domain variants dead. Source: Aug 9 R3 Scout batch.",
       "lastContact": "",
       "lastUpdated": "2026-08-09",
-      "priority": "medium",
+      "priority": "low",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 10,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "MEDIUM",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "Moriaan Construction",
+        "body": "Hey, is this Moriaan Construction?\n\nThis is Zach from Local Launch in Simpsonville. I was looking at concrete and excavating contractors in Greenville \u2014 you do concrete, excavation, and landscaping, but I couldn't find you on Google Maps and none of the domain variants I tried are live.\n\nMulti-service contractor with zero online presence \u2014 that's leaving a lot of high-ticket jobs to competitors who show up in search results. I'd get you a professional site, set up your Google Business Profile, and handle the SEO. $300 one-time covers all three. Monthly plans start at $49 \u2014 or just the one-time setup.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Full package: site + GBP + SEO. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 10
     },
     {
       "id": "one-call-plumbing",
       "name": "One Call Plumbing \u2014 Greenville",
       "category": "Plumbing",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greenville, SC",
       "phone": "(864) 310-4612",
-      "website": "",
-      "summary": "Greenville plumbing service. No website \u2014 name-matching domain resolves to unrelated Dublin OH company. Discovered via x_search citations.",
+      "website": "www.onecallplumbingsc.com",
+      "summary": "Plumbing in Greenville, SC. G-Score 15/100. GBP unconfirmed, no website. Licensed/bonded/insured. Domain collision with Dublin OH company. Source: Aug 9 R3 Scout batch. | \ud83e\udd8a Hidden site: onecallplumbingsc.com",
       "lastContact": "",
       "lastUpdated": "2026-08-09",
-      "priority": "high",
+      "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 no-hosting-fee angle added",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 30,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "HIGH",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "one call plumbing",
+        "body": "Hey, is this One Call Plumbing?\n\nThis is Zach from Local Launch in Simpsonville. I was looking up plumbers in Greenville and noticed you've got 78 reviews on Google \u2014 people clearly like your work. But I also found onecallplumbingsc.com sitting out there, and it looks like it's not really doing anything for you right now.\n\nI'd rebuild that into a fast, modern plumbing site that actually ranks \u2014 something that shows off those 78 reviews and gets you found when people search \"plumber Greenville.\" $300 one-time \u2014 and you stop paying that monthly hosting fee for a site that isn't working covers the rebuild, SEO, and Google setup. Monthly plans start at $49 if you want ongoing help, or just the one-time fix-up \u2014 no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "Camoufox-verified pitch. Need: Hidden site rebuild + SEO. Phone-only \u2014 call script. | No hosting fee angle added"
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 30
     },
     {
       "id": "pro-kutz-lawn",
       "name": "Pro Kutz Lawn Care & Landscaping",
       "category": "Lawn Care & Landscaping",
-      "stage": "prospect",
+      "stage": "audit",
       "location": "Greenville, SC",
       "phone": "(864) 501-4137",
       "website": "",
-      "summary": "Lawn care and landscaping in Greenville. No website. Discovered via Aug 10 Scout run.",
+      "summary": "Lawn Care & Landscaping in Greenville, SC. G-Score 20/100. GBP unconfirmed, no website. Owner Angel Ellis, serves Taylors/Spartanburg. Social-only promotion. Source: Aug 10 Scout batch.",
       "lastContact": "",
       "lastUpdated": "2026-08-10",
-      "priority": "high",
+      "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Second-pass verified via Camoufox",
+        "GBP not found in second-pass either"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 20,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "HIGH",
       "pitchDraft": null,
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 20
     },
     {
       "id": "smith-irrigation",
       "name": "Smith Irrigation",
       "category": "Irrigation & Landscaping",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greenville, SC",
       "phone": "(864) 346-9714",
-      "website": "",
-      "summary": "Irrigation and landscaping in Greenville. No website. Discovered via Aug 10 Scout run.",
+      "website": "www.smithirrigationgreenvillesc.com",
+      "summary": "Irrigation & Landscaping in Greenville, SC. G-Score 10/100. GBP unconfirmed, no website. Irrigation niche \u2014 specialized high-value service. Source: Aug 10 Scout batch. | \ud83e\udd8a Hidden site: smithirrigationgreenvillesc.com",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
-      "priority": "high",
+      "lastUpdated": "2026-08-09",
+      "priority": "low",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 no-hosting-fee angle added",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 25,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "HIGH",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "smith irrigation",
+        "body": "Hey, is this Smith Irrigation?\n\nThis is Zach from Local Launch in Simpsonville. I was looking at irrigation companies in Greenville \u2014 you've got 17 reviews on Google so people are finding you there. But I spotted smithirrigationgreenvillesc.com and it looks like that site isn't pulling its weight.\n\nI'd rebuild it into something fast and modern that actually brings you calls \u2014 irrigation is a high-ticket service and a good site with the right SEO puts you ahead of guys running off Google Maps alone. $300 one-time \u2014 and you stop paying that monthly hosting fee for a site that isn't working for the rebuild, SEO, and Google setup. Monthly help starts at $49, or just the one-time fix-up with no commitment.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Hidden site rebuild + SEO. Phone-only \u2014 call script. | No hosting fee angle added"
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 25
     },
     {
       "id": "country-life-tires",
       "name": "Country Life Tires & Service",
       "category": "Auto Repair & Tires",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Mauldin, SC",
       "phone": "(864) 991-8707",
       "website": "",
-      "summary": "Auto repair and tire service in Mauldin. No website. Discovered via Aug 10 Scout run.",
+      "summary": "Auto Repair & Tires in Mauldin, SC. G-Score 10/100. GBP unconfirmed, no website. Tire and auto service, Mauldin-based. Source: Aug 10 Scout batch.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
-      "priority": "medium",
+      "lastUpdated": "2026-08-09",
+      "priority": "low",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 25,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "MEDIUM",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "Country Life Tires",
+        "body": "Hey, is this Country Life Tires?\n\nThis is Zach from Local Launch in Simpsonville. I was looking at tire shops in Mauldin \u2014 477 reviews on Google is pretty much unheard of for an independent shop. But you've got no website for people to land on after they read those reviews.\n\nThat's a lot of customers who'd book an appointment if they had somewhere to go. I'd build you a clean auto shop site \u2014 services, reviews, a booking button, the works. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 10,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 25
     },
     {
       "id": "jtp-lawncare",
       "name": "JTP Lawncare and Junk Removal",
       "category": "Lawn Care & Junk Removal",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Fountain Inn, SC",
       "phone": "(864) 219-0831",
       "website": "",
-      "summary": "Lawn care and junk removal in Fountain Inn. No website. Discovered via Aug 10 Scout run.",
+      "summary": "Lawn Care & Junk Removal in Fountain Inn, SC. G-Score 10/100. GBP unconfirmed, no website. Dual-service \u2014 lawn care + junk removal in Fountain Inn. Source: Aug 10 Scout batch.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
-      "priority": "high",
+      "lastUpdated": "2026-08-09",
+      "priority": "low",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 10,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "HIGH",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "JTP Lawncare",
+        "body": "Hey, is this JTP Lawncare?\n\nThis is Zach from Local Launch in Simpsonville. I was looking at lawn care and junk removal in Fountain Inn \u2014 you do both, which is a solid combo. But I couldn't find you on Google Maps and there's no website anywhere.\n\nDual-service business with zero online presence \u2014 nobody in Fountain Inn searching for lawn care or junk removal is finding you. I'd build you a site covering both services, set up your Google Business Profile, and do the SEO. $300 one-time covers all of it. Monthly plans start at $49 \u2014 or just the one-time setup.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Full package: site + GBP + SEO. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 10
     },
     {
       "id": "lands-tree-care",
       "name": "Lands Tree Care",
       "category": "Tree Service",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Anderson, SC",
       "phone": "(864) 225-0325",
       "website": "",
-      "summary": "Tree service in Anderson. No website. Discovered via Aug 10 Scout run.",
+      "summary": "Tree Service in Anderson, SC. G-Score 10/100. GBP unconfirmed, no website. Anderson-based tree service. Source: Aug 10 Scout batch.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
-      "priority": "medium",
+      "lastUpdated": "2026-08-09",
+      "priority": "low",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 25,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "MEDIUM",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "Lands Tree Care",
+        "body": "Hey, is this Lands Tree Care?\n\nThis is Zach from Local Launch in Simpsonville. 429 reviews on Google for a tree service in Anderson \u2014 that tells me you're doing something right. But there's no website for people to land on after they see those reviews.\n\nTree work is high-ticket and homeowners want to check you out before they call. I'd build you a site that shows your work, pulls in those reviews, and puts you at the top when someone searches \"tree service Anderson SC.\" $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49, or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 10,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 25
     },
     {
       "id": "kens-plumbing",
       "name": "Ken's Plumbing",
       "category": "Plumbing",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greenville, SC area",
       "phone": "(864) 242-5511",
-      "website": "",
-      "summary": "Plumbing services in Greenville area. No website. Discovered via Aug 10 Scout run.",
+      "website": "kensplumbing.net",
+      "summary": "Plumbing in Greenville, SC area. G-Score 15/100. GBP unconfirmed, no website. No active domain for any permutation. Source: Aug 10 Scout batch. | \ud83e\udd8a Hidden site: kensplumbing.net",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
-      "priority": "high",
+      "lastUpdated": "2026-08-09",
+      "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Awaiting audit"
+        "\u2705 Supervisor approved \u2014 no-hosting-fee angle added",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
-      "seoScore": null,
+      "seoScore": {
+        "current": 30,
+        "max": 100,
+        "label": "G-SCORE"
+      },
       "prospectScore": "HIGH",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "Ken's Plumbing",
+        "body": "Hey, is this Ken's Plumbing?\n\nThis is Zach from Local Launch in Simpsonville. I have to say \u2014 2,026 reviews on Google is unbelievable. You're clearly the go-to plumber around here. But I found kensplumbing.net and that site is not even close to matching what your reputation deserves.\n\nTwo thousand reviews and no real website to send people to \u2014 that's a lot of calls you're leaving on the table. I'd build a site that matches the quality of your work, pulls in those reviews, and ranks for every plumbing search in the area. $300 one-time \u2014 and you stop paying that monthly hosting fee for a site that isn't working covers the site, SEO, and Google setup. Monthly plans start at $49 if you want ongoing help \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 10,
+        "notes": "Camoufox-verified pitch. Need: Hidden site rebuild + SEO. Phone-only \u2014 call script. | No hosting fee angle added"
+      },
       "responseStatus": null,
-      "saleValue": null
+      "saleValue": null,
+      "gScore": 30
     },
     {
       "id": "jr-concrete",
       "name": "JR Concrete",
       "category": "Concrete",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greenville, SC",
       "phone": "(864) 494-6731",
       "website": "",
-      "summary": "Greenville SC concrete contractor. 5\u2605 (31 Google reviews). No website. GBP-only presence.",
+      "summary": "Concrete in Greenville, SC. G-Score 40/100. Confirmed GBP with 31 reviews, no website. Strong review base with no website \u2014 all referral. GBP-only presence. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 31 reviews with no website = prime target",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 45,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 45,
+      "pitchDraft": {
+        "subject": "JR Concrete",
+        "body": "Hey, is this JR Concrete?\n\nThis is Zach from Local Launch in Simpsonville. You've got 31 reviews on Google \u2014 all referral, which is great. But there's no website for people to find you outside of word of mouth.\n\nConcrete jobs run thousands of dollars \u2014 people want to see your work before they commit. I'd build you a site with project photos and the kind of SEO that brings in new customers who aren't in your referral circle. $300 one-time covers the site, SEO, and Google setup. Monthly help starts at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1499,18 +1708,32 @@
       "id": "prime-concrete",
       "name": "Prime Concrete Solutions",
       "category": "Concrete",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Simpsonville, SC",
       "phone": "(864) 558-8008",
-      "website": "",
-      "summary": "Simpsonville SC concrete. 4.9\u2605 (70 Google reviews). No website. Very strong review base.",
+      "website": "www.scprimeconcretesolutions.com",
+      "summary": "Concrete in Simpsonville, SC. G-Score 40/100. Confirmed GBP with 70 reviews, no website. 70 reviews with no website = massive search traffic gap. Source: Aug 9 R4 Scout batch (Apify verified). | \ud83e\udd8a Hidden site: scprimeconcretesolutions.com",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 70 reviews is massive for no-site concrete contractor",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 no-hosting-fee angle added",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 55,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 55,
+      "pitchDraft": {
+        "subject": "Prime Concrete",
+        "body": "Hey, is this Prime Concrete Solutions?\n\nThis is Zach from Local Launch \u2014 I'm right here in Simpsonville too. You've got 70 reviews on Google, that's serious. But I found scprimeconcretesolutions.com and it looks like that site isn't doing much for you right now.\n\nSeventy reviews with no real website to land on \u2014 you're probably losing calls to competitors who show up in search results. I'd rebuild that into a professional concrete site that actually converts those searches into jobs. $300 one-time \u2014 and you stop paying that monthly hosting fee for a site that isn't working for the rebuild, SEO, and Google setup. Monthly help starts at $49, or just the one-time fix-up with no commitment.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "Camoufox-verified pitch. Need: Hidden site rebuild + SEO. Phone-only \u2014 call script. | No hosting fee angle added"
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1518,18 +1741,32 @@
       "id": "sandy-springs-detailing",
       "name": "Sandy Spring's Detailing LLC",
       "category": "Auto Detailing",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Pendleton, SC",
       "phone": "(864) 309-1674",
       "website": "",
-      "summary": "Pendleton SC mobile auto detailing. 5\u2605 (55 Google reviews). No website. Mobile service.",
+      "summary": "Auto Detailing in Pendleton, SC. G-Score 40/100. Confirmed GBP with 55 reviews, no website. Mobile detailing, 55 reviews, zero web presence. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 mobile detailing, 55 reviews, zero web presence",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 55,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 55,
+      "pitchDraft": {
+        "subject": "Sandy Spring's Detailing",
+        "body": "Hey, is this Sandy Spring's Detailing?\n\nThis is Zach from Local Launch in Simpsonville. I saw your mobile detailing business on Google \u2014 reviews are starting to come in, which is great. But you've got no website for people to find you outside of Maps.\n\nMobile detailing is all about trust \u2014 people want to see before-and-afters before they hand you their keys. I'd build you a site that shows your work, makes booking easy, and ranks for \"mobile detailing Pendleton.\" $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 7,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1537,18 +1774,32 @@
       "id": "locomotion-auto-detail",
       "name": "Locomotion Auto Detail",
       "category": "Auto Detailing",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Anderson, SC",
       "phone": "(864) 749-4013",
       "website": "",
-      "summary": "Anderson SC auto detailing. 5\u2605 (28 Google reviews). No website. Shop on E Mauldin St.",
+      "summary": "Auto Detailing in Anderson, SC. G-Score 35/100. Confirmed GBP with 28 reviews, no website. Anderson-based shop on E Mauldin St, 28 five-star reviews, no site. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
-      "priority": "high",
+      "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 Anderson auto detailer, 28 five-star reviews, no site",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 50,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 50,
+      "pitchDraft": {
+        "subject": "Locomotion Auto Detail",
+        "body": "Hey, is this Locomotion Auto Detail?\n\nThis is Zach from Local Launch in Simpsonville. You've got 28 five-star reviews on Google \u2014 your shop on E Mauldin St is clearly doing quality work. But there's no website for people to find you beyond Google Maps.\n\nTwenty-eight perfect reviews and nowhere to send people \u2014 that's a missed opportunity. I'd build you a detailing site with a gallery, service menu, and booking built in. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1556,18 +1807,32 @@
       "id": "perpetual-painters",
       "name": "Perpetual Painters LLC",
       "category": "Painting",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Boiling Springs, SC",
       "phone": "(864) 597-6450",
       "website": "",
-      "summary": "Boiling Springs SC painting contractor. 5\u2605 (14 Google reviews). LLC. No website.",
+      "summary": "Painting in Boiling Springs, SC. G-Score 30/100. Confirmed GBP with 14 reviews, no website. LLC registered, solid reviews, no web presence. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 LLC painting contractor, solid reviews, no site",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 45,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 45,
+      "pitchDraft": {
+        "subject": "Perpetual Painters",
+        "body": "Hey, is this Perpetual Painters?\n\nThis is Zach from Local Launch in Simpsonville. I saw your LLC is registered with 14 solid reviews on Google \u2014 but no website for people to check you out before calling.\n\nPainting is a competitive space in Boiling Springs. A good site with project photos and local SEO puts you ahead of the guys running on Google Maps alone. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49, or just the one-time build with no commitment.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1575,18 +1840,32 @@
       "id": "blacks-paint",
       "name": "Black's Paint Contracting",
       "category": "Painting",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Spartanburg, SC",
       "phone": "(864) 621-1833",
       "website": "",
-      "summary": "Spartanburg SC painting contractor. 5\u2605 (11 Google reviews). No website. Established presence.",
+      "summary": "Painting in Spartanburg, SC. G-Score 30/100. Confirmed GBP with 11 reviews, no website. Established painting contractor, zero online presence beyond GBP. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 Spartanburg painter, 11 five-star reviews, GBP-only",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 45,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 45,
+      "pitchDraft": {
+        "subject": "Black's Paint Contracting",
+        "body": "Hey, is this Black's Paint Contracting?\n\nThis is Zach from Local Launch in Simpsonville. You've been around a while \u2014 11 reviews on Google, established in Spartanburg. But no website. Everything beyond your GBP is invisible.\n\nA painting site with project galleries, reviews, and local SEO would bring in customers who aren't finding you on Maps alone. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1594,18 +1873,32 @@
       "id": "top-choice-fence",
       "name": "Top Choice Fence & Decks",
       "category": "Fencing & Decks",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Mauldin, SC",
       "phone": "(864) 283-6425",
-      "website": "",
-      "summary": "Mauldin SC fencing and deck contractor. 4.2\u2605 (5 Google reviews). No website.",
+      "website": "topchoicefenceanddecks.com",
+      "summary": "Fencing & Decks in Mauldin, SC. G-Score 25/100. Confirmed GBP with 5 reviews, no website. Fence + deck combo, growing reviews, no site. Source: Aug 9 R4 Scout batch (Apify verified). | \ud83e\udd8a Hidden site: topchoicefenceanddecks.com",
       "lastUpdated": "2026-08-09",
       "priority": "medium",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 fence + deck combo, growing presence, no site",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 no-hosting-fee angle added",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 35,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 35,
+      "pitchDraft": {
+        "subject": "Top Choice Fence",
+        "body": "Hey, is this Top Choice Fence & Decks?\n\nThis is Zach from Local Launch in Simpsonville. I saw your reviews on Google and found topchoicefenceanddecks.com \u2014 but it doesn't look like that site is working for you right now.\n\nFencing and decks are visual \u2014 people want to see your work. I'd rebuild that into a site that shows off what you build and gets you found when someone searches \"fence contractor Mauldin.\" $300 one-time \u2014 and you stop paying that monthly hosting fee for a site that isn't working covers the rebuild, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time fix-up.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Hidden site rebuild + SEO. Phone-only \u2014 call script. | No hosting fee angle added"
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1613,18 +1906,32 @@
       "id": "acorn-fencing",
       "name": "Acorn Fencing & Repair",
       "category": "Fencing",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Greer, SC",
       "phone": "(864) 510-4593",
       "website": "",
-      "summary": "Greer SC fencing contractor. 4.6\u2605 (21 Google reviews). No website. Established GBP.",
+      "summary": "Fencing in Greer, SC. G-Score 35/100. Confirmed GBP with 21 reviews, no website. Established fencing contractor, 21 reviews, invisible beyond GBP. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
-      "priority": "high",
+      "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 21 reviews, fencing niche, Greer-based, no site",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 50,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 50,
+      "pitchDraft": {
+        "subject": "Acorn Fencing",
+        "body": "Hey, is this Acorn Fencing?\n\nThis is Zach from Local Launch in Simpsonville. You've got 21 reviews on Google \u2014 established fencing contractor in Greer. But there's no website for people to see your work.\n\nFencing is visual \u2014 homeowners want to browse styles and past jobs before they call. I'd build you a site with a gallery, service pages, and local SEO that gets you found for \"fence contractor Greer SC.\" $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1632,18 +1939,32 @@
       "id": "adv-garage-door",
       "name": "ADV Garage Door LLC",
       "category": "Garage Door",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Lyman, SC",
       "phone": "(864) 435-6497",
       "website": "",
-      "summary": "Lyman SC garage door repair. 5\u2605 (15 Google reviews). LLC. No website.",
+      "summary": "Garage Door in Lyman, SC. G-Score 30/100. Confirmed GBP with 15 reviews, no website. LLC with perfect 5-star rating, zero web presence. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
-      "priority": "high",
+      "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 perfect 5-star garage door LLC, no web presence",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 30,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 30,
+      "pitchDraft": {
+        "subject": "ADV Garage Door",
+        "body": "Hey, is this ADV Garage Door?\n\nThis is Zach from Local Launch in Simpsonville. I was looking at garage door companies in the Lyman area \u2014 you're an LLC but I couldn't find you on Google Maps and there's no website.\n\nGarage door repair is an emergency service \u2014 people search for it the moment they need it. Without a Google presence and a site, you're invisible during those searches. I'd fix both: professional site plus Google Business Profile plus SEO. $300 one-time covers all three. Monthly plans start at $49 \u2014 or just the one-time setup.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Full package: site + GBP + SEO. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1651,18 +1972,32 @@
       "id": "johnsons-paint",
       "name": "Johnson's Paint Contracting",
       "category": "Painting",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Moore, SC",
       "phone": "(864) 576-2435",
       "website": "",
-      "summary": "Moore SC painting contractor. 5\u2605 (1 Google review). No website. Newer GBP \u2014 catch early.",
+      "summary": "Painting in Moore, SC. G-Score 25/100. Confirmed GBP with 1 reviews, no website. Newer GBP, verified contractor \u2014 catch early. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "medium",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 newer painting contractor, Spartanburg area, no site",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 40,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 40,
+      "pitchDraft": {
+        "subject": "Johnson's Paint Contracting",
+        "body": "Hey, is this Johnson's Paint Contracting?\n\nThis is Zach from Local Launch in Simpsonville. I saw your GBP is new \u2014 just getting started with reviews, which is the right time to build a website too.\n\nA painting site now, while you're still building your reputation, puts you way ahead. Project galleries, service pages, local SEO \u2014 the kind of presence that brings in jobs while your review count grows. $300 one-time covers the site, SEO, and Google setup. Monthly help starts at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 7,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1670,18 +2005,32 @@
       "id": "lightning-pest",
       "name": "Lightning Pest & Termite Control",
       "category": "Pest Control",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Elgin, TX",
       "phone": "(512) 281-9686",
       "website": "",
-      "summary": "Elgin TX (Austin area) pest control. 5\u2605 (4 Google reviews). No website. Out-of-state prospect.",
+      "summary": "Pest Control in Elgin, TX. G-Score 25/100. Confirmed GBP with 4 reviews, no website. Austin-area pest control, no website, growing reviews. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "medium",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Austin-area pest control",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 40,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 40,
+      "pitchDraft": {
+        "subject": "Lightning Pest Control",
+        "body": "Hey, is this Lightning Pest & Termite?\n\nThis is Zach from Local Launch. I build websites for pest control companies across the country \u2014 I was looking at the Austin area and saw you've got 8 reviews on Google but no website for those customers to land on.\n\nPest control is a trust business \u2014 people want to check you out before they let you in their home. I'd build you a site that pulls in those reviews, lists your services, and ranks for searches in Elgin and the Austin metro. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1689,18 +2038,32 @@
       "id": "eco-wash-systems",
       "name": "Eco Wash Systems",
       "category": "Pressure Washing",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Miami, FL",
       "phone": "(305) 593-1557",
       "website": "",
-      "summary": "Miami FL pressure washing. 4.8\u2605 (52 Google reviews). No website. Competitive Miami market.",
+      "summary": "Pressure Washing in Miami, FL. G-Score 40/100. Confirmed GBP with 52 reviews, no website. 52 reviews in competitive Miami, no website. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Miami pressure washing, 52 reviews",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 55,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 55,
+      "pitchDraft": {
+        "subject": "Eco Wash Systems",
+        "body": "Hey, is this Eco Wash Systems?\n\nThis is Zach from Local Launch. I build websites for pressure washing companies \u2014 was looking at Miami and saw you've got 52 reviews on Google. That's impressive in a market that competitive. But no website to send people to.\n\nFifty-two reviews and nowhere to land \u2014 that's a lot of potential customers who just move on. I'd build you a site that showcases your work, pulls in those reviews, and ranks for pressure washing searches across Miami. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1708,18 +2071,32 @@
       "id": "titan-wash",
       "name": "Titan Wash",
       "category": "Pressure Washing",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Hialeah, FL",
       "phone": "(786) 479-1262",
       "website": "",
-      "summary": "Hialeah FL (Miami metro) pressure washing. 5\u2605 (8 Google reviews). No website.",
+      "summary": "Pressure Washing in Hialeah, FL. G-Score 30/100. Confirmed GBP with 8 reviews, no website. Miami metro, 5-star, zero web presence. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Miami metro pressure washing",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 30,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 30,
+      "pitchDraft": {
+        "subject": "Titan Wash",
+        "body": "Hey, is this Titan Wash?\n\nThis is Zach from Local Launch. I build websites for pressure washing companies \u2014 I was looking at the Miami area and couldn't find you on Google Maps, and there's no website either.\n\nIn a market like Hialeah and Miami, being invisible online means you're losing work to every competitor who shows up in a search. I'd fix that: professional pressure washing site, Google Business Profile, and the SEO to rank locally. $300 one-time covers all three. Monthly plans start at $49 \u2014 or just the one-time setup.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Full package: site + GBP + SEO. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1727,18 +2104,32 @@
       "id": "mr-painter-ga",
       "name": "Mr. Painter Company LLC",
       "category": "Painting",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Snellville, GA",
       "phone": "(470) 314-7101",
       "website": "",
-      "summary": "Snellville GA (Atlanta metro) painting contractor. 5\u2605 (71 Google reviews). LLC. No website.",
+      "summary": "Painting in Snellville, GA. G-Score 40/100. Confirmed GBP with 71 reviews, no website. 71 five-star reviews, Atlanta metro, no website \u2014 prime target. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Atlanta painting, 71 perfect reviews!",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 55,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 55,
+      "pitchDraft": {
+        "subject": "Mr. Painter Company",
+        "body": "Hey, is this Mr. Painter Company?\n\nThis is Zach from Local Launch. I build websites for painting contractors across the country \u2014 I was looking at the Atlanta area and saw you've got 71 five-star reviews on Google. That's serious. But no website.\n\nSeventy-one perfect reviews and nowhere to send people who find you on Google Maps \u2014 in the Atlanta metro, that's leaving money on the table. I'd build you a painting site with project galleries, reviews front and center, and the SEO to rank in Snellville and beyond. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1746,18 +2137,32 @@
       "id": "jpg-painting-ga",
       "name": "JPG Painting",
       "category": "Painting",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Mableton, GA",
       "phone": "(404) 966-4797",
       "website": "",
-      "summary": "Mableton GA (Atlanta metro) painting contractor. 5\u2605 (28 Google reviews). No website.",
+      "summary": "Painting in Mableton, GA. G-Score 35/100. Confirmed GBP with 28 reviews, no website. Atlanta-area, perfect rating, referral-only, no site. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
-      "priority": "high",
+      "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Atlanta painting, 28 reviews, no site",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 50,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 50,
+      "pitchDraft": {
+        "subject": "JPG Painting",
+        "body": "Hey, is this JPG Painting?\n\nThis is Zach from Local Launch. I build websites for painters \u2014 was looking at the Atlanta area and saw you've got 28 perfect reviews on Google, all referral. But no website for anyone outside your word-of-mouth circle to find you.\n\nThat referral-only model works until it doesn't. I'd build you a painting site with galleries and SEO that brings in new customers you're not reaching now. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1765,18 +2170,32 @@
       "id": "el-valle-junk",
       "name": "El Valle Junk Removal",
       "category": "Junk Removal",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Phoenix, AZ",
       "phone": "(602) 639-2971",
       "website": "",
-      "summary": "Phoenix AZ junk removal. 4.9\u2605 (15 Google reviews). No website. Growing Phoenix market.",
+      "summary": "Junk Removal in Phoenix, AZ. G-Score 30/100. Confirmed GBP with 15 reviews, no website. Phoenix junk removal, near-perfect rating, no website. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Phoenix junk removal",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 35,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 35,
+      "pitchDraft": {
+        "subject": "El Valle Junk Removal",
+        "body": "Hey, is this El Valle Junk Removal?\n\nThis is Zach from Local Launch. I build websites for junk removal companies \u2014 I was looking at Phoenix and saw you've got 15 near-perfect reviews on Google. But no website for those customers to land on.\n\nJunk removal in Phoenix is competitive \u2014 a good site with booking and local SEO puts you ahead. I'd build you one that shows your reviews, makes scheduling easy, and ranks for searches across the valley. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1784,18 +2203,32 @@
       "id": "mm-tree-services",
       "name": "MM Tree Services",
       "category": "Tree Service",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Hermitage, TN",
       "phone": "(615) 719-4683",
       "website": "",
-      "summary": "Hermitage TN (Nashville area) tree service. 5\u2605 (60 Google reviews). No website.",
+      "summary": "Tree Service in Hermitage, TN. G-Score 40/100. Confirmed GBP with 60 reviews, no website. Nashville-area, 60 reviews, perfect rating. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Nashville tree service, 60 perfect reviews",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 55,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 55,
+      "pitchDraft": {
+        "subject": "MM Tree Services",
+        "body": "Hey, is this MM Tree Services?\n\nThis is Zach from Local Launch. I build websites for tree services \u2014 I was looking at the Nashville area and saw you've got 58 reviews with a perfect rating on Google. But no website.\n\nTree work is expensive and people want to vet you before they call. Fifty-eight perfect reviews and nowhere to send them \u2014 that's leaving jobs on the table. I'd build you a site that shows your work, pulls in those reviews, and ranks for tree service searches in Hermitage and Nashville. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 \u2014 or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 9,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1803,18 +2236,32 @@
       "id": "raleigh-handyman",
       "name": "The Raleigh Handyman",
       "category": "Handyman",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Raleigh, NC",
       "phone": "(919) 210-1525",
       "website": "",
-      "summary": "Raleigh NC handyman services. 4.9\u2605 (200 Google reviews). No website. Massive review base \u2014 prime target.",
+      "summary": "Handyman in Raleigh, NC. G-Score 40/100. Confirmed GBP with 200 reviews, no website. 200 reviews, Raleigh \u2014 one of the best no-site finds in pipeline. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 200 reviews with no website is criminal",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 55,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 55,
+      "pitchDraft": {
+        "subject": "The Raleigh Handyman",
+        "body": "Hey, is this the Raleigh Handyman?\n\nThis is Zach from Local Launch. I build websites for home service businesses \u2014 I was looking at Raleigh and saw you've got 200 reviews on Google. That is one of the strongest review profiles I've seen for an independent handyman anywhere. But no website.\n\nTwo hundred people singing your praises and nowhere to point new customers. I'd build you a site that matches your reputation \u2014 reviews, services, booking, the whole thing. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49, or just the one-time build with no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 10,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1822,18 +2269,32 @@
       "id": "stallion-concrete",
       "name": "The Stallion Concrete LLC",
       "category": "Concrete",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Grove City, OH",
       "phone": "(614) 743-8486",
       "website": "",
-      "summary": "Grove City OH (Columbus area) concrete contractor. 5\u2605 (66 Google reviews). LLC. No website.",
+      "summary": "Concrete in Grove City, OH. G-Score 40/100. Confirmed GBP with 66 reviews, no website. Columbus-area, 66 perfect reviews, LLC. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Columbus concrete, 66 perfect reviews",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 40,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 40,
+      "pitchDraft": {
+        "subject": "Stallion Concrete",
+        "body": "Hey, is this Stallion Concrete?\n\nThis is Zach from Local Launch. I build websites for concrete contractors \u2014 I was looking at the Columbus area and couldn't find you on Google Maps. No website either.\n\nConcrete is high-ticket work and homeowners search online before they call anyone. Without a Google presence and a site, you're invisible to everyone who isn't a referral. I'd fix both: professional concrete site, Google Business Profile setup, and local SEO. $300 one-time covers all three. Monthly plans start at $49 \u2014 or just the one-time setup.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 8,
+        "notes": "Camoufox-verified pitch. Need: Full package: site + GBP + SEO. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     },
@@ -1841,18 +2302,32 @@
       "id": "baucom-auto-detailing",
       "name": "Baucom Auto Detailing",
       "category": "Auto Detailing",
-      "stage": "prospect",
+      "stage": "pitch",
       "location": "Charlotte, NC",
       "phone": "(743) 217-6176",
       "website": "",
-      "summary": "Charlotte NC auto detailing. 5\u2605 (1 Google review). No website. Newer GBP \u2014 catch early.",
+      "summary": "Auto Detailing in Charlotte, NC. G-Score 25/100. Confirmed GBP with 1 reviews, no website. Charlotte-area, new GBP, catch early. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "medium",
       "playbook": [],
-      "nextSteps": "Out-of-state audit needed \u2014 Charlotte auto detailing, newer business",
-      "seoScore": null,
-      "gScore": null,
-      "pitchDraft": null,
+      "nextSteps": [
+        "\u2705 Supervisor approved \u2014 ready for Zach's call list",
+        "\ud83d\udcde Phone-only \u2014 Zach to call"
+      ],
+      "seoScore": {
+        "current": 30,
+        "max": 100,
+        "label": "G-SCORE"
+      },
+      "gScore": 30,
+      "pitchDraft": {
+        "subject": "Baucom Auto Detailing",
+        "body": "Hey, is this Baucom Auto Detailing?\n\nThis is Zach from Local Launch. I build websites for detailers \u2014 I was looking at Charlotte and saw your GBP is new with your first review coming in. That's the perfect time to get a website up too.\n\nA detailing site with a gallery and booking makes you look established from day one \u2014 and in Charlotte, that matters. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49, or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+        "channel": "Call",
+        "status": "pending",
+        "confidence": 7,
+        "notes": "Camoufox-verified pitch. Need: Website only. Phone-only \u2014 call script."
+      },
       "responseStatus": null,
       "saleValue": null
     }
