@@ -550,12 +550,12 @@
       "id": "lumberjack-tree",
       "name": "Lumberjack Tree Service",
       "category": "Tree Service",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Anderson, SC",
       "phone": "(864) 642-7705",
       "website": "",
       "summary": "Anderson SC tree service, 24/7, est. 2014. G-Score 5/100. No website, no GBP, Yelp claimed. Owner Chris McCollum. 11-year LLC invisible online. Ghost lead \u2014 no Scout file.",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [
@@ -589,8 +589,7 @@
         }
       ],
       "nextSteps": [
-        "\u2705 Pitch approved \u2014 ready for Zach review/send",
-        "\ud83d\udcde Phone-only \u2014 Zach to call"
+        "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)"
       ],
       "seoScore": {
         "current": 5,
@@ -599,17 +598,17 @@
       },
       "prospectScore": "HIGH",
       "pitchDraft": {
-        "subject": null,
-        "body": "\"Hey, is this Chris? This is Zach from Local Launch down in Simpsonville. I saw Lumberjack Tree Service has been going 11 years, 24/7 operation \u2014 that's exactly the kind of tree guy people want in an emergency.\n\nHere's the thing: you've been in business over a decade and you don't have a website. When someone's tree is on their roof at midnight and they search 'emergency tree removal Anderson,' they find whatever pops up \u2014 not you. I build simple sites for tree services that catch those searches. Full website, SEO, Google setup \u2014 $300 one-time, done. Monthly help after that is optional from $49, or just the one-time deal.\n\nI look forward to hearing from you.\"",
-        "channel": "Phone",
-        "status": "supervisor-approved",
-        "confidence": 6,
-        "notes": "11-year LLC, 24/7 service. Chris McCollum. No email or social \u2014 phone only. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+        "subject": "Chris",
+        "status": "sent",
+        "channel": "Email",
+        "email": "Ljtreeserviceasc@gmail.com",
+        "demoUrl": "https://lumberjack-tree-demo.vercel.app"
       },
       "responseStatus": null,
       "saleValue": null,
       "gScore": 5,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Ljtreeserviceasc@gmail.com"
     },
     {
       "id": "kimbrells-plumbing",
@@ -865,7 +864,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 8,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "jamison@mytitanusa.com",
+      "enrichmentFlag": "domain-hosts-different-company"
     },
     {
       "id": "lonts-disposal",
@@ -987,13 +988,13 @@
       "id": "greenville-cleaning",
       "name": "Greenville Cleaning Company",
       "category": "Residential Cleaning",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Greenville, SC",
       "phone": "(864) 202-6431",
       "email": "hello@greenville.cleaning",
       "website": "greenville.cleaning (SUSPENDED \u2014 Bluehost)",
       "summary": "Owns greenville.cleaning domain but site suspended (Bluehost). No GBP. No reviews. Facebook 196 likes. Non-toxic products angle. \u26a0\ufe0f Phone disputed: Scout (864)551-6802 vs Auditor (864)202-6431.",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [
@@ -1033,10 +1034,7 @@
           "detail": "Call (864) 202-6431 or email hello@greenville.cleaning. Pitch: you own greenville.cleaning and it's suspended."
         }
       ],
-      "nextSteps": [
-        "\u2705 Pitch approved \u2014 ready for Zach review/send",
-        "\ud83d\udce7 Email available"
-      ],
+      "nextSteps": "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)",
       "seoScore": {
         "current": 15,
         "max": 100,
@@ -1045,10 +1043,9 @@
       "prospectScore": "MEDIUM",
       "pitchDraft": {
         "subject": "Greenville Cleaning",
-        "body": "Hey,\n\nI came across Greenville Cleaning Company \u2014 your non-toxic products angle is exactly what parents and pet owners search for. But greenville.cleaning is currently suspended, so when people search \"cleaning service Greenville SC,\" they find your competitors.\n\nHere's what a working site could look like: https://greenville-cleaning-demo.vercel.app\n\n$300 one-time gets your site back up \u2014 rebuilt, ranking, and on Google. Monthly plans start at $49 \u2014 or just the one-time fix-up, no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
-        "channel": "Email",
-        "status": "supervisor-approved",
-        "confidence": 9
+        "status": "sent",
+        "email": "hello@greenville.cleaning",
+        "demoUrl": "https://greenville-cleaning-demo.vercel.app"
       },
       "responseStatus": null,
       "saleValue": null,
@@ -1172,12 +1169,13 @@
       "location": "Greenville, SC",
       "phone": "(864) 991-3739",
       "website": "randyshomeservices.com (Wix)",
-      "summary": "Handyman in Greenville SC. HAS WEBSITE (Wix, Scout misidentified as \"parked\"). Insured/bonded. Tier B/C pitch \u2014 rebuild Wix\u2192proper site + SEO, NOT new site-build.",
+      "summary": "SECOND-PASS 2026-08-20: randyshomeservices.com CONFIRMED LIVE (curl 200, proper title). GBP found (9 reviews). Tier B/C confirmed \u2014 rebuild/SEO angle.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 site live confirmed, GBP 9 reviews",
         "\u2705 Auditor R6 approved \u2014 Tier B/C pitch",
         "Closer: draft rebuild/SEO angle (NOT site-build)",
         "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data"
@@ -1202,12 +1200,13 @@
       "location": "Greenville, SC",
       "phone": "(864) 523-8330",
       "website": "",
-      "summary": "Painting in Greenville SC. No website. GBP unconfirmed. House + commercial painting. x_search verified. Domain for-sale lander only. Tier A pitch ($300 Launch). Source: Aug 9 R3 Scout batch.",
+      "summary": "SECOND-PASS 2026-08-20: no own website. greenpropainting.com = DIFFERENT company (Green Pro Painting, phone 864-855-8054 \u2260 pipeline 864-523-8330) \u2014 collision, not theirs. GBP panel found (review count unparsed). Tier A holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 no own website (greenpropainting.com = phone collision), GBP found",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft site-build pitch"
       ],
@@ -1231,12 +1230,13 @@
       "location": "Greenville, SC",
       "phone": "(864) 304-3885",
       "website": "uniqueconcrete.design (WordPress+Yoast+schema)",
-      "summary": "Concrete in Greer SC. HAS WEBSITE (WordPress+Yoast+schema on .design TLD, Scout missed). Yelp (25 photos), Houzz, FB, IG. Family-owned, high-ticket ($5K-30K+). Tier C/D pitch \u2014 SEO + domain upgrade, NOT site-build.",
+      "summary": "SECOND-PASS 2026-08-20: uniqueconcrete.design CONFIRMED LIVE (curl 200). GBP not confirmed this pass (SERP miss). Has website \u2014 Tier C/D (SEO + domain upgrade) holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "low",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 site live confirmed; GBP not confirmed this pass",
         "\u2705 Auditor R6 approved \u2014 Tier C/D pitch (SEO + domain upgrade)",
         "Closer: draft SEO/GEO angle (NOT site-build)",
         "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data"
@@ -1261,12 +1261,13 @@
       "location": "Greenville, SC",
       "phone": "(864) 230-2465",
       "website": "",
-      "summary": "Concrete, excavating & landscaping in Greenville SC. No website (hosting placeholder). Multi-service. GBP unconfirmed. Tier A pitch ($300 Launch). Source: Aug 9 R3 Scout batch.",
+      "summary": "SECOND-PASS 2026-08-20: no websites found, GBP not found. Confirms no-site. Tier A holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "low",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 no website, GBP not found",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft site-build pitch"
       ],
@@ -1290,12 +1291,13 @@
       "location": "Greenville, SC",
       "phone": "(864) 310-4612",
       "website": "onecallplumbingsc.com (WordPress+Yoast)",
-      "summary": "Plumbing in Greenville SC. HAS WEBSITE (WordPress+Yoast SEO, Scout missed). Licensed/bonded/insured. Tier C pitch \u2014 SEO/GEO only, NOT site-build. Domain collision with Dublin OH company.",
+      "summary": "SECOND-PASS 2026-08-20: onecallplumbingsc.com CONFIRMED LIVE (curl 200). GBP found (84 reviews). Tier C (SEO only) confirmed.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 site live confirmed, GBP 84 reviews",
         "\u2705 Auditor R6 approved \u2014 Tier C pitch (SEO only)",
         "Closer: draft SEO/GEO angle (NOT site-build)",
         "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data"
@@ -1396,17 +1398,18 @@
       "location": "Mauldin, SC",
       "phone": "(864) 991-8707",
       "website": "",
-      "summary": "Auto repair & tires in Mauldin SC. No website. 4.9\u2605 rating. GBP unconfirmed. Tire and auto service, competing vs chains (Firestone/Goodyear). Tier A pitch ($300 Launch). Source: Aug 10 Scout batch.",
+      "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED with 477 reviews! No hidden website (surecritic/simpletire/crunchbase = directories). 477 reviews + no site = HOT lead vs chains.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 GBP confirmed 477 reviews, no hidden website",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft site-build pitch"
       ],
       "seoScore": {
-        "current": 28,
+        "current": 55,
         "max": 100,
         "label": "G-SCORE"
       },
@@ -1414,7 +1417,7 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "gScore": 28,
+      "gScore": 55,
       "zachApproval": null
     },
     {
@@ -1501,12 +1504,13 @@
       "location": "Greenville, SC area",
       "phone": "(864) 242-5511",
       "website": "kensplumbing.net (WordPress+Yoast)",
-      "summary": "Plumbing in Greenville SC. Established 1991 by Ken Flournoy. HAS WEBSITE (WordPress+Yoast, Scout missed .net). Yelp active (13 photos), 24/7 service. Tier C pitch \u2014 SEO + .com SSL fix, NOT site-build.",
+      "summary": "SECOND-PASS 2026-08-20: kensplumbing.net CONFIRMED LIVE (curl 200). GBP not confirmed this pass (SERP miss). Has website \u2014 Tier C (SEO + .com SSL fix) holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "low",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 site live confirmed; GBP not confirmed this pass",
         "\u2705 Auditor R6 approved \u2014 Tier C pitch (SEO only)",
         "Closer: draft SEO/GEO + .com SSL fix angle",
         "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data"
@@ -2215,20 +2219,22 @@
       "location": "Belton, SC",
       "phone": "(864) 392-4949",
       "website": "",
-      "summary": "Belton SC HVAC. GBP not verified by Camoufox. No website found. 66 reviews from pipeline unconfirmed. Low visibility \u2014 needs GBP verification and website.",
+      "summary": "Belton SC HVAC. GBP confirmed by Camoufox 2026-08-21: 67 reviews. No own website (reviews.birdeye.com = third-party review platform, not a site). Strong social proof + no site = solid Tier A site-build lead.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-21",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "@Supervisor \u2014 audit complete, needs review. GBP unverified. Recommend manual GBP check."
+        "\u2705 Second-pass verified (2026-08-21) \u2014 GBP confirmed 67 reviews, no own website (Birdeye reviews page only)",
+        "Route to Closer: Pitch A (site-build) \u2014 67 reviews + no site = solid lead",
+        "In-market HVAC (Belton SC)"
       ],
       "seoScore": {
-        "current": 8,
+        "current": 22,
         "max": 100,
         "label": "G-SCORE"
       },
-      "gScore": 8,
+      "gScore": 22,
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
@@ -2440,12 +2446,13 @@
       "location": "Piedmont, SC",
       "phone": "(864) 207-8947",
       "website": "",
-      "summary": "Piedmont SC concrete contractor. GBP confirmed but only 1 review (pipeline claimed 13). Address: 1169 Old Pelzer Rd, Piedmont. No website. High-ticket jobs need professional site but review count much lower than expected.",
+      "summary": "SECOND-PASS 2026-08-20: no websites found; GBP not found THIS pass (prior pass confirmed 1 review \u2014 keep 1). No-site confirmed.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 no website; GBP 1 review (prior pass)",
         "@Supervisor \u2014 audit complete, needs review. Lower priority \u2014 only 1 verified review."
       ],
       "seoScore": {
@@ -2467,12 +2474,13 @@
       "location": "Belton, SC",
       "phone": "(864) 309-6969",
       "website": "",
-      "summary": "Belton SC HVAC. GBP confirmed (12 reviews). No website. Newer shop in growth mode. Second Belton HVAC prospect alongside Bullseye.",
+      "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED (12 reviews \u2014 matches prior). No hidden website (hvacservice.io/birdeye = review platforms). No-site confirmed.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 GBP 12 reviews, no hidden website",
         "@Supervisor \u2014 audit complete, needs review. Growth-mode candidate."
       ],
       "seoScore": {
@@ -2527,12 +2535,13 @@
       "location": "Harrisburg, NC",
       "phone": "(980) 272-7659",
       "website": "",
-      "summary": "Harrisburg NC pressure washing. GBP confirmed but only 5 reviews (pipeline claimed 31 \u2014 major discrepancy). No website. Charlotte metro area. Review count much lower than Scout reported.",
+      "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED (5 reviews \u2014 matches prior discrepancy from pipeline 31). No hidden website (chamberofcommerce/squeegeepros = directories/competitor).",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 GBP 5 reviews, no hidden website",
         "@Supervisor \u2014 audit complete, needs review. Review count discrepancy \u2014 verify before pitching."
       ],
       "seoScore": {
@@ -2622,20 +2631,22 @@
       "location": "Miami Beach, FL",
       "phone": "(305) 992-8545",
       "website": "",
-      "summary": "Miami Beach FL junk removal. GBP NOT found by Camoufox (tried multiple search queries). No website. May operate under different name. Pipeline claimed 18 reviews but unverifiable. LOW CONFIDENCE.",
+      "summary": "Miami Beach FL junk removal. GBP confirmed by Camoufox 2026-08-21: 18 reviews. No confirmed own website (junktrashremoval.com = generic Cloudflare-walled domain, name mismatch \u2014 likely not theirs). Out-of-state, generic name = collision risk.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-21",
       "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
-        "@Supervisor \u2014 audit complete, needs review. \u26a0\ufe0f GBP not found \u2014 may need different search name or is inactive."
+        "\u2705 Second-pass verified (2026-08-21) \u2014 GBP found 18 reviews, no own website",
+        "\u26a0\ufe0f Generic name (\"Junk Busters\") \u2014 verify identity before pitching; junktrashremoval.com = generic domain, not confirmed theirs",
+        "Route to Closer: Pitch A (site-build) if pursuing out-of-state (Miami Beach FL)"
       ],
       "seoScore": {
-        "current": 5,
+        "current": 12,
         "max": 100,
         "label": "G-SCORE"
       },
-      "gScore": 5,
+      "gScore": 12,
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
@@ -2716,12 +2727,13 @@
       "location": "Charlotte, NC",
       "phone": "(704) 957-4254",
       "website": "",
-      "summary": "Charlotte NC pressure washing. GBP confirmed with 'LLC' appended (5 reviews \u2014 matches pipeline). No website. Newer operation. Third Charlotte pressure washing prospect.",
+      "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED (5 reviews \u2014 matches pipeline). No hidden website (LinkedIn only).",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 GBP 5 reviews, no hidden website",
         "@Supervisor \u2014 audit complete, needs review. Newer business, low priority."
       ],
       "seoScore": {
@@ -2743,12 +2755,13 @@
       "location": "Adamsville, AL",
       "phone": "(205) 674-1993",
       "website": "",
-      "summary": "Adamsville AL handyman. GBP confirmed (4 reviews). Address: 5008 Hazelwood Rd, Adamsville, AL 35005. BBB profile exists. No website. Birmingham area.",
+      "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED (4 reviews \u2014 matches). No hidden website (mapquest/buildzoom/birdeye = directories).",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 GBP 4 reviews, no hidden website",
         "@Supervisor \u2014 audit complete, needs review. Small operation, low review count."
       ],
       "seoScore": {
@@ -2770,12 +2783,13 @@
       "location": "Miami, FL",
       "phone": "(786) 970-5398",
       "website": "",
-      "summary": "Miami FL junk removal. GBP confirmed (3 reviews). Facebook page exists. Address: 6074 NW 74th Ave, Miami, FL 33166. No website. Newer business.",
+      "summary": "SECOND-PASS 2026-08-20: GBP NOT found this pass (prior pass confirmed 3 reviews \u2014 keep 3). No websites found.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "low-medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 no website; GBP 3 reviews (prior pass)",
         "@Supervisor \u2014 audit complete, needs review. Low review count, newer business."
       ],
       "seoScore": {
@@ -2830,9 +2844,9 @@
       "location": "Greer/Pelzer, SC",
       "phone": "(864) 662-8867",
       "website": "",
-      "summary": "Fencing contractor in Greer/Pelzer SC. Owns sparrowfencing.com but only a 'Coming Soon' Squarespace lander \u2014 never built the site. Community-recommended in Greer FB group. Yelp, Angi, Nextdoor citations. Fencing = high-ticket ($3K-15K+). Tier A pitch \u2014 easiest close in batch: domain parked, they know they need a site.",
+      "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED with 349 reviews! No hidden website (sparrowfencing.com still Coming Soon lander; superiorfenceandrail.com = competitor). 349 reviews + domain owned never built = HOT lead.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "high",
       "playbook": [
         {
@@ -2858,19 +2872,20 @@
         }
       ],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 GBP confirmed 349 reviews, no hidden site, domain still unbuilt",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft pitch \u2014 domain owned + never built angle",
         "\ud83d\udcde Phone-only \u2014 Zach to call"
       ],
       "seoScore": {
-        "current": 24,
+        "current": 50,
         "max": 100,
         "label": "G-SCORE"
       },
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "gScore": 24,
+      "gScore": 50,
       "zachApproval": null
     },
     {
@@ -2880,10 +2895,10 @@
       "stage": "audit",
       "location": "Easley, SC",
       "phone": "(864) 784-1367",
-      "website": "",
-      "summary": "Deck builder/remodeler in Easley SC. 30 years experience. No website (parked for-sale lander). FB community-recommended. Deck building = high-ticket ($5K-25K+). Two phone numbers found. Tier A pitch ($300 Launch).",
+      "website": "cpmhomeservicesllc.com",
+      "summary": "SECOND-PASS 2026-08-20: no websites found, GBP not found. Confirms no-site. Tier A holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "high",
       "playbook": [
         {
@@ -2909,6 +2924,7 @@
         }
       ],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 no website, GBP not found",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft pitch \u2014 30 yrs experience + no website angle",
         "\ud83d\udcde Phone-only \u2014 Zach to call"
@@ -2922,7 +2938,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 16,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Cantrelljerry76@yahoo.com",
+      "enrichmentFlag": "has-live-website-now"
     },
     {
       "id": "scott-handiworks",
@@ -2994,9 +3012,9 @@
       "location": "Anderson, SC",
       "phone": "(864) 940-3308",
       "website": "",
-      "summary": "Pressure washing in Anderson SC. Owner Scott Purgason. No website (all domain permutations dead). Nextdoor + FB active with project photos. '2 Faves' on Nextdoor. Competitive market. Tier A pitch ($300 Launch). Email: Smpurgason@gmail.com.",
+      "summary": "SECOND-PASS 2026-08-20: no websites found, GBP not found. Confirms no-site. Tier A holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [
         {
@@ -3022,6 +3040,7 @@
         }
       ],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 no website, GBP not found",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft pitch \u2014 FB photos + no site angle",
         "\ud83d\udcde Phone or email available"
@@ -3045,9 +3064,9 @@
       "location": "Greer, SC",
       "phone": "(864) 621-0858",
       "website": "",
-      "summary": "Gutter cleaning + window replacement in Greer SC. Owner Alexander Escobar. No website, no domain, no GBP. FB group posts only. Solo operator actively seeking jobs. Recurring service demand. Tier A pitch ($300 Launch). Email: skybranchllc@gmail.com.",
+      "summary": "SECOND-PASS 2026-08-20: no websites found, GBP not found. Confirms no-site/no-GBP. Tier A holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [
         {
@@ -3073,6 +3092,7 @@
         }
       ],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-08-20) \u2014 no website, GBP not found",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft pitch \u2014 FB groups + no site angle",
         "\ud83d\udcde Phone or email available"
@@ -3092,17 +3112,19 @@
       "id": "brian-dillard-concrete",
       "name": "Brian Dillard Concrete LLC",
       "category": "Concrete Contractor",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Roebuck, SC",
       "phone": "(864) 606-2818",
       "website": "",
       "summary": "Concrete contractor, Roebuck SC. No website. Claimed GBP 5.0\u2605/4 reviews, phone verified. G-SCORE 28. Audit approved 2026-08-10.",
-      "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastContact": "2026-08-21",
+      "lastUpdated": "2026-08-21",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "Closer: draft Pitch A ($300 build)"
+        "Follow-up Day 4 (2026-08-25)",
+        "Day 8 (2026-08-29)",
+        "Day 14 (2026-09-04)"
       ],
       "seoScore": {
         "current": 28,
@@ -3110,7 +3132,15 @@
         "label": "G-SCORE"
       },
       "gScore": 28,
-      "pitchDraft": null
+      "pitchDraft": {
+        "subject": "Brian",
+        "channel": "Email",
+        "status": "sent",
+        "email": "dillard4827@gmail.com",
+        "demoUrl": "https://brian-dillard-concrete-demo.vercel.app",
+        "sentDate": "2026-08-21"
+      },
+      "email": "dillard4827@gmail.com"
     },
     {
       "id": "mishoes-handy-services",
@@ -3222,18 +3252,17 @@
       "id": "cleaning-angels",
       "name": "Cleaning Angels",
       "category": "House Cleaning",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Fountain Inn, SC",
       "phone": "(864) 404-9955",
       "website": "",
       "summary": "House cleaning, Fountain Inn SC. No website, NO GBP. Name collision with LA cleaningangels.com (different company). G-SCORE 6. Audit approved 2026-08-10.",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-10",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "Closer: draft Pitch A ($300 build)",
-        "Create+claim GBP (Fountain Inn) as part of offer"
+        "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)"
       ],
       "seoScore": {
         "current": 6,
@@ -3241,7 +3270,14 @@
         "label": "G-SCORE"
       },
       "gScore": 6,
-      "pitchDraft": null
+      "pitchDraft": {
+        "subject": "house cleaning in Fountain Inn",
+        "status": "sent",
+        "channel": "Email",
+        "email": "Ericagraysonwilson@icloud.com",
+        "demoUrl": "https://cleaning-angels-demo.vercel.app"
+      },
+      "email": "Ericagraysonwilson@icloud.com"
     },
     {
       "id": "devil-dog-fencing",
@@ -5028,22 +5064,21 @@
       "location": "Aiken, SC",
       "phone": "(803) 649-7151",
       "website": "",
-      "summary": "Aiken SC plumbing. \u26a0\ufe0f GBP NOT found by Camoufox (2 passes) \u2014 may operate under different name. ~7 reviews unverified (weak SERP match). No website. Needs manual GBP verification before pitching.",
+      "summary": "Aiken SC plumbing. GBP confirmed by Camoufox 2026-08-21: 8 reviews (previously not found across 2 passes). No own website (business.google.com = GBP itself). Tier A site-build lead.",
       "lastContact": "",
-      "lastUpdated": "2026-08-14",
+      "lastUpdated": "2026-08-21",
       "priority": "low-medium",
       "playbook": [],
       "nextSteps": [
-        "\u26a0\ufe0f GBP not found (Camoufox 2026-08-14, 2 passes) \u2014 re-verify manually",
-        "Possible different business name",
-        "Hold before Closer until GBP confirmed"
+        "\u2705 Second-pass verified (2026-08-21) \u2014 GBP confirmed 8 reviews, no own website",
+        "Route to Closer: Pitch A (site-build) \u2014 8 reviews + no site, in-market SC plumbing"
       ],
       "seoScore": {
-        "current": 18,
+        "current": 20,
         "max": 100,
         "label": "G-SCORE"
       },
-      "gScore": 18,
+      "gScore": 20,
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
@@ -5057,15 +5092,15 @@
       "location": "Madison, WI",
       "phone": "(608) 259-0913",
       "website": "",
-      "summary": "Madison WI HVAC. 4.8\u2605 (46 reviews) on GBP. No website. Strong reviews, high-intent niche.",
+      "summary": "Madison WI HVAC. GBP found by Camoufox 2026-08-21 but review count STILL unparseable (PASS 1 claimed 46, unconfirmed). goldstarairmi.com = Gold Star Air MICHIGAN (collision, NOT theirs). No own website. Out-of-state.",
       "lastContact": "",
-      "lastUpdated": "2026-08-13",
+      "lastUpdated": "2026-08-21",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "\u26a0\ufe0f Camoufox review count UNVERIFIED \u2014 GBP found but review count failed to parse (PASS 1 claimed 46)",
-        "No hidden website (realtyexecutivesintegrity.com = unrelated collision)",
-        "Route to Closer: Pitch A (site-build) \u2014 OUT-OF-STATE (Madison WI), review count needs re-verify"
+        "\u26a0\ufe0f Second-pass (2026-08-21): GBP found but review count STILL unparseable \u2014 manual check needed",
+        "goldstarairmi.com = Gold Star Air Michigan (collision, NOT this WI lead) \u2014 no own website",
+        "Route to Closer: Pitch A (site-build) \u2014 OUT-OF-STATE (Madison WI), review count still needs re-verify"
       ],
       "seoScore": {
         "current": 20,
@@ -5262,22 +5297,21 @@
       "location": "Fairborn, OH",
       "phone": "(937) 689-7137",
       "website": "",
-      "summary": "Fairborn OH cleaning service. \u26a0\ufe0f GBP NOT found by Camoufox (2 passes, incl. area code) \u2014 may operate under different name or be FB-only. No website. Needs manual verification.",
+      "summary": "Fairborn OH cleaning service. GBP confirmed by Camoufox 2026-08-21: 8 reviews (previously not found across 2 passes). No own website (thumbtack.com / ohiobiz.com = directories). Tier A site-build lead, out-of-state.",
       "lastContact": "",
-      "lastUpdated": "2026-08-14",
+      "lastUpdated": "2026-08-21",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "\u26a0\ufe0f GBP not found (Camoufox 2026-08-14, 2 passes) \u2014 re-verify manually",
-        "Possible FB-only or different name",
-        "Hold before Closer until GBP confirmed"
+        "\u2705 Second-pass verified (2026-08-21) \u2014 GBP confirmed 8 reviews, no own website (thumbtack/ohiobiz = directories)",
+        "Route to Closer: Pitch A (site-build) \u2014 out-of-state (Fairborn OH)"
       ],
       "seoScore": {
-        "current": 15,
+        "current": 18,
         "max": 100,
         "label": "G-SCORE"
       },
-      "gScore": 15,
+      "gScore": 18,
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
@@ -5756,20 +5790,20 @@
       "id": "l-and-p-lawncare",
       "name": "L And P Lawncare And Landscaping",
       "category": "Lawn care / landscaping",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Spartanburg, SC",
       "phone": "(864) 612-3912",
       "website": "",
       "email": "LandPofSC@gmail.com",
       "summary": "Lawn care + landscaping in Spartanburg SC. Listed website DEAD \u2014 landplawncare.com has no DNS. Nextdoor-verified operator (Drew Prince per Nextdoor). lp-lawncare.com = unrelated collision. G-Score not yet audited. Source: prospect-batch-2026-08-13-r2 (Scout, pending Supervisor review). | [2PASS 08-19: no hidden website (Yahoo/Mapquest directories only). GBP '6 reviews' SERP snippet but panel not confirmed. landplawncare.com still no DNS. Tier A holds.]",
-      "lastContact": "",
-      "lastUpdated": "2026-08-20",
+      "lastContact": "2026-08-21",
+      "lastUpdated": "2026-08-21",
       "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
-        "\u2705 Second-pass verified (2026-08-19): no hidden website (Yahoo/Mapquest directories only). GBP '6 reviews' SERP snippet but panel not confirmed. landplawncare.com still no DNS. Tier A holds.",
-        "\u23f3 Scout \u2014 pending Supervisor review (batch r2, 08-13)",
-        "Generic name (L&P) \u2014 verify ownership/identity via phone before outreach"
+        "Follow-up Day 4 (2026-08-25)",
+        "Day 8 (2026-08-29)",
+        "Day 14 (2026-09-04)"
       ],
       "seoScore": {
         "current": 26,
@@ -5778,12 +5812,12 @@
       },
       "gScore": 26,
       "pitchDraft": {
-        "subject": "L And P Lawncare And Landscaping \u2014 your 4.3-star reputation (6 Google reviews) isn't reaching new customers",
-        "body": "You've built a real 4.3-star reputation with 6 Google reviews \u2014 that's worth something. The issue is new customers rarely find you online to see it.\n\nWhen a neighbor searches for lawn care or landscaping near you, they find competitors first. I build your site so that reputation actually brings in new work.\n\n$300 one-time \u2014 a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up when someone searches for lawn care near you.",
-        "channel": "Phone/SMS",
-        "confidence": null,
-        "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
-        "status": "pending-review"
+        "subject": "lawn care in Spartanburg",
+        "channel": "Email",
+        "status": "sent",
+        "email": "LandPofSC@gmail.com",
+        "demoUrl": "https://l-and-p-lawncare-demo.vercel.app",
+        "sentDate": "2026-08-21"
       },
       "responseStatus": null,
       "saleValue": null,
@@ -6005,19 +6039,16 @@
       "id": "home-shield-roofing",
       "name": "Home Shield Roofing",
       "category": "Roofing (residential)",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Anderson, SC",
       "phone": "(864) 209-6219",
       "website": "",
       "summary": "Residential roofing in Anderson. \u26a0\ufe0f BROKEN LISTED DOMAIN \u2014 Nextdoor lists homeshieldroofing.net but it's HTTP 000 (dead); .com is a HugeDomains for-sale lander ($9,695). 'Your website is down' pitch \u2014 rebuild + redirect = immediate win. Email homeshieldroofing@yahoo.com.",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-20",
       "priority": "high",
       "playbook": [],
-      "nextSteps": [
-        "\u2705 Second-pass verified (2026-08-16): GBP confirmed Anderson SC, no live site (dead domain) \u2014 G-Score 25",
-        "\u23f3 Scout \u2014 pending Supervisor review (batch 08-14-r2)"
-      ],
+      "nextSteps": "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)",
       "seoScore": {
         "current": 7,
         "max": 100,
@@ -6025,12 +6056,10 @@
       },
       "gScore": 7,
       "pitchDraft": {
-        "subject": "Home Shield Roofing \u2014 hard to find when roofs start leaking",
-        "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Home Shield Roofing while helping local trades get found online, and I couldn't find a real website for your roofing work.\n\nWhen a homeowner in Upstate SC searches for a roofer, competitors come up ahead of you. We build you a site and get you the local setup so you get found first.\n\n$300 one-time \u2014 website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you show up when someone near you searches for roofing? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
-        "channel": "Phone/SMS",
-        "confidence": null,
-        "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
-        "status": "pending-review"
+        "subject": "Jeff",
+        "status": "sent",
+        "email": "homeshieldroofing@yahoo.com",
+        "demoUrl": "https://home-shield-roofing-demo.vercel.app"
       },
       "responseStatus": null,
       "saleValue": null,
@@ -6253,19 +6282,16 @@
       "id": "milford-mountain",
       "name": "Milford Mountain Landscape",
       "category": "Landscaping / lawn service (design, planting, mulching, stone work, window boxes)",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Greer, SC",
       "phone": "(864) 416-1596",
       "website": "",
       "summary": "Design-focused landscaping in Greer (design, planting, mulching, stone work, window boxes) \u2014 premium segment, portfolio-driven. NO WEBSITE (all perms 000, site-builder subdomains 404). Solo operator = fast decision-maker. Email milfordmountain@gmail.com. | [2PASS 08-19: no website (Thumbtack only). GBP not found \u2014 may be referral/design-led. Premium landscaping Tier A.]",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
-      "nextSteps": [
-        "\u2705 Second-pass verified (2026-08-19): no website (Thumbtack only). GBP not found \u2014 may be referral/design-led. Premium landscaping Tier A.",
-        "\u23f3 Scout \u2014 pending Supervisor review (batch 08-14-r3)"
-      ],
+      "nextSteps": "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)",
       "seoScore": {
         "current": 9,
         "max": 100,
@@ -6273,12 +6299,10 @@
       },
       "gScore": 9,
       "pitchDraft": {
-        "subject": "Milford Mountain Landscape \u2014 your next landscaping job is searching for you",
-        "body": "Homeowners around you search for landscaping and lawn service online, and right now Milford Mountain Landscape has no way to catch those leads.\n\nWhen a neighbor searches for landscaping near you, they find competitors, not you. I build your site so you get found and win the work.\n\n$300 one-time \u2014 a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a landscaping search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
-        "channel": "Phone/SMS",
-        "confidence": null,
-        "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
-        "status": "pending-review"
+        "subject": "Dan",
+        "status": "sent",
+        "email": "milfordmountain@gmail.com",
+        "demoUrl": "https://milford-mountain-landscape-demo.vercel.app"
       },
       "responseStatus": null,
       "saleValue": null,
@@ -6429,23 +6453,16 @@
       "id": "sbc-handyman",
       "name": "SBC Handyman Services",
       "category": "Handyman (appliance repair, construction, drywall, light fixtures)",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Greenville, SC (216 Spartanburg St, Greenville SC 29607)",
       "phone": "(864) 920-9626",
       "website": "",
       "summary": "Handyman in Greenville (appliance repair, construction, drywall, light fixtures). NO WEBSITE \u2014 all perms HTTP 000; uses personal gmail (ronniefoshee@gmail.com). High-search-volume trade; 'handyman near me' searches lost to competitors with sites. Active Nextdoor presence.",
-      "lastContact": "2026-08-19",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-20",
       "priority": "medium-high",
       "playbook": [],
-      "nextSteps": [
-        "\u2705 Pitch sent 2026-08-19 via locallaunchupstate@gmail.com (ronniefoshee@gmail.com)",
-        "\u23f3 Day 4 follow-up",
-        "\u23f3 Day 8 follow-up",
-        "\u23f3 Day 14: move to dormant or try different channel",
-        "\u26a0\ufe0f Camoufox unavailable \u2014 re-verify later (2026-08-17: browser binary missing + GitHub API 504 blocked re-fetch)",
-        "\u23f3 Scout \u2014 pending Supervisor review (batch 08-14-r3)"
-      ],
+      "nextSteps": "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)",
       "seoScore": {
         "current": 9,
         "max": 100,
@@ -6453,12 +6470,10 @@
       },
       "gScore": 9,
       "pitchDraft": {
-        "subject": "SBC Handyman \u2014 neighbors can't find you when they need help",
-        "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across SBC Handyman Services while helping local trades get found online, and I couldn't find a clear website for your work.\n\nWhen a homeowner in Upstate SC searches for a handyman, other pros come up before you. We build you a site and get you the local setup so you get found.\n\n$300 one-time \u2014 website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for a handyman? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
-        "channel": "Phone/SMS",
-        "confidence": null,
-        "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
-        "status": "pending-review"
+        "subject": "handyman in Greenville",
+        "status": "sent",
+        "email": "ronniefoshee@gmail.com",
+        "demoUrl": "https://sbc-handyman-demo.vercel.app"
       },
       "responseStatus": null,
       "saleValue": null,
@@ -6557,13 +6572,13 @@
       "id": "kanebreak-backyards",
       "name": "Kanebreak Custom Backyards",
       "category": "Outdoor Living / Decks & Fencing",
-      "stage": "prospect",
+      "stage": "contacted",
       "location": "Greenville / Simpsonville, SC",
       "phone": "(864) 884-4605",
       "website": "",
       "email": "kanebreakbackyards@gmail.com",
       "summary": "NO SITE \u2014 kanebreak.com is a parked /lander JS redirect shell (no business content); all name-perm variants HTTP 000. Kanebreak Customs LLC (FB page 61585816885258). Active connector in FB groups advertising deck/fence/concrete builds in Simpsonville + Greenville. Owns the domain but never shipped = easiest close. High-value trade, premium site-build potential. | [2PASS 08-19: no sites found, GBP not found. kanebreak.com parked shell unchanged. Tier A holds.]",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-16",
       "priority": "high",
       "playbook": [
@@ -6589,12 +6604,7 @@
           "detail": "Tier A: premium outdoor-living builder, no site, parked domain they own."
         }
       ],
-      "nextSteps": [
-        "\u2705 Second-pass verified (2026-08-19): no sites found, GBP not found. kanebreak.com parked shell unchanged. Tier A holds.",
-        "Supervisor review",
-        "Confirm preferred name (Kanebreak / Kanebreak Customs)",
-        "Draft pitch for Zach approval"
-      ],
+      "nextSteps": "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)",
       "seoScore": {
         "current": 10,
         "max": 100,
@@ -6602,7 +6612,12 @@
       },
       "prospectScore": "HIGH",
       "gScore": 10,
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "Michael",
+        "status": "sent",
+        "email": "kanebreakbackyards@gmail.com",
+        "demoUrl": "https://kanebreak-backyards-demo.vercel.app"
+      },
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null
@@ -6611,13 +6626,13 @@
       "id": "wright-time-disposal",
       "name": "Wright Time Disposal Service",
       "category": "Junk Removal",
-      "stage": "prospect",
+      "stage": "contacted",
       "location": "Pelzer, SC 29669",
       "phone": "(864) 376-1200",
       "website": "",
       "email": "Wrightjcw1@gmail.com",
       "summary": "NO SITE \u2014 all domain permutations HTTP 000 (wrighttimedisposal.com, wrighttimejunk.com, etc.), wixsite/square.site subdomains 404. Solo junk removal op in Pelzer (between Anderson/Greenville/Piedmont). Owner contact email available. Clear $300 no-site close. | [2PASS 08-19: no website. GBP '9 reviews' snippet, panel not confirmed. Solo junk removal Tier A.]",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-16",
       "priority": "medium",
       "playbook": [
@@ -6643,12 +6658,7 @@
           "detail": "Tier A: 'Customers find competitors, not you.'"
         }
       ],
-      "nextSteps": [
-        "\u2705 Second-pass verified (2026-08-19): no website. GBP '9 reviews' snippet, panel not confirmed. Solo junk removal Tier A.",
-        "Supervisor review",
-        "Cross-check email domain for hidden site",
-        "Draft pitch for Zach approval"
-      ],
+      "nextSteps": "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)",
       "seoScore": {
         "current": 0,
         "max": 100,
@@ -6656,7 +6666,12 @@
       },
       "prospectScore": "MEDIUM-HIGH",
       "gScore": 0,
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "junk removal in the Upstate",
+        "status": "sent",
+        "email": "Wrightjcw1@gmail.com",
+        "demoUrl": "https://wright-time-disposal-demo.vercel.app"
+      },
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null
@@ -6665,13 +6680,13 @@
       "id": "all-in-one-maintenance",
       "name": "All In One Maintenance",
       "category": "Junk Removal / Lawn / Handyman",
-      "stage": "prospect",
+      "stage": "contacted",
       "location": "Pelzer, SC",
       "phone": "(864) 658-7960",
       "website": "",
       "email": "jleebrown051190@gmail.com",
       "summary": "NO SITE \u2014 allinonemaintenance.com is an empty undeveloped shell (HTTP 200 size 114), allinonemaintenancesc.com HTTP 000. Multi-service solo operator (junk removal + grass cutting + handyman) \u2014 one site can cover all service lines. Owns the pointing domain but never shipped content = easy 'you already own the domain' close. | [2PASS 08-19: no website (m.facebook.com only). GBP not found. allinonemaintenance.com empty shell unchanged. Tier A holds.]",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-16",
       "priority": "medium",
       "playbook": [
@@ -6697,12 +6712,7 @@
           "detail": "Tier A: no site, owns empty domain shell."
         }
       ],
-      "nextSteps": [
-        "\u2705 Second-pass verified (2026-08-19): no website (m.facebook.com only). GBP not found. allinonemaintenance.com empty shell unchanged. Tier A holds.",
-        "Supervisor review",
-        "Confirm owner identity (likely J. Lee Brown)",
-        "Draft multi-service pitch for Zach approval"
-      ],
+      "nextSteps": "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)",
       "seoScore": {
         "current": 5,
         "max": 100,
@@ -6710,7 +6720,12 @@
       },
       "prospectScore": "MEDIUM-HIGH",
       "gScore": 5,
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "handyman + lawn care in Pelzer",
+        "status": "sent",
+        "email": "jleebrown051190@gmail.com",
+        "demoUrl": "https://all-in-one-maintenance-demo.vercel.app"
+      },
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null
@@ -6719,13 +6734,13 @@
       "id": "fresh-blades-lawn",
       "name": "Fresh Blades Lawn Care",
       "category": "Lawn Care / Landscaping",
-      "stage": "prospect",
+      "stage": "contacted",
       "location": "Lyman, SC",
       "phone": "(864) 304-5845",
       "website": "",
       "email": "freshbladeslawn1@gmail.com",
       "summary": "NO SITE \u2014 freshbladeslawncare.com and freshbladeslawn.com both HTTP 000; freshblades.com is an unrelated parked shell. Solo lawn-care op in Lyman. Contact email available. Clean no-site call. | [2PASS 08-19: no website (Yelp/Mapquest only). GBP found. Tier A holds (lawn care, no site).]",
-      "lastContact": "",
+      "lastContact": "2026-08-21",
       "lastUpdated": "2026-08-16",
       "priority": "medium",
       "playbook": [
@@ -6751,11 +6766,7 @@
           "detail": "Tier A: 'Customers find competitors, not you.'"
         }
       ],
-      "nextSteps": [
-        "\u2705 Second-pass verified (2026-08-19): no website (Yelp/Mapquest only). GBP found. Tier A holds (lawn care, no site).",
-        "Supervisor review",
-        "Draft pitch for Zach approval"
-      ],
+      "nextSteps": "Follow-up Day 4 (2026-08-25), Day 8 (2026-08-29), Day 14 (2026-09-04)",
       "seoScore": {
         "current": 0,
         "max": 100,
@@ -6763,7 +6774,12 @@
       },
       "prospectScore": "MEDIUM-HIGH",
       "gScore": 0,
-      "pitchDraft": null,
+      "pitchDraft": {
+        "subject": "lawn care in Lyman",
+        "status": "sent",
+        "email": "freshbladeslawn1@gmail.com",
+        "demoUrl": "https://fresh-blades-lawn-demo.vercel.app"
+      },
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null
