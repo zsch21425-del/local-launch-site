@@ -1178,7 +1178,9 @@
         "\u2705 Second-pass verified (2026-08-20) \u2014 site live confirmed, GBP 9 reviews",
         "\u2705 Auditor R6 approved \u2014 Tier B/C pitch",
         "Closer: draft rebuild/SEO angle (NOT site-build)",
-        "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data"
+        "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data",
+        "\u2705 Email synced from vault prior enrichment: randyshomeservice@gmail.com",
+        "\u274c 2026-08-23: LIVE (Wix) \u2014 NOT a no-site lead, remove from demo build queue."
       ],
       "seoScore": {
         "current": 47,
@@ -1190,7 +1192,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 47,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "randyshomeservice@gmail.com",
+      "notes": []
     },
     {
       "id": "greenville-pro-painters",
@@ -1239,7 +1243,9 @@
         "\u2705 Second-pass verified (2026-08-20) \u2014 site live confirmed; GBP not confirmed this pass",
         "\u2705 Auditor R6 approved \u2014 Tier C/D pitch (SEO + domain upgrade)",
         "Closer: draft SEO/GEO angle (NOT site-build)",
-        "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data"
+        "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data",
+        "\u274c 2026-08-23: LIVE (WordPress) \u2014 NOT a no-site lead, remove from demo build queue.",
+        "\u2705 email hello@uniqueconcrete.design [candidate] src=facebook"
       ],
       "seoScore": {
         "current": 65,
@@ -1251,7 +1257,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 65,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "moriaan-construction",
@@ -1300,7 +1308,9 @@
         "\u2705 Second-pass verified (2026-08-20) \u2014 site live confirmed, GBP 84 reviews",
         "\u2705 Auditor R6 approved \u2014 Tier C pitch (SEO only)",
         "Closer: draft SEO/GEO angle (NOT site-build)",
-        "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data"
+        "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data",
+        "\u274c 2026-08-23: LIVE (WordPress, Cloudflare-walled) \u2014 NOT a no-site lead, remove from demo build queue.",
+        "\u2705 email onecallsc@gmail.com [candidate (Cloudflare)] src=onecallplumbingsc.com/contact"
       ],
       "seoScore": {
         "current": 54,
@@ -1312,7 +1322,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 54,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "pro-kutz-lawn",
@@ -1398,7 +1410,7 @@
       "location": "Mauldin, SC",
       "phone": "(864) 991-8707",
       "website": "",
-      "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED with 477 reviews! No hidden website (surecritic/simpletire/crunchbase = directories). 477 reviews + no site = HOT lead vs chains.",
+      "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED with 477 reviews! No hidden website (surecritic/simpletire/crunchbase = directories). 477 reviews + no site = HOT lead vs chains. \u26d4 EMAIL BOUNCED 2026-08-22 (tonygatto@charter.net, 550 5.1.1) \u2014 PHONE-ONLY: (864) 991-8707",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
       "priority": "medium",
@@ -1406,7 +1418,10 @@
       "nextSteps": [
         "\u2705 Second-pass verified (2026-08-20) \u2014 GBP confirmed 477 reviews, no hidden website",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
-        "Closer: draft site-build pitch"
+        "Closer: draft site-build pitch",
+        "\u26d4 Pitch BOUNCED 2026-08-22 (tonygatto@charter.net 550 5.1.1) \u2014 email dead, do NOT retry",
+        "\ud83d\udcde Phone-only next: call/text (864) 991-8707 with the $300 one-time + demo pitch",
+        "\ud83d\udd0d Email enrichment 2026-08-23: NOT FOUND \u2014 Nextdoor confirms owner \"Tony Gatto\" + phone, no email published. Phone-only confirmed."
       ],
       "seoScore": {
         "current": 55,
@@ -1418,7 +1433,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 55,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "jtp-lawncare",
@@ -1513,7 +1530,9 @@
         "\u2705 Second-pass verified (2026-08-20) \u2014 site live confirmed; GBP not confirmed this pass",
         "\u2705 Auditor R6 approved \u2014 Tier C pitch (SEO only)",
         "Closer: draft SEO/GEO + .com SSL fix angle",
-        "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data"
+        "\u26a0\ufe0f Existing pitchDraft REVOKED \u2014 was based on wrong \"no website\" data",
+        "\u274c 2026-08-23: LIVE (WordPress, Cloudflare-walled) \u2014 NOT a no-site lead, remove from demo build queue.",
+        "\u2705 email service@kensplumbing.net [candidate (JS)] src=bradfordwhite finder"
       ],
       "seoScore": {
         "current": 65,
@@ -1525,7 +1544,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 65,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "jr-concrete",
@@ -1575,7 +1596,8 @@
       "playbook": [],
       "nextSteps": [
         "\u2705 Supervisor approved \u2014 no-hosting-fee angle added",
-        "\ud83d\udcde Phone-only \u2014 Zach to call"
+        "\ud83d\udcde Phone-only \u2014 Zach to call",
+        "\u274c 2026-08-23: LIVE \u2014 NOT a no-site lead, remove from demo build queue."
       ],
       "seoScore": {
         "current": 55,
@@ -1593,7 +1615,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "notes": []
     },
     {
       "id": "sandy-springs-detailing",
@@ -1662,7 +1685,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "perpetual-painters",
@@ -1746,7 +1771,9 @@
       "playbook": [],
       "nextSteps": [
         "\u2705 Supervisor approved \u2014 no-hosting-fee angle added",
-        "\ud83d\udcde Phone-only \u2014 Zach to call"
+        "\ud83d\udcde Phone-only \u2014 Zach to call",
+        "\u274c 2026-08-23: LIVE (Square) \u2014 NOT a no-site lead, remove from demo build queue.",
+        "\u2705 email jonsaylors@yahoo.com [curl-verified] src=topchoicefenceanddecks.com/contact"
       ],
       "seoScore": {
         "current": 35,
@@ -1764,7 +1791,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "acorn-fencing",
@@ -1882,7 +1911,8 @@
       "playbook": [],
       "nextSteps": [
         "\u2705 Supervisor approved \u2014 ready for Zach's call list",
-        "\ud83d\udcde Phone-only \u2014 Zach to call"
+        "\ud83d\udcde Phone-only \u2014 Zach to call",
+        "\u2705 email lightningpest@yahoo.com [candidate] src=facebook"
       ],
       "seoScore": {
         "current": 40,
@@ -1900,7 +1930,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "eco-wash-systems",
@@ -1909,14 +1941,16 @@
       "stage": "pitch",
       "location": "Miami, FL",
       "phone": "(305) 593-1557",
-      "website": "",
+      "website": "https://ecowashsystems.com",
       "summary": "Pressure Washing in Miami, FL. G-Score 40/100. Confirmed GBP with 52 reviews, no website. 52 reviews in competitive Miami, no website. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified).",
       "lastUpdated": "2026-08-09",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
         "\u2705 Supervisor approved \u2014 ready for Zach's call list",
-        "\ud83d\udcde Phone-only \u2014 Zach to call"
+        "\ud83d\udcde Phone-only \u2014 Zach to call",
+        "\u26a0\ufe0f 2026-08-23: has LIVE site ecowashsystems.com (power-wash supply/repair) \u2014 NOT a no-site build lead. Reclassify or drop.",
+        "\u274c 2026-08-23: LIVE (power-wash supply/repair) \u2014 NOT a no-site lead, remove from demo build queue."
       ],
       "seoScore": {
         "current": 55,
@@ -1934,7 +1968,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "notes": []
     },
     {
       "id": "titan-wash",
@@ -2699,7 +2734,8 @@
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "\u2705 Supervisor approved \u2014 ready for Zach review/send"
+        "\u2705 Supervisor approved \u2014 ready for Zach review/send",
+        "\u274c 2026-08-23: UNCERTAIN (HTTP 406) \u2014 NOT a no-site lead, remove from demo build queue."
       ],
       "seoScore": {
         "current": 28,
@@ -2717,7 +2753,8 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "safewash@yahoo.com"
+      "email": "safewash@yahoo.com",
+      "notes": []
     },
     {
       "id": "good-work-pressure-washing",
@@ -2886,7 +2923,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 50,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "cpm-home-services",
@@ -2927,7 +2966,8 @@
         "\u2705 Second-pass verified (2026-08-20) \u2014 no website, GBP not found",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft pitch \u2014 30 yrs experience + no website angle",
-        "\ud83d\udcde Phone-only \u2014 Zach to call"
+        "\ud83d\udcde Phone-only \u2014 Zach to call",
+        "\u274c 2026-08-23: LIVE (Duda) \u2014 NOT a no-site lead, remove from demo build queue."
       ],
       "seoScore": {
         "current": 16,
@@ -2940,7 +2980,8 @@
       "gScore": 16,
       "zachApproval": null,
       "email": "Cantrelljerry76@yahoo.com",
-      "enrichmentFlag": "has-live-website-now"
+      "enrichmentFlag": "has-live-website-now",
+      "notes": []
     },
     {
       "id": "scott-handiworks",
@@ -3043,7 +3084,8 @@
         "\u2705 Second-pass verified (2026-08-20) \u2014 no website, GBP not found",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft pitch \u2014 FB photos + no site angle",
-        "\ud83d\udcde Phone or email available"
+        "\ud83d\udcde Phone or email available",
+        "\u2705 Email synced from vault prior enrichment: Smpurgason@gmail.com"
       ],
       "seoScore": {
         "current": 11,
@@ -3054,7 +3096,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 11,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Smpurgason@gmail.com",
+      "notes": []
     },
     {
       "id": "sky-branch-llc",
@@ -3095,7 +3139,8 @@
         "\u2705 Second-pass verified (2026-08-20) \u2014 no website, GBP not found",
         "\u2705 Auditor R6 approved \u2014 Tier A pitch",
         "Closer: draft pitch \u2014 FB groups + no site angle",
-        "\ud83d\udcde Phone or email available"
+        "\ud83d\udcde Phone or email available",
+        "\u2705 Email synced from vault prior enrichment: skybranchllc@gmail.com"
       ],
       "seoScore": {
         "current": 6,
@@ -3106,7 +3151,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 6,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "skybranchllc@gmail.com",
+      "notes": []
     },
     {
       "id": "brian-dillard-concrete",
@@ -3185,7 +3232,8 @@
       "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
-        "Closer: draft Pitch A/B (build; FB-only)"
+        "Closer: draft Pitch A/B (build; FB-only)",
+        "\u2705 Email synced from vault prior enrichment: Leosproline@gmail.com"
       ],
       "seoScore": {
         "current": 38,
@@ -3193,7 +3241,9 @@
         "label": "G-SCORE"
       },
       "gScore": 38,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "Leosproline@gmail.com",
+      "notes": []
     },
     {
       "id": "taylor-jones-signature-tree",
@@ -3311,14 +3361,16 @@
       "stage": "pitch",
       "location": "Greenville, SC",
       "phone": "(864) 345-8982",
-      "website": "",
+      "website": "https://lucasmaintenancellc.com",
       "summary": "Pressure washing/soft wash, Greenville SC. HAS LIVE SITE lucasmaintenancellc.com + claimed GBP 5.0\u2605/124 reviews (Scout misclassified as no-site). G-SCORE 78. Audit approved 2026-08-10.",
       "lastContact": "",
       "lastUpdated": "2026-08-10",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Closer: draft Pitch C/D (GEO/SEO) \u2014 NOT a $300 build"
+        "Closer: draft Pitch C/D (GEO/SEO) \u2014 NOT a $300 build",
+        "\u2705 email Lucasmaintllc@gmail.com [candidate (JS)] src=lucasmaintenancellc.com/contact-us",
+        "\u274c 2026-08-23: has LIVE site https://lucasmaintenancellc.com \u2014 NOT a no-site lead."
       ],
       "seoScore": {
         "current": 78,
@@ -3326,7 +3378,9 @@
         "label": "G-SCORE"
       },
       "gScore": 78,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "perino-s-junk-removal",
@@ -3393,7 +3447,8 @@
       "playbook": [],
       "nextSteps": [
         "Closer: draft Pitch A ($300 build)",
-        "Create GBP as part of offer"
+        "Create GBP as part of offer",
+        "\u2705 Email synced from vault prior enrichment: penny@taylorstreeservices.com"
       ],
       "seoScore": {
         "current": 8,
@@ -3401,7 +3456,9 @@
         "label": "G-SCORE"
       },
       "gScore": 8,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "penny@taylorstreeservices.com",
+      "notes": []
     },
     {
       "id": "west-construction",
@@ -3568,7 +3625,9 @@
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-11 \u2014 awaiting Supervisor review + Zach sign-off before send"
+        "Pitch drafted 2026-08-11 \u2014 awaiting Supervisor review + Zach sign-off before send",
+        "\u274c 2026-08-23: LIVE (Jobber) \u2014 NOT a no-site lead, remove from demo build queue.",
+        "\u2705 email smfriedholm14@icloud.com [curl-verified] src=creekcrew.jobbersites.com"
       ],
       "seoScore": {
         "current": 41,
@@ -3581,7 +3640,9 @@
         "status": "pending supervisor review",
         "confidence": null,
         "notes": "Tier B \u2014 REPLACE Jobber subdomain (has 5.0\u2605 GBP). Pitch \"your site can't rank,\" never \"you need a website.\" $300 one-time / $49-mo optional. Pitched 2026-08-11."
-      }
+      },
+      "email": "",
+      "notes": []
     },
     {
       "id": "upstate-tree-solutions",
@@ -3606,7 +3667,9 @@
         "label": "G-SCORE"
       },
       "gScore": 25,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "chads-tree-service",
@@ -4089,7 +4152,8 @@
       "nextSteps": [
         "\u2705 Second-pass verified \u2014 GBP confirmed, domain detected in SERP (dead on load)",
         "Spartanpaversealing.com: domain owned but non-resolving \u2014 'your site is down' pitch",
-        "Route to Closer: broken-site angle + Nextdoor presence"
+        "Route to Closer: broken-site angle + Nextdoor presence",
+        "\u2705 Email synced from vault prior enrichment: pdesmond@spartanpaversealing.com"
       ],
       "seoScore": {
         "current": 20,
@@ -4105,7 +4169,9 @@
         "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
         "status": "pending-review"
       },
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "pdesmond@spartanpaversealing.com",
+      "notes": []
     },
     {
       "id": "carolina-clear-property",
@@ -4623,7 +4689,8 @@
         }
       ],
       "nextSteps": [
-        "Closer to draft pitch (Supervisor trigger)"
+        "Closer to draft pitch (Supervisor trigger)",
+        "\u2705 Email synced from vault prior enrichment: graywolfconcrete@gmail.com"
       ],
       "seoScore": {
         "current": 13,
@@ -4634,7 +4701,9 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 13,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "graywolfconcrete@gmail.com",
+      "notes": []
     },
     {
       "id": "rodriquez",
@@ -4745,7 +4814,9 @@
       "priority": "medium",
       "summary": "Junk removal / hoarder cleanouts in Greer (serves Greenville/Upstate). No site (name domain = Indonesian spam collision). Claimed GBP HEALTHY 5.0\u2605/85 reviews. Pitched 2026-08-12 \u2014 pending Supervisor review.",
       "playbook": [],
-      "nextSteps": "Audit needed \u2014 junk removal, no site, Greer",
+      "nextSteps": [
+        "\u2705 email Removalcrew3@gmail.com [candidate] src=facebook"
+      ],
       "seoScore": {
         "current": 33,
         "max": 100,
@@ -4760,7 +4831,9 @@
         "confidence": 8,
         "notes": "Pitched Aug 12 \u2014 Closer: pending Supervisor review. Tier A no-site build + GBP/review optimization. 5.0\u2605/85 reviews is the asset."
       },
-      "lastUpdated": "2026-08-12"
+      "lastUpdated": "2026-08-12",
+      "email": "",
+      "notes": []
     },
     {
       "id": "turf-touch",
@@ -4909,7 +4982,9 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "pristine-cleaners-sc",
@@ -4996,7 +5071,9 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "browns-tree-surgeons",
@@ -5054,7 +5131,9 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "byars-plumbing-aiken",
@@ -5200,7 +5279,9 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "garcias-painting-in",
@@ -5229,7 +5310,9 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "jasper-painting-in",
@@ -5287,7 +5370,9 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "mc-cleaning-oh",
@@ -5910,7 +5995,9 @@
       "playbook": [],
       "nextSteps": [
         "\u2705 Supervisor APPROVED 2026-08-19 \u2192 Tier B (custom-domain + rebuild upsell from free Square subdomain; NOT $300 no-site build). Cleared for Closer draft.",
-        "\u2705 Second-pass verified (2026-08-19): HIDDEN SITE FOUND \u2014 superhuman-junk-removal-hauling-llc.square.site (free Square subdomain, Anderson SC confirmed in body). Not a custom domain -> Tier B (rebuild/custom-domain upsell), NOT pure Tier A."
+        "\u2705 Second-pass verified (2026-08-19): HIDDEN SITE FOUND \u2014 superhuman-junk-removal-hauling-llc.square.site (free Square subdomain, Anderson SC confirmed in body). Not a custom domain -> Tier B (rebuild/custom-domain upsell), NOT pure Tier A.",
+        "\u274c 2026-08-23: LIVE (Square) \u2014 NOT a no-site lead, remove from demo build queue.",
+        "\u2705 email Superhumanjunkremoval@gmail.com [candidate] src=nextdoor"
       ],
       "seoScore": {
         "current": 34,
@@ -5928,7 +6015,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "m-and-i-junk",
@@ -5945,7 +6034,9 @@
       "playbook": [],
       "nextSteps": [
         "\u2705 Supervisor APPROVED 2026-08-19 \u2192 Tier B/C (SEO/rebuild \u2014 has live site + ~61 reviews; NOT $300 no-site build). Cleared for Closer draft.",
-        "\u2705 Second-pass verified (2026-08-19): HIDDEN SITE FOUND \u2014 mijunkandersonsc.com (LIVE, title 'M&I Junk Removal & Hauling | Anderson, SC'). GBP confirmed ~61 reviews. junkremovalandersonsc.com = 404 dead. Tier B/C (has site -> pitch SEO/rebuild), NOT Tier A."
+        "\u2705 Second-pass verified (2026-08-19): HIDDEN SITE FOUND \u2014 mijunkandersonsc.com (LIVE, title 'M&I Junk Removal & Hauling | Anderson, SC'). GBP confirmed ~61 reviews. junkremovalandersonsc.com = 404 dead. Tier B/C (has site -> pitch SEO/rebuild), NOT Tier A.",
+        "\u274c 2026-08-23: LIVE \u2014 NOT a no-site lead, remove from demo build queue.",
+        "\u2705 email Londasirby@gmail.com [candidate] src=facebook"
       ],
       "seoScore": {
         "current": 35,
@@ -5963,7 +6054,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "yankee-tree",
@@ -6118,7 +6211,8 @@
       "playbook": [],
       "nextSteps": [
         "\u2705 Second-pass verified (2026-08-19): no sites found, GBP not confirmed this pass. Tier A holds (window cleaning, no site).",
-        "\u23f3 Scout \u2014 pending Supervisor review (batch 08-14-r2)"
+        "\u23f3 Scout \u2014 pending Supervisor review (batch 08-14-r2)",
+        "\u2705 Email synced from vault prior enrichment: jeffgulotta@att.net"
       ],
       "seoScore": {
         "current": 10,
@@ -6136,7 +6230,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "jeffgulotta@att.net",
+      "notes": []
     },
     {
       "id": "chieftain-concrete",
@@ -6241,7 +6337,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "reed-concrete",
@@ -6324,7 +6422,8 @@
       "playbook": [],
       "nextSteps": [
         "\u2705 Supervisor APPROVED 2026-08-19 \u2192 Tier B (weak Wix rebuild/SEO, NOT $300 no-site build). Cleared for Closer draft.",
-        "\u2705 Second-pass verified (2026-08-19): HIDDEN SITE FOUND \u2014 kleensweepjunkremoval.com (LIVE Wix, title 'Kleen Sweep Hauling/Junk Removal, LLC', Spartanburg confirmed). Scout 'NO WEBSITE' was WRONG. Tier B (weak Wix -> pitch rebuild/SEO), NOT Tier A."
+        "\u2705 Second-pass verified (2026-08-19): HIDDEN SITE FOUND \u2014 kleensweepjunkremoval.com (LIVE Wix, title 'Kleen Sweep Hauling/Junk Removal, LLC', Spartanburg confirmed). Scout 'NO WEBSITE' was WRONG. Tier B (weak Wix -> pitch rebuild/SEO), NOT Tier A.",
+        "\u274c 2026-08-23: LIVE (GoDaddy) \u2014 NOT a no-site lead, remove from demo build queue."
       ],
       "seoScore": {
         "current": 10,
@@ -6342,7 +6441,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "notes": []
     },
     {
       "id": "bossman-concrete",
@@ -6846,7 +6946,7 @@
       "location": "Clemson, SC 29631",
       "phone": "(864) 633-7810",
       "website": "",
-      "email": "",
+      "email": "Scott.freshstartclean@gmail.com",
       "summary": "NO SITE \u2014 freshstartpressurewashing.com is a dead ~2.9KB empty shell; name-perm collisions are unrelated (Canadian freshstartexteriorcleaning.com, Fresh Start Bankruptcy attorney on freshstartsc.com). Clemson STUDENT-OWNED business launched 2025 \u2014 quick-decision candidate but limited budget/commitment risk. Lower priority. DO NOT use Scott.freshstartclean@gmail.com (that's the Canadian collision's email). | [2PASS 08-19: no sites found, GBP not found. freshstartpressurewashing.com dead shell unchanged. Tier A (pressure washing).]",
       "lastContact": "",
       "lastUpdated": "2026-08-16",
@@ -6878,7 +6978,8 @@
         "\u2705 Second-pass verified (2026-08-19): no sites found, GBP not found. freshstartpressurewashing.com dead shell unchanged. Tier A (pressure washing).",
         "Supervisor review",
         "Consider deferring \u2014 student-run budget risk",
-        "Draft pitch only if pursued"
+        "Draft pitch only if pursued",
+        "\u2705 Email synced from vault prior enrichment: Scott.freshstartclean@gmail.com"
       ],
       "seoScore": {
         "current": 0,
@@ -6890,7 +6991,8 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "notes": []
     },
     {
       "id": "skyline-renovation",
@@ -7739,7 +7841,8 @@
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 Email synced from vault prior enrichment: joshuatruitt602@gmail.com"
       ],
       "seoScore": {
         "current": 7,
@@ -7757,7 +7860,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "joshuatruitt602@gmail.com",
+      "notes": []
     },
     {
       "id": "mikes-home-solutions",
@@ -7875,7 +7980,8 @@
       "priority": "MEDIUM-HIGH",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 email quinn.kevin23@yahoo.com [candidate] src=facebook"
       ],
       "seoScore": {
         "current": 34,
@@ -7893,7 +7999,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "renaissance-handyman-service",
@@ -7961,7 +8069,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "see-clearly-window-cleaning",
@@ -8181,7 +8291,8 @@
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 Email synced from vault prior enrichment: customcedarguy@gmail.com"
       ],
       "seoScore": {
         "current": 8,
@@ -8199,7 +8310,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "customcedarguy@gmail.com",
+      "notes": []
     },
     {
       "id": "ellason-tree-service",
@@ -8283,7 +8396,8 @@
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 email KnockItjunkremoval@gmail.com [candidate] src=nextdoor"
       ],
       "seoScore": {
         "current": 34,
@@ -8301,7 +8415,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "bearden-forestry",
@@ -8521,7 +8637,8 @@
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 Email synced from vault prior enrichment: kirk12johnson@gmail.com"
       ],
       "seoScore": {
         "current": 7,
@@ -8539,7 +8656,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "kirk12johnson@gmail.com",
+      "notes": []
     },
     {
       "id": "l-f-handymen",
@@ -8589,7 +8708,8 @@
       "priority": "MEDIUM-HIGH",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 Email synced from vault prior enrichment: MarshallCleanings@gmail.com"
       ],
       "seoScore": {
         "current": 9,
@@ -8607,7 +8727,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "MarshallCleanings@gmail.com",
+      "notes": []
     },
     {
       "id": "ortiz-tree-service",
@@ -8752,14 +8874,16 @@
       "stage": "pitch",
       "location": "Marietta / Travelers Rest, SC",
       "phone": "(864) 630-5909",
-      "website": "",
+      "website": "https://steadfastroofingco.com",
       "summary": "",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 email info@steadfastroofingco.com [curl-verified] src=steadfastroofingco.com/contact",
+        "\u274c 2026-08-23: has LIVE site https://steadfastroofingco.com \u2014 NOT a no-site lead."
       ],
       "seoScore": {
         "current": 36,
@@ -8777,7 +8901,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "studs-gutter-cleaning",
@@ -9031,7 +9157,8 @@
       "priority": "MEDIUM-HIGH",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 Email synced from vault prior enrichment: pvphomeservices@gmail.com"
       ],
       "seoScore": {
         "current": 7,
@@ -9049,7 +9176,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "pvphomeservices@gmail.com",
+      "notes": []
     },
     {
       "id": "parkers-pressure-washing-llc",
@@ -9083,7 +9212,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "r-r-lawn-llc",
@@ -9151,7 +9282,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "",
+      "notes": []
     },
     {
       "id": "sasquatch-tree-services-llc",
@@ -9185,7 +9318,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "sasquatchtreeservices@gmail.com",
+      "notes": []
     },
     {
       "id": "simpsonville-cleaning-authority",
@@ -9201,7 +9336,8 @@
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "\u2705 Email synced from vault prior enrichment: simpsonvillecleaningauthority@gmail.com"
       ],
       "seoScore": {
         "current": 8,
@@ -9219,7 +9355,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "simpsonvillecleaningauthority@gmail.com",
+      "notes": []
     },
     {
       "id": "sterling-home-services-llc",
