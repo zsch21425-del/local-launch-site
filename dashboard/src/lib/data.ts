@@ -63,6 +63,8 @@ export interface Company {
   website?: string;
   facebook?: string;
   instagram?: string;
+  /** Legacy deployed demo link (per-client Vercel project). Superseded by `demo.url` but still the source of truth for many companies. */
+  demoUrl?: string;
   summary: string;
   lastContact?: string;
   lastUpdated?: string;
@@ -76,12 +78,29 @@ export interface Company {
     subject?: string;
     body: string;
     channel: string;
-    status: "pending" | "approved" | "rejected" | "conditional";
+    status: "pending" | "supervisor-approved" | "zach-approved" | "rejected" | "conditional" | "sent";
     confidence: number;
     notes?: string;
+    reviewFeedback?: {
+      reason: string;
+      suggestedFix?: string;
+      reviewedAt: string;
+    };
   } | null;
+  zachApproval?: "approved" | "rejected" | null;
   responseStatus?: string | null;
   saleValue?: number | null;
+  /**
+   * Demo approval state. `demoUrl` already exists on many companies; this
+   * block records Zach's review of the deployed demo. Absent status (or a
+   * company with only `demoUrl`) is treated as "pending" by getDemoQueue().
+   */
+  demo?: {
+    url?: string;
+    status?: "pending" | "approved" | "rejected";
+    notes?: string;
+    reviewedAt?: string;
+  } | null;
   auditData?: {
     issues?: string[];
     competitors?: string[];
@@ -164,6 +183,49 @@ export function getCompanySlugs(): string[] {
 
 export function getCarLotsPipeline(): CarLotsPipeline {
   return data.carLotsPipeline;
+}
+
+/* ------------------------------------------------------------- demo queue --- */
+
+export interface DemoItem {
+  company: Company;
+  url: string;
+  status: "pending" | "approved" | "rejected";
+}
+
+/**
+ * Resolves the effective demo URL for a company: prefer the explicit
+ * `demo.url`, fall back to the legacy `demoUrl`, then to the deterministic
+ * Vercel pattern `<slug>-demo.vercel.app`.
+ */
+export function resolveDemoUrl(company: Company): string | null {
+  const explicit = company.demo?.url ?? company.demoUrl;
+  if (explicit) return explicit;
+  return `https://${company.id}-demo.vercel.app`;
+}
+
+/**
+ * Companies with a demo that Zach has NOT yet approved. A company is in the
+ * queue if it has a demo URL and its status is not "approved". Absent status
+ * (legacy `demoUrl`-only companies) defaults to "pending" so they surface for
+ * review instead of being silently hidden. "rework" (builder reworked after a
+ * rejection) also stays in the queue for re-review.
+ */
+export function getDemoQueue(companies: Company[] = data.companies): DemoItem[] {
+  const items: DemoItem[] = [];
+  for (const company of companies) {
+    const url = resolveDemoUrl(company);
+    if (!url) continue;
+    const status = company.demo?.status ?? "pending";
+    if (status === "approved") continue;
+    items.push({ company, url, status });
+  }
+  return items;
+}
+
+/** Count of demos awaiting Zach's approval — used for the nav badge. */
+export function pendingDemoCount(companies: Company[] = data.companies): number {
+  return getDemoQueue(companies).length;
 }
 
 export function getStage(id: StageId): Stage | undefined {

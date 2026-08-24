@@ -155,6 +155,19 @@ export function MotionBackground() {
         className="pointer-events-none fixed inset-0"
         style={{ zIndex: 1, background: "transparent" }}
       />
+      {/* Frosted grey scrim — sits above the animated background (z-1) and
+          below all content (z-10) so the bright moving particles are muted
+          and defocused, keeping card text legible everywhere. */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0"
+        style={{
+          zIndex: 2,
+          background: "rgba(226, 232, 240, 0.55)",
+          backdropFilter: "blur(6px) saturate(0.9)",
+          WebkitBackdropFilter: "blur(6px) saturate(0.9)",
+        }}
+      />
     </>
   );
 }

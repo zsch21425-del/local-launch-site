@@ -8,15 +8,17 @@ import {
   ChevronLeft,
   ChevronRight,
   ClipboardCheck,
+  Cpu,
   KanbanSquare,
   Menu,
+  MonitorPlay,
   Radar,
   Users,
   X,
   type LucideIcon,
 } from "lucide-react";
 
-import { getAgency, getCompanies } from "@/lib/data";
+import { getAgency, getCompanies, pendingDemoCount } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -27,9 +29,11 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Pipeline", icon: KanbanSquare },
+  { href: "/fleet", label: "Fleet", icon: Cpu },
   { href: "/leads", label: "Leads", icon: Radar },
   { href: "/clients", label: "Clients", icon: Users },
   { href: "/approvals", label: "Approvals", icon: ClipboardCheck },
+  { href: "/demos", label: "Demos", icon: MonitorPlay },
   { href: "/reports", label: "Reports", icon: BarChart3 },
 ];
 
@@ -42,6 +46,10 @@ function pendingApprovalCount(): number {
   return companies.filter(
     (c) => c.pitchDraft?.status === "pending" && c.stage === "pitch",
   ).length;
+}
+
+function pendingDemoCount_(): number {
+  return pendingDemoCount(getCompanies());
 }
 
 /**
@@ -95,7 +103,7 @@ export function SidebarNav() {
                 item={item}
                 active={isActive(pathname, item.href)}
                 expanded
-                badge={item.href === "/approvals" ? pendingCount : undefined}
+                badge={item.href === "/approvals" ? pendingCount : item.href === "/demos" ? pendingDemoCount_() : undefined}
                 onClick={() => setMobileOpen(false)}
               />
             ))}
@@ -140,7 +148,7 @@ export function SidebarNav() {
             item={item}
             active={isActive(pathname, item.href)}
             expanded={!collapsed}
-            badge={item.href === "/approvals" ? pendingCount : undefined}
+            badge={item.href === "/approvals" ? pendingCount : item.href === "/demos" ? pendingDemoCount_() : undefined}
           />
         ))}
       </nav>
