@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
-import { readPipelineSafe, writePipeline } from "@/lib/pipeline-store";
+import { getCompanies } from "@/lib/data";
 
 const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
 
 /**
  * GET: list demos awaiting Zach's approval (and any rejected, for re-review).
- * Mirrors the approvals page: anything not "approved" is in the queue.
+ * Reads from the same in-memory pipeline singleton as /api/pipeline/data
+ * (getCompanies), NOT the Blob store, so it stays consistent with the
+ * Approvals page and the live pipeline.json bundled at build time.
  */
 export async function GET() {
-  const data: any = await readPipelineSafe();
-  const companies: any[] = Array.isArray(data.companies) ? data.companies : [];
+  const companies: any[] = getCompanies();
 
   const queue = companies
     .map((c) => {
@@ -24,8 +25,8 @@ export async function GET() {
 }
 
 /**
- * POST: approve or reject a demo. Persists company.demo.status to the durable
- * pipeline store and relays the decision to the Supervisor (fire-and-forget),
+ * POST: approve or reject a demo. Updates the in-memory pipeline singleton
+ * (getCompanies) and relays the decision to the Supervisor (fire-and-forget),
  * who handles deploy/send per Local Launch process.
  */
 export async function POST(request: Request) {
@@ -49,29 +50,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: `Invalid action: ${action}` }, { status: 400 });
   }
 
-  const data: any = await readPipelineSafe();
-  const companies = data.companies;
-  if (!Array.isArray(companies)) {
-    return NextResponse.json({ error: "Invalid pipeline data" }, { status: 500 });
-  }
-
+  const companies = getCompanies();
   const company = companies.find((c: any) => c.id === companyId);
   if (!company) {
     return NextResponse.json({ error: `Company not found: ${companyId}` }, { status: 404 });
   }
 
-  // Update demo status
+  // Update demo status on the in-memory singleton
   company.demo = company.demo ?? {};
   if (action === "approve") company.demo.status = "approved";
   else if (action === "reject") company.demo.status = "rejected";
   else if (action === "rework") company.demo.status = "rework";
   company.demo.reviewedAt = new Date().toISOString();
   if (notes?.trim()) company.demo.notes = notes.trim();
-
-  const writeRes = await writePipeline(data);
-  if (!writeRes.ok) {
-    return NextResponse.json({ error: writeRes.error, ok: false }, { status: 500 });
-  }
 
   // Relay to Supervisor (fire-and-forget) — mirrors pitch-approve.
   const msg =

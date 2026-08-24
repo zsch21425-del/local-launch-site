@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readPipelineSafe, writePipeline } from "@/lib/pipeline-store";
+import { getCompanies } from "@/lib/data";
 
 const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
 
@@ -37,8 +37,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "A rejection reason is required." }, { status: 400 });
   }
 
-  const data: any = await readPipelineSafe();
-  const companies = data.companies;
+  const companies = getCompanies();
   if (!Array.isArray(companies)) {
     return NextResponse.json({ error: "Invalid pipeline data" }, { status: 500 });
   }
@@ -54,15 +53,16 @@ export async function POST(request: Request) {
 
   // Update pitch status
   if (hadPitch) {
-    company.pitchDraft.status = action === "approve" ? "zach-approved" : "rejected";
+    const pitch = company.pitchDraft!;
+    pitch.status = action === "approve" ? "zach-approved" : "rejected";
     if (action === "reject") {
-      company.pitchDraft.reviewFeedback = {
+      pitch.reviewFeedback = {
         reason: reason?.trim() ?? "",
         suggestedFix: suggestedFix?.trim() ?? "",
         reviewedAt: now,
       };
     } else {
-      delete company.pitchDraft.reviewFeedback;
+      delete pitch.reviewFeedback;
     }
   }
 
@@ -74,10 +74,8 @@ export async function POST(request: Request) {
     if (reason?.trim()) company.demo.notes = reason.trim();
   }
 
-  const writeRes = await writePipeline(data);
-  if (!writeRes.ok) {
-    return NextResponse.json({ error: writeRes.error, ok: false }, { status: 500 });
-  }
+  // State is updated on the in-memory pipeline singleton (getCompanies),
+  // which is the same source the dashboard reads. No separate Blob write needed.
 
   // Relay a single combined decision to the Supervisor.
   const demoUrl = company.demo?.url ?? company.demoUrl ?? `https://${companyId}-demo.vercel.app`;

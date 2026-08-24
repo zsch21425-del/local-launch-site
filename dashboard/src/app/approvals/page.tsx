@@ -210,15 +210,18 @@ function ApproveButtons({
 export default function ApprovalsPage() {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [removedIds, setRemovedIds] = useState<Set<string>>(new Set());
 
   const load = useCallback(async () => {
     try {
       const res = await fetch("/api/pipeline/data");
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       setCompanies(data.companies ?? []);
-    } catch {
-      // keep last known
+      setError(null);
+    } catch (e) {
+      setError("Could not load pipeline data. Check your connection and refresh.");
     } finally {
       setLoading(false);
     }
@@ -252,7 +255,17 @@ export default function ApprovalsPage() {
           Back to pipeline
         </Link>
 
-        {loading ? (
+        {error ? (
+          <div className={`${glassCard} border-rose-200 bg-rose-50/60 py-10 text-center`}>
+            <p className="text-sm font-medium text-rose-700">{error}</p>
+            <button
+              onClick={load}
+              className="mt-3 rounded-lg bg-rose-600 px-4 py-2 text-sm font-medium text-white hover:bg-rose-700"
+            >
+              Retry
+            </button>
+          </div>
+        ) : loading ? (
           <div className={`${glassCard} py-16 text-center`}>
             <p className="text-sm text-slate-400">Loading approvals…</p>
           </div>

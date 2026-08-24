@@ -97,7 +97,7 @@ export interface Company {
    */
   demo?: {
     url?: string;
-    status?: "pending" | "approved" | "rejected";
+    status?: "pending" | "approved" | "rejected" | "rework";
     notes?: string;
     reviewedAt?: string;
   } | null;
@@ -190,7 +190,7 @@ export function getCarLotsPipeline(): CarLotsPipeline {
 export interface DemoItem {
   company: Company;
   url: string;
-  status: "pending" | "approved" | "rejected";
+  status: "pending" | "approved" | "rejected" | "rework";
 }
 
 /**
