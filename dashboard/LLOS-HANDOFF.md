@@ -12,7 +12,8 @@ and manage the prospect pipeline from anywhere.
 
 - **Live URL:** https://dashboard-eight-sage-89.vercel.app — login code `0613` (env: `ACCESS_CODE`)
 - **Source:** `/mnt/d/LocalLaunch/dashboard` (git repo, root = `/mnt/d/LocalLaunch`)
-- **Data:** `dashboard/data/pipeline.json` (bundled at build time — NOT a live DB)
+- **Data:** `dashboard/data/pipeline.json` (bundled at build — NOT a live DB **until Phase 1**)
+- **Next build:** `PHASE-1-LIVE-DATA-PLANE.md` — Minimax (or any agent) must seed Blob from the **live 264** API before flipping reads. Do not start Phase 2 first.
 - **Deploy:** Vercel (prod alias above). `vercel deploy --prod` from the dashboard dir.
 
 ## Architecture (read before coding)

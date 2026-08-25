@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Local Launch OS (LLOS)
 
-## Getting Started
+Internal Next.js dashboard for Local Launch — pipeline, pitch/demo approvals, leads vs clients.
 
-First, run the development server:
+- **Live:** https://dashboard-eight-sage-89.vercel.app
+- **Code:** this folder (`/mnt/d/LocalLaunch/dashboard`)
+- **Handoff (architecture + gotchas):** [LLOS-HANDOFF.md](./LLOS-HANDOFF.md)
+
+## Next build (Minimax / any agent)
+
+**Do not start features until Phase 1 is done.**
+
+The UI is not a full OS yet. Company lists are a **snapshot baked in at deploy**. Writes go to Vercel Blob (or nowhere). Those two books have already drifted (264 live vs 51 on Blob).
+
+Read and follow, in order:
+
+1. **[PHASE-1-LIVE-DATA-PLANE.md](./PHASE-1-LIVE-DATA-PLANE.md)** — why Phase 1 matters, seed rules, file-by-file flips, acceptance curls. **Seed Blob only from the live 264-company API. Never from a 51-company local file.**
+2. Phase 2 (add-lead POST, kanban persist) is listed at the bottom of that spec. Out of scope until Phase 1 is green.
+
+## Local dev
 
 ```bash
+cd /mnt/d/LocalLaunch/dashboard
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`data/pipeline.json` is gitignored. `BLOB_READ_WRITE_TOKEN` and `ACCESS_CODE` live in `.env.local` (never commit).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cd /mnt/d/LocalLaunch/dashboard
+# confirm local companies === 264 before shipping
+python3 -c "import json;print(len(json.load(open('data/pipeline.json'))['companies']))"
+vercel deploy --prod
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `LLOS-HANDOFF.md` for Turbopack `fs` pitfalls and the demo-lane boundary (this repo is OS code only — no client demo sites).
