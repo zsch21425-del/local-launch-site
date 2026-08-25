@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Search } from "lucide-react";
 
 import { MotionBackground } from "@/components/motion-background";
 import { PriorityBadge } from "@/components/priority-badge";
@@ -212,6 +212,8 @@ export default function ApprovalsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [removedIds, setRemovedIds] = useState<Set<string>>(new Set());
+  const [query, setQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "pending-review" | "supervisor-approved" | "pending-supervisor-review" | "rejected">("all");
 
   const load = useCallback(async () => {
     try {
@@ -231,17 +233,32 @@ export default function ApprovalsPage() {
     load();
   }, [load]);
 
-  // Show pitches that need Zach's final review. Zach reviews items that are
-  // "pending" (fresh) or "supervisor-approved" (supervisor OK'd, awaiting Zach's
-  // final go) or "rejected" (can be re-marked for re-approval after the Closer revises).
-  // Exclude terminal states: zach-approved (done), sent (email sent), absent.
+  // Show pitches that need Zach's final review (see filter below for which statuses).
   const queue = companies.filter((c) => {
     const st = c.pitchDraft?.status;
     if (!st) return false;
     if (st === "zach-approved" || st === "sent") return false; // already decided/sent
     return c.stage === "pitch";
   });
-  const visible = queue.filter((c) => !removedIds.has(c.id));
+
+  const visible = queue
+    .filter((c) => !removedIds.has(c.id))
+    .filter((c) => (statusFilter === "all" ? true : c.pitchDraft?.status === statusFilter))
+    .filter((c) => {
+      if (!query.trim()) return true;
+      const q = query.toLowerCase();
+      return (
+        c.name.toLowerCase().includes(q) ||
+        (c.category ?? "").toLowerCase().includes(q) ||
+        (c.location ?? "").toLowerCase().includes(q)
+      );
+    });
+
+  const counts = queue.reduce<Record<string, number>>((acc, c) => {
+    const s = c.pitchDraft?.status ?? "other";
+    acc[s] = (acc[s] ?? 0) + 1;
+    return acc;
+  }, {});
 
   return (
     <>
@@ -291,6 +308,40 @@ export default function ApprovalsPage() {
                 {visible.length} pitch{visible.length !== 1 ? "es" : ""} waiting
                 for review
               </p>
+            </div>
+
+            {/* Search + status filter */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="relative flex-1">
+                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search by name, category, or location…"
+                  className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                />
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {([
+                  ["all", `All ${queue.length}`],
+                  ["pending-review", `Pending ${counts["pending-review"] ?? 0}`],
+                  ["supervisor-approved", `Sup. approved ${counts["supervisor-approved"] ?? 0}`],
+                  ["pending-supervisor-review", `Sup. review ${counts["pending-supervisor-review"] ?? 0}`],
+                  ["rejected", `Rejected ${counts["rejected"] ?? 0}`],
+                ] as const).map(([val, label]) => (
+                  <button
+                    key={val}
+                    onClick={() => setStatusFilter(val)}
+                    className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                      statusFilter === val
+                        ? "bg-emerald-600 text-white"
+                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {visible.map((company) => (

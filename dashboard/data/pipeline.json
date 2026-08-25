@@ -2892,7 +2892,7 @@
       "summary": "SECOND-PASS 2026-08-20: GBP NOT found this pass (prior pass confirmed 3 reviews \u2014 keep 3). No websites found.",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "low-medium",
+      "priority": "low",
       "playbook": [],
       "nextSteps": [
         "\u2705 Second-pass verified (2026-08-20) \u2014 no website; GBP 3 reviews (prior pass)",
@@ -3596,7 +3596,7 @@
       "gScore": 7,
       "pitchDraft": {
         "channel": "Phone (864) 356-2368",
-        "status": "pending supervisor review",
+        "status": "pending-supervisor-review",
         "confidence": null,
         "notes": "Tier A \u2014 no site, no GBP. Competitor Deck World 4.8\u2605. $300 one-time / $49-mo optional, one-time-only offered. Pitched 2026-08-11."
       }
@@ -3657,7 +3657,7 @@
       "gScore": 8,
       "pitchDraft": {
         "channel": "Phone (864) 593-2696",
-        "status": "pending supervisor review",
+        "status": "pending-supervisor-review",
         "confidence": null,
         "notes": "Tier A \u2014 no site, no GBP. Solo operator Gary Thomas; Nextdoor reputation. $300 one-time / $49-mo optional, one-time-only offered. Pitched 2026-08-11."
       }
@@ -3724,7 +3724,7 @@
       "gScore": 41,
       "pitchDraft": {
         "channel": "Phone (843) 330-9291 \u00b7 FB DM (creek.crew.2025)",
-        "status": "pending supervisor review",
+        "status": "pending-supervisor-review",
         "confidence": null,
         "notes": "Tier B \u2014 REPLACE Jobber subdomain (has 5.0\u2605 GBP). Pitch \"your site can't rank,\" never \"you need a website.\" $300 one-time / $49-mo optional. Pitched 2026-08-11."
       },
@@ -5260,7 +5260,7 @@
       "summary": "Aiken SC plumbing. GBP confirmed by Camoufox 2026-08-21: 8 reviews (previously not found across 2 passes). No own website (business.google.com = GBP itself). Tier A site-build lead.",
       "lastContact": "",
       "lastUpdated": "2026-08-21",
-      "priority": "low-medium",
+      "priority": "low",
       "playbook": [],
       "nextSteps": [
         "\u2705 Second-pass verified (2026-08-21) \u2014 GBP confirmed 8 reviews, no own website",
@@ -5527,7 +5527,7 @@
       "summary": "Des Moines IA concrete. GBP VERIFIED: 5 reviews. No website. Family business. Tier A.",
       "lastContact": "",
       "lastUpdated": "2026-08-14",
-      "priority": "low-medium",
+      "priority": "low",
       "playbook": [],
       "nextSteps": [
         "\u2705 Second-pass verified \u2014 Camoufox 2026-08-14",
@@ -7909,7 +7909,7 @@
       "summary": "\u2705 NO USABLE WEBSITE (greymoosewoodworking.com = GoDaddy WSB undeveloped shell, no content; flynnmaintenance*.com all HTTP 000)",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
@@ -8112,7 +8112,7 @@
       "summary": "\u2705 NO WEBSITE (name domain = HugeDomains for-sale lander, not theirs; all other perms 000)",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
@@ -8149,7 +8149,7 @@
       "summary": "\u2705 NO WEBSITE (all name-domain permutations HTTP 000)",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
@@ -8561,7 +8561,7 @@
       "summary": "\u2705 NO WEBSITE (all name perms HTTP 000)",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
@@ -8731,7 +8731,7 @@
       "summary": "\ud83d\udd34 BROKEN WEBSITE (jhalandclearing.com = Squarespace \"Website Expired\")",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "HIGH (broken-site pattern)",
+      "priority": "high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
@@ -8838,7 +8838,7 @@
       "summary": "\u2705 NO WEBSITE (name domain = HugeDomains for-sale lander, all other permutations HTTP 000)",
       "lastContact": "2026-08-23",
       "lastUpdated": "2026-08-23",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
       "seoScore": {
@@ -9045,7 +9045,7 @@
       "summary": "\u2705 NO WEBSITE (all name-domain permutations HTTP 000)",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
@@ -9113,7 +9113,7 @@
       "summary": "\u2705 NO WEBSITE (name-domain permutations HTTP 000; westfence.com = HugeDomains for-sale lander)",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
@@ -9181,7 +9181,7 @@
       "summary": "\u2705 NO WEBSITE (leesdecksandmore.com and all natural permutations HTTP 000)",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
@@ -9283,7 +9283,7 @@
       "summary": "\u2705 NO WEBSITE (all name perms HTTP 000)",
       "lastContact": "2026-08-23",
       "lastUpdated": "2026-08-23",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
       "seoScore": {
@@ -9496,7 +9496,7 @@
       "summary": "\u2705 NO WEBSITE (name-domain permutations HTTP 000; sterlinghomeservices.com + .llc belong to unrelated Dallas/MI companies)",
       "lastContact": "",
       "lastUpdated": "2026-08-20",
-      "priority": "MEDIUM-HIGH",
+      "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
         "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
