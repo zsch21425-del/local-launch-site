@@ -6,16 +6,13 @@ Internal Next.js dashboard for Local Launch — pipeline, pitch/demo approvals, 
 - **Code:** this folder (`/mnt/d/LocalLaunch/dashboard`)
 - **Handoff (architecture + gotchas):** [LLOS-HANDOFF.md](./LLOS-HANDOFF.md)
 
-## Next build (Minimax / any agent)
+## Next build (give this to the agent)
 
-**Do not start features until Phase 1 is done.**
+**Read [NEXT-TO-FINISH.md](./NEXT-TO-FINISH.md) first.** Phase 1 seed + Blob reads are already live (264 / 31 / 133). Do **not** re-seed.
 
-The UI is not a full OS yet. Company lists are a **snapshot baked in at deploy**. Writes go to Vercel Blob (or nowhere). Those two books have already drifted (264 live vs 51 on Blob).
+Remaining: prove a Blob write without a deploy, delete `/api/seed-blob`, then Phase 2 (add-lead POST + kanban persist).
 
-Read and follow, in order:
-
-1. **[PHASE-1-LIVE-DATA-PLANE.md](./PHASE-1-LIVE-DATA-PLANE.md)** — why Phase 1 matters, seed rules, file-by-file flips, acceptance curls. **Seed Blob only from the live 264-company API. Never from a 51-company local file.**
-2. Phase 2 (add-lead POST, kanban persist) is listed at the bottom of that spec. Out of scope until Phase 1 is green.
+Original Phase 1 brief (history only): [PHASE-1-LIVE-DATA-PLANE.md](./PHASE-1-LIVE-DATA-PLANE.md)
 
 ## Local dev
 
@@ -31,8 +28,7 @@ npm run dev
 
 ```bash
 cd /mnt/d/LocalLaunch/dashboard
-# confirm local companies === 264 before shipping
-python3 -c "import json;print(len(json.load(open('data/pipeline.json'))['companies']))"
+# live GET must still be 264 before shipping
 vercel deploy --prod
 ```
 
