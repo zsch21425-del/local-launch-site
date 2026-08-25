@@ -54,6 +54,13 @@ and manage the prospect pipeline from anywhere.
 **Login:** `ACCESS_CODE` env (short code, currently `0613`) checked in `middleware.ts` +
 `src/app/api/auth/login/route.ts`. `DASHBOARD_TOKEN` is a fallback.
 
+## OS surfaces (2026-08-24 evening)
+- Home leads with a **Work inbox** (`WorkInboxPanel`): pitch count, demo count, next high-priority leads, stale follow-ups (≥14d contacted).
+- **Leads** = early funnel (`prospect`/`audit`/`pitch`/`contacted`/`response`). **Clients** = `sale`/`build-launch` only. Do not dump all 264 on both pages.
+- Header + sidebar **Find a company…** (`GlobalSearch`) — empty result means “not in the dashboard.”
+- Login chrome is hidden (`AppChrome`). Legacy `/company/[id]` **307s to `/client/[id]`**.
+- Approvals badge uses `pendingApprovalCount()` (all open pitch statuses, not the dead literal `"pending"`).
+
 ## Recent changes (2026-08-24)
 
 1. **Demos tab was empty** — root cause: no `demoUrl` in pipeline. Linked 31 companies to their
