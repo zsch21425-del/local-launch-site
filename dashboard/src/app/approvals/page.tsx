@@ -286,18 +286,6 @@ export default function ApprovalsPage() {
           <div className={`${glassCard} py-16 text-center`}>
             <p className="text-sm text-slate-400">Loading approvals…</p>
           </div>
-        ) : visible.length === 0 ? (
-          <div className={`${glassCard} py-16 text-center`}>
-            <p className="text-lg font-medium text-slate-600">
-              All caught up! No pitches waiting for approval.
-            </p>
-            <Link
-              href="/"
-              className="mt-2 inline-block text-sm text-emerald-600 hover:underline"
-            >
-              Back to pipeline →
-            </Link>
-          </div>
         ) : (
           <>
             <div>
@@ -310,7 +298,7 @@ export default function ApprovalsPage() {
               </p>
             </div>
 
-            {/* Search + status filter */}
+            {/* Search + status filter — stay visible even when the result is empty */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="relative flex-1">
                 <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
@@ -344,13 +332,42 @@ export default function ApprovalsPage() {
               </div>
             </div>
 
-            {visible.map((company) => (
-              <ApprovalCard
-                key={company.id}
-                company={company}
-                onDone={(id) => setRemovedIds((prev) => new Set(prev).add(id))}
-              />
-            ))}
+            {visible.length === 0 ? (
+              <div className={`${glassCard} py-16 text-center`}>
+                <p className="text-lg font-medium text-slate-600">
+                  {queue.length === 0
+                    ? "All caught up! No pitches waiting for approval."
+                    : "No pitches match that search or filter."}
+                </p>
+                {queue.length > 0 ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setQuery("");
+                      setStatusFilter("all");
+                    }}
+                    className="mt-2 text-sm text-emerald-600 hover:underline"
+                  >
+                    Clear filters
+                  </button>
+                ) : (
+                  <Link
+                    href="/"
+                    className="mt-2 inline-block text-sm text-emerald-600 hover:underline"
+                  >
+                    Back to pipeline →
+                  </Link>
+                )}
+              </div>
+            ) : (
+              visible.map((company) => (
+                <ApprovalCard
+                  key={company.id}
+                  company={company}
+                  onDone={(id) => setRemovedIds((prev) => new Set(prev).add(id))}
+                />
+              ))
+            )}
           </>
         )}
       </div>
@@ -375,7 +392,7 @@ function ApprovalCard({
         <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
           <div>
             <Link
-              href={`/company/${company.id}`}
+              href={`/client/${company.id}`}
               className="text-base font-semibold text-slate-900 hover:text-emerald-600 transition-colors"
             >
               {company.name}

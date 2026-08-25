@@ -108,7 +108,10 @@ export default function ReportsPage() {
             </p>
 
             <div className="mt-1 flex flex-col gap-2.5 border-t border-slate-100 pt-3">
-              {companies.map((company) => {
+              {companies
+                .filter((c) => c.playbook.length > 0)
+                .slice(0, 12)
+                .map((company) => {
                 const total = company.playbook.length;
                 const done = company.playbook.filter((item) => item.done).length;
                 const percent = total === 0 ? 0 : Math.round((done / total) * 100);
@@ -140,7 +143,7 @@ export default function ReportsPage() {
               <p className="text-sm text-slate-500">No dated activity yet.</p>
             ) : (
               <ol className="flex flex-col gap-1 border-l border-slate-200 pl-4">
-                {timeline.map((company) => {
+                {timeline.slice(0, 12).map((company) => {
                   const theme = stageTheme(
                     stages.find((stage) => stage.id === company.stage)?.color ?? "slate",
                   );

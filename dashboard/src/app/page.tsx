@@ -6,6 +6,7 @@ import { PipelineKanban } from "@/components/pipeline-kanban";
 import { RevenueTracker } from "@/components/revenue-tracker";
 import { StatsBar } from "@/components/stats-bar";
 import { TodaysTasks } from "@/components/todays-tasks";
+import { WorkInboxPanel } from "@/components/work-inbox";
 import {
   getAgency,
   getCompanies,
@@ -13,6 +14,7 @@ import {
   getRevenue,
   getStages,
   getStats,
+  getWorkInbox,
   type Company,
   type StageId,
 } from "@/lib/data";
@@ -43,6 +45,7 @@ export default function HomePage() {
   const stats = getStats(companies);
   const revenue = getRevenue(companies);
   const tasks = getOpenTasks(companies);
+  const inbox = getWorkInbox(companies);
 
   return (
     <>
@@ -51,15 +54,17 @@ export default function HomePage() {
         {/* Header */}
         <section className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            {agency.name}
+            {agency.name} OS
           </h1>
           <p className="max-w-2xl text-sm text-slate-500 sm:text-base">
-            {agency.tagline}
+            What needs you today, then the rest of the pipeline.
           </p>
         </section>
 
         {/* Stats Bar */}
         <StatsBar stats={stats} />
+
+        <WorkInboxPanel inbox={inbox} />
 
         {/* Revenue Tracker */}
         <RevenueTracker revenue={revenue} companies={companies} />

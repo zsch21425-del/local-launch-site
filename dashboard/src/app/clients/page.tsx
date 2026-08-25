@@ -6,11 +6,13 @@ import { Search } from "lucide-react";
 import { AddLeadDialog } from "@/components/add-lead-dialog";
 import { MotionBackground } from "@/components/motion-background";
 import { StageFilter } from "@/components/stage-filter";
-import { getCompanies, getStages } from "@/lib/data";
+import { getCompanies, getStages, isClient } from "@/lib/data";
 
 export default function ClientsPage() {
-  const allCompanies = getCompanies();
-  const stages = getStages();
+  const allCompanies = getCompanies().filter(isClient);
+  const stages = getStages().filter((s) =>
+    allCompanies.some((c) => c.stage === s.id),
+  );
   const [query, setQuery] = useState("");
 
   const companies = useMemo(() => {
@@ -34,33 +36,39 @@ export default function ClientsPage() {
               Clients
             </h1>
             <p className="mt-1 text-sm text-slate-500">
-              Every company in the book of business, filterable by stage.
+              Won and in-build companies only. Leads live on the Leads tab.
             </p>
           </div>
-          <AddLeadDialog stages={stages} />
+          <AddLeadDialog stages={getStages()} />
         </div>
 
-        {/* Search — quickly check if a company is already in the dashboard */}
         <div className="relative max-w-md">
           <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by name, category, or location…"
+            placeholder="Search a client by name, category, or location…"
             className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
           />
         </div>
 
-        {query.trim() && companies.length === 0 ? (
+        {allCompanies.length === 0 ? (
           <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center">
-            <p className="font-medium text-slate-700">Not in the dashboard</p>
+            <p className="font-medium text-slate-700">No won / in-build clients yet</p>
             <p className="mt-1 text-sm text-slate-500">
-              No company matches &ldquo;{query}&rdquo;. Use &ldquo;Add lead&rdquo; above to
-              bring them in.
+              Prospects stay on Leads until they close. Check the pipeline or Approvals.
+            </p>
+          </div>
+        ) : query.trim() && companies.length === 0 ? (
+          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center">
+            <p className="font-medium text-slate-700">Not a current client</p>
+            <p className="mt-1 text-sm text-slate-500">
+              No client matches &ldquo;{query}&rdquo;. Try the sidebar search to check
+              Leads, or add them from Leads.
             </p>
           </div>
         ) : (
-          <StageFilter companies={companies} stages={stages} />
+          <StageFilter companies={companies} stages={stages.length ? stages : getStages()} />
         )}
       </div>
     </>

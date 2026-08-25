@@ -49,9 +49,9 @@ export function StatsBar({
   const items: StatDef[] = [
     {
       key: "total",
-      label: "Total clients",
+      label: "In pipeline",
       value: String(stats.total),
-      hint: "in the pipeline",
+      hint: "leads + clients",
       icon: Users,
       accent: "bg-slate-500/10 text-slate-700",
       scrollTo: "pipeline",

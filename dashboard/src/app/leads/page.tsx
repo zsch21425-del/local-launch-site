@@ -1,10 +1,10 @@
 import { AddLeadDialog } from "@/components/add-lead-dialog";
 import { LeadsTable, type LeadRow } from "@/components/leads-table";
 import { MotionBackground } from "@/components/motion-background";
-import { daysSince, getCompanies, getStages } from "@/lib/data";
+import { daysSince, getCompanies, getStages, isLead } from "@/lib/data";
 
 export default function LeadsPage() {
-  const companies = getCompanies();
+  const companies = getCompanies().filter(isLead);
   const stages = getStages();
 
   const rows: LeadRow[] = companies.map((company) => ({
@@ -22,7 +22,8 @@ export default function LeadsPage() {
               Leads
             </h1>
             <p className="mt-1 text-sm text-slate-500">
-              Every prospected and active company in the pipeline.
+              Early-funnel companies — prospect through first response. {rows.length}{" "}
+              in this list.
             </p>
           </div>
           <AddLeadDialog stages={stages} />

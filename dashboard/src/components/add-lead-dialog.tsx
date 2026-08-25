@@ -33,7 +33,7 @@ export function AddLeadDialog({ stages }: { stages: Stage[] }) {
   const [phone, setPhone] = React.useState("");
   const [website, setWebsite] = React.useState("");
   const [priority, setPriority] = React.useState("medium");
-  const [stage, setStage] = React.useState(stages[0]?.id ?? "prospected");
+  const [stage, setStage] = React.useState(stages.find((s) => s.id === "prospect")?.id ?? stages[0]?.id ?? "prospect");
   const [summary, setSummary] = React.useState("");
 
   const slug =
@@ -59,7 +59,7 @@ export function AddLeadDialog({ stages }: { stages: Stage[] }) {
         {
           id: `${slug}-contact`,
           label: "Make initial contact",
-          stage: "prospected",
+          stage: "prospect",
           done: false,
           detail: phone ? `Call ${phone}.` : "Find a phone number and call.",
         },

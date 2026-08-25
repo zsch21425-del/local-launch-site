@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, Filter, Inbox } from "lucide-react";
+import { ArrowUpRight, Filter, Inbox, Search } from "lucide-react";
 
 import { PriorityBadge } from "@/components/priority-badge";
 import { StagePill } from "@/components/stage-pill";
@@ -25,6 +25,7 @@ export interface LeadRow {
 export function LeadsTable({ rows }: { rows: LeadRow[] }) {
   const [priority, setPriority] = useState(ALL);
   const [category, setCategory] = useState(ALL);
+  const [query, setQuery] = useState("");
 
   const priorities = useMemo(
     () => Array.from(new Set(rows.map((row) => row.company.priority))),
@@ -35,15 +36,33 @@ export function LeadsTable({ rows }: { rows: LeadRow[] }) {
     [rows],
   );
 
-  const filtered = rows.filter(
-    (row) =>
-      (priority === ALL || row.company.priority === priority) &&
-      (category === ALL || row.company.category === category),
-  );
+  const filtered = rows.filter((row) => {
+    if (priority !== ALL && row.company.priority !== priority) return false;
+    if (category !== ALL && row.company.category !== category) return false;
+    if (query.trim()) {
+      const q = query.toLowerCase();
+      const c = row.company;
+      const hay = [c.name, c.category, c.location, c.phone, c.website]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
 
   return (
     <div className={cn(glass, "flex flex-col gap-4 p-5")}>
       <div className="flex flex-wrap items-center gap-2">
+        <div className="relative min-w-[220px] flex-1">
+          <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-slate-400" />
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search name, phone, city…"
+            className="w-full rounded-lg border border-slate-300 bg-white py-1.5 pl-8 pr-2 text-xs text-slate-700 placeholder:text-slate-400 focus:border-emerald-500/40 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+          />
+        </div>
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500">
           <Filter className="size-3.5" aria-hidden />
           Filter
@@ -82,7 +101,11 @@ export function LeadsTable({ rows }: { rows: LeadRow[] }) {
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-slate-300 py-12 text-center">
           <Inbox className="size-5 text-slate-300" aria-hidden />
-          <p className="text-sm text-slate-500">No leads match these filters.</p>
+          <p className="text-sm text-slate-500">
+            {query.trim()
+              ? `No lead matches “${query}”. They’re not in this list — try the sidebar search or add them.`
+              : "No leads match these filters."}
+          </p>
         </div>
       ) : (
         <div className="-mx-5 overflow-x-auto px-5">

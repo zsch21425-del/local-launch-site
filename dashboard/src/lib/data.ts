@@ -78,7 +78,16 @@ export interface Company {
     subject?: string;
     body: string;
     channel: string;
-    status: "pending" | "supervisor-approved" | "zach-approved" | "rejected" | "conditional" | "sent";
+    status:
+      | "pending"
+      | "pending-review"
+      | "pending-supervisor-review"
+      | "supervisor-approved"
+      | "zach-approved"
+      | "rejected"
+      | "conditional"
+      | "sent"
+      | "rework";
     confidence: number;
     notes?: string;
     reviewFeedback?: {
@@ -226,6 +235,109 @@ export function getDemoQueue(companies: Company[] = data.companies): DemoItem[] 
 /** Count of demos awaiting Zach's approval — used for the nav badge. */
 export function pendingDemoCount(companies: Company[] = data.companies): number {
   return getDemoQueue(companies).length;
+}
+
+/* ----------------------------------------------------------- work inbox --- */
+
+/** Early-funnel stages = leads. Later stages = booked / in-build clients. */
+export const LEAD_STAGES: StageId[] = [
+  "prospect",
+  "audit",
+  "pitch",
+  "contacted",
+  "response",
+];
+export const CLIENT_STAGES: StageId[] = ["sale", "build-launch"];
+
+export function isLead(company: Company): boolean {
+  return LEAD_STAGES.includes(company.stage);
+}
+export function isClient(company: Company): boolean {
+  return CLIENT_STAGES.includes(company.stage);
+}
+
+export function isOpenPitchStatus(status?: string): boolean {
+  if (!status) return false;
+  return status !== "zach-approved" && status !== "sent";
+}
+
+/** Same filter the Approvals page uses — keep these in lockstep. */
+export function getApprovalQueue(
+  companies: Company[] = data.companies,
+): Company[] {
+  return companies.filter(
+    (c) => c.stage === "pitch" && isOpenPitchStatus(c.pitchDraft?.status),
+  );
+}
+
+export function pendingApprovalCount(
+  companies: Company[] = data.companies,
+): number {
+  return getApprovalQueue(companies).length;
+}
+
+export type WorkKind = "pitch" | "demo" | "prospect" | "follow-up" | "build";
+
+export interface WorkItem {
+  id: string;
+  kind: WorkKind;
+  title: string;
+  detail: string;
+  href: string;
+  priority: string;
+  companyId: string;
+  companyName: string;
+}
+
+export interface WorkInbox {
+  pitches: number;
+  demos: number;
+  highLeads: WorkItem[];
+  stale: WorkItem[];
+}
+
+/** Command-center inbox: counts of work waiting on Zach + next leads to touch. */
+export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
+  const pitches = getApprovalQueue(companies).length;
+  const demos = getDemoQueue(companies).length;
+
+  const highLeads: WorkItem[] = companies
+    .filter(
+      (c) =>
+        (c.stage === "prospect" || c.stage === "audit") &&
+        (c.priority === "high" || c.priority === "medium-high"),
+    )
+    .sort((a, b) => priorityWeight(b.priority) - priorityWeight(a.priority))
+    .slice(0, 8)
+    .map((c) => ({
+      id: `lead-${c.id}`,
+      kind: "prospect" as const,
+      title: c.stage === "audit" ? "Finish audit" : "Qualify / first contact",
+      detail: [c.category, c.location].filter(Boolean).join(" · "),
+      href: `/client/${c.id}`,
+      priority: c.priority,
+      companyId: c.id,
+      companyName: c.name,
+    }));
+
+  const stale: WorkItem[] = companies
+    .filter((c) => c.stage === "contacted")
+    .map((c) => ({ c, days: daysSince(c.lastContact ?? c.lastUpdated) }))
+    .filter((x) => x.days !== null && x.days >= 14)
+    .sort((a, b) => (b.days ?? 0) - (a.days ?? 0))
+    .slice(0, 6)
+    .map(({ c, days }) => ({
+      id: `stale-${c.id}`,
+      kind: "follow-up" as const,
+      title: `Follow up · ${days}d quiet`,
+      detail: [c.category, c.location].filter(Boolean).join(" · "),
+      href: `/client/${c.id}`,
+      priority: c.priority,
+      companyId: c.id,
+      companyName: c.name,
+    }));
+
+  return { pitches, demos, highLeads, stale };
 }
 
 export function getStage(id: StageId): Stage | undefined {
