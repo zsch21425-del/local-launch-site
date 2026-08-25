@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odinson Electric | Licensed Electrician Simpsonville SC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --copper: #f59e0b;
+      --copper-dark: #d97706;
+      --electric-blue: #38bdf8;
+      --navy: #0a1628;
+      --charcoal: #1a2332;
+      --dark-glass: rgba(24, 32, 42, 0.84);
+      --light-text: #f0f3f7;
+      --text-secondary: #b4bcc7;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--navy);
+      color: var(--light-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Video Hero */
+    .hero-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.86) saturate(1.08);
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      background: none;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 22, 40, 0.8);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(90deg, var(--electric-blue), var(--copper));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .trust-item .star {
+      color: #fbbf24;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .cta-btn {
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cta-primary {
+      background: linear-gradient(135deg, var(--copper), var(--copper-dark));
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-primary::before {
+      content: '';
+      position: absolute;
+      top: var(--my, 50%);
+      left: var(--mx, 50%);
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-primary:hover::before {
+      opacity: 1;
+    }
+
+    .cta-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(245, 158, 11, 0.35);
+    }
+
+    .cta-secondary {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--electric-blue);
+      border: 2px solid var(--electric-blue);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-secondary::before {
+      content: '';
+      position: absolute;
+      top: var(--my, 50%);
+      left: var(--mx, 50%);
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.4), transparent);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-secondary:hover::before {
+      opacity: 1;
+    }
+
+    .cta-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 36px rgba(56, 189, 248, 0.25);
+    }
+
+    /* Bento Services Grid */
+    .services {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(180deg, rgba(10, 22, 40, 0.95) 0%, rgba(26, 35, 50, 0.98) 100%);
+      padding: 6rem 2rem;
+    }
+
+    .services-container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .services h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 4rem;
+      text-align: center;
+      color: var(--light-text);
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      grid-auto-flow: dense;
+    }
+
+    .service-tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      min-height: 250px;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(245, 158, 11, 0.1));
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      transition: all 0.3s ease;
+    }
+
+    .service-tile:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+      min-height: 520px;
+    }
+
+    .service-tile:nth-child(n+2) {
+      grid-column: span 1;
+      grid-row: span 1;
+      min-height: 250px;
+    }
+
+    .service-tile::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--tile-bg);
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      filter: brightness(0.9);
+    }
+
+    .service-tile::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(56, 189, 248, 0.3) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .service-tile:hover::after {
+        opacity: 1;
+      }
+    }
+
+    .service-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(10, 22, 40, 0.95) 100%);
+      z-index: 1;
+    }
+
+    .service-content {
+      position: relative;
+      z-index: 3;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    .service-tile:nth-child(1) .service-content {
+      padding: 3rem;
+    }
+
+    .service-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--light-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-tile:nth-child(1) .service-title {
+      font-size: 2rem;
+    }
+
+    .service-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* About Section */
+    .about {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 2rem;
+      background: rgba(10, 22, 40, 0.7);
+      border-top: 1px solid rgba(56, 189, 248, 0.1);
+    }
+
+    .about-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--light-text);
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .discount-badge {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(56, 189, 248, 0.15));
+      border: 1px solid var(--copper);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .discount-title {
+      font-weight: 700;
+      color: var(--copper);
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .discount-list {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .about-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      aspect-ratio: 4/5;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Gallery */
+    .gallery {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 2rem;
+      background: rgba(10, 22, 40, 0.5);
+      border-top: 1px solid rgba(56, 189, 248, 0.1);
+    }
+
+    .gallery-container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .gallery h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: var(--light-text);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 4/3;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+    }
+
+    /* Testimonials */
+    .testimonials {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 2rem;
+      background: linear-gradient(180deg, rgba(10, 22, 40, 0.6) 0%, rgba(26, 35, 50, 0.8) 100%);
+      border-top: 1px solid rgba(56, 189, 248, 0.1);
+    }
+
+    .testimonials-container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .testimonials h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: var(--light-text);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: var(--my, 50%);
+      left: var(--mx, 50%);
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.2), transparent);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .testimonial-card:hover::before {
+        opacity: 1;
+      }
+    }
+
+    .testimonial-stars {
+      color: #fbbf24;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: var(--light-text);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .testimonial-meta {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* Service Area */
+    .service-area {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 2rem;
+      background: rgba(10, 22, 40, 0.7);
+      border-top: 1px solid rgba(56, 189, 248, 0.1);
+      text-align: center;
+    }
+
+    .service-area h4 {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-area p {
+      font-size: 1.1rem;
+      color: var(--light-text);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(180deg, rgba(10, 22, 40, 0.9) 0%, rgba(10, 22, 40, 0.95) 100%);
+      border-top: 1px solid rgba(56, 189, 248, 0.1);
+      padding: 3rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--light-text);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .footer-section p, .footer-section a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--copper);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo img {
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(56, 189, 248, 0.1);
+      margin: 2rem 0;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    .footer-bottom a {
+      color: var(--copper);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--copper-dark);
+    }
+
+    /* Sparks Cursor Trail Canvas */
+    #sparks-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0.5rem 0;
+      }
+
+      .nav-logo {
+        height: 32px;
+      }
+
+      .nav-cta {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+      }
+
+      .hero {
+        min-height: 80vh;
+        padding: 2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero-trust {
+        gap: 1rem;
+        font-size: 0.85rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+      }
+
+      .cta-btn {
+        width: 100%;
+      }
+
+      .services {
+        padding: 3rem 1rem;
+      }
+
+      .services h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .service-tile {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        min-height: 280px !important;
+      }
+
+      .service-title {
+        font-size: 1.25rem;
+      }
+
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about-image {
+        aspect-ratio: auto;
+        max-height: 400px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .hero {
+        min-height: 70vh;
+        padding: 1.5rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-trust {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .cta-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .services h2 {
+        font-size: 1.25rem;
+      }
+
+      .service-content {
+        padding: 1.5rem;
+      }
+
+      .service-title {
+        font-size: 1rem;
+      }
+
+      .service-desc {
+        font-size: 0.85rem;
+      }
+
+      .about {
+        padding: 3rem 1rem;
+      }
+
+      .about-content h3 {
+        font-size: 1.25rem;
+      }
+
+      .about-content p {
+        font-size: 0.9rem;
+      }
+
+      .discount-badge {
+        padding: 1rem;
+      }
+
+      .gallery {
+        padding: 3rem 1rem;
+      }
+
+      .gallery h3 {
+        font-size: 1.25rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials {
+        padding: 3rem 1rem;
+      }
+
+      .testimonials h3 {
+        font-size: 1.25rem;
+      }
+
+      footer {
+        padding: 2rem 1rem;
+      }
+
+      .footer-container {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video class="hero-bg" autoplay muted loop playsinline poster="od-wiring-poster.jpg">
+    <source src="od-wiring.mp4" type="video/mp4">
+  </video>
+
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="odinson-logo.png" alt="Odinson Electric">
+      </div>
+      <a href="tel:+18647058494" class="nav-cta">☎ Free Estimate</a>
+    </div>
+  </nav>
+
+  <div class="hero hero-overlay">
+    <div class="hero-content">
+      <h1><span class="gradient">Real Power.</span> Handled Safely.</h1>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <span class="star">★★★★★</span>
+          <span>110 Reviews</span>
+        </div>
+        <div class="trust-item">BBB A- Rated</div>
+        <div class="trust-item">3-Year Guarantee</div>
+      </div>
+      <div class="hero-ctas">
+        <a href="tel:+18647058494" class="cta-btn cta-primary">Call Now</a>
+        <a href="#services" class="cta-btn cta-secondary">Our Services</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="services" id="services">
+    <div class="services-container">
+      <h2>What We Do</h2>
+      <div class="bento-grid">
+        <div class="service-tile" style="--tile-bg: url('svc-panel.jpg');">
+          <div class="service-scrim"></div>
+          <div class="service-content">
+            <h3 class="service-title">Panel Upgrades</h3>
+            <p class="service-desc">Expert electrical panel upgrades & code-compliant installations for residential & commercial properties.</p>
+          </div>
+        </div>
+        <div class="service-tile" style="--tile-bg: url('svc-ev.jpg');">
+          <div class="service-scrim"></div>
+          <div class="service-content">
+            <h3 class="service-title">EV Charger Installation</h3>
+          </div>
+        </div>
+        <div class="service-tile" style="--tile-bg: url('svc-wiring.jpg');">
+          <div class="service-scrim"></div>
+          <div class="service-content">
+            <h3 class="service-title">Rewiring & New Wiring</h3>
+          </div>
+        </div>
+        <div class="service-tile" style="--tile-bg: url('svc-lighting.jpg');">
+          <div class="service-scrim"></div>
+          <div class="service-content">
+            <h3 class="service-title">TV Mounting</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-container">
+      <div class="about-content">
+        <h3>Family-Owned &amp; Licensed</h3>
+        <p>Odinson Electric is owned and operated by Master Electrician TJ Maddock and his wife Blake. With over a decade of experience serving Simpsonville and the Upstate, we bring professionalism, transparency, and craftsmanship to every job—from residential upgrades to complex commercial installations.</p>
+        <p>We stand behind our work with a 3-year workmanship guarantee and maintain our BBB A- rating through honest communication and exceptional service.</p>
+        <div class="discount-badge">
+          <div class="discount-title">Military &amp; First Responder Discount</div>
+          <div class="discount-list">
+            <div>✓ Military Personnel</div>
+            <div>✓ Law Enforcement</div>
+            <div>✓ Fire &amp; EMS</div>
+            <div>✓ Healthcare Workers</div>
+            <div>✓ Teachers</div>
+            <div>✓ Seniors 60+</div>
+            <strong style="color: var(--copper);">Receive 10% OFF</strong>
+          </div>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="real-team-20250301.jpg" alt="TJ and Blake Maddock">
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery-container">
+      <h3>Our Work</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="work-a.jpg" alt="Completed electrical project">
+          <div class="gallery-overlay">
+            <span style="color: white; font-weight: 600;">Professional Installation</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="work-b.jpg" alt="Electrical work in progress">
+          <div class="gallery-overlay">
+            <span style="color: white; font-weight: 600;">Quality Craftsmanship</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="work-c.jpg" alt="Completed electrical project">
+          <div class="gallery-overlay">
+            <span style="color: white; font-weight: 600;">Code Compliant</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="work-d.jpg" alt="Electrical installation">
+          <div class="gallery-overlay">
+            <span style="color: white; font-weight: 600;">Trusted Local Experts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="testimonials-container">
+      <h3>What Customers Say</h3>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"TJ and his team completed our panel upgrade with zero disruption and exceptional professionalism. Highly recommend Odinson Electric."</p>
+          <div class="testimonial-meta">Based on 110+ verified 5.0★ Google reviews</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Our EV charger installation was seamless. Great communication, fair pricing, and they cleaned up after themselves. True professionals."</p>
+          <div class="testimonial-meta">Based on 110+ verified 5.0★ Google reviews</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-area">
+    <h4>Service Area</h4>
+    <p>Simpsonville &amp; Upstate South Carolina</p>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Odinson Electric</h4>
+        <p>Licensed residential &amp; commercial electrician serving Simpsonville &amp; Upstate SC.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="#services">Our Services</a><br>
+        <a href="tel:+18647058494">Call Us</a><br>
+        <a href="mailto:office@oellcsc.com">Email</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p><strong>Phone:</strong> <a href="tel:+18647058494">(864) 705-8494</a></p>
+        <p><strong>Email:</strong> <a href="mailto:office@oellcsc.com">office@oellcsc.com</a></p>
+        <p><strong>Service Area:</strong> Simpsonville &amp; Upstate SC</p>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p>Powered by <a href="https://locallaunchupstate.com" target="_blank">Local Launch Upstate</a> — <a href="tel:+15033585860">(503) 358-5860</a> — <a href="mailto:locallaunchupstate@gmail.com">locallaunchupstate@gmail.com</a></p>
+      <p style="margin-top: 0.5rem;">&copy; 2025 Odinson Electric LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <canvas id="sparks-canvas"></canvas>
+
+  <script>
+    // Mouse tracking for glow cards
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+
+      document.documentElement.style.setProperty('--mx', `${x}px`);
+      document.documentElement.style.setProperty('--my', `${y}px`);
+
+      // Update sparkles
+      if (window.particleSystem) {
+        window.particleSystem.addSpark(x, y);
+      }
+    });
+
+    // Sparks cursor trail
+    const canvas = document.getElementById('sparks-canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    class ParticleSystem {
+      constructor() {
+        this.particles = [];
+      }
+
+      addSpark(x, y) {
+        if (prefersReducedMotion) return;
+
+        const sparkCount = 3;
+        for (let i = 0; i < sparkCount; i++) {
+          this.particles.push({
+            x: x + (Math.random() - 0.5) * 20,
+            y: y + (Math.random() - 0.5) * 20,
+            vx: (Math.random() - 0.5) * 4,
+            vy: (Math.random() - 0.5) * 4 - 2,
+            life: 1,
+            size: Math.random() * 2 + 1
+          });
+        }
+      }
+
+      update() {
+        this.particles = this.particles.filter(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.15;
+          p.life -= 0.015;
+          return p.life > 0;
+        });
+      }
+
+      draw() {
+        this.particles.forEach(p => {
+          ctx.fillStyle = `rgba(56, 189, 248, ${p.life * 0.8})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+    }
+
+    window.particleSystem = new ParticleSystem();
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      window.particleSystem.update();
+      window.particleSystem.draw();
+      requestAnimationFrame(animate);
+    }
+
+    if (!prefersReducedMotion) {
+      animate();
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Smooth scroll behavior
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

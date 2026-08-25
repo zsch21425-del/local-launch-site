@@ -20,7 +20,7 @@ interface PitchReviewProps {
 
 export function PitchReview({ companyId, companyName, pitch }: PitchReviewProps) {
   const [state, setState] = useState<"reviewing" | "approving" | "denying" | "approved" | "denied">(
-    pitch.status === "approved" ? "approved" : pitch.status === "denied" ? "denied" : "reviewing"
+    pitch.status === "supervisor-approved" || pitch.status === "zach-approved" ? "approved" : pitch.status === "rejected" ? "denied" : "reviewing"
   );
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);

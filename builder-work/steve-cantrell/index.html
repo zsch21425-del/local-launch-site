@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steve Cantrell Tree Services — Belton, SC</title>
+<meta name="description" content="Steve Cantrell Tree Services — family-owned tree removal, trimming, stump grinding &amp; cleanup serving Belton, Anderson &amp; the Upstate SC area incl. Greenville/Spartanburg since 1999. Licensed &amp; insured, 100-ft bucket truck. (864) 314-2120">
+<meta property="og:title" content="Steve Cantrell Tree Services — Belton, SC">
+<meta property="og:description" content="Steve Cantrell Tree Services — family-owned tree removal, trimming, stump grinding &amp; cleanup serving Belton, Anderson &amp; the Upstate SC area incl. Greenville/Spartanburg since 1999. Licensed &amp; insured, 100-ft bucket truck. (864) 314-2120">
+<meta property="og:image" content="https://steve-cantrell-tree-demo.vercel.app/hero-poster.jpg">
+<meta property="og:url" content="https://steve-cantrell-tree-demo.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  /* Steve Cantrell Tree Services — Gallery-Led · tone: premium-natural · anchor hue: 140 (forest green)
+   * Rules: tokenized colors (zero raw hex outside :root), overflow-x:clip, roman headers,
+   * real photos only (client's own work shots), real reviews only — never fabricated. */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    /* Steve Cantrell Tree Services brand — forest green tree-service palette, grey neutrals */
+    --brand: #1E5631;        /* primary forest green */
+    --brand-dark: #10331F;   /* darker shade for nav/footer */
+    --brand-pale: #E3F0E6;   /* light tint for icon chips */
+    --accent: #7CB342;       /* lime-green accent */
+    --accent-light: #AED581;
+    --paper: #FAF7F2;        /* page background */
+    --text: #333;
+    --text-muted: #777;
+    --text-light: #999;
+    --white: #FFFFFF;
+    --border: #e8e4de;
+  }
+  html { overflow-x: clip; }
+  body { overflow-x: clip; font-family: 'Inter', -apple-system, sans-serif; background: var(--paper); color: var(--text); line-height: 1.7; }
+  .font-heading { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(16,51,31,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--white); font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; min-width: 0; }
+  .nav-brand i { font-size: 1.5rem; color: var(--accent-light); flex-shrink: 0; }
+  .nav-brand span { color: var(--accent-light); }
+  .nav-cta { background: var(--accent); color: var(--white); font-weight: 700; font-size: 0.85rem; padding: 0.55rem 1.3rem; border-radius: 999px; text-decoration: none; transition: all 0.25s; white-space: nowrap; flex-shrink: 0; }
+  .nav-cta:hover { background: var(--accent-light); transform: scale(1.04); }
+
+  /* ─── HERO ─── */
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 7rem 1.5rem 4rem; overflow: hidden; background: var(--brand-dark) url('hero-poster.jpg') center/cover no-repeat; }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.92) saturate(1.08); transform: scale(1.06); transition: transform 12s ease; }
+  .hero:hover .hero-bg { transform: scale(1.0); }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,51,31,0.18) 0%, rgba(16,51,31,0.5) 100%); }
+  .hero-content { position: relative; z-index: 3; max-width: 780px; }
+  @media (min-width: 641px) {
+    .hero-content { background: radial-gradient(ellipse 65% 62% at 50% 48%, rgba(16,51,31,0.42) 0%, rgba(16,51,31,0.22) 45%, transparent 75%); padding: 2.5rem 2rem; border-radius: 24px; }
+  }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 999px; padding: 0.45rem 1.4rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.5rem; backdrop-filter: blur(4px); text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8); white-space: normal; line-height: 1.3; text-align: center; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.2rem; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8); }
+  .hero h1 .accent { color: #ffffff; text-shadow: 0 2px 14px rgba(0,0,0,0.95), 0 0 6px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,0.9); }
+  .hero .subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.95); font-weight: 400; max-width: 620px; margin: 0 auto 1.8rem; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8); }
+  .hero-proof { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem; color: rgba(255,255,255,0.95); font-size: 0.85rem; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8); }
+  .hero-proof .star { color: var(--accent-light); }
+  .hero-proof i { color: #ffffff; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8); }
+  .hero-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-phone { background: var(--accent); color: var(--white); font-weight: 700; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; box-shadow: 0 6px 24px rgba(124,179,66,0.35); }
+  .btn-phone:hover { background: var(--accent-light); transform: scale(1.05); }
+  .btn-outline { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); color: var(--white); font-weight: 600; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; }
+  .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  /* ─── SECTIONS ─── */
+  .section { padding: 5.5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--brand); margin-bottom: 1rem; }
+  .section .lede { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; max-width: 640px; margin-bottom: 3rem; }
+
+  /* ─── SERVICES (icon + photo cards, motion bg, sticky 100vh) ─── */
+  #services.services-section { position: relative; max-width: none; padding: 0; overflow: hidden; background: var(--paper); }
+  #services .section-label { color: var(--accent-light); text-shadow: 0 1px 4px rgba(0,0,0,0.65); }
+  #services h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.45); }
+  #services .lede { color: rgba(255,255,255,0.95); text-shadow: 0 1px 5px rgba(0,0,0,0.65); font-weight: 400; }
+  #services .services-bg { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0; pointer-events: none; }
+  #services .services-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #services .services-scrim { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(16,51,31,0.35) 0%, rgba(16,51,31,0.28) 40%, rgba(16,51,31,0.4) 70%, rgba(16,51,31,0.5) 100%); }
+  #services .services-inner { position: relative; z-index: 10; margin-top: -100vh; padding: 5.5rem 1.5rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  #services .service-card { background: rgba(255,253,247,0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  #services .service-card:hover { background: rgba(255,253,247,0.94); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .service-card { background: var(--white); border-radius: 18px; padding: 1.5rem; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); border-color: rgba(124,179,66,0.4); }
+  .service-thumb { width: 100%; height: 130px; object-fit: cover; border-radius: 12px; display: block; margin-bottom: 1.2rem; }
+  .service-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--brand-pale); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--brand); margin-bottom: 1.2rem; transition: transform 0.3s; }
+  .service-card:hover .service-icon { transform: scale(1.1); }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--brand); margin-bottom: 0.5rem; }
+  .service-card p { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; }
+
+  /* ─── GALLERY (real work photos) ─── */
+  .gallery-section { background: var(--brand-dark); }
+  .gallery-section .section { padding-top: 5.5rem; }
+  .gallery-section .section-label { color: var(--accent-light); }
+  .gallery-section h2 { color: var(--white); }
+  .gallery-section .lede { color: rgba(255,255,255,0.7); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .gallery-card { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+  .gallery-card img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.7s; }
+  .gallery-card:hover img { transform: scale(1.06); }
+  .gallery-cap { position: absolute; inset-x: 0; bottom: 0; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent); padding: 1.2rem 1.2rem 0.9rem; color: var(--white); font-size: 0.85rem; font-weight: 500; }
+
+  /* ─── FRONTYARD WRAP (Reviews + About share one bg, ends before Claim) ─── */
+  .frontyard-wrap { position: relative; overflow: hidden; }
+  .frontyard-wrap .reviews-bg-desktop { display: block; position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .frontyard-wrap .reviews-bg-desktop img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05) saturate(1.05); }
+  .frontyard-wrap .reviews-bg-mobile { display: none; }
+  .frontyard-wrap .reviews-bg-mobile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05) saturate(1.05); }
+  .frontyard-wrap .reviews-scrim { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(250,247,242,0.10) 0%, rgba(250,247,242,0.02) 30%, rgba(16,51,31,0.1) 65%, rgba(16,51,31,0.18) 100%); }
+  .frontyard-wrap .reviews-section, .frontyard-wrap .about-panel { position: relative; z-index: 1; }
+  .frontyard-wrap .section-label { color: var(--accent-light); text-shadow: 0 1px 4px rgba(0,0,0,0.65); }
+  .frontyard-wrap h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.45); }
+  .frontyard-wrap .lede { color: rgba(255,255,255,0.95); text-shadow: 0 1px 5px rgba(0,0,0,0.65); font-weight: 400; }
+  .frontyard-wrap .about-panel h2 { color: var(--white); }
+  .frontyard-wrap .about-panel .section-label { color: var(--accent-light); }
+  .reviews-section { position: relative; }
+  .reviews-section .review-card { background: rgba(255,255,255,0.94); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .reviews-section .review-card.placeholder { background: rgba(250,247,242,0.94); }
+  .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .review-card { background: var(--white); border-radius: 16px; padding: 1.75rem; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+  .review-stars { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+  .review-text { font-size: 0.9rem; color: var(--text); font-weight: 300; line-height: 1.7; margin-bottom: 1rem; }
+  .review-author { font-size: 0.8rem; color: var(--text-muted); }
+  .review-author strong { color: var(--brand); font-weight: 600; }
+  .review-source { font-size: 0.7rem; color: var(--text-light); margin-top: 0.25rem; }
+  .review-card.placeholder { border-style: dashed; border-color: var(--border); background: var(--paper); }
+  .review-card.placeholder .review-text { color: var(--text-muted); }
+
+  /* ─── ABOUT ─── */
+  .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-panel .about-section { background: rgba(255,255,255,0.92); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border-radius: 18px; padding: 2.2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .about-image { border-radius: 18px; overflow: hidden; height: 420px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+  .about-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+  .about-image:hover img { transform: scale(1.04); }
+  .about-text p { color: var(--text-muted); font-weight: 300; margin-bottom: 1rem; font-size: 0.95rem; }
+  .about-text .highlight { color: var(--brand); font-weight: 600; }
+
+  /* ─── CTA ─── */
+  .cta-section { text-align: center; padding: 5.5rem 1.5rem; position: relative; overflow: hidden; background: var(--brand); }
+  .cta-section .section-label { color: var(--accent-light); }
+  .cta-section h2 { color: var(--white); }
+  .cta-section p { color: rgba(255,255,255,0.75); font-weight: 300; margin-bottom: 2.2rem; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-logo { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 0 auto 1.5rem; font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.5rem; color: var(--white); }
+  .cta-logo i { color: var(--accent-light); font-size: 1.7rem; }
+  .cta-btn { display: inline-block; background: var(--accent); color: var(--white); font-weight: 700; padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 6px 24px rgba(124,179,66,0.3); }
+  .cta-btn:hover { transform: scale(1.05); background: var(--accent-light); }
+
+  /* ─── BOTTOM (Local Launch) ─── */
+  .ll-logo { padding: 3rem 1.5rem 1.5rem; text-align: center; background: var(--paper); }
+  .ll-cta-text { padding: 1.5rem 1.5rem 2.5rem; text-align: center; background: var(--paper); }
+  .ll-cta-text h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brand); margin-bottom: 0.5rem; }
+  .ll-cta-text p { color: var(--text-muted); font-size: 0.9rem; }
+  .ll-contact { padding: 2.5rem 1.5rem 4rem; text-align: center; background: var(--paper); border-top: 1px solid var(--border); }
+  .ll-contact-inner { display: flex; flex-direction: column; gap: 1rem; max-width: 320px; margin: 0 auto; }
+  .ll-btn { display: flex; align-items: center; gap: 0.75rem; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; text-decoration: none; color: var(--brand); transition: all 0.2s; }
+  .ll-btn:hover { border-color: var(--accent); }
+  .ll-btn .lbl { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+  .ll-btn .val { font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .nav-inner { padding: 0.7rem 1rem; gap: 0.5rem; }
+    .nav-brand { font-size: 1rem; gap: 0.4rem; }
+    .nav-brand i { font-size: 1.2rem; }
+    .nav-cta { font-size: 0.78rem; padding: 0.5rem 1rem; }
+    .hero { padding: 6rem 1.25rem 3rem; }
+    .section { padding: 3.5rem 1.25rem; }
+    #services .services-inner { padding: 3.5rem 1.25rem; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-image { height: 260px; }
+    .frontyard-wrap .reviews-bg-desktop { display: none; }
+    .frontyard-wrap .reviews-bg-mobile { display: block; position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .frontyard-wrap .reviews-section, .frontyard-wrap .about-panel { position: relative; z-index: 1; }
+    .reviews-section .review-card { background: rgba(255,255,255,0.94); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    .reviews-section .review-card.placeholder { background: rgba(250,247,242,0.94); }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .hero-badge { font-size: 0.65rem; padding: 0.4rem 1rem; }
+    .hero-proof { gap: 0.6rem; font-size: 0.75rem; white-space: normal; }
+    .hero-proof span { white-space: normal; }
+  }
+  @media (max-width: 420px) {
+    .nav-loc { display: none; }
+  }
+  @media (max-width: 375px) {
+    .btn-phone, .btn-outline { font-size: 0.85rem; padding: 0.8rem 1.4rem; white-space: nowrap; }
+    .hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <i class="fa-solid fa-tree"></i>
+      Steve Cantrell <span class="nav-loc">Tree Services</span>
+    </a>
+    <a href="tel:+18643142120" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ 1. HERO ═══════════════ -->
+<section class="hero">
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">4.8★ (58 Reviews) · Since 1999</div>
+    <h1>Expert Tree Care.<br><span class="accent">Since 1999.</span></h1>
+    <p class="subtitle">Tree removal, trimming, stump grinding &amp; cleanup for Upstate SC — licensed &amp; insured.</p>
+    <div class="hero-proof">
+      <span><span class="star">★★★★★</span> 4.8 Google Rating (58 Reviews)</span>
+      <span><i class="fa-solid fa-truck-pickup"></i> 100-Ft Bucket Truck</span>
+      <span><i class="fa-solid fa-tree"></i> Family-Owned Since 1999</span>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:+18643142120" class="btn-phone">📞 (864) 314-2120</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. SERVICES (photo bg, sticky 100vh) ═══════════════ -->
+<section id="services" class="section services-section">
+  <!-- Sticky background image (pins to viewport behind cards, visible only through this section) -->
+  <div class="services-bg">
+    <div class="services-scrim"></div>
+  </div>
+  <div class="services-inner">
+    <div class="section-label">Services</div>
+    <h2>What We Do</h2>
+    <p class="lede">From hazardous takedowns to stump grinding and full cleanup — Steve Cantrell Tree Services handles Upstate SC trees start to finish.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <img class="service-thumb" src="svc-removal.jpg" alt="Tree removal and take down with bucket truck" loading="lazy">
+        <div class="service-icon"><i class="fa-solid fa-tree"></i></div>
+        <h3>Tree Removal / Take Down</h3>
+        <p>Safe removal of large or hazardous trees using our 100-ft reach bucket truck.</p>
+      </div>
+      <div class="service-card">
+        <img class="service-thumb" src="svc-trimming.jpg" alt="Tree trimming and canopy shaping" loading="lazy">
+        <div class="service-icon"><i class="fa-solid fa-scissors"></i></div>
+        <h3>Tree Trimming</h3>
+        <p>Limb removal, canopy shaping &amp; clearance to keep your trees healthy and your property safe.</p>
+      </div>
+      <div class="service-card">
+        <img class="service-thumb" src="svc-stump.jpg" alt="Stump grinding equipment removing a tree stump" loading="lazy">
+        <div class="service-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+        <h3>Stump Removal &amp; Grinding</h3>
+        <p>Full stump grinding and cleanup — if it weren't for the stump, you wouldn't know a tree had been there.</p>
+      </div>
+      <div class="service-card">
+        <img class="service-thumb" src="svc-cleanup.jpg" alt="Branch and debris cleanup after tree removal" loading="lazy">
+        <div class="service-icon"><i class="fa-solid fa-truck"></i></div>
+        <h3>Cleanup &amp; Debris Removal</h3>
+        <p>Hauling branches, debris &amp; waste — we leave your property clean when the job's done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 3. GALLERY (real work photos) ═══════════════ -->
+<section id="gallery" class="gallery-section">
+  <div class="section">
+    <div class="section-label">Portfolio</div>
+    <h2>Our Work — Real Jobs, Real Results</h2>
+    <p class="lede">A look at recent tree work across Belton, Anderson &amp; the Upstate.</p>
+    <div class="gallery-grid">
+      <div class="gallery-card"><img src="svc-removal.jpg" alt="Hazard tree removal with bucket truck" loading="lazy"><div class="gallery-cap">Hazard Tree Removal</div></div>
+      <div class="gallery-card"><img src="svc-stump.jpg" alt="Stump grinding cleanup" loading="lazy"><div class="gallery-cap">Stump Grinding</div></div>
+      <div class="gallery-card"><img src="svc-trimming.jpg" alt="Tree trimming and canopy shaping" loading="lazy"><div class="gallery-cap">Large Tree Take Down</div></div>
+      <div class="gallery-card"><img src="svc-cleanup.jpg" alt="Branch and debris cleanup" loading="lazy"><div class="gallery-cap">Trimming &amp; Cleanup</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 4+5. REVIEWS + ABOUT (shared front-yard background, ends before Claim) ═══════════════ -->
+<div class="frontyard-wrap">
+  <!-- Desktop background (hidden on mobile; mobile image shows instead) -->
+  <div class="reviews-bg-desktop" aria-hidden="true">
+    <div class="reviews-scrim"></div>
+  </div>
+  <!-- Mobile-only background (hidden on desktop) -->
+  <div class="reviews-bg-mobile" aria-hidden="true">
+    <div class="reviews-scrim"></div>
+  </div>
+
+<section class="section reviews-section">
+    <div class="section-label">Reviews</div>
+    <h2>What Customers Say</h2>
+    <p class="lede">Real feedback from homeowners across the Upstate.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Steve and his crew are very professional, honest, and fair. They did an awesome job removing a huge tree and stump, cutting many limbs and removing all debris. Very happy with their work."</p>
+        <div class="review-author"><strong>Donna</strong></div>
+        <div class="review-source">Yellow Pages review · 5.0★</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Steve removed the tree and did a very good job cleaning up. If it were not for the stump, you wouldn't know a tree had even been there."</p>
+        <div class="review-author"><strong>James T.</strong></div>
+        <div class="review-source">Angi review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Steve came out the day he promised and got both trees down with no damage whatsoever... He has a bucket truck that will reach 100 feet."</p>
+        <div class="review-author"><strong>Henry S.</strong></div>
+        <div class="review-source">Angi review</div>
+      </div>
+      <div class="review-card placeholder">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+    </div>
+</section>
+
+<!-- ═══════════════ 5. ABOUT (over same front-yard background) ═══════════════ -->
+<section class="section about-panel">
+  <div class="section-label">About</div>
+  <h2>Family-Owned Tree Care Since 1999</h2>
+  <div class="about-section" style="margin-top:2rem;">
+    <div class="about-image">
+      <img src="about.jpg" alt="Steve Cantrell Tree Services crew removing a hazardous tree" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>Steve Cantrell Tree Services is a family-owned and operated tree service serving Anderson, Belton, and the Upstate South Carolina area. Licensed and insured, with a 100-foot-reach bucket truck for large takedowns, we've been caring for Upstate trees since 1999.</p>
+      <p>From hazardous tree removal and trimming to stump grinding and full cleanup, we do the job safely, cleanly, and fairly.</p>
+      <p class="highlight">Licensed, insured &amp; family-owned since 1999 — call (864) 314-2120 for your free estimate.</p>
+    </div>
+  </div>
+</section>
+</div><!-- /frontyard-wrap — background ends here, Claim Your Site below is solid -->
+
+<!-- ═══════════════ 6. CTA ═══════════════ -->
+<section id="claim" class="cta-section">
+  <div class="cta-logo"><i class="fa-solid fa-tree"></i> Steve Cantrell Tree Services</div>
+  <div class="section-label">Claim Your Site</div>
+  <h2>This is yours, Steve Cantrell Tree Services.</h2>
+  <p>Built to showcase your work and help you grow. A professional website with your real reviews, a photo gallery of your jobs, and everything you need to win more clients.</p>
+  <a href="tel:+18643142120" class="cta-btn">Call for a Free Estimate</a>
+  <p style="margin-top:1.2rem;margin-bottom:0;">📞 <a href="tel:+18643142120" style="color:inherit;font-weight:700;text-decoration:none;">(864) 314-2120</a></p>
+</section>
+
+<!-- ═══════════════ 7. LOCAL LAUNCH LOGO ═══════════════ -->
+<section class="ll-logo">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:320px;width:100%;">
+    <img src="logo-bg.jpg" alt="Local Launch" style="width:100%;height:auto;border-radius:12px;display:block;">
+  </a>
+</section>
+
+<!-- ═══════════════ 8. CTA TEXT ═══════════════ -->
+<section class="ll-cta-text">
+  <h3>Want this site? It's yours.</h3>
+  <p>Reply, call, or text. I'll hand you the keys in 24 hours.</p>
+  <p style="color:var(--text-light);font-size:0.85rem;margin-top:1rem;max-width:380px;margin-left:auto;margin-right:auto;">Click my logo above to see my work. I'm based in Simpsonville, SC and I help local businesses like yours grow and win more clients.</p>
+</section>
+
+<!-- ═══════════════ 9. CONTACT ═══════════════ -->
+<section class="ll-contact">
+  <div class="ll-contact-inner">
+    <a href="tel:+15033585860" class="ll-btn">
+      <span style="font-size:1.2rem;">📞</span>
+      <div style="text-align:left;"><div class="lbl">Call / Text</div><div class="val">(503) 358-5860</div></div>
+    </a>
+    <a href="mailto:locallaunchupstate@gmail.com" class="ll-btn">
+      <span style="font-size:1.2rem;">✉️</span>
+      <div style="text-align:left;"><div class="lbl">Email</div><div class="val">locallaunchupstate@gmail.com</div></div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

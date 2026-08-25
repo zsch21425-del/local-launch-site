@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Fairway Automotive Group — Greenville SC | Family-Owned Since 1966</title>
+<meta name="description" content="Fairway Automotive Group — family-owned & locally-operated on the Motor Mile in Greenville, SC since 1966. Fairway Ford, Subaru, Lincoln, Body Shop & Commercial. Call 864-242-5060." />
+<link rel="preload" as="image" href="assets/hero-dealership.jpg" fetchpriority="high" />
+<style>
+/* ===== Brand: light theme, Fairway blue #337AB7 + tan #DDCBAA + white ===== */
+:root{
+  --blue:#337AB7; --blue-dark:#2a6698; --blue-deep:#1f4e79;
+  --tan:#DDCBAA; --tan-line:#C7B493; --tan-dark:#bfa87e;
+  --ink:#333333; --muted:#5b6b7c; --white:#FFFFFF; --offwhite:#f7f8fa;
+  --radius:16px; --shadow:0 10px 30px rgba(31,78,121,.12); --shadow-lg:0 20px 50px rgba(31,78,121,.18);
+  --font:'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--white);line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:84px 0}
+
+/* ---------- NAV ---------- */
+.nav{background:#f0f2f5;border-bottom:1px solid #dce0e4;position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(6px)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{height:52px;width:auto}
+.brand-word{font-weight:800;letter-spacing:.12em;color:var(--blue-deep);font-size:1.15rem;line-height:1.1}
+.brand-word small{display:block;font-size:.62rem;font-weight:600;color:var(--blue-dark);letter-spacing:.28em}
+.nav-links{margin-left:auto;display:flex;align-items:center;gap:22px}
+.nav-links a{font-size:.95rem;font-weight:600;color:var(--blue-deep);transition:.2s}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{background:var(--blue);color:#fff;padding:10px 18px;border-radius:999px;font-weight:700;font-size:.9rem;transition:.2s;border:1px solid transparent}
+.nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:72vh;display:flex;align-items:center;color:#fff;overflow:hidden;background:#1f4e79}
+.hero-bg{position:absolute;inset:0;background:url('assets/hero-dealership.jpg') center/cover no-repeat;transform:scale(1.05);animation:kenburns 22s ease-in-out infinite alternate;will-change:transform}
+@keyframes kenburns{from{transform:scale(1.05) translateY(0)}to{transform:scale(1.12) translateY(-8px)}}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(20,50,85,.82),rgba(20,50,85,.35) 55%,rgba(20,50,85,.15))}
+.hero-content{position:relative;z-index:2;max-width:680px}
+.hero-eyebrow{display:inline-block;background:rgba(255,255,255,.16);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.3);padding:7px 16px;border-radius:999px;font-size:.8rem;letter-spacing:.14em;font-weight:700;margin-bottom:22px}
+.hero h1{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:800;line-height:1.08;margin-bottom:18px;text-shadow:0 3px 24px rgba(0,0,0,.35)}
+.hero h1 .accent{color:var(--tan)}
+.hero p{font-size:clamp(1rem,2vw,1.25rem);max-width:560px;margin-bottom:30px;opacity:.95}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:1rem;transition:.2s;border:1px solid transparent}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.45);backdrop-filter:blur(4px)}
+.btn-ghost:hover{background:rgba(255,255,255,.2)}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;color:#fff;opacity:.7;font-size:.75rem;letter-spacing:.2em;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+/* ---------- INTRO (their copy) ---------- */
+.intro{background:var(--offwhite);border-bottom:1px solid #eef0f3}
+.intro-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.intro h2{font-size:clamp(1.6rem,3vw,2.2rem);color:var(--blue-deep);margin-bottom:14px}
+.intro h2 .kick{color:var(--tan-dark)}
+.intro p{color:var(--muted);font-size:1.05rem}
+.intro-call{margin-top:26px}
+.intro-call .cta-line{font-size:.85rem;color:var(--muted);margin-bottom:8px}
+.intro-img{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg)}
+.intro-img img{height:320px;width:100%;object-fit:cover}
+
+/* ---------- LOCATIONS GRID ---------- */
+.loc-head{text-align:center;margin-bottom:56px}
+.loc-head .eyebrow{color:var(--tan-dark);letter-spacing:.2em;font-weight:700;font-size:.8rem;text-transform:uppercase}
+.loc-head h2{color:var(--blue-deep);font-size:clamp(1.7rem,3.2vw,2.4rem);margin-top:10px}
+.loc-head p{color:var(--muted);max-width:620px;margin:12px auto 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.card{background:#fff;border:1px solid #eef0f3;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.card-media{height:190px;overflow:hidden;position:relative}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.card:hover .card-media img{transform:scale(1.06)}
+.card-brand{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);padding:6px 12px;border-radius:8px;font-weight:800;font-size:.85rem;color:var(--blue-deep);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.card-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1}
+.card-body h3{color:var(--blue-deep);font-size:1.15rem;margin-bottom:6px}
+.card-addr{color:var(--muted);font-size:.9rem;margin-bottom:14px;display:flex;align-items:start;gap:6px}
+.card-addr svg{flex-shrink:0;margin-top:2px}
+.card-cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between}
+.visit{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:700;font-size:.92rem}
+.visit:hover{color:var(--blue-dark);gap:9px;transition:.2s}
+.socials{display:flex;gap:8px}
+.socials a{width:30px;height:30px;border-radius:50%;background:var(--offwhite);display:grid;place-items:center;color:var(--blue);font-size:.8rem;transition:.15s}
+.socials a:hover{background:var(--blue);color:#fff}
+
+/* ---------- WHY STRIP ---------- */
+.why{background:linear-gradient(120deg,var(--blue-deep),var(--blue));;color:#fff}
+.why-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.why-item .num{font-size:2rem;font-weight:800;color:var(--tan);display:block}
+.why-item .lbl{font-size:.85rem;opacity:.9;margin-top:4px}
+
+/* ---------- FOOTER ---------- */
+.footer{background:var(--offwhite);border-top:3px solid var(--tan-line);padding:40px 0}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.footer .brand-word{font-size:1rem}
+.footer-note{color:var(--muted);font-size:.95rem;text-align:right}
+.footer-note .phone{color:var(--blue);font-weight:700}
+.footer-copy{margin-top:18px;padding-top:18px;border-top:1px solid #e2e6ea;text-align:center;color:#8a97a5;font-size:.82rem}
+
+/* animations */
+.reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.show{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .intro-grid{grid-template-columns:1fr}
+  .why-strip{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{min-height:60vh}
+  .section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <img class="brand-logo" src="assets/fairway-logo.png" alt="Fairway Auto" />
+      <div class="brand-word">FAIRWAY<small>FORMERLY LINCOLN · FORD · SUBARU</small></div>
+    </div>
+    <div class="nav-links">
+      <a href="#locations">Dealerships</a>
+      <a href="#about">About</a>
+      <a href="https://recruiting.paylocity.com/recruiting/jobs/All/8da0a7b2-9691-48a3-ba15-2303bae4f2bc/Fairway-Auto" target="_blank" rel="noopener">Careers</a>
+      <a href="#directions">Directions</a>
+      <a class="nav-cta" href="tel:+18642425060">Call 864-242-5060</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <span class="hero-eyebrow">★ The Motor Mile · Greenville, South Carolina</span>
+    <h1>Family-Owned &amp; Locally-Operated <span class="accent">Since 1966</span></h1>
+    <p>Welcome to Fairway Automotive Group — six dealerships and service centers in the heart of the Upstate, ready to help you find your adventure.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="tel:+18642425060">📞 Call 864-242-5060</a>
+      <a class="btn btn-ghost" href="#locations">Explore Dealerships</a>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL ▼</div>
+</header>
+
+<!-- INTRO -->
+<section class="section intro" id="about">
+  <div class="container intro-grid">
+    <div class="reveal">
+      <h2><span class="kick">The Fairway Automotive Group</span><br/>Your Upstate family of dealerships</h2>
+      <p>From new-and-used vehicles to expert service and collision repair, Fairway has served the Greenville community for three generations. Whether you're shopping Fairway Ford, Fairway Subaru, or Fairway Lincoln — or visiting our Body Shop or Commercial Center — you'll find the same family promise: honest dealing, done right.</p>
+      <p style="margin-top:14px">If you would like to speak to a team member, please call <strong>864-242-5060</strong> or scroll down to learn more. Thank you for choosing Fairway for your automotive needs!</p>
+      <div class="intro-call">
+        <div class="cta-line">Speak with a Fairway team member →</div>
+        <a class="btn btn-primary" href="tel:+18642425060">864-242-5060</a>
+      </div>
+    </div>
+    <div class="intro-img reveal"><img src="assets/front-dealership.jpg" loading="lazy" alt="Fairway Ford dealership front" /></div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="section" id="locations">
+  <div class="container">
+    <div class="loc-head reveal">
+      <span class="eyebrow">Our Locations</span>
+      <h2>Six ways to find your adventure</h2>
+      <p>Every Fairway brand, right here on the Motor Mile in Greenville, SC.</p>
+    </div>
+    <div class="grid">
+      <!-- Subaru -->
+      <div class="card reveal">
+        <div class="card-media"><img src="assets/dealership-1.jpg" loading="lazy" alt="Fairway Subaru" /><span class="card-brand">SUBARU</span></div>
+        <div class="card-body">
+          <h3>Fairway Subaru</h3>
+          <div class="card-addr">📍 2209 Laurens Road, Greenville SC</div>
+          <div class="card-cta">
+            <a class="visit" href="https://www.fairwaysubarusc.com" target="_blank" rel="noopener">Visit Website →</a>
+            <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="TikTok">♫</a></div>
+          </div>
+        </div>
+      </div>
+      <!-- Ford -->
+      <div class="card reveal">
+        <div class="card-media"><img src="assets/dealership-2.jpg" loading="lazy" alt="Fairway Ford" /><span class="card-brand">FORD</span></div>
+        <div class="card-body">
+          <h3>Fairway Ford</h3>
+          <div class="card-addr">📍 2323 Laurens Road, Greenville SC</div>
+          <div class="card-cta">
+            <a class="visit" href="https://www.fairwayford.com" target="_blank" rel="noopener">Visit Website →</a>
+            <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div>
+          </div>
+        </div>
+      </div>
+      <!-- Lincoln -->
+      <div class="card reveal">
+        <div class="card-media"><img src="assets/showroom-service.jpg" loading="lazy" alt="Fairway Lincoln" /><span class="card-brand">LINCOLN</span></div>
+        <div class="card-body">
+          <h3>Fairway Lincoln</h3>
+          <div class="card-addr">📍 2323 Laurens Road, Greenville SC</div>
+          <div class="card-cta">
+            <a class="visit" href="https://www.fairwaylincoln.com" target="_blank" rel="noopener">Visit Website →</a>
+            <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div>
+          </div>
+        </div>
+      </div>
+      <!-- Body Shop -->
+      <div class="card reveal">
+        <div class="card-media"><img src="assets/service-logo.jpg" loading="lazy" alt="Fairway Body Shop" /><span class="card-brand">BODY SHOP</span></div>
+        <div class="card-body">
+          <h3>Fairway Body Shop</h3>
+          <div class="card-addr">📍 723 Keith Drive, Greenville SC</div>
+          <div class="card-cta">
+            <a class="visit" href="https://www.fairwayford.com/bodyshop/body-shop.htm" target="_blank" rel="noopener">Visit Website →</a>
+            <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Twitter">t</a></div>
+          </div>
+        </div>
+      </div>
+      <!-- Commercial Center -->
+      <div class="card reveal">
+        <div class="card-media"><img src="assets/lot-night.jpg" loading="lazy" alt="Fairway Commercial Center" /><span class="card-brand">COMMERCIAL</span></div>
+        <div class="card-body">
+          <h3>Fairway Commercial Center</h3>
+          <div class="card-addr">📍 351 Halton Road, Greenville SC</div>
+          <div class="card-cta">
+            <a class="visit" href="https://fairwayfordpro.com/p/commercial-vehicle-service-and-parts-in-greenville-sc" target="_blank" rel="noopener">Visit Website →</a>
+            <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Twitter">t</a></div>
+          </div>
+        </div>
+      </div>
+      <!-- Commercial - Used -->
+      <div class="card reveal">
+        <div class="card-media"><img src="assets/interior-showroom.jpg" loading="lazy" alt="Fairway Ford Commercial Used" /><span class="card-brand">USED</span></div>
+        <div class="card-body">
+          <h3>Fairway Ford Commercial · Used</h3>
+          <div class="card-addr">📍 1 Haywood Road, Greenville SC</div>
+          <div class="card-cta">
+            <a class="visit" href="https://fairwayfordpro.com/?filters=Chassis.Condition:All" target="_blank" rel="noopener">Visit Website →</a>
+            <div class="socials"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Twitter">t</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY STRIP -->
+<section class="section why" id="directions">
+  <div class="container why-strip">
+    <div class="why-item reveal"><span class="num">1966</span><span class="lbl">Family-Owned Since</span></div>
+    <div class="why-item reveal"><span class="num">6</span><span class="lbl">Dealerships &amp; Centers</span></div>
+    <div class="why-item reveal"><span class="num">864</span><span class="lbl">Upstate SC Code</span></div>
+    <div class="why-item reveal"><span class="num">★</span><span class="lbl">Motor Mile, Greenville</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="brand">
+      <img class="brand-logo" src="assets/fairway-logo.png" alt="Fairway Auto" />
+      <div class="brand-word">FAIRWAY<small>AUTOMOTIVE GROUP</small></div>
+    </div>
+    <div class="footer-note">
+      <strong class="phone">864-242-5060</strong><br/>
+      Greenville, SC — Automotive Group
+    </div>
+  </div>
+  <div class="container footer-copy">©2026 Fairway · 864-242-5060 · Greenville, SC</div>
+</footer>
+
+<script>
+// scroll reveal
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

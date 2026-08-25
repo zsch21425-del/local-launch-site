@@ -1,23 +1,43 @@
-# Local Launch — Websites & SEO for the Trades
+# Local Launch — Websites & SEO for Small Businesses
 
 ## About
-Local Launch builds custom websites and runs SEO for plumbing, mechanical, landscaping, electrical, roofing, HVAC, and trade businesses in Greenville, SC and Upstate South Carolina.
+Local Launch builds custom websites and runs SEO for plumbing, mechanical, landscaping, electrical, roofing, HVAC, and other small businesses in Greenville, SC and Upstate South Carolina.
 
 ## Core pages
-- Homepage: https://local-launch-site.vercel.app/
-- Pricing / Packages: https://local-launch-site.vercel.app/#pricing
-- FAQ: https://local-launch-site.vercel.app/#faq
-- Case Study (Redwood Landscaping): https://local-launch-site.vercel.app/#proof
+- [Homepage](https://locallaunchupstate.com/)
+- [Pricing / Packages](https://locallaunchupstate.com/#pricing)
+- [FAQ](https://locallaunchupstate.com/#faq)
+- [Case Study: Redwood Landscaping](https://locallaunchupstate.com/#proof)
+- [Free SEO Score Tool](https://locallaunchupstate.com/score.html)
+- [Get Your Free Demo Webpage](https://locallaunchupstate.com/free-demo.html)
 
 ## Services
-- Custom trade business websites
-- SEO + local search optimization
-- AI receptionist / 24/7 call answering
-- AI Yard Visualizer (landscapers)
-- Google Business Profile optimization
-- Directory management (Yelp, BBB, Nextdoor, Apple, Bing)
+- [Custom Websites for Small Businesses](https://locallaunchupstate.com/services/web-design.html)
+- [SEO Services for Small Businesses](https://locallaunchupstate.com/services/seo.html)
+- [AI Yard Visualizer (landscapers)](https://locallaunchupstate.com/services/ai-visualizer.html)
+- [24/7 AI Receptionist](https://locallaunchupstate.com/services/ai-receptionist.html)
+- [Google Business Profile Optimization](https://locallaunchupstate.com/services/gbp-optimization.html)
+
+## Locations served
+- [Greenville, SC](https://locallaunchupstate.com/locations/greenville-sc.html)
+- [Simpsonville, SC](https://locallaunchupstate.com/locations/simpsonville-sc.html)
+- [Greer, SC](https://locallaunchupstate.com/locations/greer-sc.html)
+- [Mauldin, SC](https://locallaunchupstate.com/locations/mauldin-sc.html)
+- [Five Forks, SC](https://locallaunchupstate.com/locations/five-forks-sc.html)
+- [Travelers Rest, SC](https://locallaunchupstate.com/locations/travelers-rest-sc.html)
+- [Slater-Marietta, SC](https://locallaunchupstate.com/locations/slater-marietta-sc.html)
+- [Easley, SC](https://locallaunchupstate.com/locations/easley-sc.html)
+- [Fountain Inn, SC](https://locallaunchupstate.com/locations/fountain-inn-sc.html)
+
+## Blog
+- [Local SEO for Small Businesses: A Practical Guide for Greenville Contractors](https://locallaunchupstate.com/blog/local-seo-for-trades-greenville.html)
+- [How Much Does a Website Cost in Greenville, SC in 2026?](https://locallaunchupstate.com/blog/website-cost-greenville-sc.html)
+- [Why Your Business Isn't Showing Up in AI Search (And How to Fix It)](https://locallaunchupstate.com/blog/why-your-business-isnt-in-ai-search.html)
+- [How Much Does Landscaping Cost in Greenville, SC?](https://locallaunchupstate.com/blog/landscaping-cost-greenville-sc.html)
+- [How Much Does a Plumber Cost in Greenville, SC?](https://locallaunchupstate.com/blog/plumber-cost-greenville-sc.html)
 
 ## Contact
 - Email: zsch21425@gmail.com
+- Phone: (503) 358-5860
 - Based in Greenville, SC
 - No contracts — one-time builds from $300

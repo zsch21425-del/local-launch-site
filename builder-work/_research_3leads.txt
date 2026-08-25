@@ -1,0 +1,90 @@
+RESEARCH REPORT — 3 LEADS FOR DEMO BUILDS
+Research date: 2026-08-23 · Researcher: revenue-gen (Hermes)
+============================================================
+
+⚠️ HEADLINE CLASSIFICATION (read first):
+- Cleaning Angels (Fountain Inn)  → ✅ NO website (social-only). STILL OPERATING — HomeAdvisor "may not be in business" flag is STALE/CONTRADICTED. Valid NO-WEBSITE build lead. 🟢
+- AB Tree Service (Spartanburg)   → ❌ HAS a real website (abtreecareservice.com). NOT a build lead → SEO/upgrade pitch at most. NOT a demo-build candidate.
+- Greenville Pro Painters (GVL)   → ✅ NO website (greenvillepropainters.com is a name-collision with a different company). STILL OPERATING. Valid NO-WEBSITE build lead. 🟢 (but no public reviews found — see note)
+
+============================================================
+1) CLEANING ANGELS — house cleaning, Fountain Inn SC
+============================================================
+Phone: (864) 404-9955 · Email (given): Ericagraysonwilson@icloud.com
+
+(1) STILL OPERATING? → YES (with caveat below)
+- Facebook page "Cleaning Angels | Fountain Inn SC" (facebook.com/CleaningAngelsGVL) is LIVE with recent posts and photos — active promotion in the local FB group "All Things Greenville! (SC)". Page shows "Always open", 103 followers, phone + email on page.
+- ⚠️ HomeAdvisor STILL displays "This pro may not be in business" (the exact flag named in the task). VERDICT: this flag is STALE and CONTRADICTED by the active, recently-posted Facebook page. The business appears to still be operating. Recommend one live Facebook-post recency double check before outreach, but the flag should NOT be treated as current truth.
+- Note: the FB post timestamp reads "5 September" — confirm exact year/recency of latest post in person/FB; the page activity overall is current.
+
+(2) NO LIVE WEBSITE? → ✅ CONFIRMED — NO website.
+- Only web presence is the Facebook page (facebook.com/CleaningAngelsGVL) plus directory listings (HomeAdvisor, findglocal). No owned domain resolves. SOCIAL-ONLY = Tier-A no-website lead.
+
+(3) OWNER: Erica Grayson Wilson (matches email Ericagraysonwilson@icloud.com; FB page "Cleaning Angels" run under this identity).
+
+(4) VERBATIM CUSTOMER REVIEWS (HomeAdvisor — quoted exactly, 5.0/5, all Maid Service):
+- "We hired cleaning angels to do a move out clean of our home. Absolutely fantastic experience! They showed up on time and worked diligently, no spot left untouched. Will definitely be using their services again and highly recommend." — Julia C., Apr 2021
+- "Very satisfied . Special note one their their interest to do things right , very clean and customer satisfaction" — Yris A., Dec 2020
+- "She has great attention to detail, she can really empathize with mothers, she is more like a friend, and she knows how to take care and support us as a mother when needed." — Bridget T., Dec 2020
+(Note: reviews are from 2020–2021 — all positive 5.0. Facebook page shows only "Not yet rated (1 review)".)
+
+(5) SERVICES OFFERED (from listings): "completely customizable cleaning" — maid / routine home cleaning (weekly, bi-weekly, monthly deep cleaning), move-out/move-in cleaning, post-construction cleanup, blinds/shades cleaning, floors & bathrooms. Free estimates. Team of moms "passionate about helping real people maintain their homes and their sanity."
+
+(6) PUBLIC EMAIL: Ericagraysonwilson@icloud.com (given; matches FB page email).
+
+============================================================
+2) AB TREE SERVICE — tree service, Spartanburg SC
+============================================================
+Phone: (864) 574-7770 · Address: 165 Old Lowe Ct, Spartanburg SC 29303
+
+(1) STILL OPERATING? → YES. Active website + active social + BBB A+ (18 years in business, sole prop, since 12/31/2007). Yelp reviews current (2-yr-old + recent).
+
+(2) NO LIVE WEBSITE? → ❌ FALSE — THEY HAVE A REAL WEBSITE.
+- DOMAIN: abtreecareservice.com — LIVE, real content ("Tree Removal, Tree Trimming, Tree Care"), developed by Swift Business Solutions. Confirmed via web index + archive.org capture (68KB page). Published on their Facebook/Instagram/YouTube/LinkedIn.
+- Email on site: info@abtreecareservice.com. Financing page, "Request A Quote", per-page contact.
+- ⚠️ CLASSIFICATION: NOT a demo-build candidate. Per routing rules this is "HAS WEBSITE → SEO/GEO upgrade pitch," NOT a website build. A demo build for them would be wasted effort.
+- (abtreeservice.com is a separate PARKED domain for sale on HugeDomains — not theirs; abtreecareservice.com is their real one.)
+
+(3) OWNER: Frank Bryant (per BBB business profile — "Mr. Frank Bryant, Owner").
+
+(4) VERBATIM CUSTOMER REVIEWS (Yelp — quoted exactly as shown on listings; 5.0/5 across ~5 visible reviews):
+- "Had a tree removed and branches cut down. Good price and a great response time. Did a great job. Will use again." — Donna H. (7 yrs ago)
+- "Outstanding! Reasonable pricing. Work done exactly as described. Friendly, respectful and professional" — Joe P. (2 yrs ago)
+- "Great job taking down three trees for us, and for an unbelievable price!" — David V. (2 yrs ago)
+- "AB Tree Service does excellent work! They showed up exactly when they said they would & did a GREAT job! Also cleaned up every thing afterwards! I'm a very satisfied customer" — Tameria G. (4 yrs ago)
+- "They did an excellent job and reasonably priced. Even cleaned up the yard afterward! Highly recommend them!!" — Dawn J. (7 yrs ago)
+(Also on-site testimonial: "HIGHLY RECOMMEND you will NOT be disappointe!! -Chris Scarborough")
+
+(5) SERVICES OFFERED: Tree removal (large trees, near structures), tree trimming, tree care, stump grinding, land clearing, emergency/storm response (24-hr emergency, quick response). Crane + stump grinder equipment. Serves Spartanburg & Greenville counties (presents as "AB Tree Care" / "industry leader of removing trees in the Upstate and WNC").
+
+(6) PUBLIC EMAIL: info@abtreecareservice.com.
+
+============================================================
+3) GREENVILLE PRO PAINTERS — painting, Greenville SC
+============================================================
+Phone: (864) 523-8330 · Address: 15 Upper Meadow Way, Greenville SC 29609
+
+(1) STILL OPERATING? → YES. Active SC Painter/Wallpaper license #39715 (Status: Active per BuildZoom). BuildZoom score 94 (top 24% of 79,084 SC licensed contractors). Recent BuildZoom logged projects (Custom Home Build, Restaurant Buildout, Swimming Pool, Kitchen/Bath Remodel). Active directory listings (BuildZoom, Porch, ProMatcher, FreelistingUSA).
+
+(2) NO LIVE WEBSITE? → ✅ CONFIRMED — NO website of their own.
+- greenvillepropainters.com / greenpropainting.com / greenvillepropainter.com / progreenvillepainters.com ALL resolve to a DIFFERENT company: "Green Pro Painting" (Greenville Commercial Painting, phone 864-855-8054, Est. 2009, info@greenpropainting.com). This is a DOMAIN/NAME COLLISION, NOT Greenville Pro Painters' site — exactly as the task flagged. Owner David Richards' Greenville Pro Painters has NO owned website → SOCIAL/DIRECTORY-ONLY = Tier-A no-website build lead. 🟢
+
+(3) OWNER: David Richards (per BuildZoom — "Owned by: David Richards", license Painter/Wallpaper).
+
+(4) CUSTOMER REVIEWS: ⚠️ NONE VERIFIABLE — honest report.
+- BuildZoom explicitly: "BuildZoom hasn't received any reviews for Greenville Pro Painters."
+- Yelp, YellowPages, SuperPages, TrustLink review pages were blocked (Cloudflare/login/404) and no verbatim review text could be retrieved this session.
+- I am NOT quoting the "Green Pro Painting" testimonials (Rex M., Betty E., etc.) — those belong to the OTHER company (864-855-8054) and would be fabricated attribution. NO verbatim customer review can be confirmed for Greenville Pro Painters at this time. Flag for a follow-up Google review scraping for demo copy.
+
+(5) SERVICES OFFERED (from listings): Professional residential + commercial painting. House painting: interior and exterior. Full-line painting services. (No public detailed menu found beyond painting.)
+
+(6) PUBLIC EMAIL: Not found in public listings. (No email surfaced; only phone 864-523-8330.)
+
+============================================================
+SUMMARY / NEXT-STEP RECOMMENDATIONS
+============================================================
+- Cleaning Angels (Fountain Inn): ✅ BUILD LEAD. No website, operating, owner Erica Wilson, 5.0★ HomeAdvisor reviews to source demo copy (2020-21 era). Email available.
+- Greenville Pro Painters (GVL): ✅ BUILD LEAD. No website, operating, owner David Richards. BUT zero public reviews found — demo must source copy from services/projects, not reviews (or run a review scrape first).
+- AB Tree Service (Spartanburg): ❌ NOT A BUILD LEAD — already has abtreecareservice.com. Route to SEO/upgrade pitch if pursued; do not spend a demo-build on them.
+
+Honesty notes: Cleaning Angels' "may not be in business" flag is stale-vs-active-FB; recommend a same-week FB recency confirm before outreach. Greenville Pro Painters has no verifiable reviews — nobody should be quoted as a customer of theirs.

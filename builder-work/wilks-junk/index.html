@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wilk's Junk Service — Junk Removal Spartanburg County &amp; Greer, SC</title>
+<meta name="description" content="Wilk's Junk Service — family-run junk removal &amp; hauling across Spartanburg County, Greer and the Upstate. Estate cleanouts, yard waste, scrap metal &amp; construction debris. Fully insured, eco-friendly, starting at $80. Free quote: (864) 266-5469">
+<meta property="og:title" content="Wilk's Junk Service — Junk Removal Spartanburg County &amp; Greer, SC">
+<meta property="og:description" content="We haul it all! Reclaim your space today. Family-run junk removal across Spartanburg County — fast, free quotes. ((864) 266-5469)">
+<meta property="og:image" content="https://wilks-junk-demo.vercel.app/hero-poster.jpg">
+<meta property="og:url" content="https://wilks-junk-demo.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  /* Hallmark · macrostructure: Proof-Led · tone: clean-industrious · anchor hue: deep green + orange (Wilk's brand)
+   * Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5
+   * Design source: junk-removal vertical template — full-bleed HD motion video hero (junk hauling)
+   * + sticky-100vh video section behind translucent cards + white/black-shadow headings.
+   * Real reviews only (verified Nextdoor reviews + one verified job). No icons on video, transition-light sections.
+   * Rules: tokenized colors (zero raw hex outside :root), overflow-x:clip, roman headers. */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #14532D;        /* primary — Wilk's green */
+    --primary-dark: #0A2014; /* nav / deep bg */
+    --accent: #F97316;          /* accent — Wilk's orange (CTA / highlights) */
+    --accent-light: #FDBA74;
+    --cream: #F6F8F4;            /* light section bg */
+    --text: #1F2A22;
+    --text-muted: #64756A;
+    --white: #FFFFFF;
+    --border: #DCE5DC;
+  }
+  html { overflow-x: clip; }
+  body { overflow-x: clip; font-family: 'Inter', -apple-system, sans-serif; background: var(--primary-dark); color: var(--white); line-height: 1.7; }
+  .font-heading { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* ─── NAV ─── */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(10,32,20,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .nav-brand { display: flex; align-items: center; gap: 0.6rem; color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+  .nav-brand img { height: 38px; width: auto; border-radius: 6px; }
+  .nav-brand span { color: var(--accent-light); }
+  .nav-cta { background: var(--accent); color: var(--primary-dark); font-weight: 800; font-size: 0.85rem; padding: 0.55rem 1.3rem; border-radius: 999px; text-decoration: none; transition: all 0.25s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--accent-light); transform: scale(1.04); }
+
+  /* ─── HERO (full-bleed junk-removal video) ─── */
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 7rem 1.5rem 4rem; overflow: hidden; background: var(--primary-dark) url('hero-poster.jpg') center/cover no-repeat; }
+  .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,32,20,0.55) 0%, rgba(10,32,20,0.72) 50%, rgba(10,32,20,0.9) 100%); z-index: 1; pointer-events: none; }
+  .hero-content { position: relative; z-index: 3; max-width: 760px; padding: 1.5rem; border-radius: 18px; background: radial-gradient(ellipse 85% 70% at 50% 45%, rgba(18,20,23,0.55) 0%, rgba(18,20,23,0.25) 60%, transparent 85%); }
+  .hero-logo { margin-bottom: 1.5rem; }
+  .hero-logo img { max-width: 170px; height: auto; border-radius: 16px; box-shadow: 0 12px 50px rgba(0,0,0,0.5); }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.10); border: 1px solid rgba(249,115,22,0.4); border-radius: 999px; padding: 0.45rem 1.4rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.5rem; backdrop-filter: blur(4px); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.2rem; text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8); }
+  .hero h1 .accent { color: var(--accent-light); }
+  .hero .subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.95); font-weight: 400; max-width: 640px; margin: 0 auto 1.8rem; text-shadow: 0 2px 12px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.9); font-weight: 500; }
+  .hero-proof { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem; color: rgba(255,255,255,0.95); font-size: 0.85rem; font-weight: 500; text-shadow: 0 1px 6px rgba(0,0,0,0.9); }
+  .hero-proof .star { color: var(--accent-light); }
+  .hero-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-phone { background: var(--accent); color: var(--primary-dark); font-weight: 800; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; box-shadow: 0 6px 24px rgba(249,115,22,0.4); }
+  .btn-phone:hover { background: var(--accent-light); transform: scale(1.05); }
+  .btn-outline { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); color: var(--white); font-weight: 600; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; backdrop-filter: blur(4px); }
+  .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  /* ─── LIGHT SECTION BASE ─── */
+  .section { padding: 5.5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; margin-bottom: 1rem; }
+  .section .lede { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; max-width: 640px; margin-bottom: 3rem; }
+  .light-section { background: var(--cream); color: var(--text); }
+  .light-section .section-label { color: var(--accent); }
+  .light-section h2 { color: var(--primary-dark); }
+
+  /* ─── WHY US (trust cards, light, icons ok) ─── */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .why-card { position: relative; background: linear-gradient(160deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%); border: 1px solid rgba(255,255,255,0.18); border-radius: 22px; padding: 2.2rem 1.8rem; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 20px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2); overflow: hidden; transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); text-align: center; }
+  .why-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.7; }
+  .why-card:hover { transform: translateY(-8px); box-shadow: 0 30px 70px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.25); border-color: rgba(249,115,22,0.6); }
+  .why-card .why-icon { width: 60px; height: 60px; margin: 0 auto 1.1rem; border-radius: 16px; background: linear-gradient(135deg, var(--accent) 0%, #C2410C 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 26px rgba(249,115,22,0.35), inset 0 1px 0 rgba(255,255,255,0.3); }
+  .why-card .why-icon i { font-size: 1.4rem; color: #fff; }
+  .why-icon { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--white); margin: 0 auto 1rem; }
+  .why-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+  .why-card p { font-size: 0.9rem; color: rgba(255,255,255,0.85); font-weight: 400; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+
+  /* ─── SERVICES (sticky video + translucent cards) ─── */
+  .services-section { position: relative; max-width: none; padding: 0; overflow: hidden; background: var(--primary-dark) url('hero-poster.jpg') center/cover no-repeat; }
+  .services-bg { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0; pointer-events: none; }
+  .services-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .services-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,32,20,0.55) 0%, rgba(10,32,20,0.40) 40%, rgba(10,32,20,0.65) 100%); z-index: 1; pointer-events: none; }
+  .services-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 5rem 1.5rem; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  .services-content .section-label { color: var(--accent-light); text-shadow: 0 1px 8px rgba(0,0,0,0.9); }
+  .services-content h2 { color: var(--white); text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8); }
+  .services-content .lede { color: rgba(255,255,255,0.95); font-weight: 400; text-shadow: 0 1px 8px rgba(0,0,0,0.9); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .service-card { position: relative; background: linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%); border: 1px solid rgba(255,255,255,0.2); border-radius: 22px; padding: 2.2rem 1.8rem; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 20px 55px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25); overflow: hidden; transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.8; }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 34px 80px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.3); border-color: rgba(249,115,22,0.7); }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; text-shadow: 0 2px 12px rgba(0,0,0,0.35); }
+  .service-card p { font-size: 0.9rem; color: rgba(255,255,255,0.88); font-weight: 400; text-shadow: 0 1px 5px rgba(0,0,0,0.45); }
+
+  /* ─── REVIEWS (light, white cards) ─── */
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; align-items: start; }
+  .biz-contact { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .biz-contact .ll-btn { min-width: 260px; }
+  .review-proof { margin-top: 1.8rem; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--accent-light); text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
+  .review-card { background: linear-gradient(160deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.05) 100%); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255,255,255,0.18); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 20px 50px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.2); }
+  .review-card .review-text { color: rgba(255,255,255,0.92); text-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+  .review-card .review-author { color: var(--accent-light); }
+  .review-stars { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+  .review-text { font-size: 0.9rem; color: var(--text); font-weight: 400; line-height: 1.7; margin-bottom: 1rem; }
+  .review-author { font-size: 0.8rem; color: var(--text-muted); }
+  .review-author strong { color: var(--primary-dark); font-weight: 600; }
+  .dark-section .review-author strong, .review-card .review-author strong { color: var(--white); font-weight: 700; }
+  .review-source { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 0.25rem; }
+  .review-card.placeholder { border-style: dashed; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+  .review-card.placeholder .review-text { color: rgba(255,255,255,0.5); }
+  .review-card.placeholder .review-author { color: rgba(255,255,255,0.4); }
+
+  /* ─── ABOUT ─── */
+  .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-image { border-radius: 18px; overflow: hidden; height: 400px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+  .about-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+  .about-image:hover img { transform: scale(1.04); }
+  .about-text p { color: var(--text-muted); font-weight: 300; margin-bottom: 1rem; font-size: 0.95rem; }
+  .about-text .highlight { color: var(--accent); font-weight: 600; }
+
+  /* ─── CTA ─── */
+  .cta-section { text-align: center; padding: 5.5rem 1.5rem; position: relative; overflow: hidden; background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%); }
+  .cta-section .section-label { color: var(--accent-light); }
+  .cta-section h2 { color: var(--white); }
+  .cta-section p { color: rgba(255,255,255,0.75); font-weight: 300; margin-bottom: 2.2rem; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--accent); color: var(--primary-dark); font-weight: 800; padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 6px 24px rgba(249,115,22,0.3); }
+  .cta-btn:hover { transform: scale(1.05); background: var(--accent-light); }
+
+  /* ─── BOTTOM (Local Launch) ─── */
+  .ll-logo { padding: 3rem 1.5rem 1.5rem; text-align: center; background: var(--primary-dark); }
+  .ll-cta-text { padding: 1.5rem 1.5rem 2.5rem; text-align: center; background: var(--primary-dark); }
+  .ll-cta-text h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 0.5rem; }
+  .ll-cta-text p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+  .ll-contact { padding: 2.5rem 1.5rem 4rem; text-align: center; background: var(--primary-dark); border-top: 1px solid rgba(255,255,255,0.08); }
+  .ll-contact-inner { display: flex; flex-direction: column; gap: 1rem; max-width: 320px; margin: 0 auto; }
+  .ll-btn { display: flex; align-items: center; gap: 0.75rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1rem 1.5rem; text-decoration: none; color: var(--white); transition: all 0.2s; }
+  .ll-btn:hover { border-color: var(--accent); }
+  .ll-btn .lbl { font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
+  .ll-btn .val { font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 6rem 1.25rem 3rem; }
+    .section { padding: 3.5rem 1.25rem; }
+    .services-content { padding: 3.5rem 1.25rem; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-image { height: 260px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .hero-proof { gap: 0.6rem; font-size: 0.75rem; }
+    .nav-brand { font-size: 0.95rem; }
+    .nav-brand img { height: 30px; }
+    .nav-loc { display: none; }
+  }
+  @media (max-width: 375px) {
+    .btn-phone, .btn-outline { font-size: 0.85rem; padding: 0.8rem 1.4rem; white-space: nowrap; }
+    .hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero video, .services-bg video { display: none; }
+  }
+
+  /* ─── WHY SECTION (dark, motion bridge) ─── */
+  .why-section { position: relative; max-width: none; padding: 0; overflow: hidden; background: var(--primary-dark); color: #fff; }
+  .why-section-bg { position: absolute; inset: 0; overflow: hidden; }
+  .why-section-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+  .why-section-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,32,20,0.55) 0%, rgba(10,32,20,0.82) 60%, rgba(10,32,20,0.9) 100%); z-index: 1; }
+  .why-section-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 5.5rem 1.5rem; }
+  .why-section .section-label { color: var(--accent-light); border-color: rgba(249,115,22,0.5); }
+  .why-section h2 { color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,0.5); }
+  .why-section .lede { color: rgba(255,255,255,0.9); text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
+  @media (max-width: 768px) {
+    .why-section-bg video { display: none; }
+    .why-section-content { padding: 4rem 1.2rem; }
+  }
+  /* ─── DARK SECTION (for AI visualizer + reviews) ─── */
+  .dark-section { background: linear-gradient(180deg, var(--primary-dark) 0%, #123B24 100%); color: #fff; }
+  .dark-section .section-label { color: var(--accent-light); border-color: rgba(249,115,22,0.5); }
+  .dark-section h2 { color: #fff; text-shadow: 0 2px 16px rgba(0,0,0,0.4); }
+  .dark-section .lede { color: rgba(255,255,255,0.9); text-shadow: 0 1px 5px rgba(0,0,0,0.5); }
+
+  .dark-section .about-text p { color: rgba(255,255,255,0.9); }
+  .dark-section .about-text .highlight { color: var(--accent-light); }
+
+  /* ─── GALLERY (our work) ─── */
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .gallery-item { position: relative; border-radius: 18px; overflow: hidden; box-shadow: 0 18px 45px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.14); }
+  .gallery-item img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-item figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.4rem 1rem 0.9rem; background: linear-gradient(180deg, transparent, rgba(10,32,20,0.9)); color: var(--white); font-size: 0.85rem; font-weight: 600; text-shadow: 0 1px 6px rgba(0,0,0,0.7); }
+  @media (max-width: 640px) { .gallery-item img { height: 190px; } }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand"><img src="logo.jpg" alt="Wilk's Junk Service logo"> Wilk's Junk Service <span class="nav-loc"><span>•</span> Spartanburg County</span></a>
+    <a href="tel:+18642665469" class="nav-cta">Free Quote</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ 1. HERO (full-bleed junk-removal video) ═══════════════ -->
+<section class="hero">
+  <video autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg" aria-hidden="true">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <div class="hero-logo"><img src="logo.jpg" alt="Wilk's Junk Service logo"></div>
+    <div class="hero-badge">5.0★ · Family-Run</div>
+    <h1>We Haul It All.<br><span class="accent">Reclaim Your Space.</span></h1>
+    <p class="subtitle">Junk removal, estate cleanouts &amp; debris hauling across Spartanburg County — fast, free quotes.</p>
+    <div class="hero-proof">
+      <span><span class="star">★</span> 5-Star Rated on Google</span>
+      <span>Fully Insured</span>
+      <span>Eco-Friendly Disposal</span>
+      <span>Starting at $80</span>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:+18642665469" class="btn-phone">📞 (864) 266-5469</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. WHY US (trust cards, dark glass) ═══════════════ -->
+<section class="section why-section">
+  <div class="why-section-bg"><video autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg" aria-hidden="true"><source src="hero.mp4" type="video/mp4"></video></div>
+  <div class="why-section-scrim"></div>
+  <div class="why-section-content">
+  <div class="section-label">Why Choose Us</div>
+  <h2>Junk Removal Done Right</h2>
+  <p class="lede">A family-run crew that treats your property like our own — reliable, on time, and hard-working.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+      <h3>We Haul It All</h3>
+      <p>Furniture, appliances, yard waste, scrap metal, tires — if it needs to go, we take it.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-leaf"></i></div>
+      <h3>Eco-Friendly</h3>
+      <p>We sort and recycle what we can, so your junk doesn't just end up in a landfill.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-star"></i></div>
+      <h3>Family-Run</h3>
+      <p>Co-owned by Dustin and Brandon — a local crew that goes the extra mile for neighbors.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3>Insured &amp; Upfront</h3>
+      <p>Fully insured with fast, free quotes. Jobs start at $80 — no hidden fees, no surprises.</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2.5 GALLERY (our work) ═══════════════ -->
+<section id="gallery" class="section dark-section">
+  <div class="section-label">Our Work</div>
+  <h2>Hauled, Cleared, Done</h2>
+  <p class="lede">Cleanouts, yard waste and scrap hauled away across Spartanburg County and Greer.</p>
+  <div class="gallery-grid">
+    <figure class="gallery-item">
+      <img src="cleanout.jpg" alt="" loading="lazy">
+      <figcaption>Property &amp; estate cleanout</figcaption>
+    </figure>
+    <figure class="gallery-item">
+      <img src="junk-removal.jpg" alt="" loading="lazy">
+      <figcaption>Junk &amp; furniture hauling</figcaption>
+    </figure>
+    <figure class="gallery-item">
+      <img src="yard-waste.jpg" alt="" loading="lazy">
+      <figcaption>Yard waste cleanup</figcaption>
+    </figure>
+    <figure class="gallery-item">
+      <img src="appliance.jpg" alt="" loading="lazy">
+      <figcaption>Scrap &amp; debris removal</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══════════════ 3. SERVICES (sticky video + translucent cards) ═══════════════ -->
+<section id="services" class="services-section">
+  <div class="services-bg">
+    <video autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg" aria-hidden="true">
+      <source src="hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="services-scrim"></div>
+  <div class="services-content">
+    <div class="section-label">Services</div>
+    <h2>What We Haul</h2>
+    <p class="lede">Junk removal, cleanouts, yard waste and scrap across Spartanburg County, Greer and the surrounding Upstate — starting at $80 with fast, free quotes.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Junk Removal &amp; Hauling</h3>
+        <p>Home and business junk — furniture, appliances and clutter loaded up and hauled away.</p>
+      </div>
+      <div class="service-card">
+        <h3>Property &amp; Estate Cleanouts</h3>
+        <p>Full property cleanouts handled end-to-end, from a single room to an entire acre.</p>
+      </div>
+      <div class="service-card">
+        <h3>Yard Waste &amp; Tree Debris Cleanup</h3>
+        <p>Brush, yard waste and tree debris cleared out so you can use your yard again.</p>
+      </div>
+      <div class="service-card">
+        <h3>Scrap Metal &amp; Construction Debris</h3>
+        <p>Scrap metal, tires and construction waste removed and recycled where we can.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 4. REVIEWS (light, white cards) ═══════════════ -->
+<section class="section dark-section">
+  <div class="section-label">Reviews</div>
+  <h2>What Customers Say</h2>
+  <p class="lede">Real feedback from neighbors across Spartanburg County and the Upstate.</p>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"These guys are very reliable and on time. I'd definitely recommend them to friends and neighbors!"</p>
+      <div class="review-author"><strong>S.S.</strong> · Roebuck, SC</div>
+      <div class="review-source">Verified Nextdoor review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I've known the co-owner Brandon for many years. He's a great man, a family man and always makes sure the job gets done. The employees at Wilk's are very hard workers and they don't mess around with your time and money."</p>
+      <div class="review-author"><strong>N.F.</strong> · Nextdoor</div>
+      <div class="review-source">Verified Nextdoor review</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"They cleaned a full-acre Greer property, removing 60 tires, scrap metal, and yard waste into two 30-yard dumpsters."</p>
+      <div class="review-author"><strong>Greer, SC</strong> · Full-acre property cleanout</div>
+      <div class="review-source">Verified job</div>
+    </div>
+  </div>
+  <p class="review-proof">5-star rated on Google · Fully insured · Fast free quotes · Eco-friendly</p>
+</section>
+
+<!-- ═══════════════ 5. ABOUT ═══════════════ -->
+<section class="section dark-section">
+  <div class="section-label">About</div>
+  <h2>Family-Run. We Haul It All.</h2>
+  <div class="about-section">
+    <div class="about-image">
+      <img src="about.jpg" alt="Wilk's Junk Service crew hauling furniture on a job in Spartanburg County" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>Wilk's Junk Service is a family-run junk removal company serving Spartanburg County, Greer, and the surrounding Upstate. Co-owned by Dustin and Brandon, we go the extra mile for our neighbors.</p>
+      <p>From estate cleanouts and yard waste to scrap metal and construction debris, we haul it all — fast, free quotes, fully insured, and eco-friendly.</p>
+      <p class="highlight">Jobs start at $80 — call (864) 266-5469 for a free quote today.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 5.5 CONTACT (business) ═══════════════ -->
+<section id="contact" class="section dark-section" style="text-align:center;">
+  <div class="section-label">Get a Free Quote</div>
+  <h2>We Haul It All! Reclaim Your Space Today.</h2>
+  <p class="lede" style="margin-left:auto;margin-right:auto;">Serving Spartanburg County, Greer and the surrounding Upstate. Jobs start at $80 — quotes are always free.</p>
+  <div class="biz-contact">
+    <a href="tel:+18642665469" class="ll-btn">
+      <span style="font-size:1.2rem;">📞</span>
+      <div style="text-align:left;"><div class="lbl">Call / Text</div><div class="val">(864) 266-5469</div></div>
+    </a>
+    <a href="mailto:wilkiedustin18@gmail.com" class="ll-btn">
+      <span style="font-size:1.2rem;">✉️</span>
+      <div style="text-align:left;"><div class="lbl">Email</div><div class="val">wilkiedustin18@gmail.com</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════ 6. CTA ═══════════════ -->
+<section id="claim" class="cta-section">
+  <div class="section-label">Claim Your Site</div>
+  <h2>This is yours, Wilk's Junk Service.</h2>
+  <p>Built to showcase your work and help you grow. A professional website with your real reviews, a service showcase, and everything you need to win more clients.</p>
+  <a href="https://local-launch-site.vercel.app" target="_blank" class="cta-btn">See Your Online Presence &amp; SEO Score →</a>
+</section>
+
+<!-- ═══════════════ 7. LOCAL LAUNCH LOGO ═══════════════ -->
+<section class="ll-logo">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:320px;width:100%;">
+    <img src="logo-bg.jpg" alt="Local Launch" style="width:100%;height:auto;border-radius:12px;display:block;">
+  </a>
+</section>
+
+<!-- ═══════════════ 8. CTA TEXT ═══════════════ -->
+<section class="ll-cta-text">
+  <h3>Want this site? It's yours.</h3>
+  <p>Reply, call, or text. I'll hand you the keys in 24 hours.</p>
+  <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-top:1rem;max-width:380px;margin-left:auto;margin-right:auto;">Click my logo above to see my work. I'm based in Simpsonville, SC and I help local businesses like yours grow and win more clients.</p>
+</section>
+
+<!-- ═══════════════ 9. CONTACT ═══════════════ -->
+<section class="ll-contact">
+  <div class="ll-contact-inner">
+    <a href="tel:+15033585860" class="ll-btn">
+      <span style="font-size:1.2rem;">📞</span>
+      <div style="text-align:left;"><div class="lbl">Call / Text</div><div class="val">(503) 358-5860</div></div>
+    </a>
+    <a href="mailto:locallaunchupstate@gmail.com" class="ll-btn">
+      <span style="font-size:1.2rem;">✉️</span>
+      <div style="text-align:left;"><div class="lbl">Email</div><div class="val">locallaunchupstate@gmail.com</div></div>
+    </a>
+  </div>
+</section>
+</body>
+</html>

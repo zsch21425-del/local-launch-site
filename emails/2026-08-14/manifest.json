@@ -1,0 +1,503 @@
+[
+ {
+  "slug": "aright-construction",
+  "name": "Aright Construction and Land Services LLC",
+  "email": "ashton@arightconstruction.com",
+  "subject": "Ashton",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "around-the-grounds-tree",
+  "name": "Around The Grounds Tree Service",
+  "email": "Btidswell7@gmail.com",
+  "subject": "tree service in Anderson",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "b-and-s-painting",
+  "name": "B&S Painting",
+  "email": "poolejustin898@gmail.com",
+  "subject": "Justin",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "brian-dillard-concrete",
+  "name": "Brian Dillard Concrete LLC",
+  "email": "briandillardconcretellc@gmail.com",
+  "subject": "Brian",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "demo-in-progress"
+  ]
+ },
+ {
+  "slug": "brittain-son-concrete",
+  "name": "Brittain & Son Concrete Construction",
+  "email": "kim9brittain@mchsi.com",
+  "subject": "Kim",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": true,
+  "flags": []
+ },
+ {
+  "slug": "buy-sell-landscape",
+  "name": "Buy Sell Landscape Supply LLC",
+  "email": "suerozga@comcast.net",
+  "subject": "landscape supply",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": true,
+  "flags": []
+ },
+ {
+  "slug": "clz-drywall",
+  "name": "CLZ Drywall and Painting LLC",
+  "email": "clzdrypaintllc@gmail.com",
+  "subject": "drywall in Greer",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "cpm-home-services",
+  "name": "CPM Home Services LLC",
+  "email": "jerry76@yahoo.com",
+  "subject": "Jerry",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "coopers-plumbing",
+  "name": "Cooper's Plumbing Company Inc",
+  "email": "coopersplumbinginc@gmail.com",
+  "subject": "plumbing in Aiken",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "country-life-tires",
+  "name": "Country Life Tires & Service",
+  "email": "",
+  "subject": "Tony",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": ["email-bounced-2026-08-22"]
+ },
+ {
+  "slug": "devil-dog-fencing",
+  "name": "Devil Dog Fencing",
+  "email": "josh@thewhatmarketing.com",
+  "subject": "Josh",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "verify-phone"
+  ]
+ },
+ {
+  "slug": "elite-sweep",
+  "name": "Elite Sweep Property Cleaning",
+  "email": "elitesweeppropertycleaning@gmail.com",
+  "subject": "property cleaning",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": true,
+  "flags": []
+ },
+ {
+  "slug": "garcias-painting",
+  "name": "Garcia's Painting Company",
+  "email": "garciaspainting0805@gmail.com",
+  "subject": "painting in Fort Wayne",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": true,
+  "flags": []
+ },
+ {
+  "slug": "gotta-guy",
+  "name": "Gotta Guy Home Services",
+  "email": "gottaguy5@gmail.com",
+  "subject": "handyman in Simpsonville",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "verify-address"
+  ]
+ },
+ {
+  "slug": "gray-wolf-concrete",
+  "name": "Gray Wolf Concrete & Construction",
+  "email": "graywolfconcrete@gmail.com",
+  "subject": "concrete in Greer",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "kings-power-washing",
+  "name": "Kings Power Washing of Charlotte",
+  "email": "charlottepowerwashing@gmail.com",
+  "subject": "pressure washing in Charlotte",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": true,
+  "flags": []
+ },
+ {
+  "slug": "leos-pro-line",
+  "name": "Leo's Pro Line Painting LLC",
+  "email": "Leosproline@gmail.com",
+  "subject": "Leo",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "lucas-maintenance",
+  "name": "Lucas Maintenance Power & Soft Wash LLC",
+  "email": "Lucasmaintllc@gmail.com",
+  "subject": "Lucas",
+  "tier": "B",
+  "angle": "rebuild",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "was-misclassified-no-site"
+  ]
+ },
+ {
+  "slug": "pressure-washing-solutions",
+  "name": "Pressure Washing Solutions LLC",
+  "email": "pwsllc603@gmail.com",
+  "subject": "pressure washing",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": true,
+  "flags": []
+ },
+ {
+  "slug": "pristine-cleaners",
+  "name": "Pristine Cleaners Services",
+  "email": "pristinecleanersservices@gmail.com",
+  "subject": "cleaning in Greenville",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "scott-handiworks",
+  "name": "Scott Handiworks",
+  "email": "scotthandiworks@gmail.com",
+  "subject": "Scott",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "sky-branch",
+  "name": "Sky Branch LLC",
+  "email": "skybranchllc@gmail.com",
+  "subject": "Alexander",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "sparrow-fencing",
+  "name": "Sparrow Fencing LLC",
+  "email": "sparrowfencingllc@gmail.com",
+  "subject": "fencing in Greer",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "new-trade-hero-needs-approval"
+  ]
+ },
+ {
+  "slug": "spartan-paver-sealing",
+  "name": "Spartan Paver Sealing",
+  "email": "pdesmond@spartanpaversealing.com",
+  "subject": "paver sealing",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "tuff-deck-builders",
+  "name": "Tuff Deck Builders (Greenville SC)",
+  "email": "tuffdeckbuildersgreenvillesc@gmail.com",
+  "subject": "deck builder in Greenville",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "HELD-verify-identity"
+  ]
+ },
+ {
+  "slug": "universal-junk",
+  "name": "Universal Junk Removal",
+  "email": "removalcrew3@gmail.com",
+  "subject": "junk removal in Greer",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "upstate-tree-solutions",
+  "name": "Upstate Tree Solutions",
+  "email": "devinwithtreesolutions@gmail.com",
+  "subject": "Devin",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "vermont-custom-stone",
+  "name": "Vermont Custom Stone",
+  "email": "vtcustomstone@yahoo.com",
+  "subject": "stone masonry",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": true,
+  "flags": []
+ },
+ {
+  "slug": "west-construction",
+  "name": "West Construction",
+  "email": "catk@charter.net",
+  "subject": "remodeling in Spartanburg",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "greenville-cleaning",
+  "name": "Greenville Cleaning Company",
+  "email": "hello@greenville.cleaning",
+  "subject": "Greenville Cleaning Company",
+  "tier": "B",
+  "angle": "rebuild",
+  "demo": "https://greenville-cleaning-demo.vercel.app",
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "charlotte-pressure-washing",
+  "name": "Charlotte Pressure Washing",
+  "email": "safewash@yahoo.com",
+  "subject": "Charlotte Pressure Washing",
+  "tier": "B",
+  "angle": "rebuild",
+  "demo": null,
+  "out_of_state": true,
+  "flags": []
+ },
+ {
+  "slug": "kens-plumbing",
+  "name": "Ken's Plumbing",
+  "email": "",
+  "subject": "Ken",
+  "tier": "B",
+  "angle": "rebuild",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "email-needed"
+  ]
+ },
+ {
+  "slug": "top-choice-fence",
+  "name": "Top Choice Fence & Decks",
+  "email": "jonsaylors@yahoo.com",
+  "subject": "fencing and decks",
+  "tier": "B",
+  "angle": "rebuild",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "email-needed"
+  ]
+ },
+ {
+  "slug": "creek-crew",
+  "name": "The Creek Crew",
+  "email": "smfriedholm14@icloud.com",
+  "subject": "The Creek Crew",
+  "tier": "B",
+  "angle": "rebuild",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "email-needed"
+  ]
+ },
+ {
+  "slug": "unique-concrete",
+  "name": "Unique Concrete",
+  "email": "",
+  "subject": "Unique Concrete",
+  "tier": "B",
+  "angle": "rebuild",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "email-needed"
+  ]
+ },
+ {
+  "slug": "one-call-plumbing",
+  "name": "One Call Plumbing \u2014 Greenville",
+  "email": "",
+  "subject": "One Call Plumbing",
+  "tier": "C",
+  "angle": "seo-geo",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "email-needed"
+  ]
+ },
+ {
+  "slug": "randys-home-services",
+  "name": "Randy's Home Services",
+  "email": "randyshomeservice@gmail.com",
+  "subject": "Randy",
+  "tier": "B",
+  "angle": "rebuild",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "prime-concrete",
+  "name": "Prime Concrete Solutions",
+  "email": "",
+  "subject": "Prime Concrete Solutions",
+  "tier": "C",
+  "angle": "seo-geo",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "email-needed"
+  ]
+ },
+ {
+  "slug": "upstate-jack-of-trades",
+  "name": "Upstate Jack of Trades LLC",
+  "email": "handyman.jot@gmail.com",
+  "subject": "handyman in Greenville",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "southwestern-irrigation",
+  "name": "Southwestern Irrigation & Landscaping Inc.",
+  "email": "tleavitt@southwesternupstate.com",
+  "subject": "Southwestern Irrigation",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "milford-mountain",
+  "name": "Milford Mountain Landscape",
+  "email": "milfordmountain@gmail.com",
+  "subject": "Milford Mountain Landscape",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": []
+ },
+ {
+  "slug": "k-and-w-cleaning",
+  "name": "K&W Cleaning Service",
+  "email": "kwcleaningservice@aol.com",
+  "subject": "cleaning service",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "new-trade-hero-needs-approval"
+  ]
+ },
+ {
+  "slug": "home-shield-roofing",
+  "name": "Home Shield Roofing",
+  "email": "homeshieldroofing@yahoo.com",
+  "subject": "Home Shield Roofing",
+  "tier": "A",
+  "angle": "no-site",
+  "demo": null,
+  "out_of_state": false,
+  "flags": [
+   "new-trade-hero-needs-approval"
+  ]
+ }
+]

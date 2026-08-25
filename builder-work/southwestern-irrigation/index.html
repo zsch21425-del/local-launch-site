@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Southwestern Irrigation & Landscaping Inc. — Fountain Inn, SC</title>
+<meta name="description" content="Professional irrigation installation, repair, landscape maintenance, and drainage solutions serving Fountain Inn and the Upstate. 30 Google reviews, 5.0★ rating.">
+<meta property="og:title" content="Southwestern Irrigation & Landscaping Inc. — Fountain Inn, SC">
+<meta property="og:description" content="Professional irrigation installation, repair, landscape maintenance, and drainage solutions serving Fountain Inn and the Upstate. 30 Google reviews, 5.0★ rating.">
+<meta property="og:image" content="https://southwestern-irrigation-demo.vercel.app/hero.jpg">
+<meta property="og:url" content="https://southwestern-irrigation-demo.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  /* Hallmark · macrostructure: Gallery-Led · tone: premium-natural · anchor hue: {{ANCHOR_HUE}}
+   * Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5
+   * Proven structure from Palmetto Landscaping demo (2026-08-07) — the landscaping quality bar.
+   * ⚠️ COLOR RULE: set :root tokens to the PROSPECT's brand colors (research first — logo, social cover,
+   * equipment, flyers). These defaults are a neutral placeholder, never ship as-is.
+   * Rules: tokenized colors (zero raw hex outside :root), overflow-x:clip, roman headers,
+   * real photos only (client's own work shots), real reviews only — never fabricated. */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    /* Southwestern Irrigation & Landscaping — deep green + warm earth palette */
+    --brand: #1B5E3F;        /* primary: deep forest green */
+    --brand-dark: #0F3D28;   /* darker shade for nav/footer */
+    --brand-pale: #D4EFE7;   /* light tint for icon chips */
+    --accent: #C19A6B;       /* accent: warm tan/earth */
+    --accent-light: #E6C89D;
+    --paper: #FAF7F2;        /* page background */
+    --text: #333;
+    --text-muted: #777;
+    --text-light: #999;
+    --white: #FFFFFF;
+    --border: #e8e4de;
+  }
+  html { overflow-x: clip; }
+  body { overflow-x: clip; font-family: 'Inter', -apple-system, sans-serif; background: var(--paper); color: var(--text); line-height: 1.7; }
+  .font-heading { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(9,52,61,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+  .nav-brand span { color: var(--accent-light); }
+  .nav-cta { background: var(--accent); color: var(--white); font-weight: 700; font-size: 0.85rem; padding: 0.55rem 1.3rem; border-radius: 999px; text-decoration: none; transition: all 0.25s; }
+  .nav-cta:hover { background: var(--accent-light); transform: scale(1.04); }
+
+  /* ─── HERO ─── */
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 7rem 1.5rem 4rem; overflow: hidden; }
+  .hero-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; object-position: center 30%; filter: brightness(0.75) saturate(1.12); z-index: 0; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9,52,61,0.18) 0%, rgba(9,52,61,0.45) 100%); }
+  .hero-content { position: relative; z-index: 3; max-width: 780px; }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 999px; padding: 0.45rem 1.4rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.5rem; backdrop-filter: blur(4px); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.2rem; text-shadow: 0 2px 40px rgba(0,0,0,0.7); }
+  .hero h1 .accent { color: var(--accent-light); }
+  .hero .subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.85); font-weight: 300; max-width: 620px; margin: 0 auto 1.8rem; }
+  .hero-proof { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem; color: rgba(255,255,255,0.9); font-size: 0.85rem; }
+  .hero-proof .star { color: var(--accent-light); }
+  .hero-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-phone { background: var(--accent); color: var(--white); font-weight: 700; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; box-shadow: 0 6px 24px rgba(217,106,69,0.35); }
+  .btn-phone:hover { background: var(--accent-light); transform: scale(1.05); }
+  .btn-outline { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); color: var(--white); font-weight: 600; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; }
+  .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  /* ─── SECTIONS ─── */
+  .section { padding: 5.5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--brand); margin-bottom: 1rem; }
+  .section .lede { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; max-width: 640px; margin-bottom: 3rem; }
+
+  /* ─── SERVICES (icon cards, motion bg, sticky 100vh — proven Palmetto pattern) ─── */
+  #services.services-section { position: relative; max-width: none; padding: 0; overflow: hidden; background: transparent; }
+  #services .section-label { color: var(--accent-light); text-shadow: 0 1px 4px rgba(0,0,0,0.65); }
+  #services h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.45); }
+  #services .lede { color: rgba(255,255,255,0.95); text-shadow: 0 1px 5px rgba(0,0,0,0.65); font-weight: 400; }
+  
+  
+  #services .services-inner { position: relative; z-index: 1; padding: 5.5rem 1.5rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  #services .service-card { background: rgba(255,253,247,0.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  #services .service-card:hover { background: rgba(255,253,247,0.94); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .service-card { background: var(--white); border-radius: 18px; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); border-color: rgba(217,106,69,0.4); }
+  .service-card .svc-img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; margin-bottom: 1.1rem; }
+  
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--brand); margin-bottom: 0.5rem; }
+  .service-card p { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; }
+
+  /* ─── GALLERY (real work photos) ─── */
+  .gallery-section { position: relative; overflow: hidden; background: var(--brand-dark); }
+  .gallery-section .gallery-bg { position: sticky; top: 0; height: 100vh; z-index: 0; pointer-events: none; overflow: hidden; }
+  .gallery-section .gallery-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45); }
+  .gallery-section .section { position: relative; z-index: 1; margin-top: -100vh; }
+  .gallery-section .section { padding-top: 5.5rem; }
+  .gallery-section .section-label { color: var(--accent-light); }
+  .gallery-section h2 { color: var(--white); }
+  .gallery-section .lede { color: rgba(255,255,255,0.7); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .gallery-card { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+  .gallery-card img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.7s; }
+  .gallery-card:hover img { transform: scale(1.06); }
+  .gallery-cap { position: absolute; inset-x: 0; bottom: 0; background: linear-gradient(to top, rgba(0,0,0,0.65), transparent); padding: 1.2rem 1.2rem 0.9rem; color: var(--white); font-size: 0.85rem; font-weight: 500; }
+
+  /* ─── FRONTYARD VIDEO WRAP (Reviews + About share one bg, ends before Claim — proven Palmetto pattern) ─── */
+  .frontyard-wrap { position: relative; background: #0d1f14; }
+  
+  
+  
+  
+  .frontyard-wrap .reviews-section, .frontyard-wrap .about-panel { position: relative; z-index: 1; }
+  .frontyard-wrap .section-label { color: var(--accent-light); text-shadow: 0 1px 4px rgba(0,0,0,0.65); }
+  .frontyard-wrap h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.45); }
+  .frontyard-wrap .lede { color: rgba(255,255,255,0.95); text-shadow: 0 1px 5px rgba(0,0,0,0.65); font-weight: 400; }
+  .frontyard-wrap .about-panel h2 { color: var(--white); }
+  .frontyard-wrap .about-panel .section-label { color: var(--accent-light); }
+  .reviews-section { position: relative; }
+  .reviews-section .review-card { background: rgba(255,255,255,0.94); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .reviews-section .review-card.placeholder { background: rgba(250,247,242,0.94); }
+  .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .review-card { background: var(--white); border-radius: 16px; padding: 1.75rem; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+  .review-stars { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+  .review-text { font-size: 0.9rem; color: var(--text); font-weight: 300; line-height: 1.7; margin-bottom: 1rem; }
+  .review-author { font-size: 0.8rem; color: var(--text-muted); }
+  .review-author strong { color: var(--brand); font-weight: 600; }
+  .review-source { font-size: 0.7rem; color: var(--text-light); margin-top: 0.25rem; }
+  .review-card.placeholder { border-style: dashed; border-color: var(--border); background: var(--paper); }
+  .review-card.placeholder .review-text { color: var(--text-muted); }
+
+  /* ─── ABOUT ─── */
+  .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-panel .about-section { background: rgba(255,255,255,0.92); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border-radius: 18px; padding: 2.2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .about-image { border-radius: 18px; overflow: hidden; height: 420px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+  .about-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
+  .about-image:hover img { transform: scale(1.04); }
+  .about-text p { color: var(--text-muted); font-weight: 300; margin-bottom: 1rem; font-size: 0.95rem; }
+  .about-text .highlight { color: var(--brand); font-weight: 600; }
+
+  /* ─── CTA ─── */
+  .cta-section { text-align: center; padding: 5.5rem 1.5rem; position: relative; overflow: hidden; background: var(--brand); }
+  .cta-section .section-label { color: var(--accent-light); }
+  .cta-section h2 { color: var(--white); }
+  .cta-section p { color: rgba(255,255,255,0.75); font-weight: 300; margin-bottom: 2.2rem; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--accent); color: var(--white); font-weight: 700; padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 6px 24px rgba(217,106,69,0.3); }
+  .cta-btn:hover { transform: scale(1.05); background: var(--accent-light); }
+
+  /* ─── BOTTOM (Local Launch) ─── */
+  .ll-logo { padding: 3rem 1.5rem 1.5rem; text-align: center; background: var(--paper); }
+  .ll-cta-text { padding: 1.5rem 1.5rem 2.5rem; text-align: center; background: var(--paper); }
+  .ll-cta-text h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brand); margin-bottom: 0.5rem; }
+  .ll-cta-text p { color: var(--text-muted); font-size: 0.9rem; }
+  .ll-contact { padding: 2.5rem 1.5rem 4rem; text-align: center; background: var(--paper); border-top: 1px solid var(--border); }
+  .ll-contact-inner { display: flex; flex-direction: column; gap: 1rem; max-width: 320px; margin: 0 auto; }
+  .ll-btn { display: flex; align-items: center; gap: 0.75rem; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; text-decoration: none; color: var(--brand); transition: all 0.2s; }
+  .ll-btn:hover { border-color: var(--accent); }
+  .ll-btn .lbl { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+  .ll-btn .val { font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 6rem 1.25rem 3rem; }
+    .section { padding: 3.5rem 1.25rem; }
+    #services .services-inner { padding: 3.5rem 1.25rem; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-image { height: 260px; }
+    .frontyard-wrap .reviews-section, .frontyard-wrap .about-panel { position: relative; z-index: 1; }
+    .reviews-section .review-card { background: rgba(255,255,255,0.94); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    .reviews-section .review-card.placeholder { background: rgba(250,247,242,0.94); }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .hero-proof { gap: 0.6rem; font-size: 0.75rem; }
+  }
+  @media (max-width: 375px) {
+    .btn-phone, .btn-outline { font-size: 0.85rem; padding: 0.8rem 1.4rem; white-space: nowrap; }
+    .hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Southwestern Irrigation <span>•</span> Fountain Inn</a>
+    <a href="tel:+18643035293" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ 1. HERO ═══════════════ -->
+<section class="hero">
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg"><source src="hero.mp4" type="video/mp4"></video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Licensed & Insured</div>
+    <h1>Expert Irrigation<br><span class="accent">and Landscaping</span></h1>
+    <p class="subtitle">Irrigation and landscaping you can count on — serving Fountain Inn and the Upstate.</p>
+    <div class="hero-proof">
+      <span><span class="star">★★★★★</span> 30 Google reviews</span>
+      <span>5.0★ rating</span>
+      <span>Free Estimates</span>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:+18643035293" class="btn-phone">📞 (864) 303-5293</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. SERVICES (motion bg, sticky 100vh — proven pattern) ═══════════════ -->
+<section id="services" class="section services-section">
+  </div>
+  <div class="services-inner">
+    <div class="section-label">Services</div>
+    <h2>What We Do</h2>
+    <p class="lede">From custom irrigation systems to landscape maintenance and drainage solutions, we provide comprehensive outdoor care for residential properties.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <img class="svc-img" src="svc-lawn.jpg" alt="Service" loading="lazy">
+        <h3>Irrigation Installation</h3>
+        <p>Custom sprinkler and drip systems designed for your lawn's exact needs.</p>
+      </div>
+      <div class="service-card">
+        <img class="svc-img" src="svc-design.jpg" alt="Service" loading="lazy">
+        <h3>Irrigation Repair</h3>
+        <p>Fast diagnosis and repair of leaks, broken heads, and coverage gaps.</p>
+      </div>
+      <div class="service-card">
+        <img class="svc-img" src="svc-hardscape.jpg" alt="Service" loading="lazy">
+        <h3>Landscape Maintenance</h3>
+        <p>Mowing, edging, and bed care that keep your property looking its best.</p>
+      </div>
+      <div class="service-card">
+        <img class="svc-img" src="svc-cleanup.jpg" alt="Service" loading="lazy">
+        <h3>Drainage Solutions</h3>
+        <p>French drains and grading fixes that keep water away from your home.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 3. GALLERY (real work photos) ═══════════════ -->
+
+
+<!-- ═══════════════ 4+5. REVIEWS + ABOUT (shared front-yard video background, ends before Claim — proven pattern) ═══════════════ -->
+<div class="frontyard-wrap">
+<section id="gallery" class="gallery-section">
+  <div class="gallery-bg" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="bg-services-poster.jpg">
+      <source src="bg-services.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="section">
+    <div class="section-label">Portfolio</div>
+    <h2>Our Work — Real Jobs, Real Results</h2>
+    <p class="lede">See our work across the Upstate. Every project reflects our commitment to quality and attention to detail.</p>
+    <div class="gallery-grid">
+      <div class="gallery-card"><img src="work-a.jpg" alt="Custom irrigation installation" loading="lazy"><div class="gallery-cap">Irrigation System Installation</div></div>
+      <div class="gallery-card"><img src="work-b.jpg" alt="Landscape renovation" loading="lazy"><div class="gallery-cap">Landscape Renovation</div></div>
+      <div class="gallery-card"><img src="work-c.jpg" alt="Drainage solutions" loading="lazy"><div class="gallery-cap">Drainage System</div></div>
+      <div class="gallery-card"><img src="work-d.jpg" alt="Lawn maintenance" loading="lazy"><div class="gallery-cap">Landscape Maintenance</div></div>
+    </div>
+  </div>
+</section>
+<section class="section reviews-section">
+    <div class="section-label">Reviews</div>
+    <h2>What Customers Say</h2>
+    <p class="lede">Trusted by 30+ customers on Google with a 5.0★ rating</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+      <div class="review-card placeholder">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+      <div class="review-card placeholder">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+    </div>
+</section>
+
+<!-- ═══════════════ 5. ABOUT (over same front-yard video) ═══════════════ -->
+<section class="section about-panel">
+  <div class="section-label">About</div>
+  <h2>Who We Are</h2>
+  <div class="about-section" style="margin-top:2rem;">
+    <div class="about-image">
+      <img src="about.jpg" alt="Team photo of Southwestern Irrigation & Landscaping professionals" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>Southwestern Irrigation & Landscaping Inc. serves Fountain Inn and the surrounding Upstate with irrigation and landscaping expertise.</p>
+      <p>We combine water-smart irrigation with professional landscape care to keep your property healthy and beautiful.</p>
+      <p class="highlight">Every landscape tells a story. We're here to help yours thrive with proven expertise and personalized attention.</p>
+    </div>
+  </div>
+</section>
+</div><!-- /frontyard-wrap — video background ends here, Claim Your Site below is solid -->
+
+<!-- ═══════════════ 6. CTA ═══════════════ -->
+<section id="claim" class="cta-section">
+  <div class="section-label">Claim Your Site</div>
+  <h2>This is yours, Southwestern Irrigation.</h2>
+  <p>Built to showcase your work and help you grow. A professional website with your real reviews, a photo gallery of your jobs, and everything you need to win more clients.</p>
+  <a href="https://local-launch-site.vercel.app" target="_blank" class="cta-btn">See Your Online Presence &amp; SEO Score →</a>
+</section>
+
+<!-- ═══════════════ 7. LOCAL LAUNCH LOGO ═══════════════ -->
+<section class="ll-logo">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:320px;width:100%;">
+    <img src="logo-bg.jpg" alt="Local Launch" style="width:100%;height:auto;border-radius:12px;display:block;">
+  </a>
+</section>
+
+<!-- ═══════════════ 8. CTA TEXT ═══════════════ -->
+<section class="ll-cta-text">
+  <h3>Want this site? It's yours.</h3>
+  <p>Reply, call, or text. I'll hand you the keys in 24 hours.</p>
+  <p style="color:var(--text-light);font-size:0.85rem;margin-top:1rem;max-width:380px;margin-left:auto;margin-right:auto;">Click my logo above to see my work. I'm based in Simpsonville, SC and I help local businesses like yours grow and win more clients.</p>
+</section>
+
+<!-- ═══════════════ 9. CONTACT ═══════════════ -->
+<section class="ll-contact">
+  <div class="ll-contact-inner">
+    <a href="tel:+15033585860" class="ll-btn">
+      <span style="font-size:1.2rem;">📞</span>
+      <div style="text-align:left;"><div class="lbl">Call / Text</div><div class="val">(503) 358-5860</div></div>
+    </a>
+    <a href="mailto:locallaunchupstate@gmail.com" class="ll-btn">
+      <span style="font-size:1.2rem;">✉️</span>
+      <div style="text-align:left;"><div class="lbl">Email</div><div class="val">locallaunchupstate@gmail.com</div></div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

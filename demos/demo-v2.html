@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Launch — Websites & SEO for Small Businesses | Greenville, SC</title>
+<meta name="description" content="Local Launch builds custom websites and runs SEO for small businesses in Greenville & Upstate SC.">
+<meta name="theme-color" content="#1B1A18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
+<style>
+  :root{
+    --bg: #1B1A18;
+    --bg2: #211F1C;
+    --panel: rgba(38,35,31,0.65);
+    --panel-hover: rgba(38,35,31,0.85);
+    --ink: #F2EFE9;
+    --muted: #A6A093;
+    --accent: #2AA8A8;
+    --accent-glow: rgba(42,168,168,0.15);
+    --accent-soft: rgba(42,168,168,0.08);
+    --line: rgba(242,239,233,0.08);
+    --radius-sm: 12px;
+    --radius: 18px;
+    --radius-lg: 24px;
+    --font-display: 'Inter Tight', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --shadow-glass: 0 8px 32px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.04) inset;
+    --shadow-card: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:#1B1A18}
+
+  /* === p5.js Canvas Layer === */
+  #bg-canvas{
+    position:fixed;
+    top:0;left:0;
+    width:100vw;height:100vh;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.6;
+  }
+
+  /* === Content Layer === */
+  .content-layer{
+    position:relative;
+    z-index:1;
+  }
+
+  /* === Nav === */
+  .nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+  }
+  .nav.scrolled{
+    background:rgba(27,26,24,0.82);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    box-shadow:0 1px 0 rgba(255,255,255,0.04);
+  }
+  .nav-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .nav-logo img{
+    width:36px;height:36px;
+    border-radius:8px;
+    object-fit:cover;
+  }
+  .nav-logo span{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:18px;
+    letter-spacing:-0.01em;
+  }
+  .nav-logo .dot{
+    color:var(--accent);
+  }
+  .nav-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 20px;
+    background:rgba(42,168,168,0.12);
+    border:1px solid rgba(42,168,168,0.25);
+    color:var(--accent);
+    border-radius:var(--radius-pill, 980px);
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    transition:all 0.25s;
+    font-family:var(--font-body);
+  }
+  .nav-cta:hover{
+    background:rgba(42,168,168,0.2);
+    border-color:rgba(42,168,168,0.4);
+  }
+
+  /* === Glass Card === */
+  .glass{
+    background:var(--panel);
+    backdrop-filter:blur(40px) saturate(180%);
+    -webkit-backdrop-filter:blur(40px) saturate(180%);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-glass);
+  }
+  .glass-sm{
+    background:rgba(38,35,31,0.55);
+    backdrop-filter:blur(20px) saturate(180%);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-card);
+  }
+
+  /* === Hero === */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:100px 20px 60px;
+    text-align:center;
+    position:relative;
+  }
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 18px;
+    background:rgba(42,168,168,0.1);
+    border:1px solid rgba(42,168,168,0.2);
+    border-radius:var(--radius-pill, 980px);
+    color:var(--accent);
+    font-size:13px;
+    font-weight:500;
+    margin-bottom:28px;
+    letter-spacing:0.02em;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-size:clamp(32px, 7vw, 64px);
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:-0.03em;
+    max-width:700px;
+    margin-bottom:20px;
+  }
+  .hero h1 .hl{
+    color:var(--accent);
+  }
+  .hero p{
+    font-size:clamp(16px, 3vw, 20px);
+    color:var(--muted);
+    max-width:520px;
+    margin-bottom:36px;
+    font-weight:400;
+    line-height:1.5;
+  }
+  .hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 32px;
+    background:var(--accent);
+    color:#1B1A18;
+    border-radius:var(--radius-pill, 980px);
+    font-size:16px;
+    font-weight:600;
+    text-decoration:none;
+    transition:all 0.25s;
+    font-family:var(--font-body);
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 30px var(--accent-glow);
+  }
+  .btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 32px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12);
+    color:var(--ink);
+    border-radius:var(--radius-pill, 980px);
+    font-size:16px;
+    font-weight:500;
+    text-decoration:none;
+    transition:all 0.25s;
+    font-family:var(--font-body);
+  }
+  .btn-secondary:hover{
+    background:rgba(255,255,255,0.08);
+    border-color:rgba(255,255,255,0.2);
+  }
+
+  /* === Sections === */
+  section{
+    padding:80px 20px;
+    position:relative;
+  }
+  .section-label{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 16px;
+    background:var(--accent-soft);
+    border:1px solid rgba(42,168,168,0.15);
+    border-radius:var(--radius-pill, 980px);
+    color:var(--accent);
+    font-size:12px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:20px;
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-size:clamp(28px, 5vw, 44px);
+    font-weight:600;
+    line-height:1.12;
+    letter-spacing:-0.02em;
+    margin-bottom:16px;
+  }
+  .section-sub{
+    color:var(--muted);
+    font-size:clamp(15px, 2.5vw, 18px);
+    max-width:550px;
+    line-height:1.5;
+  }
+
+  /* === Service Cards === */
+  .cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+    max-width:1100px;
+    margin:40px auto 0;
+  }
+  .card{
+    padding:28px 24px;
+    transition:transform 0.3s, box-shadow 0.3s, background 0.3s;
+    cursor:default;
+    position:relative;
+    overflow:hidden;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    background:var(--panel-hover);
+    box-shadow:0 12px 40px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.06) inset;
+  }
+  .card-icon{
+    width:44px;height:44px;
+    border-radius:var(--radius-sm);
+    background:var(--accent-soft);
+    border:1px solid rgba(42,168,168,0.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--accent);
+    font-size:18px;
+    margin-bottom:16px;
+  }
+  .card h3{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:8px;
+    letter-spacing:-0.01em;
+  }
+  .card p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.55;
+  }
+
+  /* === Portfolio === */
+  .portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:24px;
+    max-width:1100px;
+    margin:40px auto 0;
+  }
+  .folio-card{
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    transition:transform 0.35s, box-shadow 0.35s;
+    cursor:pointer;
+    position:relative;
+    aspect-ratio:16/10;
+    background:var(--bg2);
+  }
+  .folio-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .folio-img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform 0.5s;
+  }
+  .folio-card:hover .folio-img{
+    transform:scale(1.04);
+  }
+  .folio-overlay{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    padding:20px 24px;
+    background:linear-gradient(transparent, rgba(27,26,24,0.95));
+  }
+  .folio-overlay h4{
+    font-family:var(--font-display);
+    font-size:18px;
+    font-weight:600;
+  }
+  .folio-overlay span{
+    font-size:13px;
+    color:var(--accent);
+    font-weight:500;
+  }
+
+  /* === Testimonial === */
+  .testimonial{
+    max-width:700px;
+    margin:0 auto;
+    text-align:center;
+    padding:40px;
+  }
+  .testimonial p{
+    font-size:clamp(18px, 3vw, 24px);
+    font-style:italic;
+    line-height:1.5;
+    color:var(--ink);
+    margin-bottom:20px;
+  }
+  .testimonial cite{
+    font-size:14px;
+    color:var(--accent);
+    font-weight:600;
+    font-style:normal;
+    display:block;
+  }
+
+  /* === CTA Section === */
+  .cta-section{
+    text-align:center;
+    padding:100px 20px;
+  }
+  .cta-glass{
+    max-width:600px;
+    margin:0 auto;
+    padding:48px 32px;
+    text-align:center;
+  }
+  .cta-glass h2{
+    font-family:var(--font-display);
+    font-size:clamp(26px, 5vw, 40px);
+    font-weight:600;
+    margin-bottom:16px;
+    letter-spacing:-0.02em;
+  }
+  .cta-glass p{
+    color:var(--muted);
+    margin-bottom:28px;
+    font-size:16px;
+    line-height:1.5;
+  }
+
+  /* === Footer === */
+  footer{
+    text-align:center;
+    padding:40px 20px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:13px;
+  }
+  footer a{
+    color:var(--accent);
+    text-decoration:none;
+  }
+
+  /* === Scroll Animations === */
+  .reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .reveal-delay-1{transition-delay:0.1s}
+  .reveal-delay-2{transition-delay:0.2s}
+  .reveal-delay-3{transition-delay:0.3s}
+
+  /* === Parallax layers === */
+  .parallax-slow{
+    will-change:transform;
+  }
+  .parallax-fast{
+    will-change:transform;
+  }
+
+  /* === Mobile fixes === */
+  @media(max-width:640px){
+    .nav{padding:12px 16px}
+    .nav-logo span{font-size:16px}
+    .nav-cta{padding:8px 16px;font-size:13px;gap:6px}
+    .hero{padding:80px 16px 40px}
+    .cards-grid{grid-template-columns:1fr;margin-top:28px}
+    .portfolio-grid{grid-template-columns:1fr}
+    section{padding:60px 16px}
+    .btn-primary,.btn-secondary{padding:14px 24px;font-size:15px}
+  }
+</style>
+</head>
+<body>
+
+<!-- p5.js Background Canvas -->
+<div id="bg-canvas"></div>
+
+<!-- Content -->
+<div class="content-layer">
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo">
+    <img src="logo.jpg" alt="Local Launch" onerror="this.style.display='none'">
+    <span>Local<span class="dot">.</span>Launch</span>
+  </a>
+  <a href="#contact" class="nav-cta">
+    <i class="fa-solid fa-paper-plane"></i> Get a Site
+  </a>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-badge reveal">
+    <i class="fa-solid fa-bolt"></i> Websites & SEO for Trades
+  </div>
+  <h1 class="reveal reveal-delay-1">We build websites that <span class="hl">actually bring in customers</span></h1>
+  <p class="reveal reveal-delay-2">Custom websites, AI visualizers, AI receptionists, and SEO — built for local businesses in Greenville & Upstate SC.</p>
+  <div class="hero-buttons reveal reveal-delay-3">
+    <a href="#contact" class="btn-primary">
+      <i class="fa-solid fa-rocket"></i> See Our Work
+    </a>
+    <a href="tel:+18643574530" class="btn-secondary">
+      <i class="fa-solid fa-phone"></i> (864) 357-4530
+    </a>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label reveal"><i class="fa-solid fa-cubes"></i> What We Do</div>
+    <h2 class="section-title reveal reveal-delay-1">Everything your business needs to win online</h2>
+    <p class="section-sub reveal reveal-delay-2">One partner. One price. No contracts. Just results.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="card glass-sm reveal reveal-delay-1">
+      <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
+      <h3>Custom Websites</h3>
+      <p>Hand-built, mobile-first websites starting at $300. AI visualizers, booking, and more — all included.</p>
+    </div>
+    <div class="card glass-sm reveal reveal-delay-2">
+      <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+      <h3>Local SEO</h3>
+      <p>Google Business Profile optimization, citation building, and review management. Get found by customers near you.</p>
+    </div>
+    <div class="card glass-sm reveal reveal-delay-3">
+      <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
+      <h3>AI Receptionists</h3>
+      <p>24/7 phone answering that books jobs, answers questions, and never misses a lead. Starting at $50/month.</p>
+    </div>
+    <div class="card glass-sm reveal reveal-delay-1">
+      <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <h3>AI Visualizers</h3>
+      <p>Let customers see their project before they buy. Before/after yard visualizers, kitchen renderings, and more.</p>
+    </div>
+    <div class="card glass-sm reveal reveal-delay-2">
+      <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+      <h3>Growth Tracking</h3>
+      <p>Monthly reports showing your rankings, reviews, calls, and leads. See exactly what's working.</p>
+    </div>
+    <div class="card glass-sm reveal reveal-delay-3">
+      <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
+      <h3>Ongoing Support</h3>
+      <p>We don't disappear after launch. Updates, edits, and support — included. You focus on your business.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="work">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label reveal"><i class="fa-solid fa-folder-open"></i> Our Work</div>
+    <h2 class="section-title reveal reveal-delay-1">Websites we've built for local businesses</h2>
+    <p class="section-sub reveal reveal-delay-2">Every site includes AI tools, SEO, and mobile-first design.</p>
+  </div>
+  <div class="portfolio-grid">
+    <a href="https://redwood-site-jade.vercel.app" target="_blank" rel="noopener" class="folio-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;">
+      <img src="https://redwood-site-jade.vercel.app/flyer.jpg" alt="Redwood Landscaping" class="folio-img" onerror="this.style.background='linear-gradient(135deg,#1a3a2a,#2E5A3C)';this.style.minHeight='200px'">
+      <div class="folio-overlay">
+        <span>Landscaping</span>
+        <h4>Redwood Landscaping →</h4>
+      </div>
+    </a>
+    <div class="folio-card glass-sm reveal reveal-delay-2" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:40px;">
+      <div class="card-icon" style="width:56px;height:56px;font-size:22px;"><i class="fa-solid fa-plus"></i></div>
+      <h3 style="font-family:var(--font-display);font-weight:600;">Your Business Here</h3>
+      <p style="color:var(--muted);font-size:14px;text-align:center;max-width:220px;">Next project could be yours. Let's build something great.</p>
+    </div>
+    <div class="folio-card glass-sm reveal reveal-delay-3" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:40px;">
+      <div class="card-icon" style="width:56px;height:56px;font-size:22px;"><i class="fa-solid fa-plus"></i></div>
+      <h3 style="font-family:var(--font-display);font-weight:600;">Your Business Here</h3>
+      <p style="color:var(--muted);font-size:14px;text-align:center;max-width:220px;">We build 2-3 sites per month. Spots fill fast.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div class="cta-glass glass">
+    <h2>Ready to get more customers?</h2>
+    <p>Let's talk about your business. No pressure, no contracts — just a conversation about what we can build for you.</p>
+    <div class="hero-buttons">
+      <a href="tel:+18643574530" class="btn-primary">
+        <i class="fa-solid fa-phone"></i> Call (864) 357-4530
+      </a>
+      <a href="mailto:redwoodlandscapingupstate@gmail.com" class="btn-secondary">
+        <i class="fa-solid fa-envelope"></i> Email Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 Local Launch — Greenville, SC &nbsp;|&nbsp; <a href="https://redwood-site-jade.vercel.app">View Sample Site</a></p>
+</footer>
+
+</div><!-- /.content-layer -->
+
+<script>
+// === Nav scroll effect ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// === Reveal on scroll ===
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObserver.observe(el));
+
+// === Parallax on scroll ===
+const parallaxEls = document.querySelectorAll('.glass, .glass-sm, .folio-card');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  parallaxEls.forEach((el, i) => {
+    const rect = el.getBoundingClientRect();
+    const center = rect.top + rect.height/2;
+    const viewCenter = window.innerHeight/2;
+    const offset = (center - viewCenter) * 0.03;
+    // Only apply if element is in viewport
+    if(rect.top < window.innerHeight && rect.bottom > 0){
+      el.style.transform = `translateY(${offset}px)`;
+    }
+  });
+});
+</script>
+
+<!-- p5.js 3D Depth Background -->
+<script>
+p5.disableFriendlyErrors = true;
+
+let shapes = [];
+let scrollOffset = 0;
+let targetScroll = 0;
+const NUM_SHAPES = 18;
+
+function setup(){
+  let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
+  canvas.parent('bg-canvas');
+  pixelDensity(1);
+  
+  for(let i = 0; i < NUM_SHAPES; i++){
+    shapes.push({
+      x: random(-width, width),
+      y: random(-height*1.5, height*1.5),
+      z: random(-600, 200),
+      size: random(30, 120),
+      rotX: random(TWO_PI),
+      rotY: random(TWO_PI),
+      rotZ: random(TWO_PI),
+      speedX: random(0.1, 0.4),
+      speedY: random(0.1, 0.3),
+      speedZ: random(0.05, 0.2),
+      color: random() > 0.5 ? color(42, 168, 168, 25) : color(111, 208, 204, 18),
+      type: floor(random(3)) // 0=box, 1=torus, 2=sphere-ish
+    });
+  }
+}
+
+function draw(){
+  // Smooth scroll tracking
+  targetScroll = window.scrollY;
+  scrollOffset += (targetScroll - scrollOffset) * 0.08;
+  
+  clear();
+  
+  // Subtle ambient light
+  ambientLight(20, 18, 16);
+  
+  // Directional light from top
+  directionalLight(42, 168, 168, 0, -1, -0.3);
+  
+  // Scroll affects camera position - subtle parallax
+  let camY = map(scrollOffset, 0, document.body.scrollHeight - windowHeight, -100, 100, true);
+  camera(0, camY, 500, 0, camY * 0.5, 0, 0, 1, 0);
+  
+  // Rotate entire scene very slowly
+  rotateX(scrollOffset * 0.0002);
+  rotateY(scrollOffset * 0.0003);
+  
+  noFill();
+  
+  for(let s of shapes){
+    push();
+    translate(s.x, s.y + scrollOffset * 0.15 * s.speedY, s.z);
+    rotateX(s.rotX + scrollOffset * 0.0005 * s.speedX);
+    rotateY(s.rotY + scrollOffset * 0.0004 * s.speedY);
+    rotateZ(s.rotZ + scrollOffset * 0.0003 * s.speedZ);
+    
+    strokeWeight(0.8);
+    
+    // Teal shapes with varying opacity
+    let alpha = map(sin(scrollOffset * 0.002 + s.x), -1, 1, 8, 30);
+    let c = s.color;
+    stroke(red(c), green(c), blue(c), alpha);
+    
+    if(s.type === 0){
+      box(s.size);
+    }else if(s.type === 1){
+      torus(s.size * 0.4, s.size * 0.15);
+    }else{
+      // Icosahedron for more complex shape
+      let detail = floor(map(s.z, -600, 200, 0, 1));
+      beginShape();
+      // Simplified: just use a sphere with low detail
+      let r = s.size * 0.45;
+      for(let a = 0; a < TWO_PI; a += PI/6){
+        for(let b = 0; b < PI; b += PI/4){
+          let sx = r * sin(b) * cos(a);
+          let sy = r * sin(b) * sin(a);
+          let sz = r * cos(b);
+          vertex(sx, sy, sz);
+        }
+      }
+      endShape(CLOSE);
+    }
+    
+    pop();
+  }
+}
+
+function windowResized(){
+  resizeCanvas(windowWidth, windowHeight);
+}
+</script>
+
+</body>
+</html>

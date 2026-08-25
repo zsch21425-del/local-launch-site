@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://fairway.upstatewebsites.com
+Sitemap: https://fairway.upstatewebsites.com/sitemap.xml

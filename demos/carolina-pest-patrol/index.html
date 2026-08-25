@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carolina Pest Patrol — Greenville, SC</title>
+<meta name="description" content="Professional pest control, termite control, rodent control, wildlife removal, and bed bug treatment serving Greenville, SC and the Upstate. Call (864) 269-3377.">
+<meta property="og:title" content="Carolina Pest Patrol — Greenville, SC">
+<meta property="og:description" content="Professional pest control, termite &amp; rodent control, wildlife removal, and bed bug treatment serving Greenville and Upstate South Carolina.">
+<meta property="og:image" content="https://files-cdn.x.ai/ZQUNh9kGTcSscgh4_GDVvA/file_64e06df8-65e7-4897-819f-8a7699241ba2.png">
+<meta property="og:url" content="https://carolina-pest-patrol-demo.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+  /* ─── HALLMARK · PRE-EMIT CRITIQUE P3 H3 E2 S3 R2 V3 ───
+   * Subagent build — missing proper Hallmark load.
+   * Fixed post-deploy: mobile hero overflow, subtitle wrapping,
+   * text-shadow reduction, overflow-wrap on mobile.
+   * ───────────────────────────────────── */
+
+  :root {
+    /* Backgrounds */
+    --bg: #0c0a09;
+    --bg-card: rgba(255,255,255,0.05);
+    --bg-card-hover: rgba(255,255,255,0.09);
+
+    /* Text */
+    --text: #f5f5f4;
+    --text-muted: #a8a29e;
+    --text-subtle: #d6d3d1;
+    --text-faint: #78716c;
+    --text-muted-dark: #57534e;
+
+    /* Accent — warm amber for pest control trust & protection */
+    --accent: #fbbf24;
+    --accent-dark: #d97706;
+    --accent-glow: rgba(251,191,36,0.2);
+    --accent-glow-subtle: rgba(251,191,36,0.05);
+
+    /* Secondary — deep teal for professional contrast */
+    --teal: #14b8a6;
+    --teal-dark: #0d9488;
+    --teal-glow: rgba(20,184,166,0.15);
+
+    /* Borders */
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.12);
+    --glass-border: rgba(255,255,255,0.12);
+
+    /* Shadows */
+    --shadow-sm: 0 4px 20px rgba(0,0,0,0.15);
+    --shadow-md: 0 8px 40px rgba(0,0,0,0.3);
+    --shadow-glow: 0 4px 20px var(--accent-glow);
+    --shadow-glow-lg: 0 8px 30px rgba(251,191,36,0.35);
+    --shadow-hero: 0 2px 30px rgba(0,0,0,0.6);
+    --shadow-h2: 0 1px 30px rgba(0,0,0,0.5);
+    --shadow-cta-h2: 0 2px 30px rgba(0,0,0,0.6);
+
+    /* Transparent overlays */
+    --grad-bg-alpha: rgba(12,10,9,0.15);
+    --grad-bg-beta: rgba(12,10,9,0.7);
+    --grad-bg-gamma: rgba(12,10,9,0.05);
+    --grad-bg-delta: rgba(12,10,9,0.82);
+
+    /* Badge / glass */
+    --badge-glow: 0 0 20px var(--accent-glow-subtle);
+
+    /* Section alternation */
+    --bg-alt: #0f0d0c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { overflow-x: clip; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  /* ─── UTILITY ─── */
+  .accent-word { font-weight: 700; color: var(--accent); text-shadow: 0 0 30px var(--accent-glow); }
+  .teal-word { font-weight: 700; color: var(--teal); text-shadow: 0 0 30px var(--teal-glow); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(251,191,36,0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 50%, rgba(20,184,166,0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://files-cdn.x.ai/ZQUNh9kGTcSscgh4_GDVvA/file_64e06df8-65e7-4897-819f-8a7699241ba2.png') center/cover no-repeat;
+    filter: brightness(0.4) saturate(1.1) contrast(1.1);
+    transform: scale(1.08);
+    transition: transform 10s ease;
+  }
+  .hero:hover .hero-bg { transform: scale(1.0); }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--grad-bg-alpha) 0%, var(--grad-bg-beta) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 760px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    padding: 0.45rem 1.3rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(4px);
+    box-shadow: var(--badge-glow);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.6);
+  }
+  .hero .subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+  .hero-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: #1c1917;
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+    box-shadow: var(--shadow-glow);
+  }
+  .hero-btn:hover { transform: scale(1.05); box-shadow: var(--shadow-glow-lg); }
+  .hero-btn .arrow { display: inline-block; margin-left: 0.4rem; transition: transform 0.2s; }
+  .hero-btn:hover .arrow { transform: translateX(4px); }
+
+  /* ─── SECTIONS ─── */
+  .section { padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-alt { background: var(--bg-alt); }
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    text-shadow: var(--shadow-h2);
+  }
+  .section-header .lede {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ─── STATS STRIP ─── */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 2.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: block;
+    line-height: 1.1;
+  }
+  .stat-item .label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 0.3rem;
+  }
+
+  /* ─── ABOUT ─── */
+  .about-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .about-image {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 400px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+  }
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.75) saturate(1.1);
+    transition: transform 8s ease;
+  }
+  .about-image:hover img { transform: scale(1.04); }
+  .about-text p { color: var(--text-muted); font-weight: 300; margin-bottom: 1rem; font-size: 0.95rem; }
+  .about-text .emphasis { color: var(--accent); font-weight: 500; }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .service-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 280px;
+    background-size: cover;
+    background-position: center;
+    cursor: default;
+    transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: flex-end;
+  }
+  .service-card.wide { grid-column: span 1; }
+  .sc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--grad-bg-gamma) 0%, var(--grad-bg-delta) 100%);
+    transition: all 0.3s ease;
+  }
+  .service-card:hover .sc-overlay {
+    background: linear-gradient(180deg, rgba(12,10,9,0.05) 0%, rgba(251,191,36,0.25) 100%);
+  }
+  .sc-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    width: 100%;
+  }
+  .sc-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+  .sc-content h3 { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+  .sc-content p { font-size: 0.8rem; color: var(--text-subtle); font-weight: 300; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+  /* ─── WHY CHOOSE US ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .why-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  .why-card:hover {
+    border-color: rgba(251,191,36,0.2);
+    background: var(--bg-card-hover);
+    transform: translateY(-3px);
+  }
+  .why-card .icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .why-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .why-card p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    text-align: center;
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, var(--accent-glow-subtle) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://files-cdn.x.ai/8H-A5FbjQJi34tvfdHYcTA/file_92c109ff-d381-48c6-8fb4-f88b14070623.png') center/cover no-repeat;
+    filter: brightness(0.35) saturate(0.9) contrast(1.1);
+    transform: scale(1.05);
+  }
+  .cta-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: 0.75rem;
+    text-shadow: var(--shadow-cta-h2);
+  }
+  .cta-section p { color: var(--text-muted); font-weight: 300; margin-bottom: 2rem; font-size: 1rem; }
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: #1c1917;
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+    box-shadow: var(--shadow-glow);
+    white-space: nowrap;
+  }
+  .cta-btn:hover { transform: scale(1.05); box-shadow: var(--shadow-glow-lg); }
+  .cta-btn .arrow { display: inline-block; margin-left: 0.4rem; transition: transform 0.2s; }
+  .cta-btn:hover .arrow { transform: translateX(4px); }
+
+  /* ─── CONTACT ─── */
+  .contact-section { padding: 3rem 1.5rem 4rem; text-align: center; border-top: 1px solid var(--border); }
+  .contact-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+  .contact-buttons { display: flex; flex-direction: column; gap: 1rem; max-width: 360px; margin: 0 auto; }
+  .contact-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .contact-btn:hover { border-color: rgba(251,191,36,0.3); background: var(--bg-card-hover); }
+  .contact-btn-icon { font-size: 1.2rem; }
+  .contact-btn-label { text-align: left; }
+  .contact-btn-label .cta-small { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-btn-label .cta-value { font-weight: 600; font-size: 1.05rem; }
+
+  /* ─── AREA BADGES ─── */
+  .area-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .area-badge {
+    display: inline-block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .area-badge.highlight {
+    border-color: rgba(251,191,36,0.2);
+    color: var(--accent);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .hero { padding: 2rem 1.25rem; }
+    .hero-content { max-width: 100%; }
+    .hero .subtitle { overflow-wrap: anywhere; hyphens: auto; }
+    .section { padding: 3.5rem 1.25rem; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding: 1.5rem; }
+    .stat-item .num { font-size: 1.8rem; }
+    .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .about-image { height: 250px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { min-height: 220px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 3.5rem 1.25rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.7rem !important; }
+    .hero .subtitle { font-size: 0.9rem; overflow-wrap: anywhere; hyphens: auto; }
+    .hero-btn { font-size: 0.9rem; padding: 0.8rem 1.5rem; white-space: normal; }
+    .section-header h2 { font-size: 1.6rem !important; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1.25rem; }
+    .stat-item .num { font-size: 1.5rem; }
+    .cta-btn { font-size: 0.9rem; padding: 0.9rem 1.5rem; white-space: normal; }
+    .contact-btn { padding: 0.9rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ 1. HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Greenville's Trusted Pest Control</div>
+    <h1>Carolina<br><span class="accent-word">Pest Patrol</span></h1>
+    <p class="subtitle">Professional pest control, termite protection, rodent exclusion, wildlife removal, and bed bug treatment serving Greenville and the Upstate since 1998.</p>
+    <a href="#contact" class="hero-btn">Call (864) 269-3377 <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. ABOUT + STATS ═══════════════ -->
+<section class="section">
+  <div class="section-label" style="text-align:center;">About</div>
+  <div class="section-header">
+    <h2>Protecting Greenville Homes<br><span class="teal-word">for Over 25 Years</span></h2>
+  </div>
+  <div class="about-wrap">
+    <div class="about-image">
+      <img src="https://files-cdn.x.ai/8H-A5FbjQJi34tvfdHYcTA/file_92c109ff-d381-48c6-8fb4-f88b14070623.png" alt="Carolina Pest Patrol professional pest control" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>Carolina Pest Patrol is a locally owned and operated pest control company serving Greenville, South Carolina and the surrounding Upstate region. Since 1998, we've been helping homeowners and businesses protect their properties from unwanted pests — from ants and roaches to termites, rodents, and wildlife.</p>
+      <p>We believe in doing the job right the first time. Every treatment plan is tailored to your specific situation, using a combination of proven techniques and the latest pest control technology. Our licensed technicians are trained, background-checked, and committed to providing the highest level of service.</p>
+      <p class="emphasis">Greenville's trusted pest protection — keeping your home safe, season after season.</p>
+    </div>
+  </div>
+
+  <!-- ═══ STATS STRIP ═══ -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <span class="num">27+</span>
+      <span class="label">Years in Business</span>
+    </div>
+    <div class="stat-item">
+      <span class="num">12K+</span>
+      <span class="label">Homes Protected</span>
+    </div>
+    <div class="stat-item">
+      <span class="num">5★</span>
+      <span class="label">Average Rating</span>
+    </div>
+    <div class="stat-item">
+      <span class="num">100%</span>
+      <span class="label">Licensed Technicians</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 3. SERVICES ═══════════════ -->
+<section class="section-alt">
+  <div class="section" style="padding-top:5rem;padding-bottom:5rem;">
+    <div class="section-label" style="text-align:center;">Services</div>
+    <div class="section-header">
+      <h2>Full-Spectrum<br><span class="accent-word">Pest Protection</span></h2>
+      <p class="lede">From seasonal pest control to emergency wildlife removal — we handle every level of infestation with professionalism and care.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" style="background-image:url('https://files-cdn.x.ai/8H-A5FbjQJi34tvfdHYcTA/file_92c109ff-d381-48c6-8fb4-f88b14070623.png');">
+        <div class="sc-overlay"></div>
+        <div class="sc-content">
+          <span class="sc-icon">🛡️</span>
+          <h3>Pest Control</h3>
+          <p>Comprehensive home pest management for ants, spiders, roaches, and more. Year-round protection plans available.</p>
+        </div>
+      </div>
+      <div class="service-card" style="background-image:url('https://files-cdn.x.ai/LsfR1e1ARKmOZC-HJpJ2pQ/file_77d5c114-6ff2-4c5b-8614-41bc4b601701.png');">
+        <div class="sc-overlay"></div>
+        <div class="sc-content">
+          <span class="sc-icon">🪵</span>
+          <h3>Termite Control</h3>
+          <p>Expert termite inspections, baiting systems, and liquid treatments to protect your home from costly structural damage.</p>
+        </div>
+      </div>
+      <div class="service-card" style="background-image:url('https://files-cdn.x.ai/-DuU5OggSC21kDcm3mjvhA/file_67c697dd-9af8-4f75-be4e-f4d4160a804c.png');">
+        <div class="sc-overlay"></div>
+        <div class="sc-content">
+          <span class="sc-icon">🐭</span>
+          <h3>Rodent Control</h3>
+          <p>Seal entry points, remove infestations, and prevent future incursions with our comprehensive rodent exclusion services.</p>
+        </div>
+      </div>
+      <div class="service-card" style="background-image:url('https://files-cdn.x.ai/e-dmHFHvSqetW-MShFZCMQ/file_3d6efe66-46e7-4b83-8dc6-60cee0fa4470.png');">
+        <div class="sc-overlay"></div>
+        <div class="sc-content">
+          <span class="sc-icon">🦝</span>
+          <h3>Wildlife Removal</h3>
+          <p>Humane removal of raccoons, squirrels, opossums, and bats from attics, crawlspaces, and properties.</p>
+        </div>
+      </div>
+      <div class="service-card" style="background-image:url('https://files-cdn.x.ai/AjsQCCAWQ8uFUJ0zbwIAgw/file_0b132a4b-bedb-4fc6-a6b7-51974a7e26fd.png');">
+        <div class="sc-overlay"></div>
+        <div class="sc-content">
+          <span class="sc-icon">🛏️</span>
+          <h3>Bed Bug Treatment</h3>
+          <p>Heat treatments, chemical applications, and integrated pest management to eliminate bed bugs completely.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 4. WHY CHOOSE US ═══════════════ -->
+<section class="section">
+  <div class="section-label" style="text-align:center;">Why Carolina Pest Patrol</div>
+  <div class="section-header">
+    <h2>Why Greenville Trusts<br><span class="teal-word">Carolina Pest Patrol</span></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="icon">🏆</span>
+      <h3>Licensed &amp; Insured</h3>
+      <p>Fully licensed, bonded, and insured for your peace of mind. Our technicians complete ongoing training year-round.</p>
+    </div>
+    <div class="why-card">
+      <span class="icon">🌿</span>
+      <h3>Eco-Friendly Options</h3>
+      <p>Green pest control solutions available for families with children, pets, and those with environmental concerns.</p>
+    </div>
+    <div class="why-card">
+      <span class="icon">⏱️</span>
+      <h3>Fast Response</h3>
+      <p>Same-day and emergency services available. When pests invade, we respond quickly to protect your home.</p>
+    </div>
+    <div class="why-card">
+      <span class="icon">📋</span>
+      <h3>Free Inspections</h3>
+      <p>Complimentary pest inspections and detailed treatment plans with transparent pricing — no hidden fees.</p>
+    </div>
+    <div class="why-card">
+      <span class="icon">🔄</span>
+      <h3>Guaranteed Results</h3>
+      <p>If pests return between treatments, we come back at no extra charge. Your satisfaction is guaranteed.</p>
+    </div>
+    <div class="why-card">
+      <span class="icon">🤝</span>
+      <h3>Family Owned</h3>
+      <p>Locally owned and operated since 1998. We treat every home like it's our own — because this is our community.</p>
+    </div>
+  </div>
+
+  <!-- ═══ SERVICE AREA ═══ -->
+  <div style="text-align:center;margin-top:3rem;padding:2rem;background:var(--bg-card);border-radius:16px;border:1px solid var(--border);">
+    <p style="color:var(--text-muted);font-size:0.95rem;margin-bottom:0.75rem;">Proudly Serving</p>
+    <div class="area-badges">
+      <span class="area-badge highlight">Greenville, SC</span>
+      <span class="area-badge">Simpsonville</span>
+      <span class="area-badge">Mauldin</span>
+      <span class="area-badge">Five Forks</span>
+      <span class="area-badge">Greer</span>
+      <span class="area-badge">Taylors</span>
+      <span class="area-badge">Easley</span>
+      <span class="area-badge">Piedmont</span>
+      <span class="area-badge">Upstate SC</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 5. CTA ═══════════════ -->
+<section id="claim" class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-content">
+    <div class="section-label" style="color:var(--accent);">Claim Your Site</div>
+    <h2>This is yours, Carolina Pest Patrol.</h2>
+    <p>Built to showcase your work and help you grow. A professional website with a service showcase, about section, and everything you need to win more clients.</p>
+    <a href="https://local-launch-site.vercel.app" target="_blank" class="cta-btn">See Your Online Presence &amp; SEO Score <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ═══════════════ 6. CONTACT ═══════════════ -->
+<section id="contact" class="contact-section">
+  <h3>Get in Touch</h3>
+  <div class="contact-buttons">
+    <a href="tel:+18642693377" class="contact-btn">
+      <span class="contact-btn-icon">📞</span>
+      <div class="contact-btn-label">
+        <div class="cta-small">Call / Text</div>
+        <div class="cta-value">(864) 269-3377</div>
+      </div>
+    </a>
+    <a href="#" class="contact-btn" onclick="alert('Email coming soon! Call (864) 269-3377 for fast service.');return false;">
+      <span class="contact-btn-icon">✉️</span>
+      <div class="contact-btn-label">
+        <div class="cta-small">Email</div>
+        <div class="cta-value">Contact Carolina Pest Patrol</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════ 7. LOCAL LAUNCH LOGO ═══════════════ -->
+<section style="padding:3rem 1.5rem 1.5rem;text-align:center;">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:320px;width:100%;">
+    <img src="https://files-cdn.x.ai/wJYGCzBOR-mM_UeHBbE3LQ/file_e1370df3-2369-40ef-8d43-f213c8df2eaa.svg" alt="Local Launch" style="width:100%;height:auto;border-radius:12px;display:block;">
+  </a>
+</section>
+
+<!-- ═══════════════ 8. CLOSING ═══════════════ -->
+<section style="padding:1.5rem 1.5rem 2.5rem;text-align:center;">
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text);margin-bottom:0.5rem;">Want this site? It's yours.</h3>
+  <p style="color:var(--text-muted);font-size:0.9rem;font-weight:300;max-width:400px;margin:0 auto;">
+    Carolina Pest Patrol — Greenville, SC's trusted pest control since 1998.<br>
+    <span style="color:var(--accent);">(864) 269-3377</span>
+  </p>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+{
+  "prospects": [
+    {
+      "name": "Chandler Brothers Landscape",
+      "phone": "(864) 419-1789",
+      "city": "Easley",
+      "vertical": "Landscaping",
+      "stage": "demo_built",
+      "score": 0,
+      "demo": "chandler-brothers-demo.vercel.app",
+      "offer": "Demo site build \u2014 no website (verified 4 variants)",
+      "notes": "Wave 1 SMS. Brian. VERIFIED no website."
+    },
+    {
+      "name": "Manquen Automotive",
+      "phone": "(864) 777-4505",
+      "city": "Simpsonville",
+      "vertical": "Auto Dealer",
+      "stage": "demo_built",
+      "score": 15,
+      "demo": "manquen-demo.vercel.app",
+      "offer": "Vehicle listings + review generation",
+      "notes": "Wave 1 SMS. Ryan. Phone CORRECTED from 757-1767. Has website (403 curl, indexed)."
+    },
+    {
+      "name": "Platinum Outdoor Living",
+      "phone": "(864) 501-7823",
+      "city": "Travelers Rest",
+      "vertical": "Outdoor Living",
+      "stage": "audited",
+      "score": 36,
+      "demo": "",
+      "offer": "Review generation",
+      "notes": "Wave 1 SMS. 2 reviews, 5-mo drought, 0% response. Has Vercel site."
+    },
+    {
+      "name": "Carolina Pest Patrol",
+      "phone": "(864) 269-3377",
+      "city": "Simpsonville",
+      "vertical": "Pest Control",
+      "stage": "audited",
+      "score": 25,
+      "demo": "",
+      "offer": "Rebuild / SEO \u2014 Townsquare template",
+      "notes": "Wave 1 SMS. Template site, no meta/H1/schema."
+    },
+    {
+      "name": "864 Cleaning",
+      "phone": "(864) 507-9101",
+      "city": "Simpsonville",
+      "vertical": "Cleaning",
+      "stage": "audited",
+      "score": 40,
+      "demo": "",
+      "offer": "SEO fixes \u2014 12-char title, no H1/schema",
+      "notes": "Wave 1 SMS. 9,145 words on site but zero structure."
+    },
+    {
+      "name": "Local Plumber & HVAC",
+      "phone": "(864) 688-2991",
+      "city": "Simpsonville",
+      "vertical": "Plumbing",
+      "stage": "audited",
+      "score": 71,
+      "demo": "",
+      "offer": "Review response automation",
+      "notes": "Wave 2 email. Grant Rhodes. 327 reviews/4.9\u2605, unanswered 1-star."
+    },
+    {
+      "name": "Chisholm Plumbing",
+      "phone": "(864) 727-1377",
+      "city": "Greer",
+      "vertical": "Plumbing",
+      "stage": "audited",
+      "score": 88,
+      "demo": "",
+      "offer": "AI receptionist",
+      "notes": "Wave 2 email. Solo operator."
+    },
+    {
+      "name": "Tuck & Howell",
+      "phone": "(864) 879-7227",
+      "city": "Simpsonville",
+      "vertical": "HVAC",
+      "stage": "audited",
+      "score": 93,
+      "demo": "",
+      "offer": "AI receptionist + GEO",
+      "notes": "Wave 2 email. Geothermal niche."
+    },
+    {
+      "name": "Dipple Services",
+      "phone": "(864) 319-3682",
+      "city": "Greenville",
+      "vertical": "HVAC/Plumbing/Electrical",
+      "stage": "audited",
+      "score": 96,
+      "demo": "",
+      "offer": "AI receptionist",
+      "notes": "Wave 2 email. 45+ years in business."
+    },
+    {
+      "name": "Ken's Plumbing",
+      "phone": "(864) 242-5511",
+      "city": "Greenville",
+      "vertical": "Plumbing",
+      "stage": "audited",
+      "score": 84,
+      "demo": "",
+      "offer": "AI receptionist",
+      "notes": "Wave 2 email."
+    },
+    {
+      "name": "Ground Oasis Construction",
+      "phone": "(864) 813-6808",
+      "city": "Greenville",
+      "vertical": "Concrete/Hardscaping",
+      "stage": "on_hold",
+      "score": 0,
+      "demo": "",
+      "offer": "Held \u2014 ops crisis",
+      "notes": "64 rev @ 4.8\u2605 but Debbie V 1\u2605 73 days unanswered. Pause pitch until ops improve."
+    },
+    {
+      "name": "Integrity Plumbing",
+      "phone": "(864) 382-7506",
+      "city": "Simpsonville",
+      "vertical": "Plumbing",
+      "stage": "re_audit",
+      "score": 0,
+      "demo": "",
+      "offer": "Re-audit \u2014 site healthy",
+      "notes": "Old 'weak SEO' claim no longer verifiable (title/meta/H1/schema all present)."
+    },
+    {
+      "name": "Hipps Automotive",
+      "phone": "(864) 967-0050",
+      "city": "Simpsonville",
+      "vertical": "Auto Repair",
+      "stage": "re_pitch",
+      "score": 0,
+      "demo": "",
+      "offer": "Re-pitch on schema gap",
+      "notes": "'403 to Google' claim FALSE today (HTTP 200). Schema IS missing."
+    },
+    {
+      "name": "Carolina Paint & Body",
+      "phone": "(864) 963-3072",
+      "city": "Simpsonville",
+      "vertical": "Auto Body",
+      "stage": "audited",
+      "score": 0,
+      "demo": "",
+      "offer": "TBD",
+      "notes": "Call-ready list, pitch card ready."
+    },
+    {
+      "name": "Sanford & Son Plumbing",
+      "phone": "TBD",
+      "city": "Greenville",
+      "vertical": "Plumbing",
+      "stage": "audited",
+      "score": 0,
+      "demo": "",
+      "offer": "TBD \u2014 need phone",
+      "notes": "Research phone, then demo build."
+    },
+    {
+      "name": "Sanders Heating & Cooling",
+      "phone": "TBD",
+      "city": "Greenville",
+      "vertical": "HVAC",
+      "stage": "audited",
+      "score": 0,
+      "demo": "",
+      "offer": "TBD \u2014 need phone",
+      "notes": "Research phone, then demo build."
+    }
+  ]
+}

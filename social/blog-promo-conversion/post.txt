@@ -1,0 +1,23 @@
+# FB Post — Blog Promotion (1 card carousel)
+# Blog: What Actually Converts on a Service Business Website in 2026?
+# URL: https://locallaunchupstate.com/blog/service-website-conversion-greenville-sc.html
+# Visual: card1_v2.jpg (bright, no text/logos/branding, verified clean)
+# Status: DRAFTED + VISUAL READY — awaiting Zach approval to publish (hard approval gate; do not auto-publish)
+
+POST TEXT:
+A website has one job for a trade business: get the phone to ring. Not win awards. Here's what actually converts in 2026.
+
+Try the 5-minute test. Open your site on your phone, pretend you're a homeowner in Greer with a leaking water heater. Can you call in one tap? Is there a page that says exactly what you do and where? Do real reviews or a license number back it up?
+
+A generic template answers none of that. It just says "welcome to our company, serving the community since 2009," and the homeowner's gone in three seconds.
+
+The sites that get the calls answer the questions people actually type. How much does mulch cost? Do you serve Mauldin? Put the answer on the page and you get the ring.
+
+Full 5-minute read here: https://locallaunchupstate.com/blog/service-website-conversion-greenville-sc.html
+
+#greenvillesc
+
+---
+Media: /mnt/d/LocalLaunch/social/blog-promo-conversion/card1_v2.jpg
+Page: LocalLaunch (ID 61592152902137)
+Publish path: GUI Bot v6.5 (:8421) on Zach's real logged-in Chrome (Profile 5). NOT auto-published in this session — Zach's desktop was mid-task (Temu 2FA + Canva) and no explicit approval was present.

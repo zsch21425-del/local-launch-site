@@ -1,0 +1,5 @@
+BRIEF.md
+*.md
+hero-still.png
+_deploy_tmp*
+requirements.txt

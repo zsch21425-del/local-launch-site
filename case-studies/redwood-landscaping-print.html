@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redwood Landscaping — Case Study | Local Launch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: letter; margin: 0.5in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #1B1A18;
+    font-size: 11px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page { max-width: 7.5in; margin: 0 auto; }
+
+  .header { 
+    border-bottom: 3px solid #D4845B;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: #1B1A18; }
+  .header h1 span { color: #D4845B; }
+  .header .badge {
+    background: #D4845B; color: #fff;
+    padding: 4px 12px; border-radius: 4px;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+  }
+
+  .results { display: flex; gap: 16px; margin-bottom: 20px; }
+  .result-box {
+    flex: 1;
+    background: #F5F2ED;
+    border: 1px solid #E0D8CE;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .result-box .num { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #2CD4A9; }
+  .result-box .label { font-size: 10px; color: #666; text-transform: uppercase; font-weight: 600; }
+
+  .two-col { display: flex; gap: 20px; margin-bottom: 16px; }
+  .col { flex: 1; }
+  .col h3 { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .col.before h3 { color: #8A837A; }
+  .col.after h3 { color: #2CD4A9; }
+  .col ul { list-style: none; padding: 0; }
+  .col ul li { padding: 3px 0; font-size: 10.5px; border-bottom: 1px solid #eee; }
+  .col ul li:last-child { border-bottom: none; }
+
+  h2 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: #D4845B; margin-bottom: 8px; margin-top: 16px; }
+  p { font-size: 10.5px; margin-bottom: 8px; color: #444; }
+  .strong { color: #1B1A18; font-weight: 600; }
+
+  .features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .feat {
+    background: #F5F2ED; border-radius: 6px; padding: 8px 12px;
+    flex: 1; min-width: 45%;
+  }
+  .feat .title { font-weight: 700; font-size: 11px; }
+  .feat .desc { font-size: 10px; color: #555; }
+
+  .stack { font-size: 10.5px; margin-bottom: 8px; }
+  .stack strong { font-weight: 600; }
+
+  .cta {
+    background: #1B1A18; color: #F5F2ED;
+    padding: 16px; border-radius: 8px; text-align: center;
+    margin-top: 16px;
+  }
+  .cta p { color: #C4BDB4; font-size: 11px; margin-bottom: 0; }
+  .cta .big { font-size: 13px; font-weight: 700; color: #D4845B; margin-bottom: 4px; }
+
+  .footer { margin-top: 16px; padding-top: 12px; border-top: 1px solid #E0D8CE; font-size: 9px; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div>
+      <h1>Redwood <span>Landscaping</span></h1>
+      <p style="font-size:10px;color:#888;margin:0;">A Local Launch Case Study</p>
+    </div>
+    <div class="badge">Before → After</div>
+  </div>
+
+  <div class="results">
+    <div class="result-box">
+      <div class="num">22 → 96</div>
+      <div class="label">SEO Score</div>
+    </div>
+    <div class="result-box">
+      <div class="num">0 → 6</div>
+      <div class="label">Pages Ranking</div>
+    </div>
+    <div class="result-box">
+      <div class="num">AI</div>
+      <div class="label">Visualizer Tool</div>
+    </div>
+  </div>
+
+  <h2>The Problem</h2>
+  <p>Redwood Landscaping had <strong class="strong">no website, no Google presence, and zero search visibility</strong>. When customers searched for landscaping services in the Upstate SC area, Redwood simply didn't exist — while competitors with decade-old sites captured every lead.</p>
+  <p>Initial SEO audit score: <strong>22/100</strong>. No location pages, no schema markup, no blog content, no way for customers to find them.</p>
+
+  <div class="two-col">
+    <div class="col before">
+      <h3>✗ Before</h3>
+      <ul>
+        <li>No website</li>
+        <li>No Google Business Profile</li>
+        <li>Zero search visibility</li>
+        <li>No customer reviews online</li>
+        <li>Losing leads to competitors</li>
+      </ul>
+    </div>
+    <div class="col after">
+      <h3>✓ After</h3>
+      <ul>
+        <li>Custom website on Vercel</li>
+        <li>GBP optimized + claimed</li>
+        <li>6 location/service pages ranking</li>
+        <li>AI yard visualizer (Gemini)</li>
+        <li>SEO score: 96/100</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>What We Built</h2>
+  <div class="features">
+    <div class="feat"><div class="title">🌐 Custom Website</div><div class="desc">Fast, mobile-first, SEO-optimized. No page builders — clean HTML + Tailwind.</div></div>
+    <div class="feat"><div class="title">🎯 Location Pages</div><div class="desc">Targeted pages for Slater, Marietta, Greenville County — each with LocalBusiness schema.</div></div>
+    <div class="feat"><div class="title">🤖 AI Visualizer</div><div class="desc">Upload a yard photo → Gemini transforms it → before/after slider demo. Pro-level lead gen.</div></div>
+    <div class="feat"><div class="title">📸 Gallery + Blog</div><div class="desc">8 real job photos + 2,000-word SEO blog posts targeting local keywords.</div></div>
+  </div>
+
+  <h2>Tech Stack</h2>
+  <div class="stack"><strong>Frontend:</strong> HTML + Tailwind CSS + Vanilla JS</div>
+  <div class="stack"><strong>Hosting:</strong> Vercel (free tier)</div>
+  <div class="stack"><strong>AI:</strong> Gemini 2.5 Flash Image</div>
+  <div class="stack"><strong>SEO:</strong> Lighthouse + Screaming Frog + schema optimization</div>
+
+  <div class="cta">
+    <p class="big">Want results like this?</p>
+    <p>Local Launch builds websites and AI tools for small businesses that actually work.<br>Free audit available — visit <strong>local-launch-site.vercel.app</strong></p>
+  </div>
+
+  <div class="footer">
+    © 2026 Local Launch — Greenville, SC. Scores verified via Lighthouse. Case study represents real client results.
+  </div>
+</div>
+</body>
+</html>

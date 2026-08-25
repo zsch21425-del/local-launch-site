@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redwood Landscaping — Case Study | Local Launch</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #1B1A18;
+    color: #F5F2ED;
+    line-height: 1.6;
+  }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(245,242,237,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  nav .logo { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: #F5F2ED; }
+  nav .logo span { color: #D4845B; }
+  nav a { color: #C4BDB4; text-decoration: none; font-size: 14px; font-weight: 500; }
+  nav a:hover { color: #D4845B; }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(212,132,91,0.12);
+    color: #E8A87C;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(212,132,91,0.2);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #F5F2ED;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: #D4845B; }
+  .hero p {
+    color: #C4BDB4;
+    font-size: 18px;
+    max-width: 650px;
+    margin: 0 auto 32px;
+  }
+
+  /* Results bar */
+  .results-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 60px;
+  }
+  .result-stat {
+    background: #2A2926;
+    border: 1px solid rgba(245,242,237,0.08);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .result-stat .number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #2CD4A9;
+  }
+  .result-stat .label {
+    font-size: 13px;
+    color: #8A837A;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .result-stat .sub {
+    font-size: 12px;
+    color: #C4BDB4;
+    margin-top: 4px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 60px; }
+  .section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #D4845B;
+    margin-bottom: 20px;
+  }
+  .section p {
+    color: #C4BDB4;
+    font-size: 15px;
+    margin-bottom: 16px;
+    max-width: 700px;
+  }
+
+  /* Two column */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .col-card {
+    background: #2A2926;
+    border: 1px solid rgba(245,242,237,0.08);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .col-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .col-card.before h3 { color: #8A837A; }
+  .col-card.after h3 { color: #2CD4A9; }
+  .col-card ul { list-style: none; padding: 0; }
+  .col-card ul li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #C4BDB4;
+    border-bottom: 1px solid rgba(245,242,237,0.05);
+  }
+  .col-card ul li:last-child { border-bottom: none; }
+  .col-card ul li .check { color: #2CD4A9; font-weight: 700; }
+  .col-card ul li .cross { color: #8A837A; }
+
+  /* Feature highlight */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .feature-card {
+    background: #2A2926;
+    border: 1px solid rgba(245,242,237,0.08);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .feature-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .feature-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #F5F2ED;
+    margin-bottom: 6px;
+  }
+  .feature-card p {
+    font-size: 13px;
+    color: #C4BDB4;
+    line-height: 1.5;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: rgba(212,132,91,0.08);
+    border: 1px solid rgba(212,132,91,0.2);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .cta-section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F5F2ED;
+    margin-bottom: 12px;
+  }
+  .cta-section p { color: #C4BDB4; font-size: 15px; max-width: 500px; margin: 0 auto 24px; }
+  .cta-btn {
+    display: inline-block;
+    background: #D4845B;
+    color: #1B1A18;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: #E8A87C; }
+  .cta-secondary {
+    display: inline-block;
+    color: #D4845B;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 16px;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid rgba(245,242,237,0.08);
+    padding: 32px 0;
+    text-align: center;
+  }
+  footer p { color: #8A837A; font-size: 13px; }
+
+  /* Results number color accent */
+  .num-copper { color: #D4845B; }
+
+  @media (max-width: 768px) {
+    .results-bar { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <div class="logo">Local <span>Launch</span></div>
+    <a href="https://local-launch-site.vercel.app">Back to Main Site →</a>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">Client Case Study</div>
+    <h1>Redwood <span>Landscaping</span></h1>
+    <p>How we took a landscaping company from invisible online to a fully ranked, AI-powered digital presence — and multiplied their online visibility.</p>
+  </div>
+
+  <div class="results-bar">
+    <div class="result-stat">
+      <div class="number">22 → 96</div>
+      <div class="label">SEO Score</div>
+      <div class="sub">+74 points in 30 days</div>
+    </div>
+    <div class="result-stat">
+      <div class="number">0 → 6</div>
+      <div class="label">Location Pages</div>
+      <div class="sub">Targeting zero-competition keywords</div>
+    </div>
+    <div class="result-stat">
+      <div class="number">AI</div>
+      <div class="label">Visualizer Tool</div>
+      <div class="sub">Before/after yard previews via Gemini</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The Problem</h2>
+    <p>Redwood Landscaping had no website, no Google Business Profile optimization, and zero online presence. When potential customers searched for landscaping services in Slater-Marietta, Greenville County, and surrounding areas — Redwood simply did not exist.</p>
+    <p>Their competition had decade-old websites, basic SEO, and Google Maps listings. Redwood was invisible.</p>
+    <p style="color: #D4845B; font-weight: 600; margin-top: 20px;">Initial SEO score: <strong>22/100</strong></p>
+  </div>
+
+  <div class="two-col">
+    <div class="col-card before">
+      <h3>😟 Before</h3>
+      <ul>
+        <li><span class="cross">✗</span> No website at all</li>
+        <li><span class="cross">✗</span> No Google Business Profile</li>
+        <li><span class="cross">✗</span> Zero search visibility</li>
+        <li><span class="cross">✗</span> No way for customers to find them</li>
+        <li><span class="cross">✗</span> No online reviews</li>
+        <li><span class="cross">✗</span> Losing leads to competitors daily</li>
+      </ul>
+    </div>
+    <div class="col-card after">
+      <h3>✅ After</h3>
+      <ul>
+        <li><span class="check">✓</span> Custom-built website on Vercel</li>
+        <li><span class="check">✓</span> GBP optimized and claimed</li>
+        <li><span class="check">✓</span> 6 location/service pages ranking</li>
+        <li><span class="check">✓</span> AI yard visualizer (before/after)</li>
+        <li><span class="check">✓</span> 8 real job photos in gallery</li>
+        <li><span class="check">✓</span> SEO score: 96/100</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>What We Built</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">🌐</div>
+        <h4>Custom Website</h4>
+        <p>Fast, mobile-first site built on a modern stack. No bloated page builders — clean HTML + Tailwind deployed on Vercel.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎯</div>
+        <h4>Location Pages</h4>
+        <p>Targeted pages for Slater, Marietta, Greenville County, and service areas — each optimized for local search.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🤖</div>
+        <h4>AI Visualizer</h4>
+        <p>Customers upload a photo of their yard and see an AI-generated transformation — a before/after slider. Powered by Gemini.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📸</div>
+        <h4>Project Gallery</h4>
+        <p>8 real job photos showcasing actual work — striped lawns, mulch beds, landscaping, and backyard transformations.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📝</div>
+        <h4>SEO Blog</h4>
+        <p>2,000+ word blog posts targeting local keywords like "Upstate SC red clay lawn care" — authority content that ranks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h4>Schema Markup</h4>
+        <p>JSON-LD LocalBusiness schema on every page — telling Google exactly who, where, and what services are offered.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>The Stack</h2>
+    <p style="margin-bottom: 12px;"><strong style="color:#F5F2ED;">Frontend:</strong> <span style="color:#C4BDB4;">Vanilla HTML + Tailwind CSS + Vanilla JS</span></p>
+    <p style="margin-bottom: 12px;"><strong style="color:#F5F2ED;">Hosting:</strong> <span style="color:#C4BDB4;">Vercel (free tier — zero hosting cost)</span></p>
+    <p style="margin-bottom: 12px;"><strong style="color:#F5F2ED;">AI:</strong> <span style="color:#C4BDB4;">Gemini 2.5 Flash Image (yard visualizer)</span></p>
+    <p style="margin-bottom: 12px;"><strong style="color:#F5F2ED;">SEO:</strong> <span style="color:#C4BDB4;">Lighthouse + Screaming Frog + manual schema optimization</span></p>
+    <p><strong style="color:#F5F2ED;">Deployment:</strong> <span style="color:#C4BDB4;">Vercel REST API — automatic deploys from local build</span></p>
+  </div>
+
+  <div class="cta-section">
+    <h2>Want the same for your business?</h2>
+    <p>Most small businesses are invisible online. We fix that — custom websites, real SEO that ranks, and AI tools that bring in leads.</p>
+    <a href="https://local-launch-site.vercel.app" class="cta-btn">Get Your Free Audit</a>
+    <a href="https://local-launch-site.vercel.app/demo.html" class="cta-secondary">See Pricing →</a>
+  </div>
+
+  <footer>
+    <p>© 2026 Local Launch. Greenville, SC.<br>Case study: Redwood Landscaping LLC — Slater-Marietta, SC. Results are real. Scores verified via Lighthouse.</p>
+  </footer>
+</div>
+</body>
+</html>

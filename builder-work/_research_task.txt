@@ -1,0 +1,31 @@
+You are doing research for a web design agency (Local Launch) that builds demo websites for South Carolina local service businesses. For EACH of the 19 businesses below, return a compact fact sheet with exactly these 4 lines:
+
+NAME: <business name>
+OWNER: <owner name, or "not found">
+REVIEWS: <1-2 verbatim customer review quotes (exact wording, in quotes) from their Google Business Profile or Facebook page; if none found write "not found">
+AREA: <confirmed primary service area / cities served, or "not found">
+
+Do NOT invent or guess anything. If you cannot verify a fact, write "not found". Keep each fact sheet to exactly 4 lines so the full response fits.
+
+BUSINESSES:
+1. MM&K Pressure Washing | (864) 940-3308 | Anderson, SC | pressure washing
+2. Sky Branch LLC | (864) 621-0858 | Greer, SC | gutter cleaning + window replacement
+3. Gulotta's Window Cleaning | (864) 934-9526 | Greenville, SC | window cleaning, pressure washing, gutters (owners Jeff & Cathy Gulotta)
+4. Tree Wisemen Upstate | (415) 850-7584 | Easley, SC | tree service
+5. Lumberjack Tree Service | (864) 642-7705 | Anderson, SC | tree service, 24/7 (owner Chris McCollum)
+6. BRB Pressure Washing Service | (864) 630-3757 | Simpsonville/Greenville, SC | pressure washing (owner Charles A. Belin)
+7. Upstate Window Cleaning LLC | (864) 398-0766 | Inman, SC | window + gutter cleaning
+8. FIX Home Projects LLC | (864) 918-4947 | Greenville, SC | custom decks, porches, handyman
+9. Brian Dillard Concrete LLC | (864) 606-2818 | Roebuck, SC | concrete contractor
+10. Cleaning Angels | (864) 404-9955 | Fountain Inn, SC | house cleaning (owner Erica Wilson)
+11. Gotta Guy Home Services | (864) 430-7248 | Simpsonville/Fountain Inn, SC | handyman (decks, doors, floors, lights, gutters)
+12. Home Shield Roofing | (864) 209-6219 | Anderson, SC | residential roofing
+13. Milford Mountain Landscape | (864) 416-1596 | Greer, SC | landscaping (design, planting, mulching, stone work, window boxes)
+14. SBC Handyman Services | (864) 920-9626 | Greenville, SC | handyman (appliance repair, drywall, light fixtures)
+15. Kanebreak Custom Backyards | (864) 884-4605 | Greenville/Simpsonville, SC | decks, fencing, concrete
+16. Wright Time Disposal Service | (864) 376-1200 | Pelzer, SC | junk removal
+17. All In One Maintenance | (864) 658-7960 | Pelzer, SC | junk removal + grass cutting + handyman
+18. Fresh Blades Lawn Care | (864) 304-5845 | Lyman, SC | lawn care
+19. Fresh Start Pressure Washing | (864) 633-7810 | Clemson, SC | pressure washing
+
+Return ALL 19 fact sheets in one response, numbered 1-19.

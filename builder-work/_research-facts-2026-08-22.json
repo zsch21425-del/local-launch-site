@@ -1,0 +1,244 @@
+{
+  "Buy Sell Landscape Supply LLC": {
+    "phone": "(616) 291-1982",
+    "location": "Grand Rapids, MI",
+    "category": "Landscape Supply",
+    "owner": "Sue",
+    "family_owned": true,
+    "reviews_verified": "4.4\u2605 / 43",
+    "services": [
+      "Rock & gravel",
+      "Sand",
+      "Mulch & landscaping bark",
+      "Topsoil & compost",
+      "Pickup load or delivery"
+    ],
+    "tagline": null,
+    "brand_colors": null,
+    "review_quotes": [
+      {
+        "text": "\u2026",
+        "author": "Amy A.",
+        "source": "Yelp (May 2024)"
+      },
+      {
+        "text": "\u2026always top quality product and their customer service is way beyond\u2026",
+        "author": "Anonymous",
+        "source": "Google (Apr 2025)"
+      }
+    ],
+    "hours": "Mon\u2013Fri 8\u20135, Sat 8\u201312",
+    "notes": "No logo/brand found \u2192 neutral dark premium palette"
+  },
+  "Cooper's Plumbing Company Inc": {
+    "phone": "(803) 648-0203",
+    "location": "Aiken, SC",
+    "category": "Plumbing",
+    "owner": "Sammy Cooper",
+    "family_owned": true,
+    "since": 1985,
+    "reviews_verified": "3.2\u2605 / 13 (low \u2014 do not imply high rating)",
+    "services": [
+      "Leak repair",
+      "Drain cleaning & clog removal",
+      "Water heater repair & installation",
+      "General plumbing repairs"
+    ],
+    "tagline": null,
+    "brand_colors": [
+      "charcoal (dark) + red accents \u2014 from truck photo"
+    ],
+    "review_quotes": [
+      {
+        "text": "\u2026",
+        "source": "BestProsInTown (2018\u20132019)"
+      }
+    ],
+    "address": "2172 Whiskey Rd, Aiken SC 29803"
+  },
+  "Country Life Tires & Service": {
+    "phone": "(864) 991-8707",
+    "location": "Mauldin, SC",
+    "category": "Auto Repair & Tires",
+    "owner": "Tony Gatto",
+    "reviews_verified": "477",
+    "services": [
+      "Tire sales/mounting/balancing (Nitto, Continental, Pirelli, Goodyear, Hankook, Falken, Bridgestone, Firestone)",
+      "Brake repair",
+      "Diagnostics & check-engine",
+      "General repair (ASE-certified, RepairPal Certified 12mo/12k warranty)",
+      "Towing & roadside (AAA contractor)"
+    ],
+    "tagline": null,
+    "brand_colors": null,
+    "review_quotes": [
+      {
+        "text": "\u2026very honest and reasonable on prices. Best mechanic in town!",
+        "author": "Laura Eddy",
+        "source": "Facebook 5\u2605"
+      },
+      {
+        "text": "Honest, reliable service for years!",
+        "author": "Jenny Byrne",
+        "source": "Facebook 5\u2605"
+      }
+    ],
+    "social": {
+      "facebook": "https://www.facebook.com/countrylifetiresandservice/",
+      "yelp": "https://www.yelp.com/biz/country-life-tires-and-service-mauldin-3"
+    }
+  },
+  "Sparrow Fencing LLC": {
+    "phone": "(864) 662-8867",
+    "location": "Greer/Pelzer, SC",
+    "category": "Fencing",
+    "owner": "unknown",
+    "reviews_verified": "349",
+    "services": null,
+    "tagline": null,
+    "brand_colors": null,
+    "review_quotes": [
+      {
+        "text": "Five stars for Sparrow Fencing\u2026",
+        "source": "Yelp snippet"
+      }
+    ],
+    "notes": "THIN research \u2014 services/brand unverified. Use standard fencing services + green/wood palette placeholder"
+  },
+  "Garcia's Painting Company": {
+    "phone": "(260) 600-8628",
+    "location": "Fort Wayne, IN",
+    "category": "Painting",
+    "owner": "Miguel",
+    "reviews_verified": "~9",
+    "services": [
+      "Interior painting (walls/ceilings/trim)",
+      "Exterior painting (incl. aluminum siding)",
+      "Drywall & sheetrock repair",
+      "Cabinet & vanity painting",
+      "Free estimates (English/Spanish)"
+    ],
+    "tagline": null,
+    "brand_colors": null,
+    "review_quotes": [
+      {
+        "text": "\u2026ceilings, walls, trim and bathroom vanities\u2026 worked hard\u2026",
+        "author": "Wesley Deiss",
+        "source": "Google"
+      },
+      {
+        "text": "\u2026repaint our old aluminum siding, made it look brand new\u2026",
+        "author": "Marc Grillot",
+        "source": "Google"
+      }
+    ],
+    "notes": "No logo/brand \u2192 neutral palette. Transform trade \u2192 before/after visualizer REQUIRED"
+  },
+  "Upstate Tree Solutions": {
+    "phone": "(864) 221-2435",
+    "location": "Anderson, SC",
+    "category": "Tree Service",
+    "owner": "Devin Woessner",
+    "reviews_verified": "5.0\u2605 / 430",
+    "services": [
+      "Tree removal & hazardous tree cutting",
+      "Tree trimming & pruning",
+      "Stump grinding",
+      "Storm damage cleanup",
+      "Emergency tree service (24hr)"
+    ],
+    "tagline": null,
+    "brand_colors": [
+      "#006020 (dark green)",
+      "#000000"
+    ],
+    "review_quotes": [
+      {
+        "text": "They are the best! Excellent work and very reasonable prices.",
+        "author": "Gloria Hackett",
+        "source": "Facebook (Aug 2026)"
+      }
+    ],
+    "social": [
+      "https://www.facebook.com/p/Upstate-Tree-Solutions-100063089358626"
+    ],
+    "notes": "Family owned & operated. Service area: Anderson, Williamston, Belton, Powdersville, Piedmont, Honea Path. 206 Ashley Downs, Anderson SC."
+  },
+  "Sease's Tree Services": {
+    "phone": "(803) 276-1737",
+    "location": "Newberry, SC",
+    "category": "Tree Service",
+    "owner": "David Sease",
+    "reviews_verified": "4.7\u2605 / 12",
+    "services": [
+      "Tree removal & safe felling",
+      "Tree trimming & branch removal",
+      "Problem/dead tree removal near homes & outbuildings",
+      "Expert tree care"
+    ],
+    "tagline": "Anything To Do With Trees",
+    "brand_colors": null,
+    "review_quotes": [
+      {
+        "text": "We had 3 huge trees... right next to our outbuildings. David Sease and his team took all of the trees down with ease...",
+        "author": "Sue Odom",
+        "source": "Google (via Birdeye)"
+      },
+      {
+        "text": "You will not find anyone more professional and knowledgeable in this field of work. I would highly recommend David.",
+        "author": "Bobby Stockman",
+        "source": "Google (via Birdeye)"
+      }
+    ],
+    "social": [
+      "https://www.yelp.com/biz/seases-tree-service-newberry"
+    ],
+    "notes": "No logo/brand colors found. 1094 Colony Church Rd, Newberry SC. No FB, no website."
+  },
+  "Elite Sweep Property Cleaning": {
+    "phone": "(937) 776-4600",
+    "location": "Kettering, OH",
+    "category": "Pressure Washing (NOT house cleaning)",
+    "owner": "unknown (tech named Shawn, not confirmed owner)",
+    "reviews_verified": "5.0\u2605 / 8",
+    "services": [
+      "Pressure washing (porch, deck, patio)",
+      "Driveway & walkway cleaning",
+      "Commercial/corporate grounds cleaning",
+      "Parking lot cleaning & curb appeal"
+    ],
+    "tagline": null,
+    "brand_colors": null,
+    "review_quotes": [
+      {
+        "text": "I cannot recommend Elite Sweep enough. They cleaned our walkways, driveway, porch and deck. What a difference...",
+        "author": "connie thom",
+        "source": "Google"
+      },
+      {
+        "text": "Very impressed! Quick turnaround on the quote, great communication, punctual arrival and fantastic results!...",
+        "author": "Laura Showalter",
+        "source": "Google"
+      }
+    ],
+    "social": [],
+    "notes": "\u26a0\ufe0f CORRECTION: GBP category = 'Pressure washing service', NOT house cleaning. Women-owned. 3508 Glaser Dr, Kettering OH 45429. Maps to pressure-washing template (visualizer REQUIRED)."
+  },
+  "Holy Grounds Landscaping": {
+    "phone": "(864) 921-6519",
+    "location": "Woodruff, SC",
+    "category": "Landscaping / Lawn Care",
+    "owner": "unknown",
+    "reviews_verified": "5.0\u2605 / 39",
+    "services": [
+      "Lawn care & maintenance (GBP category: Lawn care service)"
+    ],
+    "tagline": null,
+    "brand_colors": [
+      "#406040 (photo-derived green, provisional)"
+    ],
+    "review_quotes": [],
+    "social": [],
+    "notes": "THIN research. No owner, no quotes (Google sign-in wall), no FB/socials. 39 perfect 5\u2605 reviews is the trust anchor. Generic lawn-care framing only (worker refused to invent services)."
+  }
+}

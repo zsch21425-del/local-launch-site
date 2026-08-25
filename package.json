@@ -1,0 +1,11 @@
+{
+  "name": "local-launch",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "nodemailer": "^9.0.4",
+    "pg": "^8.11.0"
+  }
+}

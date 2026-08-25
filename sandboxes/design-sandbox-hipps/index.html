@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hipps Automotive — ASE World-Class Auto Repair | Simpsonville, SC 29681</title>
+  <meta name="description" content="Simpsonville's only ASE World-Class auto repair shop. Family-owned since 1999 at 904 NE Main St. Fleet services, transmission, tires & full-service repair. Call (864) 967-0050.">
+  
+  <!-- Schema markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Hipps Automotive",
+    "address": { "@type": "PostalAddress", "streetAddress": "904 NE Main St", "addressLocality": "Simpsonville", "addressRegion": "SC", "postalCode": "29681" },
+    "telephone": "(864) 967-0050",
+    "openingHours": "Mo-Fr 08:00-17:00",
+    "priceRange": "$$",
+    "hasCertification": { "@type": "Certification", "name": "ASE World-Class Technician" }
+  }
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            shop: {
+              black: '#0d0d0d',
+              surface: '#1a1a1a',
+              card: '#222222',
+              border: '#333333',
+              muted: '#999999',
+              fg: '#f0f0f0',
+              accent: '#1a6bcc',
+              'accent-light': '#3b8beb',
+              'accent-glow': 'rgba(26,107,204,0.15)',
+            }
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+    
+    /* Glass nav */
+    .glass-nav {
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Hero overlay */
+    .hero-bg {
+      background-image: url('hero-shop.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    /* Service card hover */
+    .service-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(26,107,204,0.2);
+      border-color: rgba(26,107,204,0.3);
+    }
+    
+    /* CTA glow button */
+    .cta-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-glow::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .cta-glow:hover::after {
+      opacity: 1;
+    }
+    
+    /* ASE badge pulse */
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(26,107,204,0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(26,107,204,0); }
+    }
+    .ase-badge {
+      animation: badgePulse 3s infinite;
+    }
+
+    /* Stats counter */
+    .stat-number {
+      font-variant-numeric: tabular-nums;
+    }
+    
+    /* Before/After slider */
+    .ba-slider { position: relative; overflow: hidden; border-radius: 12px; }
+    .ba-slider img { width: 100%; height: 320px; object-fit: cover; display: block; }
+    .ba-after { position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; }
+    .ba-after img { position: absolute; top: 0; left: 0; width: 200%; max-width: none; height: 100%; }
+    .ba-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: #1a6bcc; cursor: ew-resize; z-index: 2; }
+    .ba-handle::after { content: '◀ ▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #1a6bcc; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 10px; white-space: nowrap; letter-spacing: 2px; }
+    
+    /* Horizontal scroll section */
+    .h-scroll { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+    .h-scroll::-webkit-scrollbar { height: 4px; }
+    .h-scroll::-webkit-scrollbar-track { background: transparent; }
+    .h-scroll::-webkit-scrollbar-thumb { background: rgba(26,107,204,0.3); border-radius: 2px; }
+    .h-scroll > * { flex: 0 0 340px; scroll-snap-align: start; }
+    @media (max-width: 768px) { .h-scroll > * { flex: 0 0 280px; } }
+    
+    /* Testimonial carousel */
+    .testimonial-track { display: flex; transition: transform 0.5s ease; }
+    .testimonial-card { flex: 0 0 100%; }
+    
+    /* Mobile optimizations */
+    @media (max-width: 640px) {
+      .hero-bg { background-position: 60% center; }
+      .ba-slider img, .ba-after img { height: 220px; }
+      .service-card { padding: 1.25rem !important; }
+      .cta-glow, .hero-cta-reveal a { width: 100%; justify-content: center; font-size: 1rem; padding: 0.875rem 1.5rem; }
+      h1 { font-size: 2.25rem !important; line-height: 1.1 !important; }
+      section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+      .glass-nav { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    }
+    @media (min-width: 641px) and (max-width: 1023px) {
+      section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+    }
+  </style>
+</head>
+<body class="bg-shop-black text-shop-fg font-body antialiased">
+
+<!-- ========== NAVIGATION ========== -->
+<nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 no-underline group">
+        <div class="w-10 h-10 rounded-lg bg-shop-accent flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+          <i class="fa-solid fa-wrench text-white text-lg"></i>
+        </div>
+        <div>
+          <div class="text-white font-heading font-bold text-xl sm:text-2xl leading-tight tracking-tight">Hipps</div>
+          <div class="text-shop-muted text-xs uppercase tracking-[0.2em] font-medium leading-tight">Automotive</div>
+        </div>
+      </a>
+      
+      <!-- Desktop nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#services" class="text-shop-muted hover:text-white text-sm font-medium tracking-wide transition-colors duration-300">Services</a>
+        <a href="#why-us" class="text-shop-muted hover:text-white text-sm font-medium tracking-wide transition-colors duration-300">Why Us</a>
+        <a href="#fleet" class="text-shop-muted hover:text-white text-sm font-medium tracking-wide transition-colors duration-300">Fleet</a>
+        <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 bg-shop-accent hover:bg-shop-accent-light text-white text-sm font-semibold rounded-lg transition-all duration-300">
+          <i class="fa-solid fa-calendar-check text-xs"></i> Book Appointment
+        </a>
+      </div>
+      
+      <!-- Mobile hamburger -->
+      <button id="mobile-toggle" class="lg:hidden text-white text-2xl p-2" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-shop-surface/95 backdrop-blur-xl border-t border-shop-border">
+    <div class="px-4 py-6 space-y-4">
+      <a href="#services" class="block text-white text-lg font-medium py-2">Services</a>
+      <a href="#why-us" class="block text-white text-lg font-medium py-2">Why Us</a>
+      <a href="#fleet" class="block text-white text-lg font-medium py-2">Fleet Services</a>
+      <a href="#contact" class="block text-center px-6 py-3 bg-shop-accent text-white font-semibold rounded-lg mt-4">Book Appointment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero-bg relative min-h-screen flex items-center">
+  <!-- Dark gradient overlay — heavier for text legibility over garage photo -->
+  <div class="absolute inset-0 bg-gradient-to-b from-shop-black/75 via-shop-black/45 to-shop-black/92"></div>
+  
+  <!-- Content -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+    <div class="max-w-3xl">
+      
+      <!-- ASE Badge -->
+      <div class="hero-badge-reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-shop-accent-glow border border-shop-accent/20 mb-8 ase-badge">
+        <i class="fa-solid fa-certificate text-shop-accent text-sm"></i>
+        <span class="text-shop-accent text-xs font-semibold tracking-[0.15em] uppercase">ASE World-Class Technician</span>
+      </div>
+      
+      <h1 class="hero-text-reveal text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-black text-white leading-[1.05] mb-6" 
+          style="text-shadow: 0 2px 24px rgba(0,0,0,0.95), 0 0 6px rgba(0,0,0,0.7), 0 4px 32px rgba(0,0,0,0.5);">
+        World-Class<br>Auto Care.<br><span class="text-shop-accent-light">Down the Street.</span>
+      </h1>
+      
+      <p class="hero-text-reveal text-base sm:text-lg lg:text-xl text-white/90 font-normal max-w-xl mb-10"
+         style="text-shadow: 0 1px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.6), 0 2px 16px rgba(0,0,0,0.4);">
+        Simpsonville's only ASE World-Class auto repair shop. Family-owned on NE Main Street since 1999. 
+        Fleet services, transmission repair, tire sales, and full-service care — when your car needs the best, you need Hipps.
+      </p>
+      
+      <div class="hero-cta-reveal flex flex-col sm:flex-row items-start gap-4">
+        <a href="#contact" class="cta-glow inline-flex items-center gap-3 px-8 py-4 bg-shop-accent hover:bg-shop-accent-light text-white font-bold text-lg rounded-lg transition-all duration-300 shadow-lg shadow-shop-accent/20">
+          <i class="fa-solid fa-calendar-check"></i> Schedule Service
+        </a>
+        <a href="tel:8649670050" class="inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-semibold text-lg rounded-lg transition-all duration-300">
+          <i class="fa-solid fa-phone"></i> (864) 967-0050
+        </a>
+      </div>
+      
+      <!-- Trust trio -->
+      <div class="flex flex-wrap items-center gap-6 sm:gap-10 mt-16 pt-10 border-t border-white/10">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-medal text-shop-accent text-xl"></i>
+          <span class="text-white/70 text-sm font-medium">ASE World-Class Certified</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-clock text-shop-accent text-xl"></i>
+          <span class="text-white/70 text-sm font-medium">25+ Years Serving Simpsonville</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-star text-shop-accent text-xl"></i>
+          <span class="text-white/70 text-sm font-medium">Family Owned & Operated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+    <div class="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-1.5">
+      <div class="w-1.5 h-3 bg-shop-accent rounded-full animate-bounce"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRUST BAR ========== -->
+<section class="py-14 bg-gradient-to-r from-[#f0f2f5] to-[#e8ecf1] border-y border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+      <div class="text-center">
+        <div class="text-[#1a6bcc] font-heading font-black text-3xl lg:text-4xl stat-number">25+</div>
+        <div class="text-gray-600 text-sm font-medium mt-1">Years in Business</div>
+      </div>
+      <div class="text-center">
+        <div class="text-[#1a6bcc] font-heading font-black text-3xl lg:text-4xl stat-number">ASE</div>
+        <div class="text-gray-600 text-sm font-medium mt-1">World-Class Certified</div>
+      </div>
+      <div class="text-center">
+        <div class="text-[#1a6bcc] font-heading font-black text-3xl lg:text-4xl stat-number">24/7</div>
+        <div class="text-gray-600 text-sm font-medium mt-1">Drop-Off Available</div>
+      </div>
+      <div class="text-center">
+        <div class="text-[#1a6bcc] font-heading font-black text-3xl lg:text-4xl stat-number">FREE</div>
+        <div class="text-gray-600 text-sm font-medium mt-1">Shuttle Service</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section id="services" class="py-24 lg:py-32 bg-shop-black relative overflow-hidden">
+  <!-- Subtle workshop photo background -->
+  <div class="absolute inset-0 opacity-[0.08]" 
+       style="background-image: url('diagnostic-bg.jpg'); background-size: cover; background-position: center;"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 text-shop-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+        <div class="w-6 h-px bg-shop-accent/40"></div>
+        What We Do
+        <div class="w-6 h-px bg-shop-accent/40"></div>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+        Complete Auto Care,<br>One Trusted Shop
+      </h2>
+      <p class="text-shop-muted text-lg max-w-2xl mx-auto">
+        From oil changes to engine rebuilds — ASE-certified expertise for every make and model.
+      </p>
+    </div>
+    
+    <!-- Services grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="service-card bg-shop-card/90 border border-shop-border/80 rounded-lg p-8 reveal">
+        <div class="w-14 h-14 rounded-lg bg-shop-accent/10 flex items-center justify-center mb-6">
+          <i class="fa-solid fa-gears text-shop-accent text-2xl"></i>
+        </div>
+        <h3 class="text-white font-heading font-bold text-xl mb-3">Full-Service Repair</h3>
+        <p class="text-shop-muted leading-relaxed">Engine diagnostics, brake service, suspension, AC repair — ASE-certified expertise across every system in your vehicle.</p>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="service-card bg-shop-card/90 border border-shop-border/80 rounded-lg p-8 reveal">
+        <div class="w-14 h-14 rounded-lg bg-shop-accent/10 flex items-center justify-center mb-6">
+          <i class="fa-solid fa-gauge-high text-shop-accent text-2xl"></i>
+        </div>
+        <h3 class="text-white font-heading font-bold text-xl mb-3">Transmission Service</h3>
+        <p class="text-shop-muted leading-relaxed">Complete transmission diagnostics, fluid service, rebuilds, and replacements. Keep your drive train running smooth.</p>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="service-card bg-shop-card/90 border border-shop-border/80 rounded-lg p-8 reveal">
+        <div class="w-14 h-14 rounded-lg bg-shop-accent/10 flex items-center justify-center mb-6">
+          <i class="fa-solid fa-circle-check text-shop-accent text-2xl"></i>
+        </div>
+        <h3 class="text-white font-heading font-bold text-xl mb-3">Preventative Maintenance</h3>
+        <p class="text-shop-muted leading-relaxed">Oil changes, fluid checks, belt inspection, filter replacement — keep your car running before problems start.</p>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="service-card bg-shop-card/90 border border-shop-border/80 rounded-lg p-8 reveal">
+        <div class="w-14 h-14 rounded-lg bg-shop-accent/10 flex items-center justify-center mb-6">
+          <i class="fa-solid fa-truck-fast text-shop-accent text-2xl"></i>
+        </div>
+        <h3 class="text-white font-heading font-bold text-xl mb-3">Fleet Services</h3>
+        <p class="text-shop-muted leading-relaxed">Dedicated fleet maintenance for businesses. Preventive schedules, priority service, consolidated billing — keep your fleet on the road.</p>
+      </div>
+      
+      <!-- Card 5 -->
+      <div class="service-card bg-shop-card/90 border border-shop-border/80 rounded-lg p-8 reveal">
+        <div class="w-14 h-14 rounded-lg bg-shop-accent/10 flex items-center justify-center mb-6">
+          <i class="fa-solid fa-car-battery text-shop-accent text-2xl"></i>
+        </div>
+        <h3 class="text-white font-heading font-bold text-xl mb-3">Diagnostics & Electrical</h3>
+        <p class="text-shop-muted leading-relaxed">Advanced diagnostic equipment for check engine lights, electrical issues, and computer systems. Accurate diagnosis, honest repair.</p>
+      </div>
+      
+      <!-- Card 6 -->
+      <div class="service-card bg-shop-card/90 border border-shop-border/80 rounded-lg p-8 reveal">
+        <div class="w-14 h-14 rounded-lg bg-shop-accent/10 flex items-center justify-center mb-6">
+          <i class="fa-solid fa-tire text-shop-accent text-2xl"></i>
+        </div>
+        <h3 class="text-white font-heading font-bold text-xl mb-3">Tires & Alignment</h3>
+        <p class="text-shop-muted leading-relaxed">Michelin & BFGoodrich dealer. Tire mounting, balancing, rotation, and precision alignment. Premium tires, expert installation.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY US ========== -->
+<section id="why-us" class="py-24 lg:py-32 bg-shop-surface relative overflow-hidden">
+  <!-- Subtle blueprint/mechanical pattern -->
+  <div class="absolute inset-0 opacity-[0.025]" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 32px 32px;"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 text-shop-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+        <div class="w-6 h-px bg-shop-accent/40"></div>
+        Why Hipps
+        <div class="w-6 h-px bg-shop-accent/40"></div>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+        Not Just a Shop.<br>A Neighbor You Trust.
+      </h2>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      
+      <!-- ASE deep dive -->
+      <div class="bg-shop-card border border-shop-border rounded-lg p-8 lg:p-10 reveal">
+        <div class="flex items-start gap-5">
+          <div class="flex-shrink-0 w-16 h-16 rounded-lg bg-shop-accent/10 flex items-center justify-center border border-shop-accent/20">
+            <i class="fa-solid fa-certificate text-shop-accent text-3xl"></i>
+          </div>
+          <div>
+            <h3 class="text-white font-heading font-bold text-2xl mb-3">ASE World-Class Technician</h3>
+            <p class="text-shop-muted leading-relaxed mb-4">
+              This is the highest certification in the auto repair industry. Fewer than 1% of technicians achieve it. 
+              Wayne Hipps earned it — and he's the one working on your car. Not a trainee. Not a quick-lube tech. 
+              A master of his craft with 25+ years of experience.
+            </p>
+            <div class="flex items-center gap-2 text-shop-accent text-sm font-semibold">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Highest certification. Hands-on owner. Every repair.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Amenities -->
+      <div class="bg-shop-card border border-shop-border rounded-lg p-8 lg:p-10 reveal">
+        <h3 class="text-white font-heading font-bold text-2xl mb-6">We Make It Easy</h3>
+        <div class="space-y-5">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-shop-accent/10 flex items-center justify-center">
+              <i class="fa-solid fa-van-shuttle text-shop-accent"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Free Shuttle Service</div>
+              <div class="text-shop-muted text-sm">Drop your car off, we'll get you where you need to go — no charge.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-shop-accent/10 flex items-center justify-center">
+              <i class="fa-solid fa-clock text-shop-accent"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">24-Hour Drop-Off</div>
+              <div class="text-shop-muted text-sm">Key drop available anytime. Drop off after hours, pick up when you're ready.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-shop-accent/10 flex items-center justify-center">
+              <i class="fa-solid fa-wheelchair text-shop-accent"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Wheelchair Accessible</div>
+              <div class="text-shop-muted text-sm">Fully accessible facility. Everyone's welcome at Hipps.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-shop-accent/10 flex items-center justify-center">
+              <i class="fa-solid fa-handshake text-shop-accent"></i>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Family-Owned Since 1999</div>
+              <div class="text-shop-muted text-sm">We treat your car like your own — because in Simpsonville, you're family.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Before/After Slider -->
+    <div class="mt-12 reveal">
+      <div class="text-center mb-6">
+        <span class="text-shop-accent text-xs font-semibold tracking-[0.2em] uppercase">The Hipps Difference</span>
+      </div>
+      <div class="ba-slider max-w-3xl mx-auto border border-shop-border" id="baSlider">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Before repair" class="w-full">
+        <div class="ba-after" id="baAfter">
+          <img src="https://images.unsplash.com/photo-1530046339160-ce3e7f1dcf58?w=800&q=80" alt="After repair">
+        </div>
+        <div class="ba-handle" id="baHandle"></div>
+      </div>
+      <p class="text-center text-shop-muted text-sm mt-4">Drag the slider — see the difference ASE-certified care makes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="py-24 lg:py-32 bg-shop-black relative overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.04]" 
+       style="background-image: url('diagnostic-bg.jpg'); background-size: cover; background-position: center 60%;"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 text-shop-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+        <div class="w-6 h-px bg-shop-accent/40"></div>
+        What Simpsonville Says
+        <div class="w-6 h-px bg-shop-accent/40"></div>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-4">
+        Trusted Since 1999
+      </h2>
+    </div>
+    
+    <div class="overflow-hidden reveal" id="testimonialCarousel">
+      <div class="testimonial-track" id="testimonialTrack">
+        <div class="testimonial-card px-4">
+          <div class="bg-shop-card border border-shop-border rounded-lg p-8 lg:p-10 text-center">
+            <div class="text-shop-accent text-4xl mb-4">"</div>
+            <p class="text-white/80 text-lg leading-relaxed mb-6">Wayne and his team have kept our family's cars running for over 15 years. ASE-certified isn't just a badge — you can tell the difference in every repair. Wouldn't trust anyone else.</p>
+            <div class="text-white font-semibold">Mark & Lisa T.</div>
+            <div class="text-shop-muted text-sm">Simpsonville Residents</div>
+          </div>
+        </div>
+        <div class="testimonial-card px-4">
+          <div class="bg-shop-card border border-shop-border rounded-lg p-8 lg:p-10 text-center">
+            <div class="text-shop-accent text-4xl mb-4">"</div>
+            <p class="text-white/80 text-lg leading-relaxed mb-6">We run 12 service vans and Hipps handles all of them. The fleet program saves us money and downtime. Consolidated billing makes it effortless.</p>
+            <div class="text-white font-semibold">David R.</div>
+            <div class="text-shop-muted text-sm">Local Business Owner</div>
+          </div>
+        </div>
+        <div class="testimonial-card px-4">
+          <div class="bg-shop-card border border-shop-border rounded-lg p-8 lg:p-10 text-center">
+            <div class="text-shop-accent text-4xl mb-4">"</div>
+            <p class="text-white/80 text-lg leading-relaxed mb-6">The shuttle service is a game-changer. Drop my car at 7am, they take me to work, and it's ready by 5. Honest pricing, no upselling — just good work.</p>
+            <div class="text-white font-semibold">Sarah M.</div>
+            <div class="text-shop-muted text-sm">Mauldin Commuter</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Dots -->
+    <div class="flex justify-center gap-2 mt-8 reveal" id="testimonialDots">
+      <button class="w-2.5 h-2.5 rounded-full bg-shop-accent" data-idx="0"></button>
+      <button class="w-2.5 h-2.5 rounded-full bg-shop-border" data-idx="1"></button>
+      <button class="w-2.5 h-2.5 rounded-full bg-shop-border" data-idx="2"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FLEET SERVICES ========== -->
+<section id="fleet" class="py-24 lg:py-32 bg-shop-black relative overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.12]" 
+       style="background-image: url('fleet-bg.jpg'); background-size: cover; background-position: center;"></div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="inline-flex items-center gap-2 text-shop-accent text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+        <div class="w-6 h-px bg-shop-accent/40"></div>
+        For Businesses
+        <div class="w-6 h-px bg-shop-accent/40"></div>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
+        Fleet Services.<br>Keep Your Business Moving.
+      </h2>
+      <p class="text-shop-muted text-lg leading-relaxed mb-8">
+        Your vehicles are your livelihood. We offer dedicated fleet maintenance programs with priority scheduling, 
+        preventive service plans, consolidated billing, and ASE-certified care. Whether you run 3 trucks or 30 — 
+        we keep your fleet on the road and out of the shop.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <div class="flex items-center gap-2 text-shop-muted text-sm">
+          <i class="fa-solid fa-check text-shop-accent"></i> Priority Scheduling
+        </div>
+        <div class="flex items-center gap-2 text-shop-muted text-sm">
+          <i class="fa-solid fa-check text-shop-accent"></i> Preventive Maintenance Plans
+        </div>
+        <div class="flex items-center gap-2 text-shop-muted text-sm">
+          <i class="fa-solid fa-check text-shop-accent"></i> Consolidated Billing
+        </div>
+        <div class="flex items-center gap-2 text-shop-muted text-sm">
+          <i class="fa-solid fa-check text-shop-accent"></i> ASE-Certified Care
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BRANDS ========== -->
+<section class="py-16 bg-gradient-to-b from-shop-surface to-[#252525] border-y border-shop-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <div class="text-shop-fg/60 text-sm font-medium tracking-widest uppercase">Premium Brands We Service & Sell</div>
+    </div>
+    <div class="grid grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+      <div class="text-shop-fg/70 text-2xl font-heading font-bold tracking-tight">Michelin</div>
+      <div class="text-shop-fg/70 text-2xl font-heading font-bold tracking-tight">BFGoodrich</div>
+      <div class="text-shop-fg/70 text-2xl font-heading font-bold tracking-tight">JASPER</div>
+      <div class="text-shop-fg/70 text-2xl font-heading font-bold tracking-tight">ACDelco</div>
+      <div class="text-shop-fg/70 text-2xl font-heading font-bold tracking-tight">Motorcraft</div>
+      <div class="text-shop-fg/70 text-2xl font-heading font-bold tracking-tight">Mopar</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section id="contact" class="py-24 lg:py-32 bg-shop-black relative overflow-hidden">
+  <!-- Subtle garage light photo -->
+  <div class="absolute inset-0 opacity-[0.05]" 
+       style="background-image: url('https://images.unsplash.com/photo-1530046339160-ce3e7f1dcf58?w=1920&q=80'); background-size: cover; background-position: center 30%;"></div>
+  
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="reveal">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
+        Your Car Deserves<br>World-Class Care.
+      </h2>
+      <p class="text-shop-muted text-lg max-w-2xl mx-auto mb-12">
+        ASE World-Class expertise, family-owned trust, and 25+ years serving Simpsonville. 
+        Schedule your appointment today.
+      </p>
+    </div>
+    
+    <!-- CTA Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto reveal">
+      
+      <a href="tel:8649670050" class="group bg-shop-surface border border-shop-border hover:border-shop-accent/30 rounded-lg p-8 text-center no-underline transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-shop-accent/5">
+        <div class="w-16 h-16 rounded-2xl bg-shop-accent/10 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-500">
+          <i class="fa-solid fa-phone text-shop-accent text-2xl"></i>
+        </div>
+        <div class="text-white font-heading font-bold text-xl mb-2">Call Us</div>
+        <div class="text-shop-muted text-sm mb-1">(864) 967-0050</div>
+        <div class="text-shop-accent text-xs font-medium">Monday – Friday, 8AM–5PM</div>
+      </a>
+      
+      <a href="#" class="group bg-shop-accent hover:bg-shop-accent-light rounded-lg p-8 text-center no-underline transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-shop-accent/20">
+        <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform duration-500">
+          <i class="fa-solid fa-calendar-check text-white text-2xl"></i>
+        </div>
+        <div class="text-white font-heading font-bold text-xl mb-2">Book Online</div>
+        <div class="text-white/70 text-sm mb-1">Schedule your appointment</div>
+        <div class="text-white/50 text-xs font-medium">Fast & easy online booking</div>
+      </a>
+      
+    </div>
+    
+    <!-- Address -->
+    <div class="mt-12 reveal">
+      <div class="inline-flex items-center gap-2 text-shop-muted text-sm">
+        <i class="fa-solid fa-location-dot text-shop-accent"></i>
+        904 NE Main St, Simpsonville, SC 29681
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="py-12 bg-shop-surface border-t border-shop-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-lg bg-shop-accent flex items-center justify-center">
+            <i class="fa-solid fa-wrench text-white text-lg"></i>
+          </div>
+          <div>
+            <div class="text-white font-heading font-bold text-lg leading-tight">Hipps</div>
+            <div class="text-shop-muted text-[10px] uppercase tracking-[0.15em] font-medium">Automotive</div>
+          </div>
+        </div>
+        <p class="text-shop-muted text-sm leading-relaxed">
+          ASE World-Class auto repair in Simpsonville, SC. Family-owned since 1999. 
+          We treat your car like family — because you are.
+        </p>
+      </div>
+      
+      <div>
+        <div class="text-white font-semibold mb-4">Quick Links</div>
+        <div class="space-y-2">
+          <a href="#services" class="block text-shop-muted hover:text-white text-sm transition-colors">Services</a>
+          <a href="#why-us" class="block text-shop-muted hover:text-white text-sm transition-colors">Why Choose Us</a>
+          <a href="#fleet" class="block text-shop-muted hover:text-white text-sm transition-colors">Fleet Services</a>
+          <a href="#contact" class="block text-shop-muted hover:text-white text-sm transition-colors">Contact</a>
+        </div>
+      </div>
+      
+      <div>
+        <div class="text-white font-semibold mb-4">Hours</div>
+        <div class="space-y-1 text-shop-muted text-sm">
+          <div>Monday – Friday: 8:00 AM – 5:00 PM</div>
+          <div>Saturday – Sunday: Closed</div>
+          <div class="mt-3 text-shop-accent text-sm font-medium">24-Hour Key Drop Available</div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="mt-12 pt-8 border-t border-shop-border flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-shop-muted text-xs">
+        &copy; 2026 Hipps Automotive. All rights reserved.
+      </div>
+      <div class="flex items-center gap-6">
+        <span class="text-shop-muted/50 text-xs">ASE World-Class Certified</span>
+        <span class="text-shop-muted/50 text-xs">Family Owned & Operated</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- GSAP + Lenis + Parallax -->
+<script>
+  // Lenis smooth scroll
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+  });
+  function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+  
+  // Connect GSAP ScrollTrigger to Lenis
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // Register ScrollTrigger
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero parallax
+  gsap.to('.hero-bg', {
+    backgroundPositionY: '30%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero-bg',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+    },
+  });
+
+  // Hero text reveal animation
+  gsap.fromTo('.hero-text-reveal', 
+    { opacity: 0, y: 60 },
+    { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.3 }
+  );
+  gsap.fromTo('.hero-badge-reveal',
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)', delay: 0.1 }
+  );
+  gsap.fromTo('.hero-cta-reveal',
+    { opacity: 0, y: 30 },
+    { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.8, stagger: 0.15 }
+  );
+
+  // Section transitions — scale and fade
+  document.querySelectorAll('section').forEach((sec, i) => {
+    if (sec.classList.contains('hero-bg')) return; // skip hero
+    gsap.fromTo(sec,
+      { opacity: 0.6, scale: 0.98 },
+      {
+        opacity: 1, scale: 1, duration: 1,
+        scrollTrigger: {
+          trigger: sec,
+          start: 'top 85%',
+          end: 'top 30%',
+          scrub: 0.5,
+        },
+      }
+    );
+  });
+
+  // Reveal sections on scroll
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    gsap.fromTo(el, 
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0, duration: 0.8, delay: i * 0.08,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  });
+
+  // Service cards stagger
+  gsap.utils.toArray('.service-card').forEach((card, i) => {
+    gsap.fromTo(card,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1, y: 0, duration: 0.6, delay: i * 0.1,
+        scrollTrigger: {
+          trigger: '#services',
+          start: 'top 70%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  });
+
+  // Trust stats count-up
+  gsap.utils.toArray('.stat-number').forEach((stat) => {
+    ScrollTrigger.create({
+      trigger: stat,
+      start: 'top 90%',
+      onEnter: () => {
+        gsap.fromTo(stat, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.7)' });
+      },
+    });
+  });
+
+  // Magnetic hover on CTA buttons
+  document.querySelectorAll('.cta-glow').forEach((btn) => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, { x: x * 0.15, y: y * 0.15, duration: 0.4, ease: 'power2.out' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+    });
+  });
+
+  // Section pin for fleet — dramatic dark reveal
+  ScrollTrigger.create({
+    trigger: '#fleet',
+    start: 'top top',
+    end: '+=600',
+    pin: true,
+    pinSpacing: true,
+    onEnter: () => {
+      gsap.to('#fleet .reveal', { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 });
+    },
+  });
+
+  // Why Us parallax
+  gsap.to('#why-us', {
+    backgroundPositionY: '15%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '#why-us',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true,
+    },
+  });
+
+  // Cursor trail (subtle dot)
+  const cursor = document.createElement('div');
+  cursor.className = 'fixed w-3 h-3 rounded-full pointer-events-none z-[9999]';
+  cursor.style.background = 'radial-gradient(circle, rgba(26,107,204,0.5), transparent)';
+  cursor.style.boxShadow = '0 0 20px rgba(26,107,204,0.3), 0 0 60px rgba(26,107,204,0.1)';
+  cursor.style.transition = 'opacity 0.3s';
+  cursor.style.opacity = '0';
+  document.body.appendChild(cursor);
+  
+  let cursorTimeout;
+  document.addEventListener('mousemove', (e) => {
+    gsap.to(cursor, { x: e.clientX - 6, y: e.clientY - 6, duration: 0.6, ease: 'power2.out' });
+    cursor.style.opacity = '1';
+    clearTimeout(cursorTimeout);
+    cursorTimeout = setTimeout(() => { cursor.style.opacity = '0'; }, 2000);
+  });
+
+  // Before/After slider
+  const baSlider = document.getElementById('baSlider');
+  const baAfter = document.getElementById('baAfter');
+  const baHandle = document.getElementById('baHandle');
+  if (baSlider && baHandle) {
+    let dragging = false;
+    baHandle.addEventListener('mousedown', () => dragging = true);
+    document.addEventListener('mouseup', () => dragging = false);
+    baSlider.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      const rect = baSlider.getBoundingClientRect();
+      let pct = ((e.clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(5, Math.min(95, pct));
+      baAfter.style.width = pct + '%';
+      baHandle.style.left = pct + '%';
+    });
+    // Touch support
+    baHandle.addEventListener('touchstart', (e) => { dragging = true; e.preventDefault(); });
+    document.addEventListener('touchend', () => dragging = false);
+    baSlider.addEventListener('touchmove', (e) => {
+      if (!dragging) return;
+      const rect = baSlider.getBoundingClientRect();
+      let pct = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(5, Math.min(95, pct));
+      baAfter.style.width = pct + '%';
+      baHandle.style.left = pct + '%';
+    });
+  }
+
+  // Testimonial carousel
+  const track = document.getElementById('testimonialTrack');
+  const dots = document.querySelectorAll('#testimonialDots button');
+  let currentSlide = 0;
+  const totalSlides = dots.length;
+  
+  function goToSlide(idx) {
+    currentSlide = idx;
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    dots.forEach((d, i) => { d.className = 'w-2.5 h-2.5 rounded-full ' + (i === idx ? 'bg-shop-accent' : 'bg-shop-border'); });
+  }
+  
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.idx)));
+  });
+  
+  // Auto-advance
+  setInterval(() => { goToSlide((currentSlide + 1) % totalSlides); }, 5000);
+
+  // Convert services to horizontal scroll on desktop
+  const servicesGrid = document.querySelector('#services .grid');
+  if (servicesGrid && window.innerWidth >= 1024) {
+    servicesGrid.classList.remove('grid', 'grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3');
+    servicesGrid.classList.add('h-scroll');
+    servicesGrid.querySelectorAll('.service-card').forEach(card => {
+      card.style.minWidth = '340px';
+    });
+  }
+
+  // 3D tilt on service and CTA cards
+  document.querySelectorAll('.service-card, .cta-glow').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      gsap.to(card, { 
+        rotateY: x * 4, 
+        rotateX: -y * 4,
+        duration: 0.4, 
+        ease: 'power2.out',
+        transformPerspective: 800,
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'power2.out' });
+    });
+  });
+
+  // Mobile menu toggle
+  document.getElementById('mobile-toggle').addEventListener('click', function() {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+  document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.add('hidden');
+    });
+  });
+
+  // Remove old IntersectionObserver (handled by GSAP now)
+</script>
+
+</body>
+</html>

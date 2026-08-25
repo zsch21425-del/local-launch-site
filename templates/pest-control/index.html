@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[COMPANY] — Pest Control [CITY], [STATE]</title>
+<meta name="description" content="[COMPANY] — trusted pest control in [CITY] [STATE] &amp; surrounding areas. Termite, mosquito, rodent &amp; general pest control. Family-owned, 33+ 5-star reviews. Free estimate: [PHONE]">
+<meta property="og:title" content="[COMPANY] — Pest Control [CITY], [STATE]">
+<meta property="og:description" content="Pest control you can trust. Termites, mosquitoes, rodents &amp; more. Free estimate [PHONE]">
+<meta property="og:image" content="[DOMAIN]/pest-hero.jpg">
+<meta property="og:url" content="[DOMAIN]">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #0B3D2E;
+    --primary-dark: #06281D;
+    --accent: #38BDF8;
+    --accent-light: #7DD3FC;
+    --cream: #F4F8F6;
+    --text: #0F2E23;
+    --text-muted: #5C7A6D;
+    --white: #FFFFFF;
+    --border: #D8E4DE;
+  }
+  html { overflow-x: clip; }
+  body { overflow-x: clip; font-family: 'Inter', -apple-system, sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+
+  /* FIXED SITE-WIDE MOTION BACKGROUND — desktop + mobile */
+  .site-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; transform: scale(1.12); z-index: -2; }
+  .site-bg-mobile { display: none; }
+  @media (max-width: 640px) {
+    .site-bg-desktop { display: none; }
+    .site-bg-mobile { display: block; }
+  }
+  body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(6,40,29,0.18) 0%, rgba(6,40,29,0.35) 50%, rgba(6,40,29,0.55) 100%); }
+
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(6,40,29,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .nav-brand { display: flex; align-items: center; gap: 0.5rem; color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+  .nav-brand img { height: 38px; width: auto; border-radius: 6px; }
+  .nav-cta { background: var(--accent); color: var(--white); font-weight: 700; font-size: 0.85rem; padding: 0.55rem 1.3rem; border-radius: 999px; text-decoration: none; transition: all 0.25s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--accent-light); transform: scale(1.04); }
+
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 7rem 1.5rem 4rem; overflow: hidden; z-index: 2; }
+  .hero-content { position: relative; z-index: 3; max-width: 760px; }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; padding: 0.45rem 1.4rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); margin-bottom: 1.5rem; backdrop-filter: blur(4px); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 1.2rem; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+  .hero h1 .accent { color: var(--accent-light); }
+  .hero .subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.97); font-weight: 400; max-width: 620px; margin: 0 auto 1.8rem; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+  .hero-proof { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem; color: var(--white); font-size: 0.85rem; font-weight: 500; text-shadow: 0 1px 6px rgba(0,0,0,0.8); }
+  .hero-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-phone { background: var(--accent); color: var(--white); font-weight: 700; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; box-shadow: 0 6px 24px rgba(56,189,248,0.45); }
+  .btn-phone:hover { background: var(--accent-light); transform: scale(1.05); }
+  .btn-outline { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.35); color: var(--white); font-weight: 600; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; backdrop-filter: blur(4px); }
+  .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  .why-overlay { position: relative; background: transparent; z-index: 2; }
+  .why-overlay .why-card { background: rgba(255,255,255,0.92); }
+  .section.why-overlay h2 { color: #fff !important; font-weight: 800; text-shadow: 0 1px 6px rgba(0,0,0,0.8); }
+  .section.why-overlay .lede { color: #fff !important; font-weight: 400; font-size: 1.05rem; text-shadow: 0 1px 4px rgba(0,0,0,0.9); margin-bottom: 2.5rem; }
+  .section.why-overlay .section-label { color: var(--accent-light) !important; font-weight: 700; }
+
+  .section { padding: 5.5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--primary-dark); margin-bottom: 1rem; }
+  .section .lede { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; max-width: 640px; margin-bottom: 3rem; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .why-card { background: var(--white); border-radius: 18px; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.3s; text-align: center; }
+  .why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); border-color: rgba(56,189,248,0.4); }
+  .why-icon { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--white); margin: 0 auto 1rem; }
+  .why-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 0.5rem; }
+  .why-card p { font-size: 0.95rem; color: var(--text-muted); font-weight: 400; }
+
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .service-card { position: relative; border-radius: 18px; overflow: hidden; min-height: 260px; display: flex; align-items: flex-end; box-shadow: 0 10px 30px rgba(0,0,0,0.16); transition: all 0.3s; background: var(--primary-dark); }
+  .service-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .service-card::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(6,40,29,0.92) 0%, rgba(6,40,29,0.45) 45%, rgba(6,40,29,0.05) 78%); pointer-events: none; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.22); }
+  .service-card .sc-content { position: relative; z-index: 2; padding: 1.5rem; width: 100%; }
+  .service-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
+  .service-card p { font-size: 0.9rem; color: rgba(255,255,255,0.9); font-weight: 400; line-height: 1.5; }
+
+  .reviews-wrap { position: relative; overflow: hidden; background: var(--cream); }
+  .reviews-bg { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0; }
+  .reviews-bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .reviews-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(244,248,246,0.10) 0%, rgba(244,248,246,0.04) 45%, rgba(244,248,246,0.18) 100%); z-index: 1; pointer-events: none; }
+  .reviews-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 5rem 1.5rem; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .review-card { background: rgba(255,255,255,0.94); border-radius: 16px; padding: 1.75rem; border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0,0,0,0.10); backdrop-filter: blur(4px); }
+  .review-stars { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+  .review-text { font-size: 0.9rem; color: var(--text); font-weight: 400; line-height: 1.7; margin-bottom: 1rem; }
+  .review-author { font-size: 0.8rem; color: var(--text-muted); }
+  .review-author strong { color: var(--primary-dark); font-weight: 600; }
+  .review-source { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+  .about-wrap { background: var(--cream); }
+  .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-image { border-radius: 18px; overflow: hidden; height: 420px; box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+  .about-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.8s; }
+  .about-image:hover img { transform: scale(1.04); }
+  .about-text p { color: var(--text); font-weight: 400; line-height: 1.7; margin-bottom: 1.1rem; font-size: 1rem; }
+  .about-text .highlight { color: var(--accent); font-weight: 600; }
+
+  .cta-section { text-align: center; padding: 5.5rem 1.5rem; position: relative; overflow: hidden; background: linear-gradient(140deg, var(--primary-dark) 0%, var(--accent) 130%); }
+  .cta-section .section-label { color: var(--accent-light); }
+  .cta-section h2 { color: var(--white); }
+  .cta-section p { color: rgba(255,255,255,0.8); font-weight: 300; margin-bottom: 2.2rem; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--accent-light); color: var(--white); font-weight: 700; padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 6px 24px rgba(56,189,248,0.4); }
+  .cta-btn:hover { transform: scale(1.05); }
+
+  .ll-logo { padding: 3rem 1.5rem 1.5rem; text-align: center; background: var(--cream); }
+  .ll-cta-text { padding: 1.5rem 1.5rem 2.5rem; text-align: center; background: var(--cream); }
+  .ll-cta-text h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 0.5rem; }
+  .ll-cta-text p { color: var(--text-muted); font-size: 0.9rem; }
+  .ll-contact { padding: 2.5rem 1.5rem 4rem; text-align: center; background: var(--cream); border-top: 1px solid var(--border); }
+  .ll-contact-inner { display: flex; flex-direction: column; gap: 1rem; max-width: 320px; margin: 0 auto; }
+  .ll-btn { display: flex; align-items: center; gap: 0.75rem; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; text-decoration: none; color: var(--primary-dark); transition: all 0.2s; }
+  .ll-btn:hover { border-color: var(--accent); }
+  .ll-btn .lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .ll-btn .val { font-weight: 600; }
+
+  .viz-section { max-width: 900px; background: var(--cream); }
+  .viz-result { margin: 0 auto 1.5rem; max-width: 860px; }
+  .viz-slider { position: relative; height: 480px; width: 100%; overflow: hidden; border-radius: 20px; box-shadow: 0 16px 60px rgba(0,0,0,0.22); border: 1px solid var(--border); user-select: none; touch-action: none; cursor: ew-resize; }
+  .viz-slider .viz-base { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .viz-before-clip { position: absolute; inset: 0; overflow: hidden; width: 50%; }
+  .viz-before-clip .viz-before-img { height: 100%; display: block; min-width: 100%; max-width: none; object-fit: cover; position: absolute; top: 0; left: 0; }
+  .viz-handle { position: absolute; top: 0; bottom: 0; width: 3px; background: #fff; box-shadow: 0 0 14px rgba(0,0,0,0.6); left: 50%; z-index: 10; }
+  .viz-handle-knob { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 44px; height: 44px; background: #fff; border-radius: 50%; box-shadow: 0 2px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; }
+  .viz-pill { position: absolute; top: 12px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); color: #fff; font-size: 0.75rem; padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1); z-index: 5; }
+  .viz-pill-before { left: 12px; }
+  .viz-pill-after { right: 12px; }
+  .viz-preview { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .viz-upload-btn, .viz-clean-btn { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 700; padding: 0.85rem 1.6rem; border-radius: 999px; border: none; cursor: pointer; transition: all 0.25s; }
+  .viz-upload-btn { background: #fff; border: 1px solid var(--border); color: var(--primary-dark); }
+  .viz-upload-btn:hover { transform: scale(1.03); border-color: var(--accent); }
+  .viz-clean-btn { background: var(--accent); color: var(--white); }
+  .viz-clean-btn:hover { background: var(--accent-light); transform: scale(1.03); }
+  .viz-clean-btn:disabled { opacity: 0.7; cursor: wait; transform: none; }
+  .viz-status { text-align: center; color: var(--primary-dark); font-size: 0.85rem; font-weight: 600; margin-top: 0.5rem; width: 100%; }
+  .viz-caption { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 6rem 1.25rem 3rem; }
+    .section { padding: 3.5rem 1.25rem; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-image { height: 260px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .viz-slider { height: 320px; }
+  }
+</style>
+</head>
+<body>
+
+<video class="site-bg site-bg-desktop" autoplay muted loop playsinline preload="auto" poster="pest-bg-poster.jpg" aria-hidden="true">
+  <source src="pest-bg-desktop.mp4" type="video/mp4">
+</video>
+<video class="site-bg site-bg-mobile" autoplay muted loop playsinline preload="auto" poster="pest-bg-poster.jpg" aria-hidden="true">
+  <source src="pest-bg-mobile.mp4" type="video/mp4">
+</video>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand"><img src="brand-placeholder.jpg" alt="[COMPANY]"> [COMPANY] <span style="color:var(--accent-light)">•</span> [CITY]</a>
+    <a href="tel:+18648593507" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Your Area's Trusted Pest Control Team</div>
+    <h1>A Pest-Free Home.<br><span class="accent">All Year Long.</span></h1>
+    <p class="subtitle">Termite, mosquito, rodent &amp; general pest control — serving your area with family-owned care. 33+ five-star reviews.</p>
+    <div class="hero-proof">
+      <span><span class="star" style="color:var(--accent-light)">★★★★★</span> 4.8 Rated · 33 Reviews</span>
+      <span>🏆 Family-Owned</span>
+      <span>🛡 Licensed &amp; Insured</span>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:[PHONE]" class="btn-phone">📞 [PHONE]</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<section class="section why-overlay">
+  <div class="section-label">Why Choose Us</div>
+  <h2>Pest Control Done Right</h2>
+  <p class="lede">A family-owned company that protects your home and family — thorough, safe, and built on trust.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3>Licensed &amp; Insured</h3>
+      <p>Fully licensed and insured for your peace of mind — protected on every visit.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-star"></i></div>
+      <h3>4.8★ Rated</h3>
+      <p>33+ five-star reviews from homeowners in your area.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-house"></i></div>
+      <h3>Family-Owned</h3>
+      <p>A local company that answers your call and shows up on time.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-file-invoice"></i></div>
+      <h3>Free Estimates</h3>
+      <p>Clear, friendly pricing before any treatment. No surprises.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section" style="background:var(--cream)">
+  <div class="section-label">Services</div>
+  <h2>What We Protect</h2>
+  <p class="lede">From termites to mosquitoes — we protect your home, yard, and family from pests of every kind.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="svc-foundation.jpg" alt="Pest control treatment around home foundation" loading="lazy">
+      <div class="sc-content">
+        <h3>Foundation &amp; Prevention</h3>
+        <p>Perimeter treatments and preventative care around your home's foundation and entry points.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="svc-termite.jpg" alt="Termite inspection and treatment" loading="lazy">
+      <div class="sc-content">
+        <h3>Termite Control</h3>
+        <p>Termite inspections, baiting systems, and treatments that protect your biggest investment.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="svc-mosquito.jpg" alt="Mosquito treatment in backyard" loading="lazy">
+      <div class="sc-content">
+        <h3>Mosquito Treatment</h3>
+        <p>Backyard mosquito treatments so your family can enjoy the outdoors without the bites.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="svc-rodent.jpg" alt="Rodent control bait stations" loading="lazy">
+      <div class="sc-content">
+        <h3>Rodent Control</h3>
+        <p>Rodent exclusion, trapping, and prevention — mice and rats stay out for good.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews-wrap">
+  <div class="reviews-bg">
+    <video autoplay muted loop playsinline preload="auto" poster="pest-bg-poster.jpg" aria-hidden="true">
+      <source src="pest-bg-desktop.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="reviews-scrim"></div>
+  <div class="reviews-content">
+    <div class="section-label">Reviews</div>
+    <h2>What Customers Say</h2>
+    <p class="lede">Real feedback from homeowners in your area.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"[COMPANY] is reliable, professional, and our home has been pest-free since they started coming. Highly recommend!"</p>
+        <div class="review-author"><strong>Verified Customer</strong> · [CITY], [STATE]</div>
+        <div class="review-source">Google review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"They came out same week, explained everything, and took care of the ant problem for good. Great local company."</p>
+        <div class="review-author"><strong>Verified Customer</strong> · [CITY], [STATE]</div>
+        <div class="review-source">Google review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section about-wrap">
+  <div class="section-label">About</div>
+  <h2>Family-Owned &amp; Local</h2>
+  <div class="about-section">
+    <div class="about-image">
+      <img src="pest-hero.jpg" alt="[COMPANY] — pest control, [CITY] [STATE]" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>[COMPANY] is a family-owned pest control company serving [CITY] — built on a simple promise: protect your home and family like they're our own.</p>
+      <p>With 33+ five-star reviews and years of local service, we're the trusted name in termite, mosquito, rodent, and general pest control. Licensed, insured, and always on time.</p>
+      <p class="highlight">Free estimate — call [PHONE] today.</p>
+    </div>
+  </div>
+</section>
+
+<section id="claim" class="cta-section">
+  <img src="brand-placeholder.jpg" alt="[COMPANY]" style="max-width:280px;width:100%;height:auto;display:block;margin:0 auto 2rem;border-radius:12px;">
+  <div class="section-label">Claim Your Site</div>
+  <h2>This is yours, [COMPANY].</h2>
+  <p>Built to showcase your 4.8★ reputation and help you grow. A professional website with your real reviews, service showcase, and everything you need to win more clients.</p>
+  <a href="https://local-launch-site.vercel.app" target="_blank" class="cta-btn">See Your Online Presence & SEO Score →</a>
+</section>
+
+<section class="ll-logo">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:320px;width:100%;">
+    <img src="logo-bg.jpg" alt="Local Launch" style="width:100%;height:auto;border-radius:12px;display:block;">
+  </a>
+</section>
+
+<section class="ll-cta-text">
+  <h3>Want this site? It's yours.</h3>
+  <p>Reply, call, or text. I'll hand you the keys in 24 hours.</p>
+  <p style="color:var(--text-muted);font-size:0.85rem;margin-top:1rem;max-width:380px;margin-left:auto;margin-right:auto;">I'm based in Simpsonville, SC and I help local businesses like yours grow and win more clients.</p>
+</section>
+
+<section class="ll-contact">
+  <div class="ll-contact-inner">
+    <a href="tel:+15033585860" class="ll-btn">
+      <span style="font-size:1.2rem;">📞</span>
+      <div style="text-align:left;"><div class="lbl">Call / Text</div><div class="val">(503) 358-5860</div></div>
+    </a>
+    <a href="mailto:locallaunchupstate@gmail.com" class="ll-btn">
+      <span style="font-size:1.2rem;">✉️</span>
+      <div style="text-align:left;"><div class="lbl">Email</div><div class="val">locallaunchupstate@gmail.com</div></div>
+    </a>
+  </div>
+</section>
+
+<script>
+(function(){
+  var status = document.getElementById('viz-status');
+  var cleanBtn = document.getElementById('viz-clean-btn');
+  var uploadBtn = document.getElementById('viz-upload-btn');
+  var file = document.getElementById('viz-file');
+  var slider = document.getElementById('viz-slider');
+  var clip = document.getElementById('viz-before-clip');
+  var handle = document.getElementById('viz-handle');
+  var baseImg = document.querySelector('#viz-slider .viz-base');
+  var beforeImg = document.querySelector('#viz-slider .viz-before-img');
+  var currentB64 = '';
+  var REAL_BEFORE = 'pest-hero.jpg';
+  var REAL_AFTER = 'pest-hero.jpg';
+
+  if (!file || !cleanBtn) return;
+
+  if (beforeImg) beforeImg.src = REAL_BEFORE;
+  if (baseImg) baseImg.src = REAL_AFTER;
+
+  function setSlider(p){
+    if (clip) clip.style.width = p + '%';
+    if (handle) handle.style.left = p + '%';
+  }
+  function resetSlider(){ setSlider(50); }
+  resetSlider();
+
+  if (slider && clip) {
+    var dragging = false;
+    function upd(x){
+      var r = slider.getBoundingClientRect();
+      if (!r || !r.width) return;
+      var p = Math.max(2, Math.min(98, ((x - r.left) / r.width) * 100));
+      setSlider(p);
+    }
+    slider.addEventListener('pointerdown', function(e){
+      dragging = true;
+      try { slider.setPointerCapture(e.pointerId); } catch(err){}
+      upd(e.clientX);
+      if (e.cancelable) e.preventDefault();
+    });
+    slider.addEventListener('pointermove', function(e){ if (dragging && e.clientX) upd(e.clientX); });
+    slider.addEventListener('pointerup', function(){ dragging = false; });
+    slider.addEventListener('pointerleave', function(){ dragging = false; });
+    slider.addEventListener('pointercancel', function(){ dragging = false; });
+  }
+
+  if (uploadBtn) uploadBtn.addEventListener('click', function(){ if (file) file.click(); });
+  if (file) file.addEventListener('change', function(){
+    var f = file.files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function(e){
+      var dataUrl = e.target.result;
+      currentB64 = dataUrl;
+      if (beforeImg) beforeImg.src = dataUrl;
+      if (baseImg) baseImg.src = REAL_AFTER;
+      status.textContent = '';
+      resetSlider();
+    };
+    reader.readAsDataURL(f);
+  });
+
+  if (cleanBtn) cleanBtn.addEventListener('click', function(){
+    var imageB64 = '';
+    if (currentB64 && currentB64.indexOf('base64,') > -1){
+      imageB64 = currentB64.split('base64,')[1];
+    }
+    cleanBtn.disabled = true;
+    status.textContent = '🛠 AI protecting your home… (takes ~10s)';
+    try {
+      fetch('/api/clean-driveway', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ image_b64: imageB64 })
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d && d.image_b64){
+          var afterDataUrl = 'data:' + (d.mime || 'image/jpeg') + ';base64,' + d.image_b64;
+          if (beforeImg) beforeImg.src = currentB64 || REAL_BEFORE;
+          if (baseImg) baseImg.src = afterDataUrl;
+          status.textContent = '';
+          resetSlider();
+        } else {
+          status.textContent = '⚠ Could not generate. Try again.';
+        }
+        cleanBtn.disabled = false;
+      })
+      .catch(function(){ status.textContent = '⚠ Network error. Try again.'; cleanBtn.disabled = false; });
+    } catch(e){ status.textContent = '⚠ Error. Try again.'; cleanBtn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

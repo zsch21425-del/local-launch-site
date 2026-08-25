@@ -1,0 +1,81 @@
+# Local Launch pitch-voice regression suite.
+# Catches voice drift (AI-speak, tiered pricing, asking-permission close)
+# when the drafting model or prompt changes. Run after ANY model/prompt switch:
+#   cd /mnt/d/LocalLaunch/tools/promptfoo && ./run_pitch_evals.sh
+#
+# Cost: grader = FREE (nemotron via OpenRouter, same model revenue-gen uses);
+# eval = deepseek-v4-pro (our real drafting model, ~$0.001/run).
+description: Local Launch pitch-voice regression suite
+
+transform: transform.js
+
+prompts:
+  - "You are the Closer for Local Launch, a web design + SEO agency in Simpsonville, SC. Write a cold outreach email to {{business}}. Open with 'Hello, this is Zach from Local Launch.' Lead with a one-time $300 website offer. Close with 'I look forward to hearing from you.' Write in a plain, human voice: short sentences under 20 words, no marketing fluff, no AI-speak, no jargon, no corporate hedging. Sign as: Zach | Local Launch | Simpsonville, SC | (503) 358-5860."
+
+providers:
+  - id: openai:chat:deepseek-v4-pro
+    config:
+      apiBaseUrl: https://api.deepseek.com/v1
+      apiKeyEnvar: DEEPSEEK_API_KEY
+      max_tokens: 4000
+
+defaultTest:
+  assert:
+    # pitch-standards hard rules
+    - type: contains
+      value: "$300"
+    - type: contains
+      value: "I look forward to hearing from you."
+    - type: not-icontains
+      value: "want me to"
+    - type: not-icontains
+      value: "worth a look"
+    - type: not-icontains
+      value: "hope this email finds you well"
+    - type: not-contains
+      value: "$350"
+    # humanizer AI-speak list
+    - type: not-icontains
+      value: "revolutionize"
+    - type: not-icontains
+      value: "synergy"
+    - type: not-icontains
+      value: "elevate"
+    - type: not-icontains
+      value: "unlock"
+    - type: not-icontains
+      value: "empower"
+    - type: not-icontains
+      value: "seamless"
+    - type: not-icontains
+      value: "leverage"
+    - type: not-icontains
+      value: "delve"
+    - type: not-icontains
+      value: "furthermore"
+    - type: not-icontains
+      value: "moreover"
+    - type: not-icontains
+      value: "cutting-edge"
+    - type: not-icontains
+      value: "game-changing"
+    - type: not-icontains
+      value: "in today's"
+    - type: not-icontains
+      value: "digital landscape"
+    # human-voice soft check (content-humanizer "read it aloud" test) — free grader
+    - type: llm-rubric
+      value: "The text sounds like a real small-business owner wrote it: plain, direct, short sentences, no marketing fluff, no AI-speak, no corporate hedging."
+      provider:
+        id: openai:chat:nvidia/nemotron-3-super-120b-a12b:free
+        config:
+          apiBaseUrl: https://openrouter.ai/api/v1
+          apiKeyEnvar: OPENROUTER_API_KEY
+
+tests:
+  - vars:
+      business: "a tree service in Spartanburg, SC"
+  - vars:
+      business: "a house cleaning company in Simpsonville, SC"
+  - vars:
+      business: "a concrete contractor in Greer, SC"

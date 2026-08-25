@@ -8,7 +8,7 @@ interface PitchDraft {
   subject?: string | null;
   body: string;
   channel: string;
-  status: "pending" | "approved" | "rejected" | "conditional";
+  status: "pending" | "supervisor-approved" | "zach-approved" | "rejected" | "conditional" | "sent";
   confidence: number;
   notes?: string | null;
 }
@@ -22,7 +22,7 @@ export function PitchApproval({ companyId, pitchDraft: initial }: Props) {
   const [pitchDraft, setPitchDraft] = useState<PitchDraft>(initial);
   const [loading, setLoading] = useState(false);
 
-  async function handleApprove(status: "approved" | "rejected") {
+  async function handleApprove(status: "supervisor-approved" | "zach-approved" | "rejected") {
     setLoading(true);
     try {
       const res = await fetch("/api/pipeline/approve", {
@@ -50,13 +50,15 @@ export function PitchApproval({ companyId, pitchDraft: initial }: Props) {
           <h2 className="text-sm font-semibold text-slate-700">Pitch Draft</h2>
           <span
             className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-              pitchDraft.status === "approved"
+              pitchDraft.status === "supervisor-approved" || pitchDraft.status === "zach-approved"
                 ? "bg-emerald-100 text-emerald-700"
-                : pitchDraft.status === "rejected"
-                  ? "bg-rose-100 text-rose-700"
-                  : pitchDraft.status === "conditional"
-                    ? "bg-amber-100 text-amber-700"
-                    : "bg-blue-100 text-blue-700"
+                : pitchDraft.status === "sent"
+                  ? "bg-sky-100 text-sky-700"
+                  : pitchDraft.status === "rejected"
+                    ? "bg-rose-100 text-rose-700"
+                    : pitchDraft.status === "conditional"
+                      ? "bg-amber-100 text-amber-700"
+                      : "bg-blue-100 text-blue-700"
             }`}
           >
             {pitchDraft.status}
@@ -91,10 +93,18 @@ export function PitchApproval({ companyId, pitchDraft: initial }: Props) {
             <button
               type="button"
               disabled={loading}
-              onClick={() => handleApprove("approved")}
+              onClick={() => handleApprove("supervisor-approved")}
               className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-600 disabled:opacity-50"
             >
-              {loading ? "Approving..." : "Approve"}
+              {loading ? "Approving..." : "Supervisor Approve"}
+            </button>
+            <button
+              type="button"
+              disabled={loading}
+              onClick={() => handleApprove("zach-approved")}
+              className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700 disabled:opacity-50"
+            >
+              {loading ? "Approving..." : "Zach Approve"}
             </button>
             <button
               type="button"

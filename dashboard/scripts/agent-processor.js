@@ -7,7 +7,7 @@
 const { Pool } = require('pg');
 const http = require('http');
 
-const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_6Sq1JcRJ7f61@ep-royal-tree-a51k45nr.us-east-2.aws.neon.tech/neondb?sslmode=require';
+const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_aWgfM0tN1Erv@ep-aged-waterfall-awf3p25s.c-12.us-east-1.aws.neon.tech/neondb?sslmode=require';
 const SUPERVISOR_URL = process.env.SUPERVISOR_URL || 'http://127.0.0.1:9912/v1/chat/completions';
 
 const pool = new Pool({ connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } });

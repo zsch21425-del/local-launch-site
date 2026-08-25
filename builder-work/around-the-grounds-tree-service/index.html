@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Around The Grounds Tree Service — Anderson, SC</title>
+<meta name="description" content="Professional tree removal, trimming, and stump grinding in Anderson, SC. 24/7 emergency tree service — call (864) 770-5067 for a free estimate.">
+<meta property="og:title" content="Around The Grounds Tree Service — Anderson, SC">
+<meta property="og:description" content="Professional tree removal, trimming, and stump grinding in Anderson, SC. 24/7 emergency tree service — call (864) 770-5067 for a free estimate.">
+<meta property="og:image" content="https://around-the-grounds-tree-demo.vercel.app/hero-poster.jpg">
+<meta property="og:url" content="https://around-the-grounds-tree-demo.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  /* Hallmark · macrostructure: Gallery-Led · tone: premium-natural · anchor hue: forest-green
+   * Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5
+   * Adapted from the proven landscaper/handyman template (templates/landscaper, Palmetto Landscaping demo lineage)
+   * per BRIEF.md hard rules: hero.mp4 full-bleed video hero, opaque text-bearing cards (no
+   * backdrop-filter on text), font-weight 400 body copy, svc0-3.jpg as the 4 distinct gallery photos.
+   * Rules: tokenized colors (zero raw hex outside :root), overflow-x:clip, roman headers,
+   * real photos only, no fabricated reviews. */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    /* Around The Grounds Tree Service — forest green + safety-orange (arborist gear) */
+    --brand: #21503A;        /* primary */
+    --brand-dark: #143026;   /* darker shade for nav/footer */
+    --brand-pale: #E4EDE6;   /* light tint for icon chips */
+    --accent: #E2702C;       /* accent */
+    --accent-light: #F3A66B;
+    --paper: #FAF8F3;        /* page background */
+    --text: #333;
+    --text-muted: #555;
+    --text-light: #777;
+    --white: #FFFFFF;
+    --border: #e6e2da;
+  }
+  html { overflow-x: clip; }
+  body { overflow-x: clip; font-family: 'Inter', -apple-system, sans-serif; background: var(--paper); color: var(--text); line-height: 1.7; }
+  .font-heading { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(20,48,38,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+  .nav-brand span { color: var(--accent-light); }
+  .nav-cta { background: var(--accent); color: var(--white); font-weight: 700; font-size: 0.85rem; padding: 0.55rem 1.3rem; border-radius: 999px; text-decoration: none; transition: all 0.25s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--accent-light); transform: scale(1.04); }
+
+  /* ─── HERO (full-bleed video) ─── */
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 7rem 1.5rem 4rem; overflow: hidden; background: var(--brand-dark) url('hero-poster.jpg') center/cover no-repeat; }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) saturate(1.08); transform: scale(1.06); transition: transform 12s ease; }
+  .hero:hover .hero-bg { transform: scale(1.0); }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,48,38,0.42) 0%, rgba(20,48,38,0.78) 100%); }
+  .hero-content { position: relative; z-index: 3; max-width: 780px; }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 0.45rem 1.4rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.5rem; backdrop-filter: blur(4px); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.2rem; text-shadow: 0 2px 24px rgba(0,0,0,0.75), 0 0 4px rgba(0,0,0,0.6); }
+  .hero h1 .accent { color: var(--accent-light); }
+  .hero .subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.95); font-weight: 400; max-width: 620px; margin: 0 auto 1.8rem; text-shadow: 0 2px 14px rgba(0,0,0,0.7); }
+  .hero-proof { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem; color: rgba(255,255,255,0.92); font-size: 0.85rem; text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
+  .hero-proof i { color: var(--accent-light); margin-right: 0.3rem; }
+  .hero-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-phone { background: var(--accent); color: var(--white); font-weight: 700; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; box-shadow: 0 6px 24px rgba(226,112,44,0.35); white-space: nowrap; }
+  .btn-phone:hover { background: var(--accent-light); transform: scale(1.05); }
+  .btn-outline { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: var(--white); font-weight: 600; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; white-space: nowrap; }
+  .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  /* ─── SECTIONS ─── */
+  .section { padding: 5.5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--brand); margin-bottom: 1rem; }
+  .section .lede { color: var(--text-muted); font-size: 1.05rem; font-weight: 400; max-width: 640px; margin-bottom: 3rem; }
+
+  /* ─── SERVICES (icon cards, motion bg, sticky 100vh) — text-bearing cards are opaque, no blur ─── */
+  #services.services-section { position: relative; max-width: none; padding: 0; overflow: hidden; background: var(--paper) url('bg-services-poster.jpg') center/cover no-repeat; }
+  #services .section-label { color: var(--accent-light); text-shadow: 0 1px 4px rgba(0,0,0,0.65); }
+  #services h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.45); }
+  #services .lede { color: rgba(255,255,255,0.95); text-shadow: 0 1px 5px rgba(0,0,0,0.65); font-weight: 400; }
+  #services .services-bg { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0; pointer-events: none; }
+  #services .services-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #services .services-scrim { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(20,48,38,0.2) 0%, rgba(20,48,38,0.12) 40%, rgba(20,48,38,0.22) 70%, rgba(20,48,38,0.34) 100%); }
+  #services .services-inner { position: relative; z-index: 10; margin-top: -100vh; padding: 5.5rem 1.5rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  @media (prefers-reduced-motion: reduce) { #services .services-bg video { display: none; } }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .service-card { position: relative; border-radius: 20px; overflow: hidden; min-height: 260px; display: flex; align-items: flex-end; box-shadow: 0 10px 32px rgba(0,0,0,0.16); transition: all 0.3s; }
+  .service-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .service-card::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.05)); pointer-events: none; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,0.22); }
+  .service-card .sc-content { position: relative; z-index: 2; padding: 1.5rem; width: 100%; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,0.8); }
+  .service-card p { font-size: 0.88rem; color: rgba(255,255,255,1); font-weight: 400; text-shadow: 0 1px 8px rgba(0,0,0,0.95); }
+
+  /* ─── GALLERY (real work photos — svc0-3.jpg, one each, no reuse) ─── */
+  .gallery-section { background: var(--brand-dark); }
+  .gallery-section .section { padding-top: 5.5rem; }
+  .gallery-section .section-label { color: var(--accent-light); }
+  .gallery-section h2 { color: var(--white); }
+  .gallery-section .lede { color: rgba(255,255,255,0.75); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .gallery-card { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,0.35); }
+  .gallery-card img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.7s; }
+  .gallery-card:hover img { transform: scale(1.06); }
+  .gallery-cap { position: absolute; inset-x: 0; bottom: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 1.2rem 1.2rem 0.9rem; color: var(--white); font-size: 0.85rem; font-weight: 600; }
+
+  /* ─── FRONTYARD VIDEO WRAP (Reviews + About share one bg, ends before Claim) ─── */
+  .frontyard-wrap { position: relative; overflow: hidden; }
+  .frontyard-wrap .reviews-bg-desktop { display: block; position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .frontyard-wrap .reviews-bg-desktop video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05) saturate(1.05); }
+  .frontyard-wrap .reviews-bg-mobile { display: none; }
+  .frontyard-wrap .reviews-bg-mobile video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.05) saturate(1.05); }
+  .frontyard-wrap .reviews-scrim { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(250,248,243,0.1) 0%, rgba(250,248,243,0.02) 30%, rgba(20,48,38,0.1) 65%, rgba(20,48,38,0.2) 100%); }
+  .frontyard-wrap .reviews-section, .frontyard-wrap .about-panel { position: relative; z-index: 1; }
+  .frontyard-wrap .section-label { color: var(--accent-light); text-shadow: 0 1px 4px rgba(0,0,0,0.65); }
+  .frontyard-wrap h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.45); }
+  .frontyard-wrap .lede { color: rgba(255,255,255,0.95); text-shadow: 0 1px 5px rgba(0,0,0,0.65); font-weight: 400; }
+  .frontyard-wrap .about-panel h2 { color: var(--white); }
+  .frontyard-wrap .about-panel .section-label { color: var(--accent-light); }
+  .reviews-section { position: relative; }
+  .reviews-section .review-card { background: #fff; }
+  .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .review-card { background: #fff; border-radius: 16px; padding: 1.75rem; border: 1px dashed var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .review-stars { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+  .review-text { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; line-height: 1.7; margin-bottom: 1rem; }
+  .review-author { font-size: 0.8rem; color: var(--text-muted); }
+  .review-author strong { color: var(--brand); font-weight: 600; }
+  .review-source { font-size: 0.7rem; color: var(--text-light); margin-top: 0.25rem; }
+
+  /* ─── ABOUT (text-only panel — no about photo supplied, per BRIEF distinct-images rule) ─── */
+  .about-panel .about-section { background: #fff; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 36px rgba(0,0,0,0.14); max-width: 720px; margin: 2rem auto 0; text-align: left; }
+  .about-text p { color: var(--text-muted); font-weight: 400; margin-bottom: 1rem; font-size: 0.98rem; }
+  .about-text .highlight { color: var(--brand); font-weight: 600; }
+
+  /* ─── CTA ─── */
+  .cta-section { text-align: center; padding: 5.5rem 1.5rem; position: relative; overflow: hidden; background: var(--brand); }
+  .cta-section .section-label { color: var(--accent-light); }
+  .cta-section h2 { color: var(--white); }
+  .cta-section p { color: rgba(255,255,255,0.8); font-weight: 400; margin-bottom: 2.2rem; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--accent); color: var(--white); font-weight: 700; padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 6px 24px rgba(226,112,44,0.3); }
+  .cta-btn:hover { transform: scale(1.05); background: var(--accent-light); }
+
+  /* ─── BOTTOM (Local Launch) ─── */
+  .ll-logo { padding: 3rem 1.5rem 1.5rem; text-align: center; background: var(--paper); }
+  .ll-cta-text { padding: 1.5rem 1.5rem 2.5rem; text-align: center; background: var(--paper); }
+  .ll-cta-text h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brand); margin-bottom: 0.5rem; }
+  .ll-cta-text p { color: var(--text-muted); font-size: 0.9rem; }
+  .ll-contact { padding: 2.5rem 1.5rem 4rem; text-align: center; background: var(--paper); border-top: 1px solid var(--border); }
+  .ll-contact-inner { display: flex; flex-direction: column; gap: 1rem; max-width: 320px; margin: 0 auto; }
+  .ll-btn { display: flex; align-items: center; gap: 0.75rem; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; text-decoration: none; color: var(--brand); transition: all 0.2s; }
+  .ll-btn:hover { border-color: var(--accent); }
+  .ll-btn .lbl { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+  .ll-btn .val { font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .nav-inner { padding: 0.8rem 1rem; gap: 0.5rem; }
+    .nav-brand { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .nav-cta { font-size: 0.75rem; padding: 0.5rem 0.9rem; flex-shrink: 0; }
+    .hero { padding: 6rem 1.25rem 3rem; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .hero-cta .btn-phone, .hero-cta .btn-outline { width: 100%; max-width: 320px; text-align: center; }
+    .section { padding: 3.5rem 1.25rem; }
+    #services .services-inner { padding: 3.5rem 1.25rem; }
+    .about-panel .about-section { padding: 1.75rem; }
+    .frontyard-wrap .reviews-bg-desktop { display: none; }
+    .frontyard-wrap .reviews-bg-mobile { display: block; position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+    .frontyard-wrap .reviews-section, .frontyard-wrap .about-panel { position: relative; z-index: 1; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .hero-proof { gap: 0.6rem; font-size: 0.75rem; }
+  }
+  @media (max-width: 375px) {
+    .btn-phone, .btn-outline { font-size: 0.85rem; padding: 0.8rem 1.4rem; white-space: nowrap; }
+    .hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Around The Grounds <span>•</span> Anderson</a>
+    <a href="tel:+18647705067" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ 1. HERO (full-bleed video) ═══════════════ -->
+<section class="hero">
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">24/7 Emergency Tree Service · Anderson, SC</div>
+    <h1>Storm Dropped A Tree?<br><span class="accent">We Answer Day Or Night.</span></h1>
+    <p class="subtitle">Tree removal, trimming, and stump grinding for Anderson, SC — from a crew that picks up the phone at 2am, not just 9-to-5.</p>
+    <div class="hero-proof">
+      <span><i class="fa-solid fa-clock"></i>Available 24/7</span>
+      <span><i class="fa-solid fa-location-dot"></i>Anderson, SC</span>
+      <span><i class="fa-solid fa-thumbs-up"></i>Recommended on Nextdoor</span>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:+18647705067" class="btn-phone">📞 (864) 770-5067</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. SERVICES (motion bg, sticky 100vh, opaque text cards) ═══════════════ -->
+<section id="services" class="section services-section">
+  <div class="services-bg">
+    <video autoplay muted loop playsinline preload="auto" poster="bg-services-poster.jpg" aria-hidden="true">
+      <source src="bg-services.mp4" type="video/mp4">
+    </video>
+    <div class="services-scrim"></div>
+  </div>
+  <div class="services-inner">
+    <div class="section-label">Services</div>
+    <h2>What We Do</h2>
+    <p class="lede">From routine pruning to after-the-storm emergencies, Around The Grounds Tree Service handles it all for Anderson, SC properties.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="svc0.jpg" alt="Felled tree trunk after a full tree removal in Anderson, SC" loading="lazy">
+        <div class="sc-content">
+          <h3>Tree Removal</h3>
+          <p>Safe, complete removal of hazardous, dead, or unwanted trees — any size, any spot on the property.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="svc1.jpg" alt="Arborist trimming a tree canopy" loading="lazy">
+        <div class="sc-content">
+          <h3>Trimming &amp; Pruning</h3>
+          <p>Canopy shaping, deadwooding, and clearance pruning to keep your trees healthy and your property safe.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="svc2.jpg" alt="Stump grinding equipment removing a tree stump" loading="lazy">
+        <div class="sc-content">
+          <h3>Stump Grinding</h3>
+          <p>Grinding stumps below grade so you can reclaim the yard — no more mowing around a stump.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="svc3.jpg" alt="Wood chipper cleanup after a tree service job" loading="lazy">
+        <div class="sc-content">
+          <h3>24/7 Emergency Service</h3>
+          <p>Storm damage, leaning trees, limbs on the roof — we respond around the clock, not just business hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 3. GALLERY (real work photos — svc0-3.jpg) ═══════════════ -->
+<section id="gallery" class="gallery-section">
+  <div class="section">
+    <div class="section-label">Portfolio</div>
+    <h2>Our Work — Real Jobs, Real Results</h2>
+    <p class="lede">A look at recent tree removal, trimming, and cleanup work around Anderson, SC.</p>
+    <div class="gallery-grid">
+      <div class="gallery-card"><img src="svc0.jpg" alt="Felled tree trunk after a full tree removal in Anderson, SC" loading="lazy"><div class="gallery-cap">Tree Removal</div></div>
+      <div class="gallery-card"><img src="svc1.jpg" alt="Arborist trimming a tree canopy" loading="lazy"><div class="gallery-cap">Trimming &amp; Pruning</div></div>
+      <div class="gallery-card"><img src="svc2.jpg" alt="Stump grinding equipment removing a tree stump" loading="lazy"><div class="gallery-cap">Stump Grinding</div></div>
+      <div class="gallery-card"><img src="svc3.jpg" alt="Wood chipper cleanup after a tree service job" loading="lazy"><div class="gallery-cap">Cleanup &amp; Haul-Away</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 4+5. REVIEWS + ABOUT (shared front-yard video background) ═══════════════ -->
+<div class="frontyard-wrap">
+  <div class="reviews-bg-desktop" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="reviews-bg-desktop-poster.jpg">
+      <source src="reviews-bg-desktop.mp4" type="video/mp4">
+    </video>
+    <div class="reviews-scrim"></div>
+  </div>
+  <div class="reviews-bg-mobile" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="reviews-bg-mobile-poster.jpg">
+      <source src="reviews-bg-mobile.mp4" type="video/mp4">
+    </video>
+    <div class="reviews-scrim"></div>
+  </div>
+
+<section class="section reviews-section">
+    <div class="section-label">Reviews</div>
+    <h2>What Customers Say</h2>
+    <p class="lede">Around The Grounds is recommended by neighbors on Nextdoor for fair pricing and efficient removals. Verified written reviews are coming soon.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">— Real review coming soon —</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+    </div>
+</section>
+
+<!-- ═══════════════ 5. ABOUT (text-only, over same front-yard video) ═══════════════ -->
+<section class="section about-panel">
+  <div class="section-label">About</div>
+  <h2>Tree Care, Any Time You Need It</h2>
+  <div class="about-section">
+    <div class="about-text">
+      <p>When a storm drops a limb on your roof or a dead tree starts leaning toward the driveway, it doesn't wait for business hours — so neither do we. Around The Grounds Tree Service is on call around the clock for Anderson, SC.</p>
+      <p>From routine trimming and pruning to full removals and stump grinding, every job gets handled with the same care: clean cuts, safe drops, and a yard left tidier than we found it.</p>
+      <p class="highlight">Anderson, SC's around-the-clock tree crew.</p>
+    </div>
+  </div>
+</section>
+</div><!-- /frontyard-wrap -->
+
+<!-- ═══════════════ 6. CTA ═══════════════ -->
+<section id="claim" class="cta-section">
+  <div class="section-label">Claim Your Site</div>
+  <h2>This is yours, Around The Grounds Tree Service.</h2>
+  <p>Built to showcase your work and help you grow. A professional website with your real reviews, a photo gallery of your jobs, and everything you need to win more clients.</p>
+  <a href="tel:+18647705067" class="cta-btn">Call for a Free Estimate</a>
+</section>
+
+<!-- ═══════════════ 7. LOCAL LAUNCH LOGO ═══════════════ -->
+<section class="ll-logo">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:320px;width:100%;">
+    <img src="logo-bg.jpg" alt="Local Launch" style="width:100%;height:auto;border-radius:12px;display:block;">
+  </a>
+</section>
+
+<!-- ═══════════════ 8. CTA TEXT ═══════════════ -->
+<section class="ll-cta-text">
+  <h3>Want this site? It's yours.</h3>
+  <p>Reply, call, or text. I'll hand you the keys in 24 hours.</p>
+  <p style="color:var(--text-light);font-size:0.85rem;margin-top:1rem;max-width:380px;margin-left:auto;margin-right:auto;">Click my logo above to see my work. I'm based in Simpsonville, SC and I help local businesses like yours grow and win more clients.</p>
+</section>
+
+<!-- ═══════════════ 9. CONTACT ═══════════════ -->
+<section class="ll-contact">
+  <div class="ll-contact-inner">
+    <a href="tel:+15033585860" class="ll-btn">
+      <span style="font-size:1.2rem;">📞</span>
+      <div style="text-align:left;"><div class="lbl">Call / Text</div><div class="val">(503) 358-5860</div></div>
+    </a>
+    <a href="mailto:locallaunchupstate@gmail.com" class="ll-btn">
+      <span style="font-size:1.2rem;">✉️</span>
+      <div style="text-align:left;"><div class="lbl">Email</div><div class="val">locallaunchupstate@gmail.com</div></div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

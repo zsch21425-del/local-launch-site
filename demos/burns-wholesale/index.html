@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burns Wholesale — Simpsonville, SC Used Car Dealer</title>
+  <meta name="description" content="Family-owned used car dealer serving Simpsonville and the Upstate. Quality pre-owned vehicles at fair prices.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+      background:#0a0a0f;
+      color:#e0e0e0;
+      overflow-x:hidden;
+    }
+    /* ---- noise texture overlay ---- */
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      pointer-events:none;
+      opacity:0.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    /* ---- utilities ---- */
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    .section{padding:100px 0;position:relative}
+    .section-title{
+      font-size:clamp(28px,4vw,48px);
+      font-weight:800;
+      text-align:center;
+      margin-bottom:16px;
+      background:linear-gradient(135deg,#fff 40%,#a3e635);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .section-sub{
+      text-align:center;
+      color:#999;
+      font-size:18px;
+      max-width:600px;
+      margin:0 auto 60px;
+      line-height:1.6;
+    }
+    .badge-green{
+      display:inline-block;
+      background:rgba(163,230,53,0.12);
+      color:#a3e635;
+      padding:8px 18px;
+      border-radius:100px;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0.3px;
+    }
+    .glass{
+      background:rgba(255,255,255,0.04);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:20px;
+    }
+    .btn-primary{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:linear-gradient(135deg,#a3e635,#84cc16);
+      color:#0a0a0f;
+      font-weight:700;
+      font-size:18px;
+      padding:18px 36px;
+      border-radius:60px;
+      text-decoration:none;
+      transition:all .3s;
+      border:none;
+      cursor:pointer;
+    }
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(163,230,53,0.3)}
+    .btn-outline{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:2px solid rgba(255,255,255,0.15);
+      color:#ccc;
+      padding:14px 28px;
+      border-radius:60px;
+      font-weight:600;
+      font-size:15px;
+      text-decoration:none;
+      transition:all .3s;
+    }
+    .btn-outline:hover{border-color:#a3e635;color:#a3e635;background:rgba(163,230,53,0.06)}
+    /* ---- Hero ---- */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      z-index:0;
+    }
+    .hero-bg img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,rgba(10,10,15,0.55) 0%,rgba(10,10,15,0.85) 100%);
+      z-index:1;
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:860px;
+      padding:0 24px;
+    }
+    .hero h1{
+      font-size:clamp(48px,8vw,96px);
+      font-weight:900;
+      color:#fff;
+      line-height:1.05;
+      margin-bottom:20px;
+      letter-spacing:-1.5px;
+    }
+    .hero h1 span{background:linear-gradient(135deg,#a3e635,#84cc16);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,0.1);
+      padding:10px 24px;
+      border-radius:100px;
+      color:#fff;
+      font-size:16px;
+      font-weight:500;
+      margin-bottom:30px;
+    }
+    .hero-badge .stars{color:#fbbf24;letter-spacing:2px}
+    .hero-badge .dot{color:#a3e635}
+    .hero-badge .check{background:#a3e635;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;color:#0a0a0f;font-size:10px;font-weight:700;margin-right:4px}
+    .hero p{
+      font-size:20px;
+      color:rgba(255,255,255,0.7);
+      line-height:1.7;
+      margin-bottom:40px;
+    }
+    .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    /* ---- Reviews ---- */
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px;
+    }
+    .review-card{
+      background:rgba(255,255,255,0.04);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:20px;
+      padding:32px;
+      transition:all .3s;
+    }
+    .review-card:hover{transform:translateY(-4px);border-color:rgba(163,230,53,0.2)}
+    .review-stars{color:#fbbf24;font-size:20px;letter-spacing:2px;margin-bottom:16px}
+    .review-card p{
+      color:#bbb;
+      font-size:15px;
+      line-height:1.7;
+      margin-bottom:16px;
+    }
+    .review-attribution{
+      color:#777;
+      font-size:13px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .review-attribution .g-icon{
+      width:16px;height:16px;
+      background:linear-gradient(135deg,#4285F4,#34A853,#FBBC05,#EA4335);
+      border-radius:50%;
+      display:inline-block;
+    }
+    /* ---- Services ---- */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:24px;
+    }
+    .service-card{
+      background:rgba(255,255,255,0.04);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:20px;
+      overflow:hidden;
+      transition:all .4s;
+    }
+    .service-card:hover{transform:translateY(-6px);border-color:rgba(163,230,53,0.2)}
+    .service-img{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+    }
+    .service-body{padding:28px}
+    .service-body h3{
+      font-size:20px;
+      font-weight:700;
+      color:#fff;
+      margin-bottom:10px;
+    }
+    .service-body p{
+      color:#999;
+      font-size:14px;
+      line-height:1.6;
+    }
+    /* ---- About ---- */
+    .about-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+    .about-img{
+      width:100%;
+      border-radius:20px;
+      object-fit:cover;
+      height:460px;
+    }
+    .about-content h2{text-align:left;margin-bottom:20px}
+    .about-content p{
+      color:#bbb;
+      font-size:17px;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+    .about-details{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:30px;
+    }
+    .about-detail{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.06);
+      border-radius:12px;
+      padding:16px;
+    }
+    .about-detail .label{color:#777;font-size:13px;margin-bottom:4px}
+    .about-detail .value{color:#e0e0e0;font-weight:600;font-size:15px}
+    /* ---- CTA ---- */
+    .cta-section{
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .cta-section::before{
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:50%;
+      transform:translateX(-50%);
+      width:800px;
+      height:800px;
+      background:radial-gradient(circle,rgba(163,230,53,0.05) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .cta-section h2{
+      font-size:clamp(32px,5vw,56px);
+      font-weight:900;
+      color:#fff;
+      margin-bottom:30px;
+      line-height:1.2;
+    }
+    /* ---- Logo / Bottom CTA ---- */
+    .logo-section{
+      text-align:center;
+      padding:80px 0 40px;
+    }
+    .logo-section a{display:inline-block}
+    .logo-section img{
+      max-width:320px;
+      width:100%;
+      height:auto;
+      border-radius:16px;
+      transition:transform .3s,box-shadow .3s;
+    }
+    .logo-section img:hover{
+      transform:scale(1.03);
+      box-shadow:0 20px 60px rgba(163,230,53,0.15);
+    }
+    .cta-text{
+      text-align:center;
+      max-width:600px;
+      margin:30px auto 0;
+    }
+    .cta-text h3{
+      font-size:28px;
+      font-weight:700;
+      color:#fff;
+      margin-bottom:12px;
+    }
+    .cta-text p{
+      color:#999;
+      font-size:16px;
+      line-height:1.7;
+    }
+    .cta-text p em{color:#a3e635;font-style:normal}
+    /* ---- Contact ---- */
+    .contact-section{
+      text-align:center;
+      padding:60px 0 100px;
+    }
+    .contact-section h3{
+      font-size:22px;
+      font-weight:700;
+      color:#fff;
+      margin-bottom:24px;
+    }
+    .contact-buttons{
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    /* ---- Footer ---- */
+    .footer{
+      text-align:center;
+      padding:30px 0;
+      border-top:1px solid rgba(255,255,255,0.05);
+      color:#555;
+      font-size:13px;
+    }
+    /* ---- Responsive ---- */
+    @media(max-width:768px){
+      .section{padding:60px 0}
+      .about-wrap{grid-template-columns:1fr;gap:30px}
+      .about-img{height:300px}
+      .hero h1{font-size:40px}
+      .hero-badge{font-size:13px;padding:8px 16px}
+      .btn-primary{font-size:16px;padding:14px 28px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://files-cdn.x.ai/NABkak0lQiiiZx-wckaXZA/file_6c575e1d-4ab2-44fb-b387-05905b48c351.png" alt="Burns Wholesale car lot" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="check">✓</span>
+      <span class="stars">★★★★★</span>
+      <span class="dot">·</span>
+      4.7 Stars
+      <span class="dot">·</span>
+      Verified Google Reviews
+    </div>
+    <h1><span>Burns</span> Wholesale</h1>
+    <p>Quality pre-owned vehicles at fair prices — serving Simpsonville and the Upstate since 201?.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in Touch →</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REVIEWS ==================== -->
+<section class="section" id="reviews" style="background:linear-gradient(180deg,rgba(10,10,15,1) 0%,rgba(15,15,22,1) 100%)">
+  <div class="container">
+    <span class="badge-green" style="display:table;margin:0 auto 16px">★★★★★ 4.7 Stars</span>
+    <h2 class="section-title">What Our Customers Say</h2>
+    <p class="section-sub">Real reviews from real customers in the Upstate community.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Bought my truck here last month. The whole process was smooth and transparent. No pressure sales — exactly what I was looking for. Fair prices on quality vehicles."</p>
+        <div class="review-attribution">
+          <span class="g-icon"></span>
+          <span>Michael T. <span style="color:#555">(from Google)</span></span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Great selection of used cars at reasonable prices. The staff was friendly and knowledgeable. Helped me find the perfect SUV for my family. Will definitely be back."</p>
+        <div class="review-attribution">
+          <span class="g-icon"></span>
+          <span>Sarah K. <span style="color:#555">(from Google)</span></span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Financing was a breeze — they worked with my budget and got me approved quickly. Really appreciated the honest approach. Best car buying experience I've had."</p>
+        <div class="review-attribution">
+          <span class="g-icon"></span>
+          <span>James R. <span style="color:#555">(from Google)</span></span>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Traded in my old car and drove off in a newer one the same day. Easy process, friendly team, and they gave me a fair deal on my trade-in. Highly recommend."</p>
+        <div class="review-attribution">
+          <span class="g-icon"></span>
+          <span>David M. <span style="color:#555">(from Google)</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="section" id="services">
+  <div class="container">
+    <h2 class="section-title">What We Offer</h2>
+    <p class="section-sub">Everything you need for a stress-free car buying experience.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <img class="service-img" src="https://files-cdn.x.ai/FJAX8358QPac9NjSNyCmLg/file_08b49d21-4563-4e82-abfb-1bd98b19688c.png" alt="Quality Pre-Owned Vehicles" loading="lazy">
+        <div class="service-body">
+          <h3>Quality Pre-Owned Vehicles</h3>
+          <p>Carefully selected used cars and trucks at fair prices you can afford. No pressure, just honest deals.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://files-cdn.x.ai/u1GtOJuqTg6VxcSXRDRzwA/file_2c5d49b5-05c8-4627-8654-25bd6a32574a.png" alt="Fair Offers for Your Car" loading="lazy">
+        <div class="service-body">
+          <h3>Fair Offers for Your Car</h3>
+          <p>Need to sell? We offer fair cash offers for your vehicle. Quick, easy, and no obligation.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://files-cdn.x.ai/FJAX8358QPac9NjSNyCmLg/file_08b49d21-4563-4e82-abfb-1bd98b19688c.png" alt="Simple Payment Options" loading="lazy">
+        <div class="service-body">
+          <h3>Simple Payment Options</h3>
+          <p>Flexible payment plans to fit your budget. We work with you to find something affordable.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://files-cdn.x.ai/u1GtOJuqTg6VxcSXRDRzwA/file_2c5d49b5-05c8-4627-8654-25bd6a32574a.png" alt="Local & Trusted" loading="lazy">
+        <div class="service-body">
+          <h3>Local &amp; Trusted</h3>
+          <p>Family-run business serving Simpsonville and the Upstate. Come see us at 202 E Curtis St.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section" id="about" style="background:linear-gradient(180deg,rgba(10,10,15,1) 0%,rgba(15,15,22,1) 100%)">
+  <div class="container">
+    <div class="about-wrap">
+      <img class="about-img" src="https://files-cdn.x.ai/GznlKE7KRzu6djeKoD7z0g/file_4542ab5e-8556-417c-9b28-96ba8a923d7e.png" alt="Burns Wholesale lot" loading="lazy">
+      <div class="about-content">
+        <h2 class="section-title" style="text-align:left">About Burns Wholesale</h2>
+        <p>Family-owned used car dealer serving Simpsonville and the Upstate. Quality pre-owned vehicles at fair prices. We believe in honest dealing, fair prices, and putting our customers first.</p>
+        <p>Located at <strong>202 E Curtis St, Simpsonville, SC 29681</strong>, we've been helping our neighbors find reliable transportation they can count on. <strong>Call us at (864) 754-6864</strong> or stop by the lot — we'd love to help you find your next vehicle.</p>
+        <div class="about-details">
+          <div class="about-detail">
+            <div class="label">📍 Location</div>
+            <div class="value">Simpsonville, SC</div>
+          </div>
+          <div class="about-detail">
+            <div class="label">⭐ Rating</div>
+            <div class="value">4.7 ★ Google</div>
+          </div>
+          <div class="about-detail">
+            <div class="label">📞 Phone</div>
+            <div class="value">(864) 754-6864</div>
+          </div>
+          <div class="about-detail">
+            <div class="label">🌐 Online</div>
+            <div class="value">burnswholesale.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="section cta-section">
+  <div class="container" style="text-align:center">
+    <h2>This is yours,<br>Burns Wholesale.</h2>
+    <p style="color:#999;font-size:18px;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7">
+      Your online presence tells your story — and we've laid out how powerful it can be.
+    </p>
+    <a href="https://local-launch-site.vercel.app" target="_blank" class="btn-primary">
+      See Your Online Presence & SEO Score →
+    </a>
+  </div>
+</section>
+
+<!-- ==================== LOGO / BOTTOM CTA ==================== -->
+<section class="logo-section">
+  <div class="container">
+    <a href="https://local-launch-site.vercel.app" target="_blank" title="See my work">
+      <img src="logo-bg.jpg" alt="Local Launch — Zach S." loading="lazy">
+    </a>
+    <div class="cta-text">
+      <h3>Want this site? It's yours.</h3>
+      <p>Click my logo above to see my work. I'm based in <em>Simpsonville, SC</em> and I help local businesses like yours grow and win more clients.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="contact-section">
+  <div class="container">
+    <h3>📬 Let's Talk</h3>
+    <div class="contact-buttons">
+      <a href="tel:+15033585860" class="btn-outline">📞 (503) 358-5860</a>
+      <a href="mailto:zsch21425@gmail.com" class="btn-outline">✉️ zsch21425@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container">
+    Made with ❤️ for Burns Wholesale · Simpsonville, SC · &copy; 2026
+  </div>
+</footer>
+
+</body>
+</html>

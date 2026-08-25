@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Launch — Websites & SEO for Trades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --bg:#0D0C0A;--bg2:#141210;--panel:#1A1714;--ink:#F2EFE9;--muted:#8A857C;
+  --accent:#2AA8A8;--accent2:#6FD0CC;--glow:rgba(42,168,168,.25);--line:rgba(242,239,233,.07);
+  --r:22px;--serif:'Playfair Display',Georgia,serif;--ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--bg)}
+
+#scrollSpacer{height:500vh}
+#stage{position:fixed;inset:0;overflow:hidden;background:var(--bg)}
+
+/* ---- Progress bar ---- */
+#progress{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:300;transition:width .05s linear}
+
+/* ---- Background: particle canvas ---- */
+#bgCanvas{opacity:1}
+#bgVignette{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 80% 70% at 50% 50%,transparent 45%,rgba(13,12,10,.55) 100%)}
+
+/* ---- Hero ---- */
+#hero{position:absolute;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#heroLogo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease),opacity .4s}
+#hero::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 82% 62% at 50% 44%,transparent 16%,var(--bg) 100%)}
+#heroTxt{position:relative;z-index:2;text-align:center;max-width:800px;padding:20px;opacity:0;transform:translateY(30px);transition:opacity .5s,transform .5s}
+#heroTxt .eyebrow{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;padding:6px 16px;border:1px solid rgba(42,168,168,.3);border-radius:99px;background:rgba(42,168,168,.06)}
+#heroTxt h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.9rem);font-weight:800;line-height:1.03;letter-spacing:-.02em;margin-bottom:20px}
+#heroTxt h1 i{font-style:italic;color:var(--accent)}
+#heroTxt p{font-size:1.06rem;color:var(--muted);max-width:520px;margin:0 auto 26px;font-weight:300}
+
+/* ---- Nav ---- */
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;opacity:0;transition:opacity .4s}
+#nav .nb{position:absolute;inset:0;background:rgba(13,12,10,.82);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--line)}
+#nav .nl{position:relative;z-index:1;display:flex;align-items:center;gap:9px;text-decoration:none}
+#nav .nl img{height:27px;width:auto;border-radius:6px}
+#nav .nl span{font-weight:800;font-size:.94rem;color:var(--ink);letter-spacing:-.01em}
+#nav .nr{position:relative;z-index:1;display:flex;gap:22px;align-items:center}
+#nav .nr a{color:var(--muted);text-decoration:none;font-size:.83rem;font-weight:500;transition:color .2s}
+#nav .nr a:hover{color:var(--ink)}
+#nav .nr .cta{background:var(--accent);color:var(--bg)!important;font-weight:700;padding:8px 18px;border-radius:99px;font-size:.8rem!important}
+#nav .nr .cta:hover{background:var(--accent2)}
+@media(max-width:720px){#nav .nr a:not(.cta){display:none}}
+
+/* ---- Scenes ---- */
+.scene{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.eyebrow-lbl{font-size:.74rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;opacity:0;transition:opacity .5s var(--ease),transform .6s var(--ease);transform:translateY(14px);text-align:center}
+.eyebrow-lbl::before{content:"";display:inline-block;width:24px;height:1px;background:var(--accent);vertical-align:middle;margin-right:10px;opacity:.7}
+.eyebrow-lbl::after{content:"";display:inline-block;width:24px;height:1px;background:var(--accent);vertical-align:middle;margin-left:10px;opacity:.7}
+.scene-inner{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;max-width:960px;padding:20px;position:relative}
+
+/* Cards */
+.card{background:rgba(26,23,20,.66);border:1px solid rgba(242,239,233,.08);border-radius:var(--r);padding:36px 30px;width:280px;max-width:88vw;backdrop-filter:blur(26px) saturate(130%);-webkit-backdrop-filter:blur(26px) saturate(130%);box-shadow:0 4px 44px rgba(0,0,0,.42);position:relative;overflow:hidden;opacity:0;transition:opacity .5s var(--ease),transform .6s var(--ease)}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(42,168,168,.55),transparent)}
+.card.glow{border-color:rgba(42,168,168,.2);box-shadow:0 4px 44px rgba(0,0,0,.42),0 0 70px rgba(42,168,168,.09),inset 0 1px 0 rgba(255,255,255,.03)}
+.card .num{font-family:var(--serif);font-size:2.7rem;font-weight:800;line-height:1}
+.card .lbl{color:var(--muted);font-size:.87rem;margin-top:8px}
+.card .tag{font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;padding:5px 11px;border-radius:99px;display:inline-block;margin-bottom:14px}
+.card .tag.bad{background:rgba(224,108,79,.12);color:#E06C4F}
+.card .tag.good{background:rgba(42,168,168,.13);color:var(--accent)}
+.card .bar{height:5px;background:rgba(242,239,233,.06);border-radius:99px;overflow:hidden;margin:10px 0 14px}
+.card .bar i{display:block;height:100%;border-radius:99px;transition:width 1s var(--ease)}
+.card .bar i.red{background:#E06C4F}
+.card .bar i.teal{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.card li{padding:7px 0;color:var(--muted);font-size:.87rem;display:flex;gap:9px;align-items:baseline;list-style:none;border-bottom:1px dashed var(--line)}
+.card li:last-child{border:none}
+.card li.x::before{content:"✕";color:#E06C4F;font-weight:700;font-size:.72em}
+.card li.ch::before{content:"✓";color:var(--accent2);font-weight:700;font-size:.72em}
+.card .n{font-family:var(--serif);font-size:3.1rem;color:transparent;-webkit-text-stroke:1.1px rgba(42,168,168,.35);margin-bottom:8px;line-height:1}
+.card h3{font-size:1.08rem;font-weight:700;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.89rem;font-weight:300}
+.card .price{font-family:var(--serif);font-size:2.1rem;font-weight:800}
+.card .per{color:var(--muted);font-size:.79rem;margin-bottom:16px}
+.card .badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--bg);font-size:.62rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:5px 13px;border-radius:99px;z-index:2;box-shadow:0 4px 16px rgba(42,168,168,.4)}
+
+/* Steps connector */
+#sSteps .scene-inner::before{content:"";position:absolute;top:56px;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(42,168,168,.3),rgba(42,168,168,.3),transparent);z-index:-1}
+@media(max-width:900px){#sSteps .scene-inner::before{display:none}}
+
+/* ---- CTA ---- */
+#cta{position:absolute;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .5s}
+#cta .box{text-align:center;padding:20px}
+#cta h2{font-family:var(--serif);font-size:clamp(2.1rem,4.6vw,3.5rem);font-weight:800;text-align:center;margin-bottom:22px;line-height:1.08}
+#cta .btn{display:inline-flex;align-items:center;gap:9px;padding:19px 38px;border-radius:99px;font-weight:700;font-size:1.06rem;text-decoration:none;background:var(--accent);color:var(--bg);pointer-events:auto;transition:transform .25s,box-shadow .25s,background .25s}
+#cta .btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(42,168,168,.38);background:var(--accent2)}
+#cta .sub{color:var(--muted);margin-top:16px;font-size:.85rem;font-weight:300}
+#cta .loc{color:var(--muted);margin-top:6px;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+
+/* ---- Scroll hint ---- */
+#hint{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:200;color:var(--muted);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .3s}
+#hint .b{width:1px;height:30px;background:linear-gradient(var(--accent),transparent);position:relative;overflow:hidden}
+#hint .b::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:60%;background:linear-gradient(var(--ink),transparent);animation:hintfall 1.6s ease-in-out infinite}
+@keyframes hintfall{0%{top:-60%}100%{top:120%}}
+
+/* ---- Mobile ---- */
+@media(max-width:640px){
+  .scene-inner{flex-direction:column;align-items:center}
+  .card{width:88vw;padding:30px 26px}
+  .eyebrow-lbl{font-size:.66rem;margin-bottom:16px}
+  #heroLogo{object-fit:contain;padding:12vw}
+}
+
+/* ---- Reduced motion ---- */
+@media(prefers-reduced-motion:reduce){
+  #scrollSpacer{display:none}
+  #stage{position:relative}
+}
+</style>
+</head>
+<body>
+
+<div id="scrollSpacer"></div>
+<div id="progress"></div>
+<div id="stage">
+
+  <canvas id="bgCanvas" style="position:absolute;inset:0;z-index:0;pointer-events:none" width="1920" height="1080"></canvas>
+  <div id="bgVignette"></div>
+
+  <div id="hero">
+    <img src="logo.jpg" alt="Local Launch" id="heroLogo">
+    <div id="heroTxt">
+      <span class="eyebrow">Greenville, SC · Trades Marketing</span>
+      <h1>Your <i>competitors</i> aren't better.<br>They're just <i>easier to find.</i></h1>
+      <p>Websites & SEO for plumbers, mechanics, landscapers, and trades. One landscaping company went from invisible to page one in six weeks.</p>
+    </div>
+  </div>
+
+  <div id="nav">
+    <div class="nb"></div>
+    <a href="/" class="nl"><img src="logo.jpg" alt=""><span>Local<span style="color:var(--accent)">Launch</span></span></a>
+    <div class="nr"><a href="#">Results</a><a href="#">How It Works</a><a href="#">Pricing</a><a href="tel:+18643574530" class="cta">(864) 357-4530</a></div>
+  </div>
+
+  <div class="scene" id="sMetrics">
+    <div class="eyebrow-lbl" id="lblMetrics">The Numbers</div>
+    <div class="scene-inner">
+      <div class="card glow" id="m1"><div class="num">96<small style="font-size:.4em;color:var(--muted)">/120</small></div><div class="lbl">SEO score, up from 22</div></div>
+      <div class="card glow" id="m2"><div class="num">24/7</div><div class="lbl">Lead capture, never sleeps</div></div>
+      <div class="card glow" id="m3"><div class="num">&lt;$20<small style="font-size:.4em;color:var(--muted)">/mo</small></div><div class="lbl">To run it all</div></div>
+    </div>
+  </div>
+
+  <div class="scene" id="sCase">
+    <div class="eyebrow-lbl" id="lblCase">Case Study</div>
+    <div class="scene-inner">
+      <div class="card" id="cBefore"><span class="tag bad">Before</span><div class="num" style="font-size:2.1rem;font-family:var(--serif)">22<small style="font-size:.4em">/120</small></div><div class="bar"><i class="red" style="width:18%"></i></div><li class="x">No website at all</li><li class="x">No Google Profile</li><li class="x">Zero reviews</li></div>
+      <div class="card glow" id="cAfter"><span class="tag good">After</span><div class="num" style="font-size:2.1rem;font-family:var(--serif)">96<small style="font-size:.4em">/120</small></div><div class="bar"><i class="teal" style="width:80%"></i></div><li class="ch">7-page site + gallery</li><li class="ch">AI Visualizer live</li><li class="ch">24/7 AI receptionist</li></div>
+    </div>
+  </div>
+
+  <div class="scene" id="sSteps">
+    <div class="eyebrow-lbl" id="lblSteps">How It Works</div>
+    <div class="scene-inner">
+      <div class="card" id="st1"><div class="n">01</div><h3>I audit your presence</h3><p>120-point AI audit. Same day. Plain English.</p></div>
+      <div class="card" id="st2"><div class="n">02</div><h3>I build the engine</h3><p>Website, AI tools, GBP — under a week.</p></div>
+      <div class="card" id="st3"><div class="n">03</div><h3>You watch leads come in</h3><p>Every call answered. Rankings climb. 24/7.</p></div>
+    </div>
+  </div>
+
+  <div class="scene" id="sPrice">
+    <div class="eyebrow-lbl" id="lblPrice">Pricing</div>
+    <div class="scene-inner">
+      <div class="card" id="p1" style="position:relative"><div class="tag good" style="margin-bottom:10px">Foundation</div><div class="price">$300</div><div class="per">One-time build</div><li class="ch">Website build or rebuild</li><li class="ch">GBP optimization</li><li class="ch">120-point audit</li><li class="ch">30 days support</li></div>
+      <div class="card glow" id="p2" style="position:relative"><div class="badge">Most Popular</div><div class="tag good" style="margin-bottom:10px">Growth</div><div class="price">$300<small style="font-size:.4em;color:var(--muted)"> + $35/mo</small></div><div class="per">Monthly maintenance</div><li class="ch">Everything in Foundation</li><li class="ch">AI receptionist</li><li class="ch">SEO maintenance</li><li class="ch">Directory management</li></div>
+      <div class="card" id="p3" style="position:relative"><div class="tag good" style="margin-bottom:10px">Full Stack</div><div class="price">$350<small style="font-size:.4em;color:var(--muted)"> + $50/mo</small></div><div class="per">Monthly maintenance</div><li class="ch">Everything in Growth</li><li class="ch">AI Visualizer</li><li class="ch">Content pipeline</li><li class="ch">Google Ads</li></div>
+    </div>
+  </div>
+
+  <div id="cta"><div class="box"><h2>Ready to stop<br>missing leads?</h2><a href="tel:+18643574530" class="btn"><i class="fa-solid fa-phone"></i> (864) 357-4530</a><p class="sub">Built fast. Runs cheap. Works 24/7.</p><p class="loc">Local Launch · Greenville, SC</p></div></div>
+
+  <div id="hint">Scroll<div class="b"></div></div>
+
+</div>
+
+<script>
+(function(){
+  var S=document.getElementById("scrollSpacer"),H=document.getElementById("hero"),
+      L=document.getElementById("heroLogo"),T=document.getElementById("heroTxt"),
+      N=document.getElementById("nav"),HI=document.getElementById("hint"),
+      PB=document.getElementById("progress"),
+      cnv=document.getElementById("bgCanvas"),ctx=cnv.getContext("2d");
+  var pf=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var mobile=window.innerWidth<=640;
+  if(pf){S.style.display="none";document.getElementById("stage").style.position="relative";return}
+
+  window.addEventListener("scroll",function(){
+    var max=S.offsetHeight-window.innerHeight,p=Math.max(0,Math.min(1,window.scrollY/max));
+
+    PB.style.width=(p*100)+"%";
+
+    if(p<=0.26){
+      H.style.display="flex";L.style.display="";
+      var z=Math.max(0,Math.min(1,(p-0.06)/0.2));
+      L.style.transform="scale("+(1+z*3.5)+")";L.style.opacity=1-z;
+      T.style.opacity=p>0.12?Math.min(1,(p-0.12)/0.08):0;
+      T.style.transform=p>0.12?"translateY(0)":"translateY(30px)";
+      N.style.opacity=p>0.22?Math.min(1,(p-0.22)/0.04):0;
+      HI.style.opacity=p>0.08?0:1;
+    }else{H.style.display="none";L.style.display="none";N.style.opacity="1";HI.style.opacity="0"}
+
+    // Cards — each flies in from its own direction
+    function R(id,start,end,dir){
+      var el=document.getElementById(id);if(!el)return;
+      var d=mobile?50:140,dy=mobile?50:80;
+      var hidden,visible={opacity:"1",transform:"translate(0,0) rotate(0deg)"};
+      if(dir==="L")hidden={opacity:"0",transform:"translateX(-"+d+"px) rotate(-3deg)"};
+      else if(dir==="R")hidden={opacity:"0",transform:"translateX("+d+"px) rotate(3deg)"};
+      else hidden={opacity:"0",transform:"translateY("+dy+"px)"};
+      if(p>=start&&p<=end){el.style.opacity=visible.opacity;el.style.transform=visible.transform}
+      else{el.style.opacity=hidden.opacity;el.style.transform=hidden.transform}
+    }
+    function Lbl(id,start,end){
+      var el=document.getElementById(id);if(!el)return;
+      if(p>=start&&p<=end){el.style.opacity="1";el.style.transform="translateY(0)"}
+      else{el.style.opacity="0";el.style.transform="translateY(14px)"}
+    }
+
+    Lbl("lblMetrics",.28,.56);Lbl("lblCase",.56,.74);Lbl("lblSteps",.74,.90);Lbl("lblPrice",.90,.998);
+
+    R("m1",.28,.56,"L");R("m2",.32,.56,"R");R("m3",.36,.56,"B");
+    R("cBefore",.56,.74,"L");R("cAfter",.60,.74,"R");
+    R("st1",.74,.90,"L");R("st2",.78,.90,"B");R("st3",.82,.90,"R");
+    R("p1",.90,.998,"L");R("p2",.93,.998,"B");R("p3",.95,.998,"R");
+    document.getElementById("cta").style.opacity=p>.988?"1":"0";
+  },{passive:true});
+
+  // --- Particle system — digital bits that float and assemble ---
+  (function(){
+    var W,H,PARTICLES=180,particles=[],t=0;
+    function resize(){
+      var r=cnv.getBoundingClientRect();
+      var dpr=window.devicePixelRatio||1;
+      W=r.width;H=r.height;
+      cnv.width=W*dpr;cnv.height=H*dpr;
+      cnv.style.width=W+'px';cnv.style.height=H+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    setTimeout(resize,50);
+    window.addEventListener("resize",resize);
+
+    // Generate target shapes — positions that form recognizable patterns
+    function shapeBarChart(){var pts=[];for(var i=0;i<PARTICLES/3;i++){pts.push({x:W*.25+i%20*2,y:H*.55-(i%7)*3});pts.push({x:W*.45+i%14*2,y:H*.55-(i%9)*3});pts.push({x:W*.65+i%25*1.5,y:H*.55-(i%6)*3})}return pts}
+    function shapeNumbers(){var pts=[];for(var i=0;i<PARTICLES/2;i++){pts.push({x:W*.2+Math.sin(i*.3)*40,y:H*.4+Math.cos(i*.4)*60});pts.push({x:W*.7+Math.sin(i*.35)*35,y:H*.45+Math.cos(i*.45)*50})}return pts}
+    function shapeDiamond(){var pts=[];for(var i=0;i<PARTICLES;i++){var a=i/PARTICLES*Math.PI*2;pts.push({x:W*.5+Math.cos(a)*Math.min(W,H)*.25,y:H*.5+Math.sin(a)*Math.min(W,H)*.2})}return pts}
+
+    var shapes=[shapeBarChart(),shapeNumbers(),shapeDiamond()];
+
+    for(var i=0;i<PARTICLES;i++){
+      particles.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,size:1+Math.random()*2.5,phase:Math.random()*Math.PI*2,speed:.02+Math.random()*.03});
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      var p=0;try{p=parseFloat(document.getElementById("progress").style.width)/100}catch(e){}
+      t+=.016;
+
+      var assemble=(p>.28&&p<=.88)?Math.min(1,(p-.28)/.1):0;
+      var shapeIdx=p>.28?(p>.56?(p>.74?2:1):0):-1;
+      var target=shapeIdx>=0?shapes[shapeIdx]:null;
+
+      for(var i=0;i<PARTICLES;i++){
+        var pt=particles[i],tx=pt.x,ty=pt.y;
+        if(target&&i<target.length){tx=target[i].x;ty=target[i].y}
+
+        // Interpolate toward target when assembling
+        var f=assemble*.08;
+        pt.x+=(tx-pt.x)*f+pt.vx;
+        pt.y+=(ty-pt.y)*f+pt.vy;
+
+        // Drift when not assembling
+        if(assemble<.5){
+          pt.vx+=Math.sin(t+pt.phase)*.02;
+          pt.vy+=Math.cos(t+pt.phase)*.02;
+          pt.vx*=.998;pt.vy*=.998;
+        }
+
+        // Bounds
+        if(pt.x<0)pt.x=W;if(pt.x>W)pt.x=0;
+        if(pt.y<0)pt.y=H;if(pt.y>H)pt.y=0;
+
+        var alpha=.35+assemble*.35;
+        ctx.beginPath();ctx.arc(pt.x,pt.y,pt.size,0,Math.PI*2);
+        ctx.fillStyle="rgba(42,168,168,"+alpha+")";ctx.fill();
+      }
+
+      // Draw connections between nearby particles
+      ctx.strokeStyle="rgba(42,168,168,.06)";ctx.lineWidth=.5;
+      for(var i=0;i<PARTICLES;i+=3){
+        for(var j=i+1;j<PARTICLES&&j<i+8;j++){
+          var dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+          if(dx*dx+dy*dy<9000){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+})();
+</script>
+</body>
+</html>

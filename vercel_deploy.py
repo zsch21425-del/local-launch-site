@@ -15,8 +15,23 @@ VERCEL_TOKEN = json.load(open(os.path.expanduser("~/.vercel/auth.json")))["token
 PROJECT = "local-launch"
 PROD_DOMAIN = "local-launch-site.vercel.app"
 HEADERS = {"Authorization": f"Bearer {VERCEL_TOKEN}"}
-EXCLUDE_DIRS = {"node_modules", ".git", "__pycache__", ".hermes", "deploy", "reporting"}
-EXCLUDE_FILES = {".pyc", "package-lock.json", "build-spec.md", "design-brief.md"}
+EXCLUDE_DIRS = {
+    "node_modules", ".git", "__pycache__", ".hermes", "deploy", "reporting",
+    "ads", "sandboxes", "demos", "tmp_shots", ".deploy-versions",
+    ".next", "dashboard",  # dashboard is a separate internal Next.js app (not served on the static site); .next is its build cache
+}
+EXCLUDE_FILES = {".pyc", "package-lock.json", "build-spec.md", "design-brief.md",
+                 "demo-redesign.html", "demo-scroll.html", "demo-scroll-page2.html",
+                 "demo.html", "demo-v2.html", "demo-v3.html", "demo-v4.html",
+                 "demo-v5.html", "demo-v6.html", "demo-v7.html", "demo-v8.html",
+                 "demo-v9.html", "index-v3.html", "index_backup.html",
+                 # Legacy api serverless files — excluded so Vercel builds ONLY
+                 # api/contact.js as a function (the Python/visualize api files
+                 # inflate the bundle past Vercel's size cap; they were never
+                 # functional serverless, returned 405/501 as static).
+                 "score.py", "search.py", "visualize.js", "__pycache__"}
+# NOTE: exclusion is EXACT-filename or extension-based (see compute_files). Never
+# add "demo.html" as a bare suffix match — it would also catch free-demo.html.
 
 SITE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -27,7 +42,9 @@ def compute_files():
     for root, dirs, filenames in os.walk(SITE_DIR):
         dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
         for fn in filenames:
-            if any(fn.endswith(ext) for ext in EXCLUDE_FILES):
+            # EXCLUDE_FILES mixes extensions (.pyc) and exact filenames (demo.html).
+            # Match extensions by suffix; match filenames EXACTLY so "free-demo.html" is never caught by "demo.html".
+            if fn in EXCLUDE_FILES or any(fn.endswith(ext) for ext in EXCLUDE_FILES if ext.startswith(".")):
                 continue
             fpath = os.path.join(root, fn)
             with open(fpath, "rb") as f:
@@ -68,16 +85,24 @@ def upload_missing(files_array):
         fpath, content = sha_map[sha]
         fname = os.path.basename(fpath)
         print(f"  {fname} ({len(content)} bytes)...", end=" ")
-        resp2 = requests.post(
-            "https://api.vercel.com/v2/now/files",
-            headers={**HEADERS, "Content-Type": "application/octet-stream", "x-vercel-digest": sha},
-            data=content,
-            timeout=15,
-        )
-        if resp2.status_code == 200:
+        # Use curl for the file upload: Python urllib3's socket write times out on
+        # large bodies from this WSL box (curl pushes 8MB+ in ~16s, requests never
+        # completes). Verified 2026-08-10.
+        import subprocess
+        curl_cmd = [
+            "curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
+            "--max-time", str(max(60, min(300, len(content) // 50_000))),
+            "-X", "POST", "https://api.vercel.com/v2/now/files",
+            "-H", f"Authorization: Bearer {VERCEL_TOKEN}",
+            "-H", "Content-Type: application/octet-stream",
+            "-H", f"x-vercel-digest: {sha}",
+            "--data-binary", "@" + fpath,
+        ]
+        cp = subprocess.run(curl_cmd, capture_output=True, text=True, timeout=max(90, min(330, len(content) // 40_000)))
+        if cp.returncode == 0 and cp.stdout.strip() == "200":
             print("OK")
         else:
-            print(f"FAILED ({resp2.status_code})")
+            print(f"FAILED (curl rc={cp.returncode} http={cp.stdout.strip()[:20]} {cp.stderr[:80]})")
 
     # Retry deployment
     resp3 = requests.post("https://api.vercel.com/v13/deployments", headers=HEADERS, json=payload, timeout=30)

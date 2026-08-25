@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brian Dillard Concrete LLC — Roebuck, SC | Driveways, Patios, Repair &amp; Grading</title>
+<meta name="description" content="Family-owned concrete contractor serving Roebuck, SC and the Upstate for ~19 years. Driveways, patios, concrete repair, and grading. Licensed, insured, bonded. Free estimates.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · genre: atmospheric (adapted) · macrostructure: Marquee Hero · H1 hero knobs: size=display, alignment=left-bias, underlay=none
+ * enrichment: E2 Full-bleed muted video loop (dark scrim, not ghost-blend — literal cinematic footage per brief) · polish: none
+ * nav: N9 Edge-aligned minimal (logo hard-left, phone CTA hard-right, hamburger for section links) · footer: Ft5 Statement
+ * theme: custom (tuned) · vibe: "premium, rugged, trustworthy — poured-concrete industrial" · paper: oklch(14% 0.014 200) · accent(safety): oklch(68% 0.153 53)
+ * secondary-accent(brand-teal, sparing <2%): oklch(65% 0.10 195) · display: Big Shoulders Display · body: IBM Plex Sans
+ * axes: dark / display-condensed-bold / warm(orange) + chromatic-other(teal, minor) · studied: no · context: explicit brief (BRIEF.md)
+ *
+ * DEVIATION NOTE — the brief (BRIEF.md) explicitly mandates continuous ambient motion (floating particles, breathing
+ * orbs, Ken Burns, mouse parallax, scroll parallax, infinite marquee) as UNMISSABLE and forbids gating it into
+ * stillness under reduced-motion. This overrides Hallmark's default "quiet motion" / "no parallax" / "no infinite
+ * loops" restraint rules by direct, explicit client instruction. Spatial motion (parallax translate, Ken Burns scale,
+ * particle drift) is dampened — not eliminated — under prefers-reduced-motion; non-spatial motion (marquee scroll,
+ * opacity pulse) continues at reduced speed, honouring both the brief and vestibular-safety intent.
+ * The dual accent (teal + orange) likewise deviates from atmospheric's one-hue rule — both are real, named brand
+ * facts from BRIEF.md (logo teal; safety-industry orange), not a stylistic default. Teal is held under 2% footprint.
+ *
+ * Hallmark · pre-emit critique: P4 H4 E4 S4 R3 V4  (R3: restraint deliberately loosened per explicit brief motion mandate — documented above, not a default lapse)
+ */
+
+/* ---------- tokens ---------- */
+:root{
+  --font-display:"Big Shoulders Display",Impact,"Arial Narrow",sans-serif;
+  --font-body:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+
+  --space-3xs:.125rem;--space-2xs:.25rem;--space-xs:.5rem;--space-sm:.75rem;--space-md:1rem;
+  --space-lg:1.5rem;--space-xl:2.5rem;--space-2xl:4rem;--space-3xl:6rem;--space-4xl:9rem;
+
+  --color-paper:oklch(14% 0.014 200);
+  --color-paper-2:oklch(18% 0.015 200);
+  --color-paper-3:oklch(22% 0.016 200);
+  --color-ink:oklch(93% 0.008 200);
+  --color-ink-2:oklch(72% 0.010 200);
+  --color-rule:oklch(30% 0.015 200);
+  --color-rule-2:oklch(24% 0.014 200);
+  --color-muted:oklch(56% 0.012 200);
+  --color-neutral:oklch(42% 0.012 200);
+  --color-teal:oklch(65% 0.10 195);
+  --color-orange:oklch(68% 0.153 53);
+  --color-orange-2:oklch(78% 0.159 73);
+  --color-accent-ink:oklch(12% 0.014 200);
+  --color-focus:oklch(76% 0.17 53);
+
+  --text-xs:.64rem;--text-sm:.8rem;--text-base:1rem;--text-md:1.25rem;--text-lg:1.5625rem;
+  --text-xl:1.9531rem;--text-2xl:2.4414rem;--text-3xl:3.0518rem;--text-4xl:3.8147rem;
+  --text-display:clamp(2.75rem,5vw + 1rem,5.25rem);
+  --text-display-s:clamp(2.1rem,4vw + 1rem,3.4rem);
+
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-in:cubic-bezier(.7,0,.84,0);
+  --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-micro:120ms;--dur-short:220ms;--dur-long:420ms;
+
+  --z-base:1;--z-raised:10;--z-dropdown:100;--z-sticky:200;--z-modal:400;--z-toast:500;--z-tooltip:600;
+
+  --rule-hair:1px;
+  --page-gutter:clamp(1.25rem,4vw,3rem);
+  --measure:65ch;
+}
+
+/* ---------- reset ---------- */
+*,*::before,*::after{box-sizing:border-box;}
+html{overflow-x:clip;scroll-behavior:smooth;}
+body{overflow-x:clip;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--color-paper);
+  color:var(--color-ink);
+  font-family:var(--font-body);
+  font-weight:400;
+  line-height:1.6;
+  min-width:0;
+}
+img,video{max-width:100%;display:block;}
+a{color:inherit;}
+h1,h2,h3,p,figure{margin:0;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+ul{margin:0;padding:0;list-style:none;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+h1,h2,h3,.font-display{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-style:normal;
+  line-height:1.05;
+  letter-spacing:-.01em;
+  text-wrap:balance;
+  overflow-wrap:anywhere;
+  min-width:0;
+}
+h2{font-size:var(--text-display-s);text-transform:uppercase;letter-spacing:-.01em;line-height:1.04;}
+h3{font-size:var(--text-lg);text-transform:uppercase;letter-spacing:.01em;}
+
+p{max-width:var(--measure);}
+::selection{background:var(--color-orange);color:var(--color-accent-ink);}
+
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px;}
+
+.container{
+  max-width:78rem;
+  margin-inline:auto;
+  padding-inline:var(--page-gutter);
+}
+
+/* ---------- motion base ---------- */
+@keyframes reveal{to{opacity:1;transform:none;}}
+@keyframes kenburns{
+  0%{transform:scale(1.04);}
+  50%{transform:scale(1.14);}
+  100%{transform:scale(1.04);}
+}
+@keyframes drift{
+  0%{transform:translate3d(0,110%,0) scale(.6);opacity:0;}
+  10%{opacity:var(--pmax,.55);}
+  90%{opacity:var(--pmax,.55);}
+  100%{transform:translate3d(var(--dx,8px),-18%,0) scale(1);opacity:0;}
+}
+@keyframes pulse-orb{
+  0%,100%{transform:scale(1);opacity:.5;}
+  50%{transform:scale(1.18);opacity:.85;}
+}
+@keyframes marquee-scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+@keyframes word-in{
+  from{opacity:0;transform:translateY(.4em) rotate(-1.5deg);}
+  to{opacity:1;transform:none;}
+}
+@keyframes nav-in{
+  from{opacity:0;transform:translateY(-100%);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes cta-fade{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:none;}
+}
+@keyframes shimmer{
+  from{background-position:-150% 0;}
+  to{background-position:250% 0;}
+}
+@keyframes spin-slow{
+  to{transform:rotate(360deg);}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero__video,.hero__poster-fallback{animation:none !important;}
+  .hero__particle{animation-duration:calc(var(--dur,6s) * 3) !important;animation-name:drift-reduced !important;}
+  @keyframes drift-reduced{
+    0%,100%{opacity:0;transform:none;}
+    50%{opacity:.25;transform:none;}
+  }
+  .reveal{transition-duration:150ms !important;}
+  .marquee__track{animation-duration:90s !important;}
+  .orb{animation-duration:12s !important;}
+  [data-parallax]{transform:none !important;}
+  .hero__content{transform:none !important;}
+}
+
+/* ---------- scroll progress bar ---------- */
+.progress-bar{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--color-teal),var(--color-orange));
+  z-index:var(--z-tooltip);
+  transition:width 80ms linear;
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:var(--space-xs);
+  white-space:nowrap;
+  padding:.9rem 1.6rem;
+  font-family:var(--font-body);font-weight:600;font-size:var(--text-base);
+  border-radius:3px;
+  border:var(--rule-hair) solid transparent;
+  transition:transform var(--dur-short) var(--ease-out),
+             background var(--dur-short) var(--ease-out),
+             box-shadow var(--dur-short) var(--ease-out),
+             border-color var(--dur-short) var(--ease-out);
+  position:relative;overflow:hidden;
+}
+.btn svg{width:1.1em;height:1.1em;flex:none;}
+.btn--primary{
+  background:var(--color-orange);
+  color:var(--color-accent-ink);
+}
+.btn--primary::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,transparent 20%,oklch(100% 0 0 / .35) 45%,transparent 70%);
+  background-size:220% 100%;
+  background-position:-150% 0;
+  opacity:0;
+}
+@media (hover:hover) and (pointer:fine){
+  .btn--primary:hover{background:var(--color-orange-2);transform:translateY(-2px);}
+  .btn--primary:hover::before{opacity:1;animation:shimmer 900ms var(--ease-out);}
+  .btn--ghost:hover{border-color:var(--color-teal);color:var(--color-teal);transform:translateY(-2px);}
+}
+.btn--primary:active{transform:translateY(0);}
+.btn--ghost{
+  background:transparent;
+  border-color:var(--color-rule);
+  color:var(--color-ink);
+}
+.btn--sm{padding:.65rem 1.1rem;font-size:var(--text-sm);}
+
+/* ---------- nav (N9 edge-aligned minimal) ---------- */
+.nav{
+  position:sticky;top:0;z-index:var(--z-sticky);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--space-md);
+  padding:var(--space-sm) var(--page-gutter);
+  background:color-mix(in oklch, var(--color-paper) 86%, transparent);
+  backdrop-filter:blur(10px) saturate(1.1);
+  -webkit-backdrop-filter:blur(10px) saturate(1.1);
+  border-bottom:var(--rule-hair) solid var(--color-rule-2);
+  animation:nav-in 620ms var(--ease-out) both;
+  animation-delay:60ms;
+}
+.nav__brand{display:flex;align-items:center;gap:var(--space-sm);text-decoration:none;min-width:0;}
+.nav__logo{height:clamp(34px,6vw,44px);width:auto;flex:none;}
+.nav__brand-text{
+  font-family:var(--font-display);
+  font-size:clamp(.85rem,2.2vw,1.05rem);
+  letter-spacing:.02em;
+  line-height:1.05;
+  color:var(--color-ink);
+  text-transform:uppercase;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.nav__actions{display:flex;align-items:center;gap:var(--space-sm);flex:none;}
+.nav__phone{
+  display:flex;align-items:center;gap:var(--space-xs);
+  background:var(--color-orange);color:var(--color-accent-ink);
+  padding:.6rem 1rem;border-radius:3px;
+  font-weight:600;font-size:var(--text-sm);
+  white-space:nowrap;text-decoration:none;
+  font-variant-numeric:tabular-nums;
+  transition:background var(--dur-short) var(--ease-out),transform var(--dur-short) var(--ease-out);
+}
+.nav__phone svg{width:16px;height:16px;flex:none;}
+@media (hover:hover) and (pointer:fine){
+  .nav__phone:hover{background:var(--color-orange-2);transform:translateY(-1px);}
+}
+.nav__menu-btn{
+  display:grid;place-items:center;
+  width:44px;height:44px;flex:none;
+  border-radius:3px;
+  border:var(--rule-hair) solid var(--color-rule);
+  transition:border-color var(--dur-short) var(--ease-out),background var(--dur-short) var(--ease-out);
+}
+.nav__menu-btn svg{width:20px;height:20px;}
+.nav__menu-btn:hover{border-color:var(--color-teal);background:var(--color-paper-2);}
+.nav__menu-btn .icon-close{display:none;}
+.nav__menu-btn[aria-expanded="true"] .icon-menu{display:none;}
+.nav__menu-btn[aria-expanded="true"] .icon-close{display:block;}
+
+.nav__sheet{
+  position:fixed;inset:0 0 0 auto;
+  width:min(88vw,22rem);
+  height:100dvh;
+  background:var(--color-paper-2);
+  border-left:var(--rule-hair) solid var(--color-rule);
+  padding:var(--space-2xl) var(--space-xl) var(--space-xl);
+  transform:translateX(100%);
+  transition:transform var(--dur-long) var(--ease-out);
+  z-index:var(--z-modal);
+  display:flex;flex-direction:column;gap:var(--space-2xl);
+  overflow-y:auto;
+}
+.nav__sheet[data-open="true"]{transform:translateX(0);transition-timing-function:var(--ease-out);}
+.nav__sheet-links{display:flex;flex-direction:column;gap:var(--space-lg);}
+.nav__sheet-links a{
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--color-ink);
+  padding-block:var(--space-2xs);
+  border-bottom:var(--rule-hair) solid var(--color-rule-2);
+  transition:color var(--dur-short) var(--ease-out),padding-left var(--dur-short) var(--ease-out);
+}
+.nav__sheet-links a:hover{color:var(--color-orange);padding-left:var(--space-xs);}
+.nav__sheet-foot{display:flex;flex-direction:column;gap:var(--space-sm);font-size:var(--text-sm);color:var(--color-ink-2);}
+.nav__sheet-foot a{text-decoration:none;color:var(--color-teal);}
+.nav__scrim{
+  position:fixed;inset:0;background:oklch(0% 0 0 / .55);
+  opacity:0;pointer-events:none;
+  transition:opacity var(--dur-long) var(--ease-out);
+  z-index:var(--z-modal);
+}
+.nav__scrim[data-open="true"]{opacity:1;pointer-events:auto;}
+
+/* ---------- hero (Marquee + full-bleed video) ---------- */
+.hero{
+  position:relative;
+  min-height:clamp(60vh,80dvh,42rem);
+  display:grid;
+  align-content:end;
+  isolation:isolate;
+  overflow:hidden;
+  padding:var(--space-4xl) var(--page-gutter) var(--space-3xl);
+}
+.hero__media{position:absolute;inset:0;z-index:-2;overflow:hidden;}
+.hero__video,.hero__poster-fallback{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  animation:kenburns 22s var(--ease-in-out) infinite;
+  transform-origin:center;
+  will-change:transform;
+}
+.hero__poster-fallback{z-index:-1;}
+.hero__video{z-index:0;}
+.hero__scrim{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(180deg, oklch(10% 0.01 200 / .55) 0%, oklch(10% 0.01 200 / .35) 40%, oklch(9% 0.014 200 / .88) 100%),
+    linear-gradient(90deg, oklch(8% 0.014 200 / .75) 0%, oklch(8% 0.014 200 / .15) 55%);
+}
+.hero__particles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.hero__particle{
+  position:absolute;
+  bottom:-4%;
+  left:var(--x,50%);
+  width:var(--s,4px);height:var(--s,4px);
+  border-radius:50%;
+  background:var(--pc,var(--color-orange));
+  filter:blur(.3px);
+  animation:drift var(--dur,9s) linear infinite;
+  animation-delay:var(--delay,0s);
+  opacity:0;
+}
+.hero__content{
+  position:relative;z-index:1;
+  max-width:56rem;
+  transition:transform 60ms linear;
+}
+.hero__eyebrow{
+  font-family:var(--font-body);
+  font-size:var(--text-sm);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--color-teal);
+  margin-bottom:var(--space-md);
+  opacity:0;
+  animation:cta-fade var(--dur-long) var(--ease-out) forwards;
+  animation-delay:120ms;
+}
+.hero__display{
+  color:var(--color-ink);
+  font-size:var(--text-display);
+  text-transform:uppercase;
+  line-height:1.0;
+  margin:0 0 var(--space-lg);
+  max-width:16ch;
+}
+.hero__display .word{
+  display:inline-block;
+  opacity:0;
+  animation:word-in 620ms var(--ease-out) forwards;
+  animation-delay:calc(220ms + var(--i,0) * 90ms);
+}
+.hero__lede{
+  font-size:var(--text-md);
+  color:var(--color-ink-2);
+  max-width:40ch;
+  margin-bottom:var(--space-xl);
+  opacity:0;
+  animation:cta-fade var(--dur-long) var(--ease-out) forwards;
+  animation-delay:820ms;
+}
+.hero__actions{
+  display:flex;flex-wrap:wrap;gap:var(--space-md);
+  opacity:0;
+  animation:cta-fade var(--dur-long) var(--ease-out) forwards;
+  animation-delay:960ms;
+}
+.hero__scroll-cue{
+  position:absolute;left:var(--page-gutter);bottom:var(--space-lg);z-index:1;
+  width:26px;height:42px;border-radius:14px;border:2px solid color-mix(in oklch, var(--color-ink) 55%, transparent);
+  display:grid;place-items:start center;padding-top:7px;
+}
+.hero__scroll-cue::after{
+  content:"";width:4px;height:8px;border-radius:2px;background:var(--color-orange);
+  animation:scroll-cue 1.8s var(--ease-in-out) infinite;
+}
+@keyframes scroll-cue{0%{transform:translateY(0);opacity:1;}70%{opacity:.2;}100%{transform:translateY(14px);opacity:0;}}
+@media (max-width:36rem){.hero__scroll-cue{display:none;}}
+
+/* ---------- ambient orbs (used sparingly on solid sections) ---------- */
+.orb-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+.orb{
+  position:absolute;border-radius:50%;
+  filter:blur(60px);
+  opacity:.5;
+  animation:pulse-orb 7s var(--ease-in-out) infinite;
+}
+.orb--teal{background:var(--color-teal);width:26rem;height:26rem;}
+.orb--orange{background:var(--color-orange);width:20rem;height:20rem;animation-delay:1.6s;}
+
+/* ---------- marquee ribbon (trust bar) ---------- */
+.trust-marquee{
+  background:var(--color-paper-2);
+  border-block:var(--rule-hair) solid var(--color-rule-2);
+  padding-block:var(--space-md);
+  overflow:hidden;
+}
+.marquee__track{
+  display:flex;width:max-content;
+  animation:marquee-scroll 34s linear infinite;
+}
+.marquee__set{display:flex;align-items:center;flex:none;}
+.marquee__item{
+  display:flex;align-items:center;gap:var(--space-sm);
+  padding-inline:var(--space-xl);
+  font-family:var(--font-display);
+  font-size:clamp(.95rem,2vw,1.3rem);
+  text-transform:uppercase;
+  letter-spacing:.02em;
+  white-space:nowrap;
+  color:var(--color-ink-2);
+}
+.marquee__item svg{width:18px;height:18px;color:var(--color-orange);flex:none;}
+.marquee__item strong{color:var(--color-ink);font-weight:700;}
+.marquee__dot{color:var(--color-teal);font-size:1.1em;}
+
+/* ---------- generic section rhythm ---------- */
+section{position:relative;}
+.section{padding-block:var(--space-3xl);}
+.section--tight{padding-block:var(--space-2xl);}
+.section-head{max-width:44rem;margin-bottom:var(--space-2xl);}
+.section-head p{color:var(--color-ink-2);font-size:var(--text-md);margin-top:var(--space-sm);}
+.section--alt{background:var(--color-paper-2);}
+
+.reveal{opacity:0;transform:translateY(64px) rotate(1.2deg);transition:opacity 760ms var(--ease-out),transform 760ms var(--ease-out);}
+.reveal.is-visible{opacity:1;transform:none;}
+.reveal--left{transform:translateY(48px) rotate(-1.4deg);}
+.reveal--right{transform:translateY(48px) rotate(1.4deg);}
+.reveal--up{transform:translateY(80px) rotate(0);}
+.reveal[style*="--d"]{transition-delay:var(--d,0ms);}
+
+/* ---------- services ---------- */
+.service-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--rule-hair);
+  background:var(--color-rule-2);
+  border:var(--rule-hair) solid var(--color-rule-2);
+}
+@media (min-width:48rem){
+  .service-grid{grid-template-columns:1.15fr .85fr .85fr 1.15fr;}
+  .service-card:nth-child(1),.service-card:nth-child(4){padding-block:var(--space-2xl);}
+  .service-card:nth-child(2),.service-card:nth-child(3){padding-block:var(--space-3xl);}
+}
+.service-card{
+  background:var(--color-paper-2);
+  padding:var(--space-2xl) var(--space-lg);
+  display:flex;flex-direction:column;gap:var(--space-md);
+  min-width:0;
+  transition:background var(--dur-short) var(--ease-out);
+}
+.service-card__icon{
+  width:52px;height:52px;flex:none;
+  color:var(--color-orange);
+  transition:transform var(--dur-short) var(--ease-out),color var(--dur-short) var(--ease-out);
+}
+.service-card__icon svg{width:100%;height:100%;}
+@media (hover:hover) and (pointer:fine){
+  .service-card:hover{background:var(--color-paper-3);}
+  .service-card:hover .service-card__icon{transform:translateY(-3px) rotate(-3deg);color:var(--color-teal);}
+}
+.service-card__title{font-size:var(--text-lg);}
+.service-card__desc{color:var(--color-ink-2);font-size:var(--text-base);max-width:32ch;}
+
+/* ---------- about ---------- */
+.about__grid{
+  display:grid;grid-template-columns:1fr;gap:var(--space-2xl);
+  align-items:start;
+}
+@media (min-width:60rem){
+  .about__grid{grid-template-columns:1.3fr .9fr;gap:var(--space-3xl);}
+}
+.about__copy p{color:var(--color-ink-2);font-size:var(--text-md);margin-bottom:var(--space-md);}
+.about__copy p strong{color:var(--color-ink);font-weight:600;}
+.about__quote{
+  border-left:3px solid var(--color-teal);
+  padding-left:var(--space-lg);
+  margin-block:var(--space-xl);
+  font-size:var(--text-md);
+  color:var(--color-ink);
+  font-style:italic;
+}
+.about__quote cite{display:block;margin-top:var(--space-sm);font-style:normal;font-size:var(--text-sm);color:var(--color-muted);letter-spacing:.04em;text-transform:uppercase;}
+.about__side{
+  background:var(--color-paper-3);
+  border:var(--rule-hair) solid var(--color-rule);
+  padding:var(--space-2xl);
+  display:flex;flex-direction:column;gap:var(--space-xl);
+}
+.about__stat-number{
+  font-family:var(--font-display);
+  font-size:clamp(4rem,10vw,6.5rem);
+  line-height:.85;
+  color:var(--color-orange);
+  font-variant-numeric:tabular-nums;
+}
+.about__stat-label{font-size:var(--text-sm);letter-spacing:.1em;text-transform:uppercase;color:var(--color-ink-2);margin-top:var(--space-xs);}
+.about__badges{display:flex;flex-direction:column;gap:var(--space-sm);border-top:var(--rule-hair) solid var(--color-rule);padding-top:var(--space-lg);}
+.badge{display:flex;align-items:center;gap:var(--space-sm);font-size:var(--text-sm);color:var(--color-ink-2);}
+.badge svg{width:20px;height:20px;color:var(--color-teal);flex:none;}
+.about__proof{font-size:var(--text-sm);color:var(--color-muted);border-top:var(--rule-hair) solid var(--color-rule);padding-top:var(--space-lg);}
+
+/* ---------- gallery ---------- */
+.gallery__grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:var(--space-md);
+}
+@media (min-width:48rem){
+  .gallery__grid{
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    grid-auto-rows:14rem;
+  }
+  .gallery__item--1{grid-column:span 3;grid-row:span 3;}
+  .gallery__item--2{grid-column:span 3;grid-row:span 2;}
+  .gallery__item--3{grid-column:span 3;grid-row:span 2;}
+  .gallery__item--4{grid-column:span 3;grid-row:span 3;}
+}
+.gallery__item{
+  position:relative;overflow:hidden;
+  border:var(--rule-hair) solid var(--color-rule-2);
+  min-width:0;min-height:16rem;
+}
+@media (min-width:48rem){.gallery__item{min-height:0;}}
+.gallery__img{
+  width:100%;height:100%;object-fit:cover;
+  transform:scale(1.08) translateY(var(--py,0px));
+  transition:transform 260ms var(--ease-out);
+  will-change:transform;
+}
+@media (hover:hover) and (pointer:fine){
+  .gallery__item:hover .gallery__img{transform:scale(1.16) translateY(var(--py,0px));}
+}
+.gallery__cap{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:var(--space-md) var(--space-lg);
+  background:linear-gradient(0deg,oklch(8% 0.014 200 / .82),transparent);
+  color:var(--color-ink);
+  font-size:var(--text-sm);
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+
+/* ---------- testimonials ---------- */
+.testi-grid{display:grid;grid-template-columns:1fr;gap:var(--space-xl);}
+@media (min-width:56rem){
+  .testi-grid{grid-template-columns:1.2fr .8fr;align-items:start;}
+}
+.testi-card{
+  background:var(--color-paper-3);
+  border:var(--rule-hair) solid var(--color-rule);
+  padding:var(--space-2xl);
+  position:relative;
+}
+.testi-card::before{
+  content:"";position:absolute;top:var(--space-lg);left:var(--space-lg);
+  width:34px;height:24px;
+  background:var(--color-orange);
+  clip-path:polygon(0 0,45% 0,20% 100%,0 100%,55% 0,100% 0,75% 100%,55% 100%);
+  opacity:.9;
+}
+.testi-quote{
+  margin-top:var(--space-2xl);
+  font-size:var(--text-lg);
+  line-height:1.5;
+  color:var(--color-ink);
+  font-style:italic;
+}
+.testi-attr{margin-top:var(--space-lg);font-size:var(--text-sm);letter-spacing:.05em;text-transform:uppercase;color:var(--color-teal);font-style:normal;}
+.testi-card--sm .testi-quote{font-size:var(--text-md);}
+
+/* ---------- service area ---------- */
+.area{overflow:hidden;}
+.area__rings{position:absolute;top:50%;right:-8rem;transform:translateY(-50%);width:36rem;height:36rem;pointer-events:none;z-index:0;}
+.area__rings svg{width:100%;height:100%;animation:spin-slow 90s linear infinite;}
+@media (max-width:60rem){.area__rings{right:-16rem;opacity:.6;}}
+.area__content{position:relative;z-index:1;max-width:40rem;}
+.area__list{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin:var(--space-lg) 0 var(--space-xl);}
+.area__chip{
+  display:flex;align-items:center;gap:var(--space-xs);
+  padding:.5rem .9rem;border:var(--rule-hair) solid var(--color-rule);border-radius:3px;
+  font-size:var(--text-sm);color:var(--color-ink-2);
+}
+.area__chip svg{width:16px;height:16px;color:var(--color-orange);}
+
+/* ---------- contact ---------- */
+.contact__grid{display:grid;grid-template-columns:1fr;gap:var(--space-md);}
+@media (min-width:48rem){.contact__grid{grid-template-columns:1fr 1fr;}}
+.contact__card{
+  display:flex;align-items:center;gap:var(--space-lg);
+  padding:var(--space-2xl);
+  background:var(--color-paper-2);
+  border:var(--rule-hair) solid var(--color-rule);
+  text-decoration:none;
+  transition:border-color var(--dur-short) var(--ease-out),background var(--dur-short) var(--ease-out),transform var(--dur-short) var(--ease-out);
+}
+@media (hover:hover) and (pointer:fine){
+  .contact__card:hover{border-color:var(--color-orange);background:var(--color-paper-3);transform:translateY(-3px);}
+}
+.contact__icon{width:44px;height:44px;flex:none;color:var(--color-orange);}
+.contact__icon svg{width:100%;height:100%;}
+.contact__label{font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted);}
+.contact__value{font-family:var(--font-display);font-size:var(--text-xl);text-transform:uppercase;color:var(--color-ink);font-variant-numeric:tabular-nums;overflow-wrap:anywhere;}
+.contact__cta{margin-top:var(--space-2xl);display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;}
+.contact__note{color:var(--color-ink-2);font-size:var(--text-sm);}
+
+/* ---------- footer (Ft5 statement) ---------- */
+.foot{
+  padding:var(--space-3xl) var(--page-gutter) var(--space-xl);
+  background:var(--color-paper-2);
+  border-top:var(--rule-hair) solid var(--color-rule-2);
+}
+.foot__inner{max-width:78rem;margin-inline:auto;}
+.foot-stmt__line{
+  font-family:var(--font-display);
+  font-size:clamp(1.9rem,5vw,3.4rem);
+  text-transform:uppercase;
+  line-height:1.0;
+  letter-spacing:-.01em;
+  max-width:22ch;
+  color:var(--color-ink);
+}
+.foot-stmt__line a{font-style:normal;color:var(--color-teal);text-decoration:none;}
+.foot-stmt__line a:hover{text-decoration:underline;}
+.foot__row{
+  display:flex;flex-wrap:wrap;gap:var(--space-2xl);
+  align-items:center;justify-content:space-between;
+  margin-top:var(--space-2xl);
+  padding-top:var(--space-lg);
+  border-top:var(--rule-hair) solid var(--color-rule);
+}
+.foot__biz{display:flex;flex-direction:column;gap:var(--space-2xs);font-size:var(--text-sm);color:var(--color-ink-2);}
+.foot__biz a{text-decoration:none;color:var(--color-ink-2);}
+.foot__biz a:hover{color:var(--color-orange);}
+.foot__ll{display:flex;align-items:center;gap:var(--space-md);}
+.foot__ll-img{
+  width:56px;height:56px;object-fit:cover;border-radius:4px;
+  border:var(--rule-hair) solid var(--color-rule);
+  flex:none;
+}
+.foot__ll-text{display:flex;flex-direction:column;gap:var(--space-3xs);font-size:var(--text-xs);color:var(--color-muted);}
+.foot__ll-text a{color:var(--color-muted);text-decoration:none;}
+.foot__ll-text a:hover{color:var(--color-teal);}
+.foot__copyright{margin-top:var(--space-lg);font-size:var(--text-xs);color:var(--color-neutral);}
+
+/* ---------- utility icon sprite ---------- */
+.sprite{position:absolute;width:0;height:0;overflow:hidden;}
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true">
+<symbol id="i-phone" viewBox="0 0 48 48"><path d="M15 8c-2.2 0-4.4 2-4.4 4.3C10.6 27 21 37.4 35.7 37.4c2.3 0 4.3-2.2 4.3-4.4v-4.6a2.1 2.1 0 0 0-1.7-2.1l-6-1.3a2.1 2.1 0 0 0-2.1.6l-2.4 2.5a20.6 20.6 0 0 1-9.4-9.4l2.5-2.4a2.1 2.1 0 0 0 .6-2.1l-1.3-6A2.1 2.1 0 0 0 18.1 6H15z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+<symbol id="i-mail" viewBox="0 0 48 48"><rect x="6" y="11" width="36" height="26" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M7 13l17 13 17-13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-menu" viewBox="0 0 48 48"><line x1="8" y1="14" x2="40" y2="14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><line x1="8" y1="24" x2="40" y2="24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><line x1="8" y1="34" x2="40" y2="34" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+<symbol id="i-close" viewBox="0 0 48 48"><line x1="12" y1="12" x2="36" y2="36" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><line x1="36" y1="12" x2="12" y2="36" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+<symbol id="i-driveway" viewBox="0 0 48 48"><path d="M13 42 18 6h12l5 36" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><line x1="15.4" y1="24" x2="32.6" y2="24" stroke="currentColor" stroke-width="2.2"/><line x1="19" y1="6" x2="14" y2="42" stroke="currentColor" stroke-width="2.2"/><line x1="29" y1="6" x2="34" y2="42" stroke="currentColor" stroke-width="2.2"/></symbol>
+<symbol id="i-patio" viewBox="0 0 48 48"><rect x="7" y="7" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M7 20h34M7 28h34M20 7v34M28 7v34" stroke="currentColor" stroke-width="1.4" opacity=".7"/></symbol>
+<symbol id="i-repair" viewBox="0 0 48 48"><path d="M24 5 35 20 24 35 13 20Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><line x1="24" y1="35" x2="24" y2="43" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="19" y1="40" x2="29" y2="40" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+<symbol id="i-grading" viewBox="0 0 48 48"><path d="M5 34h9l4-9h13l4 9h8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="15" cy="38" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="34" cy="38" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><line x1="24" y1="25" x2="24" y2="14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+<symbol id="i-star" viewBox="0 0 48 48"><path d="M24 6l5.5 11.7 12.5 1.8-9 9 2.1 12.5L24 35l-11.1 6 2.1-12.5-9-9 12.5-1.8Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+<symbol id="i-shield" viewBox="0 0 48 48"><path d="M24 5 40 11v11c0 12-7 19-16 21C15 41 8 34 8 22V11Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 23l6 6 11-13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-pin" viewBox="0 0 48 48"><path d="M24 5c-8 0-14 6-14 14 0 10 14 24 14 24s14-14 14-24c0-8-6-14-14-14Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="24" cy="19" r="5" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+<symbol id="i-check" viewBox="0 0 48 48"><path d="M10 25l9 9 19-19" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 48 48"><line x1="8" y1="24" x2="38" y2="24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M28 14l10 10-10 10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <a class="nav__brand" href="#hero" aria-label="Brian Dillard Concrete LLC — home">
+    <img class="nav__logo" src="logo.png" alt="" width="600" height="600">
+    <span class="nav__brand-text">Brian Dillard<br>Concrete LLC</span>
+  </a>
+  <div class="nav__actions">
+    <a class="nav__phone" href="tel:+18646062818">
+      <svg aria-hidden="true"><use href="#i-phone"/></svg>
+      <span>864-606-2818</span>
+    </a>
+    <button class="nav__menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navSheet" aria-label="Open menu">
+      <svg class="icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+      <svg class="icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="nav__scrim" id="navScrim"></div>
+<nav class="nav__sheet" id="navSheet" aria-label="Section navigation">
+  <div class="nav__sheet-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#gallery">Our Work</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#area">Service Area</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav__sheet-foot">
+    <a href="tel:+18646062818">864-606-2818</a>
+    <a href="mailto:briandillardconcretellc@gmail.com">briandillardconcretellc@gmail.com</a>
+    <span>Roebuck, SC · Upstate South Carolina</span>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__media">
+    <img class="hero__poster-fallback" src="hero-poster.jpg" alt="" width="1280" height="720" fetchpriority="high">
+    <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="hero-poster.jpg" fetchpriority="high" aria-hidden="true">
+      <source src="hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero__scrim"></div>
+  <div class="hero__particles" id="heroParticles" aria-hidden="true"></div>
+  <div class="hero__content" id="heroContent">
+    <p class="hero__eyebrow">Brian Dillard Concrete LLC · Roebuck, SC</p>
+    <h1 class="hero__display">
+      <span class="word" style="--i:0">Concrete.</span>
+      <span class="word" style="--i:1">Grading.</span>
+      <span class="word" style="--i:2">Almost</span>
+      <span class="word" style="--i:3">anything</span>
+      <span class="word" style="--i:4">outdoors.</span>
+    </h1>
+    <p class="hero__lede">Family-owned, ~19 years in business, serving Roebuck and the Upstate. Licensed, insured, bonded — free estimates on every job.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#contact">Get a Free Estimate</a>
+      <a class="btn btn--ghost" href="tel:+18646062818">
+        <svg aria-hidden="true"><use href="#i-phone"/></svg>
+        864-606-2818
+      </a>
+    </div>
+  </div>
+  <div class="hero__scroll-cue"></div>
+</section>
+
+<!-- ============ TRUST MARQUEE ============ -->
+<section class="trust-marquee" aria-label="Trust indicators">
+  <div class="marquee__track">
+    <div class="marquee__set">
+      <span class="marquee__item"><svg aria-hidden="true"><use href="#i-star"/></svg><strong>Nextdoor Neighborhood Favorite</strong>&nbsp;2022 &amp; 2023</span>
+      <span class="marquee__dot">●</span>
+      <span class="marquee__item"><svg aria-hidden="true"><use href="#i-shield"/></svg>Licensed &amp; Insured</span>
+      <span class="marquee__dot">●</span>
+      <span class="marquee__item"><svg aria-hidden="true"><use href="#i-check"/></svg><strong>19 Years</strong>&nbsp;Family-Owned</span>
+      <span class="marquee__dot">●</span>
+    </div>
+    <div class="marquee__set" aria-hidden="true">
+      <span class="marquee__item"><svg aria-hidden="true"><use href="#i-star"/></svg><strong>Nextdoor Neighborhood Favorite</strong>&nbsp;2022 &amp; 2023</span>
+      <span class="marquee__dot">●</span>
+      <span class="marquee__item"><svg aria-hidden="true"><use href="#i-shield"/></svg>Licensed &amp; Insured</span>
+      <span class="marquee__dot">●</span>
+      <span class="marquee__item"><svg aria-hidden="true"><use href="#i-check"/></svg><strong>19 Years</strong>&nbsp;Family-Owned</span>
+      <span class="marquee__dot">●</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal" data-reveal>
+      <h2>What We Build</h2>
+      <p>Four things we do — poured, finished, and leveled right the first time.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="service-grid">
+      <div class="service-card reveal reveal--up" data-reveal style="--d:0ms">
+        <div class="service-card__icon"><svg aria-hidden="true"><use href="#i-driveway"/></svg></div>
+        <h3 class="service-card__title">Concrete Driveways</h3>
+        <p class="service-card__desc">New pours and driveway extensions, graded and finished level so they hold up through Upstate summers and winters.</p>
+      </div>
+      <div class="service-card reveal reveal--up" data-reveal style="--d:80ms">
+        <div class="service-card__icon"><svg aria-hidden="true"><use href="#i-patio"/></svg></div>
+        <h3 class="service-card__title">Concrete Patios</h3>
+        <p class="service-card__desc">Stamped and finished patios built for outdoor living, poured clean and cured right.</p>
+      </div>
+      <div class="service-card reveal reveal--up" data-reveal style="--d:160ms">
+        <div class="service-card__icon"><svg aria-hidden="true"><use href="#i-repair"/></svg></div>
+        <h3 class="service-card__title">Sidewalk &amp; Concrete Repair</h3>
+        <p class="service-card__desc">Cracked, sunken, or uneven concrete — leveled, patched, or replaced so it's safe again.</p>
+      </div>
+      <div class="service-card reveal reveal--up" data-reveal style="--d:240ms">
+        <div class="service-card__icon"><svg aria-hidden="true"><use href="#i-grading"/></svg></div>
+        <h3 class="service-card__title">Grading, Excavation &amp; Masonry</h3>
+        <p class="service-card__desc">Site grading and excavation to get your property ready — plus masonry work to finish it off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section section--alt" id="about" style="position:relative;overflow:hidden;">
+  <div class="orb-field" aria-hidden="true">
+    <div class="orb orb--teal" style="top:-8rem;left:-6rem;"></div>
+  </div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="about__grid">
+      <div class="about__copy reveal reveal--left" data-reveal>
+        <h2>Family-Owned. Known in the Community.</h2>
+        <p>Brian Dillard Concrete LLC has been pouring driveways, patios, and slabs across Roebuck and the Upstate for <strong>~19 years</strong> — family-owned and operated from the start. Free estimates, every time, no pressure.</p>
+        <p>Word gets around a small town. People know Brian because he shows up when he says he will, quotes it straight, and does the work himself.</p>
+        <blockquote class="about__quote">
+          "I've known him for 19 years. Family man with four kids. Down to earth."
+          <cite>— L.Y., Moore</cite>
+        </blockquote>
+        <p>Licensed, insured, and bonded on every job — from a single sidewalk repair to a full driveway pour.</p>
+      </div>
+      <aside class="about__side reveal reveal--right" data-reveal style="--d:120ms">
+        <div>
+          <div class="about__stat-number">19</div>
+          <div class="about__stat-label">Years Family-Owned</div>
+        </div>
+        <div class="about__badges">
+          <div class="badge"><svg aria-hidden="true"><use href="#i-star"/></svg>Nextdoor "Neighborhood Favorite" — 2022 &amp; 2023</div>
+          <div class="badge"><svg aria-hidden="true"><use href="#i-shield"/></svg>Licensed, Insured &amp; Bonded</div>
+          <div class="badge"><svg aria-hidden="true"><use href="#i-check"/></svg>Free Estimates</div>
+        </div>
+        <p class="about__proof">Completed concrete work for Greyrock Farms &amp; Green Acres Produce.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="section-head reveal" data-reveal>
+      <h2>Our Work</h2>
+      <p>Real jobs, finished around Roebuck and the Upstate.</p>
+    </div>
+    <div class="gallery__grid">
+      <figure class="gallery__item gallery__item--1 reveal" data-reveal data-parallax="0.16">
+        <img class="gallery__img" src="work-driveway.jpg" alt="Finished concrete driveway, smooth broom finish leading to a home" width="1400" height="1866" loading="lazy">
+        <figcaption class="gallery__cap">Concrete Driveway</figcaption>
+      </figure>
+      <figure class="gallery__item gallery__item--2 reveal" data-reveal data-parallax="0.3" style="--d:60ms">
+        <img class="gallery__img" src="work-patio.jpg" alt="Stamped concrete patio installation" width="1200" height="1200" loading="lazy">
+        <figcaption class="gallery__cap">Stamped Patio</figcaption>
+      </figure>
+      <figure class="gallery__item gallery__item--3 reveal" data-reveal data-parallax="0.22" style="--d:120ms">
+        <img class="gallery__img" src="work-repair.jpg" alt="Worker leveling and finishing fresh concrete" width="700" height="504" loading="lazy">
+        <figcaption class="gallery__cap">Concrete Finishing &amp; Repair</figcaption>
+      </figure>
+      <figure class="gallery__item gallery__item--4 reveal" data-reveal data-parallax="0.1" style="--d:180ms">
+        <img class="gallery__img" src="work-grading.jpg" alt="Tracked loader grading a job site" width="1200" height="1200" loading="lazy">
+        <figcaption class="gallery__cap">Site Grading</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section section--alt" id="testimonials">
+  <div class="container">
+    <div class="section-head reveal" data-reveal>
+      <h2>What Neighbors Say</h2>
+      <p>Real reviews from real customers in the Upstate.</p>
+    </div>
+    <div class="testi-grid">
+      <blockquote class="testi-card reveal reveal--left" data-reveal>
+        <p class="testi-quote">"We used Brian Dillard after finding him thru Nextdoor recommendations. He came when he said he would, gave us a reasonable quote, called the necessary companies to have the lines marked and showed up on the scheduled day and time ready to work. He did an excellent job pouring us a driveway extension."</p>
+        <cite class="testi-attr">— A.P., Spartanburg</cite>
+      </blockquote>
+      <blockquote class="testi-card testi-card--sm reveal reveal--right" data-reveal style="--d:100ms">
+        <p class="testi-quote">"Brian Dillard. I've known him for 19 years. Family man with four kids. Down to earth."</p>
+        <cite class="testi-attr">— L.Y., Moore</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE AREA ============ -->
+<section class="section area" id="area">
+  <div class="area__rings" aria-hidden="true">
+    <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--color-rule);"/><circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--color-rule);"/><circle cx="100" cy="100" r="98" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--color-rule-2);"/></svg>
+  </div>
+  <div class="container area__content reveal" data-reveal>
+    <h2>Serving Roebuck &amp; the Upstate</h2>
+    <p>Based in Roebuck, SC — Spartanburg County — and working across the surrounding Upstate, including Spartanburg and Moore.</p>
+    <div class="area__list">
+      <span class="area__chip"><svg aria-hidden="true"><use href="#i-pin"/></svg>Roebuck, SC</span>
+      <span class="area__chip"><svg aria-hidden="true"><use href="#i-pin"/></svg>Spartanburg County</span>
+      <span class="area__chip"><svg aria-hidden="true"><use href="#i-pin"/></svg>Upstate South Carolina</span>
+    </div>
+    <a class="btn btn--primary" href="#contact">Get a Free Estimate</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section section--alt" id="contact" style="position:relative;overflow:hidden;">
+  <div class="orb-field" aria-hidden="true">
+    <div class="orb orb--orange" style="bottom:-8rem;right:-4rem;"></div>
+  </div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-head reveal" data-reveal>
+      <h2>Get a Free Estimate</h2>
+      <p>Call or email — Brian will get back to you and set a time to look at the job.</p>
+    </div>
+    <div class="contact__grid">
+      <a class="contact__card reveal reveal--left" data-reveal href="tel:+18646062818">
+        <div class="contact__icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></div>
+        <div>
+          <div class="contact__label">Call or text</div>
+          <div class="contact__value">864-606-2818</div>
+        </div>
+      </a>
+      <a class="contact__card reveal reveal--right" data-reveal style="--d:100ms" href="mailto:briandillardconcretellc@gmail.com">
+        <div class="contact__icon"><svg aria-hidden="true"><use href="#i-mail"/></svg></div>
+        <div>
+          <div class="contact__label">Email</div>
+          <div class="contact__value" style="font-size:var(--text-md);text-transform:none;">briandillardconcretellc@gmail.com</div>
+        </div>
+      </a>
+    </div>
+    <div class="contact__cta">
+      <a class="btn btn--primary" href="tel:+18646062818">
+        <svg aria-hidden="true"><use href="#i-phone"/></svg>
+        Get a Free Estimate
+      </a>
+      <span class="contact__note">Licensed, insured, bonded — free estimates, no obligation.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER (Local Launch) ============ -->
+<footer class="foot">
+  <div class="foot__inner">
+    <p class="foot-stmt__line">Website built by <a href="https://locallaunchupstate.com" target="_blank" rel="noopener">Local Launch</a>.</p>
+    <div class="foot__row">
+      <div class="foot__biz">
+        <strong style="color:var(--color-ink);font-family:var(--font-display);text-transform:uppercase;letter-spacing:.02em;">Brian Dillard Concrete LLC</strong>
+        <span>Roebuck, SC · Upstate South Carolina</span>
+        <a href="tel:+18646062818">864-606-2818</a>
+        <a href="mailto:briandillardconcretellc@gmail.com">briandillardconcretellc@gmail.com</a>
+      </div>
+      <a class="foot__ll" href="https://locallaunchupstate.com" target="_blank" rel="noopener" aria-label="Local Launch — web design & SEO">
+        <img class="foot__ll-img" src="logo-bg.jpg" alt="Local Launch" width="1248" height="832" loading="lazy">
+      </a>
+    </div>
+    <p class="foot__copyright">© <span id="year"></span> Brian Dillard Concrete LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* mobile menu sheet */
+  var menuBtn = document.getElementById("menuBtn");
+  var sheet = document.getElementById("navSheet");
+  var scrim = document.getElementById("navScrim");
+  function closeMenu(){
+    menuBtn.setAttribute("aria-expanded","false");
+    sheet.removeAttribute("data-open");
+    scrim.removeAttribute("data-open");
+  }
+  function openMenu(){
+    menuBtn.setAttribute("aria-expanded","true");
+    sheet.setAttribute("data-open","true");
+    scrim.setAttribute("data-open","true");
+  }
+  menuBtn.addEventListener("click", function(){
+    var open = menuBtn.getAttribute("aria-expanded") === "true";
+    open ? closeMenu() : openMenu();
+  });
+  scrim.addEventListener("click", closeMenu);
+  sheet.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeMenu); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeMenu(); });
+
+  /* hero particles — pure CSS driven, JS only seeds randomised custom properties once */
+  var particleHost = document.getElementById("heroParticles");
+  var colors = ["var(--color-orange)","var(--color-teal)","var(--color-ink-2)"];
+  var count = reduceMotion ? 6 : 16;
+  for (var i = 0; i < count; i++){
+    var p = document.createElement("span");
+    p.className = "hero__particle";
+    var size = (Math.random() * 3 + 2).toFixed(1) + "px";
+    var left = (Math.random() * 100).toFixed(1) + "%";
+    var dur = (Math.random() * 6 + 7).toFixed(1) + "s";
+    var delay = (Math.random() * 9).toFixed(1) + "s";
+    var dx = (Math.random() * 60 - 30).toFixed(0) + "px";
+    var pmax = (Math.random() * 0.35 + 0.35).toFixed(2);
+    p.style.setProperty("--s", size);
+    p.style.setProperty("--x", left);
+    p.style.setProperty("--dur", dur);
+    p.style.setProperty("--delay", delay);
+    p.style.setProperty("--dx", dx);
+    p.style.setProperty("--pmax", pmax);
+    p.style.setProperty("--pc", colors[i % colors.length]);
+    particleHost.appendChild(p);
+  }
+
+  /* scroll progress bar + rAF-throttled parallax (translate only, GPU-composited) */
+  var progressBar = document.getElementById("progressBar");
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  var heroContent = document.getElementById("heroContent");
+  var ticking = false;
+
+  function update(){
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop;
+    var height = doc.scrollHeight - doc.clientHeight;
+    var pct = height > 0 ? (scrollTop / height) * 100 : 0;
+    progressBar.style.width = pct.toFixed(2) + "%";
+
+    if (!reduceMotion){
+      parallaxEls.forEach(function(el){
+        var rect = el.getBoundingClientRect();
+        var speed = parseFloat(el.getAttribute("data-parallax")) || 0.2;
+        var vh = window.innerHeight || doc.clientHeight;
+        var progress = (vh - rect.top) / (vh + rect.height);
+        var offset = (progress - 0.5) * speed * 200; /* ~60-120px range depending on speed */
+        var img = el.querySelector(".gallery__img");
+        if (img) img.style.setProperty("--py", offset.toFixed(1) + "px");
+      });
+    }
+    ticking = false;
+  }
+  function onScroll(){
+    if (!ticking){
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+
+  /* hero mouse parallax — desktop pointer only, scoped to hero */
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && !reduceMotion){
+    var hero = document.getElementById("hero");
+    hero.addEventListener("pointermove", function(e){
+      var r = hero.getBoundingClientRect();
+      var mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      var my = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      heroContent.style.transform = "translate3d(" + (mx * -10).toFixed(1) + "px," + (my * -6).toFixed(1) + "px,0)";
+    });
+    hero.addEventListener("pointerleave", function(){
+      heroContent.style.transform = "translate3d(0,0,0)";
+    });
+  }
+
+  /* scroll reveals — IntersectionObserver, reveal-once */
+  var revealEls = document.querySelectorAll("[data-reveal]");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("is-visible"); });
+  }
+})();
+</script>
+</body>
+</html>

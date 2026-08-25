@@ -4,6 +4,25 @@ import json, http.server, urllib.request, os
 
 SUPERVISOR_URL = 'http://127.0.0.1:9912/v1/chat/completions'
 PORT = int(os.environ.get('RELAY_PORT', 9924))
+API_SERVER_KEY = os.environ.get('API_SERVER_KEY', '')
+
+
+def _load_api_key():
+    """Load API_SERVER_KEY from env or the supervisor profile .env."""
+    global API_SERVER_KEY
+    if API_SERVER_KEY:
+        return API_SERVER_KEY
+    for path in ('/mnt/d/Hermes/hermes-home/profiles/local-launch-supervisor/.env',
+                 '/home/zach/.hermes/profiles/local-launch-supervisor/.env'):
+        try:
+            with open(path) as f:
+                for line in f:
+                    if line.startswith('API_SERVER_KEY='):
+                        API_SERVER_KEY = line.strip().split('=', 1)[1].strip('"').strip("'")
+                        return API_SERVER_KEY
+        except OSError:
+            continue
+    return ''
 
 class Relay(http.server.BaseHTTPRequestHandler):
     def do_OPTIONS(self):
@@ -19,6 +38,10 @@ class Relay(http.server.BaseHTTPRequestHandler):
 
         if self.path == '/chat':
             try:
+                _load_api_key()
+                headers = {'Content-Type': 'application/json'}
+                if API_SERVER_KEY:
+                    headers['Authorization'] = 'Bearer ' + API_SERVER_KEY
                 req = urllib.request.Request(SUPERVISOR_URL,
                     data=json.dumps({
                         'model': 'deepseek-v4-flash',
@@ -28,8 +51,8 @@ class Relay(http.server.BaseHTTPRequestHandler):
                         ],
                         'max_tokens': 500
                     }).encode(),
-                    headers={'Content-Type': 'application/json'})
-                resp = json.loads(urllib.request.urlopen(req, timeout=30).read())
+                    headers=headers)
+                resp = json.loads(urllib.request.urlopen(req, timeout=90).read())
                 reply = resp['choices'][0]['message']['content']
                 self._json({'reply': reply})
             except Exception as e:

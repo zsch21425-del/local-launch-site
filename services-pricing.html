@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Launch — Services & Pricing</title>
+<!-- Uses system font stack matching index.html -->
+<style>
+  @page { size: letter; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #1B1A18;
+    color: #F2EFE9;
+    padding: 40px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  .header { text-align: center; padding-bottom: 32px; border-bottom: 1px solid rgba(42,168,168,.15); margin-bottom: 32px; }
+  .header h1 { font-size: 36px; font-weight: 800; color: #F2EFE9; letter-spacing: -.02em; }
+  .header h1 span { color: #2AA8A8; }
+  .header p { color: #A6A093; font-size: 15px; margin-top: 8px; }
+  .tagline { display: inline-block; background: rgba(42,168,168,.14); color: #6FD0CC; padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 12px; border: 1px solid rgba(42,168,168,.2); }
+  .section-title { font-size: 20px; font-weight: 700; color: #2AA8A8; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(42,168,168,.15); }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  .pricing-card { background: #26231F; border: 1px solid rgba(242,239,233,.09); border-radius: 18px; padding: 20px; }
+  .pricing-card.featured { border-color: rgba(42,168,168,.3); background: linear-gradient(135deg, #26231F 0%, #211F1C 100%); }
+  .pricing-card h3 { font-size: 16px; font-weight: 700; color: #F2EFE9; margin-bottom: 4px; }
+  .pricing-card .type { font-size: 12px; color: #A6A093; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 12px; }
+  .pricing-card .price { font-size: 28px; font-weight: 800; color: #2AA8A8; }
+  .pricing-card .price span { font-size: 15px; color: #A6A093; font-weight: 400; }
+  .pricing-card .desc { font-size: 13px; color: #A6A093; margin-top: 8px; line-height: 1.5; }
+  .pricing-card .fine-print { font-size: 11px; color: #A6A093; margin-top: 8px; font-style: italic; }
+  .pricing-card.full { grid-column: 1 / -1; }
+  .bundle-highlight { background: rgba(42,168,168,.10); border: 1px solid rgba(42,168,168,.25); border-radius: 18px; padding: 20px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center; }
+  .bundle-highlight h3 { font-size: 18px; font-weight: 700; color: #2AA8A8; }
+  .bundle-highlight .price { font-size: 32px; font-weight: 800; color: #2AA8A8; }
+  .bundle-highlight .price span { font-size: 14px; color: #A6A093; font-weight: 400; }
+  .bundle-highlight .sub { font-size: 13px; color: #A6A093; margin-top: 4px; }
+  .footer { text-align: center; padding-top: 24px; border-top: 1px solid rgba(242,239,233,.09); margin-top: 24px; }
+  .footer p { color: #A6A093; font-size: 12px; line-height: 1.6; }
+  .footer .contact { color: #2AA8A8; font-weight: 600; font-size: 14px; margin-top: 8px; }
+  @media print { body { padding: 20px; } .pricing-card { break-inside: avoid; } }
+  @media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; } .bundle-highlight { flex-direction: column; text-align: center; gap: 12px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Local <span>Launch</span></h1>
+    <p>Websites & AI tools for small businesses that actually work.</p>
+    <div class="tagline">No contracts. No bloatware. Just results.</div>
+  </div>
+
+  <div class="section-title">One-Time Services</div>
+  <div class="pricing-grid">
+    <div class="pricing-card featured">
+      <h3>Website Build</h3>
+      <div class="type">One-Time</div>
+      <div class="price">$300–500</div>
+      <div class="desc">Custom-coded site on a modern stack. Fast, mobile-first, SEO-ready. Includes design, deployment, and domain setup.</div>
+    </div>
+    <div class="pricing-card">
+      <h3>AI Receptionist Setup</h3>
+      <div class="type">One-Time</div>
+      <div class="price">$150</div>
+      <div class="desc">24/7 AI phone agent that answers calls, books appointments, and takes messages. Never miss a lead again.</div>
+    </div>
+    <div class="pricing-card">
+      <h3>SEO Audit & Roadmap</h3>
+      <div class="type">One-Time</div>
+      <div class="price">$199</div>
+      <div class="desc">Full technical audit — score, competitor analysis, keyword gaps, and a written roadmap showing where you can rank.</div>
+    </div>
+    <div class="pricing-card">
+      <h3>SEO Score Fix</h3>
+      <div class="type">One-Time</div>
+      <div class="price">$150</div>
+      <div class="desc">We implement the audit findings — fix titles, meta, schema, content, and technical issues to get your score up.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Monthly Services</div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Website Maintenance</h3>
+      <div class="type">Monthly</div>
+      <div class="price">$30 <span>/mo</span></div>
+      <div class="desc">Hosting, security updates, monitoring, and up to 2 content changes per month.</div>
+      <div class="fine-print">Additional edits: $25/hr</div>
+    </div>
+    <div class="pricing-card">
+      <h3>AI Receptionist</h3>
+      <div class="type">Monthly</div>
+      <div class="price">$19 <span>/mo</span></div>
+      <div class="desc">Keep your AI phone agent active. Handles calls, routes leads, and collects voicemails 24/7.</div>
+      <div class="fine-print">Call usage billed at cost</div>
+    </div>
+    <div class="pricing-card">
+      <h3>SEO Monthly</h3>
+      <div class="type">Monthly</div>
+      <div class="price">$30 <span>/mo</span></div>
+      <div class="desc">Ongoing score monitoring, keyword tracking, and periodic optimizations to keep you ranking.</div>
+    </div>
+  </div>
+
+  <div class="bundle-highlight">
+    <div>
+      <h3>🔥 Website + SEO Bundle</h3>
+      <div class="sub">Get website maintenance and ongoing SEO together. Save $10/mo.</div>
+    </div>
+    <div style="text-align:right">
+      <div class="price">$50 <span>/mo</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="contact">zsch21425@gmail.com</div>
+    <p>All prices in USD. No long-term contracts. Month-to-month after initial build.<br>
+    Website build pricing varies by complexity — contact for a custom quote.<br>
+    Local Launch — Greenville, SC.</p>
+  </div>
+</div>
+</body>
+</html>

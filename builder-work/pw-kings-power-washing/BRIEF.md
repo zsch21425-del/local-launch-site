@@ -1,0 +1,1 @@
+# Kings Power Washing — Charlotte, NC. Phone (980) 298-5785. 19 Google reviews (verified count used as proof stat only; no review text fabricated). No website. Fork of templates/pressure-washing rebranded. NOT DEPLOYED — supervisor deploys.

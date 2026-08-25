@@ -1,3 +1,21 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json"
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "local-launch-site.vercel.app"
+        }
+      ],
+      "destination": "https://locallaunchupstate.com/$1",
+      "statusCode": 301
+    }
+  ],
+  "functions": {
+    "api/contact.js": {
+      "memory": 256,
+      "maxDuration": 10
+    }
+  }
 }

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Launch — Prospect Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0e13;
+    --bg2: #0f141b;
+    --card: #141a23;
+    --card2: #1a212c;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e6e9ee;
+    --muted: #aab4c2;
+    --faint: #7d8896;
+    --teal: #2AA8A8;
+    --teal-soft: rgba(42,168,168,0.14);
+    --amber: #c9a15e;
+    --sky: #7ea6c9;
+    --violet: #9d8cc9;
+    --indigo: #8b93d6;
+    --green: #7db98a;
+    --red: #c07a7a;
+    --slate: #7a8694;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-ui: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius: 14px;
+    --shadow: 0 1px 0 rgba(255,255,255,0.03) inset, 0 12px 32px rgba(0,0,0,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: radial-gradient(1200px 600px at 80% -10%, rgba(42,168,168,0.06), transparent 60%),
+                radial-gradient(900px 500px at -10% 110%, rgba(42,168,168,0.04), transparent 55%),
+                var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(42,168,168,0.3); }
+  .wrap { max-width: 1480px; margin: 0 auto; padding: 28px 28px 60px; }
+
+  /* Header */
+  header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 26px; }
+  .brand h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .brand h1 .accent { color: var(--teal); }
+  .brand .sub { color: var(--muted); font-size: 13px; margin-top: 6px; letter-spacing: 0.02em; }
+  .brand .sub b { color: var(--text); font-weight: 600; }
+  .controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .search {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0 12px; height: 38px; min-width: 220px;
+    transition: border-color 0.15s;
+  }
+  .search:focus-within { border-color: var(--teal); }
+  .search svg { width: 15px; height: 15px; stroke: var(--faint); flex-shrink: 0; }
+  .search input {
+    background: none; border: none; outline: none; color: var(--text);
+    font-family: var(--font-ui); font-size: 13.5px; width: 100%;
+  }
+  .search input::placeholder { color: var(--faint); }
+  .btn {
+    background: var(--card); border: 1px solid var(--border2); color: var(--text);
+    font-family: var(--font-ui); font-size: 13px; font-weight: 500;
+    height: 38px; padding: 0 16px; border-radius: 10px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 7px;
+    transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  }
+  .btn:hover { background: var(--card2); border-color: rgba(255,255,255,0.2); }
+  .btn:active { transform: scale(0.98); }
+  .btn.primary { background: var(--teal); border-color: var(--teal); color: #08110f; font-weight: 600; }
+  .btn.primary:hover { background: #35b8b8; }
+  .btn.toggle.active { background: var(--teal-soft); border-color: rgba(42,168,168,0.5); color: #9fdede; }
+  #toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: #0f1a18; border: 1px solid rgba(42,168,168,0.45); color: #9fdede;
+    padding: 10px 20px; border-radius: 999px; font-size: 13px; font-weight: 500;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 100;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 26px; }
+  .stat {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px 18px; position: relative; overflow: hidden;
+  }
+  .stat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--stat-color, var(--teal)); opacity: 0.8; }
+  .stat .num { font-family: var(--font-display); font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+  .stat .lbl { color: var(--muted); font-size: 12px; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .stat.value .num { color: var(--teal); }
+
+  /* Chips */
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+  .chip {
+    background: var(--card); border: 1px solid var(--border); color: var(--muted);
+    border-radius: 999px; padding: 6px 14px; font-size: 12.5px; cursor: pointer;
+    transition: all 0.15s; font-family: var(--font-ui);
+  }
+  .chip:hover { color: var(--text); border-color: var(--border2); }
+  .chip.active { background: var(--teal-soft); border-color: rgba(42,168,168,0.5); color: #9fdede; }
+
+  /* Pipeline */
+  .pipeline { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 16px; align-items: flex-start; }
+  .pipeline::-webkit-scrollbar { height: 8px; }
+  .pipeline::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+  .col {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: var(--radius); min-width: 250px; flex: 0 0 250px;
+    display: flex; flex-direction: column; max-height: 70vh;
+  }
+  .col-head {
+    display: flex; align-items: center; gap: 8px; padding: 13px 15px;
+    border-bottom: 1px solid var(--border); position: sticky; top: 0;
+    background: var(--bg2); border-radius: var(--radius) var(--radius) 0 0; z-index: 2;
+  }
+  .col-head .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--stage-color, var(--slate)); }
+  .col-head .name { font-weight: 600; font-size: 13px; letter-spacing: 0.01em; }
+  .col-head .count { margin-left: auto; background: rgba(255,255,255,0.06); border-radius: 999px; padding: 2px 9px; font-size: 12px; color: var(--muted); }
+  .col-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1; min-height: 60px; }
+  .col-body.drag-over { background: var(--teal-soft); border-radius: 0 0 var(--radius) var(--radius); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--stage-color, var(--slate));
+    border-radius: 10px; padding: 12px 13px; cursor: grab; transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+  }
+  .card:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); border-color: var(--border2); }
+  .card.dragging { opacity: 0.45; transform: scale(0.98); }
+  .card .top { display: flex; align-items: flex-start; gap: 8px; }
+  .card .name { font-weight: 600; font-size: 14.5px; line-height: 1.3; flex: 1; }
+  .card .score {
+    font-size: 11px; font-weight: 600; color: var(--muted);
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1px 6px; flex-shrink: 0;
+  }
+  .card .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .card .vchip { font-size: 11px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 2px 8px; }
+  .card .city { font-size: 12px; color: var(--faint); margin-top: 6px; }
+  .card .demo-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--teal); text-decoration: none; margin-top: 7px; font-weight: 500; }
+  .card .demo-link:hover { text-decoration: underline; }
+
+  /* Table */
+  .table-view { display: none; }
+  .table-view.show { display: block; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  thead th {
+    text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--faint);
+    padding: 12px 14px; border-bottom: 1px solid var(--border); background: var(--bg2); font-weight: 600;
+  }
+  tbody td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr { transition: background 0.12s; cursor: pointer; }
+  tbody tr:hover { background: rgba(255,255,255,0.03); }
+  .rank { font-family: var(--font-display); font-weight: 600; color: var(--faint); font-size: 15px; }
+  .tb-name { font-weight: 600; }
+  .stage-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--stage-color); }
+  .stage-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--stage-color); }
+  .demo-cell a { color: var(--teal); text-decoration: none; font-size: 12.5px; }
+  .demo-cell a:hover { text-decoration: underline; }
+  .empty { text-align: center; color: var(--faint); padding: 48px 20px; font-size: 14px; }
+
+  /* Modal */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(5,7,10,0.7); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center; z-index: 50; padding: 20px;
+  }
+  .overlay.show { display: flex; }
+  .modal {
+    background: var(--card); border: 1px solid var(--border2); border-radius: 16px;
+    width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; padding: 24px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  }
+  .modal h2 { font-family: var(--font-display); font-weight: 600; font-size: 21px; margin-bottom: 4px; }
+  .modal .m-sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--faint); margin-bottom: 6px; font-weight: 600; }
+  .field input, .field select, .field textarea {
+    width: 100%; background: var(--bg2); border: 1px solid var(--border); border-radius: 9px;
+    padding: 10px 12px; color: var(--text); font-family: var(--font-ui); font-size: 13.5px; outline: none;
+    transition: border-color 0.15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--teal); }
+  .field textarea { resize: vertical; min-height: 60px; }
+  .field .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+  .modal-actions .btn { flex: 1; justify-content: center; }
+  .btn.danger { background: rgba(192,122,122,0.1); border-color: rgba(192,122,122,0.35); color: #d9a2a2; }
+
+  footer { margin-top: 40px; color: var(--faint); font-size: 12px; text-align: center; letter-spacing: 0.04em; }
+
+  @media (max-width: 900px) {
+    .pipeline { flex-direction: column; overflow-x: visible; }
+    .col { max-height: none; }
+    .col-body { max-height: none; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .wrap { padding: 20px 16px 50px; }
+    header { flex-direction: column; align-items: stretch; }
+    .controls { width: 100%; }
+    .search { flex: 1; min-width: 0; }
+    .prow .pname { width: 130px; }
+    .pstage-label { width: 96px; font-size: 11px; }
+    .pl-spacer { width: 130px; }
+  }
+
+  /* Light theme */
+  body.light {
+    background: radial-gradient(1200px 600px at 80% -10%, rgba(42,168,168,0.08), transparent 60%),
+                radial-gradient(900px 500px at -10% 110%, rgba(42,168,168,0.05), transparent 55%),
+                #f4f6f8;
+    color: #17212b;
+  }
+  body.light .stat, body.light .card, body.light table, body.light .modal { background: #ffffff; }
+  body.light .col { background: rgba(15,23,42,0.03); }
+  body.light .col-head { background: #eef1f4; }
+  body.light .search, body.light .btn, body.light .chip, body.light .field input,
+  body.light .field select, body.light .field textarea { background: #ffffff; border-color: rgba(15,23,42,0.12); }
+  body.light .search input { color: #17212b; }
+  body.light .btn:hover { background: #eef1f4; }
+  body.light .card .score, body.light .card .vchip { background: #f2f4f6; border-color: rgba(15,23,42,0.1); color: #5a6572; }
+  body.light .col-head .count { background: rgba(15,23,42,0.07); color: #5a6572; }
+  body.light thead th { background: #eef1f4; color: #7a8490; border-color: rgba(15,23,42,0.08); }
+  body.light tbody td { border-color: rgba(15,23,42,0.05); }
+  body.light tbody tr:hover { background: rgba(15,23,42,0.03); }
+  body.light .rank { color: #8a94a0; }
+  body.light footer { color: #8a94a0; }
+  body.light .prow { background: #ffffff; }
+
+  /* Progress bar view */
+  .progress-view { display: none; }
+  .progress-view.show { display: block; }
+  .pgroup { margin-bottom: 26px; }
+  .pgroup h3 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--faint);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 9px; font-weight: 600;
+  }
+  .pgroup h3::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+  .pgroup h3 .pcount {
+    background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+    padding: 1px 9px; font-size: 11px; color: var(--muted);
+  }
+  .prow {
+    display: flex; align-items: center; gap: 16px; padding: 13px 15px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 11px;
+    margin-bottom: 8px; cursor: pointer; transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
+  }
+  .prow:hover { transform: translateY(-1px); border-color: var(--border2); box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+  .prow .pname { width: 230px; flex-shrink: 0; font-weight: 600; font-size: 14.5px; line-height: 1.25; }
+  .prow .pname .pmeta { display: block; font-weight: 400; font-size: 12px; color: var(--faint); margin-top: 3px; }
+  .ptrack {
+    flex: 1; position: relative; height: 22px; border-radius: 11px;
+    background: rgba(127,140,160,0.13); overflow: hidden; display: flex; min-width: 120px;
+  }
+  .pseg { flex: 1; position: relative; }
+  .pseg + .pseg { border-left: 1px solid rgba(255,255,255,0.35); }
+  body.light .pseg + .pseg { border-left-color: rgba(255,255,255,0.7); }
+  .pfill {
+    position: absolute; left: 0; top: 0; bottom: 0; border-radius: 11px 0 0 11px;
+    opacity: 0.85; transition: width 0.3s ease;
+  }
+  .pstage-label { width: 132px; flex-shrink: 0; text-align: right; font-size: 12.5px; color: var(--muted); font-weight: 500; }
+  /* shared stage scale above each category's bars */
+  .plegend {
+    display: flex; align-items: center; gap: 16px; padding: 0 15px;
+    margin-bottom: 4px;
+  }
+  .pl-spacer { width: 230px; flex-shrink: 0; }
+  .pl-track { flex: 1; display: flex; min-width: 120px; }
+  .pl-seg {
+    flex: 1; text-align: center; font-size: 11.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px;
+  }
+  .pl-seg::after {
+    content: ""; display: block; height: 1px; background: var(--border2);
+    margin: 5px auto 0; max-width: 70%;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Prospect <span class="accent">Pipeline</span></h1>
+      <div class="sub"><b id="stat-total">0</b> prospects · <span id="stat-subline">Local Launch internal \u00b7 phone view</span></div>
+    </div>
+    <div class="controls">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="text" placeholder="Search prospects…" autocomplete="off">
+      </div>
+      <button class="btn toggle active" id="btnPipeline">Pipeline</button>
+      <button class="btn toggle" id="btnTable">Ranked</button>
+      <button class="btn toggle" id="btnProgress">Progress</button>
+      <button class="btn" id="btnTheme" title="Toggle light/dark">◐</button>
+      <button class="btn primary" id="btnAdd">+ Add</button>
+    </div>
+  </header>
+
+  <div class="stats" id="stats"></div>
+  <div class="chips" id="chips"></div>
+
+  <div class="pipeline" id="pipeline"></div>
+
+  <div class="table-view" id="tableView">
+    <table>
+      <thead><tr><th>Rank</th><th>Business</th><th>Vertical</th><th>City</th><th>Phone</th><th>Stage</th><th>Demo</th></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="progress-view" id="progressView"></div>
+
+  <footer>Local Launch · Internal Pipeline · phone view \u2014 edit on desktop to sync Obsidian</footer>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2 id="mTitle">Edit Prospect</h2>
+    <div class="m-sub" id="mSub"></div>
+    <div class="field"><label>Business</label><input id="fName" type="text"></div>
+    <div class="field"><div class="row2">
+      <div><label>Phone</label><input id="fPhone" type="text"></div>
+      <div><label>City</label><input id="fCity" type="text"></div>
+    </div></div>
+    <div class="field"><div class="row2">
+      <div><label>Vertical</label><input id="fVertical" type="text" placeholder="Plumbing, Landscaping…"></div>
+      <div><label>Score</label><input id="fScore" type="number" min="0" max="100"></div>
+    </div></div>
+    <div class="field"><label>Stage</label><select id="fStage"></select></div>
+    <div class="field"><label>Demo URL</label><input id="fDemo" type="text" placeholder="business-demo.vercel.app"></div>
+    <div class="field"><label>Offer</label><input id="fOffer" type="text" placeholder="AI receptionist, SEO fixes…"></div>
+    <div class="field"><label>Notes</label><textarea id="fNotes"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn danger" id="btnDelete">Delete</button>
+      <button class="btn" id="btnCancel">Cancel</button>
+      <button class="btn primary" id="btnSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast">Saved ✓</div>
+
+<script>
+const STAGES = [
+  { key: 'audited',          label: 'Audited',            color: '#7a8694' },
+  { key: 'demo_built',       label: 'Demo Built',         color: '#c9a15e' },
+  { key: 'outreach_drafted', label: 'Outreach Drafted',   color: '#7ea6c9' },
+  { key: 'contacted',        label: 'Contacted',          color: '#2AA8A8' },
+  { key: 'demo_shown',       label: 'Site Demo',          color: '#9d8cc9' },
+  { key: 'proposal',         label: 'Proposal Sent',      color: '#8b93d6' },
+  { key: 'paid',             label: 'Paid Client',        color: '#7db98a' },
+  { key: 'on_hold',          label: 'On Hold',            color: '#5b6472' },
+  { key: 're_audit',         label: 'Re-Audit',           color: '#c07a7a' },
+  { key: 're_pitch',         label: 'Re-Pitch',           color: '#c07a7a' },
+  { key: 'lost',             label: 'Lost',               color: '#8b94a3' }
+];
+const stageColor = key => (STAGES.find(s => s.key === key) || STAGES[0]).color;
+const stageLabel = key => (STAGES.find(s => s.key === key) || STAGES[0]).label;
+const SORT_PRIORITY = { paid: 0, proposal: 1, demo_shown: 2, contacted: 3, outreach_drafted: 4, demo_built: 5, audited: 6, on_hold: 7, re_audit: 8, re_pitch: 9, lost: 10 };
+
+let prospects = [];
+let query = '';
+let filterVertical = 'All';
+let view = 'pipeline';
+let editingIdx = -1;
+let dragKey = null;
+
+const $ = id => document.getElementById(id);
+
+function loadFallback() {
+  prospects = [
+    { name: 'Chandler Brothers Landscape', phone: '(864) 419-1789', city: 'Easley', vertical: 'Landscaping', stage: 'demo_built', score: 0, demo: 'chandler-brothers-demo.vercel.app', offer: 'Demo site build', notes: 'No website — verified.' },
+    { name: 'Manquen Automotive', phone: '(864) 777-4505', city: 'Simpsonville', vertical: 'Auto Dealer', stage: 'demo_built', score: 15, demo: 'manquen-demo.vercel.app', offer: 'Vehicle listings + reviews', notes: 'Phone corrected.' },
+    { name: 'Local Plumber & HVAC', phone: '(864) 688-2991', city: 'Simpsonville', vertical: 'Plumbing', stage: 'outreach_drafted', score: 71, demo: '', offer: 'Review response automation', notes: 'Wave 2 email.' }
+  ];
+}
+
+const EMBEDDED = [{"name": "Chandler Brothers Landscape", "phone": "(864) 419-1789", "city": "Easley", "vertical": "Landscaping", "stage": "demo_built", "score": 0, "demo": "chandler-brothers-demo.vercel.app", "offer": "Demo site build \u2014 no website (verified 4 variants)", "notes": "Wave 1 SMS. Brian. VERIFIED no website."}, {"name": "Manquen Automotive", "phone": "(864) 777-4505", "city": "Simpsonville", "vertical": "Auto Dealer", "stage": "demo_built", "score": 15, "demo": "manquen-demo.vercel.app", "offer": "Vehicle listings + review generation", "notes": "Wave 1 SMS. Ryan. Phone CORRECTED from 757-1767. Has website (403 curl, indexed)."}, {"name": "Platinum Outdoor Living", "phone": "(864) 501-7823", "city": "Travelers Rest", "vertical": "Outdoor Living", "stage": "audited", "score": 36, "demo": "", "offer": "Review generation", "notes": "Wave 1 SMS. 2 reviews, 5-mo drought, 0% response. Has Vercel site."}, {"name": "Carolina Pest Patrol", "phone": "(864) 269-3377", "city": "Simpsonville", "vertical": "Pest Control", "stage": "audited", "score": 25, "demo": "", "offer": "Rebuild / SEO \u2014 Townsquare template", "notes": "Wave 1 SMS. Template site, no meta/H1/schema."}, {"name": "864 Cleaning", "phone": "(864) 507-9101", "city": "Simpsonville", "vertical": "Cleaning", "stage": "audited", "score": 40, "demo": "", "offer": "SEO fixes \u2014 12-char title, no H1/schema", "notes": "Wave 1 SMS. 9,145 words on site but zero structure."}, {"name": "Local Plumber & HVAC", "phone": "(864) 688-2991", "city": "Simpsonville", "vertical": "Plumbing", "stage": "audited", "score": 71, "demo": "", "offer": "Review response automation", "notes": "Wave 2 email. Grant Rhodes. 327 reviews/4.9\u2605, unanswered 1-star."}, {"name": "Chisholm Plumbing", "phone": "(864) 727-1377", "city": "Greer", "vertical": "Plumbing", "stage": "audited", "score": 88, "demo": "", "offer": "AI receptionist", "notes": "Wave 2 email. Solo operator."}, {"name": "Tuck & Howell", "phone": "(864) 879-7227", "city": "Simpsonville", "vertical": "HVAC", "stage": "audited", "score": 93, "demo": "", "offer": "AI receptionist + GEO", "notes": "Wave 2 email. Geothermal niche."}, {"name": "Dipple Services", "phone": "(864) 319-3682", "city": "Greenville", "vertical": "HVAC/Plumbing/Electrical", "stage": "audited", "score": 96, "demo": "", "offer": "AI receptionist", "notes": "Wave 2 email. 45+ years in business."}, {"name": "Ken's Plumbing", "phone": "(864) 242-5511", "city": "Greenville", "vertical": "Plumbing", "stage": "audited", "score": 84, "demo": "", "offer": "AI receptionist", "notes": "Wave 2 email."}, {"name": "Ground Oasis Construction", "phone": "(864) 813-6808", "city": "Greenville", "vertical": "Concrete/Hardscaping", "stage": "on_hold", "score": 0, "demo": "", "offer": "Held \u2014 ops crisis", "notes": "64 rev @ 4.8\u2605 but Debbie V 1\u2605 73 days unanswered. Pause pitch until ops improve."}, {"name": "Integrity Plumbing", "phone": "(864) 382-7506", "city": "Simpsonville", "vertical": "Plumbing", "stage": "re_audit", "score": 0, "demo": "", "offer": "Re-audit \u2014 site healthy", "notes": "Old 'weak SEO' claim no longer verifiable (title/meta/H1/schema all present)."}, {"name": "Hipps Automotive", "phone": "(864) 967-0050", "city": "Simpsonville", "vertical": "Auto Repair", "stage": "re_pitch", "score": 0, "demo": "", "offer": "Re-pitch on schema gap", "notes": "'403 to Google' claim FALSE today (HTTP 200). Schema IS missing."}, {"name": "Carolina Paint & Body", "phone": "(864) 963-3072", "city": "Simpsonville", "vertical": "Auto Body", "stage": "audited", "score": 0, "demo": "", "offer": "TBD", "notes": "Call-ready list, pitch card ready."}, {"name": "Sanford & Son Plumbing", "phone": "TBD", "city": "Greenville", "vertical": "Plumbing", "stage": "audited", "score": 0, "demo": "", "offer": "TBD \u2014 need phone", "notes": "Research phone, then demo build."}, {"name": "Sanders Heating & Cooling", "phone": "TBD", "city": "Greenville", "vertical": "HVAC", "stage": "audited", "score": 0, "demo": "", "offer": "TBD \u2014 need phone", "notes": "Research phone, then demo build."}];
+function load() {
+  // Phone view: use embedded snapshot, then any localStorage edits on top
+  try {
+    const saved = localStorage.getItem('ll-prospects');
+    prospects = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(EMBEDDED));
+  } catch (e) {
+    prospects = JSON.parse(JSON.stringify(EMBEDDED));
+  }
+  render();
+}
+
+function save() {
+  try { localStorage.setItem('ll-prospects', JSON.stringify(prospects)); } catch (e) {}
+  toast('Saved on this device ✓ (desktop version syncs to Obsidian)');
+}
+
+let toastTimer;
+function toast(msg) {
+  $('toast').textContent = msg;
+  $('toast').classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $('toast').classList.remove('show'), 2200);
+}
+
+function verticals() {
+  const set = new Set(prospects.map(p => p.vertical).filter(Boolean));
+  return ['All', ...Array.from(set).sort()];
+}
+
+function filtered() {
+  let list = prospects.filter(p => {
+    const q = query.toLowerCase();
+    const matchesQ = !q || (p.name || '').toLowerCase().includes(q) || (p.vertical || '').toLowerCase().includes(q) || (p.city || '').toLowerCase().includes(q);
+    const matchesV = filterVertical === 'All' || p.vertical === filterVertical;
+    return matchesQ && matchesV;
+  });
+  return list;
+}
+
+function sortedRanked(list) {
+  return [...list].sort((a, b) => {
+    const pa = SORT_PRIORITY[a.stage] ?? 99, pb = SORT_PRIORITY[b.stage] ?? 99;
+    if (pa !== pb) return pa - pb;
+    return (a.score ?? 0) - (b.score ?? 0);
+  });
+}
+
+function renderStats() {
+  const count = p => p.stage === 'paid' ? 1 : 0;
+  const paid = prospects.filter(p => p.stage === 'paid').length;
+  const demos = prospects.filter(p => p.stage === 'demo_built').length;
+  const drafted = prospects.filter(p => p.stage === 'outreach_drafted').length;
+  const value = prospects.reduce((sum, p) => {
+    const v = { paid: 350, proposal: 350, demo_shown: 350, contacted: 300, outreach_drafted: 300, demo_built: 350 }[p.stage] || 0;
+    return sum + v;
+  }, 0);
+  $('stat-total').textContent = prospects.length;
+  $('stat-subline').textContent = `${paid} paid · ${drafted} outreach drafted · ${demos} demos built`;
+  $('stats').innerHTML = `
+    <div class="stat"><div class="num">${prospects.length}</div><div class="lbl">Total Prospects</div></div>
+    <div class="stat" style="--stat-color:#7db98a"><div class="num">${paid}</div><div class="lbl">Paid Clients</div></div>
+    <div class="stat" style="--stat-color:#c9a15e"><div class="num">${demos}</div><div class="lbl">Demos Built</div></div>
+    <div class="stat" style="--stat-color:#7ea6c9"><div class="num">${drafted}</div><div class="lbl">Outreach Drafted</div></div>
+    <div class="stat value" style="--stat-color:#2AA8A8"><div class="num">$${value.toLocaleString()}</div><div class="lbl">Pipeline Value</div></div>`;
+}
+
+function renderChips() {
+  $('chips').innerHTML = verticals().map(v =>
+    `<button class="chip ${v === filterVertical ? 'active' : ''}" data-v="${v}">${v}</button>`
+  ).join('');
+}
+
+function cardHTML(p, idx) {
+  const c = stageColor(p.stage);
+  return `
+    <div class="card" draggable="true" data-idx="${idx}"
+         style="--stage-color:${c}"
+         ondragstart="dragStart(event, ${idx})" ondragend="dragEnd(event)"
+         onclick="openEdit(${idx})" title="Click to edit">
+      <div class="top"><div class="name">${esc(p.name)}</div>
+        ${p.score !== undefined && p.score !== null ? `<span class="score">S${p.score}</span>` : ''}
+      </div>
+      <div class="meta">
+        ${p.vertical ? `<span class="vchip">${esc(p.vertical)}</span>` : ''}
+        ${p.phone && p.phone !== 'TBD' ? `<span class="vchip">${esc(p.phone)}</span>` : ''}
+      </div>
+      ${p.city ? `<div class="city">${esc(p.city)}</div>` : ''}
+      ${p.demo ? `<a class="demo-link" href="https://${esc(p.demo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Demo →</a>` : ''}
+    </div>`;
+}
+
+function renderPipeline() {
+  const list = filtered();
+  $('pipeline').innerHTML = STAGES.filter(s => list.some(p => p.stage === s.key)).map(s => {
+    const cards = list.map((p, i) => ({ p, i })).filter(x => x.p.stage === s.key);
+    return `
+      <div class="col" style="--stage-color:${s.color}" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondragover2drop="drop(event, '${s.key}')" ondrop="drop(event, '${s.key}')">
+        <div class="col-head">
+          <span class="dot"></span><span class="name">${s.label}</span>
+          <span class="count">${cards.length}</span>
+        </div>
+        <div class="col-body">${cards.length ? cards.map(x => cardHTML(x.p, x.i)).join('') : '<div class="empty" style="padding:24px 10px;font-size:12px">Drop here</div>'}</div>
+      </div>`;
+  }).join('');
+}
+
+function renderTable() {
+  const list = sortedRanked(filtered());
+  $('tableBody').innerHTML = list.length ? list.map((p, i) => `
+    <tr onclick="openEdit(prospects.indexOf(p))">
+      <td class="rank">${i + 1}</td>
+      <td class="tb-name">${esc(p.name)}</td>
+      <td>${p.vertical ? esc(p.vertical) : '—'}</td>
+      <td>${p.city ? esc(p.city) : '—'}</td>
+      <td>${p.phone || '—'}</td>
+      <td><span class="stage-badge" style="--stage-color:${stageColor(p.stage)}"><span class="dot"></span>${stageLabel(p.stage)}</span></td>
+      <td class="demo-cell">${p.demo ? `<a href="https://${esc(p.demo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${esc(p.demo)}</a>` : '—'}</td>
+    </tr>`).join('') : '<tr><td colspan="7"><div class="empty">No prospects match.</div></td></tr>';
+}
+
+function render() {
+  renderStats();
+  renderChips();
+  renderPipeline();
+  renderTable();
+  renderProgress();
+}
+
+/* progress bar view — one row per prospect, horizontal bar = pipeline position */
+const MAIN_STAGES = ['audited', 'demo_built', 'outreach_drafted', 'contacted', 'demo_shown', 'proposal', 'paid'];
+const SHORT_LABELS = { audited: 'Audited', demo_built: 'Demo', outreach_drafted: 'Outreach', contacted: 'Contacted', demo_shown: 'Site Demo', proposal: 'Proposal', paid: 'Paid' };
+
+function renderProgress() {
+  const list = filtered();
+  if (!list.length) {
+    $('progressView').innerHTML = '<div class="empty">No prospects match.</div>';
+    return;
+  }
+  const legend = `
+    <div class="plegend">
+      <div class="pl-spacer"></div>
+      <div class="pl-track">${MAIN_STAGES.map(s => `<div class="pl-seg">${SHORT_LABELS[s]}</div>`).join('')}</div>
+    </div>`;
+  // Flat list by default (All). When a category chip is active, show that
+  // category as its own titled group.
+  if (filterVertical === 'All') {
+    $('progressView').innerHTML = `
+      <div class="pgroup">
+        ${legend}
+        ${list.map(progressRowHTML).join('')}
+      </div>`;
+  } else {
+    const groups = {};
+    list.forEach(p => {
+      const v = p.vertical || 'Other';
+      (groups[v] = groups[v] || []).push(p);
+    });
+    $('progressView').innerHTML = Object.keys(groups).sort().map(v => `
+      <div class="pgroup">
+        <h3>${esc(v)} <span class="pcount">${groups[v].length}</span></h3>
+        ${legend}
+        ${groups[v].map(progressRowHTML).join('')}
+      </div>`).join('');
+  }
+}
+
+function progressRowHTML(p) {
+  const idx = MAIN_STAGES.indexOf(p.stage);
+  const isSpecial = idx === -1;
+  const frac = isSpecial ? 0.14 : (idx + 1) / MAIN_STAGES.length;
+  const color = stageColor(p.stage);
+  const lbl = stageLabel(p.stage);
+  const segs = MAIN_STAGES.map(() => '<div class="pseg"></div>').join('');
+  const meta = [p.vertical, p.city].filter(Boolean).join(' · ');
+  // Special stages (On Hold / Re-Audit / Re-Pitch / Lost) keep a right-side
+  // label since they don't sit on the main scale; main stages read off the legend.
+  const labelCell = isSpecial ? `<div class="pstage-label">${lbl}</div>` : '';
+  return `
+    <div class="prow" onclick="openEdit(prospects.indexOf(p))" title="Click to edit">
+      <div class="pname">${esc(p.name)}<span class="pmeta">${esc(meta)}</span></div>
+      <div class="ptrack">${segs}<div class="pfill" style="width:${frac * 100}%;background:${color}"></div></div>
+      ${labelCell}
+    </div>`;
+}
+
+/* drag & drop */
+function dragStart(e, idx) {
+  dragKey = idx;
+  e.dataTransfer.setData('text/plain', String(idx));
+  e.target.classList.add('dragging');
+}
+function dragEnd(e) { e.target.classList.remove('dragging'); }
+function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function dragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function drop(e, stage) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (dragKey === null) return;
+  const p = prospects[dragKey];
+  if (p && p.stage !== stage) { p.stage = stage; save(); render(); }
+  dragKey = null;
+}
+
+/* modal */
+function openEdit(idx) {
+  editingIdx = idx;
+  const p = prospects[idx];
+  $('mTitle').textContent = p.name || 'New Prospect';
+  $('mSub').textContent = p.vertical || '';
+  $('fName').value = p.name || '';
+  $('fPhone').value = p.phone || '';
+  $('fCity').value = p.city || '';
+  $('fVertical').value = p.vertical || '';
+  $('fScore').value = p.score ?? '';
+  $('fDemo').value = p.demo || '';
+  $('fOffer').value = p.offer || '';
+  $('fNotes').value = p.notes || '';
+  $('fStage').innerHTML = STAGES.map(s => `<option value="${s.key}" ${p.stage === s.key ? 'selected' : ''}>${s.label}</option>`).join('');
+  $('overlay').classList.add('show');
+  $('btnDelete').style.display = idx >= prospects.length ? 'none' : 'inline-flex';
+}
+function closeEdit() { $('overlay').classList.remove('show'); editingIdx = -1; }
+function saveEdit() {
+  const data = {
+    name: $('fName').value.trim(),
+    phone: $('fPhone').value.trim(),
+    city: $('fCity').value.trim(),
+    vertical: $('fVertical').value.trim(),
+    score: $('fScore').value === '' ? null : Number($('fScore').value),
+    demo: $('fDemo').value.trim(),
+    offer: $('fOffer').value.trim(),
+    notes: $('fNotes').value.trim(),
+    stage: $('fStage').value
+  };
+  if (editingIdx >= 0 && editingIdx < prospects.length) {
+    prospects[editingIdx] = { ...prospects[editingIdx], ...data };
+  } else {
+    prospects.push(data);
+  }
+  save(); render(); closeEdit();
+}
+function deleteEdit() {
+  if (editingIdx >= 0 && editingIdx < prospects.length) {
+    prospects.splice(editingIdx, 1);
+    save(); render(); closeEdit();
+  }
+}
+
+/* events */
+function setView(v) {
+  view = v;
+  $('pipeline').style.display = v === 'pipeline' ? 'flex' : 'none';
+  $('tableView').classList.toggle('show', v === 'table');
+  $('progressView').classList.toggle('show', v === 'progress');
+  ['btnPipeline', 'btnTable', 'btnProgress'].forEach(id =>
+    $(id).classList.toggle('active', id === 'btn' + v[0].toUpperCase() + v.slice(1)));
+}
+$('btnPipeline').onclick = () => setView('pipeline');
+$('btnTable').onclick = () => setView('table');
+$('btnProgress').onclick = () => setView('progress');
+
+function setTheme(light) {
+  document.body.classList.toggle('light', light);
+  $('btnTheme').textContent = light ? '◐' : '◑';
+  try { localStorage.setItem('ll-theme', light ? 'light' : 'dark'); } catch (e) {}
+}
+$('btnTheme').onclick = () => setTheme(!document.body.classList.contains('light'));
+(function () {
+  let saved = 'dark';
+  try { saved = localStorage.getItem('ll-theme') || 'dark'; } catch (e) {}
+  setTheme(saved === 'light');
+})();
+$('btnAdd').onclick = () => openEdit(prospects.length);
+$('btnSave').onclick = saveEdit;
+$('btnCancel').onclick = closeEdit;
+$('btnDelete').onclick = deleteEdit;
+$('overlay').onclick = e => { if (e.target === $('overlay')) closeEdit(); };
+$('search').oninput = e => { query = e.target.value; render(); };
+$('chips').onclick = e => { if (e.target.classList.contains('chip')) { filterVertical = e.target.dataset.v; render(); } };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEdit(); });
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MasterTech Auto Repair — Spartanburg, SC</title>
+<meta name="description" content="Family-owned auto repair shop in Spartanburg, SC. Oil changes, brake service, diagnostics, and full auto repair. Fair prices, honest work since 2020.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · P5 H5 E5 S5 R5 V5 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: clip; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #f4f3f0;
+  color: #1a1a1a;
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://files-cdn.x.ai/RaT94DPVTHqDF1lFQhqTvA/file_c3023f54-a830-4ffe-ab5c-c96ebb2ac871.png') center/cover no-repeat;
+  filter: brightness(0.3) saturate(0.9);
+  transform: scale(1.08);
+  transition: transform 12s ease;
+}
+.hero:hover .hero-bg { transform: scale(1.0); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+}
+.hero-content { position: relative; z-index: 3; max-width: 700px; }
+.hero-logo { max-width: 220px; margin: 0 auto 1.5rem; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3)); }
+.hero-logo img { width: 100%; height: auto; display: block; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+.hero h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-style: normal;
+}
+.hero h1 .accent { color: #e85d3a; font-style: normal; }
+.hero .subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+  max-width: 540px;
+  margin: 0 auto 2rem;
+}
+.hero-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.hero-phone:hover { background: #e85d3a; border-color: #e85d3a; }
+
+/* ─── SECTION COMMON ─── */
+.section {
+  padding: 4.5rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #e85d3a;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+.section h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-style: normal;
+}
+.section .lede {
+  color: #6b6b6b;
+  font-size: 1rem;
+  font-weight: 300;
+  max-width: 620px;
+  margin-bottom: 2.5rem;
+}
+
+/* ─── SERVICE MENU ─── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.menu-card {
+  background: #fff;
+  border: 1px solid #e8e6e3;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: all 0.2s;
+  position: relative;
+}
+.menu-card:hover {
+  border-color: #e85d3a;
+  box-shadow: 0 4px 20px rgba(232,93,58,0.08);
+  transform: translateY(-2px);
+}
+.menu-card.featured {
+  border-color: #e85d3a;
+  border-width: 2px;
+}
+.menu-card.featured::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
+  background: #e85d3a;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+}
+.menu-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.2rem;
+}
+.menu-card .price-tag {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e85d3a;
+  margin-bottom: 0.75rem;
+}
+.menu-card ul { list-style: none; padding: 0; }
+.menu-card ul li {
+  font-size: 0.82rem;
+  color: #6b6b6b;
+  padding: 0.15rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+}
+.menu-card ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #2b9348;
+  font-weight: 700;
+}
+
+/* ─── FULL-SCREEN DIVIDER ─── */
+.divider {
+  position: relative;
+  height: 50vh;
+  min-height: 400px;
+  background: url('https://files-cdn.x.ai/_tlNn_HkRISxNQOYS0fpcg/file_3ec4d5c4-c523-43b1-8d60-97e7e74e2f41.png') center/cover no-repeat fixed;
+  background-attachment: fixed;
+}
+.divider-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+.divider-content {
+  position: relative; z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+.divider-content h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  max-width: 600px;
+  font-style: normal;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+}
+
+/* ─── SERVICES GRID ─── */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.service-card {
+  background: #fff;
+  border: 1px solid #e8e6e3;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: all 0.2s;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.service-card:hover {
+  border-color: #e85d3a;
+  box-shadow: 0 4px 20px rgba(232,93,58,0.08);
+  transform: translateY(-2px);
+}
+.service-icon {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: #fef0eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+.service-text { flex: 1; }
+.service-text h3 { font-size: 1rem; font-weight: 600; color: #1a1a1a; margin-bottom: 0.15rem; }
+.service-text p { font-size: 0.82rem; color: #6b6b6b; font-weight: 300; }
+
+/* ─── ABOUT ─── */
+.about-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+.about-image {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 360px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+.about-image img { width: 100%; height: 100%; object-fit: cover; }
+.about-text p { color: #6b6b6b; font-weight: 300; margin-bottom: 1rem; font-size: 0.95rem; }
+.about-text .address-line { font-weight: 500; color: #1a1a1a; font-size: 0.9rem; margin-top: 1.5rem; }
+
+/* ─── CTA ─── */
+.cta-section {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: #fff;
+  border-top: 1px solid #e8e6e3;
+}
+.cta-section h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-style: normal;
+}
+.cta-section p { color: #6b6b6b; font-weight: 300; margin-bottom: 1.5rem; font-size: 0.95rem; }
+.cta-btn {
+  display: inline-block;
+  background: #e85d3a;
+  color: #fff;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(232,93,58,0.25);
+  white-space: nowrap;
+}
+.cta-btn:hover { background: #d44d2a; transform: translateY(-1px); box-shadow: 0 6px 25px rgba(232,93,58,0.3); }
+
+/* ─── CONTACT ─── */
+.contact-section {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: #f4f3f0;
+}
+.contact-grid {
+  display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  max-width: 480px; margin: 0 auto;
+}
+.contact-btn {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: #fff;
+  border: 1px solid #e8e6e3;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none; color: #333;
+  transition: all 0.2s;
+  min-width: 200px; white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.contact-btn:hover { border-color: #e85d3a; color: #e85d3a; }
+
+/* ─── LOGO SECTION ─── */
+.logo-section {
+  padding: 2rem 1.5rem 1rem;
+  text-align: center;
+  background: #fff;
+}
+.logo-section img { width: 100%; height: auto; border-radius: 6px; display: block; max-width: 260px; margin: 0 auto; }
+
+/* ─── CTA TEXT ─── */
+.cta-text-section {
+  padding: 1rem 1.5rem 2rem;
+  text-align: center;
+  background: #fff;
+}
+.cta-text-section h3 { font-size: 1.2rem; font-weight: 600; color: #1a1a1a; margin-bottom: 0.4rem; font-style: normal; }
+.cta-text-section p { color: #6b6b6b; font-size: 0.88rem; max-width: 340px; margin: 0 auto; }
+
+/* ─── MOBILE ─── */
+@media (max-width: 640px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .about-section { grid-template-columns: 1fr; }
+  .about-image { height: 220px; }
+  .hero { min-height: 80vh; padding: 3rem 1.25rem; }
+  .hero-logo { max-width: 160px; }
+  .hero h1 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  .section { padding: 3rem 1.25rem; }
+  .cta-btn { width: 100%; text-align: center; white-space: normal; padding: 1rem 1.5rem; }
+  .contact-grid { flex-direction: column; align-items: center; }
+  .contact-btn { width: 100%; justify-content: center; }
+  .divider { height: 40vh; min-height: 300px; background-attachment: scroll; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="mastertech-logo.png" alt="MasterTech Auto Repair">
+    </div>
+    <div class="hero-badge">Family-Owned · Spartanburg, SC</div>
+    <h1>Honest Auto Repair.<br><span class="accent">No Surprises.</span></h1>
+    <p class="subtitle">Fair prices, transparent diagnostics, and quality work on every vehicle that rolls through our doors. From oil changes to engine work — we've got you covered.</p>
+    <a href="tel:+18645049888" class="hero-phone">📞 (864) 504-9888</a>
+  </div>
+</section>
+
+<!-- ═══════════════ SERVICE MENU ═══════════════ -->
+<section class="section">
+  <div class="section-label">Service Menu</div>
+  <h2>Upfront Pricing. No Hidden Fees.</h2>
+  <p class="lede">Every service includes a multi-point inspection. Prices include labor and parts. Call for a firm quote on your specific vehicle.</p>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <h3>Oil Change</h3>
+      <div class="price-tag">$39<small style="font-size:0.75rem;font-weight:400;color:#999;">+</small></div>
+      <ul>
+        <li>Up to 5 quarts conventional oil</li>
+        <li>New oil filter</li>
+        <li>Fluid levels checked &amp; topped off</li>
+        <li>Tire pressure inspection</li>
+        <li>Synthetic add: +$25</li>
+      </ul>
+    </div>
+    <div class="menu-card featured">
+      <h3>Tire Rotation &amp; Balance</h3>
+      <div class="price-tag">$45</div>
+      <ul>
+        <li>Rotate all four tires</li>
+        <li>Computer spin balance</li>
+        <li>Tread depth &amp; wear check</li>
+        <li>Lug nut torque to spec</li>
+        <li>TPMS check</li>
+      </ul>
+    </div>
+    <div class="menu-card">
+      <h3>Brake Service</h3>
+      <div class="price-tag">$149<small style="font-size:0.75rem;font-weight:400;color:#999;"> /axle</small></div>
+      <ul>
+        <li>Pad &amp; rotor inspection</li>
+        <li>Replace pads (ceramic or semi-metallic)</li>
+        <li>Resurface/replace rotors if needed</li>
+        <li>Brake fluid check &amp; bleed</li>
+        <li>Test drive verified</li>
+      </ul>
+    </div>
+    <div class="menu-card">
+      <h3>Diagnostic Scan</h3>
+      <div class="price-tag">$85</div>
+      <ul>
+        <li>Check engine light diagnosis</li>
+        <li>Full OBD-II system scan</li>
+        <li>Read &amp; clear trouble codes</li>
+        <li>Printed report with findings</li>
+        <li>Applied toward approved repairs</li>
+      </ul>
+    </div>
+  </div>
+  <p style="color:#999;font-size:0.78rem;margin-top:1.2rem;text-align:center;">Prices are estimates. Your actual quote depends on vehicle make, model, and condition.</p>
+</section>
+
+<!-- ═══════════════ DIVIDER SHOP PHOTO ═══════════════ -->
+<section class="divider">
+  <div class="divider-overlay"></div>
+  <div class="divider-content">
+    <h2>Quality Work. Fair Prices.<br>Done Right the First Time.</h2>
+  </div>
+</section>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section class="section">
+  <div class="section-label">What We Do</div>
+  <h2>Full Service Auto Repair</h2>
+  <p class="lede">From routine maintenance to major repairs. 151 S Forest St, Spartanburg.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <div class="service-text">
+        <h3>Brakes &amp; Suspension</h3>
+        <p>Pads, rotors, struts, shocks, and alignment — keep your ride safe and smooth.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <div class="service-text">
+        <h3>Engine &amp; Timing</h3>
+        <p>Diagnostics, timing belts, spark plugs, and full engine service for all makes.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">❄️</div>
+      <div class="service-text">
+        <h3>AC &amp; Cooling</h3>
+        <p>A/C recharge, radiator service, thermostat replacement. Keep your cool.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔄</div>
+      <div class="service-text">
+        <h3>Transmission Service</h3>
+        <p>Fluid flush, filter replacement, and diagnostics for all transmissions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section class="section">
+  <div class="section-label">About</div>
+  <h2>Trusted by Spartanburg Drivers</h2>
+  <div class="about-section">
+    <div class="about-image">
+      <img src="https://files-cdn.x.ai/RaT94DPVTHqDF1lFQhqTvA/file_c3023f54-a830-4ffe-ab5c-c96ebb2ac871.png" alt="MasterTech Auto Repair shop" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>MasterTech Auto Repair is a family-owned shop serving Spartanburg with honest, professional automotive service. We believe in transparent pricing, quality workmanship, and treating every customer like a neighbor — because you are.</p>
+      <p>Whether you need a quick oil change, brake service, or full diagnostic, our experienced technicians have the tools and knowledge to get you back on the road safely. No upselling. No shortcuts. Just reliable repairs.</p>
+      <div class="address-line">📍 151 S Forest St, Spartanburg, SC 29306</div>
+      <div class="address-line">📞 (864) 504-9888</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA ═══════════════ -->
+<section class="cta-section">
+  <div class="section-label" style="margin-bottom:0.25rem;">Claim Your Site</div>
+  <h2>This is yours, MasterTech Auto Repair.</h2>
+  <p>A professional website that puts your shop on the map — with your services, pricing, and contact info. Ready to bring in more customers?</p>
+  <a href="https://local-launch-site.vercel.app" target="_blank" class="cta-btn">See Your Online Presence &amp; SEO Score →</a>
+  <p style="color:#999;font-size:0.8rem;margin-top:1rem;">$300 one-time. Your domain. Your site. No contracts.</p>
+</section>
+
+<!-- ═══════════════ LOCAL LAUNCH LOGO ═══════════════ -->
+<section class="logo-section">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:260px;width:100%;">
+    <img src="logo-bg.jpg" alt="Local Launch">
+  </a>
+</section>
+
+<!-- ═══════════════ CTA TEXT ═══════════════ -->
+<section class="cta-text-section">
+  <h3>Want this site? It's yours.</h3>
+  <p>Call, text, or email. I'll hand you the keys in 24 hours.</p>
+  <p style="margin-top:0.8rem;font-size:0.8rem;">I'm based in Simpsonville, SC and I help local businesses like yours grow and win more clients.</p>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section class="contact-section">
+  <div class="contact-grid">
+    <a href="tel:+15033585860" class="contact-btn">
+      <span>📞</span>
+      <span style="font-weight:500;">(503) 358-5860</span>
+    </a>
+    <a href="mailto:zsch21425@gmail.com" class="contact-btn">
+      <span>✉️</span>
+      <span style="font-weight:500;">zsch21425@gmail.com</span>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

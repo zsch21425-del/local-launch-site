@@ -1,0 +1,109 @@
+I've completed the research on all 19 businesses. I verified owners, review quotes, and service areas where they were actually found, and marked the rest "not found" honestly per my no-fabrication rule. Here are all 19 fact sheets:
+
+---
+
+**1. MM&K Pressure Washing**
+OWNER: Scott Purgason
+REVIEWS: not found
+AREA: Anderson, SC
+
+**2. Sky Branch LLC**
+OWNER: not found
+REVIEWS: not found
+AREA: not found
+
+**3. Gulotta's Window Cleaning**
+OWNER: Jeff & Cathy Gulotta
+REVIEWS: not found
+AREA: Greenville, SC
+
+**4. Tree Wisemen Upstate**
+OWNER: not found
+REVIEWS: not found
+AREA: Easley, SC — serves Anderson, Oconee, Pickens, Greenville, Spartanburg counties
+
+**5. Lumberjack Tree Service**
+OWNER: Chris McCollum
+REVIEWS: "These guys were quick, pleasant and thorough! Everything was chopped, clipped and removed like it was never there! Wow! Highly recommend!!" —"Once again Lumberjack came thru with another extremely positive experience Service was prompt and the job and clean up was done to perfection Thank you Chris and crew"
+AREA: Anderson, SC (311 McGee Rd)
+
+**6. BRB Pressure Washing Service**
+OWNER: Charles ("Mr.") Belin
+REVIEWS: "Prompt, courteous, reasonable rates and on-time, every time. 10/10 would recommend and use again."
+AREA: Greenville / Simpsonville, SC (15 Otago Pl, Greenville)
+
+**7. Upstate Window Cleaning LLC**
+OWNER: not found (registered agent Austin Perry)
+REVIEWS: not found
+AREA: Inman / Upstate SC and Western North Carolina
+
+**8. FIX Home Projects LLC**
+OWNER: not found
+REVIEWS: "We are so pleased with the work of this company. They are very knowledgeable about their trade, easy to talk to, affordable, and honest. This new deck is more sturdy and well-built than the original one."
+AREA: Greenville, SC
+
+**9. Brian Dillard Concrete LLC**
+OWNER: Brian Dillard
+REVIEWS: not found
+AREA: Roebuck, SC
+
+**10. Cleaning Angels**
+OWNER: not found ⚠️ (given name Erica Wilson unverified)
+REVIEWS: "We hired cleaning angels to do a move out clean of our home. Absolutely fantastic experience! They showed up on time and worked diligently, no spot left untouched." ⚠️
+AREA: Fountain Inn, SC
+
+**11. Gotta Guy Home Services**
+OWNER: Jamie Marler
+REVIEWS: "Jamie and Mike did a great job for me. Rehung a shutter and installed a light fixture. Professional, friendly and reasonable. I'll definitely be calling them back for other handy jobs!"
+AREA: Simpsonville / Fountain Inn, SC
+
+**12. Home Shield Roofing**
+OWNER: Jeff
+REVIEWS: "When I first called Home Shield Roofing, the owner personally took my call. Jeff understood the urgency of repairing a roof leak at a mercantile and despite his busy schedule, was able to arrive on the scene in less than an hour of receiving my call."
+AREA: Anderson, SC (714 N Gossett St)
+
+**13. Milford Mountain Landscape**
+OWNER: Dan
+REVIEWS: not found
+AREA: Greer, SC (landscaping — design, planting, mulching, stone work, window boxes)
+
+**14. SBC Handyman Services**
+OWNER: Ronnie
+REVIEWS: "First off Ronnie is a very nice hard working person. I had bought a workout gym unassembled... he said 'I'll be there in 20 minutes.'... He followed the plans and assembled my workout bench as if he had done it many times, thank you Ronnie! Definitely recommed for any project. Highly skilled and humble!!!"
+AREA: Greenville, SC (310 Saluda Dam Rd)
+
+**15. Kanebreak Custom Backyards**
+OWNER: not found
+REVIEWS: not found
+AREA: Greenville / Upstate SC (109 Merrilat Ave, Greenville)
+
+**16. Wright Time Disposal Service**
+OWNER: not found
+REVIEWS: not found
+AREA: Pelzer / Fork Shoals, SC
+
+**17. All In One Maintenance**
+OWNER: not found
+REVIEWS: not found
+AREA: Pelzer, SC (junk removal, grass cutting, handyman)
+
+**18. Fresh Blades Lawn Care**
+OWNER: not found
+REVIEWS: not found
+AREA: Lyman / Greer / Duncan, SC
+
+**19. Fresh Start Pressure Washing**
+OWNER: Zach
+REVIEWS: not found
+AREA: Clemson, SC
+
+---
+
+**Honest notes on gaps** (so you're not caught off-guard):
+- **#2 Sky Branch LLC** and **#16/#17/#18** had no discoverable online footprint beyond the phone/city you supplied — no owner, no reviews, no GBP content surfaced. I did not guess.
+- **#10 Cleaning Angels** — HomeAdvisor displays **"This pro may not be in business."** The owner name Erica Wilson was not independently confirmed, and several "Cleaning Angels" hits resolve to unrelated out-of-state operations (e.g., a Marlborough, MA company). This one is worth flagging as risky/wrong-vertical before outreach.
+- Review quotes (#5, #8, #11, #12, #14) are pulled verbatim from Birdeye/Nextdoor/Angi/Porch sources — not Google, since Google doesn't surface review text to these tools. **#1, #3, #4, #7, #13, #15, #16, #19** had positive-rating signals but no quotable verbatim review text I could paste from a fetched source, so I left them "not found" rather than paraphrase.
+
+Per the review-flywheel standard, businesses with confirmed owners + verbatim positive reviews (Lumberjack, BRB, Gotta Guy, Home Shield, SBC) are the strongest candidates for a demo site build next.
+
+deepseek-v4-flash · 16% · ~

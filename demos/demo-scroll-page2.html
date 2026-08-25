@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Local Launch — Websites & SEO for the Trades</title>
+<meta name="description" content="Local Launch builds premium websites and runs SEO for trades businesses in Greenville and Upstate SC. About us, our process, and our services.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#1B1A18;--bg2:#211F1C;--panel:#26231F;--ink:#F2EFE9;--muted:#A6A093;--accent:#2AA8A8;--accent-soft:rgba(42,168,168,.18);--line:rgba(242,239,233,.08);--radius:18px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--accent);color:var(--bg)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:14px clamp(20px,5vw,56px);display:flex;align-items:center;justify-content:space-between}
+nav .nav-bg{position:absolute;inset:0;background:rgba(27,26,24,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-logo{position:relative;z-index:1;display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-logo img{height:28px;width:auto}
+.nav-logo span{font-weight:800;font-size:.95rem;letter-spacing:-.02em;color:var(--ink)}
+.nav-links{position:relative;z-index:1;display:flex;gap:22px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--accent);color:var(--bg)!important;font-weight:700;padding:8px 18px;border-radius:99px;font-size:.82rem!important}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(42,168,168,.35)}
+@media(max-width:720px){.nav-links a:not(.nav-cta){display:none}}
+
+section{padding:clamp(70px,10vw,120px) clamp(20px,6vw,72px)}
+section:first-of-type{padding-top:120px}
+.wrap{max-width:1100px;margin:0 auto}
+.sec-kicker{font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+h2{font-size:clamp(1.7rem,3.4vw,2.6rem);letter-spacing:-.02em;line-height:1.12;font-weight:800;margin-bottom:14px}
+h3{font-size:1.14rem;font-weight:700;letter-spacing:-.01em}
+.sec-sub{color:var(--muted);max-width:540px;font-size:1.02rem;margin-bottom:10px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:16px 32px;border-radius:99px;font-weight:700;font-size:1.02rem;text-decoration:none;transition:transform .25s,box-shadow .25s;border:none;cursor:pointer;font-family:inherit}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(42,168,168,.4)}
+
+/* ---------- ABOUT ---------- */
+.about-box{max-width:800px;margin:40px auto 0}
+.about-box p{color:var(--muted);font-size:1.06rem;line-height:1.7;margin-bottom:18px}
+.about-box p strong{color:var(--ink);font-weight:600}
+
+/* ---------- PROCESS TIMELINE ---------- */
+.process{display:flex;flex-direction:column;gap:0;margin-top:44px;max-width:720px;margin-left:auto;margin-right:auto}
+.proc-step{display:grid;grid-template-columns:60px 1fr;gap:24px;padding:28px 0;border-bottom:1px dashed var(--line);align-items:start}
+.proc-step:last-child{border:none}
+.proc-num{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#1c7a7a);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;flex-shrink:0}
+.proc-step h3{margin-bottom:6px}
+.proc-step p{color:var(--muted);font-size:.95rem;line-height:1.55}
+@media(max-width:560px){.proc-step{grid-template-columns:1fr;gap:12px}.proc-num{margin-bottom:4px}}
+
+/* ---------- SERVICES GRID ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr}}
+.svc-card{border:1px solid var(--line);border-radius:var(--radius);padding:32px 26px;background:var(--bg2);transition:transform .3s,border-color .3s}
+.svc-card:hover{transform:translateY(-4px);border-color:rgba(42,168,168,.3)}
+.svc-icon{width:48px;height:48px;border-radius:12px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--accent);margin-bottom:18px}
+.svc-card h3{margin-bottom:8px}
+.svc-card p{color:var(--muted);font-size:.92rem;line-height:1.55}
+.svc-card ul{list-style:none;margin-top:12px}
+.svc-card li{padding:5px 0;color:var(--muted);font-size:.88rem;display:flex;gap:8px;align-items:baseline}
+.svc-card li::before{content:"✓";color:var(--accent);font-weight:700;font-size:.72em}
+
+/* ---------- FAQ ---------- */
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+@media(max-width:860px){.faq-grid{grid-template-columns:1fr}}
+.faq-item{border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;background:var(--bg2)}
+.faq-item h3{font-size:1.04rem;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.faq-item p{color:var(--muted);font-size:.93rem;line-height:1.55}
+
+/* ---------- CONTACT ---------- */
+.contact-box{max-width:640px;margin:44px auto 0;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg2);padding:clamp(24px,4vw,44px);position:relative;overflow:hidden}
+.contact-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.fld input,.fld select,.fld textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 15px;color:var(--ink);font-size:.96rem;font-family:inherit;transition:border-color .25s;outline:none}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.fld-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.fld-row{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:30px clamp(20px,6vw,72px);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.84rem}
+footer .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(42,168,168,.5)}55%{box-shadow:0 0 0 8px rgba(42,168,168,0)}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-bg"></div>
+  <a href="demo-scroll.html" class="nav-logo"><img src="logo.jpg" alt=""><span>Local<span style="color:var(--accent)">Launch</span></span></a>
+  <div class="nav-links">
+    <a href="demo-scroll.html#proof">Results</a>
+    <a href="demo-scroll.html#how">How It Works</a>
+    <a href="demo-scroll.html#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-kicker reveal">About</div>
+    <h2 class="reveal">I build websites that actually<br>bring in leads.</h2>
+    <div class="about-box reveal">
+      <p>Local Launch is a one-man operation in <strong>Greenville, South Carolina</strong>. I build websites and run SEO for plumbers, mechanics, landscapers, electricians, roofers, HVAC techs — the trades that keep the Upstate running.</p>
+      <p>I've spent the last year building AI-powered tools for local businesses. <strong>AI visualizers</strong> that let customers see their dream yard before they spend a dollar. <strong>AI receptionists</strong> that answer every call at 2 AM. <strong>SEO systems</strong> that push trades businesses onto Google page one — including a landscaping company that went from <strong>22 to 96 out of 120</strong> in six weeks.</p>
+      <p>No contracts. No retainers. No "we'll circle back." Just a website that works as hard as you do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-kicker reveal">How I Work</div>
+    <h2 class="reveal">Four steps. One week.<br>Zero headaches.</h2>
+    <div class="process">
+      <div class="proc-step reveal">
+        <div class="proc-num">1</div>
+        <div><h3>Deep Audit</h3><p>A 120-point AI audit scans every corner of your online presence — website gaps, missing keywords, review signals, GBP health. Delivered same day in plain English. You'll know exactly where you stand against competitors.</p></div>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-num">2</div>
+        <div><h3>Build the Engine</h3><p>Website, AI receptionist, visualizer, Google Business Profile — all deployed in under a week. The infrastructure costs almost nothing to run. Your only job is to answer the phone when leads call.</p></div>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-num">3</div>
+        <div><h3>Optimize & Grow</h3><p>SEO rankings climb. Reviews accumulate. The AI receptionist handles every after-hours call. Google starts sending you more traffic every week. The system gets smarter the longer it runs.</p></div>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-num">4</div>
+        <div><h3>You Stay in Control</h3><p>Monthly check-ins, transparent reporting, no lock-in. I earn your business every 30 days. Need changes? Text me. Want to pause? No penalty. This is a partnership, not a hostage situation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-kicker reveal">Services</div>
+    <h2 class="reveal">Everything your trade business<br>needs to dominate local search.</h2>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-icon"><i class="fa-solid fa-globe"></i></div>
+        <h3>Custom Websites</h3>
+        <p>Premium, mobile-first sites built in under a week. No templates, no bloated builders — just fast, clean code that Google loves.</p>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>Local SEO</h3>
+        <p>120-point audits, keyword research, silo structure, GEO pricing articles. Everything it takes to rank on page one for your city + trade.</p>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon"><i class="fa-solid fa-robot"></i></div>
+        <h3>AI Receptionist</h3>
+        <p>24/7 phone answering — books appointments, answers FAQs, captures leads. Never miss another after-hours call or weekend inquiry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-kicker reveal">FAQ</div>
+    <h2 class="reveal">Common questions.</h2>
+    <div class="faq-grid">
+      <div class="faq-item reveal"><h3>Who is this for?</h3><p>Any trade business serving local customers: plumbers, mechanics, landscapers, electricians, roofers, HVAC, painters, concrete, pavers.</p></div>
+      <div class="faq-item reveal"><h3>Do I need ongoing SEO?</h3><p>The build itself does heavy lifting for 60-90 days. After that, monthly maintenance keeps rankings climbing. But you're never locked in — cancel anytime.</p></div>
+      <div class="faq-item reveal"><h3>How fast will I see results?</h3><p>Site live in under a week. GBP improvements within days. SEO rankings build over 60-90 days. Lead capture starts immediately — the AI receptionist works from day one.</p></div>
+      <div class="faq-item reveal"><h3>What if I already have a site?</h3><p>Great — I audit it first. If the bones are solid, I optimize what's there. If not, a rebuild is faster and cheaper than you think.</p></div>
+      <div class="faq-item reveal"><h3>Do you work outside Greenville?</h3><p>Yes — I build for trades anywhere in the Upstate and beyond. I know the SC market, but the systems work in any local market.</p></div>
+      <div class="faq-item reveal"><h3>What does it actually cost to run?</h3><p>After the one-time build, everything runs for roughly the cost of a couple lunches per month. The AI tools do the heavy lifting.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap" style="text-align:center">
+    <div class="sec-kicker reveal">Let's Talk</div>
+    <h2 class="reveal">Ready to stop missing leads?</h2>
+    <p class="sec-sub reveal" style="max-width:480px;margin:0 auto 10px;text-align:center">Free SEO audit included with every consultation. No pressure — just straight answers.</p>
+    <div class="contact-box reveal" style="text-align:left">
+      <form action="https://formsubmit.co/zsch21425@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New inquiry — Local Launch website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://local-launch-site.vercel.app/thanks.html">
+        <div class="fld-row">
+          <div class="fld"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
+          <div class="fld"><label>Phone</label><input type="tel" name="phone" placeholder="(864) 555-5555"></div>
+        </div>
+        <div class="fld"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required></div>
+        <div class="fld"><label>Your Trade</label><select name="trade"><option>Landscaping</option><option>Plumbing</option><option>Auto / Mechanic</option><option>Electrical</option><option>Roofing</option><option>HVAC</option><option>Other</option></select></div>
+        <div class="fld"><label>What do you need?</label><textarea name="message" rows="4" placeholder="Tell me about your business and what's not working…"></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Send It <i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+    </div>
+    <p style="margin-top:16px;color:var(--muted);font-size:.86rem"><i class="fa-solid fa-phone"></i> Or call: <a href="tel:+18643574530" style="color:var(--accent);text-decoration:none;font-weight:600">(864) 357-4530</a></p>
+  </div>
+</section>
+
+<footer>
+  <div>Local Launch © 2026 — Websites &amp; SEO for the trades. Greenville, SC</div>
+  <div style="display:flex;gap:9px;align-items:center"><span class="dot"></span> Built fast. Runs cheap. Works 24/7.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!prefersReduced) {
+  document.documentElement.classList.add("anim");
+  document.querySelectorAll(".reveal").forEach(function(el, i) {
+    var isOdd = i % 2 === 0, isThird = i % 3 === 0;
+    gsap.fromTo(el,
+      { x: isThird ? 0 : (isOdd ? -120 : 120), y: isThird ? 80 : 0, opacity: 0, rotation: isThird ? 4 : 0 },
+      { x: 0, y: 0, opacity: 1, rotation: 0, duration: 0.7, ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
+      }
+    );
+  });
+}
+</script>
+</body>
+</html>

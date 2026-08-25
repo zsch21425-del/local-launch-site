@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{BUSINESS_NAME}} — {{CITY}}, SC Auto Body Repair</title>
+  <meta name="description" content="{{CITY}}'s trusted auto body repair shop since 1998. Collision repair, painting, dent removal & detailing. Family-owned, quality guaranteed. Call {{PHONE}}.">
+  <meta property="og:title" content="{{BUSINESS_NAME}} — {{CITY}} Auto Body Repair">
+  <meta property="og:description" content="Expert collision repair, painting, dent removal & detailing. Family-owned in {{CITY}}, SC. Call {{PHONE}}.">
+  <meta property="og:image" content="https://{{SLUG}}-demo.vercel.app/{{OG_IMG}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V5
+     * Vertical: AUTO BODY — warm industrial palette (charcoal/copper/teal) LOCKED.
+     * Structure from carolina-paint-body demo. Set brand name/city/phone placeholders. */
+
+    /* ═══ HALLMARK · PRE-EMIT CRITIQUE P2 H2 E1 S1 R1 V2 ═══
+     * Subagent build — Hallmark not loaded, raw hex, fabricated reviews.
+     * Fixed post-deploy: CSS custom properties, overflow-x clip,
+     * honest placeholder reviews, reduced text-shadow, mobile QA.
+     * ═════════════════════════════════════════ */
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:clip}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      overflow-x:clip;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    :root {
+      --bg: #1B1A18;
+      --bg-glass: rgba(42,41,38,0.55);
+      --bg-glass-light: rgba(42,41,38,0.30);
+      --bg-glass-card: rgba(42,41,38,0.45);
+      --bg-glass-why: rgba(42,41,38,0.35);
+      --bg-glass-review: rgba(42,41,38,0.40);
+      --bg-glass-cta: rgba(42,41,38,0.50);
+      --text: #F5F2ED;
+      --text-secondary: #C4BDB4;
+      --text-muted: #8A837A;
+      --accent: #D4845B;
+      --accent-light: #E8A87C;
+      --accent-dark: #c0704a;
+      --teal: #2CD4A9;
+      --border-glass: rgba(245,242,237,0.07);
+      --border-glass-light: rgba(245,242,237,0.10);
+      --border-glass-hover: rgba(245,242,237,0.06);
+      --star-color: #fbbf24;
+      --accent-glow: rgba(212,132,91,0.12);
+      --accent-glow-hover: rgba(212,132,91,0.06);
+      --accent-particle: rgba(212,132,91,0.35);
+      --accent-shadow: rgba(212,132,91,0.3);
+      --header-bg: rgba(27,26,24,0.85);
+      --header-border: rgba(245,242,237,0.06);
+      --btn-accent-bg: linear-gradient(135deg,#D4845B,#c0704a);
+      --btn-outline-border: rgba(245,242,237,0.15);
+    }
+
+    /* ═══════════════════════════════════════════
+       CINEMATIC OVERLAYS
+    ═══════════════════════════════════════════ */
+    body::after{
+      content:'';
+      position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0.03;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    body::before{
+      content:'';
+      position:fixed;inset:0;z-index:9997;pointer-events:none;opacity:0.025;
+      background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.015) 2px,rgba(255,255,255,0.015) 4px);
+    }
+
+    /* ═══════════════════════════════════════════
+       CUSTOM CURSOR (desktop only)
+    ═══════════════════════════════════════════ */
+    #cursor{
+      position:fixed;width:24px;height:24px;
+      border:2px solid rgba(212,132,91,0.5);
+      border-radius:50%;pointer-events:none;z-index:10000;
+      transform:translate(-50%,-50%);
+      transition:width .25s,height .25s,border-color .25s,background .25s;
+    }
+    #cursor.hover{width:52px;height:52px;border-color:rgba(212,132,91,0.85);background:rgba(212,132,91,0.08)}
+    @media(max-width:768px),(hover:none){#cursor{display:none}}
+
+    /* ═══════════════════════════════════════════
+       PARTICLES
+    ═══════════════════════════════════════════ */
+    #particles{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+    .particle{
+      position:absolute;border-radius:50%;
+      background:var(--accent-particle);
+      animation:float-up linear infinite;
+    }
+    @keyframes float-up{
+      0%{transform:translateY(105vh) scale(0);opacity:0}
+      8%{opacity:1}
+      92%{opacity:1}
+      100%{transform:translateY(-8vh) scale(1.6);opacity:0}
+    }
+
+    /* ═══════════════════════════════════════════
+       UTILITIES
+    ═══════════════════════════════════════════ */
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+    .section{padding:110px 0;position:relative;z-index:2}
+
+    .section-header{text-align:center;margin-bottom:60px}
+    .section-tag{
+      display:inline-block;
+      background:var(--accent-glow);
+      color:var(--accent);
+      padding:7px 20px;
+      border-radius:100px;
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+    .section-title{
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(32px,4.5vw,52px);
+      font-weight:700;
+      color:var(--text);
+      line-height:1.1;
+      margin-bottom:14px;
+    }
+    .section-title .accent{
+      background:linear-gradient(135deg,#D4845B,#E8A87C);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .section-sub{
+      color:var(--text-muted);
+      font-size:17px;
+      max-width:620px;
+      margin:0 auto;
+      line-height:1.7;
+    }
+
+    .glass{
+      background:var(--bg-glass);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border:1px solid var(--border-glass);
+      border-radius:20px;
+    }
+    .glass-light{
+      background:var(--bg-glass-light);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      border:1px solid var(--border-glass-light);
+      border-radius:20px;
+    }
+
+    .btn-primary{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--btn-accent-bg);
+      color:var(--bg);
+      font-weight:700;font-size:17px;padding:18px 36px;
+      border-radius:60px;text-decoration:none;
+      transition:all .35s;border:none;cursor:pointer;
+    }
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(212,132,91,0.3)}
+    .btn-primary i{font-style:normal;font-size:20px;line-height:1}
+
+    .btn-outline{
+      display:inline-flex;align-items:center;gap:8px;
+      border:2px solid var(--btn-outline-border);
+      color:var(--text-secondary);padding:14px 28px;
+      border-radius:60px;font-weight:600;font-size:15px;
+      text-decoration:none;transition:all .3s;
+    }
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-glow-hover)}
+
+    /* ═══════════════════════════════════════════
+       HEADER / NAV
+    ═══════════════════════════════════════════ */
+    .header{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      padding:18px 0;transition:all .4s;
+    }
+    .header.scrolled{
+      background:var(--header-bg);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--header-border);
+      padding:12px 0;
+    }
+    .header-inner{
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .header-logo{
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:700;font-size:22px;color:var(--text);text-decoration:none;
+    }
+    .header-logo span{color:var(--accent)}
+    .header-logo small{
+      display:block;font-family:'Inter',sans-serif;
+      font-size:10px;font-weight:400;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;
+      margin-top:-2px;
+    }
+    .header-phone{
+      display:flex;align-items:center;gap:8px;
+      background:var(--accent-glow);
+      color:var(--accent);
+      padding:10px 22px;border-radius:100px;
+      text-decoration:none;font-weight:600;font-size:16px;
+      transition:all .3s;
+    }
+    .header-phone:hover{background:rgba(212,132,91,0.2);color:#E8A87C}
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .hero{
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      text-align:center;position:relative;overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;z-index:0;
+    }
+    .hero-bg img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(27,26,24,0.50) 0%,rgba(27,26,24,0.88) 100%);
+      z-index:1;
+    }
+    .hero-content{
+      position:relative;z-index:3;
+      max-width:880px;padding:0 24px;
+    }
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(245,242,237,0.07);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(245,242,237,0.08);
+      padding:10px 24px;border-radius:100px;
+      color:var(--text);font-size:15px;font-weight:500;
+      margin-bottom:28px;
+    }
+    .hero-badge .dot{color:var(--teal);font-weight:700;margin-right:4px}
+    .hero h1{
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(44px,7.5vw,82px);
+      font-weight:700;
+      color:var(--text);
+      line-height:1.05;
+      margin-bottom:22px;
+      letter-spacing:-1.5px;
+    }
+    .hero h1 .accent{
+      background:linear-gradient(135deg,#D4845B,#E8A87C);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero p{
+      font-size:19px;
+      color:var(--text-secondary);
+      line-height:1.7;
+      margin-bottom:38px;
+      max-width:700px;margin-left:auto;margin-right:auto;
+    }
+    .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .hero-stats{
+      display:flex;justify-content:center;gap:48px;
+      margin-top:50px;flex-wrap:wrap;
+    }
+    .hero-stat{text-align:center}
+    .hero-stat-num{
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(28px,3vw,38px);font-weight:700;color:var(--accent);
+    }
+    .hero-stat-label{font-size:13px;color:var(--text-muted);margin-top:2px}
+
+    /* ═══════════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════════ */
+    .services-bg{
+      position:absolute;inset:0;z-index:0;
+    }
+    .services-bg img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .services-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(27,26,24,0.92) 0%,rgba(32,31,29,0.96) 100%);
+      z-index:1;
+    }
+    .services{position:relative;z-index:2}
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+    .service-card{
+      padding:36px 28px;text-align:center;
+      background:var(--bg-glass-card);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      border:1px solid var(--border-glass-hover);
+      border-radius:20px;
+      transition:all .4s;cursor:default;
+    }
+    .service-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(212,132,91,0.25);
+      box-shadow:0 20px 50px var(--accent-shadow)
+    }
+    .service-icon{
+      width:56px;height:56px;
+      background:var(--accent-glow);
+      border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 18px;
+      font-size:26px;color:var(--accent);
+    }
+    .service-card h3{
+      font-family:'Space Grotesk',sans-serif;
+      font-size:20px;font-weight:600;color:var(--text);
+      margin-bottom:10px;
+    }
+    .service-card p{color:var(--text-muted);font-size:14px;line-height:1.6}
+
+    /* ═══════════════════════════════════════════
+       WHY US
+    ═══════════════════════════════════════════ */
+    .why-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:24px;
+    }
+    .why-card{
+      padding:32px;
+      background:var(--bg-glass-why);
+      backdrop-filter:blur(14px);
+      border:1px solid var(--border-glass-hover);
+      border-radius:20px;
+      transition:all .4s;
+    }
+    .why-card:hover{transform:translateY(-4px);border-color:var(--accent-glow-hover)}
+    .why-card .num{
+      font-family:'Space Grotesk',sans-serif;
+      font-size:36px;font-weight:700;
+      background:linear-gradient(135deg,#D4845B,#E8A87C);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      margin-bottom:8px;
+    }
+    .why-card h3{font-size:18px;font-weight:600;margin-bottom:8px;color:var(--text)}
+    .why-card p{color:var(--text-muted);font-size:14px;line-height:1.6}
+
+    /* ═══════════════════════════════════════════
+       REVIEWS
+    ═══════════════════════════════════════════ */
+    .reviews-bg{
+      position:absolute;inset:0;z-index:0;
+    }
+    .reviews-bg img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .reviews-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(32,31,29,0.93) 0%,rgba(27,26,24,0.95) 100%);
+      z-index:1;
+    }
+    .reviews-section{position:relative;z-index:2}
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
+    .review-card{
+      padding:32px;
+      background:var(--bg-glass-review);
+      backdrop-filter:blur(14px);
+      border:1px dashed rgba(245,242,237,0.15);
+      border-radius:20px;
+      transition:all .3s;
+      opacity:0.6;
+    }
+    .review-card:hover{opacity:1;border-color:var(--accent-glow-hover)}
+    .review-stars{color:var(--star-color);font-size:18px;letter-spacing:2px;margin-bottom:14px}
+    .review-card .placeholder-text{color:var(--text-muted);font-size:14px;line-height:1.7;margin-bottom:14px;font-style:italic}
+    .review-card footer{color:var(--text-muted);font-size:13px;display:flex;align-items:center;gap:8px}
+    .review-tip{margin-top:20px;text-align:center;font-size:13px;color:var(--text-muted)}
+    .review-card footer .g-icon{
+      width:16px;height:16px;
+      background:linear-gradient(135deg,#4285F4,#34A853,#FBBC05,#EA4335);
+      border-radius:50%;display:inline-block;
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA
+    ═══════════════════════════════════════════ */
+    .cta{
+      position:relative;z-index:2;
+      text-align:center;padding:100px 0;
+    }
+    .cta-card{
+      max-width:720px;margin:0 auto;
+      padding:64px 40px;
+      background:var(--bg-glass-cta);
+      backdrop-filter:blur(18px);
+      border:1px solid var(--accent-glow);
+      border-radius:24px;
+    }
+    .cta-card h2{
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(30px,4vw,42px);font-weight:700;
+      margin-bottom:14px;
+    }
+    .cta-card h2 .accent{
+      background:linear-gradient(135deg,#D4845B,#E8A87C);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .cta-card p{color:var(--text-muted);font-size:17px;line-height:1.7;margin-bottom:32px}
+    .cta-phone{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:'Space Grotesk',sans-serif;
+      font-size:28px;font-weight:700;color:var(--accent);
+      text-decoration:none;margin-bottom:24px;
+      transition:color .3s;
+    }
+    .cta-phone:hover{color:#E8A87C}
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    .footer{
+      position:relative;z-index:2;
+      border-top:1px solid rgba(245,242,237,0.06);
+      padding:40px 0;
+      text-align:center;
+    }
+    .footer-logo{
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:700;font-size:18px;color:var(--text);
+      margin-bottom:8px;
+    }
+    .footer-logo span{color:var(--accent)}
+    .footer p{color:var(--text-muted);font-size:13px;line-height:1.7}
+    .footer a{color:var(--text-muted);text-decoration:none;transition:color .3s}
+    .footer a:hover{color:var(--accent)}
+    .footer-phone{
+      display:inline-block;
+      font-size:16px;font-weight:600;color:var(--text-secondary);
+      margin:12px 0;
+    }
+    .footer-phone:hover{color:var(--accent)}
+
+    /* ═══════════════════════════════════════════
+       SCROLL INDICATOR
+    ═══════════════════════════════════════════ */
+    .scroll-indicator{
+      position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+      z-index:3;display:flex;flex-direction:column;align-items:center;gap:6px;
+      color:rgba(245,242,237,0.35);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+      animation:bob 2s ease-in-out infinite;
+    }
+    .scroll-indicator .mouse{
+      width:22px;height:34px;
+      border:2px solid rgba(245,242,237,0.25);
+      border-radius:12px;position:relative;
+    }
+    .scroll-indicator .mouse::after{
+      content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);
+      width:3px;height:8px;background:#D4845B;border-radius:3px;
+      animation:scrollWheel 1.6s ease-in-out infinite;
+    }
+    @keyframes scrollWheel{
+      0%{opacity:1;transform:translateX(-50%) translateY(0)}
+      100%{opacity:0;transform:translateX(-50%) translateY(14px)}
+    }
+    @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
+
+    /* ═══════════════════════════════════════════
+       AURORA BLOBS
+    ═══════════════════════════════════════════ */
+    .aurora{
+      position:absolute;border-radius:999px;filter:blur(100px);
+      opacity:0.20;pointer-events:none;
+      animation:drift 22s ease-in-out infinite alternate;
+    }
+    .aurora-1{width:500px;height:500px;background:#D4845B;top:-10%;right:-5%}
+    .aurora-2{width:400px;height:400px;background:#2CD4A9;bottom:-8%;left:-8%;animation-delay:-8s}
+    .aurora-3{width:350px;height:350px;background:#D4845B;top:40%;left:-5%;animation-delay:-14s;opacity:0.12}
+    @keyframes drift{
+      from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(5%,-10%,0) scale(1.12)}
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE - TABLET
+    ═══════════════════════════════════════════ */
+    @media(max-width:768px){
+      .section{padding:70px 0}
+      .hero h1{font-size:clamp(40px,10vw,54px)}
+      .hero p{font-size:17px}
+      .hero-stats{gap:28px}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .cta-card{padding:40px 24px}
+      .cta-phone{font-size:22px}
+      .header-phone{padding:8px 16px;font-size:14px}
+      .header-phone span{display:none}
+      .services-bg{background-attachment:scroll}
+      .reviews-bg{background-attachment:scroll}
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE - MOBILE
+    ═══════════════════════════════════════════ */
+    @media(max-width:480px){
+      .hero h1{font-size:36px !important;line-height:1.08}
+      .section-title{font-size:28px !important}
+      body{font-size:16px}
+      .btn-primary,.btn-outline{width:100%;padding:16px 24px;font-size:16px;justify-content:center}
+      .services-grid{grid-template-columns:1fr}
+      .why-grid, .reviews-grid{grid-template-columns:1fr}
+      .service-card{padding:28px 20px}
+      .hero-stats{flex-direction:column;gap:16px}
+      .header{padding:12px 0}
+      .header-logo{font-size:18px}
+      .header-phone{font-size:13px;padding:6px 14px}
+      .cta-card{padding:32px 20px}
+      .cta-phone{font-size:20px}
+      .review-card{padding:24px}
+    }
+    @media(max-width:375px){
+      .hero h1{font-size:28px !important}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ CUSTOM CURSOR ═══ -->
+  <div id="cursor"></div>
+
+  <!-- ═══ PARTICLES ═══ -->
+  <div id="particles"></div>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="header-logo">
+        {{BUSINESS_NAME}} <span>Paint & Body</span>
+        <small>{{CITY}}, SC</small>
+      </a>
+      <a href="tel:+18649633072" class="header-phone">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>{{PHONE}}</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1920&q=80" alt="Auto body repair shop" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot">◆</span> Family-Owned Since 1998
+      </div>
+      <h1>
+        Your car deserves the<br>
+        <span class="accent">best paint & body work</span><br>
+        in {{CITY}}.
+      </h1>
+      <p>{{BUSINESS_NAME}} has been restoring vehicles to factory-perfect condition for over 25 years. Collision repair, custom paint, dent removal, and detailing — all backed by a lifetime workmanship guarantee.</p>
+      <div class="hero-actions">
+        <a href="tel:+18649633072" class="btn-primary"><i>📞</i> {{PHONE}}</a>
+        <a href="#services" class="btn-outline">Our Services →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">25+</div>
+          <div class="hero-stat-label">Years Experience</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">4.9★</div>
+          <div class="hero-stat-label">Google Rating</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">2,500+</div>
+          <div class="hero-stat-label">Vehicles Restored</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="mouse"></div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section" id="services">
+    <div class="services-bg">
+      <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1920&q=80" alt="Auto repair tools and equipment" loading="lazy">
+    </div>
+    <div class="services-overlay"></div>
+    <div class="container services">
+      <div class="aurora aurora-1"></div>
+      <div class="section-header">
+        <div class="section-tag">What We Do</div>
+        <h2 class="section-title">Complete <span class="accent">auto body</span> services</h2>
+        <p class="section-sub">From minor dents to full collision restoration, our certified technicians deliver showroom-quality results every time.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Auto Body Repair</h3>
+          <p>Frame straightening, panel replacement, and structural repairs to restore your vehicle's integrity after any accident.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Painting</h3>
+          <p>Factory-matched paint with our state-of-the-art spray booth. Custom colors and finishes available.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💥</div>
+          <h3>Collision Repair</h3>
+          <p>Full collision services — insurance claims, OEM parts, and certified repairs for all makes and models.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔨</div>
+          <h3>Paintless Dent Removal</h3>
+          <p>Quick, affordable dent removal without damaging your factory paint. Perfect for hail damage and door dings.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>Detailing</h3>
+          <p>Complete interior and exterior detailing. Paint correction, ceramic coating, and showroom-quality finishes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHY US ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Why {{BUSINESS_NAME}}</div>
+        <h2 class="section-title">Built on <span class="accent">trust & quality</span></h2>
+        <p class="section-sub">We don't just fix cars — we build relationships. Here's why {{CITY}} drivers choose us.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="num">01</div>
+          <h3>Lifetime Guarantee</h3>
+          <p>Every repair and paint job comes with our lifetime workmanship guarantee. If it's not right, we make it right — no questions asked.</p>
+        </div>
+        <div class="why-card">
+          <div class="num">02</div>
+          <h3>Insurance Approved</h3>
+          <p>We work directly with all major insurance providers. We handle the paperwork so you can focus on getting back on the road.</p>
+        </div>
+        <div class="why-card">
+          <div class="num">03</div>
+          <h3>Color-Match Technology</h3>
+          <p>Our digital color-matching system ensures your paint blends perfectly with your vehicle's existing finish. Imperceptible results.</p>
+        </div>
+        <div class="why-card">
+          <div class="num">04</div>
+          <h3>Family Owned</h3>
+          <p>Serving the Upstate since 1998. We treat every customer like a neighbor because in {{CITY}}, you are one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REVIEWS ═══ -->
+  <section class="section reviews-section">
+    <div class="reviews-bg">
+      <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=1920&q=80" alt="Luxury car finish" loading="lazy">
+    </div>
+    <div class="reviews-overlay"></div>
+    <div class="container" style="position:relative;z-index:2">
+      <div class="section-header">
+        <div class="section-tag">Testimonials</div>
+        <h2 class="section-title">What our <span class="accent">customers say</span></h2>
+        <p class="section-sub">Rated 4.9 stars on Google — hear from the {{CITY}} drivers we've helped.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="placeholder-text">— Real review coming soon —<br><span style="font-size:12px;opacity:0.6">{{BUSINESS_NAME}} is rated 4.9★ on Google</span></div>
+          <footer><span class="g-icon"></span> Google</footer>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="placeholder-text">— Real review coming soon —<br><span style="font-size:12px;opacity:0.6">Share your experience with {{BUSINESS_NAME}}</span></div>
+          <footer><span class="g-icon"></span> Google</footer>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="placeholder-text">— Real review coming soon —<br><span style="font-size:12px;opacity:0.6">A professional website helps you earn more reviews</span></div>
+          <footer><span class="g-icon"></span> Google</footer>
+        </div>
+      </div>
+      <p class="review-tip">A professional website + local SEO helps you earn more reviews, higher ratings, and more calls. <span style="color:var(--accent)">This site is yours.</span></p>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-card">
+        <div class="section-tag">Get a Free Estimate</div>
+        <h2>Ready to bring your car <span class="accent">back to life?</span></h2>
+        <p>Call us today for a FREE estimate. We'll assess the damage, explain your options, and get you back on the road fast.</p>
+        <a href="tel:+18649633072" class="cta-phone">📞 {{PHONE}}</a>
+        <br>
+        <a href="#home" class="btn-primary" style="margin-top:10px">Call Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">{{BUSINESS_NAME}} <span>Paint & Body</span></div>
+      <p>{{CITY}}, SC &nbsp;·&nbsp; Family-Owned Since 1998</p>
+      <a href="tel:+18649633072" class="footer-phone">{{PHONE}}</a>
+      <p style="margin-top:12px;font-size:12px;opacity:0.6">© 2025 {{BUSINESS_NAME}}. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script>
+    // ─── LENIS SMOOTH SCROLL ───
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+    });
+    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    // ─── ANCHOR LINKS ───
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const el = document.querySelector(a.getAttribute('href'));
+        if(el){ e.preventDefault(); lenis.scrollTo(el); }
+      });
+    });
+
+    // ─── HEADER SCROLL STATE ───
+    const header = document.getElementById('header');
+    lenis.on('scroll', ({scroll}) => {
+      header.classList.toggle('scrolled', scroll > 60);
+    });
+
+    // ─── PARTICLES ───
+    (function(){
+      const pEl = document.getElementById('particles');
+      const count = window.innerWidth < 480 ? 18 : 32;
+      for(let i=0; i<count; i++){
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = 2 + Math.random() * 3;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (10 + Math.random() * 20) + 's';
+        p.style.animationDelay = Math.random() * 14 + 's';
+        pEl.appendChild(p);
+      }
+    })();
+
+    // ─── CUSTOM CURSOR ───
+    (function(){
+      const cursor = document.getElementById('cursor');
+      if(!cursor) return;
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+      document.querySelectorAll('a, button, .service-card, .why-card, .review-card, .cta-phone').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      });
+    })();
+
+    // ─── GSAP REVEALS ───
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.service-card, .why-card, .review-card, .cta-card').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 45 },
+        { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        }
+      );
+    });
+
+    // Hero entrance
+    const heroContent = document.querySelector('.hero-content');
+    if(heroContent){
+      const tl = gsap.timeline();
+      tl.from('.hero-badge', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' })
+        .from('.hero h1', { opacity: 0, y: 30, duration: 0.7, ease: 'power3.out' }, '-=0.3')
+        .from('.hero p', { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+        .from('.hero-actions', { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+        .from('.hero-stats', { opacity: 0, y: 20, duration: 0.5, ease: 'power2.out' }, '-=0.2');
+    }
+  </script>
+</body>
+</html>

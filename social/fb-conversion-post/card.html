@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1080px; height:1080px;
+    font-family:'Inter',-apple-system,Helvetica,Arial,sans-serif;
+    background:linear-gradient(160deg,#fdfcf9 0%,#fff 45%,#eef4f1 100%);
+    color:#1B1A18;
+    position:relative; overflow:hidden;
+    display:flex; flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* soft bright blobs */
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;}
+  .b1{width:440px;height:440px;background:#2CD4A9;top:-140px;right:-100px;}
+  .b2{width:380px;height:380px;background:#D4845B;bottom:-120px;left:-90px;}
+  .inner{position:relative;z-index:2;padding:72px 76px;display:flex;flex-direction:column;flex:1;}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:26px;letter-spacing:-.02em;}
+  .brand .dot{width:14px;height:14px;border-radius:50%;background:#2CD4A9;}
+  .brand span b{color:#1B1A18;}
+  .kicker{
+    margin-top:auto;
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:22px;font-weight:600;color:#B4643A;
+    letter-spacing:.02em;
+  }
+  .kicker .line{width:46px;height:4px;border-radius:2px;background:#D4845B;}
+  h1{
+    font-size:74px;line-height:1.03;letter-spacing:-.03em;font-weight:800;
+    margin-top:18px;
+  }
+  h1 .accent{color:#B4643A;}
+  h1 .teal{color:#18815f;}
+  .sub{
+    font-size:30px;line-height:1.35;font-weight:500;color:#4a4a48;
+    margin-top:22px;max-width:880px;
+  }
+  .pills{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px;}
+  .pill{
+    font-size:23px;font-weight:600;color:#1B1A18;background:#fff;
+    border:2px solid #dedcd6;border-radius:999px;padding:14px 26px;
+    box-shadow:0 6px 18px rgba(27,26,24,.06);
+  }
+</style>
+</head>
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="inner">
+    <div class="brand"><span class="dot"></span><span><b>Local&nbsp;Launch</b></span></div>
+    <div style="margin-top:auto;"></div>
+    <div class="kicker"><span class="line"></span>BUILT TO CONVERT</div>
+    <h1>Your site has one job:<br><span class="accent">make the phone ring</span>.<br><span class="teal">Not win awards.</span></h1>
+    <div class="sub">What "built to convert" actually means for a trade business in 2026.</div>
+    <div class="pills">
+      <div class="pill">One-tap call button</div>
+      <div class="pill">Service pages, not one blob</div>
+      <div class="pill">Answer the real questions</div>
+      <div class="pill">Proof you're real</div>
+    </div>
+  </div>
+</body>
+</html>

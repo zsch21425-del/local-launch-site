@@ -1,0 +1,14 @@
+# Exclude heavy/dev dirs from Vercel deploys (Aug 7 2026 — was causing ENOMEM uploads)
+ads/
+receptionist/
+sandboxes/
+demos/
+templates/
+tmp_shots/
+.git/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+*.bak*
+*.backup*

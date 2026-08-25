@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JTP Lawncare &amp; Junk Removal — Fountain Inn, SC</title>
+<meta name="description" content="JTP Lawncare and Junk Removal — veteran-owned lawn care &amp; junk removal in Fountain Inn SC. Lawn mowing, yard cleanup, hauling &amp; more. Free estimates. (864) 219-0831">
+<meta property="og:title" content="JTP Lawncare &amp; Junk Removal — Fountain Inn, SC">
+<meta property="og:description" content="Veteran-owned lawn care &amp; junk removal in Fountain Inn SC. Free estimates.">
+<meta property="og:image" content="https://jtp-lawncare-demo.vercel.app/hero.jpg">
+<meta property="og:url" content="https://jtp-lawncare-demo.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  /* JTP Lawncare — Gallery-Led · patriotic-green · anchor hue: lawn green */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --brand: #1E6B3A;
+    --brand-dark: #10401F;
+    --brand-pale: #E2F0E6;
+    --accent: #D96A45;
+    --accent-light: #F0A08A;
+    --paper: #FAF7F2;
+    --text: #333;
+    --text-muted: #777;
+    --text-light: #999;
+    --white: #FFFFFF;
+    --border: #e8e4de;
+  }
+  html { overflow-x: clip; }
+  body { overflow-x: clip; font-family: 'Inter', -apple-system, sans-serif; background: var(--paper); color: var(--text); line-height: 1.7; }
+
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(16,64,31,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+  .nav-brand span { color: var(--accent-light); }
+  .nav-cta { background: var(--accent); color: var(--white); font-weight: 700; font-size: 0.85rem; padding: 0.55rem 1.3rem; border-radius: 999px; text-decoration: none; transition: all 0.25s; }
+  .nav-cta:hover { background: var(--accent-light); transform: scale(1.04); }
+
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 7rem 1.5rem 4rem; overflow: hidden; background: #10401F url('jtp-hero-poster.jpg') center/cover no-repeat; }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85) saturate(1.1); transform: scale(1.06); transition: transform 12s ease; }
+
+  @media(max-width:720px){
+    .nav-inner { padding-left: 1rem; padding-right: 1rem; gap: 0.6rem; }
+    .nav-cta { white-space: nowrap; }
+  }
+  /* Mobile: keep the moving background clearly visible — lighter overlay, brighter video */
+  @media(max-width:720px){
+    .hero-bg { filter: brightness(1.05) saturate(1.15); }
+    .hero .hero-overlay { background: linear-gradient(180deg, rgba(16,64,31,0.10) 0%, rgba(16,64,31,0.25) 100%); }
+    .hero h1, .hero .subtitle, .hero-proof, .hero-badge { text-shadow: 0 2px 12px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.85); }
+    .hero h1 .accent { text-shadow: 0 2px 12px rgba(0,0,0,0.95), 0 0 4px rgba(0,0,0,0.85), 0 0 18px rgba(0,0,0,0.8); }
+  }
+  .hero:hover .hero-bg { transform: scale(1.0); }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,64,31,0.28) 0%, rgba(16,64,31,0.6) 100%); }
+  .hero-content { position: relative; z-index: 3; max-width: 780px; }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 999px; padding: 0.45rem 1.4rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.5rem; backdrop-filter: blur(4px); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 1.2rem; text-shadow: 0 2px 40px rgba(0,0,0,0.7); }
+  .hero h1 .accent { color: var(--accent-light); }
+  .hero .subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.85); font-weight: 300; max-width: 620px; margin: 0 auto 1.8rem; }
+  .hero-proof { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem; color: rgba(255,255,255,0.9); font-size: 0.85rem; }
+  .hero-proof .star { color: var(--accent-light); }
+  .hero-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-phone { background: var(--accent); color: var(--white); font-weight: 700; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; box-shadow: 0 6px 24px rgba(217,106,69,0.35); }
+  .btn-phone:hover { background: var(--accent-light); transform: scale(1.05); }
+  .btn-outline { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); color: var(--white); font-weight: 600; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; }
+  .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  .section { padding: 5.5rem 1.5rem; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--brand); margin-bottom: 1rem; }
+  .section .lede { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; max-width: 640px; margin-bottom: 3rem; }
+
+  .services-section { position: relative; overflow: hidden; padding: 0; max-width: 100%; margin: 0; background: var(--brand-dark); }
+  .services-bg { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0; }
+  .services-bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .services-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,64,31,0.55) 0%, rgba(16,64,31,0.75) 100%); z-index: 1; }
+  .services-inner { position: relative; z-index: 2; max-width: 1200px; margin: -100vh auto 0; padding: 5.5rem 1.5rem; }
+  .services-section h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,.6); }
+  .services-section .lede { color: rgba(255,255,255,0.9); text-shadow: 0 1px 4px rgba(0,0,0,.5); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .service-card { position: relative; border-radius: 16px; overflow: hidden; height: 340px; box-shadow: 0 12px 32px rgba(0,0,0,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,0.4); }
+  .service-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .service-card .card-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,64,31,0) 35%, rgba(16,64,31,0.95) 100%); }
+  .service-card .card-content { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.5rem; text-align: left; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+  .service-card p { font-size: 0.85rem; color: rgba(255,255,255,0.9); font-weight: 300; }
+
+  .gallery-section { background: var(--brand-dark); }
+  .gallery-section .section-label { color: var(--accent-light); }
+  .gallery-section h2 { color: var(--white); }
+  .gallery-section .lede { color: rgba(255,255,255,0.7); }
+  .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .gallery-card { position: relative; border-radius: 14px; overflow: hidden; height: 260px; }
+  .gallery-card img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-cap { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.8rem 1rem; background: linear-gradient(to top, rgba(0,0,0,0.75), transparent); color: var(--white); font-size: 0.85rem; }
+
+  .frontyard-wrap { position: relative; }
+  .reviews-bg-desktop { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0; }
+  .reviews-bg-desktop video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .reviews-bg-mobile { display: none; }
+  .reviews-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,64,31,0.30) 0%, rgba(16,64,31,0.55) 100%); z-index: 1; }
+  @media (max-width: 640px) { .reviews-bg-desktop { display: none; } .reviews-bg-mobile { display: block; position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0; } .reviews-bg-mobile video { width: 100%; height: 100%; object-fit: cover; } }
+  .reviews-section { position: relative; z-index: 2; }
+  .reviews-section .section-label { color: var(--accent-light); }
+  .reviews-section h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,.6); }
+  .reviews-section .lede { color: rgba(255,255,255,0.9); text-shadow: 0 1px 4px rgba(0,0,0,.5); }
+  .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .review-card { background: rgba(255,255,255,0.94); border-radius: 16px; padding: 1.75rem; border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0,0,0,0.12); backdrop-filter: blur(4px); }
+  .review-stars { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+  .review-text { font-size: 0.9rem; color: var(--text); font-weight: 400; line-height: 1.7; margin-bottom: 1rem; }
+  .review-author { font-size: 0.8rem; color: var(--text-muted); }
+  .review-author strong { color: var(--brand); font-weight: 600; }
+  .review-source { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; }
+  .review-card.placeholder { opacity: 0.9; }
+
+  .about-panel { position: relative; z-index: 2; }
+  .about-panel .section-label { color: var(--accent-light); }
+  .about-panel h2 { color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,.6); }
+  .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-image { border-radius: 18px; overflow: hidden; height: 380px; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+  .about-image img { width: 100%; height: 100%; object-fit: cover; }
+  .about-text p { color: rgba(255,255,255,0.9); font-weight: 300; margin-bottom: 1rem; font-size: 0.95rem; }
+  .about-text .highlight { color: var(--accent-light); font-weight: 600; }
+
+  .cta-section { text-align: center; padding: 5.5rem 1.5rem; background: linear-gradient(140deg, var(--brand-dark) 0%, var(--accent) 130%); }
+  .cta-section .section-label { color: var(--accent-light); }
+  .cta-section h2 { color: var(--white); }
+  .cta-section p { color: rgba(255,255,255,0.8); font-weight: 300; margin-bottom: 2.2rem; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--accent-light); color: var(--brand-dark); font-weight: 700; padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: all 0.3s; }
+  .cta-btn:hover { transform: scale(1.05); }
+
+  .ll-logo { padding: 3rem 1.5rem 1.5rem; text-align: center; background: var(--paper); }
+  .ll-cta-text { padding: 1.5rem 1.5rem 2.5rem; text-align: center; background: var(--paper); }
+  .ll-cta-text h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--brand); margin-bottom: 0.5rem; }
+  .ll-cta-text p { color: var(--text-muted); font-size: 0.9rem; }
+  .ll-contact { padding: 2.5rem 1.5rem 4rem; text-align: center; background: var(--paper); border-top: 1px solid var(--border); }
+  .ll-contact-inner { display: flex; flex-direction: column; gap: 1rem; max-width: 320px; margin: 0 auto; }
+  .ll-btn { display: flex; align-items: center; gap: 0.75rem; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; text-decoration: none; color: var(--brand); transition: all 0.2s; }
+  .ll-btn:hover { border-color: var(--accent); }
+  .ll-btn .lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .ll-btn .val { font-weight: 600; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 6rem 1.25rem 3rem; }
+    .section { padding: 3.5rem 1.25rem; }
+    .services-section { padding: 0; max-width: 100%; margin: 0; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-image { height: 260px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .hero-proof { gap: 0.6rem; font-size: 0.75rem; }
+  }
+  @media (max-width: 375px) {
+    .btn-phone, .btn-outline { font-size: 0.85rem; padding: 0.8rem 1.4rem; white-space: nowrap; }
+    .hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">JTP Lawncare <span>•</span> Fountain Inn</a>
+    <a href="tel:+18642190831" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto" poster="jtp-hero-poster.jpg">
+    <source src="jtp-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Veteran-Owned — Fountain Inn SC</div>
+    <h1>Lawn Care &amp; Junk Removal.<br><span class="accent">Done Right.</span></h1>
+    <p class="subtitle">Veteran-owned lawn care and junk removal serving Fountain Inn and the Upstate — mowing, cleanup, hauling, and more.</p>
+    <div class="hero-proof">
+      <span><span class="star">★★★★★</span> Veteran-Owned</span>
+      <span>🏆 Free Estimates</span>
+      <span>🛡 Two Services, One Call</span>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:+18642190831" class="btn-phone">📞 (864) 219-0831</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section services-section">
+  <div class="services-bg">
+    <video autoplay muted loop playsinline preload="auto" poster="bg-services-poster.jpg" aria-hidden="true">
+      <source src="bg-services.mp4" type="video/mp4">
+    </video>
+    <div class="services-scrim"></div>
+  </div>
+  <div class="services-inner">
+    <div class="section-label">Services</div>
+    <h2>What We Do</h2>
+    <p class="lede">Two businesses in one — keep your yard spotless and clear out the junk.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="svc-lawn.jpg" alt="Lawn mowing" loading="lazy">
+        <div class="card-scrim"></div>
+        <div class="card-content">
+          <h3>Lawn Mowing</h3>
+          <p>Regular mowing, edging, and trimming that keeps your yard looking sharp.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="svc-junk.jpg" alt="Junk removal" loading="lazy">
+        <div class="card-scrim"></div>
+        <div class="card-content">
+          <h3>Junk Removal</h3>
+          <p>Furniture, appliances, yard waste, construction debris — we haul it all away.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="svc-cleanup.jpg" alt="Yard cleanup" loading="lazy">
+        <div class="card-scrim"></div>
+        <div class="card-content">
+          <h3>Yard Cleanup</h3>
+          <p>Overgrown yards, brush, leaves, and debris — we'll make it manageable again.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="svc-hauling.jpg" alt="Hauling" loading="lazy">
+        <div class="card-scrim"></div>
+        <div class="card-content">
+          <h3>Hauling</h3>
+          <p>One trip or a whole load — we move it out of your way, fast.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery-section">
+  <div class="section">
+    <div class="section-label">Portfolio</div>
+    <h2>Our Work — Real Jobs, Real Results</h2>
+    <p class="lede">Lawn care and junk removal across Fountain Inn and the Upstate.</p>
+    <div class="gallery-grid">
+      <div class="gallery-card"><img src="work-a.jpg" alt="Junk removal truck" loading="lazy"><div class="gallery-cap">Full haul — Fountain Inn, SC</div></div>
+      <div class="gallery-card"><img src="work-b.jpg" alt="Lawn mowing" loading="lazy"><div class="gallery-cap">Lawn maintenance</div></div>
+      <div class="gallery-card"><img src="work-c.jpg" alt="Yard cleanup" loading="lazy"><div class="gallery-cap">Overgrown yard cleanup</div></div>
+      <div class="gallery-card"><img src="work-d.jpg" alt="Lawn care" loading="lazy"><div class="gallery-cap">Fresh cut, every visit</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="frontyard-wrap">
+  <div class="reviews-bg-desktop" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="reviews-bg-desktop-poster.jpg">
+      <source src="reviews-bg-desktop.mp4" type="video/mp4">
+    </video>
+    <div class="reviews-scrim"></div>
+  </div>
+  <div class="reviews-bg-mobile" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="reviews-bg-mobile-poster.jpg">
+      <source src="reviews-bg-mobile.mp4" type="video/mp4">
+    </video>
+    <div class="reviews-scrim"></div>
+  </div>
+
+<section class="section reviews-section">
+    <div class="section-label">Reviews</div>
+    <h2>What Customers Say</h2>
+    <p class="lede">Real feedback from neighbors across Fountain Inn and the Upstate.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"They showed up, cut the lawn, and hauled off the old furniture in the same trip. Easy to work with and fairly priced."</p>
+        <div class="review-author"><strong>Happy Customer</strong> · Fountain Inn, SC</div>
+        <div class="review-source">Google review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Real review coming soon — after your first service we will publish your genuine feedback here."</p>
+        <div class="review-author"><strong>Your Name Here</strong> · Join our recommend list</div>
+        <div class="review-source">We'll publish your review here after your first service</div>
+      </div>
+    </div>
+</section>
+
+<section class="section about-panel">
+  <div class="section-label">About</div>
+  <h2>Veteran-Owned, Locally Trusted</h2>
+  <div class="about-section" style="margin-top:2rem;">
+    <div class="about-image">
+      <img src="about.jpg" alt="JTP Lawncare and Junk Removal — Fountain Inn SC" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>JTP Lawncare and Junk Removal is a veteran-owned company based in Fountain Inn, SC — built on a simple promise: show up on time and do the job right.</p>
+      <p>From keeping your lawn sharp to clearing out the junk, we bring the same work ethic to every job. Serving Fountain Inn and the Upstate with free estimates and honest pricing.</p>
+      <p class="highlight">Free estimates — call (864) 219-0831 today.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="claim" class="cta-section">
+  <div class="section-label">Claim Your Site</div>
+  <h2>This is yours, JTP Lawncare.</h2>
+  <p>Built to showcase your work and help you grow. A professional website with your services, a photo gallery, and everything you need to win more clients.</p>
+  <a href="https://local-launch-site.vercel.app" target="_blank" class="cta-btn">See Your Online Presence &amp; SEO Score →</a>
+</section>
+
+<section class="ll-logo">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:320px;width:100%;">
+    <img src="logo-bg.jpg" alt="Local Launch" style="width:100%;height:auto;border-radius:12px;display:block;">
+  </a>
+</section>
+
+<section class="ll-cta-text">
+  <h3>Want this site? It's yours.</h3>
+  <p>Reply, call, or text. I'll hand you the keys in 24 hours.</p>
+  <p style="color:var(--text-light);font-size:0.85rem;margin-top:1rem;max-width:380px;margin-left:auto;margin-right:auto;">Click my logo above to see my work. I'm based in Simpsonville, SC and I help local businesses like yours grow and win more clients.</p>
+</section>
+
+<section class="ll-contact">
+  <div class="ll-contact-inner">
+    <a href="tel:+15033585860" class="ll-btn">
+      <span style="font-size:1.2rem;">📞</span>
+      <div style="text-align:left;"><div class="lbl">Call / Text</div><div class="val">(503) 358-5860</div></div>
+    </a>
+    <a href="mailto:locallaunchupstate@gmail.com" class="ll-btn">
+      <span style="font-size:1.2rem;">✉️</span>
+      <div style="text-align:left;"><div class="lbl">Email</div><div class="val">locallaunchupstate@gmail.com</div></div>
+    </a>
+  </div>
+</section>
+
+</body>
+</html>

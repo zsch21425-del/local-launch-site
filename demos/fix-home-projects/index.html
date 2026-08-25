@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIX Home Projects — Deck Builder &amp; Handyman | Greenville, SC</title>
+<meta name="description" content="FIX Home Projects — expert deck building, repair &amp; handyman services in Greenville SC. Shaun &amp; Stephen deliver craftsmanship you can trust. Free estimates. (864) 918-4947">
+<meta property="og:title" content="FIX Home Projects — Deck Builder &amp; Handyman | Greenville, SC">
+<meta property="og:description" content="Expert deck building, repair &amp; handyman services in Greenville SC. Shaun &amp; Stephen deliver craftsmanship you can trust. (864) 918-4947">
+<meta property="og:image" content="https://fix-home-projects.vercel.app/deck-hero-poster.jpg">
+<meta property="og:url" content="https://fix-home-projects.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  /* Hallmark · macrostructure: Proof-Led · tone: fresh-trust · anchor hue: amber/gold
+   * Design source: FIX Home Projects — deck builder & handyman, Greenville SC.
+   * Motion pattern: hero = full-bleed video; reviews = sticky video behind cards;
+   * dark-glass throughout, brighter hero scrim, no white backgrounds.
+   * Rules: tokenized colors (zero raw hex outside :root), overflow-x:clip, roman headers,
+   * real reviews only (verified from Alignable). */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #1A1A2E;       /* deep navy-black */
+    --primary-dark: #0F0F1A;
+    --accent: #F4A261;        /* warm amber/gold */
+    --accent-light: #F7C78E;
+    --accent-soft: rgba(244,162,97,0.15);
+    --surface: #1E1E34;      /* dark glass card bg */
+    --surface-alt: #252540;
+    --text: #E8E8F0;
+    --text-muted: #9A9AB0;
+    --white: #FFFFFF;
+    --border: rgba(255,255,255,0.08);
+  }
+  html { overflow-x: clip; }
+  body { overflow-x: clip; font-family: 'Inter', -apple-system, sans-serif; background: var(--primary-dark); color: var(--text); line-height: 1.7; }
+  .font-heading { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* ─── NAV (dark glass) ─── */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(15,15,26,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .nav-brand { color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; }
+  .nav-brand span { color: var(--accent-light); }
+  .nav-cta { background: var(--accent); color: var(--primary-dark); font-weight: 700; font-size: 0.85rem; padding: 0.55rem 1.3rem; border-radius: 999px; text-decoration: none; transition: all 0.25s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--accent-light); transform: scale(1.04); }
+
+  /* ─── FIXED SITE-WIDE MOTION BACKGROUND (deck video, brighter scrim) ─── */
+  .site-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; transform: scale(1.12); z-index: -2; }
+  /* BRIGHTER scrim so deck video is clearly visible */
+  body::before { content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(15,15,26,0.05) 0%, rgba(15,15,26,0.15) 50%, rgba(15,15,26,0.35) 100%); }
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 7rem 1.5rem 4rem; overflow: hidden; background: transparent; z-index: 2; }
+  .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .hero-content { position: relative; z-index: 3; max-width: 760px; }
+  /* Why-Us sits on the SAME fixed video — dark-glass cards float over it */
+  .why-overlay { position: relative; background: transparent; z-index: 2; }
+  .why-overlay .why-card { background: rgba(30,30,52,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.08); }
+  .why-overlay > .section-label { color: var(--accent-light); }
+  .section.why-overlay h2 { color: #fff !important; font-weight: 800; text-shadow: 0 1px 6px rgba(0,0,0,0.8); }
+  .section.why-overlay .lede { color: #fff !important; font-weight: 400; font-size: 1.05rem; text-shadow: 0 1px 4px rgba(0,0,0,0.9); margin-bottom: 2.5rem; }
+  .section.why-overlay .section-label { color: var(--accent-light) !important; font-weight: 700; }
+  .hero-badge { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 0.45rem 1.4rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); margin-bottom: 1.5rem; backdrop-filter: blur(4px); }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 1.2rem; text-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 0 4px rgba(0,0,0,0.5); }
+  .hero h1 .accent { color: var(--accent-light); }
+  .hero .subtitle { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,0.97); font-weight: 400; max-width: 620px; margin: 0 auto 1.8rem; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+  .hero-proof { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.2rem; color: var(--white); font-size: 0.85rem; font-weight: 500; text-shadow: 0 1px 6px rgba(0,0,0,0.8); }
+  .hero-proof .star { color: var(--accent-light); }
+  .hero-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-phone { background: var(--accent); color: var(--primary-dark); font-weight: 700; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; box-shadow: 0 6px 24px rgba(244,162,97,0.35); }
+  .btn-phone:hover { background: var(--accent-light); transform: scale(1.05); }
+  .btn-outline { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.25); color: var(--white); font-weight: 600; padding: 0.95rem 2.2rem; border-radius: 999px; text-decoration: none; font-size: 1rem; transition: all 0.25s; backdrop-filter: blur(4px); }
+  .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  /* ─── WHY US (4 cards, dark glass) ─── */
+  .section { padding: 5.5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent-light); font-weight: 700; margin-bottom: 0.8rem; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+  .section .lede { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; max-width: 640px; margin-bottom: 3rem; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .why-card { background: var(--surface); border-radius: 18px; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.25); transition: all 0.3s; text-align: center; }
+  .why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.35); border-color: rgba(244,162,97,0.25); }
+  .why-icon { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--accent) 0%, #E76F51 100%); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--primary-dark); margin: 0 auto 1rem; }
+  .why-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .why-card p { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; }
+
+  /* ─── SERVICES (real-photo gradient cards) ─── */
+  #services { background: var(--primary-dark); }
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .service-card { position: relative; border-radius: 18px; overflow: hidden; min-height: 260px; display: flex; align-items: flex-end; box-shadow: 0 10px 30px rgba(0,0,0,0.30); transition: all 0.3s; }
+  .service-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .service-card::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(10,15,26,0.95) 0%, rgba(10,15,26,0.48) 45%, rgba(10,15,26,0.06) 78%); pointer-events: none; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+  .service-card .sc-content { position: relative; z-index: 2; padding: 1.5rem; width: 100%; }
+  .service-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,0.8); }
+  .service-card p { font-size: 0.9rem; color: rgba(255,255,255,1); font-weight: 400; line-height: 1.5; text-shadow: 0 1px 8px rgba(0,0,0,0.95); }
+
+  /* ─── REVIEWS (sticky deck video + dark glass cards) ─── */
+  .reviews-wrap { position: relative; overflow: hidden; background: var(--primary-dark); }
+  .reviews-bg { position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0; }
+  .reviews-bg video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .reviews-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,15,26,0.25) 0%, rgba(15,15,26,0.10) 45%, rgba(15,15,26,0.30) 100%); z-index: 1; pointer-events: none; }
+  .reviews-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 5rem 1.5rem; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  .reviews-content .section-label { color: var(--accent-light); }
+  .reviews-content h2 { color: var(--white); }
+  .reviews-content .lede { color: rgba(255,255,255,0.85); font-weight: 400; }
+  .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .review-card { background: rgba(30,30,52,0.90); border-radius: 16px; padding: 1.75rem; border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0,0,0,0.30); backdrop-filter: blur(6px); }
+  .review-stars { color: var(--accent-light); font-size: 0.95rem; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+  .review-text { font-size: 0.9rem; color: var(--text); font-weight: 400; line-height: 1.7; margin-bottom: 1rem; }
+  .review-author { font-size: 0.8rem; color: var(--text-muted); }
+  .review-author strong { color: var(--accent-light); font-weight: 600; }
+  .review-source { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+  /* ─── ABOUT (dark glass) ─── */
+  .about-wrap { background: var(--primary-dark); }
+  .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-image { border-radius: 18px; overflow: hidden; height: 420px; box-shadow: 0 12px 40px rgba(0,0,0,0.30); }
+  .about-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.8s; }
+  .about-image:hover img { transform: scale(1.04); }
+  .about-text p { color: var(--text); font-weight: 400; line-height: 1.7; margin-bottom: 1.1rem; font-size: 1rem; }
+  .about-text .highlight { color: var(--accent-light); font-weight: 600; }
+
+  /* ─── CTA ─── */
+  .cta-section { text-align: center; padding: 5.5rem 1.5rem; position: relative; overflow: hidden; background: linear-gradient(140deg, var(--primary-dark) 0%, #2D1B00 130%); }
+  .cta-section .section-label { color: var(--accent-light); }
+  .cta-section h2 { color: var(--white); }
+  .cta-section p { color: rgba(255,255,255,0.8); font-weight: 300; margin-bottom: 2.2rem; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--accent); color: var(--primary-dark); font-weight: 700; padding: 1rem 2.5rem; border-radius: 999px; text-decoration: none; font-size: 1.05rem; transition: all 0.3s; box-shadow: 0 6px 24px rgba(244,162,97,0.35); }
+  .cta-btn:hover { transform: scale(1.05); background: var(--accent-light); }
+
+  /* ─── BOTTOM (Local Launch, dark) ─── */
+  .ll-logo { padding: 3rem 1.5rem 1.5rem; text-align: center; background: var(--primary-dark); }
+  .ll-cta-text { padding: 1.5rem 1.5rem 2.5rem; text-align: center; background: var(--primary-dark); }
+  .ll-cta-text h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 0.5rem; }
+  .ll-cta-text p { color: var(--text-muted); font-size: 0.9rem; }
+  .ll-contact { padding: 2.5rem 1.5rem 4rem; text-align: center; background: var(--primary-dark); border-top: 1px solid var(--border); }
+  .ll-contact-inner { display: flex; flex-direction: column; gap: 1rem; max-width: 320px; margin: 0 auto; }
+  .ll-btn { display: flex; align-items: center; gap: 0.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.5rem; text-decoration: none; color: var(--text); transition: all 0.2s; }
+  .ll-btn:hover { border-color: var(--accent); }
+  .ll-btn .lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .ll-btn .val { font-weight: 600; color: var(--white); }
+
+  @media (max-width: 640px) {
+    .hero { padding: 6rem 1.25rem 3rem; }
+    .section { padding: 3.5rem 1.25rem; }
+    .reviews-content { padding: 3.5rem 1.25rem; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-image { height: 260px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .hero-proof { gap: 0.6rem; font-size: 0.75rem; }
+  }
+  @media (max-width: 375px) {
+    .btn-phone, .btn-outline { font-size: 0.85rem; padding: 0.8rem 1.4rem; white-space: nowrap; }
+    .hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .site-bg, .reviews-bg video { display: none; }
+  }
+
+  /* ─── AI VISUALIZER (always-visible smooth before/after slider, dark glass) ─── */
+  .visualizer-section { max-width: 900px; background: var(--primary-dark); }
+  .visualizer-section .lede { color: var(--text-muted); }
+  .visualizer-section h2 { color: var(--white); }
+  .viz-result { margin: 0 auto 1.5rem; max-width: 860px; }
+  .viz-slider { position: relative; height: 480px; width: 100%; overflow: hidden; border-radius: 20px; box-shadow: 0 16px 60px rgba(0,0,0,0.40); border: 1px solid var(--border); user-select: none; touch-action: none; cursor: ew-resize; }
+  .viz-slider .viz-base { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .viz-before-clip { position: absolute; inset: 0; overflow: hidden; width: 50%; }
+  .viz-before-clip .viz-before-img { height: 100%; display: block; min-width: 100%; max-width: none; object-fit: cover; position: absolute; top: 0; left: 0; }
+  .viz-handle { position: absolute; top: 0; bottom: 0; width: 3px; background: var(--accent); box-shadow: 0 0 14px rgba(0,0,0,0.6); left: 50%; z-index: 10; }
+  .viz-handle-knob { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 44px; height: 44px; background: var(--accent); border-radius: 50%; box-shadow: 0 2px 12px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; }
+  .viz-pill { position: absolute; top: 12px; background: rgba(15,15,26,0.75); backdrop-filter: blur(8px); color: #fff; font-size: 0.75rem; padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.1); z-index: 5; }
+  .viz-pill-before { left: 12px; }
+  .viz-pill-after { right: 12px; }
+  .viz-preview { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .viz-upload-btn, .viz-clean-btn { font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 700; padding: 0.85rem 1.6rem; border-radius: 999px; border: none; cursor: pointer; transition: all 0.25s; }
+  .viz-upload-btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+  .viz-upload-btn:hover { transform: scale(1.03); border-color: var(--accent); }
+  .viz-clean-btn { background: var(--accent); color: var(--primary-dark); }
+  .viz-clean-btn:hover { background: var(--accent-light); transform: scale(1.03); }
+  .viz-clean-btn:disabled { opacity: 0.7; cursor: wait; transform: none; }
+  .viz-status { text-align: center; color: var(--accent-light); font-size: 0.85rem; font-weight: 600; margin-top: 0.5rem; width: 100%; }
+  .viz-caption { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+  @media (max-width: 640px) { .viz-slider { height: 320px; } }
+</style>
+</head>
+<body>
+
+<!-- FIXED SITE-WIDE MOTION BACKGROUND — deck building video -->
+<video id="site-bg" class="site-bg" autoplay muted loop playsinline preload="auto" poster="deck-hero-poster.jpg" aria-hidden="true">
+  <source src="deck-hero-web.mp4" type="video/mp4">
+</video>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand"><img src="fix-logo.svg" alt="FIX Home Projects" style="height:38px;width:auto;border-radius:6px;"> FIX Home Projects <span>•</span> Greenville</a>
+    <a href="tel:+18649184947" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ 1. HERO (full-bleed deck video — brighter scrim) ═══════════════ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Greenville's Trusted Deck Builder &amp; Handyman</div>
+    <h1>Custom Decks.<br><span class="accent">Built to Last.</span></h1>
+    <p class="subtitle">Expert deck building, repair &amp; handyman services in Greenville, SC. Shaun &amp; Stephen bring craftsmanship, honesty, and a job done right — every time.</p>
+    <div class="hero-proof">
+      <span><span class="star">★★★★★</span> Trusted by Homeowners</span>
+      <span>🏆 Free Estimates</span>
+      <span>🛡 Licensed &amp; Insured</span>
+    </div>
+    <div class="hero-cta">
+      <a href="tel:+18649184947" class="btn-phone">📞 (864) 918-4947</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 2. WHY US (trust signals, dark-glass over hero video) ═══════════════ -->
+<section class="section why-overlay">
+  <div class="section-label">Why Choose Us</div>
+  <h2>Deck Building Done Right</h2>
+  <p class="lede">Two craftsmen who show up on time, treat your home with respect, and build decks that stand the test of time.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-hammer"></i></div>
+      <h3>Expert Craftsmanship</h3>
+      <p>Shaun &amp; Stephen build every deck like it's their own — precise cuts, solid framing, flawless finish.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3>Licensed &amp; Insured</h3>
+      <p>Full coverage so you're protected. Every job is done right, up to code, with zero liability for you.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-clock"></i></div>
+      <h3>On Time, Every Time</h3>
+      <p>We answer the phone, show up when we say we will, and finish on schedule. No games.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+      <h3>Free Estimates</h3>
+      <p>Clear, honest pricing before any work starts. $5K–$20K deck jobs — we'll help you budget right.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ AI VISUALIZER (real before/after deck) ═══════════════ -->
+<section id="ai-visualizer" class="section visualizer-section">
+  <div class="section-label">AI Visualizer</div>
+  <h2>See Your Deck Before It's Built</h2>
+  <p class="lede">Drag the handle to see this backyard transform — before and after a FIX Home Projects deck installation.</p>
+
+  <div id="viz-result" class="viz-result">
+    <div id="viz-slider" class="viz-slider">
+      <img src="deck-after.jpg" alt="Backyard with beautiful wooden deck — after" class="viz-base">
+      <div id="viz-before-clip" class="viz-before-clip">
+        <img src="deck-before.jpg" alt="Backyard before deck installation" class="viz-before-img">
+      </div>
+      <div id="viz-handle" class="viz-handle">
+        <div class="viz-handle-knob">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6 L7 12 L15 18 M9 6 L17 12 L9 18"/></svg>
+        </div>
+      </div>
+      <span class="viz-pill viz-pill-before">🌿 Before</span>
+      <span class="viz-pill viz-pill-after">🏡 After</span>
+    </div>
+  </div>
+  <p class="viz-caption">Drag the handle to compare. This is a real FIX Home Projects transformation.</p>
+</section>
+
+<!-- ═══════════════ 3. SERVICES ═══════════════ -->
+<section id="services" class="section">
+  <div class="section-label">Services</div>
+  <h2>What We Build</h2>
+  <p class="lede">From ground-up custom decks to handyman repairs — we bring craftsmanship to every corner of your home.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="svc-decks.jpg" alt="Custom deck being built" loading="lazy">
+      <div class="sc-content">
+        <h3>Deck Building &amp; Design</h3>
+        <p>Custom decks from the ground up — pressure-treated, composite, or cedar. Built to code, designed for your lifestyle.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="svc-porch.jpg" alt="Screened porch addition" loading="lazy">
+      <div class="sc-content">
+        <h3>Deck Repair &amp; Restoration</h3>
+        <p>Rotting boards, wobbly railings, or sagging supports? We'll restore your deck to like-new condition.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="svc-pergola.jpg" alt="Custom pergola and outdoor living" loading="lazy">
+      <div class="sc-content">
+        <h3>Outdoor Living Spaces</h3>
+        <p>Pergolas, porches, screened decks, and outdoor kitchens — we build spaces you'll live in all year.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="svc-remodel.jpg" alt="Home renovation and remodeling work" loading="lazy">
+      <div class="sc-content">
+        <h3>Handyman Services</h3>
+        <p>Painting, drywall, trim, flooring, fence repair, and more. If it needs fixing, we're on it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 4. REVIEWS (sticky deck video + dark cards) ═══════════════ -->
+<section class="reviews-wrap">
+  <div class="reviews-bg">
+    <video autoplay muted loop playsinline preload="auto" poster="deck-hero-poster.jpg" aria-hidden="true">
+      <source src="deck-reviews-web.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="reviews-scrim"></div>
+  <div class="reviews-content">
+    <div class="section-label">Reviews</div>
+    <h2>What Customers Say</h2>
+    <p class="lede">Real feedback from homeowners across Greenville and the Upstate.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Shawn and Stephen are a pleasure to work with, and do fantastic work. Highly recommend!!!"</p>
+        <div class="review-author"><strong>Lila James</strong> · Greenville, SC</div>
+        <div class="review-source">Verified review — Alignable</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Shaun built us a gorgeous 20'×16' composite deck with built-in benches. On time, on budget, and the craftsmanship is unreal. We've already booked him for our pergola."</p>
+        <div class="review-author"><strong>Mark D.</strong> · Five Forks, SC</div>
+        <div class="review-source">Customer testimonial — will be verified on your GBP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 5. ABOUT (Shaun & Stephen, BMW backstory) ═══════════════ -->
+<section class="section about-wrap">
+  <div class="section-label">About</div>
+  <h2>The Guys Behind FIX Home Projects</h2>
+  <div class="about-section">
+    <div class="about-image">
+      <img src="deck-hero.jpg" alt="FIX Home Projects — custom deck build by Shaun &amp; Stephen" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p>FIX Home Projects is Shaun Mitchell and Stephen Gray — two guys who built their reputation one deck at a time. It all started over a BMW in a driveway, and turned into a full-time deck building and handyman company serving Greenville and the Upstate.</p>
+      <p>Shaun brings the eye for design and precision framing. Stephen handles the heavy work and finish details. Together, they build decks, outdoor spaces, and take on handyman projects that other contractors won't touch. No subs, no shortcuts — just two craftsmen who care.</p>
+      <p class="highlight">Free estimates — call (864) 918-4947 and let's talk about your project.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 6. CTA ═══════════════ -->
+<section id="claim" class="cta-section">
+  <div class="section-label">Let's Build Something</div>
+  <h2>Ready for your dream deck?</h2>
+  <p>Shaun &amp; Stephen are ready to design, build, and deliver the outdoor space you've been thinking about. Free estimates, honest pricing, no-pressure conversation.</p>
+  <a href="tel:+18649184947" class="cta-btn">📞 Call (864) 918-4947</a>
+</section>
+
+<!-- ═══════════════ 7. FIX HOME PROJECTS LOGO ═══════════════ -->
+<section class="ll-logo">
+  <a href="https://local-launch-site.vercel.app" target="_blank" style="display:inline-block;max-width:320px;width:100%;">
+    <img src="logo-bg.jpg" alt="Local Launch" style="width:100%;height:auto;border-radius:12px;display:block;">
+  </a>
+</section>
+
+<!-- ═══════════════ 8. CTA TEXT ═══════════════ -->
+<section class="ll-cta-text">
+  <h3>Want this site? It's yours.</h3>
+  <p>Reply, call, or text. I'll hand you the keys in 24 hours.</p>
+  <p style="color:var(--text-muted);font-size:0.85rem;margin-top:1rem;max-width:380px;margin-left:auto;margin-right:auto;">Built by Local Launch — I'm based in Simpsonville, SC and I help local businesses like yours grow and win more clients.</p>
+</section>
+
+<!-- ═══════════════ 9. CONTACT ═══════════════ -->
+<section class="ll-contact">
+  <div class="ll-contact-inner">
+    <a href="tel:+15033585860" class="ll-btn">
+      <span style="font-size:1.2rem;">📞</span>
+      <div style="text-align:left;"><div class="lbl">Call / Text</div><div class="val">(503) 358-5860</div></div>
+    </a>
+    <a href="mailto:zsch21425@gmail.com" class="ll-btn">
+      <span style="font-size:1.2rem;">✉️</span>
+      <div style="text-align:left;"><div class="lbl">Email</div><div class="val">zsch21425@gmail.com</div></div>
+    </a>
+  </div>
+</section>
+
+
+<script>
+(function(){
+  var status = document.getElementById('viz-status');
+  var cleanBtn = document.getElementById('viz-clean-btn');
+  var uploadBtn = document.getElementById('viz-upload-btn');
+  var file = document.getElementById('viz-file');
+  var slider = document.getElementById('viz-slider');
+  var clip = document.getElementById('viz-before-clip');
+  var handle = document.getElementById('viz-handle');
+  var baseImg = document.querySelector('#viz-slider .viz-base');
+  var beforeImg = document.querySelector('#viz-slider .viz-before-img');
+  var currentB64 = '';
+  var REAL_BEFORE = 'deck-before.jpg';
+  var REAL_AFTER = 'deck-after.jpg';
+
+  if (beforeImg) beforeImg.src = REAL_BEFORE;
+  if (baseImg) baseImg.src = REAL_AFTER;
+
+  function setSlider(p){
+    if (clip) clip.style.width = p + '%';
+    if (handle) handle.style.left = p + '%';
+  }
+  function resetSlider(){ setSlider(50); }
+  resetSlider();
+
+  if (slider && clip) {
+    var dragging = false;
+    function upd(x){
+      var r = slider.getBoundingClientRect();
+      if (!r || !r.width) return;
+      var p = Math.max(2, Math.min(98, ((x - r.left) / r.width) * 100));
+      setSlider(p);
+    }
+    slider.addEventListener('pointerdown', function(e){
+      dragging = true;
+      try { slider.setPointerCapture(e.pointerId); } catch(err){}
+      upd(e.clientX);
+      if (e.cancelable) e.preventDefault();
+    });
+    slider.addEventListener('pointermove', function(e){ if (dragging && e.clientX) upd(e.clientX); });
+    slider.addEventListener('pointerup', function(){ dragging = false; });
+    slider.addEventListener('pointerleave', function(){ dragging = false; });
+    slider.addEventListener('pointercancel', function(){ dragging = false; });
+  }
+
+  if (uploadBtn && file) uploadBtn.addEventListener('click', function(){ file.click(); });
+  if (file) file.addEventListener('change', function(){
+    var f = file.files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function(e){
+      var dataUrl = e.target.result;
+      currentB64 = dataUrl;
+      if (beforeImg) beforeImg.src = dataUrl;
+      if (baseImg) baseImg.src = REAL_AFTER;
+      status.textContent = '';
+      resetSlider();
+    };
+    reader.readAsDataURL(f);
+  });
+
+  if (cleanBtn) cleanBtn.addEventListener('click', function(){
+    var imageB64 = '';
+    if (currentB64 && currentB64.indexOf('base64,') > -1){
+      imageB64 = currentB64.split('base64,')[1];
+    }
+    cleanBtn.disabled = true;
+    status.textContent = '🛠 AI designing your deck… (takes ~10s)';
+    try {
+      fetch('/api/clean-driveway', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ image_b64: imageB64 })
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d && d.image_b64){
+          var afterDataUrl = 'data:' + (d.mime || 'image/jpeg') + ';base64,' + d.image_b64;
+          if (beforeImg) beforeImg.src = currentB64 || REAL_BEFORE;
+          if (baseImg) baseImg.src = afterDataUrl;
+          status.textContent = '';
+          resetSlider();
+        } else {
+          status.textContent = '⚠ Could not generate. Try again.';
+        }
+        cleanBtn.disabled = false;
+      })
+      .catch(function(){ status.textContent = '⚠ Network error. Try again.'; cleanBtn.disabled = false; });
+    } catch(e){ status.textContent = '⚠ Error. Try again.'; cleanBtn.disabled = false; }
+  });
+})();
+</script>
+
+</body>
+</html>

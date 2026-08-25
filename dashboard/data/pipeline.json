@@ -478,7 +478,12 @@
       "saleValue": null,
       "gScore": 11,
       "zachApproval": null,
-      "emailStatus": "unverifiable"
+      "emailStatus": "unverifiable",
+      "demoUrl": "https://yardsmith-demo.vercel.app",
+      "demo": {
+        "url": "https://yardsmith-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "jacksons-junk",
@@ -543,7 +548,12 @@
       "responseStatus": "awaiting",
       "saleValue": null,
       "gScore": 24,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://jacksons-junk-demo.vercel.app",
+      "demo": {
+        "url": "https://jacksons-junk-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "lumberjack-tree",
@@ -743,7 +753,12 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 8,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://mm-plumbing-demo.vercel.app",
+      "demo": {
+        "url": "https://mm-plumbing-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "upstate-window",
@@ -805,7 +820,12 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 7,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://upstate-window-demo.vercel.app",
+      "demo": {
+        "url": "https://upstate-window-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "my-titan",
@@ -921,7 +941,12 @@
       "responseStatus": "awaiting",
       "saleValue": null,
       "gScore": 12,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://lonts-disposal-demo.vercel.app",
+      "demo": {
+        "url": "https://lonts-disposal-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "fix-home",
@@ -1047,7 +1072,12 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 12,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://greenville-cleaning-demo.vercel.app",
+      "demo": {
+        "url": "https://greenville-cleaning-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "yaca-auto",
@@ -1156,7 +1186,12 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 4,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://machado-handyman-demo.vercel.app",
+      "demo": {
+        "url": "https://machado-handyman-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "randys-home",
@@ -1215,7 +1250,12 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 15,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://greenville-pro-painters-demo.vercel.app",
+      "demo": {
+        "url": "https://greenville-pro-painters-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "unique-concrete",
@@ -1280,7 +1320,12 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 8,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://moriaan-construction-demo.vercel.app",
+      "demo": {
+        "url": "https://moriaan-construction-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "one-call-plumbing",
@@ -1391,7 +1436,12 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 42,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://smith-irrigation-demo.vercel.app",
+      "demo": {
+        "url": "https://smith-irrigation-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "country-life-tires",
@@ -1426,7 +1476,12 @@
       "gScore": 55,
       "zachApproval": null,
       "email": "",
-      "notes": []
+      "notes": [],
+      "demoUrl": "https://country-life-tires-demo.vercel.app",
+      "demo": {
+        "url": "https://country-life-tires-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "jtp-lawncare",
@@ -1466,7 +1521,12 @@
       "saleValue": null,
       "gScore": 42,
       "zachApproval": null,
-      "notes": "Email enriched 8/13: jtplawncare.junkremoval@gmail.com (from their contact page). \u26a0\ufe0f They NOW have a live website (jtpjunkremovalandlawn.com, 4.9\u2605/159 reviews, veteran+Black owned) \u2014 pipeline said 'no website'. Re-pitch as SEO/rebuild angle, NOT 'no website'."
+      "notes": "Email enriched 8/13: jtplawncare.junkremoval@gmail.com (from their contact page). \u26a0\ufe0f They NOW have a live website (jtpjunkremovalandlawn.com, 4.9\u2605/159 reviews, veteran+Black owned) \u2014 pipeline said 'no website'. Re-pitch as SEO/rebuild angle, NOT 'no website'.",
+      "demoUrl": "https://jtp-lawncare-demo.vercel.app",
+      "demo": {
+        "url": "https://jtp-lawncare-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "lands-tree-care",
@@ -1642,7 +1702,12 @@
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "lastContact": "2026-08-14"
+      "lastContact": "2026-08-14",
+      "demoUrl": "https://sandy-springs-detailing-demo.vercel.app",
+      "demo": {
+        "url": "https://sandy-springs-detailing-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "locomotion-auto-detail",
@@ -2166,7 +2231,12 @@
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "lastContact": "2026-08-14"
+      "lastContact": "2026-08-14",
+      "demoUrl": "https://raleigh-handyman-demo.vercel.app",
+      "demo": {
+        "url": "https://raleigh-handyman-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "stallion-concrete",
@@ -2614,7 +2684,12 @@
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "email": "wipeoutjunk@gmail.com"
+      "email": "wipeoutjunk@gmail.com",
+      "demoUrl": "https://wipeout-junk-removal-miami-demo.vercel.app",
+      "demo": {
+        "url": "https://wipeout-junk-removal-miami-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "kings-power-washing-of-charlotte",
@@ -2743,7 +2818,12 @@
       "zachApproval": null,
       "email": "safewash@yahoo.com",
       "notes": [],
-      "has_site": true
+      "has_site": true,
+      "demoUrl": "https://charlotte-pressure-washing-demo.vercel.app",
+      "demo": {
+        "url": "https://charlotte-pressure-washing-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "good-work-pressure-washing",
@@ -3082,7 +3162,12 @@
       "gScore": 11,
       "zachApproval": null,
       "email": "Smpurgason@gmail.com",
-      "notes": []
+      "notes": [],
+      "demoUrl": "https://mmk-pressure-washing-demo.vercel.app",
+      "demo": {
+        "url": "https://mmk-pressure-washing-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "sky-branch-llc",
@@ -3139,7 +3224,12 @@
       "email": "skybranchllc@gmail.com",
       "notes": [
         "2026-08-23: skybranchllc.com dead, gmail email \u2192 likely no-site. skybranch.com (403) may be unrelated company. Verify before demo."
-      ]
+      ],
+      "demoUrl": "https://sky-branch-llc-demo.vercel.app",
+      "demo": {
+        "url": "https://sky-branch-llc-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "brian-dillard-concrete",
@@ -3202,7 +3292,12 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "demoUrl": "https://mishoes-handy-services-demo.vercel.app",
+      "demo": {
+        "url": "https://mishoes-handy-services-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "leos-pro-line-painting",
@@ -3744,7 +3839,12 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "demoUrl": "https://haul-away-llc-demo.vercel.app",
+      "demo": {
+        "url": "https://haul-away-llc-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "morris-heating-air",
@@ -4162,7 +4262,12 @@
         "2026-08-23: pitch email bounced (address not found \u2014 domain has no mail records). Revert to phone outreach."
       ],
       "responseStatus": "bounced",
-      "emailStatus": "invalid"
+      "emailStatus": "invalid",
+      "demoUrl": "https://spartan-paver-sealing-demo.vercel.app",
+      "demo": {
+        "url": "https://spartan-paver-sealing-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "carolina-clear-property",
@@ -4455,7 +4560,12 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "demoUrl": "https://spartan-concrete-llc-demo.vercel.app",
+      "demo": {
+        "url": "https://spartan-concrete-llc-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "s-pugh-plumbing-llc",
@@ -4484,7 +4594,12 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "demoUrl": "https://s-pugh-plumbing-llc-demo.vercel.app",
+      "demo": {
+        "url": "https://s-pugh-plumbing-llc-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "kandw-cleaning-service",
@@ -4621,7 +4736,12 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "demoUrl": "https://uptown-renovations-llc-demo.vercel.app",
+      "demo": {
+        "url": "https://uptown-renovations-llc-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "woodies",
@@ -5659,7 +5779,12 @@
         "sentDate": "2026-08-14"
       },
       "prospectScore": "HIGH",
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "demoUrl": "https://wilks-junk-demo.vercel.app",
+      "demo": {
+        "url": "https://wilks-junk-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "kr-junk",
@@ -5693,7 +5818,12 @@
         "sentDate": "2026-08-14"
       },
       "prospectScore": "HIGH",
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "demoUrl": "https://kr-junk-demo.vercel.app",
+      "demo": {
+        "url": "https://kr-junk-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "jd-tree",
@@ -6226,7 +6356,12 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "jeffgulotta@att.net",
-      "notes": []
+      "notes": [],
+      "demoUrl": "https://gulottas-window-demo.vercel.app",
+      "demo": {
+        "url": "https://gulottas-window-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "chieftain-concrete",
@@ -6541,7 +6676,12 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://royal-pro-wash-demo.vercel.app",
+      "demo": {
+        "url": "https://royal-pro-wash-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "sbc-handyman",
@@ -6986,7 +7126,12 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "notes": []
+      "notes": [],
+      "demoUrl": "https://fresh-start-pressure-washing-demo.vercel.app",
+      "demo": {
+        "url": "https://fresh-start-pressure-washing-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "skyline-renovation",
@@ -8641,7 +8786,12 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "kirk12johnson@gmail.com",
-      "notes": []
+      "notes": [],
+      "demoUrl": "https://kirk-johnson-handyman-contractor-demo.vercel.app",
+      "demo": {
+        "url": "https://kirk-johnson-handyman-contractor-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "l-f-handymen",
@@ -9328,7 +9478,12 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "simpsonvillecleaningauthority@gmail.com",
-      "notes": []
+      "notes": [],
+      "demoUrl": "https://simpsonville-cleaning-authority-demo.vercel.app",
+      "demo": {
+        "url": "https://simpsonville-cleaning-authority-demo.vercel.app",
+        "status": "pending"
+      }
     },
     {
       "id": "sterling-home-services-llc",
@@ -9502,58 +9657,9 @@
     }
   ],
   "carLotsPipeline": {
-    "title": "Anderson Car Lots Pipeline",
-    "marketIntel": "8 independent BHPH lots identified. Zero competitors have JSON-LD schema or GEO optimization.",
-    "dealers": [
-      {
-        "id": "omega-auto-cl",
-        "name": "Omega Auto Sales",
-        "website": "omega-auto-anderson.vercel.app",
-        "status": "Demo built",
-        "notes": "No existing website. Demo page deployed. BHPH lot."
-      }
-    ],
-    "competitors": [
-      {
-        "name": "Family Auto of Anderson",
-        "website": "familyautoofanderson.com",
-        "hasSchema": false
-      },
-      {
-        "name": "A-1 Auto Sales",
-        "website": "a1autosalesofanderson.com",
-        "hasSchema": false
-      },
-      {
-        "name": "EZ Rides Auto Sales",
-        "website": "ezridesauto.com",
-        "hasSchema": false
-      },
-      {
-        "name": "Ellison Auto Group",
-        "website": "ellisonautogroup.com",
-        "hasSchema": false
-      },
-      {
-        "name": "Richardson Motors",
-        "website": "richardson-motors.com",
-        "hasSchema": false
-      },
-      {
-        "name": "Brewster Used Cars",
-        "website": "brewstersusedcars.com",
-        "hasSchema": false
-      },
-      {
-        "name": "A&D Auto Sales",
-        "website": "a-dautosales.com",
-        "hasSchema": false
-      },
-      {
-        "name": "One Stop Auto Group",
-        "website": "onestopautogroupsc.com",
-        "hasSchema": false
-      }
-    ]
-  }
+    "cars": []
+  },
+  "revenue": {},
+  "crmCompanies": [],
+  "crmConnected": true
 }

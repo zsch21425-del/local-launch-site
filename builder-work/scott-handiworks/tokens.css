@@ -1,0 +1,54 @@
+/* Scott Handiworks · Hallmark Design Tokens · neutral navy + warm amber placeholder */
+
+:root {
+  /* Color palette — neutral navy + warm amber */
+  --brand: #1B3C53;
+  --brand-dark: #0F2438;
+  --brand-pale: #E4ECF2;
+  --accent: #D98A2B;
+  --accent-light: #E8A85C;
+  --paper: #FAF7F2;
+  --text: #333;
+  --text-muted: #555;
+  --text-light: #777;
+  --white: #FFFFFF;
+  --border: #e8e4de;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Spacing (4pt scale) */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5.5rem;
+
+  /* Motion */
+  --dur-short: 0.2s;
+  --dur-med: 0.3s;
+  --dur-long: 0.7s;
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Border radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 18px;
+  --radius-full: 999px;
+}
+
+/* Dark mode support (optional — expand as needed) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0F1419;
+    --text: #E8E8E8;
+    --text-muted: #999;
+    --text-light: #666;
+    --border: #2a2a2a;
+  }
+}
