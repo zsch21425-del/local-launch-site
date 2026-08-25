@@ -200,6 +200,6 @@ Do **not** rewrite `src/lib/data.ts` helpers unless a type is missing.
 
 ## Phase 1 closed
 
-_Not yet. Fill in after A3._
+Closed 2026-08-25. A1 reversible-marker proof passed on `randys-home` (wrote `lastUpdated` → visible on GET without deploy → reverted to `2026-08-23`). A2: deleted `/api/seed-blob` + `/api/probe-write` (both 404 live). Seed script kept as emergency tool with "office machine only + restore route first" caveat. A3 acceptance: 264/31/133/31, marker reverted, seed/probe 404, `npm run build` exit 0, 6 pages 200. Seed + phase-1 work committed alongside this note.
 
-<!-- Phase 1 closed: YYYY-MM-DD <commit> -->
+<!-- Phase 1 closed: 2026-08-25 -->

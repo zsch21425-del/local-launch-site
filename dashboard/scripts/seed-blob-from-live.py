@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 """Phase 1 / Step 1 — Seed Vercel Blob from the LIVE 264-company API.
 
+OFFICE MACHINE ONLY — emergency tool. The companion routes /api/seed-blob and
+/api/probe-write were deleted after the Phase 1 proof; this script is the safe
+way to re-seed Blob if it ever ends up at 51/0. Run from Zach's office machine
+(WSL) where /tmp + BLOB access are valid. Do NOT run blindly — the live count
+must be verified 264 before this overwrites Blob.
+
 Thin client. The actual work happens server-side in
 src/app/api/seed-blob/route.ts so we use the EXACT same readPipeline/writePipeline
 the production app uses (no module-resolution risk).
+
+NOTE: /api/seed-blob is DELETED from prod (Phase 1 closure). To use this script
+again as an emergency tool, first re-add that route (git-recover it), deploy, run,
+then re-delete. Never leave the seed endpoint live.
 
 RULES (from PHASE-1-LIVE-DATA-PLANE.md):
   - Source of truth: GET /api/pipeline/data with Cookie: ll_dash_auth=0613.
