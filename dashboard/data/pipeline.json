@@ -3235,19 +3235,17 @@
       "id": "brian-dillard-concrete",
       "name": "Brian Dillard Concrete LLC",
       "category": "Concrete Contractor",
-      "stage": "build-launch",
+      "stage": "pitch",
       "location": "Roebuck, SC",
       "phone": "(864) 606-2818",
       "website": "https://brian-dillard-concrete-demo.vercel.app",
       "summary": "Concrete contractor, Roebuck SC. No website. Claimed GBP 5.0\u2605/4 reviews, phone verified. G-SCORE 28. Audit approved 2026-08-10.",
-      "lastContact": "2026-08-21",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "Follow-up Day 4 (2026-08-25)",
-        "Day 8 (2026-08-29)",
-        "Day 14 (2026-09-04)"
+        "Pitch drafted 2026-08-10 (pitch-batch-2026-08-10-r7) \u2014 awaiting Zach/Supervisor approval"
       ],
       "seoScore": {
         "current": 28,
@@ -3258,12 +3256,8 @@
       "pitchDraft": {
         "subject": "Brian",
         "channel": "Email",
-        "status": "sent",
-        "email": "dillard4827@gmail.com",
-        "demoUrl": "https://brian-dillard-concrete-demo.vercel.app",
-        "sentDate": "2026-08-21"
-      },
-      "email": "dillard4827@gmail.com"
+        "status": "pending-supervisor-review"
+      }
     },
     {
       "id": "mishoes-handy-services",
@@ -3303,16 +3297,18 @@
       "id": "leos-pro-line-painting",
       "name": "Leo's Pro Line Painting LLC",
       "category": "Painting",
-      "stage": "contacted",
+      "stage": "pitch",
       "location": "Travelers Rest / Easley, SC",
       "phone": "(864) 325-6313",
       "website": "",
       "summary": "Residential painter, Travelers Rest/Easley. FB-only presence. Claimed GBP 5.0\u2605/16 reviews, active. G-SCORE 38. Audit approved 2026-08-10.",
-      "lastContact": "2026-08-23",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
+      "nextSteps": [
+        "Pitch drafted 2026-08-10 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-10)"
+      ],
       "seoScore": {
         "current": 38,
         "max": 100,
@@ -3321,10 +3317,8 @@
       "gScore": 38,
       "pitchDraft": {
         "subject": "painting in Easley",
-        "status": "sent",
-        "email": "Leosproline@gmail.com",
-        "demoUrl": "https://leos-pro-line-painting-demo.vercel.app",
-        "sentDate": "2026-08-23"
+        "status": "pending-supervisor-review",
+        "email": "Leosproline@gmail.com"
       },
       "email": "Leosproline@gmail.com",
       "notes": [],
@@ -3520,16 +3514,18 @@
       "id": "taylor-s-tree-service",
       "name": "Taylor's Tree Service",
       "category": "Tree Service",
-      "stage": "contacted",
+      "stage": "pitch",
       "location": "Spartanburg, SC",
       "phone": "(864) 585-5381",
       "website": "",
       "summary": "Tree service, Spartanburg SC. No website, no GBP; owned domain taylorstreeservices.com dead. G-SCORE 8. Audit approved 2026-08-10.",
-      "lastContact": "2026-08-23",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "high",
       "playbook": [],
-      "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
+      "nextSteps": [
+        "Pitch drafted 2026-08-10 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-10)"
+      ],
       "seoScore": {
         "current": 8,
         "max": 100,
@@ -3538,10 +3534,8 @@
       "gScore": 8,
       "pitchDraft": {
         "subject": "tree service in Spartanburg",
-        "status": "sent",
-        "email": "penny@taylorstreeservices.com",
-        "demoUrl": "https://taylors-tree-demo.vercel.app",
-        "sentDate": "2026-08-23"
+        "status": "pending-supervisor-review",
+        "email": "penny@taylorstreeservices.com"
       },
       "email": "penny@taylorstreeservices.com",
       "notes": [],
@@ -4237,11 +4231,14 @@
       "phone": "(864) 590-5864",
       "website": "",
       "summary": "Paver/concrete sealing. Listed domain spartanpaversealing.com is down (HTTP 000 on all variants). Scout verified 2026-08-11 (7/10).",
-      "lastContact": "2026-08-23",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "medium",
       "playbook": [],
-      "nextSteps": "EMAIL INVALID (no MX (domain dead)) \u2014 phone-only or re-enrich. Phone: (864) 590-5864",
+      "nextSteps": [
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)",
+        "Email BOUNCED 2026-08-23 (NXDOMAIN) \u2014 PHONE-ONLY (864) 590-5864"
+      ],
       "seoScore": {
         "current": 20,
         "max": 100,
@@ -4250,10 +4247,9 @@
       "gScore": 20,
       "pitchDraft": {
         "subject": "paver sealing in Spartanburg",
-        "status": "sent",
+        "status": "pending-supervisor-review",
         "email": "pdesmond@spartanpaversealing.com",
         "demoUrl": "https://spartan-paver-sealing-demo.vercel.app",
-        "sentDate": "2026-08-23",
         "emailStatus": "invalid"
       },
       "zachApproval": null,
@@ -4782,13 +4778,13 @@
       "id": "gray-wolf",
       "name": "Gray Wolf Concrete & Construction",
       "category": "Concrete & Construction",
-      "stage": "contacted",
+      "stage": "pitch",
       "location": "Greer, SC",
       "phone": "(864) 906-1914",
       "website": "",
       "summary": "NO SITE, NO GBP, no reviews. Owner-operator Zach Forsman, direct email graywolfconcrete@gmail.com. Cleanest pure Tier A gap in batch. PURSUE HIGH, Pitch A.",
-      "lastContact": "2026-08-23",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "high",
       "playbook": [
         {
@@ -4799,7 +4795,9 @@
           "detail": "Completed 2026-08-11. G-Score 13. Auditor approved 2026-08-11."
         }
       ],
-      "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
+      "nextSteps": [
+        "Pitch drafted 2026-08-11 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-11)"
+      ],
       "seoScore": {
         "current": 13,
         "max": 100,
@@ -4807,10 +4805,8 @@
       },
       "pitchDraft": {
         "subject": "concrete in Greer",
-        "status": "sent",
-        "email": "graywolfconcrete@gmail.com",
-        "demoUrl": "https://gray-wolf-concrete-demo.vercel.app",
-        "sentDate": "2026-08-23"
+        "status": "pending-supervisor-review",
+        "email": "graywolfconcrete@gmail.com"
       },
       "responseStatus": "awaiting",
       "saleValue": null,
@@ -5999,20 +5995,18 @@
       "id": "l-and-p-lawncare",
       "name": "L And P Lawncare And Landscaping",
       "category": "Lawn care / landscaping",
-      "stage": "contacted",
+      "stage": "pitch",
       "location": "Spartanburg, SC",
       "phone": "(864) 612-3912",
       "website": "",
       "email": "LandPofSC@gmail.com",
       "summary": "Lawn care + landscaping in Spartanburg SC. Listed website DEAD \u2014 landplawncare.com has no DNS. Nextdoor-verified operator (Drew Prince per Nextdoor). lp-lawncare.com = unrelated collision. G-Score not yet audited. Source: prospect-batch-2026-08-13-r2 (Scout, pending Supervisor review). | [2PASS 08-19: no hidden website (Yahoo/Mapquest directories only). GBP '6 reviews' SERP snippet but panel not confirmed. landplawncare.com still no DNS. Tier A holds.]",
-      "lastContact": "2026-08-21",
-      "lastUpdated": "2026-08-21",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
-        "Follow-up Day 4 (2026-08-25)",
-        "Day 8 (2026-08-29)",
-        "Day 14 (2026-09-04)"
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
       ],
       "seoScore": {
         "current": 26,
@@ -6023,10 +6017,8 @@
       "pitchDraft": {
         "subject": "lawn care in Spartanburg",
         "channel": "Email",
-        "status": "sent",
-        "email": "LandPofSC@gmail.com",
-        "demoUrl": "https://l-and-p-lawncare-demo.vercel.app",
-        "sentDate": "2026-08-21"
+        "status": "pending-supervisor-review",
+        "email": "LandPofSC@gmail.com"
       },
       "responseStatus": null,
       "saleValue": null,
@@ -7970,16 +7962,18 @@
       "id": "joshua-truitt-handyman",
       "name": "Joshua Truitt Handyman",
       "category": "Handyman (door replacement, gutter service, auto mechanic adjacent)",
-      "stage": "contacted",
+      "stage": "pitch",
       "location": "Fountain Inn, SC",
       "phone": "(864) 601-0891",
       "website": "",
       "summary": "\u2705 NO WEBSITE (joshuatruitt.com and all natural permutations HTTP 000)",
-      "lastContact": "2026-08-23",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "medium",
       "playbook": [],
-      "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
+      "nextSteps": [
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+      ],
       "seoScore": {
         "current": 7,
         "max": 100,
@@ -7988,10 +7982,8 @@
       "gScore": 7,
       "pitchDraft": {
         "subject": "handyman in Fountain Inn",
-        "status": "sent",
-        "email": "joshuatruitt602@gmail.com",
-        "demoUrl": "https://joshua-truitt-handyman-demo.vercel.app",
-        "sentDate": "2026-08-23"
+        "status": "pending-supervisor-review",
+        "email": "joshuatruitt602@gmail.com"
       },
       "responseStatus": "awaiting",
       "saleValue": null,
@@ -8416,16 +8408,18 @@
       "id": "cedar-guy-tree-service",
       "name": "Cedar Guy Tree Service",
       "category": "Tree removal, limb pruning, arborist, emergency tree work, storm cleanup (24/7)",
-      "stage": "contacted",
+      "stage": "pitch",
       "location": "Travelers Rest, SC 29690 (State Park Road)",
       "phone": "(864) 906-0183",
       "website": "",
       "summary": "",
-      "lastContact": "2026-08-23",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "medium",
       "playbook": [],
-      "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
+      "nextSteps": [
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+      ],
       "seoScore": {
         "current": 8,
         "max": 100,
@@ -8434,10 +8428,8 @@
       "gScore": 8,
       "pitchDraft": {
         "subject": "tree service in Travelers Rest",
-        "status": "sent",
-        "email": "customcedarguy@gmail.com",
-        "demoUrl": "https://cedar-guy-tree-demo.vercel.app",
-        "sentDate": "2026-08-23"
+        "status": "pending-supervisor-review",
+        "email": "customcedarguy@gmail.com"
       },
       "responseStatus": "awaiting",
       "saleValue": null,
@@ -8831,16 +8823,18 @@
       "id": "marshall-cleaning",
       "name": "Marshall Cleaning",
       "category": "Cleaning service (residential/commercial, family-owned)",
-      "stage": "contacted",
+      "stage": "pitch",
       "location": "Simpsonville, SC",
       "phone": "(864) 417-9750",
       "website": "",
       "summary": "\u2705 NO WEBSITE (name domain = HugeDomains for-sale lander, all other permutations HTTP 000)",
-      "lastContact": "2026-08-23",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
+      "nextSteps": [
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+      ],
       "seoScore": {
         "current": 9,
         "max": 100,
@@ -8849,10 +8843,8 @@
       "gScore": 9,
       "pitchDraft": {
         "subject": "cleaning in Simpsonville",
-        "status": "sent",
-        "email": "MarshallCleanings@gmail.com",
-        "demoUrl": "https://marshall-cleaning-demo.vercel.app",
-        "sentDate": "2026-08-23"
+        "status": "pending-supervisor-review",
+        "email": "MarshallCleanings@gmail.com"
       },
       "responseStatus": "awaiting",
       "saleValue": null,
@@ -9276,16 +9268,18 @@
       "id": "pvp-home-services-llc",
       "name": "PVP Home Services LLC",
       "category": "Handyman (indoor + outdoor home repairs, TV mounts, ceiling fans, wall repair, water-damage fixes)",
-      "stage": "contacted",
+      "stage": "pitch",
       "location": "Simpsonville, SC",
       "phone": "(864) 606-9777",
       "website": "",
       "summary": "\u2705 NO WEBSITE (all name perms HTTP 000)",
-      "lastContact": "2026-08-23",
-      "lastUpdated": "2026-08-23",
+      "lastContact": "",
+      "lastUpdated": "2026-08-25",
       "priority": "medium-high",
       "playbook": [],
-      "nextSteps": "Follow-up Day 4 (2026-08-27), Day 8 (2026-08-31), Day 14 (2026-09-06)",
+      "nextSteps": [
+        "Pitch drafted 2026-08-20 \u2014 awaiting Zach/Supervisor approval (pitch-batch-2026-08-20)"
+      ],
       "seoScore": {
         "current": 7,
         "max": 100,
@@ -9294,10 +9288,8 @@
       "gScore": 7,
       "pitchDraft": {
         "subject": "home repairs in Simpsonville",
-        "status": "sent",
-        "email": "pvphomeservices@gmail.com",
-        "demoUrl": "https://pvp-home-services-demo.vercel.app",
-        "sentDate": "2026-08-23"
+        "status": "pending-supervisor-review",
+        "email": "pvphomeservices@gmail.com"
       },
       "responseStatus": "awaiting",
       "saleValue": null,
