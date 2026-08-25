@@ -1,11 +1,14 @@
+"use client";
+
 import { AddLeadDialog } from "@/components/add-lead-dialog";
 import { LeadsTable, type LeadRow } from "@/components/leads-table";
 import { MotionBackground } from "@/components/motion-background";
-import { daysSince, getCompanies, getStages, isLead } from "@/lib/data";
+import { usePipeline } from "@/hooks/use-pipeline";
+import { daysSince, isLead } from "@/lib/data";
 
 export default function LeadsPage() {
-  const companies = getCompanies().filter(isLead);
-  const stages = getStages();
+  const { companies: all, stages, loading, error } = usePipeline();
+  const companies = all.filter(isLead);
 
   const rows: LeadRow[] = companies.map((company) => ({
     company,
@@ -22,9 +25,10 @@ export default function LeadsPage() {
               Leads
             </h1>
             <p className="mt-1 text-sm text-slate-500">
-              Early-funnel companies — prospect through first response. {rows.length}{" "}
-              in this list.
+              Early-funnel companies — prospect through first response.{" "}
+              {loading ? "Loading…" : `${rows.length} in this list.`}
             </p>
+            {error ? <p className="mt-1 text-sm text-rose-600">{error}</p> : null}
           </div>
           <AddLeadDialog stages={stages} />
         </div>

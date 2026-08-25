@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 
-import { getCompanies } from "@/lib/data";
+import { usePipeline } from "@/hooks/use-pipeline";
 import { cn } from "@/lib/utils";
 
-/** Type-ahead company lookup. Empty result = not in the dashboard. */
+/** Type-ahead company lookup against the live pipeline. Empty = not in the dashboard. */
 export function GlobalSearch({ className }: { className?: string }) {
   const router = useRouter();
-  const companies = getCompanies();
+  const { companies } = usePipeline();
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -47,9 +47,7 @@ export function GlobalSearch({ className }: { className?: string }) {
       {open && q.trim() ? (
         <div className="absolute left-0 right-0 top-full z-30 mt-1 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
           {matches.length === 0 ? (
-            <p className="px-3 py-2.5 text-sm text-slate-500">
-              Not in the dashboard yet.
-            </p>
+            <p className="px-3 py-2.5 text-sm text-slate-500">Not in the dashboard yet.</p>
           ) : (
             matches.map((c) => (
               <button

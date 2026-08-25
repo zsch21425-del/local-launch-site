@@ -1,16 +1,13 @@
 import { NextResponse } from "next/server";
-import { getCompanies } from "@/lib/data";
+import { readPipelineSafe, writePipeline } from "@/lib/pipeline-store";
 
 const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
 
 /**
- * POST: Unified pitch + demo approval for a company. One action updates both
- * the pitch draft status and the demo status, then relays a single combined
- * decision to the Supervisor (who sends the email once Zach approves).
+ * POST: Unified pitch + demo approval. Writes Blob (live OS book), then relays
+ * one combined decision to the Supervisor (who sends the email on approve).
  *
  * Body: { companyId, action: "approve" | "reject", reason?, suggestedFix? }
- *  - approve: marks pitch zach-approved + demo approved; supervisor sends email.
- *  - reject: marks pitch rejected + demo rejected (needs reason); routes rework.
  */
 export async function POST(request: Request) {
   let body: any;
@@ -37,9 +34,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "A rejection reason is required." }, { status: 400 });
   }
 
-  const companies = getCompanies();
-  if (!Array.isArray(companies)) {
-    return NextResponse.json({ error: "Invalid pipeline data" }, { status: 500 });
+  const data = await readPipelineSafe();
+  const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
+  if (companies.length === 0) {
+    return NextResponse.json({ error: "Pipeline store empty or unreadable" }, { status: 500 });
   }
 
   const company = companies.find((c: any) => c.id === companyId);
@@ -51,7 +49,6 @@ export async function POST(request: Request) {
   const hadPitch = !!company.pitchDraft;
   const hadDemo = !!(company.demoUrl || company.demo?.url);
 
-  // Update pitch status
   if (hadPitch) {
     const pitch = company.pitchDraft!;
     pitch.status = action === "approve" ? "zach-approved" : "rejected";
@@ -66,7 +63,6 @@ export async function POST(request: Request) {
     }
   }
 
-  // Update demo status
   if (hadDemo) {
     company.demo = company.demo ?? {};
     company.demo.status = action === "approve" ? "approved" : "rejected";
@@ -74,10 +70,11 @@ export async function POST(request: Request) {
     if (reason?.trim()) company.demo.notes = reason.trim();
   }
 
-  // State is updated on the in-memory pipeline singleton (getCompanies),
-  // which is the same source the dashboard reads. No separate Blob write needed.
+  const w = await writePipeline(data);
+  if (!w.ok) {
+    return NextResponse.json({ error: "writePipeline failed", detail: w.error }, { status: 500 });
+  }
 
-  // Relay a single combined decision to the Supervisor.
   const demoUrl = company.demo?.url ?? company.demoUrl ?? `https://${companyId}-demo.vercel.app`;
   const decisionMsg =
     action === "approve"

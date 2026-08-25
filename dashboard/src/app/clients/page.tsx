@@ -6,13 +6,13 @@ import { Search } from "lucide-react";
 import { AddLeadDialog } from "@/components/add-lead-dialog";
 import { MotionBackground } from "@/components/motion-background";
 import { StageFilter } from "@/components/stage-filter";
-import { getCompanies, getStages, isClient } from "@/lib/data";
+import { usePipeline } from "@/hooks/use-pipeline";
+import { isClient } from "@/lib/data";
 
 export default function ClientsPage() {
-  const allCompanies = getCompanies().filter(isClient);
-  const stages = getStages().filter((s) =>
-    allCompanies.some((c) => c.stage === s.id),
-  );
+  const { companies: live, stages: allStages, loading, error } = usePipeline();
+  const allCompanies = live.filter(isClient);
+  const stages = allStages.filter((s) => allCompanies.some((c) => c.stage === s.id));
   const [query, setQuery] = useState("");
 
   const companies = useMemo(() => {
@@ -37,9 +37,11 @@ export default function ClientsPage() {
             </h1>
             <p className="mt-1 text-sm text-slate-500">
               Won and in-build companies only. Leads live on the Leads tab.
+              {loading ? " Loading live list…" : ""}
             </p>
+            {error ? <p className="mt-1 text-sm text-rose-600">{error}</p> : null}
           </div>
-          <AddLeadDialog stages={getStages()} />
+          <AddLeadDialog stages={allStages} />
         </div>
 
         <div className="relative max-w-md">
@@ -54,7 +56,9 @@ export default function ClientsPage() {
 
         {allCompanies.length === 0 ? (
           <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center">
-            <p className="font-medium text-slate-700">No won / in-build clients yet</p>
+            <p className="font-medium text-slate-700">
+              {loading ? "Loading clients…" : "No won / in-build clients yet"}
+            </p>
             <p className="mt-1 text-sm text-slate-500">
               Prospects stay on Leads until they close. Check the pipeline or Approvals.
             </p>
@@ -63,12 +67,11 @@ export default function ClientsPage() {
           <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center">
             <p className="font-medium text-slate-700">Not a current client</p>
             <p className="mt-1 text-sm text-slate-500">
-              No client matches &ldquo;{query}&rdquo;. Try the sidebar search to check
-              Leads, or add them from Leads.
+              No client matches “{query}”. Try the sidebar search to check Leads, or add them from Leads.
             </p>
           </div>
         ) : (
-          <StageFilter companies={companies} stages={stages.length ? stages : getStages()} />
+          <StageFilter companies={companies} stages={stages.length ? stages : allStages} />
         )}
       </div>
     </>

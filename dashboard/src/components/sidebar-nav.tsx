@@ -19,7 +19,8 @@ import {
 } from "lucide-react";
 
 import { GlobalSearch } from "@/components/global-search";
-import { getAgency, getCompanies, pendingApprovalCount, pendingDemoCount } from "@/lib/data";
+import { usePipeline } from "@/hooks/use-pipeline";
+import { getAgency, pendingApprovalCount, pendingDemoCount } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -42,14 +43,6 @@ function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
 
-function pendingApprovalCount_(): number {
-  return pendingApprovalCount(getCompanies());
-}
-
-function pendingDemoCount_(): number {
-  return pendingDemoCount(getCompanies());
-}
-
 /**
  * Left navigation rail. Desktop: icon-only 56px rail that expands to show
  * labels on toggle. Mobile: hidden behind a hamburger, slides in as an
@@ -57,11 +50,13 @@ function pendingDemoCount_(): number {
  */
 export function SidebarNav() {
   const pathname = usePathname();
-  const agency = getAgency();
+  const { companies, agency: liveAgency } = usePipeline();
+  const agency = liveAgency?.name ? liveAgency : getAgency();
   const [collapsed, setCollapsed] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const pendingCount = pendingApprovalCount_();
+  const pendingCount = pendingApprovalCount(companies);
+  const demoCount = pendingDemoCount(companies);
 
   return (
     <>
@@ -103,7 +98,7 @@ export function SidebarNav() {
                 item={item}
                 active={isActive(pathname, item.href)}
                 expanded
-                badge={item.href === "/approvals" ? pendingCount : item.href === "/demos" ? pendingDemoCount_() : undefined}
+                badge={item.href === "/approvals" ? pendingCount : item.href === "/demos" ? demoCount : undefined}
                 onClick={() => setMobileOpen(false)}
               />
             ))}
@@ -150,7 +145,7 @@ export function SidebarNav() {
             item={item}
             active={isActive(pathname, item.href)}
             expanded={!collapsed}
-            badge={item.href === "/approvals" ? pendingCount : item.href === "/demos" ? pendingDemoCount_() : undefined}
+            badge={item.href === "/approvals" ? pendingCount : item.href === "/demos" ? demoCount : undefined}
           />
         ))}
       </nav>

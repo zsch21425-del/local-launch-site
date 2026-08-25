@@ -1,16 +1,24 @@
 import { NextResponse } from "next/server";
-import { getCompanies } from "@/lib/data";
+import { readPipelineSafe, writePipeline } from "@/lib/pipeline-store";
 
 const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
 
 /**
- * GET: list demos awaiting Zach's approval (and any rejected, for re-review).
- * Reads from the same in-memory pipeline singleton as /api/pipeline/data
- * (getCompanies), NOT the Blob store, so it stays consistent with the
- * Approvals page and the live pipeline.json bundled at build time.
+ * GET: list demos awaiting Zach's approval (and any rejected/rework, for re-review).
+ * Phase 1: reads from Vercel Blob (the live OS book) so demo state is durable
+ * across deploys and approvals stick.
+ *
+ * Filter: status !== "none" && status !== "approved" (rework/rejected stay visible).
  */
 export async function GET() {
-  const companies: any[] = getCompanies();
+  const data = await readPipelineSafe();
+  const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
+  if (companies.length === 0) {
+    return NextResponse.json(
+      { error: "Pipeline store empty or unreadable", demos: [] },
+      { status: 500 },
+    );
+  }
 
   const queue = companies
     .map((c) => {
@@ -25,9 +33,9 @@ export async function GET() {
 }
 
 /**
- * POST: approve or reject a demo. Updates the in-memory pipeline singleton
- * (getCompanies) and relays the decision to the Supervisor (fire-and-forget),
- * who handles deploy/send per Local Launch process.
+ * POST: approve or reject a demo.
+ * Phase 1: read Blob, mutate, write Blob, then relay to Supervisor (fire-and-forget).
+ * Replaces the old in-memory singleton mutation that was lost on every deploy.
  */
 export async function POST(request: Request) {
   let body: any;
@@ -39,7 +47,7 @@ export async function POST(request: Request) {
 
   const { companyId, action, notes } = body as {
     companyId?: string;
-    action?: "approve" | "reject";
+    action?: "approve" | "reject" | "rework";
     notes?: string;
   };
 
@@ -50,13 +58,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: `Invalid action: ${action}` }, { status: 400 });
   }
 
-  const companies = getCompanies();
+  // Read Blob (the live book).
+  const data = await readPipelineSafe();
+  const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
+  if (companies.length === 0) {
+    return NextResponse.json({ error: "Pipeline store empty or unreadable" }, { status: 500 });
+  }
   const company = companies.find((c: any) => c.id === companyId);
   if (!company) {
     return NextResponse.json({ error: `Company not found: ${companyId}` }, { status: 404 });
   }
 
-  // Update demo status on the in-memory singleton
+  // Mutate in-place.
   company.demo = company.demo ?? {};
   if (action === "approve") company.demo.status = "approved";
   else if (action === "reject") company.demo.status = "rejected";
@@ -64,11 +77,17 @@ export async function POST(request: Request) {
   company.demo.reviewedAt = new Date().toISOString();
   if (notes?.trim()) company.demo.notes = notes.trim();
 
+  // Persist back to Blob (durable; survives deploys).
+  const w = await writePipeline(data);
+  if (!w.ok) {
+    return NextResponse.json({ error: "writePipeline failed", detail: w.error }, { status: 500 });
+  }
+
   // Relay to Supervisor (fire-and-forget) — mirrors pitch-approve.
   const msg =
     action === "approve"
       ? `DEMO APPROVED for ${company.name} (${companyId}). Demo URL: ${company.demo?.url ?? company.demoUrl ?? `https://${companyId}-demo.vercel.app`}. Proceed per Local Launch process: deploy if not live, then route to Zach's 'done' approval / outreach.`
-      : `DEMO REJECTED for ${company.name} (${companyId}).${notes?.trim() ? ` Reason: "${notes.trim()}".` : ""} Route back to the builder to rework the demo.`;
+      : `DEMO ${action.toUpperCase()} for ${company.name} (${companyId}).${notes?.trim() ? ` Reason: "${notes.trim()}".` : ""} Route back to the builder to rework the demo.`;
 
   setTimeout(() => {
     fetch(RELAY_URL, {
