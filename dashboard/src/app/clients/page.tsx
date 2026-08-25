@@ -10,7 +10,7 @@ import { usePipeline } from "@/hooks/use-pipeline";
 import { isClient } from "@/lib/data";
 
 export default function ClientsPage() {
-  const { companies: live, stages: allStages, loading, error } = usePipeline();
+  const { companies: live, stages: allStages, loading, error, reload } = usePipeline();
   const allCompanies = live.filter(isClient);
   const stages = allStages.filter((s) => allCompanies.some((c) => c.stage === s.id));
   const [query, setQuery] = useState("");
@@ -41,7 +41,7 @@ export default function ClientsPage() {
             </p>
             {error ? <p className="mt-1 text-sm text-rose-600">{error}</p> : null}
           </div>
-          <AddLeadDialog stages={allStages} />
+          <AddLeadDialog stages={allStages} onAdded={() => void reload()} />
         </div>
 
         <div className="relative max-w-md">

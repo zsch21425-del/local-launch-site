@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, Copy, Plus } from "lucide-react";
+import { Check, Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,13 +19,22 @@ const FIELD =
   "w-full rounded-lg border border-slate-900/10 bg-white/70 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none";
 
 /**
- * The pipeline is a static JSON import, so a new lead can't be written from the
- * browser. This composes the exact `companies[]` entry to paste into
- * `data/pipeline.json` — one copy, one commit, and the board picks it up.
+ * Add a new lead. Phase 2 (B1): posts to /api/pipeline/leads (writes Vercel Blob),
+ * then calls onAdded() so the parent's usePipeline().reload() refreshes the board.
+ * Replaces the old "copy JSON into pipeline.json" flow (that path no longer works —
+ * the app reads Blob, not a bundled file).
  */
-export function AddLeadDialog({ stages }: { stages: Stage[] }) {
+export function AddLeadDialog({
+  stages,
+  onAdded,
+}: {
+  stages: Stage[];
+  onAdded?: () => void;
+}) {
   const [open, setOpen] = React.useState(false);
-  const [copied, setCopied] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [feedback, setFeedback] = React.useState<{ kind: "ok" | "error"; text: string } | null>(null);
+  const [dupe, setDupe] = React.useState<{ companyId: string; name: string } | null>(null);
 
   const [name, setName] = React.useState("");
   const [category, setCategory] = React.useState("");
@@ -36,48 +45,52 @@ export function AddLeadDialog({ stages }: { stages: Stage[] }) {
   const [stage, setStage] = React.useState(stages.find((s) => s.id === "prospect")?.id ?? stages[0]?.id ?? "prospect");
   const [summary, setSummary] = React.useState("");
 
-  const slug =
-    name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "") || "new-lead";
-
-  const snippet = JSON.stringify(
-    {
-      id: slug,
-      name: name || "New Lead",
-      category: category || "Uncategorized",
-      stage,
-      location,
-      phone,
-      website,
-      summary,
-      lastContact: "",
-      lastUpdated: "",
-      priority,
-      playbook: [
-        {
-          id: `${slug}-contact`,
-          label: "Make initial contact",
-          stage: "prospect",
-          done: false,
-          detail: phone ? `Call ${phone}.` : "Find a phone number and call.",
-        },
-      ],
-      nextSteps: ["Make initial contact"],
-      seoScore: null,
-    },
-    null,
-    2,
-  );
-
-  async function copySnippet() {
+  async function submit() {
+    if (!name.trim()) {
+      setFeedback({ kind: "error", text: "Business name is required." });
+      return;
+    }
+    setSubmitting(true);
+    setFeedback(null);
+    setDupe(null);
     try {
-      await navigator.clipboard.writeText(snippet);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
+      const res = await fetch("/api/pipeline/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          category: category.trim(),
+          location: location.trim(),
+          phone: phone.trim() || undefined,
+          website: website.trim() || undefined,
+          priority,
+          stage,
+          summary: summary.trim() || undefined,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 409) {
+        setDupe({ companyId: data.companyId ?? "", name: data.name ?? name });
+        setFeedback({ kind: "error", text: "Already in the dashboard." });
+        setSubmitting(false);
+        return;
+      }
+      if (!res.ok) {
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
+      setFeedback({ kind: "ok", text: "Lead added." });
+      setName("");
+      setCategory("");
+      setLocation("Greenville, SC");
+      setPhone("");
+      setWebsite("");
+      setSummary("");
+      onAdded?.();
+      window.setTimeout(() => setOpen(false), 600);
+    } catch (e) {
+      setFeedback({ kind: "error", text: e instanceof Error ? e.message : "Could not add lead." });
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -86,7 +99,10 @@ export function AddLeadDialog({ stages }: { stages: Stage[] }) {
       open={open}
       onOpenChange={(next) => {
         setOpen(next);
-        if (!next) setCopied(false);
+        if (!next) {
+          setFeedback(null);
+          setSubmitting(false);
+        }
       }}
     >
       <DialogTrigger asChild>
@@ -100,11 +116,7 @@ export function AddLeadDialog({ stages }: { stages: Stage[] }) {
         <DialogHeader>
           <DialogTitle>Add a new lead</DialogTitle>
           <DialogDescription>
-            Fill this in and copy the generated entry into the{" "}
-            <code className="rounded bg-slate-900/[0.06] px-1 py-0.5 text-[11px] text-slate-700">
-              companies
-            </code>{" "}
-            array in <code className="rounded bg-slate-900/[0.06] px-1 py-0.5 text-[11px] text-slate-700">data/pipeline.json</code>.
+            Saves straight to the live dashboard (Vercel Blob). It appears on Leads and search immediately.
           </DialogDescription>
         </DialogHeader>
 
@@ -164,9 +176,7 @@ export function AddLeadDialog({ stages }: { stages: Stage[] }) {
             <select
               className={FIELD}
               value={stage}
-              onChange={(event) =>
-                setStage(event.target.value as typeof stage)
-              }
+              onChange={(event) => setStage(event.target.value as typeof stage)}
             >
               {stages.map((option) => (
                 <option key={option.id} value={option.id}>
@@ -185,31 +195,43 @@ export function AddLeadDialog({ stages }: { stages: Stage[] }) {
           </Field>
         </div>
 
-        <pre className="max-h-48 overflow-auto rounded-xl bg-slate-900/[0.04] p-3 font-mono text-[11px] leading-relaxed text-slate-700">
-          {snippet}
-        </pre>
+        {feedback ? (
+          <p
+            className={`rounded-lg px-3 py-2 text-sm ${
+              feedback.kind === "ok" ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
+            }`}
+          >
+            {dupe && feedback.kind === "error" && dupe.companyId ? (
+              <>
+                Already in the dashboard —{" "}
+                <a href={`/client/${dupe.companyId}`} className="underline underline-offset-2">
+                  view {dupe.name}
+                </a>
+              </>
+            ) : (
+              feedback.text
+            )}
+          </p>
+        ) : null}
 
         <DialogFooter>
           <Button
             variant="outline"
             className="rounded-full"
             onClick={() => setOpen(false)}
+            disabled={submitting}
           >
             Cancel
           </Button>
           <Button
             className="gap-1.5 rounded-full bg-slate-900 text-white hover:bg-slate-800"
-            onClick={copySnippet}
+            onClick={() => void submit()}
+            disabled={submitting}
           >
-            {copied ? (
+            {submitting ? "Saving…" : (
               <>
                 <Check className="size-4" />
-                Copied
-              </>
-            ) : (
-              <>
-                <Copy className="size-4" />
-                Copy JSON entry
+                Save lead
               </>
             )}
           </Button>

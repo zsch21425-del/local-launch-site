@@ -7,7 +7,7 @@ import { usePipeline } from "@/hooks/use-pipeline";
 import { daysSince, isLead } from "@/lib/data";
 
 export default function LeadsPage() {
-  const { companies: all, stages, loading, error } = usePipeline();
+  const { companies: all, stages, loading, error, reload } = usePipeline();
   const companies = all.filter(isLead);
 
   const rows: LeadRow[] = companies.map((company) => ({
@@ -30,7 +30,7 @@ export default function LeadsPage() {
             </p>
             {error ? <p className="mt-1 text-sm text-rose-600">{error}</p> : null}
           </div>
-          <AddLeadDialog stages={stages} />
+          <AddLeadDialog stages={stages} onAdded={() => void reload()} />
         </div>
 
         <LeadsTable rows={rows} />

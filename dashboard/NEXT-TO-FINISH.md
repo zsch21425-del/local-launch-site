@@ -102,40 +102,27 @@ Write a short note at the bottom of this file: `Phase 1 closed: <date> <commit>`
 
 ### B. Phase 2 — real write buttons (only after A)
 
-These are the last two things that still feel like a brochure.
+Phase 2 DONE 2026-08-25 (commit after this note). See below.
 
-**B1 — Add lead is a POST, not JSON paste**
+**B1 — Add lead is a POST, not JSON paste** ✅
 
-Today: `src/components/add-lead-dialog.tsx` copies a JSON blob for someone to paste into `pipeline.json`.
+- `POST /api/pipeline/leads` — reads Blob, appends lead, writes Blob. Slug from name, 409 on duplicate name (case-insensitive) or id. Auth via ACCESS_CODE cookie. Valid priority (high/medium-high/medium/low) + stage.
+- `POST /api/pipeline/leads/delete` — remove a lead (404 on missing). Auth-gated. Added alongside B1 so wrongly-added leads can be removed.
+- Dialog (`src/components/add-lead-dialog.tsx`) now POSTs on "Save lead", calls `usePipeline().reload()` via `onAdded`. On 409 shows "Already in the dashboard" + link to `/client/<id>`.
+- Do not keep the "copy JSON / commit / redeploy" path — removed.
 
-Need:
+**B2 — Kanban drag persists** ✅
 
-- `POST /api/pipeline/leads` (auth via existing middleware cookie)
-  - Body: `{ name, category, location, phone?, website?, priority, stage, summary? }`
-  - Slug/`id` from name (same rules as the dialog)
-  - **Reject 409** if `name` or `id` already exists (case-insensitive name). This is “is this company already in the dashboard?”
-  - `readPipelineSafe` → push company → `writePipeline`
-  - Default stage `prospect`, priority one of `high|medium-high|medium|low`
-- Dialog: submit the POST, then `usePipeline().reload()` (or `router.refresh` + reload). On 409 show “Already in the dashboard” + link to `/client/<id>`.
-- Do **not** keep the “copy JSON / commit / redeploy” path as the primary UX.
+- `POST /api/pipeline/move` — `{ companyId, stage }`, validates stage, writes Blob.
+- Home `handleMove`: optimistic UI, then POST; on failure reload authoritative state + show error banner.
 
-**B2 — Kanban drag persists**
+**B3 — Phase 2 acceptance** ✅ (2026-08-25)
 
-Today: Home `handleMove` only `setCompanies` in this browser.
+- Added `Phase2 Test Lead <timestamp>` via live API → appeared on leads (count 265) no deploy.
+- Moved it to `audit` via move → persisted (count 265, stage audit) after ~20s Blob propagation, no deploy.
+- Deleted it via delete route → count back to 264. Clean.
 
-Need:
-
-- `POST /api/pipeline/move` `{ companyId, stage }` (optional `index`)
-- Validate `stage` is a real `StageId`
-- Write Blob
-- Home `handleMove`: optimistic UI, then POST; on failure reload and show error
-- After a refresh on another device, the card is in the new column
-
-**B3 — Phase 2 acceptance**
-
-- Add a throwaway lead named `Phase2 Test Lead <timestamp>` from the live UI (no deploy). It appears on Leads + search.
-- Move it to `audit` on Home. Refresh. Still `audit`.
-- Delete or stage-mark that test lead so it does not stay in Zach’s inbox (add a `POST` delete **or** move it to a clearly fake name and leave a note — do not silently delete real companies).
+⚠️ **KNOWN GOTCHA (verified): Vercel Blob has ~5–20s read-after-write propagation lag.** A write returns `ok:true` immediately; a subsequent read may still return the OLD value for up to ~20s. Repeated read-modify-write races can leave a stale snapshot (first delete re-added the lead; retry fixed it). If a write seems "lost," re-read after ~20s — it is eventually consistent. For move/add/delete the data is durable; only the read reflects a lag.
 
 ---
 

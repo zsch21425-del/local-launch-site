@@ -1,5 +1,7 @@
 "use client";
 
+import * as React from "react";
+
 import { MotionBackground } from "@/components/motion-background";
 import { PipelineKanban } from "@/components/pipeline-kanban";
 import { RevenueTracker } from "@/components/revenue-tracker";
@@ -16,9 +18,11 @@ import {
 } from "@/lib/data";
 
 export default function HomePage() {
-  const { companies, stages, agency, loading, error, setCompanies } = usePipeline();
+  const { companies, stages, agency, loading, error, reload, setCompanies } = usePipeline();
+  const [moveError, setMoveError] = React.useState<string | null>(null);
 
-  function handleMove(companyId: string, stage: StageId, index: number) {
+  async function handleMove(companyId: string, stage: StageId, index: number) {
+    // Optimistic local update first (feels instant), then persist to Blob.
     setCompanies((prev) => {
       const next = prev.map((c) =>
         c.id === companyId ? { ...c, stage } : c,
@@ -30,6 +34,24 @@ export default function HomePage() {
       others.splice(index, 0, moved);
       return next.map((c) => (c.stage === stage ? (others.shift() ?? c) : c));
     });
+
+    try {
+      const res = await fetch("/api/pipeline/move", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ companyId, stage }),
+      });
+      if (!res.ok) {
+        const msg = (await res.json().catch(() => ({ error: `HTTP ${res.status}` }))).error;
+        throw new Error(msg || `HTTP ${res.status}`);
+      }
+    } catch (e) {
+      // Move failed to persist — reload authoritative Blob state + surface error.
+      const msg = e instanceof Error ? e.message : "Failed to move card";
+      setCompanies((prev) => prev); // no-op to satisfy setter type; reload below reflects truth
+      await reload();
+      setMoveError(msg);
+    }
   }
 
   const stats = getStats(companies);
@@ -62,6 +84,11 @@ export default function HomePage() {
 
         <section id="pipeline">
           <h2 className="mb-4 text-lg font-semibold text-slate-800">Pipeline</h2>
+          {moveError ? (
+            <p className="mb-3 rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">
+              Could not save that move: {moveError}. Card was returned to its original column.
+            </p>
+          ) : null}
           <PipelineKanban stages={stages} companies={companies} onMove={handleMove} />
         </section>
 
