@@ -3004,9 +3004,9 @@
       "location": "Easley, SC",
       "phone": "(864) 784-1367",
       "website": "cpmhomeservicesllc.com",
-      "summary": "SECOND-PASS 2026-08-20: no websites found, GBP not found. Confirms no-site. Tier A holds.",
+      "summary": "RE-VERIFIED 2026-08-25 (corrects 08-20 'no website'): cpmhomeservicesllc.com is LIVE (curl 200, title 'CPM Home Services, LLC | Spartanburg, SC', phone 864-784-1367 matches). cpmhome.com = One.com parking page (NOT a real site). Tier B/C - has a live site, pitch rebuild/SEO angle (NOT Tier A no-site build). GBP still unconfirmed.",
       "lastContact": "",
-      "lastUpdated": "2026-08-23",
+      "lastUpdated": "2026-08-25",
       "priority": "high",
       "playbook": [
         {
@@ -3014,14 +3014,14 @@
           "label": "Audit completed",
           "stage": "audited",
           "done": true,
-          "detail": "G-Score 16/100. No site, FB active, 30 yrs experience."
+          "detail": "G-Score 16/100 (set pre-live-site-discovery). Live site now confirmed (cpmhomeservicesllc.com)."
         },
         {
           "id": "cpm-pitch",
-          "label": "Draft Tier A pitch",
+          "label": "Draft Tier B/C rebuild/SEO pitch",
           "stage": "audited",
           "done": false,
-          "detail": "30 years experience + no website = 'people search for you and find nothing' angle."
+          "detail": "Live site found (cpmhomeservicesllc.com) - pitch rebuild/SEO angle, NOT Tier A no-site build."
         },
         {
           "id": "cpm-contact",
@@ -3031,7 +3031,11 @@
           "detail": "Phone (864) 784-1367 or FB group DM."
         }
       ],
-      "nextSteps": "HAS SITE (cpmhomeservicesllc.com + cpmhome.com live) \u2014 SKIP demo, pitch rebuild/SEO angle instead.",
+      "nextSteps": [
+        "Second-pass re-verified (2026-08-25): cpmhomeservicesllc.com LIVE (matching phone 864-784-1367); cpmhome.com = One.com parking page, NOT a live site",
+        "Tier B/C - pitch rebuild/SEO angle (live-but-weak site), NOT Tier A no-site build",
+        "gScore 16 predates live-site discovery - reconcile upward for website presence (Supervisor)"
+      ],
       "seoScore": {
         "current": 16,
         "max": 100,
