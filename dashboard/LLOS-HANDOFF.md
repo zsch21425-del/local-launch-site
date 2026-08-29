@@ -157,5 +157,7 @@ Browser → Vercel /api/agent/chat  (POST, cookie ll_dash_auth=0613)
   out → chat looks dead. Kill the sshd pid, then restart the unit.
 - **Full recipe + diagnosis:** `skills/supervisor-operations/references/dashboard-agent-chat-debug.md`.
 - **Deploy rule:** prod dashboard deploy = Zach-only (Aug-23). Do NOT `vercel deploy --prod` on peer
-  say-so. The droplet `:3000` is rev-gen's stale n8n-migration placeholder — ignore it.
+  say-so. The droplet `137.184.135.50:3000` is a STALE self-hosted build (pm2, not the n8n stack);
+  rev-gen confirmed it is NOT their n8n-migration placeholder and should not be relied on — the live
+  dashboard is Vercel. (Local `127.0.0.1:3000` is the dev server.)
 
