@@ -70,6 +70,8 @@ export function AgentChat({
               clearInterval(pollRef.current);
               pollRef.current = undefined;
             }
+            const tId = (pollRef as any).timeoutId;
+            if (tId) clearTimeout(tId);
           }
         }
       }
@@ -93,21 +95,48 @@ export function AgentChat({
     setPending(true);
 
     try {
-      await fetch("/api/agent/chat", {
+      const res = await fetch("/api/agent/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ clientId, message: text }),
       });
+      const data = (await res.json()) as { reply?: string };
 
-      // Show "working" placeholder
-      setMessages((prev) => [
-        ...prev,
-        { id: nextId(), role: "agent", content: "Working on it… check back in a few seconds." },
-      ]);
+      // If the dashboard relay returned the reply inline, show it now
+      if (data.reply) {
+        setMessages((prev) => [
+          ...prev,
+          { id: nextId(), role: "agent", content: data.reply! },
+        ]);
+        setWaitingForReply(false);
+        setPending(false);
+        if (pollRef.current) {
+          clearInterval(pollRef.current);
+          pollRef.current = undefined;
+        }
+        return;
+      }
+
+      // Otherwise fall back to polling for async agents
       setWaitingForReply(true);
 
-      // Start polling
+      // Poll for the agent's reply (give up after 90s so we don't spin forever)
+      const POLL_TIMEOUT_MS = 90_000;
+      const timeoutId = setTimeout(() => {
+        if (pollRef.current) {
+          clearInterval(pollRef.current);
+          pollRef.current = undefined;
+        }
+        setWaitingForReply(false);
+        setMessages((prev) => [
+          ...prev,
+          { id: nextId(), role: "agent", content: "Agent is taking longer than usual. Try again or check back in a minute." },
+        ]);
+      }, POLL_TIMEOUT_MS);
+
       pollRef.current = setInterval(poll, 3000);
+      // Store the timeout id on the ref so we can clear it when the reply lands
+      (pollRef as any).timeoutId = timeoutId;
     } catch {
       setMessages((prev) => [
         ...prev,
