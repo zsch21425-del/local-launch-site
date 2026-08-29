@@ -135,3 +135,27 @@ Vercel token: `/home/zach/.vercel/auth.json` (on the office machine). `vercel` C
   work, and feeds verified leads to the Supervisor. It does NOT build or deploy demos.
 - Any agent working on the dashboard should NOT deploy demo sites or pitch emails — those route
   through the Supervisor relay (`SUPERVISOR_RELAY_URL`, default http://137.184.135.50:9930/chat).
+
+## Agent chat — infrastructure (2026-08-29, SUPERVISOR owns)
+
+The in-dashboard agent chat ("Local Launch Agent" panel) is wired like this:
+
+```
+Browser → Vercel /api/agent/chat  (POST, cookie ll_dash_auth=0613)
+       → relay  http://137.184.135.50:9930/chat   (/opt/ll-relay.py, droplet)
+       → SUPERVISOR_URL  http://127.0.0.1:9924/v1/chat/completions
+       → sshd reverse tunnel (droplet :9924 → local WSL :9912)
+       → local supervisor 127.0.0.1:9912  (speaks OpenAI chat/completions shape)
+```
+
+- **Tunnel owner:** `ll-tunnel-droplet.service` (systemd `--user` unit, `Restart=always`). Do NOT
+  open a manual `ssh -R 9924` — it races the unit for the port. If the unit is gone, `systemctl --user
+  enable --now ll-tunnel-droplet.service`.
+- **Watchdog:** `Tunnel Watchdog — Agent Chat Relay` cron (every 5 min, Telegram `8328280368`) runs
+  `scripts/tunnel_watchdog.sh`; restarts the tunnel after 3 consecutive health-check fails.
+- **Stale-sshd gotcha:** a dead sshd session squatting `:9924` TCP-accepts then hangs → relay times
+  out → chat looks dead. Kill the sshd pid, then restart the unit.
+- **Full recipe + diagnosis:** `skills/supervisor-operations/references/dashboard-agent-chat-debug.md`.
+- **Deploy rule:** prod dashboard deploy = Zach-only (Aug-23). Do NOT `vercel deploy --prod` on peer
+  say-so. The droplet `:3000` is rev-gen's stale n8n-migration placeholder — ignore it.
+
