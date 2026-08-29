@@ -86,8 +86,8 @@ export interface CrmListResult {
 }
 
 /** List companies from the CRM (limit/take). */
-export async function crmListCompanies(limit = 50): Promise<CrmCompany[]> {
-  const data = await crmQuery<CrmListResult>("companies.list", { limit, offset: 0 });
+export async function crmListCompanies(limit = 500): Promise<CrmCompany[]> {
+  const data = await crmQuery<CrmListResult>("companies.list", { page: 1, pageSize: limit });
   return data?.rows ?? [];
 }
 
