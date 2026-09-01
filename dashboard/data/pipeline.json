@@ -63,7 +63,7 @@
       "website": "https://cc-headlight-website.vercel.app",
       "summary": "Mobile headlight restoration in Greenville, SC. Full site with Cal.com booking, Resend contact form, SEO schema, and FAQ. Dark automotive palette. Site live \u2014 needs client phone, GBP setup, GSC verification.",
       "lastContact": "",
-      "lastUpdated": "2026-08-12",
+      "lastUpdated": "2026-08-29",
       "priority": "high",
       "playbook": [
         {
@@ -117,7 +117,8 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 60,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Chris"
     },
     {
       "id": "omega-auto",
@@ -283,7 +284,9 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Katie",
+      "offer": "$599 build"
     },
     {
       "id": "redwood",
@@ -414,7 +417,8 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 52,
-      "zachApproval": "approved"
+      "zachApproval": "approved",
+      "email": "info@bmpressurewashingllc.com"
     },
     {
       "id": "yardsmith",
@@ -483,7 +487,8 @@
       "demo": {
         "url": "https://yardsmith-demo.vercel.app",
         "status": "pending"
-      }
+      },
+      "ownerName": "Jordan"
     },
     {
       "id": "jacksons-junk",
@@ -617,7 +622,8 @@
       "saleValue": null,
       "gScore": 5,
       "zachApproval": null,
-      "email": "Ljtreeserviceasc@gmail.com"
+      "email": "Ljtreeserviceasc@gmail.com",
+      "ownerName": "Chris"
     },
     {
       "id": "kimbrells-plumbing",
@@ -685,7 +691,8 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 12,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "ldanielk18@gmail.com"
     },
     {
       "id": "mm-plumbing",
@@ -825,7 +832,8 @@
       "demo": {
         "url": "https://upstate-window-demo.vercel.app",
         "status": "pending"
-      }
+      },
+      "ownerName": "Austin"
     },
     {
       "id": "my-titan",
@@ -883,7 +891,9 @@
       "zachApproval": null,
       "email": "jamison@mytitanusa.com",
       "enrichmentFlag": "domain-hosts-different-company",
-      "has_site": true
+      "has_site": true,
+      "ownerName": "Jamison",
+      "offer": "$149/mo care"
     },
     {
       "id": "lonts-disposal",
@@ -895,7 +905,7 @@
       "website": "",
       "summary": "Greer SC 24/7 junk removal. G-Score 12/100. No website, no domain, GBP unverified. Yelp 5.0\u2605 (27 photos). Competitors: 1-800-GOT-JUNK, Junk King Greenville. Pitch: '5-star Yelp reputation with nowhere to land.'",
       "lastContact": "2026-08-14",
-      "lastUpdated": "2026-08-09",
+      "lastUpdated": "2026-08-31",
       "priority": "medium-high",
       "playbook": [
         {
@@ -942,11 +952,12 @@
       "saleValue": null,
       "gScore": 12,
       "zachApproval": null,
-      "demoUrl": "https://lonts-disposal-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://lonts-disposal-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "email": "lonts247disposal@yahoo.com"
     },
     {
       "id": "fix-home",
@@ -1004,7 +1015,8 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 15,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Shaun"
     },
     {
       "id": "greenville-cleaning",
@@ -1077,7 +1089,8 @@
       "demo": {
         "url": "https://greenville-cleaning-demo.vercel.app",
         "status": "pending"
-      }
+      },
+      "ownerName": "Garrett"
     },
     {
       "id": "yaca-auto",
@@ -1147,7 +1160,7 @@
       "website": "",
       "summary": "Handyman + HVAC. NO real website: machadohandyman.com dead (no DNS), machadohvac.com 302-redirects to an affiliate parking page (technicalaffiliate.com, 404). No confirmed GBP for this exact name (a 'MACHADO HVAC SERVICES LLC' listing exists but MD area code \u2014 unverified match). Losing to McCown, Dial Heating & Air. Pitch: build site + clean GBP. G-Score 4/100, PURSUE Level 2.",
       "lastContact": "",
-      "lastUpdated": "2026-08-09",
+      "lastUpdated": "2026-09-01",
       "priority": "medium",
       "playbook": [
         {
@@ -1182,14 +1195,16 @@
         "label": "G-SCORE"
       },
       "prospectScore": "MEDIUM",
-      "pitchDraft": null,
+      "pitchDraft": {
+        "status": "pending-review"
+      },
       "responseStatus": null,
       "saleValue": null,
       "gScore": 4,
       "zachApproval": null,
-      "demoUrl": "https://machado-handyman-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://machado-handyman-demo.vercel.app",
+        "url": "",
         "status": "pending"
       }
     },
@@ -1302,7 +1317,7 @@
       "website": "",
       "summary": "SECOND-PASS 2026-08-20: no websites found, GBP not found. Confirms no-site. Tier A holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-20",
+      "lastUpdated": "2026-08-31",
       "priority": "low",
       "playbook": [],
       "nextSteps": [
@@ -1321,11 +1336,12 @@
       "saleValue": null,
       "gScore": 8,
       "zachApproval": null,
-      "demoUrl": "https://moriaan-construction-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://moriaan-construction-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "offer": "$599 build"
     },
     {
       "id": "one-call-plumbing",
@@ -1398,7 +1414,8 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 20,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "prokutzlawncare@gmail.com"
     },
     {
       "id": "smith-irrigation",
@@ -1481,7 +1498,8 @@
       "demo": {
         "url": "https://country-life-tires-demo.vercel.app",
         "status": "pending"
-      }
+      },
+      "offer": "$149/mo care"
     },
     {
       "id": "jtp-lawncare",
@@ -1562,7 +1580,8 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 29,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "landstreecare@yahoo.com"
     },
     {
       "id": "kens-plumbing",
@@ -1742,7 +1761,7 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "locomotionautodetail@gmail.com",
       "notes": []
     },
     {
@@ -1917,7 +1936,10 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Alex",
+      "demoUrl": "https://adv-garage-door-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "johnsons-paint",
@@ -1987,7 +2009,7 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "lightningpest@yahoo.com",
       "notes": []
     },
     {
@@ -2059,7 +2081,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "info@gotitanwash.com"
     },
     {
       "id": "mr-painter-ga",
@@ -2094,7 +2117,8 @@
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "lastContact": "2026-08-14"
+      "lastContact": "2026-08-14",
+      "email": "mrpaintercompanyllc@yahoo.com"
     },
     {
       "id": "jpg-painting-ga",
@@ -2271,7 +2295,8 @@
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "lastContact": "2026-08-14"
+      "lastContact": "2026-08-14",
+      "email": "thestallionconcretellc@gmail.com"
     },
     {
       "id": "baucom-auto-detailing",
@@ -2433,7 +2458,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "ntsllc@yahoo.com"
     },
     {
       "id": "two-brothers-landscaping",
@@ -2466,7 +2492,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "twobrothersplllclandscaping@gmail.com"
     },
     {
       "id": "osullivan-family-tree-services",
@@ -2560,7 +2587,8 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "jobleezy43@gmail.com"
     },
     {
       "id": "3d-heating-and-air-llc",
@@ -2661,7 +2689,7 @@
       "website": "wipeoutjunk.com",
       "summary": "Miami FL junk removal. GBP confirmed (42 reviews). Website found: wipeoutjunk.com (Wix, but shows Portland OR service area \u2014 may be template leftover). Email: wipeoutjunk@gmail.com. Phone from Yelp: (786) 784-3027. Has email for automatic pitching!",
       "lastContact": "2026-08-14",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-31",
       "priority": "high",
       "playbook": [],
       "nextSteps": "Follow-up Day 4 (2026-08-18), Day 8 (2026-08-22), Day 14 call",
@@ -2685,11 +2713,12 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "wipeoutjunk@gmail.com",
-      "demoUrl": "https://wipeout-junk-removal-miami-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://wipeout-junk-removal-miami-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "ownerName": "Tymofiy"
     },
     {
       "id": "kings-power-washing-of-charlotte",
@@ -2722,7 +2751,10 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Nic",
+      "demoUrl": "https://kings-power-washing-charlotte-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "junk-busters",
@@ -2823,7 +2855,8 @@
       "demo": {
         "url": "https://charlotte-pressure-washing-demo.vercel.app",
         "status": "pending"
-      }
+      },
+      "ownerName": "Darrell"
     },
     {
       "id": "good-work-pressure-washing",
@@ -2994,7 +3027,10 @@
       "gScore": 50,
       "zachApproval": null,
       "email": "",
-      "notes": []
+      "notes": [],
+      "ownerName": "Jaysen",
+      "demoUrl": "https://sparrow-fencing-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "cpm-home-services",
@@ -3111,7 +3147,8 @@
       "responseStatus": null,
       "saleValue": null,
       "gScore": 6,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "scotthandiworks@gmail.com"
     },
     {
       "id": "mmk-pressure-washing",
@@ -3171,7 +3208,8 @@
       "demo": {
         "url": "https://mmk-pressure-washing-demo.vercel.app",
         "status": "pending"
-      }
+      },
+      "ownerName": "Scott"
     },
     {
       "id": "sky-branch-llc",
@@ -3233,7 +3271,8 @@
       "demo": {
         "url": "https://sky-branch-llc-demo.vercel.app",
         "status": "pending"
-      }
+      },
+      "ownerName": "Alexander"
     },
     {
       "id": "brian-dillard-concrete",
@@ -3261,7 +3300,8 @@
         "subject": "Brian",
         "channel": "Email",
         "status": "pending-supervisor-review"
-      }
+      },
+      "ownerName": "Brian"
     },
     {
       "id": "mishoes-handy-services",
@@ -3273,7 +3313,7 @@
       "website": "mishoeshandyservices.com (expired)",
       "summary": "Handyman, Travelers Rest SC. LIVE site at mishsrv.com (JouwWeb) \u2014 Scout's 'broken site' verdict stale. No GBP. PHONE ERROR: 864-704-8589 belongs to Integrity Painting; verify 864-492-8327. G-SCORE 30. Audit approved 2026-08-10.",
       "lastContact": "2026-08-14",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-08-31",
       "priority": "high",
       "playbook": [],
       "nextSteps": "Follow-up Day 4 (2026-08-18), Day 8 (2026-08-22), Day 14 call",
@@ -3291,9 +3331,9 @@
         "sentDate": "2026-08-14"
       },
       "responseStatus": "awaiting",
-      "demoUrl": "https://mishoes-handy-services-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://mishoes-handy-services-demo.vercel.app",
+        "url": "",
         "status": "pending"
       }
     },
@@ -3326,7 +3366,8 @@
       },
       "email": "Leosproline@gmail.com",
       "notes": [],
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "ownerName": "Leo"
     },
     {
       "id": "taylor-jones-signature-tree",
@@ -3338,7 +3379,7 @@
       "website": "",
       "summary": "Tree service (24/7 emergency), Taylors SC. No website, no GBP. Distinct from Taylor's Tree Service Spartanburg. G-SCORE 8. Audit approved 2026-08-10.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-09-01",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
@@ -3351,7 +3392,10 @@
         "label": "G-SCORE"
       },
       "gScore": 8,
-      "pitchDraft": null
+      "pitchDraft": {
+        "status": "pending-review"
+      },
+      "email": "signaturetreegsp@gmail.com"
     },
     {
       "id": "ab-tree-service",
@@ -3379,7 +3423,8 @@
         "subject": "tree service in Spartanburg",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "email": "info@abtreecareservice.com"
     },
     {
       "id": "cleaning-angels",
@@ -3409,7 +3454,8 @@
         "demoUrl": "https://cleaning-angels-demo.vercel.app"
       },
       "email": "Ericagraysonwilson@icloud.com",
-      "emailStatus": "unverifiable"
+      "emailStatus": "unverifiable",
+      "ownerName": "Erica"
     },
     {
       "id": "devil-dog-fencing",
@@ -3421,7 +3467,7 @@
       "website": "",
       "summary": "Fencing + deck renovation, Greenville SC. No website. GBP 3.9\u2605/24 reviews. PHONE MISMATCH: GBP 864-354-4007 vs lead 864-243-1069 \u2014 verify before outreach. G-SCORE 28. Audit approved 2026-08-10.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-09-01",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
@@ -3434,7 +3480,10 @@
         "label": "G-SCORE"
       },
       "gScore": 28,
-      "pitchDraft": null
+      "pitchDraft": {
+        "status": "pending-review"
+      },
+      "email": "josh.loewer@gmail.com"
     },
     {
       "id": "lucas-maintenance-power-soft-wash-llc",
@@ -3446,7 +3495,7 @@
       "website": "https://lucasmaintenancellc.com",
       "summary": "Pressure washing/soft wash, Greenville SC. HAS LIVE SITE lucasmaintenancellc.com + claimed GBP 5.0\u2605/124 reviews (Scout misclassified as no-site). G-SCORE 78. Audit approved 2026-08-10.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-09-01",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
@@ -3460,9 +3509,12 @@
         "label": "G-SCORE"
       },
       "gScore": 78,
-      "pitchDraft": null,
+      "pitchDraft": {
+        "status": "pending-review"
+      },
       "email": "",
-      "notes": []
+      "notes": [],
+      "ownerName": "Jason"
     },
     {
       "id": "perino-s-junk-removal",
@@ -3474,7 +3526,7 @@
       "website": "",
       "summary": "Junk removal/handyman/lawn, Inman SC. No website, NO GBP. 209 number confirmed as business's own (Supervisor approved). G-SCORE 10. Audit approved 2026-08-10.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-09-01",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
@@ -3487,7 +3539,9 @@
         "label": "G-SCORE"
       },
       "gScore": 10,
-      "pitchDraft": null
+      "pitchDraft": {
+        "status": "pending-review"
+      }
     },
     {
       "id": "sa-tree-service-more",
@@ -3499,7 +3553,7 @@
       "website": "",
       "summary": "Tree service, Spartanburg SC. No website. GBP 5.0\u2605 exists, FB-link only. PHONE MISMATCH: GBP 864-205-2764 vs lead 864-595-6900 \u2014 verify. G-SCORE 12. Audit approved 2026-08-10.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-09-01",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
@@ -3512,7 +3566,9 @@
         "label": "G-SCORE"
       },
       "gScore": 12,
-      "pitchDraft": null
+      "pitchDraft": {
+        "status": "pending-review"
+      }
     },
     {
       "id": "taylor-s-tree-service",
@@ -3543,7 +3599,8 @@
       },
       "email": "penny@taylorstreeservices.com",
       "notes": [],
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "ownerName": "Penny"
     },
     {
       "id": "west-construction",
@@ -3555,7 +3612,7 @@
       "website": "",
       "summary": "General contractor/remodeling, Spartanburg SC, since 1976. No website (westconstruction.com = unrelated national developer). G-SCORE 12. Audit approved 2026-08-10.",
       "lastContact": "",
-      "lastUpdated": "2026-08-10",
+      "lastUpdated": "2026-09-01",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
@@ -3568,7 +3625,10 @@
         "label": "G-SCORE"
       },
       "gScore": 12,
-      "pitchDraft": null
+      "pitchDraft": {
+        "status": "pending-review"
+      },
+      "email": "catk@charter.net"
     },
     {
       "id": "charlie-brown-decks",
@@ -3658,7 +3718,8 @@
         "status": "pending-supervisor-review",
         "confidence": null,
         "notes": "Tier A \u2014 no site, no GBP. Solo operator Gary Thomas; Nextdoor reputation. $300 one-time / $49-mo optional, one-time-only offered. Pitched 2026-08-11."
-      }
+      },
+      "email": "solidfoundationsplus@icloud.com"
     },
     {
       "id": "upstate-jack-of-trades",
@@ -3694,7 +3755,8 @@
         "email": "handyman.jot@gmail.com",
         "subject": "handyman in Spartanburg",
         "demoUrl": "https://upstate-jack-of-trades-demo.vercel.app"
-      }
+      },
+      "email": "Handyman.jot@gmail.com"
     },
     {
       "id": "the-creek-crew",
@@ -3753,7 +3815,7 @@
       },
       "gScore": 25,
       "pitchDraft": null,
-      "email": "",
+      "email": "devinwithtreesolutions@gmail.com",
       "notes": []
     },
     {
@@ -3779,7 +3841,8 @@
         "label": "G-SCORE"
       },
       "gScore": 5,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "chadstreework@gmail.com"
     },
     {
       "id": "steve-cantrell-tree",
@@ -3808,7 +3871,8 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "email": "Stevecantrelltreeservices@yahoo.com"
     },
     {
       "id": "haul-away-llc",
@@ -3820,7 +3884,7 @@
       "website": "",
       "summary": "Junk removal in Columbia, SC. Camoufox verified: GBP confirmed with 124 reviews. Hidden website discovered: haulawayllc.com. Now Tier B/C \u2014 pitch rebuild+SEO, not site-build.",
       "lastContact": "2026-08-14",
-      "lastUpdated": "2026-08-12",
+      "lastUpdated": "2026-08-31",
       "priority": "high",
       "playbook": [],
       "nextSteps": "Follow-up Day 4 (2026-08-18), Day 8 (2026-08-22), Day 14 call",
@@ -3838,11 +3902,12 @@
         "sentDate": "2026-08-14"
       },
       "responseStatus": "awaiting",
-      "demoUrl": "https://haul-away-llc-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://haul-away-llc-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "email": "haulawayllc1@gmail.com"
     },
     {
       "id": "morris-heating-air",
@@ -3920,7 +3985,8 @@
         "label": "G-SCORE"
       },
       "gScore": 7,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "palmettoclutter@gmail.com"
     },
     {
       "id": "smith-heating-air-spartanburg",
@@ -3946,7 +4012,8 @@
         "label": "G-SCORE"
       },
       "gScore": 7,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "smithshvac@gmail.com"
     },
     {
       "id": "david-smith-tree",
@@ -4050,7 +4117,8 @@
         "label": "G-SCORE"
       },
       "gScore": 3,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "patsconcrete19@gmail.com"
     },
     {
       "id": "jm-concrete-vt",
@@ -4102,7 +4170,8 @@
         "label": "G-SCORE"
       },
       "gScore": 8,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "vtcustomstone@yahoo.com"
     },
     {
       "id": "antiguas-landscaping",
@@ -4131,7 +4200,8 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "email": "antiguaslandscaping@gmail.com"
     },
     {
       "id": "ak-landscaping-ri",
@@ -4164,7 +4234,8 @@
         "demoUrl": "https://ak-landscaping-demo.vercel.app",
         "status": "sent",
         "channel": "Email"
-      }
+      },
+      "email": "achacon588@icloud.com"
     },
     {
       "id": "pressure-washing-solutions-nh",
@@ -4190,7 +4261,8 @@
         "label": "G-SCORE"
       },
       "gScore": 3,
-      "pitchDraft": null
+      "pitchDraft": null,
+      "email": "Pwsllc603@gmail.com"
     },
     {
       "id": "trim-all-tree",
@@ -4224,7 +4296,8 @@
         "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
         "status": "pending-review"
       },
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Trimalltreeservice@yahoo.com"
     },
     {
       "id": "spartan-paver-sealing",
@@ -4301,7 +4374,8 @@
         "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
         "status": "pending-review"
       },
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Blakedromig@outlook.com"
     },
     {
       "id": "threlkeld-demolition",
@@ -4335,7 +4409,8 @@
         "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
         "status": "pending-review"
       },
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "miketksc@gmail.com"
     },
     {
       "id": "molinas-tree-service",
@@ -4429,7 +4504,8 @@
         "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
         "status": "pending-review"
       },
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Contact@arightconstruction.com"
     },
     {
       "id": "locked-loaded-junk",
@@ -4463,7 +4539,8 @@
         "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
         "status": "pending-review"
       },
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "lockedandloadedjunkremoval@gmail.com"
     },
     {
       "id": "around-the-grounds-tree",
@@ -4543,7 +4620,7 @@
       "website": "",
       "summary": "Tier A no-site. Claimed 5.0\u2605 GBP, in-region 864, owns parked spartanconcrete.com. G-SCORE 41. Audit APPROVED 2026-08-11.",
       "lastContact": "2026-08-14",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-08-31",
       "priority": "high",
       "playbook": [],
       "nextSteps": "Follow-up Day 4 (2026-08-18), Day 8 (2026-08-22), Day 14 call",
@@ -4561,9 +4638,9 @@
         "sentDate": "2026-08-14"
       },
       "responseStatus": "awaiting",
-      "demoUrl": "https://spartan-concrete-llc-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://spartan-concrete-llc-demo.vercel.app",
+        "url": "",
         "status": "pending"
       }
     },
@@ -4577,7 +4654,7 @@
       "website": "",
       "summary": "Tier A no-site. Master plumber 8yr BBB, claimed 5.0\u2605 GBP, owns parked spughplumbing.com. G-SCORE 41. Audit APPROVED 2026-08-11.",
       "lastContact": "2026-08-14",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-08-31",
       "priority": "high",
       "playbook": [],
       "nextSteps": "Follow-up Day 4 (2026-08-18), Day 8 (2026-08-22), Day 14 call",
@@ -4595,11 +4672,12 @@
         "sentDate": "2026-08-14"
       },
       "responseStatus": "awaiting",
-      "demoUrl": "https://s-pugh-plumbing-llc-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://s-pugh-plumbing-llc-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "email": "spughplumbing@gmail.com"
     },
     {
       "id": "kandw-cleaning-service",
@@ -4611,7 +4689,7 @@
       "website": "",
       "summary": "Tier A no-site. Claimed 5.0\u2605 GBP, owner-confirmed (Nextdoor), in-region 864. Competitive niche \u2192 SEO/GEO 'get found' angle. G-SCORE 37. Audit APPROVED 2026-08-11.",
       "lastContact": "",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-09-01",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
@@ -4624,7 +4702,10 @@
         "label": "G-SCORE"
       },
       "gScore": 37,
-      "pitchDraft": null
+      "pitchDraft": {
+        "status": "pending-review"
+      },
+      "email": "kwcleaningservice@aol.com"
     },
     {
       "id": "upstate-handyman-and-landscaping",
@@ -4653,7 +4734,8 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "email": "emptywhiteout@hotmail.com"
     },
     {
       "id": "teds-handyman-service",
@@ -4665,7 +4747,7 @@
       "website": "",
       "summary": "Tier A no-site, no GBP. Veterans-run team (Ted Adamcryk), in-region 864 \u2014 strong trust/pitch fit. G-SCORE 17. Audit APPROVED 2026-08-11.",
       "lastContact": "",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-09-01",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
@@ -4678,7 +4760,10 @@
         "label": "G-SCORE"
       },
       "gScore": 17,
-      "pitchDraft": null
+      "pitchDraft": {
+        "status": "pending-review"
+      },
+      "email": "tedadamcryk@yahoo.com"
     },
     {
       "id": "zeroscapes-landscaping-llc",
@@ -4707,7 +4792,8 @@
         "status": "sent",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": "awaiting"
+      "responseStatus": "awaiting",
+      "email": "zeroscapes2017@gmail.com"
     },
     {
       "id": "uptown-renovations-llc",
@@ -4719,7 +4805,7 @@
       "website": "",
       "summary": "Tier B broken-site REBUILD. uptownrenovationsllc.com = 'under construction' Houzz placeholder; claimed 5.0\u2605 GBP + real reviews (864Pros ~14). 'Your site is down' pitch. G-SCORE 44. Audit APPROVED.",
       "lastContact": "2026-08-14",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-08-31",
       "priority": "high",
       "playbook": [],
       "nextSteps": "Follow-up Day 4 (2026-08-18), Day 8 (2026-08-22), Day 14 call",
@@ -4737,11 +4823,12 @@
         "sentDate": "2026-08-14"
       },
       "responseStatus": "awaiting",
-      "demoUrl": "https://uptown-renovations-llc-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://uptown-renovations-llc-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "email": "uptownrenovationsllc@gmail.com"
     },
     {
       "id": "woodies",
@@ -4753,7 +4840,7 @@
       "website": "",
       "summary": "NO SITE, GBP 5.0\u2605 (claimed, 494-1276 exact phone). Every Spartanburg junk competitor has a site; Woodies is the only one with none despite a strong GBP. PURSUE HIGH, Pitch A (no-site build).",
       "lastContact": "",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-09-01",
       "priority": "high",
       "playbook": [
         {
@@ -4772,7 +4859,9 @@
         "max": 100,
         "label": "G-SCORE"
       },
-      "pitchDraft": null,
+      "pitchDraft": {
+        "status": "pending-review"
+      },
       "responseStatus": null,
       "saleValue": null,
       "gScore": 31,
@@ -4817,7 +4906,8 @@
       "gScore": 13,
       "zachApproval": null,
       "email": "graywolfconcrete@gmail.com",
-      "notes": []
+      "notes": [],
+      "ownerName": "Zach"
     },
     {
       "id": "rodriquez",
@@ -4829,7 +4919,7 @@
       "website": "",
       "summary": "BROKEN-DOMAIN rebuild: greenvillepaintingservice.com serves Web.com 'Domain Not Valid' parked page (extracted live). NO GBP for lead's number. Do NOT confuse with different 'Rodriguez Painting' GBP (9 Ridgeside Ct, 214-0507). PURSUE MEDIUM, Pitch B.",
       "lastContact": "",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-09-01",
       "priority": "medium",
       "playbook": [
         {
@@ -4848,7 +4938,9 @@
         "max": 100,
         "label": "G-SCORE"
       },
-      "pitchDraft": null,
+      "pitchDraft": {
+        "status": "pending-review"
+      },
       "responseStatus": null,
       "saleValue": null,
       "gScore": 18,
@@ -4864,7 +4956,7 @@
       "website": "",
       "summary": "NO SITE (FB only, 463 likes), NO GBP. Solo painter Bill, 40+ yrs experience. PURSUE MEDIUM, Pitch A.",
       "lastContact": "",
-      "lastUpdated": "2026-08-11",
+      "lastUpdated": "2026-09-01",
       "priority": "medium",
       "playbook": [
         {
@@ -4883,7 +4975,9 @@
         "max": 100,
         "label": "G-SCORE"
       },
-      "pitchDraft": null,
+      "pitchDraft": {
+        "status": "pending-review"
+      },
       "responseStatus": null,
       "saleValue": null,
       "gScore": 12,
@@ -4946,7 +5040,7 @@
         "notes": "Pitched Aug 12 \u2014 Closer: pending Supervisor review. Tier A no-site build + GBP/review optimization. 5.0\u2605/85 reviews is the asset."
       },
       "lastUpdated": "2026-08-12",
-      "email": "",
+      "email": "Removalcrew3@gmail.com",
       "notes": []
     },
     {
@@ -5000,7 +5094,8 @@
       },
       "gScore": 9,
       "pitchDraft": null,
-      "lastUpdated": "2026-08-15"
+      "lastUpdated": "2026-08-15",
+      "email": "SuarezRenovations5@gmail.com"
     },
     {
       "id": "superior-clean-pw",
@@ -5097,7 +5192,7 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "Holygroundslandscaping15@gmail.com",
       "notes": []
     },
     {
@@ -5127,7 +5222,8 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "pristinecleanersservices@gmail.com"
     },
     {
       "id": "harrison-landscape-mgmt",
@@ -5186,7 +5282,7 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "wendysease@gmail.com",
       "notes": []
     },
     {
@@ -5246,8 +5342,9 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
-      "notes": []
+      "email": "Coopersplumbinginc@gmail.com",
+      "notes": [],
+      "ownerName": "Sammy"
     },
     {
       "id": "byars-plumbing-aiken",
@@ -5275,7 +5372,8 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "mdavidl@bellsouth.net"
     },
     {
       "id": "gold-star-hvacr",
@@ -5304,7 +5402,8 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "goldstarhvacr@gmail.com"
     },
     {
       "id": "madison-heating-cooling",
@@ -5364,7 +5463,8 @@
       },
       "responseStatus": "awaiting",
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Diazlandscaping5@gmail.com"
     },
     {
       "id": "buy-sell-landscape-mi",
@@ -5394,7 +5494,7 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "suerozga@comcast.net",
       "notes": []
     },
     {
@@ -5425,8 +5525,9 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
-      "notes": []
+      "email": "garciaspainting0805@gmail.com",
+      "notes": [],
+      "ownerName": "Miguel"
     },
     {
       "id": "jasper-painting-in",
@@ -5455,7 +5556,8 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "annajriddick@gmail.com"
     },
     {
       "id": "elite-sweep-cleaning-oh",
@@ -5485,7 +5587,7 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "elitesweeppropertycleaning@gmail.com",
       "notes": []
     },
     {
@@ -5514,7 +5616,8 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Max@mccleaning.solutions"
     },
     {
       "id": "brittain-concrete-ia",
@@ -5543,7 +5646,8 @@
       "pitchDraft": null,
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "kim9brittain@mchsi.com"
     },
     {
       "id": "rich-mitchell-painting-oh",
@@ -5601,7 +5705,8 @@
         "status": "pending-supervisor-review",
         "confidence": 8,
         "notes": "Pitched Aug 12 (r2) \u2014 pending Supervisor review. Tier A build. Two-phone question resolved: 225-5886 is primary. Domain parked/for-sale = urgency."
-      }
+      },
+      "email": "larry.campbell@campbellstreeservices.com"
     },
     {
       "id": "proklean-window",
@@ -5630,7 +5735,8 @@
         "status": "pending-supervisor-review",
         "confidence": 8,
         "notes": "Pitched Aug 12 (r2) \u2014 pending Supervisor review. Tier A build. 40\u00d75.0\u2605 GBP + 45 Birdeye reviews = reputation-forward angle."
-      }
+      },
+      "email": "Proklean2016@gmail.com"
     },
     {
       "id": "tomberlin-hauling",
@@ -5688,7 +5794,8 @@
         "status": "pending-supervisor-review",
         "confidence": 7,
         "notes": "Pitched Aug 12 (r2) \u2014 pending Supervisor review. Tier A build + GBP creation. Subcontractor AND direct-to-consumer angles."
-      }
+      },
+      "email": "clzdrypaintllc@gmail.com"
     },
     {
       "id": "pipedex-plumbing",
@@ -5853,7 +5960,8 @@
         "confidence": 8,
         "notes": "Drafted Aug 11 \u2014 pending Supervisor review. Tier A. 4.8\u2605/61 GBP. X recommendation from @LocalGuysMover (2018)."
       },
-      "prospectScore": "HIGH"
+      "prospectScore": "HIGH",
+      "email": "janddtreecare@gmail.com"
     },
     {
       "id": "gotta-guy-home-services",
@@ -5894,7 +6002,8 @@
         "demoUrl": "https://gotta-guy-demo.vercel.app",
         "email": "gottaguy5@gmail.com",
         "sentAt": "2026-08-19"
-      }
+      },
+      "ownerName": "James"
     },
     {
       "id": "kbs-lawn-care",
@@ -5927,7 +6036,8 @@
         "status": "pending-supervisor-review",
         "confidence": 9,
         "notes": "Pitch drafted 2026-08-13, awaiting Zach review. NOT SENT. Phone (864) 714-4987 ownership phone-verified at Google level \u2014 dial confidently; keep 'are you the owner' soft confirm (common-name brand). kbslawncare.com = Olathe KS collision. No email on file \u2014 phone-first."
-      }
+      },
+      "email": "Kbeeks65@gmail.com"
     },
     {
       "id": "anna-lee-weddings",
@@ -6026,7 +6136,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Drew"
     },
     {
       "id": "bs-painting",
@@ -6098,7 +6209,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "rwhoade@yahoo.com"
     },
     {
       "id": "superhuman-junk",
@@ -6246,7 +6358,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "melissa@carolinaoutdoorservice.com"
     },
     {
       "id": "home-shield-roofing",
@@ -6279,7 +6392,8 @@
       "zachApproval": null,
       "email": "homeshieldroofing@yahoo.com",
       "status": "skipped",
-      "notes": "SKIPPED 2026-08-19: BBB F + LLR license alert + pending lawsuit (Rudicill v. Home Shield Roofing). Dead site is real but client risk too high."
+      "notes": "SKIPPED 2026-08-19: BBB F + LLR license alert + pending lawsuit (Rudicill v. Home Shield Roofing). Dead site is real but client risk too high.",
+      "ownerName": "Jeff"
     },
     {
       "id": "a-plus-concrete",
@@ -6314,7 +6428,10 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Gabriel",
+      "demoUrl": "https://aplus-concrete-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "gulottas-window",
@@ -6326,7 +6443,7 @@
       "website": "https://gulottas-window-cleaning-demo.vercel.app",
       "summary": "Window cleaning, pressure washing, gutters in Greenville. NO WEBSITE \u2014 gulottas.com is an unrelated Western Wear retailer (collision); all window-name perms HTTP 000. Multiple Nextdoor referrals, established local operation (Jeff & Cathy Gulotta). Recurring-service trade = strong SEO value. | [2PASS 08-19: no sites found, GBP not confirmed this pass. Tier A holds (window cleaning, no site).]",
       "lastContact": "",
-      "lastUpdated": "2026-08-23",
+      "lastUpdated": "2026-08-31",
       "priority": "medium-high",
       "playbook": [],
       "nextSteps": [
@@ -6353,11 +6470,12 @@
       "zachApproval": null,
       "email": "jeffgulotta@att.net",
       "notes": [],
-      "demoUrl": "https://gulottas-window-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://gulottas-window-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "ownerName": "Jeff"
     },
     {
       "id": "chieftain-concrete",
@@ -6427,7 +6545,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "gambrellroofing@hotmail.com"
     },
     {
       "id": "montes-tree",
@@ -6464,7 +6583,10 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "",
-      "notes": []
+      "notes": [],
+      "ownerName": "Travis",
+      "demoUrl": "https://montes-tree-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "reed-concrete",
@@ -6530,7 +6652,8 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "milfordmountain@gmail.com"
+      "email": "milfordmountain@gmail.com",
+      "ownerName": "Dan"
     },
     {
       "id": "kleen-sweep",
@@ -6637,7 +6760,9 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "demoUrl": "https://rob-perry-fence-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "royal-pro-wash",
@@ -6649,7 +6774,7 @@
       "website": "",
       "summary": "Gutter cleaning + house washing bundles in Simpsonville (owner Kevin Rankin). \u26a0\ufe0f BROKEN LISTED DOMAIN \u2014 Nextdoor tells customers to visit RoyalProWash.com but it's a Dynadot for-sale/coming-soon lander; dead over https. The site they advertise doesn't exist \u2014 rebuild on the domain they already promote. Strongest pitch class.",
       "lastContact": "",
-      "lastUpdated": "2026-08-20",
+      "lastUpdated": "2026-08-31",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
@@ -6673,11 +6798,14 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "demoUrl": "https://royal-pro-wash-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://royal-pro-wash-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "ownerName": "Kevin",
+      "offer": "$599 build",
+      "email": "RoyalProWash@Gmail.com"
     },
     {
       "id": "sbc-handyman",
@@ -6708,7 +6836,8 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "ronniefoshee@gmail.com"
+      "email": "ronniefoshee@gmail.com",
+      "ownerName": "Ronnie"
     },
     {
       "id": "km-excavating",
@@ -6743,7 +6872,10 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Trevor",
+      "demoUrl": "https://km-excavating-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "blu-rhino-junk",
@@ -6753,7 +6885,7 @@
       "location": "Pelzer, SC",
       "phone": "(864) 501-2000",
       "website": "",
-      "email": "",
+      "email": "blu@blurhinojunkremoval.com",
       "summary": "BROKEN listed website (blurhinojunkremoval.com HTTP 000 on all variants) \u2014 operator advertises the site on Nextdoor but it is dead. Strongest pitching angle in 08-15 batch: 'your listed website is down, let's rebuild it.' Verified via Nextdoor (blu-rhino-junk-removal-pelzer-sc), dialable 864 phone.",
       "lastContact": "",
       "lastUpdated": "2026-08-18",
@@ -6850,7 +6982,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Michael"
     },
     {
       "id": "wright-time-disposal",
@@ -6904,7 +7037,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Austin"
     },
     {
       "id": "all-in-one-maintenance",
@@ -7022,7 +7156,7 @@
       "location": "Travelers Rest, SC (Taylors 29687 on Yelp)",
       "phone": "(864) 293-4155",
       "website": "",
-      "email": "",
+      "email": "derek.redding777@yahoo.com",
       "summary": "NO SITE \u2014 dhgtreeservice.com / dhgtreeservices.com / dhgtreeservicellc.com all HTTP 000, square.site + wixsite subdomains 404. 10 years in business, BBB-accredited (Upstate SC). Owner Derek Redding. \u26a0\ufe0f Yelp shows a negative review ('Avoid DHG Tree Service at all cost') \u2014 flag for outreach consideration, verify prior to heavy investment. | [2PASS 08-19: no website (Mapquest/Yelp only). GBP not found this pass. dhgtreeservice.com etc. still dead. Tier A holds.]",
       "lastContact": "",
       "lastUpdated": "2026-08-16",
@@ -7137,7 +7271,7 @@
       "location": "Moore, SC (serves Greer area)",
       "phone": "(864) 823-9433",
       "website": "",
-      "email": "",
+      "email": "Alex7sky7@gmail.com",
       "summary": "NO SITE \u2014 skylinerenovation.com is a parked 114-byte shell; skyline-renovation.com HTTP 000; skylinebuilds.com is a HugeDomains for-sale collision. Licensed & insured handyman (contact: Alex), upgrades for small buildings. \u26a0\ufe0f Thin public identity \u2014 only Nextdoor page found; verify phone + full business name before outreach. | [2PASS 08-19: no website (policies.google.com = false positive). GBP '16 reviews' snippet but panel not confirmed. skylinerenovation.com parked shell unchanged. Tier A holds.]",
       "lastContact": "",
       "lastUpdated": "2026-08-16",
@@ -7191,7 +7325,7 @@
       "location": "Easley, SC 29640",
       "phone": "(864) 421-5885",
       "website": "",
-      "email": "",
+      "email": "Southernunlimitedservices@gmail.com",
       "summary": "Electrical contractor, Easley SC. 5.0\u2605 on 100 Google reviews, no website (all .com permutations 000/404). Tier A no-site \u2014 $300 build pitch. Verified 2026-08-17 via Apify Maps scraper + curl. Second-pass (Camoufox 2026-08-18): GBP confirmed ~95 reviews, no hidden site. Pitch drafted 2026-08-19 ($300 build), awaiting Zach approval.",
       "lastContact": "",
       "lastUpdated": "2026-08-19",
@@ -7266,7 +7400,7 @@
       "location": "Greenville, SC 29617",
       "phone": "(864) 380-7217",
       "website": "",
-      "email": "",
+      "email": "atlasappliancesc@gmail.com",
       "summary": "In-home appliance repair, Greenville SC (212 McMakin Dr). 4.9\u2605 on 44 reviews, no website. atlasappliancerepair.com is a different Texas company (collision). Tech John McNabb praised on Nextdoor. Tier A no-site. Verified 2026-08-17. Second-pass (Camoufox 2026-08-18): GBP 44 reviews confirmed, TX collision re-confirmed, no hidden site. Pitch drafted 2026-08-19 ($300 build), awaiting Zach approval.",
       "lastContact": "",
       "lastUpdated": "2026-08-19",
@@ -7340,7 +7474,7 @@
       "location": "Duncan, SC 29334",
       "phone": "(864) 439-8002",
       "website": "",
-      "email": "",
+      "email": "scdoorman@yahoo.com",
       "summary": "Garage door sales/service, Duncan SC. 4.3\u2605 on 19 reviews, no website (automateddoorproducts.com 000). Established (D&B profile, president Jeff Rumsey). Tier A no-site. Verified 2026-08-17. Second-pass (Camoufox 2026-08-18): GBP 19 reviews; no hidden site (SERP hits were competitors). Pitch drafted 2026-08-19 ($300 build), awaiting Zach approval.",
       "lastContact": "",
       "lastUpdated": "2026-08-19",
@@ -7440,7 +7574,8 @@
       "saleValue": null,
       "zachApproval": null,
       "status": "sent",
-      "demo_url": "https://tree-wisemen-demo.vercel.app"
+      "demo_url": "https://tree-wisemen-demo.vercel.app",
+      "ownerName": "Evan"
     },
     {
       "id": "crane-pressure-washing",
@@ -7450,7 +7585,7 @@
       "location": "Greenville, SC 29607",
       "phone": "(864) 329-5123",
       "website": "",
-      "email": "",
+      "email": "jcrane9799@gmail.com",
       "summary": "Pressure washing, Greenville SC (201 Rocky Slope Rd). Licensed+insured, active FB/IG. Listed cranepressurewashing.com = DEAD (000). NO Google GBP. Broken-site rebuild pitch (Pitch B) \u2014 $300 build. Verified 2026-08-19. Confirm service area (Greenville vs Charleston).",
       "lastContact": "",
       "lastUpdated": "2026-08-19",
@@ -7485,7 +7620,7 @@
       "location": "Greenville, SC 29607",
       "phone": "(864) 982-8014",
       "website": "",
-      "email": "",
+      "email": "Ultrapro.pressurewash@gmail.com",
       "summary": "Pressure washing / exterior cleaning, Greenville SC. Solo operator (Ray), active Nextdoor+FB. Advertised ultrapropw.com = DEAD (000). NO Google GBP. Broken-site rebuild (Pitch B) \u2014 $300 build. Verified 2026-08-19.",
       "lastContact": "",
       "lastUpdated": "2026-08-19",
@@ -7520,7 +7655,7 @@
       "location": "Anderson, SC 29621",
       "phone": "(864) 318-0354",
       "website": "",
-      "email": "",
+      "email": "secorhudson40@gmail.com",
       "summary": "Junk removal / cleanouts / light demolition, Anderson SC (Clemson Blvd). Active Nextdoor+FB+IG. Owns parked loadandgojunk.com (lander shell). NO GBP. Tier A $300 build. Verified 2026-08-19. Verify primary location/number (multiple Load & Go listings).",
       "lastContact": "",
       "lastUpdated": "2026-08-19",
@@ -7660,7 +7795,7 @@
       "location": "Greenville, SC",
       "phone": "(864) 518-6203",
       "website": "",
-      "email": "",
+      "email": "Arrowfence.flooringllc@gmail.com",
       "summary": "Fencing + flooring, Greenville SC (FB) / Piedmont (Nextdoor). Owns arrowfence.com = bare \"Coming Soon\" lander (no business content). NO GBP. Tier B rebuild on owned domain \u2014 $300 build. Verified 2026-08-19. Verify Greenville vs Piedmont primary service area.",
       "lastContact": "",
       "lastUpdated": "2026-08-19",
@@ -7722,7 +7857,8 @@
       "saleValue": null,
       "zachApproval": null,
       "status": "sent",
-      "demo_url": "https://brb-pressure-washing-demo.vercel.app"
+      "demo_url": "https://brb-pressure-washing-demo.vercel.app",
+      "ownerName": "Charles"
     },
     {
       "id": "4-point-lawn-care-llc",
@@ -7756,7 +7892,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "4pointlawncare@gmail.com"
     },
     {
       "id": "affordable-handyman-services",
@@ -7790,7 +7927,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "anthonyeaton24@gmail.com"
     },
     {
       "id": "blue-sky-painting-llc",
@@ -7858,7 +7996,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Cheapandgreate10@icloud.com"
     },
     {
       "id": "dougies-cleaning-service-llc",
@@ -7892,7 +8031,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Dougiescleaningservice@gmail.com"
     },
     {
       "id": "flynn-maintenance-services",
@@ -7926,7 +8066,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Flynnmaintenance@gmail.com"
     },
     {
       "id": "house-cleaning-bc-llc",
@@ -7960,7 +8101,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "cleaningbere@gmail.com"
     },
     {
       "id": "joshua-truitt-handyman",
@@ -7993,7 +8135,8 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "joshuatruitt602@gmail.com",
-      "notes": []
+      "notes": [],
+      "ownerName": "Joshua"
     },
     {
       "id": "mikes-home-solutions",
@@ -8132,7 +8275,10 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "",
-      "notes": []
+      "notes": [],
+      "ownerName": "Kevin",
+      "demoUrl": "https://quinn-services-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "renaissance-handyman-service",
@@ -8166,7 +8312,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "renaissancehandyservice@gmail.com"
     },
     {
       "id": "robertsons-tree-service",
@@ -8201,7 +8348,7 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "treesrg@bellsouth.net",
       "notes": []
     },
     {
@@ -8236,7 +8383,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "seeclearlywc@gmail.com"
     },
     {
       "id": "sommers-heating-and-air-llc",
@@ -8270,7 +8418,10 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Mike",
+      "demoUrl": "https://sommers-heating-air-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "stephen-stephen",
@@ -8338,7 +8489,10 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Thomas",
+      "demoUrl": "https://tb-contractors-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "whittier-fence-and-deck",
@@ -8372,7 +8526,10 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Chris",
+      "demoUrl": "https://whittier-fence-deck-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "aquablade-llc",
@@ -8439,7 +8596,8 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "customcedarguy@gmail.com",
-      "notes": []
+      "notes": [],
+      "ownerName": "Trever"
     },
     {
       "id": "ellason-tree-service",
@@ -8473,7 +8631,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "ellasontree@icloud.com"
     },
     {
       "id": "hydro-wash",
@@ -8507,7 +8666,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "bobgriffin@hydrowash.org"
     },
     {
       "id": "knockit-junk-removal",
@@ -8544,7 +8704,10 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "",
-      "notes": []
+      "notes": [],
+      "ownerName": "Kadeem",
+      "demoUrl": "https://knockit-junk-removal-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "bearden-forestry",
@@ -8578,7 +8741,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "hunterdbearden@gmail.com"
     },
     {
       "id": "chase-dump-removel",
@@ -8646,7 +8810,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "mwhannah_93@yahoo.com"
     },
     {
       "id": "farrs-exterior-cleaning-service",
@@ -8680,7 +8845,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "farrexteriorcleaningservice@gmail.com"
     },
     {
       "id": "girl-dad-handyman-services",
@@ -8714,7 +8880,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "AllBiz101816@gmail.com"
     },
     {
       "id": "jha-land-clearing-llc",
@@ -8748,7 +8915,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "tuckerallen@jhalandclearing.com"
     },
     {
       "id": "kirk-johnson-handyman-contractor",
@@ -8760,7 +8928,7 @@
       "website": "",
       "summary": "",
       "lastContact": "",
-      "lastUpdated": "2026-08-23",
+      "lastUpdated": "2026-08-31",
       "priority": "medium",
       "playbook": [],
       "nextSteps": "HOLD \u2014 FL phone (941) 626-6146 unverified",
@@ -8783,11 +8951,13 @@
       "zachApproval": null,
       "email": "kirk12johnson@gmail.com",
       "notes": [],
-      "demoUrl": "https://kirk-johnson-handyman-contractor-demo.vercel.app",
+      "demoUrl": "https://kirk-johnson-handyman-demo.vercel.app",
       "demo": {
-        "url": "https://kirk-johnson-handyman-contractor-demo.vercel.app",
+        "url": "",
         "status": "pending"
-      }
+      },
+      "ownerName": "Kirk",
+      "offer": "$599 build"
     },
     {
       "id": "l-f-handymen",
@@ -8821,7 +8991,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "kennethjford43@gmail.com"
     },
     {
       "id": "marshall-cleaning",
@@ -8854,7 +9025,8 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "MarshallCleanings@gmail.com",
-      "notes": []
+      "notes": [],
+      "ownerName": "Liza"
     },
     {
       "id": "ortiz-tree-service",
@@ -8888,7 +9060,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "ortiztrees03@gmail.com"
     },
     {
       "id": "pablo-tree-services",
@@ -8922,7 +9095,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "pablotreeservices00@gmail.com"
     },
     {
       "id": "precision-concrete-mauldin",
@@ -9062,7 +9236,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "studsgutters@gmail.com"
     },
     {
       "id": "swamp-rabbit-softwash",
@@ -9096,7 +9271,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Jerry@swamprabbitsoftwash.com"
     },
     {
       "id": "west-fence-company",
@@ -9198,7 +9374,10 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "ownerName": "Del",
+      "demoUrl": "https://lees-decks-demo.vercel.app",
+      "offer": "$599 build"
     },
     {
       "id": "maid-spotless",
@@ -9232,7 +9411,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "MaidSpotless.ltd@gmail.com"
     },
     {
       "id": "omars-tree-service",
@@ -9299,7 +9479,8 @@
       "saleValue": null,
       "zachApproval": null,
       "email": "pvphomeservices@gmail.com",
-      "notes": []
+      "notes": [],
+      "ownerName": "Peter"
     },
     {
       "id": "parkers-pressure-washing-llc",
@@ -9334,7 +9515,7 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "parkerhyatt4790@gmail.com",
       "notes": []
     },
     {
@@ -9369,7 +9550,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "RRLAWNEASLEY@gmail.com"
     },
     {
       "id": "rig-line-tree-service",
@@ -9404,8 +9586,10 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
-      "notes": []
+      "email": "Riglinetreeservice@yahoo.com",
+      "notes": [],
+      "ownerName": "Angelo",
+      "offer": "$599 build"
     },
     {
       "id": "sasquatch-tree-services-llc",
@@ -9440,7 +9624,8 @@
       "zachApproval": null,
       "email": "sasquatchtreeservices@gmail.com",
       "notes": [],
-      "has_site": true
+      "has_site": true,
+      "ownerName": "Mike"
     },
     {
       "id": "simpsonville-cleaning-authority",
@@ -9452,7 +9637,7 @@
       "website": "",
       "summary": "",
       "lastContact": "",
-      "lastUpdated": "2026-08-23",
+      "lastUpdated": "2026-08-31",
       "priority": "medium",
       "playbook": [],
       "nextSteps": "HOLD \u2014 phone (864) 735-6183 vs 214-6235 unconfirmed",
@@ -9475,9 +9660,9 @@
       "zachApproval": null,
       "email": "simpsonvillecleaningauthority@gmail.com",
       "notes": [],
-      "demoUrl": "https://simpsonville-cleaning-authority-demo.vercel.app",
+      "demoUrl": "",
       "demo": {
-        "url": "https://simpsonville-cleaning-authority-demo.vercel.app",
+        "url": "",
         "status": "pending"
       }
     },
@@ -9513,7 +9698,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "sterlinghomeservices.holly@gmail.com"
     },
     {
       "id": "superior-fix",
@@ -9547,7 +9733,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Agilstr21@gmail.com"
     },
     {
       "id": "the-pack-landscaping-and-lawn-care",
@@ -9581,7 +9768,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "thepack864@gmail.com"
     },
     {
       "id": "turners-touch-detailing-pressure-washing",
@@ -9615,7 +9803,8 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Jessica@turners-touch.com"
     },
     {
       "id": "wilkins-lawn-services-llc",
@@ -9649,13 +9838,64 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "zachApproval": null
+      "zachApproval": null,
+      "email": "Wilkinslawnservices@gmail.com"
     }
   ],
   "carLotsPipeline": {
-    "cars": []
+    "title": "Anderson Car Lots Pipeline",
+    "marketIntel": "8 independent BHPH lots identified. Zero competitors have JSON-LD schema or GEO optimization.",
+    "dealers": [
+      {
+        "id": "omega-auto-cl",
+        "name": "Omega Auto Sales",
+        "website": "omega-auto-anderson.vercel.app",
+        "status": "Demo built",
+        "notes": "No existing website. Demo page deployed. BHPH lot."
+      }
+    ],
+    "competitors": [
+      {
+        "name": "Family Auto of Anderson",
+        "website": "familyautoofanderson.com",
+        "hasSchema": false
+      },
+      {
+        "name": "A-1 Auto Sales",
+        "website": "a1autosalesofanderson.com",
+        "hasSchema": false
+      },
+      {
+        "name": "EZ Rides Auto Sales",
+        "website": "ezridesauto.com",
+        "hasSchema": false
+      },
+      {
+        "name": "Ellison Auto Group",
+        "website": "ellisonautogroup.com",
+        "hasSchema": false
+      },
+      {
+        "name": "Richardson Motors",
+        "website": "richardson-motors.com",
+        "hasSchema": false
+      },
+      {
+        "name": "Brewster Used Cars",
+        "website": "brewstersusedcars.com",
+        "hasSchema": false
+      },
+      {
+        "name": "A&D Auto Sales",
+        "website": "a-dautosales.com",
+        "hasSchema": false
+      },
+      {
+        "name": "One Stop Auto Group",
+        "website": "onestopautogroupsc.com",
+        "hasSchema": false
+      }
+    ]
   },
-  "revenue": {},
-  "crmCompanies": [],
-  "crmConnected": true
+  "revenue": {}
 }
