@@ -100,6 +100,14 @@ export interface Company {
   responseStatus?: string | null;
   saleValue?: number | null;
   /**
+   * Cold-call sheet fields. `ownerName` is the verified decision-maker's name
+   * (for "Hi {name}" and for asking for them on the phone). `offer` is the
+   * pricing tier for this lead: "$599 build" (no site) or "$149/mo care"
+   * (has a site). Both are editable on the client workstation.
+   */
+  ownerName?: string | null;
+  offer?: string | null;
+  /**
    * Demo approval state. `demoUrl` already exists on many companies; this
    * block records Zach's review of the deployed demo. Absent status (or a
    * company with only `demoUrl`) is treated as "pending" by getDemoQueue().
@@ -107,8 +115,15 @@ export interface Company {
   demo?: {
     url?: string;
     status?: "pending" | "approved" | "rejected" | "rework";
+    /** Freeform notes (legacy + combined with reviewFeedback) */
     notes?: string;
     reviewedAt?: string;
+    /** Structured reject/rework feedback — same shape as pitchDraft.reviewFeedback */
+    reviewFeedback?: {
+      reason: string;
+      suggestedFix?: string;
+      reviewedAt: string;
+    };
   } | null;
   auditData?: {
     issues?: string[];
@@ -155,20 +170,49 @@ export interface Revenue {
 
 /* ------------------------------------------------------------- accessors --- */
 
-const data = pipelineData as unknown as {
-  agency: Agency;
-  pipeline: { stages: Stage[] };
+/**
+ * Bundled snapshot shape. Live Blob/API is flatter (`stages` at top level).
+ * Accept BOTH so a Blob-shaped pipeline.json never breaks static prerender
+ * (Vercel fail 2026-09-01: `data.pipeline.stages` on flat book).
+ */
+type PipelineBook = {
+  agency?: Agency;
+  pipeline?: { stages?: Stage[] };
+  stages?: Stage[];
   companies: Company[];
-  carLotsPipeline: CarLotsPipeline;
+  carLotsPipeline?: CarLotsPipeline;
   revenue?: Revenue;
 };
 
+const data = pipelineData as unknown as PipelineBook;
+
+const FALLBACK_STAGES: Stage[] = [
+  { id: "prospect", label: "Prospect", icon: "Search", color: "slate" },
+  { id: "audit", label: "Audit", icon: "Clipboard", color: "blue" },
+  { id: "pitch", label: "Pitch", icon: "Send", color: "amber" },
+  { id: "contacted", label: "Contacted", icon: "Phone", color: "violet" },
+  { id: "response", label: "Response", icon: "Message", color: "sky" },
+  { id: "sale", label: "Sale", icon: "Dollar", color: "emerald" },
+  { id: "build-launch", label: "Build & Launch", icon: "Rocket", color: "green" },
+];
+
+const FALLBACK_AGENCY: Agency = {
+  name: "Local Launch",
+  tagline: "Websites + SEO for local trades",
+  phone: "(503) 358-5860",
+  website: "https://locallaunchupstate.com",
+  email: "locallaunchupstate@gmail.com",
+};
+
 export function getAgency(): Agency {
-  return data.agency;
+  return data.agency ?? FALLBACK_AGENCY;
 }
 
 export function getStages(): Stage[] {
-  return data.pipeline.stages;
+  const nested = data.pipeline?.stages;
+  if (Array.isArray(nested) && nested.length) return nested;
+  if (Array.isArray(data.stages) && data.stages.length) return data.stages;
+  return FALLBACK_STAGES;
 }
 
 export function getCompanies(): Company[] {
@@ -191,7 +235,14 @@ export function getCompanySlugs(): string[] {
 }
 
 export function getCarLotsPipeline(): CarLotsPipeline {
-  return data.carLotsPipeline;
+  return (
+    data.carLotsPipeline ?? {
+      title: "Car lots",
+      marketIntel: "",
+      dealers: [],
+      competitors: [],
+    }
+  );
 }
 
 /* ------------------------------------------------------------- demo queue --- */
@@ -204,13 +255,18 @@ export interface DemoItem {
 
 /**
  * Resolves the effective demo URL for a company: prefer the explicit
- * `demo.url`, fall back to the legacy `demoUrl`, then to the deterministic
- * Vercel pattern `<slug>-demo.vercel.app`.
+ * `demo.url`, fall back to the legacy `demoUrl`.
+ *
+ * HARD RULE: do NOT invent `<slug>-demo.vercel.app` when no URL is set.
+ * Inventing floods the Demos queue with 404s for every company without a
+ * real demo (caught 2026-09-01 during LLOS upgrade). Only return a URL that
+ * was intentionally stored on the company record.
  */
 export function resolveDemoUrl(company: Company): string | null {
-  const explicit = company.demo?.url ?? company.demoUrl;
-  if (explicit) return explicit;
-  return `https://${company.id}-demo.vercel.app`;
+  const explicit = company.demo?.url ?? company.demoUrl ?? null;
+  if (!explicit || typeof explicit !== "string") return null;
+  const url = explicit.trim();
+  return url.length ? url : null;
 }
 
 /**
@@ -287,66 +343,282 @@ export interface WorkItem {
   priority: string;
   companyId: string;
   companyName: string;
+  /** Optional reject/rework reason for agent work queue */
+  note?: string;
 }
 
 export interface WorkInbox {
-  pitches: number;
+  /** supervisor-approved + has email → Zach can send */
+  sendNow: number;
+  /** supervisor-approved but missing email → blocked */
+  sendBlocked: number;
+  /** pitch drafts in review (pending-review / pending-supervisor-review) */
+  inReview: number;
+  /** stage contacted or responseStatus awaiting */
+  awaitingReply: number;
+  /** build-launch clients */
+  clients: number;
+  /** prospect + audit */
+  early: number;
   demos: number;
-  highLeads: WorkItem[];
-  stale: WorkItem[];
+  /** items the agent owes Zach (rejects / reworks / send-blocked) */
+  agentWork: number;
+  /** Send-truth (audited vs locallaunch Sent) */
+  sentUnverified: number;
+  sentBounced: number;
+  sentUnproven: number;
+  /** dead domain / MX fail — never send */
+  bounceRisk: number;
+  /** stage counts — source of truth for funnel */
+  stageCounts: Record<string, number>;
+  sendNowItems: WorkItem[];
+  sendBlockedItems: WorkItem[];
+  awaitingItems: WorkItem[];
+  clientItems: WorkItem[];
+  reviewItems: WorkItem[];
+  agentWorkItems: WorkItem[];
+  bounceRiskItems: WorkItem[];
 }
 
-/** Command-center inbox: counts of work waiting on Zach + next leads to touch. */
+/** Canonical email: top-level or pitchDraft.email (never invent). */
+export function companyEmail(company: Company): string | null {
+  const top = (company.email || "").trim();
+  if (top) return top;
+  const pd = company.pitchDraft;
+  if (pd && typeof pd === "object") {
+    const pe = String((pd as { email?: string }).email || "").trim();
+    if (pe) return pe;
+  }
+  return null;
+}
+
+export function pitchStatus(company: Company): string | null {
+  const pd = company.pitchDraft;
+  if (!pd || typeof pd !== "object") return null;
+  return (pd.status as string) || null;
+}
+
+/**
+ * Flags pitches carrying the DEAD $300/$49 pricing or the banned
+ * "I look forward to hearing from you" close. Both must be rewritten to
+ * $599/$149 + a question-close before the gate can pass them (2026-08-31 backlog).
+ */
+export function needsPricingRewrite(company: Company): boolean {
+  const body = company.pitchDraft?.body ?? "";
+  if (!body) return false;
+  const deadPricing = /\$300\b/.test(body) || /\$49\b/.test(body);
+  const bannedClose = /I look forward to hearing from you/i.test(body);
+  return deadPricing || bannedClose;
+}
+
+/**
+ * Operational command board — only counts Zach can act on.
+ * Does NOT treat "pitch without email" as a crisis (most drafts aren't sendable yet).
+ */
 export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
-  const pitches = getApprovalQueue(companies).length;
+  const stageCounts = getStageCounts(companies);
   const demos = getDemoQueue(companies).length;
 
-  const highLeads: WorkItem[] = companies
-    .filter(
-      (c) =>
-        (c.stage === "prospect" || c.stage === "audit") &&
-        (c.priority === "high" || c.priority === "medium-high"),
-    )
-    .sort((a, b) => priorityWeight(b.priority) - priorityWeight(a.priority))
-    .slice(0, 8)
-    .map((c) => ({
-      id: `lead-${c.id}`,
-      kind: "prospect" as const,
-      title: c.stage === "audit" ? "Finish audit" : "Qualify / first contact",
-      detail: [c.category, c.location].filter(Boolean).join(" · "),
-      href: `/client/${c.id}`,
-      priority: c.priority,
-      companyId: c.id,
-      companyName: c.name,
-    }));
+  const sendNowList = companies.filter((c) => {
+      if (c.stage !== "pitch") return false;
+      if (pitchStatus(c) !== "supervisor-approved") return false;
+      if (!companyEmail(c)) return false;
+      // Pre-send gate: never offer dead domains as "send now"
+      const eg = (c as { emailGate?: { status?: string } }).emailGate?.status;
+      if (eg === "INVALID") return false;
+      if ((c.responseStatus || "").toLowerCase() === "bounce-risk") return false;
+      return true;
+    });
+    const sendBlockedList = companies.filter((c) => {
+      if (c.stage !== "pitch") return false;
+      if (pitchStatus(c) !== "supervisor-approved") return false;
+      return !companyEmail(c);
+    });
+    // Dead-domain / bounce-risk — approved or not, must not be mailed
+    const bounceRiskList = companies.filter((c) => {
+      const eg = (c as { emailGate?: { status?: string } }).emailGate?.status;
+      if (eg === "INVALID") return true;
+      return (c.responseStatus || "").toLowerCase() === "bounce-risk";
+    });
 
-  const stale: WorkItem[] = companies
-    .filter((c) => c.stage === "contacted")
-    .map((c) => ({ c, days: daysSince(c.lastContact ?? c.lastUpdated) }))
-    .filter((x) => x.days !== null && x.days >= 14)
-    .sort((a, b) => (b.days ?? 0) - (a.days ?? 0))
-    .slice(0, 6)
-    .map(({ c, days }) => ({
-      id: `stale-${c.id}`,
-      kind: "follow-up" as const,
-      title: `Follow up · ${days}d quiet`,
-      detail: [c.category, c.location].filter(Boolean).join(" · "),
-      href: `/client/${c.id}`,
-      priority: c.priority,
-      companyId: c.id,
-      companyName: c.name,
-    }));
+  const reviewList = companies.filter((c) => {
+    if (c.stage !== "pitch") return false;
+    const st = pitchStatus(c);
+    return st === "pending-review" || st === "pending-supervisor-review";
+  });
 
-  return { pitches, demos, highLeads, stale };
+  const awaitingList = companies.filter((c) => {
+    const st = (c as { sendTruth?: { status?: string } }).sendTruth?.status;
+    if (st === "bounced" || c.responseStatus === "bounced") return false;
+    // Prefer send-truth: only verified sends still in contacted/response
+    if (st === "sent_unverified" || st === "sent_domain_risk") {
+      return c.stage === "contacted" || c.stage === "response";
+    }
+    if (st === "unproven") return false;
+    if (c.stage === "contacted" || c.stage === "response") return true;
+    const rs = (c.responseStatus || "").toLowerCase();
+    return rs === "awaiting" || rs === "pitch-sent";
+  });
+
+  const clientList = companies.filter((c) => c.stage === "build-launch");
+  const earlyN =
+    (stageCounts["prospect"] || 0) + (stageCounts["audit"] || 0);
+
+  let sentUnverified = 0;
+  let sentBounced = 0;
+  let sentUnproven = 0;
+  for (const c of companies) {
+    const st = (c as { sendTruth?: { status?: string } }).sendTruth?.status;
+    if (st === "sent_unverified" || st === "sent_domain_risk") sentUnverified += 1;
+    else if (st === "bounced") sentBounced += 1;
+    else if (st === "unproven") sentUnproven += 1;
+    else if (c.responseStatus === "bounced") sentBounced += 1;
+  }
+
+  const toItem = (
+    c: Company,
+    kind: WorkKind,
+    title: string,
+    extra?: string,
+    note?: string,
+  ): WorkItem => ({
+    id: `${kind}-${c.id}-${title.slice(0, 12)}`,
+    kind,
+    title,
+    detail: [c.category, c.location, extra, companyEmail(c) ? "has email" : "no email"]
+      .filter(Boolean)
+      .join(" · "),
+    href: `/client/${c.id}`,
+    priority: c.priority,
+    companyId: c.id,
+    companyName: c.name,
+    note,
+  });
+
+  const byPri = (a: Company, b: Company) =>
+    priorityWeight(b.priority) - priorityWeight(a.priority);
+
+  // Agent owes Zach: demo rework/reject, pitch reject, send-blocked
+  const agentWorkList: WorkItem[] = [];
+  for (const c of companies) {
+    const demoSt = c.demo?.status;
+    const demoNote =
+      c.demo?.reviewFeedback?.reason || c.demo?.notes || undefined;
+    if (demoSt === "rework" || demoSt === "rejected") {
+      agentWorkList.push(
+        toItem(
+          c,
+          "demo",
+          demoSt === "rework" ? "Demo rework" : "Demo rejected",
+          c.demoUrl || c.demo?.url || undefined,
+          demoNote,
+        ),
+      );
+    }
+    const pst = pitchStatus(c);
+    const pitchNote = c.pitchDraft?.reviewFeedback?.reason;
+    if (pst === "rejected") {
+      agentWorkList.push(
+        toItem(c, "pitch", "Pitch rejected", undefined, pitchNote),
+      );
+    }
+  }
+  for (const c of sendBlockedList) {
+    // avoid dup if already rejected
+    if (agentWorkList.some((w) => w.companyId === c.id && w.kind === "pitch")) {
+      continue;
+    }
+    agentWorkList.push(
+      toItem(c, "pitch", "Send blocked — need email", "supervisor-approved"),
+    );
+  }
+  for (const c of bounceRiskList) {
+    if (agentWorkList.some((w) => w.companyId === c.id)) continue;
+    const eg = (c as { emailGate?: { email?: string; reason?: string } })
+      .emailGate;
+    agentWorkList.push(
+      toItem(
+        c,
+        "pitch",
+        "Dead email — find new address",
+        eg?.email,
+        eg?.reason || "bounce-risk / no MX",
+      ),
+    );
+  }
+  agentWorkList.sort(
+    (a, b) => priorityWeight(b.priority) - priorityWeight(a.priority),
+  );
+
+  return {
+    sendNow: sendNowList.length,
+    sendBlocked: sendBlockedList.length,
+    inReview: reviewList.length,
+    awaitingReply: awaitingList.length,
+    clients: clientList.length,
+    early: earlyN,
+    demos,
+    agentWork: agentWorkList.length,
+    sentUnverified,
+    sentBounced,
+    sentUnproven,
+    bounceRisk: bounceRiskList.length,
+    stageCounts,
+    sendNowItems: [...sendNowList]
+      .sort(byPri)
+      .slice(0, 8)
+      .map((c) =>
+        toItem(c, "pitch", "Send pitch", pitchStatus(c) || undefined),
+      ),
+    sendBlockedItems: [...sendBlockedList]
+      .sort(byPri)
+      .slice(0, 8)
+      .map((c) => toItem(c, "pitch", "Blocked — need email")),
+    awaitingItems: [...awaitingList]
+      .sort(byPri)
+      .slice(0, 8)
+      .map((c) =>
+        toItem(
+          c,
+          "follow-up",
+          c.responseStatus
+            ? `Awaiting (${c.responseStatus})`
+            : "Contacted — follow up",
+        ),
+      ),
+    clientItems: [...clientList]
+      .sort(byPri)
+      .slice(0, 8)
+      .map((c) => toItem(c, "build", "Active client")),
+    reviewItems: [...reviewList]
+      .sort(byPri)
+      .slice(0, 8)
+      .map((c) => toItem(c, "pitch", pitchStatus(c) || "In review")),
+    agentWorkItems: agentWorkList.slice(0, 15),
+    bounceRiskItems: [...bounceRiskList]
+      .sort(byPri)
+      .slice(0, 8)
+      .map((c) => {
+        const eg = (c as { emailGate?: { email?: string; reason?: string } })
+          .emailGate;
+        return toItem(
+          c,
+          "pitch",
+          "Dead email",
+          eg?.email,
+          eg?.reason || "no MX",
+        );
+      }),
+  };
 }
 
 export function getStage(id: StageId): Stage | undefined {
-  return data.pipeline.stages.find((stage) => stage.id === id);
+  return getStages().find((stage) => stage.id === id);
 }
 
 /** Zero-based position of a stage in the pipeline, or -1 if unknown. */
 export function getStageIndex(id: StageId): number {
-  return data.pipeline.stages.findIndex((stage) => stage.id === id);
+  return getStages().findIndex((stage) => stage.id === id);
 }
 
 /* --------------------------------------------------------------- revenue --- */
@@ -501,7 +773,7 @@ export function getPlaybookProgress(items: PlaybookItem[]): PlaybookProgress {
 export function groupPlaybookByStage(
   items: PlaybookItem[],
 ): { stage: Stage; items: PlaybookItem[] }[] {
-  return data.pipeline.stages
+  return getStages()
     .map((stage) => ({
       stage,
       items: items.filter((item) => item.stage === stage.id),

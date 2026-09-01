@@ -22,8 +22,6 @@ export const FLEET_AGENTS: FleetAgent[] = [
   { name: "local-launch-closer", label: "Closer", role: "Revises rejected pitches, resubmits for approval", port: 9916, service: "hermes-gateway-local-launch-closer.service", home: `${HERMES_HOME}/profiles/local-launch-closer` },
   { name: "local-launch-orchestrator", label: "Orchestrator", role: "Coordinates multi-agent work", port: 9917, service: "hermes-gateway-local-launch-orchestrator.service", home: `${HERMES_HOME}/profiles/local-launch-orchestrator` },
   { name: "builder", label: "Builder", role: "Builds client websites/demos", port: 9904, service: "hermes-gateway-builder.service", home: `${HERMES_HOME}/profiles/builder` },
-  { name: "revenue-gen", label: "Revenue Generator", role: "Revenue/AI projects, email monitoring", port: 9906, service: "hermes-gateway-revenue-gen.service", home: `${HERMES_HOME}/profiles/revenue-gen` },
-  { name: "assistant", label: "Assistant", role: "Your main agent — chat, builds, coordination", port: 9902, service: "hermes-gateway-assistant.service", home: `${HERMES_HOME}/profiles/assistant` },
 ];
 
 export function agentByPort(port: number): FleetAgent | undefined {

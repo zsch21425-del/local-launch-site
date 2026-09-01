@@ -6,6 +6,7 @@ import { ArrowLeft, Search } from "lucide-react";
 
 import { MotionBackground } from "@/components/motion-background";
 import { PriorityBadge } from "@/components/priority-badge";
+import { needsPricingRewrite } from "@/lib/data";
 import type { Company } from "@/lib/data";
 import { glassCard } from "@/lib/ui";
 
@@ -213,7 +214,32 @@ export default function ApprovalsPage() {
   const [error, setError] = useState<string | null>(null);
   const [removedIds, setRemovedIds] = useState<Set<string>>(new Set());
   const [query, setQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<"all" | "pending-review" | "supervisor-approved" | "pending-supervisor-review" | "rejected">("all");
+  const [statusFilter, setStatusFilter] = useState<
+    | "all"
+    | "pending-review"
+    | "supervisor-approved"
+    | "pending-supervisor-review"
+    | "rejected"
+  >("all");
+  const [rewriteOnly, setRewriteOnly] = useState(false);
+
+  // Deep-link: /approvals?status=supervisor-approved (from Home "Ready to send")
+  useEffect(() => {
+    try {
+      const sp = new URLSearchParams(window.location.search);
+      const s = sp.get("status");
+      if (
+        s === "pending-review" ||
+        s === "supervisor-approved" ||
+        s === "pending-supervisor-review" ||
+        s === "rejected"
+      ) {
+        setStatusFilter(s);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   const load = useCallback(async () => {
     try {
@@ -244,6 +270,7 @@ export default function ApprovalsPage() {
   const visible = queue
     .filter((c) => !removedIds.has(c.id))
     .filter((c) => (statusFilter === "all" ? true : c.pitchDraft?.status === statusFilter))
+    .filter((c) => (rewriteOnly ? needsPricingRewrite(c) : true))
     .filter((c) => {
       if (!query.trim()) return true;
       const q = query.toLowerCase();
@@ -259,6 +286,8 @@ export default function ApprovalsPage() {
     acc[s] = (acc[s] ?? 0) + 1;
     return acc;
   }, {});
+
+  const rewriteCount = queue.filter((c) => needsPricingRewrite(c)).length;
 
   return (
     <>
@@ -329,6 +358,17 @@ export default function ApprovalsPage() {
                     {label}
                   </button>
                 ))}
+                <button
+                  onClick={() => setRewriteOnly((v) => !v)}
+                  title="Show only pitches with dead $300/$49 pricing or the banned 'I look forward to hearing from you' close"
+                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                    rewriteOnly
+                      ? "bg-amber-500 text-white"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  ⚠ Needs rewrite {rewriteCount}
+                </button>
               </div>
             </div>
 
@@ -403,6 +443,11 @@ function ApprovalCard({
             </div>
           </div>
           <div className="flex items-center gap-2">
+            {needsPricingRewrite(company) ? (
+              <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                ⚠ Needs rewrite
+              </span>
+            ) : null}
             {isRejected ? (
               <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">
                 Rejected
