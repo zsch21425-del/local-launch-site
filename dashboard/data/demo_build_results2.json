@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Leo's Pro Line Painting LLC",
+    "demo_url": "https://leos-pro-line-painting-demo.vercel.app",
+    "notes": "Painting (Travelers Rest/Easley SC). Existing demo verified: correct name/phone (864) 325-6313, LL footer present, 200 OK."
+  },
+  {
+    "name": "Cleaning Angels",
+    "demo_url": "https://cleaning-angels-demo.vercel.app",
+    "notes": "House cleaning (Fountain Inn SC). Existing demo verified: correct name/phone (864) 404-9955, LL footer present, 200 OK."
+  },
+  {
+    "name": "Taylor's Tree Service",
+    "demo_url": "https://taylor-s-tree-service-demo.vercel.app",
+    "notes": "Tree service (Spartanburg SC). Built this batch from templates/tree-service via Claude Code /hallmark. Phone (864) 585-5381, email penny@taylorstreeservices.com, tel +18645855381 byte-verified. Zero leaks (Lumberjack/Anderson/Ken Lovingood), fabricated claims removed, redundancy PASS, vision PASS at 1280+390."
+  },
+  {
+    "name": "Gray Wolf Concrete & Construction",
+    "demo_url": "https://gray-wolf-demo.vercel.app",
+    "notes": "Concrete (Greer SC). Canonical concrete template IS Gray Wolf's demo; restored before/after concrete visualizer (viz-before/viz-after 200). Phone (864) 906-1914, email graywolfconcrete@gmail.com. Fixed mobile sticky-nav text slicing (nav 86%->98% opaque + scroll-margin). 200 OK."
+  },
+  {
+    "name": "L And P Lawncare And Landscaping",
+    "demo_url": "https://l-and-p-lawncare-demo.vercel.app",
+    "notes": "Lawn care/landscaping (Spartanburg SC). Existing demo; fixed footer: replaced dead local-launch-site.vercel.app logo link with locallaunchupstate.com + added standard LL footer line (503) 358-5860 / Web design & SEO. Redeployed, 200 OK."
+  },
+  {
+    "name": "Joshua Truitt Handyman",
+    "demo_url": "https://joshua-truitt-handyman-demo.vercel.app",
+    "notes": "Handyman (Fountain Inn SC). Existing demo; added standard LL footer line (503) 358-5860 / Web design & SEO for local businesses. Redeployed, 200 OK."
+  },
+  {
+    "name": "Cedar Guy Tree Service",
+    "demo_url": "https://cedar-guy-tree-demo.vercel.app",
+    "notes": "Tree removal/arborist (Travelers Rest SC). Existing demo verified: correct name/phone (864) 906-0183, email customcedarguy@gmail.com, LL footer present, 200 OK."
+  },
+  {
+    "name": "Marshall Cleaning",
+    "demo_url": "https://marshall-cleaning-demo.vercel.app",
+    "notes": "Cleaning (Simpsonville SC). Existing demo verified: correct name/phone (864) 417-9750, email MarshallCleanings@gmail.com, LL footer present, 200 OK."
+  },
+  {
+    "name": "PVP Home Services LLC",
+    "demo_url": "https://pvp-home-services-llc-demo.vercel.app",
+    "notes": "Handyman (Simpsonville SC). Built this batch from templates/handyman via Claude Code /hallmark. Phone (864) 606-9777, tel +18646069777 byte-verified, client email added to contact. 4 on-trade service images generated (TV mount, ceiling fan, drywall, water damage) + Gemini-verified ON-TRADE. Zero leaks (Joshua Truitt/Fountain Inn). Fixed AI-speak ('seamless'), fixed mobile fixed-nav text bleed (nav fully opaque + scroll-margin). Redundancy PASS, vision PASS at 1280+390. 200 OK."
+  },
+  {
+    "name": "Simpsonville Cleaning Authority",
+    "demo_url": "https://simpsonville-cleaning-demo.vercel.app",
+    "notes": "House cleaning (Simpsonville SC). Existing demo verified: correct name/phone (864) 735-6183 (queue flags alt (864) 214-6235 seen in group posts - confirm before pitch), LL footer present, 200 OK."
+  }
+]
