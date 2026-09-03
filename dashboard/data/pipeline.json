@@ -746,8 +746,7 @@
       "demoUrl": "https://mm-plumbing-demo.vercel.app",
       "demo": {
         "url": "https://mm-plumbing-demo.vercel.app",
-        "status": "rework",
-        "notes": "Fixed AI slop + phone mismatch + placeholder review + footer on 2026-09-01",
+        "status": "pending",
         "reviewedAt": "2026-09-01"
       },
       "sendTruth": {
@@ -964,7 +963,7 @@
       "saleValue": null,
       "gScore": 12,
       "zachApproval": null,
-      "demoUrl": "",
+      "demoUrl": "https://lonts-disposal.vercel.app",
       "demo": {
         "url": "",
         "status": "pending"
@@ -974,7 +973,9 @@
         "status": "unproven",
         "auditedAt": "2026-09-01",
         "note": "Marked contacted/sent but no matching To: in locallaunch Sent. Cleared optimistic flags."
-      }
+      },
+      "demoLive": true,
+      "demoNote": "REAL jj-hero footage; old lonts-demo.vercel.app (other account) still serves AI fridge slop \u2014 do NOT link that"
     },
     {
       "id": "fix-home",
@@ -1303,9 +1304,11 @@
         "status": "rework",
         "reviewedAt": "2026-09-03",
         "reviewFeedback": {
-          "reason": "Rework requested (reason relayed to agent; lost in write race, now fixed)",
+          "reason": "Card titles are switched and don't match their content \u2014 service cards show the wrong headings. Fix the card title \u2194 content pairing so each card's title matches what's under it.",
+          "suggestedFix": "Ensure every card title matches the content beneath it.",
           "reviewedAt": "2026-09-03"
-        }
+        },
+        "notes": "Card titles are switched and don't match their content \u2014 service cards show the wrong headings. Fix the card title \u2194 content pairing so each card's title matches what's under it."
       }
     },
     {

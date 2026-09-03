@@ -124,6 +124,20 @@ export async function POST(request: Request) {
         c.demo.status = "approved";
         c.demo.reviewedAt = now;
         delete c.demo.reviewFeedback;
+        // Demo cleared → advance the company one stage toward outreach/pitch.
+        const order = [
+          "prospect",
+          "audit",
+          "pitch",
+          "contacted",
+          "response",
+          "build-launch",
+        ];
+        const idx = order.indexOf(c.stage);
+        if (idx >= 0 && idx < order.length - 1) {
+          c.stage = order[idx + 1];
+          c.stageMovedAt = now;
+        }
       } else if (action === "reject" || action === "rework") {
         c.demo.status = action === "reject" ? "rejected" : "rework";
         c.demo.reviewedAt = now;
