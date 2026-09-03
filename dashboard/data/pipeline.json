@@ -768,7 +768,7 @@
       "website": "https://upstate-window-cleaning-demo.vercel.app",
       "summary": "Inman SC window/gutter cleaning. G-Score 7/100. No website, no domain, GBP unverified. 358 FB likes + Nextdoor recs. Competitor: Fish Window Cleaning (national franchise). Pitch: 'Recommended on Nextdoor but invisible to Google.'",
       "lastContact": "2026-08-12",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-03",
       "priority": "high",
       "playbook": [
         {
@@ -794,10 +794,9 @@
         }
       ],
       "nextSteps": [
-        "\u2705 $300 build pitch SENT 8/12 via locallaunch \u2192 uscwindowcleaning@gmail.com (demo: upstate-window-demo.vercel.app)",
-        "\u23f3 Day 4 follow-up: Aug 16",
-        "\u23f3 Day 8 follow-up: Aug 20",
-        "\u23f3 Day 14: call (864) 398-0766 if no reply"
+        "\u2705 Demo Zach-approved 2026-09-03 + curl-verified live (upstate-window-demo.vercel.app)",
+        "\u23f3 Prior pitch (OLD $300 offer) SENT 8/12+8/24 \u2192 uscwindowcleaning@gmail.com; no reply; not bounced",
+        "\u2192 NEXT only if pursued: NEW $599 offer follow-up w/ live demo link \u2014 requires draft + Zach/default-agent approval before send"
       ],
       "seoScore": {
         "current": 7,
@@ -822,7 +821,9 @@
       "demoUrl": "https://upstate-window-demo.vercel.app",
       "demo": {
         "url": "https://upstate-window-demo.vercel.app",
-        "status": "pending"
+        "status": "approved",
+        "reviewedAt": "2026-09-03T01:45:31.217Z",
+        "notes": "Zach-approved via dashboard 2026-09-03 (reviewedAt stamped). curl-verified LIVE 200. Demo cleared for send/follow-up use."
       },
       "ownerName": "Austin",
       "sendTruth": {
@@ -830,7 +831,8 @@
         "matchedEmail": "uscwindowcleaning@gmail.com",
         "auditedAt": "2026-09-01",
         "note": "In locallaunch Sent (deduped). No bounce DSN found \u2014 not proof of inbox delivery."
-      }
+      },
+      "demoLive": true
     },
     {
       "id": "my-titan",
