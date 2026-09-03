@@ -73,12 +73,13 @@ async function blobPut(token, data) {
 }
 
 function claudeRebuild(dir, briefPath) {
+  const CLAUDE = "/home/zach/.local/bin/claude";
   const invoke = [
     "Read BRIEF.md and execute the builder task with /hallmark.",
     "Edit as specified. You may Read,Edit,Write,Bash in this directory.",
     "When done, report concisely with the /hallmark critique stamp.",
   ].join(" ");
-  const cmd = `echo ${JSON.stringify(invoke)} | claude -p --model sonnet --max-turns 30 --dangerously-skip-permissions --allowedTools "Read,Edit,Write,Bash" > /tmp/claude-builder.log 2>&1`;
+  const cmd = `echo ${JSON.stringify(invoke)} | ${CLAUDE} -p --model sonnet --max-turns 30 --dangerously-skip-permissions --allowedTools "Read,Edit,Write,Bash" > /tmp/claude-builder.log 2>&1`;
   const r = spawnSync("bash", ["-c", cmd], {
     cwd: dir,
     encoding: "utf8",
@@ -165,6 +166,12 @@ async function main() {
     // 2. Rebuild.
     const build = claudeRebuild(dir, path.join(dir, "BRIEF.md"));
     console.log(`  [${slug}] claude exit=${build.code} log=${build.log}`);
+    if (build.code !== 0) {
+      console.log(
+        `  [${slug}] ⚠ Claude Code failed (exit ${build.code}) — leaving status=rework for retry.`,
+      );
+      continue;
+    }
 
     // 3. Redeploy.
     const dep = redeploy(dir);
