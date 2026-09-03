@@ -1630,7 +1630,10 @@
       "saleValue": null,
       "gScore": 29,
       "zachApproval": null,
-      "email": "landstreecare@yahoo.com"
+      "email": "landstreecare@yahoo.com",
+      "demoUrl": "https://lands-tree-care-demo-iota.vercel.app",
+      "demoBuilt": "2026-09-02",
+      "demoLive": true
     },
     {
       "id": "kens-plumbing",
@@ -2147,13 +2150,17 @@
         "label": "G-SCORE"
       },
       "gScore": 30,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
       "email": "info@gotitanwash.com",
       "lastContact": "2026-09-01",
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -2539,12 +2546,16 @@
         "label": "G-SCORE"
       },
       "gScore": 17,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
       "email": "ntsllc@yahoo.com",
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -2569,12 +2580,16 @@
         "label": "G-SCORE"
       },
       "gScore": 20,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
       "email": "twobrothersplllclandscaping@gmail.com",
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -4608,7 +4623,10 @@
         "status": "pending-review"
       },
       "zachApproval": null,
-      "email": "Blakedromig@outlook.com"
+      "email": "Blakedromig@outlook.com",
+      "demoUrl": "https://carolina-clear-demo.vercel.app",
+      "demoBuilt": "2026-09-02",
+      "demoLive": true
     },
     {
       "id": "threlkeld-demolition",
@@ -4643,7 +4661,10 @@
         "status": "pending-review"
       },
       "zachApproval": null,
-      "email": "miketksc@gmail.com"
+      "email": "miketksc@gmail.com",
+      "demoUrl": "https://threlkeld-demo.vercel.app",
+      "demoBuilt": "2026-09-02",
+      "demoLive": true
     },
     {
       "id": "molinas-tree-service",
@@ -6458,7 +6479,10 @@
         "confidence": 9,
         "notes": "Pitch drafted 2026-08-13, awaiting Zach review. NOT SENT. Phone (864) 714-4987 ownership phone-verified at Google level \u2014 dial confidently; keep 'are you the owner' soft confirm (common-name brand). kbslawncare.com = Olathe KS collision. No email on file \u2014 phone-first."
       },
-      "email": "Kbeeks65@gmail.com"
+      "email": "Kbeeks65@gmail.com",
+      "demoUrl": "https://kbs-lawn-care-demo.vercel.app",
+      "demoBuilt": "2026-09-02",
+      "demoLive": true
     },
     {
       "id": "anna-lee-weddings",
@@ -7848,11 +7872,15 @@
         "label": "G-SCORE"
       },
       "gScore": 31,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -7918,11 +7946,15 @@
         "label": "G-SCORE"
       },
       "gScore": 29,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -7987,11 +8019,15 @@
         "label": "G-SCORE"
       },
       "gScore": 27,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -8098,11 +8134,15 @@
         "label": "G-SCORE"
       },
       "gScore": 20,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -8128,11 +8168,15 @@
         "label": "G-SCORE"
       },
       "gScore": 19,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -8158,11 +8202,15 @@
         "label": "G-SCORE"
       },
       "gScore": 15,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
@@ -8293,11 +8341,15 @@
         "label": "G-SCORE"
       },
       "gScore": 14,
-      "pitchDraft": "sent",
+      "pitchDraft": {
+        "status": "sent"
+      },
       "responseStatus": "awaiting",
       "saleValue": null,
       "zachApproval": null,
-      "sendTruth": "sent_unverified",
+      "sendTruth": {
+        "status": "sent_unverified"
+      },
       "sendNote": "2026-09-02 RESENT full body via SMTP (2026-09-01 send was header-only \u2014 himalaya pipe bug, fixed)"
     },
     {
