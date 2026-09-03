@@ -113,6 +113,30 @@ const FORBIDDEN = [
 ];
 
 /**
+ * Conflict map: core service (stemmed) → keywords that signal the demo copy
+ * is really about a DIFFERENT trade. Used to catch "brand is right but the
+ * body sells the wrong service" (e.g. a sealing company whose copy is all
+ * grading/excavation/pours). Keyed on the stem of the category's last word.
+ * Extend as new conflicts surface.
+ */
+const CONFLICT_KEYWORDS = {
+  seal: ["grading", "excavat", "pour", "slab", "foundation", "mason", "site prep"],
+  paint: ["roof", "grading", "excavat", "seal", "mason"],
+  wash: ["paint", "roof", "grading", "excavat"],
+  roof: ["paint", "seal", "wash", "grading"],
+  tree: ["roof", "paint", "seal", "wash"],
+  lawn: ["roof", "paint", "tree", "seal"],
+  clean: ["paint", "roof", "tree", "lawn"],
+  concret: ["roof", "paint", "tree", "lawn"],
+  plumb: ["roof", "paint", "tree", "electric"],
+  electric: ["roof", "paint", "tree", "plumb"],
+  hvac: ["roof", "paint", "tree", "plumb"],
+  garage: ["roof", "paint", "tree", "plumb"],
+  junk: ["roof", "paint", "tree", "lawn", "seal"],
+  window: ["roof", "paint", "tree", "lawn", "seal"],
+};
+
+/**
  * Deterministic post-rebuild verification. Fetches the live demo and checks
  * that the correct company identity is present and no foreign branding leaked
  * in. Returns an array of failure strings (empty = pass). Image/caption
@@ -162,7 +186,8 @@ async function verifyRebuild(company, reason, allCompanies) {
   }
 
   // 5. Category/service check: the demo copy should mention the business's
-  //    core service (last non-generic word of the category, stemmed).
+  //    core service (last non-generic word of the category, stemmed) AND not
+  //    be dominated by a conflicting trade.
   const category = (company.category || "").toLowerCase().trim();
   if (category) {
     const FILLER = new Set([
@@ -178,10 +203,29 @@ async function verifyRebuild(company, reason, allCompanies) {
         break;
       }
     }
-    if (serviceWord && !lower.includes(serviceWord.toLowerCase())) {
-      failures.push(
-        `copy doesn't mention core service "${serviceWord}" (category: ${company.category})`,
-      );
+    if (serviceWord) {
+      // 5a. Presence: the core service keyword appears somewhere.
+      if (!lower.includes(serviceWord.toLowerCase())) {
+        failures.push(
+          `copy doesn't mention core service "${serviceWord}" (category: ${company.category})`,
+        );
+      }
+      // 5b. Conflict: not dominated by a DIFFERENT trade.
+      const conflicts = CONFLICT_KEYWORDS[serviceWord.toLowerCase()] || [];
+      let total = 0;
+      const hits = [];
+      for (const ckw of conflicts) {
+        const count = (lower.match(new RegExp(ckw, "g")) || []).length;
+        if (count > 0) {
+          total += count;
+          hits.push(`${ckw}(${count})`);
+        }
+      }
+      if (total >= 2) {
+        failures.push(
+          `copy leans on conflicting service [${hits.join(", ")}] — category is "${company.category}"`,
+        );
+      }
     }
   }
 
