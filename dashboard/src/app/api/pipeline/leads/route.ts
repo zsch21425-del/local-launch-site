@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readPipelineSafe, writePipeline } from "@/lib/pipeline-store";
+import { mutatePipeline } from "@/lib/pipeline-store";
 
 const ACCESS = process.env.ACCESS_CODE || process.env.DASHBOARD_TOKEN;
 
@@ -58,32 +58,7 @@ export async function POST(req: NextRequest) {
 
   const id = slugify(n);
 
-  const data: any = await readPipelineSafe();
-  const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
-  if (companies.length === 0) {
-    return NextResponse.json({ error: "Pipeline store empty or unreadable" }, { status: 500 });
-  }
-
-  // Reject 409 if already present (by id or case-insensitive name).
-  const dup = companies.find(
-    (c: any) =>
-      (c.id ?? "").toLowerCase() === id.toLowerCase() ||
-      (c.name ?? "").toLowerCase() === n.toLowerCase(),
-  );
-  if (dup) {
-    return NextResponse.json(
-      {
-        error: "Already in the dashboard",
-        companyId: dup.id,
-        name: dup.name,
-        stage: dup.stage,
-      },
-      { status: 409 },
-    );
-  }
-
   const now = new Date();
-  // ISO date (YYYY-MM-DD) to match existing lastUpdated format.
   const isoDate = now.toISOString().slice(0, 10);
 
   const newCompany = {
@@ -114,11 +89,36 @@ export async function POST(req: NextRequest) {
     responseStatus: null,
     zachApproval: null,
   };
-  companies.push(newCompany);
 
-  const w = await writePipeline(data);
-  if (!w.ok) {
-    return NextResponse.json({ error: w.error, ok: false }, { status: 500 });
+  try {
+    const r = await mutatePipeline((data: any) => {
+      const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
+      if (companies.length === 0) throw new Error("__EMPTY__");
+      const dup = companies.find(
+        (c: any) =>
+          (c.id ?? "").toLowerCase() === id.toLowerCase() ||
+          (c.name ?? "").toLowerCase() === n.toLowerCase(),
+      );
+      if (dup) {
+        const err: any = new Error("__DUP__");
+        err.dup = dup;
+        throw err;
+      }
+      companies.push(newCompany);
+      return true;
+    });
+    if (!r.ok) {
+      return NextResponse.json({ error: r.error, ok: false }, { status: 500 });
+    }
+  } catch (e: any) {
+    if (e?.message === "__EMPTY__")
+      return NextResponse.json({ error: "Pipeline store empty or unreadable" }, { status: 500 });
+    if (e?.message === "__DUP__")
+      return NextResponse.json(
+        { error: "Already in the dashboard", companyId: e.dup.id, name: e.dup.name, stage: e.dup.stage },
+        { status: 409 },
+      );
+    return NextResponse.json({ error: e?.message || "Unknown error" }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true, companyId: id, company: newCompany });

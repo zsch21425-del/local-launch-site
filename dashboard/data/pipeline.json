@@ -1278,7 +1278,7 @@
       "website": "",
       "summary": "SECOND-PASS 2026-08-20: no own website. greenpropainting.com = DIFFERENT company (Green Pro Painting, phone 864-855-8054 \u2260 pipeline 864-523-8330) \u2014 collision, not theirs. GBP panel found (review count unparsed). Tier A holds.",
       "lastContact": "",
-      "lastUpdated": "2026-08-20",
+      "lastUpdated": "2026-09-03",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
@@ -1300,7 +1300,12 @@
       "demoUrl": "https://greenville-pro-painters-demo.vercel.app",
       "demo": {
         "url": "https://greenville-pro-painters-demo.vercel.app",
-        "status": "pending"
+        "status": "rework",
+        "reviewedAt": "2026-09-03",
+        "reviewFeedback": {
+          "reason": "Rework requested (reason relayed to agent; lost in write race, now fixed)",
+          "reviewedAt": "2026-09-03"
+        }
       }
     },
     {

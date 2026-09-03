@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
-import { readPipelineSafe, writePipeline } from "@/lib/pipeline-store";
+import { mutatePipeline } from "@/lib/pipeline-store";
 
 const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
 
 /**
- * GET: list demos awaiting Zach's approval (and any rejected/rework, for re-review).
- * Phase 1: reads from Vercel Blob (the live OS book) so demo state is durable
- * across deploys and approvals stick.
- *
- * Filter: status !== "none" && status !== "approved" (rework/rejected stay visible).
+ * GET: demos awaiting Zach's review (pending/rejected/rework).
+ * Includes reviewFeedback so the UI can show why something was bounced.
  */
 export async function GET() {
+  const { readPipelineSafe } = await import("@/lib/pipeline-store");
   const data = await readPipelineSafe();
   const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
   if (companies.length === 0) {
@@ -22,20 +20,45 @@ export async function GET() {
 
   const queue = companies
     .map((c) => {
-      const explicit = c.demo?.url ?? c.demoUrl;
-      const url = explicit ?? `https://${c.id}-demo.vercel.app`;
-      const status: string = c.demo?.status ?? (explicit ? "pending" : "none");
-      return { companyId: c.id, name: c.name, category: c.category, location: c.location, url, status };
+      const raw = c.demo?.url ?? c.demoUrl ?? "";
+      const explicit =
+        typeof raw === "string" && raw.trim().length > 0 ? raw.trim() : null;
+      if (!explicit) {
+        return {
+          companyId: c.id,
+          name: c.name,
+          category: c.category,
+          location: c.location,
+          url: "",
+          status: "none" as string,
+          notes: null as string | null,
+          reviewFeedback: null as null,
+          reviewedAt: null as string | null,
+        };
+      }
+      const status: string = c.demo?.status ?? "pending";
+      const fb = c.demo?.reviewFeedback ?? null;
+      return {
+        companyId: c.id,
+        name: c.name,
+        category: c.category,
+        location: c.location,
+        url: explicit,
+        status,
+        notes: c.demo?.notes ?? fb?.reason ?? null,
+        reviewFeedback: fb,
+        reviewedAt: c.demo?.reviewedAt ?? fb?.reviewedAt ?? null,
+      };
     })
-    .filter((d) => d.status !== "none" && d.status !== "approved");
+    .filter((d) => d.status !== "none" && d.status !== "approved" && d.url);
 
   return NextResponse.json({ demos: queue });
 }
 
 /**
- * POST: approve or reject a demo.
- * Phase 1: read Blob, mutate, write Blob, then relay to Supervisor (fire-and-forget).
- * Replaces the old in-memory singleton mutation that was lost on every deploy.
+ * POST: approve | reject | rework a demo.
+ * reject/rework REQUIRE notes (reason). suggestedFix optional.
+ * Persists to Blob (atomic via mutatePipeline) + relays a full work order to the Supervisor.
  */
 export async function POST(request: Request) {
   let body: any;
@@ -45,60 +68,170 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { companyId, action, notes } = body as {
+  const { companyId, action, notes, reason, suggestedFix } = body as {
     companyId?: string;
     action?: "approve" | "reject" | "rework";
     notes?: string;
+    reason?: string;
+    suggestedFix?: string;
   };
 
   if (!companyId || !action) {
-    return NextResponse.json({ error: "Missing companyId or action" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Missing companyId or action" },
+      { status: 400 },
+    );
   }
   if (!["approve", "reject", "rework"].includes(action)) {
-    return NextResponse.json({ error: `Invalid action: ${action}` }, { status: 400 });
+    return NextResponse.json(
+      { error: `Invalid action: ${action}` },
+      { status: 400 },
+    );
   }
 
-  // Read Blob (the live book).
-  const data = await readPipelineSafe();
-  const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
-  if (companies.length === 0) {
-    return NextResponse.json({ error: "Pipeline store empty or unreadable" }, { status: 500 });
-  }
-  const company = companies.find((c: any) => c.id === companyId);
-  if (!company) {
-    return NextResponse.json({ error: `Company not found: ${companyId}` }, { status: 404 });
-  }
+  // Normalize feedback fields (UI may send reason or notes)
+  const why = (reason || notes || "").trim();
+  const fix = (suggestedFix || "").trim();
 
-  // Mutate in-place.
-  company.demo = company.demo ?? {};
-  if (action === "approve") company.demo.status = "approved";
-  else if (action === "reject") company.demo.status = "rejected";
-  else if (action === "rework") company.demo.status = "rework";
-  company.demo.reviewedAt = new Date().toISOString();
-  if (notes?.trim()) company.demo.notes = notes.trim();
-
-  // Persist back to Blob (durable; survives deploys).
-  const w = await writePipeline(data);
-  if (!w.ok) {
-    return NextResponse.json({ error: "writePipeline failed", detail: w.error }, { status: 500 });
+  if ((action === "reject" || action === "rework") && !why) {
+    return NextResponse.json(
+      {
+        error:
+          "A reason is required so the agent knows what to fix. Tell us what's wrong with the demo.",
+      },
+      { status: 400 },
+    );
   }
 
-  // Relay to Supervisor (fire-and-forget) — mirrors pitch-approve.
-  const msg =
-    action === "approve"
-      ? `DEMO APPROVED for ${company.name} (${companyId}). Demo URL: ${company.demo?.url ?? company.demoUrl ?? `https://${companyId}-demo.vercel.app`}. Proceed per Local Launch process: deploy if not live, then route to Zach's 'done' approval / outreach.`
-      : `DEMO ${action.toUpperCase()} for ${company.name} (${companyId}).${notes?.trim() ? ` Reason: "${notes.trim()}".` : ""} Route back to the builder to rework the demo.`;
+  const now = new Date().toISOString();
 
-  setTimeout(() => {
-    fetch(RELAY_URL, {
+  let company: any;
+  let demoUrl = "";
+  try {
+    const r = await mutatePipeline((data: any) => {
+      const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
+      if (companies.length === 0) throw new Error("__EMPTY__");
+      const c = companies.find((x: any) => x.id === companyId);
+      if (!c) throw new Error("__NOTFOUND__");
+
+      demoUrl =
+        c.demo?.url || c.demoUrl || `https://${companyId}-demo.vercel.app`;
+
+      c.demo = c.demo ?? {};
+      if (!c.demo.url && c.demoUrl) c.demo.url = c.demoUrl;
+
+      if (action === "approve") {
+        c.demo.status = "approved";
+        c.demo.reviewedAt = now;
+        delete c.demo.reviewFeedback;
+      } else if (action === "reject" || action === "rework") {
+        c.demo.status = action === "reject" ? "rejected" : "rework";
+        c.demo.reviewedAt = now;
+        c.demo.notes = why;
+        c.demo.reviewFeedback = {
+          reason: why,
+          ...(fix ? { suggestedFix: fix } : {}),
+          reviewedAt: now,
+        };
+      }
+
+      c.lastUpdated = now.slice(0, 10);
+      return true;
+    });
+
+    if (!r.ok) {
+      return NextResponse.json(
+        { error: r.error || "writePipeline failed" },
+        { status: 500 },
+      );
+    }
+  } catch (e: any) {
+    if (e?.message === "__EMPTY__")
+      return NextResponse.json(
+        { error: "Pipeline store empty or unreadable" },
+        { status: 500 },
+      );
+    if (e?.message === "__NOTFOUND__")
+      return NextResponse.json(
+        { error: `Company not found: ${companyId}` },
+        { status: 404 },
+      );
+    return NextResponse.json({ error: e?.message || "Unknown error" }, { status: 500 });
+  }
+
+  // Re-read the company for the relay/CRM (already mutated + persisted).
+  const { readPipelineSafe } = await import("@/lib/pipeline-store");
+  const fresh = await readPipelineSafe();
+  company = (fresh?.companies ?? []).find((x: any) => x.id === companyId);
+
+  // Full work-order message for the Supervisor (not a one-liner)
+  let msg: string;
+  if (action === "approve") {
+    msg = [
+      `DEMO APPROVED — work from dashboard (no Telegram needed for context).`,
+      `Company: ${company?.name} (id=${companyId})`,
+      `Demo URL: ${demoUrl}`,
+      `Next: treat as Zach-approved demo. Ready for pitch/send path if email+pitch exist; otherwise note demo is cleared.`,
+    ].join("\n");
+  } else {
+    msg = [
+      `DEMO ${action.toUpperCase()} — WORK ORDER FROM DASHBOARD`,
+      `Do NOT ask Zach to repeat this. Fix the demo from these notes.`,
+      ``,
+      `Company: ${company?.name} (id=${companyId})`,
+      `Demo URL: ${demoUrl}`,
+      `Stage: ${company?.stage ?? "unknown"}`,
+      `Action: ${action}`,
+      `Reason: ${why}`,
+      fix ? `Suggested fix: ${fix}` : `Suggested fix: (none — use Reason)`,
+      ``,
+      `Required response:`,
+      `1. Load local-launch-demo-standards + fix the demo via Claude Code /hallmark path.`,
+      `2. Re-deploy, dual-viewport QA, set demo.status back to "pending" (or rework complete → pending) on Blob.`,
+      `3. Reply in dashboard agent chat or leave a short note on the company when ready for Zach re-review.`,
+    ].join("\n");
+  }
+
+  // Await relay so Zach gets a real "sent to agent" signal (not fire-and-forget 10s)
+  let relayed = false;
+  let relayError: string | null = null;
+  try {
+    const res = await fetch(RELAY_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: msg }),
-      signal: AbortSignal.timeout(10000),
-    }).catch(() => {
-      /* best-effort relay; state already persisted */
+      body: JSON.stringify({ message: msg, clientId: companyId }),
+      signal: AbortSignal.timeout(90000),
     });
-  }, 0);
+    relayed = res.ok;
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      relayError = `relay HTTP ${res.status} ${t.slice(0, 120)}`;
+    }
+  } catch (e: any) {
+    relayError = e?.message || "relay timeout";
+  }
 
-  return NextResponse.json({ ok: true, action, relayed: true });
+  if (process.env.CRM_SESSION_TOKEN && company) {
+    const { crmUpsertCompany } = await import("@/lib/crm-client");
+    setTimeout(() => {
+      crmUpsertCompany({
+        name: company.name,
+        domain: company.website?.replace(/^https?:\/\//, "") ?? undefined,
+        description: `[${company.stage}] ${company.summary ?? ""} — demo ${action}`.trim(),
+        industry: company.category,
+        city: company.location?.split(",")[0]?.trim(),
+        stateCode: company.location?.toLowerCase().includes("sc") ? "SC" : undefined,
+        phone: company.phone,
+        email: company.email,
+      }).catch(() => {});
+    }, 0);
+  }
+
+  return NextResponse.json({
+    ok: true,
+    action,
+    relayed,
+    relayError,
+    reviewFeedback: action === "approve" ? null : company?.demo?.reviewFeedback ?? null,
+  });
 }

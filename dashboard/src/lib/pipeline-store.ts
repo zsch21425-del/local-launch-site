@@ -1,4 +1,4 @@
-import { put, get } from "@vercel/blob";
+import { put, get, BlobPreconditionFailedError } from "@vercel/blob";
 import * as fs from "node:fs";
 import * as path from "node:path";
 
@@ -6,6 +6,10 @@ import * as path from "node:path";
  * Shared pipeline store: reads/writes data/pipeline.json locally AND syncs to
  * Vercel Blob when BLOB_READ_WRITE_TOKEN is present. This gives cross-device
  * persistence (approvals made on Vercel stick and sync back to localhost).
+ *
+ * Concurrency: writes use ETag optimistic-concurrency (ifMatch) so rapid
+ * approvals/reworks never clobber each other (the lost-update bug). All
+ * POST/PATCH routes MUST go through mutatePipeline().
  */
 
 const PIPELINE_PATH = path.join(process.cwd(), "data", "pipeline.json");
@@ -36,29 +40,32 @@ async function readBlobStream(stream: ReadableStream<Uint8Array>): Promise<strin
 /** True when running on Vercel's serverless runtime (read-only filesystem). */
 const IS_SERVERLESS = !!process.env.VERCEL;
 
-/** Read pipeline data. On serverless, only Blob is readable. On local, prefer Blob then local file. */
-export async function readPipeline() {
+/** Read pipeline data + its ETag (for optimistic concurrency). */
+async function readPipelineWithEtag(): Promise<{ data: any; etag: string | null }> {
   const token = getToken();
   if (token) {
     try {
       const res = await get(BLOB_PATH, { access: "private", token });
       if (res?.stream) {
         const text = await readBlobStream(res.stream);
-        return JSON.parse(text);
+        return { data: JSON.parse(text), etag: res.blob?.etag ?? null };
       }
     } catch (e: any) {
-      if (e?.message?.includes("not found") || e?.statusCode === 404) {
-        // continue to local (if not serverless)
-      } else {
-        console.warn("Blob read failed, using local:", e?.message);
+      if (!(e?.message?.includes("not found") || e?.statusCode === 404)) {
+        console.warn("Blob read failed:", e?.message);
       }
     }
   }
-  // Local fallback only on non-serverless (serverless fs is read-only)
   if (!IS_SERVERLESS && fs.existsSync(PIPELINE_PATH)) {
-    return JSON.parse(fs.readFileSync(PIPELINE_PATH, "utf-8"));
+    return { data: JSON.parse(fs.readFileSync(PIPELINE_PATH, "utf-8")), etag: null };
   }
-  return null;
+  return { data: null, etag: null };
+}
+
+/** Read pipeline data (no etag) — used by GET routes. */
+export async function readPipeline() {
+  const { data } = await readPipelineWithEtag();
+  return data;
 }
 
 /** Read pipeline data, returning {companies, ...} and handling errors. */
@@ -72,23 +79,23 @@ export async function readPipelineSafe() {
   }
 }
 
-/** Write pipeline data. On serverless, only Blob; on local, Blob + local file. */
-export async function writePipeline(data: unknown): Promise<{ ok: boolean; error?: string }> {
+/** Write pipeline data with ETag conditional (optimistic concurrency). */
+async function writePipelineWithEtag(
+  data: unknown,
+  etag: string | null,
+): Promise<{ ok: boolean; error?: string; conflict?: boolean }> {
   const jsonStr = JSON.stringify(data, null, 2);
 
-  // Local write only on non-serverless (Vercel fs is read-only)
   if (!IS_SERVERLESS) {
     try {
       const dir = path.dirname(PIPELINE_PATH);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(PIPELINE_PATH, jsonStr, "utf-8");
     } catch (e: any) {
-      // Local write failed — if Blob is available, continue; otherwise surface.
       if (!getToken()) return { ok: false, error: e.message };
     }
   }
 
-  // Blob write (cross-device durable) — REQUIRED on serverless, best-effort on local
   const token = getToken();
   if (token) {
     try {
@@ -96,15 +103,49 @@ export async function writePipeline(data: unknown): Promise<{ ok: boolean; error
         access: "private",
         allowOverwrite: true,
         token,
+        ...(etag ? { ifMatch: etag } : {}),
       });
       return { ok: true };
     } catch (e: any) {
-      // On serverless, Blob is the only store — failure is fatal.
+      const conflict =
+        e instanceof BlobPreconditionFailedError ||
+        e?.name === "BlobPreconditionFailedError" ||
+        e?.statusCode === 412;
+      if (conflict) return { ok: false, conflict: true, error: "Concurrent write conflict" };
       if (IS_SERVERLESS) return { ok: false, error: e.message };
       console.warn("Blob write failed (local still persisted):", e?.message);
       return { ok: true };
     }
   }
-  // No Blob token and no local write possible
-  return IS_SERVERLESS ? { ok: false, error: "No persistent store available on serverless" } : { ok: true };
+  return IS_SERVERLESS
+    ? { ok: false, error: "No persistent store available on serverless" }
+    : { ok: true };
+}
+
+/** Backward-compat write (no etag — last-write-wins). Prefer mutatePipeline(). */
+export async function writePipeline(data: unknown): Promise<{ ok: boolean; error?: string }> {
+  const w = await writePipelineWithEtag(data, null);
+  return { ok: w.ok, error: w.error };
+}
+
+/**
+ * Atomic read-modify-write with optimistic-concurrency retry.
+ * The ONLY safe way to update pipeline state — use this in every POST/PATCH route.
+ */
+export async function mutatePipeline<T>(
+  mutator: (data: any) => T | Promise<T>,
+): Promise<{ ok: boolean; error?: string; result?: T }> {
+  const MAX_RETRIES = 5;
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const { data, etag } = await readPipelineWithEtag();
+    if (!data || typeof data !== "object") {
+      return { ok: false, error: "Pipeline store empty or unreadable" };
+    }
+    const result = await mutator(data);
+    const w = await writePipelineWithEtag(data, etag);
+    if (w.ok) return { ok: true, result };
+    if (!w.conflict) return { ok: false, error: w.error };
+    // conflict → loop and retry with a fresh read + re-apply the mutation
+  }
+  return { ok: false, error: `Concurrent write conflict after ${MAX_RETRIES} retries` };
 }
