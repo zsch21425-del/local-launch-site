@@ -79,7 +79,7 @@ function claudeRebuild(dir, briefPath) {
     "Edit as specified. You may Read,Edit,Write,Bash in this directory.",
     "When done, report concisely with the /hallmark critique stamp.",
   ].join(" ");
-  const cmd = `echo ${JSON.stringify(invoke)} | ${CLAUDE} -p --model sonnet --max-turns 30 --dangerously-skip-permissions --allowedTools "Read,Edit,Write,Bash" > /tmp/claude-builder.log 2>&1`;
+  const cmd = `echo ${JSON.stringify(invoke)} | ${CLAUDE} -p --model sonnet --max-turns 60 --dangerously-skip-permissions --allowedTools "Read,Edit,Write,Bash" > /tmp/claude-builder.log 2>&1`;
   const r = spawnSync("bash", ["-c", cmd], {
     cwd: dir,
     encoding: "utf8",
