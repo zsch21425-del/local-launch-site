@@ -34,7 +34,7 @@ export function RevenueTracker({
     .filter((company) => company.stage === "build-launch")
     .map((company) => ({
       company,
-      progress: getPlaybookProgress(company.playbook),
+      progress: getPlaybookProgress(company.playbook ?? []),
     }))
     .sort((a, b) => b.progress.percent - a.progress.percent);
 

@@ -5,6 +5,7 @@ import { ClientTabs } from "@/components/client-tabs";
 import { AgentChat } from "@/components/agent-chat";
 import { ClientAssets } from "@/components/client-assets";
 import { ClientContact } from "@/components/client-contact";
+import { ColdCallSheet } from "@/components/cold-call-sheet";
 import { ClientHeader } from "@/components/client-header";
 import { ClientSummary } from "@/components/client-summary";
 import { ClientTimeline } from "@/components/client-timeline";
@@ -40,7 +41,16 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
             <SeoGauge value={company.seoScore.current} max={company.seoScore.max} label={company.seoScore.label} />
           ) : null}
           <div className="grid gap-4 sm:grid-cols-2">
-            <ClientContact company={company} />
+            <ColdCallSheet
+              companyId={company.id}
+              ownerName={company.ownerName}
+              phone={company.phone}
+              email={company.email}
+              offer={company.offer}
+              responseStatus={company.responseStatus}
+              demoUrl={company.demoUrl}
+              website={company.website}
+            />
             <ClientSummary company={company} />
           </div>
 
@@ -96,9 +106,9 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
       {/* Playbook tab */}
       {tab === "playbook" && (
         <div className="flex flex-col gap-5">
-          {company.playbook.length > 0 ? (
+          {(company.playbook ?? []).length > 0 ? (
             <div className={cn(glassCard, "p-5")}>
-              <PlaybookChecklist items={company.playbook} stages={stages} companyId={company.id} />
+              <PlaybookChecklist items={company.playbook ?? []} stages={stages} companyId={company.id} />
             </div>
           ) : (
             <div className={cn(glassCard, "py-8 text-center text-sm text-slate-400")}>

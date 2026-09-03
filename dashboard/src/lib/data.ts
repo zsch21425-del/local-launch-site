@@ -672,11 +672,11 @@ const ACTIVE_STAGES: StageId[] = ["audit", "pitch", "contacted", "response"];
 export function getStats(companies: Company[] = data.companies): PipelineStats {
   const scored = companies.filter((company) => company.seoScore);
   const playbookTotal = companies.reduce(
-    (sum, company) => sum + company.playbook.length,
+    (sum, company) => sum + (company.playbook ?? []).length,
     0,
   );
   const playbookDone = companies.reduce(
-    (sum, company) => sum + company.playbook.filter((item) => item.done).length,
+    (sum, company) => sum + (company.playbook ?? []).filter((item) => item.done).length,
     0,
   );
 
@@ -736,7 +736,7 @@ export function getOpenTasks(
 ): OpenTask[] {
   return companies
     .flatMap((company) => {
-      const next = company.playbook.find((item) => !item.done);
+      const next = (company.playbook ?? []).find((item) => !item.done);
       if (!next) return [];
       return [
         {
