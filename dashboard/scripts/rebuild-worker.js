@@ -142,14 +142,28 @@ const CONFLICT_KEYWORDS = {
  * in. Returns an array of failure strings (empty = pass). Image/caption
  * alignment is a separate vision pass (see verify-demo.js).
  */
+/** Fetch with retry — Vercel's CDN takes a few seconds to serve a freshly
+ *  redeployed demo, so a single immediate fetch often returns an empty/error
+ *  page. Retry until we get real HTML (> 500 chars) or exhaust attempts. */
+async function fetchWithRetry(url, tries = 4, delayMs = 3000) {
+  for (let i = 0; i < tries; i++) {
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
+      const text = await res.text();
+      if (res.ok && text.length > 500) return text;
+    } catch (e) {
+      // fetch error → fall through to retry
+    }
+    if (i < tries - 1) await new Promise((r) => setTimeout(r, delayMs));
+  }
+  return "";
+}
+
 async function verifyRebuild(company, reason, allCompanies) {
   const liveUrl = `https://${company.id}-demo.vercel.app`;
-  let html = "";
-  try {
-    const res = await fetch(liveUrl, { signal: AbortSignal.timeout(20000) });
-    html = await res.text();
-  } catch (e) {
-    return [`could not fetch live demo: ${e.message}`];
+  const html = await fetchWithRetry(liveUrl);
+  if (!html) {
+    return ["could not fetch live demo (empty/error after retries)"];
   }
   const lower = html.toLowerCase();
   const failures = [];
@@ -188,7 +202,10 @@ async function verifyRebuild(company, reason, allCompanies) {
   // 5. Category/service check: the demo copy should mention the business's
   //    core service (last non-generic word of the category, stemmed) AND not
   //    be dominated by a conflicting trade.
-  const category = (company.category || "").toLowerCase().trim();
+  const category = (company.category || "")
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, " ") // strip "(driveways, patios)" qualifiers
+    .trim();
   if (category) {
     const FILLER = new Set([
       "care", "service", "services", "and", "or", "general",
