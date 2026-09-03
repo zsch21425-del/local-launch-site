@@ -1,20 +1,21 @@
 /**
- * Shared card recipes — crisp borders and subtle shadows against the slate
- * background so every surface reads clearly.
+ * Shared card recipes — crisp, warm borders and a soft elevation system so
+ * surfaces read as layered content, not glassmorphism. Kept token-free here
+ * (Tailwind utilities) but tuned to the warm off-white base in globals.css.
  */
 
-/** Standard content card: opaque white with dark border. */
+/** Standard content card: opaque white with a hairline warm border. */
 export const glass =
-  "rounded-2xl border border-slate-300 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08),0_16px_40px_-20px_rgba(15,23,42,0.16)]";
+  "rounded-2xl border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.12)]";
 
 /** Lighter weight — used for kanban columns so cards stay the focal point. */
 export const glassSubtle =
-  "rounded-2xl border border-slate-200 bg-white/80 shadow-[0_1px_2px_rgba(15,23,42,0.04)]";
+  "rounded-2xl border border-slate-200/60 bg-white/70 shadow-[0_1px_2px_rgba(15,23,42,0.03)]";
 
-/** Draggable card: fully opaque with strong border. */
+/** Draggable card: fully opaque with a slightly stronger elevation. */
 export const glassCard =
-  "rounded-xl border border-slate-300 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.06),0_8px_24px_-16px_rgba(15,23,42,0.24)]";
+  "rounded-xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_6px_16px_-12px_rgba(15,23,42,0.16)]";
 
 /** Sticky chrome (header). */
 export const glassBar =
-  "border-b border-slate-200 bg-white/90 backdrop-blur-xl";
+  "border-b border-slate-200/70 bg-white/85 backdrop-blur-md";

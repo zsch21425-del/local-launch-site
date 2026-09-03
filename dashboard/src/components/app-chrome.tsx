@@ -20,7 +20,7 @@ export function AppChrome({ children }: { children: React.ReactNode }) {
     <>
       <SidebarNav />
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 border-b border-white/60 bg-white/65 backdrop-blur-xl supports-[backdrop-filter]:bg-white/55">
+        <header className="sticky top-0 z-20 border-b border-slate-200/70 bg-white/85 backdrop-blur-md">
           <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 pl-14 sm:px-6 sm:pl-6 lg:px-8">
             <Link
               href="/"

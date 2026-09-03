@@ -14,6 +14,7 @@ import {
   MonitorPlay,
   Radar,
   Users,
+  Workflow,
   X,
   type LucideIcon,
 } from "lucide-react";
@@ -37,6 +38,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/approvals", label: "Approvals", icon: ClipboardCheck },
   { href: "/demos", label: "Demos", icon: MonitorPlay },
   { href: "/reports", label: "Reports", icon: BarChart3 },
+  { href: "/automation", label: "Automation", icon: Workflow },
 ];
 
 function isActive(pathname: string, href: string) {
@@ -108,7 +110,7 @@ export function SidebarNav() {
 
       <nav
         className={cn(
-          "sticky top-0 z-20 hidden h-svh shrink-0 flex-col gap-1 border-r border-slate-300 bg-white/85 py-3 backdrop-blur-xl transition-[width] duration-200 sm:flex",
+          "sticky top-0 z-20 hidden h-svh shrink-0 flex-col gap-1 border-r border-slate-200/70 bg-white/90 py-3 backdrop-blur-md transition-[width] duration-200 sm:flex",
           collapsed ? "w-14 px-2" : "w-56 px-3",
         )}
       >
