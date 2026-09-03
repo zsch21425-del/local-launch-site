@@ -99,6 +99,58 @@ function redeploy(dir) {
   return { ok: r.status === 0, code: r.status };
 }
 
+/**
+ * Known wrong brands/emails that leaked from OTHER demos. Anything in this
+ * list showing up in a demo's HTML means the rebuild didn't decontaminate it.
+ * Add new strays here as they're found.
+ */
+const FORBIDDEN = [
+  "Leo's Pro Line",
+  "Leosproline",
+  "leo's pro line",
+];
+
+/**
+ * Deterministic post-rebuild verification. Fetches the live demo and checks
+ * that the correct company identity is present and no foreign branding leaked
+ * in. Returns an array of failure strings (empty = pass). Image/caption
+ * alignment is a separate vision pass (see verify-demo.js).
+ */
+async function verifyRebuild(company, reason) {
+  const liveUrl = `https://${company.id}-demo.vercel.app`;
+  let html = "";
+  try {
+    const res = await fetch(liveUrl, { signal: AbortSignal.timeout(20000) });
+    html = await res.text();
+  } catch (e) {
+    return [`could not fetch live demo: ${e.message}`];
+  }
+  const lower = html.toLowerCase();
+  const failures = [];
+
+  // 1. Correct company name present.
+  if (company.name && !lower.includes(company.name.toLowerCase())) {
+    failures.push(`company name "${company.name}" missing`);
+  }
+
+  // 2. Correct phone present (digits only — formatting may differ).
+  if (company.phone) {
+    const digits = company.phone.replace(/\D/g, "");
+    if (digits && !html.includes(digits)) {
+      failures.push(`phone ${company.phone} missing`);
+    }
+  }
+
+  // 3. No foreign branding.
+  for (const f of FORBIDDEN) {
+    if (lower.includes(f.toLowerCase())) {
+      failures.push(`forbidden brand "${f}" still present`);
+    }
+  }
+
+  return failures;
+}
+
 function nowIso() {
   return new Date().toISOString();
 }
@@ -177,8 +229,25 @@ async function main() {
     const dep = redeploy(dir);
     console.log(`  [${slug}] redeploy ok=${dep.ok}${dep.why ? ` (${dep.why})` : ""}`);
 
-    // 4. Flip status + record activity.
-    c.demo.status = "pending";
+    // 3.5. Verify the rebuild actually fixed the complaint before flipping.
+    const failures = await verifyRebuild(c, reason);
+    if (failures.length > 0) {
+      console.log(
+        `  [${slug}] ⚠ verification failed: ${failures.join("; ")} — leaving status=rework for retry.`,
+      );
+      c.demo.reviewFeedback = {
+        reason: `Rebuild attempted but verification failed — ${failures.join("; ")}`,
+        reviewedAt: nowIso(),
+      };
+      c.demo.notes = c.demo.reviewFeedback.reason;
+      done += 1; // still persist the note so it's visible + can retry with context
+      continue;
+    }
+    console.log(`  [${slug}] ✓ verification passed.`);
+
+    // 4. Flip status. Image/caption reasons need a vision pass before "pending".
+    const isVision = /image|title|caption|photo|card|match|picture|visual|icon|swap|label|mismatch/i.test(reason);
+    c.demo.status = isVision ? "pending-verify" : "pending";
     c.demo.rebuiltAt = nowIso();
     c.demo.reviewFeedback = null;
     c.demo.notes = null;
