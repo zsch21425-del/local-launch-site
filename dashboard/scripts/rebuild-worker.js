@@ -108,6 +108,8 @@ const FORBIDDEN = [
   "Leo's Pro Line",
   "Leosproline",
   "leo's pro line",
+  "Gray Wolf",
+  "gray wolf",
 ];
 
 /**
@@ -116,7 +118,7 @@ const FORBIDDEN = [
  * in. Returns an array of failure strings (empty = pass). Image/caption
  * alignment is a separate vision pass (see verify-demo.js).
  */
-async function verifyRebuild(company, reason) {
+async function verifyRebuild(company, reason, allCompanies) {
   const liveUrl = `https://${company.id}-demo.vercel.app`;
   let html = "";
   try {
@@ -141,10 +143,45 @@ async function verifyRebuild(company, reason) {
     }
   }
 
-  // 3. No foreign branding.
+  // 3. Known stray brands absent.
   for (const f of FORBIDDEN) {
     if (lower.includes(f.toLowerCase())) {
       failures.push(`forbidden brand "${f}" still present`);
+    }
+  }
+
+  // 4. Cross-contamination: no OTHER company's distinctive name present.
+  //    Catches any demo-leak (e.g. "Gray Wolf", "Brian Dillard") without a manual list.
+  for (const other of allCompanies || []) {
+    if (other.id === company.id) continue;
+    const n = (other.name || "").trim();
+    if (n.length < 8) continue; // skip short/ambiguous names
+    if (lower.includes(n.toLowerCase())) {
+      failures.push(`foreign company name "${n}" present`);
+    }
+  }
+
+  // 5. Category/service check: the demo copy should mention the business's
+  //    core service (last non-generic word of the category, stemmed).
+  const category = (company.category || "").toLowerCase().trim();
+  if (category) {
+    const FILLER = new Set([
+      "care", "service", "services", "and", "or", "general",
+      "residential", "commercial", "home", "installation", "maintenance",
+    ]);
+    const words = category.split(/[\/,&\s]+/).filter(Boolean);
+    let serviceWord = "";
+    for (let i = words.length - 1; i >= 0; i--) {
+      const stem = words[i].replace(/(ing|ers?|es|s)$/i, "");
+      if (stem.length >= 3 && !FILLER.has(stem.toLowerCase())) {
+        serviceWord = stem;
+        break;
+      }
+    }
+    if (serviceWord && !lower.includes(serviceWord.toLowerCase())) {
+      failures.push(
+        `copy doesn't mention core service "${serviceWord}" (category: ${company.category})`,
+      );
     }
   }
 
@@ -230,7 +267,7 @@ async function main() {
     console.log(`  [${slug}] redeploy ok=${dep.ok}${dep.why ? ` (${dep.why})` : ""}`);
 
     // 3.5. Verify the rebuild actually fixed the complaint before flipping.
-    const failures = await verifyRebuild(c, reason);
+    const failures = await verifyRebuild(c, reason, data.companies);
     if (failures.length > 0) {
       console.log(
         `  [${slug}] ⚠ verification failed: ${failures.join("; ")} — leaving status=rework for retry.`,
