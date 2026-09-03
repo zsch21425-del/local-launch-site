@@ -1465,7 +1465,7 @@
       "website": "smithirrigationgreenvillesc.com (Duda)",
       "summary": "Irrigation & landscaping in Greer SC. HAS WEBSITE (Duda template, Scout missed). GBP unconfirmed. Specialized irrigation niche. Tier B/C pitch \u2014 upgrade + SEO, NOT site-build.",
       "lastContact": "2026-08-12",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-03",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
@@ -1496,7 +1496,8 @@
       "demoUrl": "https://smith-irrigation-demo.vercel.app",
       "demo": {
         "url": "https://smith-irrigation-demo.vercel.app",
-        "status": "pending"
+        "status": "approved",
+        "reviewedAt": "2026-09-03T01:47:53.291Z"
       },
       "sendTruth": {
         "status": "sent_unverified",

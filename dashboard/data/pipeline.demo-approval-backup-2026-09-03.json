@@ -1465,7 +1465,7 @@
       "website": "smithirrigationgreenvillesc.com (Duda)",
       "summary": "Irrigation & landscaping in Greer SC. HAS WEBSITE (Duda template, Scout missed). GBP unconfirmed. Specialized irrigation niche. Tier B/C pitch \u2014 upgrade + SEO, NOT site-build.",
       "lastContact": "2026-08-12",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-03",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
@@ -1496,7 +1496,8 @@
       "demoUrl": "https://smith-irrigation-demo.vercel.app",
       "demo": {
         "url": "https://smith-irrigation-demo.vercel.app",
-        "status": "pending"
+        "status": "approved",
+        "reviewedAt": "2026-09-03T01:47:53.291Z"
       },
       "sendTruth": {
         "status": "sent_unverified",
@@ -1515,13 +1516,13 @@
       "website": "",
       "summary": "SECOND-PASS 2026-08-20: GBP CONFIRMED with 477 reviews! No hidden website (surecritic/simpletire/crunchbase = directories). 477 reviews + no site = HOT lead vs chains. \u26d4 EMAIL BOUNCED 2026-08-22 (tonygatto@charter.net, 550 5.1.1) \u2014 PHONE-ONLY: (864) 991-8707",
       "lastContact": "",
-      "lastUpdated": "2026-09-03",
+      "lastUpdated": "2026-09-01",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
         "\u2705 Demo VERIFIED LIVE 2026-09-01 (curl 200) \u2014 all gates passed (redundancy venv PASS, deployed imgs PASS, mobile PASS, facts verified vs research, quotes verbatim vs Birdeye)",
         "\u2705 Anti-slop audit PASS \u2014 aHash flags confirmed false positives by vision",
-        "\u2705 DEMO APPROVED by Zach 2026-09-03 via dashboard \u2014 cleared; ready for pitch/send when email+pitch exist",
+        "\u23f3 ZACH GATE: demo https://country-life-tires-demo.vercel.app needs Zach's explicit 'done' approval",
         "\ud83d\udcf5 Outreach constraint: email DEAD (bounced 550), SC law = NO agent calls/texts. Phone-only next is ZACH's personal call to (864) 991-8707.",
         "\ud83d\udcb0 When pitching: $599 one-time BUILD offer (no-site Tier A), NOT $149/mo care, NOT old $300"
       ],
@@ -1541,10 +1542,9 @@
       "demoUrl": "https://country-life-tires-demo.vercel.app",
       "demo": {
         "url": "https://country-life-tires-demo.vercel.app",
-        "status": "approved",
-        "reviewedAt": "2026-09-03T01:48:10.262Z"
+        "status": "live"
       },
-      "offer": "$599 one-time build"
+      "offer": "$149/mo care"
     },
     {
       "id": "jtp-lawncare",
