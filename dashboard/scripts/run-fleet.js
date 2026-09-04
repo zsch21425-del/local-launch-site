@@ -20,7 +20,7 @@ const A2A_TOKEN = "a2a_d45ce95e03f0c860a0e057796827638f";
 const STEPS = [
   { id: "scout", label: "Scout — finding new leads", msg: "Fan out to Scout: find new no-website local businesses in the Greenville/Spartanburg area. Return the leads you found (business name + city + phone, if known)." },
   { id: "auditor", label: "Auditor — auditing leads", msg: "Fan out to Auditor: audit the newest leads in the pipeline. Return the audit results (G-SCORE, competitor check, site status)." },
-  { id: "closer", label: "Closer — drafting pitches", msg: "Fan out to Closer: draft pitches for the audited leads. Return the pitch drafts." },
+  { id: "closer", label: "Closer — drafting pitches", msg: "Fan out to Closer: draft a pitch for the top 3 audited leads (highest G-SCORE / most likely to convert). Return the 3 pitch drafts, each ~150 words." },
 ];
 
 async function blobGet() {
