@@ -907,12 +907,12 @@
       "id": "lonts-disposal",
       "name": "Lonts 24/7 Disposal",
       "category": "Junk Removal",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Greer, SC",
       "phone": "(864) 322-3377",
       "website": "",
       "summary": "Greer SC 24/7 junk removal. G-Score 12/100. No website, no domain, GBP unverified. Yelp 5.0\u2605 (27 photos). Competitors: 1-800-GOT-JUNK, Junk King Greenville. Pitch: '5-star Yelp reputation with nowhere to land.'",
-      "lastContact": "2026-08-14",
+      "lastContact": "2026-09-02",
       "lastUpdated": "2026-09-01",
       "priority": "medium-high",
       "playbook": [
@@ -959,7 +959,7 @@
         "demoUrl": "https://lonts-demo.vercel.app",
         "sentDate": "2026-08-14"
       },
-      "responseStatus": null,
+      "responseStatus": "awaiting",
       "saleValue": null,
       "gScore": 12,
       "zachApproval": null,
@@ -975,7 +975,8 @@
         "note": "Marked contacted/sent but no matching To: in locallaunch Sent. Cleared optimistic flags."
       },
       "demoLive": true,
-      "demoNote": "REAL jj-hero footage; old lonts-demo.vercel.app (other account) still serves AI fridge slop \u2014 do NOT link that"
+      "demoNote": "REAL jj-hero footage; old lonts-demo.vercel.app (other account) still serves AI fridge slop \u2014 do NOT link that",
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
     },
     {
       "id": "fix-home",
@@ -1612,12 +1613,12 @@
       "id": "lands-tree-care",
       "name": "Lands Tree Care",
       "category": "Tree service \u2014 removal, trimming, stump grinding (24+ years, Anderson/Oconee/Pickens)",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Anderson, SC",
       "phone": "(864) 225-0325",
       "website": "",
       "summary": "Tree service in Anderson SC. No website. GBP unconfirmed. Tree service = urgent/high-intent. Tier A pitch ($300 Launch). Source: Aug 10 Scout batch.",
-      "lastContact": "",
+      "lastContact": "2026-09-02",
       "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
@@ -1639,14 +1640,15 @@
         "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
         "status": "pending-review"
       },
-      "responseStatus": null,
+      "responseStatus": "awaiting",
       "saleValue": null,
       "gScore": 29,
       "zachApproval": null,
       "email": "landstreecare@yahoo.com",
       "demoUrl": "https://lands-tree-care-demo-iota.vercel.app",
       "demoBuilt": "2026-09-02",
-      "demoLive": true
+      "demoLive": true,
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
     },
     {
       "id": "kens-plumbing",
@@ -4607,12 +4609,12 @@
       "id": "carolina-clear-property",
       "name": "Carolina Clear Property Services",
       "category": "Pressure washing, exterior window cleaning, property cleanouts, junk/debris removal & hauling, contractor cleanouts",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Greenville, SC",
       "phone": "(864) 586-8965",
       "website": "",
       "summary": "Pressure washing, window cleaning, cleanouts/hauling. No website \u2014 active on FB groups + Instagram + Yelp. Scout verified 2026-08-11 (7/10).",
-      "lastContact": "",
+      "lastContact": "2026-09-02",
       "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
@@ -4639,18 +4641,20 @@
       "email": "Blakedromig@outlook.com",
       "demoUrl": "https://carolina-clear-demo.vercel.app",
       "demoBuilt": "2026-09-02",
-      "demoLive": true
+      "demoLive": true,
+      "responseStatus": "awaiting",
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
     },
     {
       "id": "threlkeld-demolition",
       "name": "Threlkeld Demolition LLC",
       "category": "Demolition, tree service, general yard clean-up",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Fountain Inn, SC",
       "phone": "(864) 354-8267",
       "website": "",
       "summary": "Demolition in Fountain Inn, SC. Camoufox: GBP not found but hidden website discovered: threlkelddemolitionllc.com. 7 reviews detected but no GBP panel. Has site + no GBP = unusual profile.",
-      "lastContact": "",
+      "lastContact": "2026-09-02",
       "lastUpdated": "2026-08-20",
       "priority": "medium",
       "playbook": [],
@@ -4677,7 +4681,9 @@
       "email": "miketksc@gmail.com",
       "demoUrl": "https://threlkeld-demo.vercel.app",
       "demoBuilt": "2026-09-02",
-      "demoLive": true
+      "demoLive": true,
+      "responseStatus": "awaiting",
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
     },
     {
       "id": "molinas-tree-service",
@@ -6464,7 +6470,7 @@
       "id": "kbs-lawn-care",
       "name": "KB's Lawn Care LLC",
       "category": "Lawn care / gutter / tree",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Simpsonville, SC",
       "phone": "(864) 714-4987",
       "website": "",
@@ -6483,7 +6489,7 @@
       },
       "gScore": 31,
       "lastUpdated": "2026-08-13",
-      "lastContact": "",
+      "lastContact": "2026-09-02",
       "pitchDraft": {
         "subject": "KB's Lawn Care \u2014 22 Google reviews and no website to send them to",
         "body": "You've got 4.8 stars on Google with 22 reviews, plus another 23 on Birdeye \u2014 that's a lot of trust for a business with no website. Your Google listing even has an 'Add website' button with nothing behind it. Meanwhile, someone in Simpsonville searching for lawn care sees Red Lab with 177 reviews and Yard Sarge with a site \u2014 and you're not in that picture at all.\n\nYou handle mowing, gutters, and tree work \u2014 one website can rank for all three searches. We build the site, wire it to your Google listing, and turn your existing reviews into new customers instead of leaving them stranded on review platforms. The trust is already there; it just needs a home.\n\n$300 one-time \u2014 website + SEO + Google setup. No monthly required. $49/month optional \u2014 ongoing care (updates, monitoring, review follow-up). One-time-only path: yes \u2014 $300 flat, no ongoing commitment.\n\nWant me to text you a screenshot of what shows up when someone searches 'lawn care Simpsonville'? Two minutes and you'll see exactly what I mean.\n\nZach | Local Launch | (503) 358-5860",
@@ -6495,7 +6501,9 @@
       "email": "Kbeeks65@gmail.com",
       "demoUrl": "https://kbs-lawn-care-demo.vercel.app",
       "demoBuilt": "2026-09-02",
-      "demoLive": true
+      "demoLive": true,
+      "responseStatus": "awaiting",
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
     },
     {
       "id": "anna-lee-weddings",
@@ -10472,15 +10480,21 @@
       "website": "",
       "location": "Fountain Inn, SC (105 Ellison St, Fountain Inn SC 29644)",
       "category": "Window Tinting Service",
-      "summary": "Shop-based window tinting at 105 Ellison St, Fountain Inn, SC. Owner Brandon Bishop. 4.9 stars from 74 Google reviews (72 five-star). No website. Lifetime warranty against peeling/fading/bubbling. Automotive focus (cars/trucks/SUVs). Appointment required; credit/debit accepted. Hours Mon-Fri 9AM-5PM. NOT mobile service.",
+      "summary": "AUDITED 2026-09-03 (G-SCORE 34/100): no website (all domain permutations NXDOMAIN, claimed GBP shows no linked website). Claimed GBP 4.9\u2605/74 (72x5, 2x1, owner-claimed) name/addr/phone matched. Tier A no-site build; demo live bishop-tinting.vercel.app awaiting Zach sign-off.",
       "stage": "audit",
       "ownerName": "Brandon Bishop",
       "reviewCount": 74,
       "rating": 4.9,
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-03",
       "nextSteps": "Demo live bishop-tinting.vercel.app (hero video, real BMW before/after, FB work gallery). Awaiting Zach sign-off; then pitch email-first (SC rule)",
       "priority": "high",
-      "playbook": []
+      "playbook": [],
+      "gScore": 34,
+      "seoScore": {
+        "current": 34,
+        "max": 100,
+        "label": "G-SCORE"
+      }
     }
   ],
   "stages": [
