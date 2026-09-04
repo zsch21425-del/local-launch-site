@@ -253,13 +253,52 @@ function nowIso() {
   return new Date().toISOString();
 }
 
+const LOCK = "/tmp/rebuild-worker.lock";
+function acquireLock() {
+  try {
+    const age = Date.now() - fs.statSync(LOCK).mtimeMs;
+    if (age < 15 * 60 * 1000) return false;
+  } catch {}
+  fs.writeFileSync(LOCK, String(process.pid));
+  return true;
+}
+function releaseLock() {
+  try { fs.unlinkSync(LOCK); } catch {}
+}
+
+function markFailure(c, error) {
+  c.demo = c.demo || {};
+  const attempts = (c.demo.rebuildAttempts || 0) + 1;
+  c.demo.rebuildAttempts = attempts;
+  c.demo.lastError = error;
+  if (attempts >= 3) {
+    c.demo.status = "dead-letter";
+    c.demo.deadLetteredAt = nowIso();
+    delete c.demo.retryAfter;
+    console.log(`  [${c.id}] dead-lettered after ${attempts} failed attempts: ${error}`);
+  } else {
+    c.demo.retryAfter = new Date(Date.now() + 30 * 60 * 1000).toISOString();
+    console.log(`  [${c.id}] attempt ${attempts}/3 failed — retry after ${c.demo.retryAfter}`);
+  }
+  return attempts;
+}
+
 async function main() {
+  if (!acquireLock()) {
+    console.log("[rebuild-worker] locked — another rebuild in progress; skipping.");
+    return;
+  }
+  try {
   const token = loadToken();
   const data = await blobGet(token);
 
-  const jobs = (data.companies || []).filter(
-    (c) => c.demo?.status === "rework" || c.demo?.status === "rejected",
-  );
+  const jobs = (data.companies || []).filter((c) => {
+    const s = c.demo?.status;
+    if (s !== "rework" && s !== "rejected") return false;
+    // backoff: skip demos whose retryAfter is still in the future
+    if (c.demo?.retryAfter && new Date(c.demo.retryAfter) > new Date()) return false;
+    return true;
+  });
   console.log(`[rebuild-worker] ${jobs.length} rework/rejected job(s) in queue.`);
 
   if (jobs.length === 0) return;
@@ -317,9 +356,8 @@ async function main() {
     const build = claudeRebuild(dir, path.join(dir, "BRIEF.md"));
     console.log(`  [${slug}] claude exit=${build.code} log=${build.log}`);
     if (build.code !== 0) {
-      console.log(
-        `  [${slug}] ⚠ Claude Code failed (exit ${build.code}) — leaving status=rework for retry.`,
-      );
+      markFailure(c, `Claude Code exited ${build.code}`);
+      done += 1; // persist attempt/backoff state
       continue;
     }
 
@@ -330,15 +368,14 @@ async function main() {
     // 3.5. Verify the rebuild actually fixed the complaint before flipping.
     const failures = await verifyRebuild(c, reason, data.companies);
     if (failures.length > 0) {
-      console.log(
-        `  [${slug}] ⚠ verification failed: ${failures.join("; ")} — leaving status=rework for retry.`,
-      );
+      const errMsg = `verification failed: ${failures.join("; ")}`;
+      markFailure(c, errMsg);
       c.demo.reviewFeedback = {
-        reason: `Rebuild attempted but verification failed — ${failures.join("; ")}`,
+        reason: `Rebuild attempted but ${errMsg}`,
         reviewedAt: nowIso(),
       };
       c.demo.notes = c.demo.reviewFeedback.reason;
-      done += 1; // still persist the note so it's visible + can retry with context
+      done += 1; // persist attempt/backoff state + note
       continue;
     }
     console.log(`  [${slug}] ✓ verification passed.`);
@@ -363,6 +400,9 @@ async function main() {
   if (done > 0) {
     await blobPut(token, data);
     console.log(`[rebuild-worker] ${done} job(s) rebuilt + saved to Blob.`);
+  }
+  } finally {
+    releaseLock();
   }
 }
 
