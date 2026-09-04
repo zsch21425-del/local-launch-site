@@ -48,6 +48,8 @@ export async function GET() {
         notes: c.demo?.notes ?? fb?.reason ?? null,
         reviewFeedback: fb,
         reviewedAt: c.demo?.reviewedAt ?? fb?.reviewedAt ?? null,
+        rebuildAttempts: c.demo?.rebuildAttempts ?? 0,
+        lastError: c.demo?.lastError ?? null,
       };
     })
     .filter((d) => d.status !== "none" && d.status !== "approved" && d.url);
@@ -147,6 +149,11 @@ export async function POST(request: Request) {
           ...(fix ? { suggestedFix: fix } : {}),
           reviewedAt: now,
         };
+        // Re-queue: reset the rebuild failure state (attempts/backoff/dead-letter)
+        delete c.demo.rebuildAttempts;
+        delete c.demo.lastError;
+        delete c.demo.retryAfter;
+        delete c.demo.deadLetteredAt;
       }
 
       c.lastUpdated = now.slice(0, 10);

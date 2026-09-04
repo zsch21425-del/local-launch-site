@@ -171,6 +171,10 @@ async function blobPut(data) {
   const data = await blobGet();
   data.fleetStatus = { status, tasks, activity, cron, fetchedAt: new Date().toISOString() };
   await blobPut(data);
+  // heartbeat → droplet relay (lets the droplet detect this machine going down)
+  try {
+    await fetch("http://137.184.135.50:9930/heartbeat", { method: "POST", signal: AbortSignal.timeout(5000) });
+  } catch {}
   console.log(`[collect-fleet] pushed: ${status.length} agents, ${tasks.length} tasks, ${activity.length} events, ${cron.length} cron groups`);
 })().catch((e) => {
   console.error("[collect-fleet] ERR", e.message);
