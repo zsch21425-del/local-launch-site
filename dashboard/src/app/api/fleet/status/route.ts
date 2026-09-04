@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { execSync } from "child_process";
 import { readFileSync } from "fs";
 import { FLEET_AGENTS } from "@/lib/fleet";
+import { readPipelineSafe } from "@/lib/pipeline-store";
 
 export const dynamic = "force-dynamic";
 const IS_SERVERLESS = !!process.env.VERCEL;
@@ -10,7 +11,9 @@ const IS_SERVERLESS = !!process.env.VERCEL;
 /** GET /api/fleet/status — live agent liveness + gateway health. */
 export async function GET() {
   if (IS_SERVERLESS) {
-    return NextResponse.json({ unavailable: true, reason: "local-only" }, { status: 503 });
+    const data = await readPipelineSafe();
+    const fs = data?.fleetStatus;
+    return NextResponse.json({ agents: fs?.status ?? [], fetchedAt: fs?.fetchedAt ?? null, blob: true });
   }
   const agents = [];
   for (const a of FLEET_AGENTS) {

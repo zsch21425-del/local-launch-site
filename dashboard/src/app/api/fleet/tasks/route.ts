@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { FLEET_AGENTS } from "@/lib/fleet";
 import { a2aSend } from "@/lib/a2a";
+import { readPipelineSafe } from "@/lib/pipeline-store";
 
 export const dynamic = "force-dynamic";
 
@@ -12,11 +13,9 @@ const CACHE_TTL_MS = 20000; // 20s — probes are slow; serve cached between ref
 /** GET /api/fleet/tasks — probe each agent's current task via A2A, IN PARALLEL, cached. */
 export async function GET() {
   if (IS_SERVERLESS) {
-    // Fleet state lives on the WSL host — not available on Vercel serverless.
-    return NextResponse.json(
-      { agents: [], unavailable: true, reason: "fleet-local-only" },
-      { status: 503 },
-    );
+    const data = await readPipelineSafe();
+    const fs = data?.fleetStatus;
+    return NextResponse.json({ agents: fs?.tasks ?? [], fetchedAt: fs?.fetchedAt ?? null, blob: true });
   }
 
   const now = Date.now();

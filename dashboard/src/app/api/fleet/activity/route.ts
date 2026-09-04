@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { readFileSync } from "fs";
 import { FLEET_AGENTS } from "@/lib/fleet";
+import { readPipelineSafe } from "@/lib/pipeline-store";
 
 export const dynamic = "force-dynamic";
 const IS_SERVERLESS = !!process.env.VERCEL;
@@ -11,6 +12,12 @@ const IS_SERVERLESS = !!process.env.VERCEL;
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "50", 10) || 50, 200);
+
+  if (IS_SERVERLESS) {
+    const data = await readPipelineSafe();
+    const fs = data?.fleetStatus;
+    return NextResponse.json({ events: (fs?.activity ?? []).slice(0, limit), fetchedAt: fs?.fetchedAt ?? null, blob: true });
+  }
 
   const events: any[] = [];
   for (const a of FLEET_AGENTS) {
