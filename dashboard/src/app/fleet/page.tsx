@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { Activity, Bot, Clock, Cpu, Play, Radio, Send, Terminal } from "lucide-react";
-import { glass } from "@/lib/ui";
+import { glass, innerCard, innerCardInteractive } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
 interface AgentStatus {
@@ -158,7 +158,7 @@ export default function FleetPage() {
         )}
 
         {/* PANEL 0 — Pipeline Run */}
-        <section className={cn(glass, "rounded-xl p-5")}>
+        <section className={cn(glass, "rounded-xl p-5 animate-rise-in")}>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold flex items-center gap-2 text-slate-800">
               <Play className="w-4 h-4 text-[#2AA8A8]" /> Pipeline Run
@@ -185,10 +185,11 @@ export default function FleetPage() {
                   <div
                     key={s.id}
                     className={cn(
-                      "rounded-lg border p-3",
+                      innerCard,
+                      "p-3",
                       isActive ? "border-[#2AA8A8] bg-[#2AA8A8]/10 animate-pulse"
                         : isDone ? "border-emerald-400 bg-emerald-50"
-                        : "border-slate-200 bg-slate-50"
+                        : ""
                     )}
                   >
                     <div className="flex items-center justify-between">
@@ -206,7 +207,7 @@ export default function FleetPage() {
           {fleetRun?.log?.length > 0 && (
             <div className="mt-4 space-y-2 max-h-64 overflow-auto">
               {fleetRun.log.map((entry: any, i: number) => (
-                <div key={i} className="rounded-lg bg-slate-50 border border-slate-200 p-3 text-sm">
+                <div key={i} className={cn(innerCard, "p-3 text-sm")}>
                   <div className="font-medium text-slate-700">{entry.label}</div>
                   {entry.error ? (
                     <p className="text-red-500 mt-1">⚠ {entry.error}</p>
@@ -230,13 +231,13 @@ export default function FleetPage() {
         </section>
 
         {/* PANEL 1 — Fleet Status Grid */}
-        <section className={cn(glass, "rounded-xl p-5")}>
+        <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:60ms]")}>
           <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
             <Cpu className="w-4 h-4 text-[#2AA8A8]" /> Agent Status
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
             {status.map((a) => (
-              <div key={a.name} className="rounded-lg bg-slate-50 border border-slate-200 p-4">
+              <div key={a.name} className={cn(innerCardInteractive, "p-4")}>
                 <div className="flex items-center justify-between">
                   <span className="font-medium">{a.label}</span>
                   <span className={cn("w-2.5 h-2.5 rounded-full", a.online ? "bg-emerald-400" : "bg-red-500")} />
@@ -254,13 +255,13 @@ export default function FleetPage() {
         </section>
 
         {/* PANEL 2 — Current Tasks */}
-        <section className={cn(glass, "rounded-xl p-5")}>
+        <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:120ms]")}>
           <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
             <Radio className="w-4 h-4 text-[#2AA8A8]" /> What Each Agent Is Doing Now
           </h2>
           <div className="space-y-2">
             {tasks.map((t) => (
-              <div key={t.name} className="flex items-start gap-3 rounded-lg bg-slate-50 border border-slate-200 p-3">
+              <div key={t.name} className={cn(innerCardInteractive, "flex items-start gap-3 p-3")}>
                 <Bot className="w-4 h-4 text-[#2AA8A8] mt-0.5 shrink-0" />
                 <div className="min-w-0">
                   <span className="text-sm font-medium text-slate-800">{t.label}</span>
@@ -272,7 +273,7 @@ export default function FleetPage() {
         </section>
 
         {/* PANEL 3 — Dispatch */}
-        <section className={cn(glass, "rounded-xl p-5")}>
+        <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:180ms]")}>
           <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
             <Send className="w-4 h-4 text-[#2AA8A8]" /> Dispatch Work
           </h2>
@@ -309,7 +310,7 @@ export default function FleetPage() {
         </section>
 
         {/* PANEL 4 — Activity Feed */}
-        <section className={cn(glass, "rounded-xl p-5")}>
+        <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:240ms]")}>
           <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
             <Activity className="w-4 h-4 text-[#2AA8A8]" /> Fleet Activity
           </h2>
@@ -327,13 +328,13 @@ export default function FleetPage() {
         </section>
 
         {/* PANEL 5 — Cron Last Runs */}
-        <section className={cn(glass, "rounded-xl p-5")}>
+        <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:300ms]")}>
           <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
             <Clock className="w-4 h-4 text-[#2AA8A8]" /> Automated Jobs
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
             {cron.filter((a) => a.jobCount > 0).map((a) => (
-              <div key={a.name} className="rounded-lg bg-slate-50 border border-slate-200 p-3">
+              <div key={a.name} className={cn(innerCardInteractive, "p-3")}>
                 <div className="flex justify-between text-sm">
                   <span className="font-medium">{a.label}</span>
                   <span className="text-slate-500">{a.jobCount} jobs</span>
