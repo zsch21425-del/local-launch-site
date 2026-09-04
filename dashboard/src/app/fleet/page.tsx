@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Activity, Bot, Clock, Cpu, Radio, Send, Terminal } from "lucide-react";
+import { Activity, Bot, Clock, Cpu, Play, Radio, Send, Terminal } from "lucide-react";
 import { glass } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
@@ -38,6 +38,9 @@ export default function FleetPage() {
   const [loading, setLoading] = useState(true);
   const [panelErrors, setPanelErrors] = useState<Record<string, string>>({});
   const [lastUpdated, setLastUpdated] = useState<Record<string, string>>({});
+  const [fleetRun, setFleetRun] = useState<any>(null);
+  const [runBusy, setRunBusy] = useState(false);
+  const [runError, setRunError] = useState("");
 
   const refresh = useCallback(async () => {
     const now = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
@@ -94,6 +97,35 @@ export default function FleetPage() {
     }
   };
 
+  const runPipeline = async () => {
+    if (runBusy) return;
+    setRunBusy(true);
+    setRunError("");
+    try {
+      const r = await fetch("/api/fleet/run", { method: "POST" });
+      const d = await r.json();
+      if (!r.ok) setRunError(d.error || "Failed to queue");
+      else setFleetRun(d.fleetRun);
+    } catch (e: any) {
+      setRunError(e.message || "Failed to queue");
+    } finally {
+      setRunBusy(false);
+    }
+  };
+
+  // Poll run progress every 5s so the fan-out feels live.
+  useEffect(() => {
+    const poll = async () => {
+      try {
+        const r = await fetch("/api/fleet/run");
+        if (r.ok) setFleetRun((await r.json()).fleetRun);
+      } catch {}
+    };
+    poll();
+    const iv = setInterval(poll, 5000);
+    return () => clearInterval(iv);
+  }, []);
+
   const onlineCount = status.filter((a) => a.online).length;
 
   return (
@@ -124,6 +156,78 @@ export default function FleetPage() {
             ))}
           </div>
         )}
+
+        {/* PANEL 0 — Pipeline Run */}
+        <section className={cn(glass, "rounded-xl p-5")}>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold flex items-center gap-2 text-slate-800">
+              <Play className="w-4 h-4 text-[#2AA8A8]" /> Pipeline Run
+            </h2>
+            <button
+              onClick={runPipeline}
+              disabled={runBusy || fleetRun?.status === "running" || fleetRun?.status === "queued"}
+              className="px-4 py-2 rounded-lg bg-[#2AA8A8]/20 border border-[#2AA8A8]/40 text-sm hover:bg-[#2AA8A8]/30 disabled:opacity-40"
+            >
+              {fleetRun?.status === "running" || fleetRun?.status === "queued"
+                ? fleetRun?.status === "running" ? "Running…" : "Queued…"
+                : "Run Pipeline (Scout → Auditor → Closer)"}
+            </button>
+          </div>
+
+          {runError && <p className="text-sm text-red-500 mb-3">{runError}</p>}
+
+          {fleetRun?.steps && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {fleetRun.steps.map((s: any) => {
+                const isDone = fleetRun.log?.some((l: any) => l.step === s.id && !l.error);
+                const isActive = fleetRun.step === s.id && fleetRun.status === "running";
+                return (
+                  <div
+                    key={s.id}
+                    className={cn(
+                      "rounded-lg border p-3",
+                      isActive ? "border-[#2AA8A8] bg-[#2AA8A8]/10 animate-pulse"
+                        : isDone ? "border-emerald-400 bg-emerald-50"
+                        : "border-slate-200 bg-slate-50"
+                    )}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">{s.label}</span>
+                      <span className={cn("text-sm", isActive ? "text-[#2AA8A8]" : isDone ? "text-emerald-500" : "text-slate-300")}>
+                        {isActive ? "…" : isDone ? "✓" : "·"}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {fleetRun?.log?.length > 0 && (
+            <div className="mt-4 space-y-2 max-h-64 overflow-auto">
+              {fleetRun.log.map((entry: any, i: number) => (
+                <div key={i} className="rounded-lg bg-slate-50 border border-slate-200 p-3 text-sm">
+                  <div className="font-medium text-slate-700">{entry.label}</div>
+                  {entry.error ? (
+                    <p className="text-red-500 mt-1">⚠ {entry.error}</p>
+                  ) : (
+                    <p className="text-slate-600 mt-1 whitespace-pre-wrap line-clamp-4">{entry.reply}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {fleetRun?.status === "done" && (
+            <p className="text-sm text-emerald-600 mt-3">
+              ✓ Pipeline run complete{fleetRun.completed ? ` · ${fmtTime(fleetRun.completed)}` : ""}
+            </p>
+          )}
+
+          {!fleetRun && (
+            <p className="text-sm text-slate-400">No run yet — click "Run Pipeline" to fan out to Scout → Auditor → Closer.</p>
+          )}
+        </section>
 
         {/* PANEL 1 — Fleet Status Grid */}
         <section className={cn(glass, "rounded-xl p-5")}>
