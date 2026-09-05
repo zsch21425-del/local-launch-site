@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   const { companyId, action, reason, suggestedFix, forceSend } = body as {
     companyId?: string;
-    action?: "approve" | "reject";
+    action?: "approve" | "reject" | "rework";
     reason?: string;
     suggestedFix?: string;
     forceSend?: boolean;
@@ -31,12 +31,12 @@ export async function POST(request: Request) {
   if (!companyId || !action) {
     return NextResponse.json({ error: "Missing companyId or action" }, { status: 400 });
   }
-  if (!["approve", "reject"].includes(action)) {
+  if (!["approve", "reject", "rework"].includes(action)) {
     return NextResponse.json({ error: `Invalid action: ${action}` }, { status: 400 });
   }
-  if (action === "reject" && (!reason || !reason.trim())) {
+  if ((action === "reject" || action === "rework") && (!reason || !reason.trim())) {
     return NextResponse.json(
-      { error: "A rejection reason is required so the agent knows what to fix." },
+      { error: "A reason is required so the agent knows what to fix." },
       { status: 400 },
     );
   }
@@ -111,10 +111,13 @@ export async function POST(request: Request) {
       if (!c) throw new Error("__NOTFOUND__");
       if (emailGate) c.emailGate = { ...emailGate, checkedAt: now };
 
+      const hasNotes = action === "reject" || action === "rework";
+
       if (hadPitch) {
         const pitch = c.pitchDraft!;
-        pitch.status = action === "approve" ? "zach-approved" : "rejected";
-        if (action === "reject") {
+        pitch.status =
+          action === "approve" ? "zach-approved" : action === "rework" ? "rework" : "rejected";
+        if (hasNotes) {
           pitch.reviewFeedback = {
             reason: why,
             ...(fix ? { suggestedFix: fix } : {}),
@@ -128,9 +131,10 @@ export async function POST(request: Request) {
       if (hadDemo) {
         c.demo = c.demo ?? {};
         if (!c.demo.url && c.demoUrl) c.demo.url = c.demoUrl;
-        c.demo.status = action === "approve" ? "approved" : "rejected";
+        c.demo.status =
+          action === "approve" ? "approved" : action === "rework" ? "rework" : "rejected";
         c.demo.reviewedAt = now;
-        if (action === "reject") {
+        if (hasNotes) {
           c.demo.notes = why;
           c.demo.reviewFeedback = {
             reason: why,
@@ -153,6 +157,27 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: e?.message || "Unknown error" }, { status: 500 });
   }
 
+  const buildWorkOrderMsg = (title: string) =>
+    [
+      `${title} — WORK ORDER FROM DASHBOARD`,
+      `Do NOT ask Zach to repeat this. Fix from these notes.`,
+      ``,
+      `Company: ${company.name} (id=${companyId})`,
+      `Demo URL: ${hadDemo ? demoUrl : "(no demo)"}`,
+      `Had pitch: ${hadPitch} · Had demo: ${hadDemo}`,
+      `Reason: ${why}`,
+      fix ? `Suggested fix: ${fix}` : `Suggested fix: (none — use Reason)`,
+      ``,
+      `Required:`,
+      hadDemo
+        ? `1. Rework demo (Claude Code /hallmark). Re-deploy + dual-viewport QA. Set demo.status=pending when ready.`
+        : `1. (no demo)`,
+      hadPitch
+        ? `2. Rework pitch body. Set pitchDraft.status=pending-review when ready.`
+        : `2. (no pitch)`,
+      `3. Leave short note / agent chat when ready for Zach re-review.`,
+    ].join("\n");
+
   const decisionMsg =
     action === "approve"
       ? [
@@ -164,25 +189,9 @@ export async function POST(request: Request) {
           hadDemo ? `Demo approved: ${demoUrl}` : `Demo: none.`,
           `Proceed per Local Launch process.`,
         ].join("\n")
-      : [
-          `COMBINED REJECTION — WORK ORDER FROM DASHBOARD`,
-          `Do NOT ask Zach to repeat this. Fix from these notes.`,
-          ``,
-          `Company: ${company.name} (id=${companyId})`,
-          `Demo URL: ${hadDemo ? demoUrl : "(no demo)"}`,
-          `Had pitch: ${hadPitch} · Had demo: ${hadDemo}`,
-          `Reason: ${why}`,
-          fix ? `Suggested fix: ${fix}` : `Suggested fix: (none — use Reason)`,
-          ``,
-          `Required:`,
-          hadDemo
-            ? `1. Rework demo (Claude Code /hallmark). Re-deploy + dual-viewport QA. Set demo.status=pending when ready.`
-            : `1. (no demo)`,
-          hadPitch
-            ? `2. Rework pitch body. Set pitchDraft.status=pending-review when ready.`
-            : `2. (no pitch)`,
-          `3. Leave short note / agent chat when ready for Zach re-review.`,
-        ].join("\n");
+      : action === "rework"
+        ? buildWorkOrderMsg("COMBINED REWORK")
+        : buildWorkOrderMsg("COMBINED REJECTION");
 
   let relayed = false;
   let relayError: string | null = null;

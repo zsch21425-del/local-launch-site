@@ -243,12 +243,6 @@ export default function FleetPage() {
                   <span className={cn("w-2.5 h-2.5 rounded-full", a.online ? "bg-emerald-400" : "bg-red-500")} />
                 </div>
                 <p className="text-xs text-slate-500 mt-1 line-clamp-2">{a.role}</p>
-                <div className="text-xs text-slate-500 mt-3 space-y-1">
-                  <div className="flex justify-between"><span>State</span><span>{a.gatewayState ?? "—"}</span></div>
-                  <div className="flex justify-between"><span>Agents</span><span>{a.activeAgents ?? "—"}</span></div>
-                  <div className="flex justify-between"><span>Heartbeat</span><span>{fmtTime(a.updatedAt)}</span></div>
-                  <div className="flex justify-between"><span>Port</span><span className="font-mono">{a.port}</span></div>
-                </div>
               </div>
             ))}
           </div>
