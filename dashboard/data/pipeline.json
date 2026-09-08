@@ -970,13 +970,17 @@
       },
       "email": "lonts247disposal@yahoo.com",
       "sendTruth": {
-        "status": "unproven",
-        "auditedAt": "2026-09-01",
-        "note": "Marked contacted/sent but no matching To: in locallaunch Sent. Cleared optimistic flags."
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "8f7995fe-2c3c-4e82-8115-ee5613460973",
+        "verifiedAt": "2026-09-08T11:50:48.290756+00:00",
+        "note": "Branded resend via Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200. Pitch text approved by Zach 2026-09-08."
       },
       "demoLive": true,
       "demoNote": "REAL jj-hero footage; old lonts-demo.vercel.app (other account) still serves AI fridge slop \u2014 do NOT link that",
-      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link",
+      "sentDate": "2026-09-08T11:50:48.290756+00:00",
+      "pitchSentAt": "2026-09-08T11:50:48.290756+00:00"
     },
     {
       "id": "fix-home",
@@ -1648,7 +1652,16 @@
       "demoUrl": "https://lands-tree-care-demo-iota.vercel.app",
       "demoBuilt": "2026-09-02",
       "demoLive": true,
-      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "c457ef10-dd7a-465c-abb0-8904b4fbe19d",
+        "verifiedAt": "2026-09-08T11:50:48.290756+00:00",
+        "note": "Branded resend via Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200. Pitch text approved by Zach 2026-09-08."
+      },
+      "sentDate": "2026-09-08T11:50:48.290756+00:00",
+      "pitchSentAt": "2026-09-08T11:50:48.290756+00:00"
     },
     {
       "id": "kens-plumbing",
@@ -2063,11 +2076,12 @@
       "location": "Elgin, TX",
       "phone": "(512) 281-9686",
       "website": "",
-      "summary": "Pest Control in Elgin, TX. G-Score 25/100. Confirmed GBP with 4 reviews, no website. Austin-area pest control, no website, growing reviews. OUT-OF-STATE. Source: Aug 9 R4 Scout batch (Apify verified). \u26d4 EMAIL BOUNCED 2026-09-02 (lightningpest@yahoo.com, 552 mailbox not found) \u2014 PHONE-ONLY: (512) 281-9686",
-      "lastUpdated": "2026-09-02",
+      "summary": "Pest Control in Elgin, TX. G-Score 40/100 (field). Camoufox 2026-09-07: GBP found ~8 reviews (Scout had 4), no owned website. Directory hit texaspestexperts.com lists (512) 281-9686. lightningtermite.com is Goose Creek SC collision (843). OUT-OF-STATE. Source: Aug 9 R4 Scout (Apify). \u26d4 EMAIL BOUNCED 2026-09-02 (lightningpest@yahoo.com, 552) \u2014 PHONE-ONLY: (512) 281-9686. | [2PASS 09-07: no owned site; GBP ~8 reviews; domain collisions documented]",
+      "lastUpdated": "2026-09-07",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
+        "\u2705 Second-pass verified (2026-09-07): Camoufox GBP found ~8 reviews (was 4 in Scout summary); no owned website. lightningpest.com=HugeDomains for-sale; lightningpestcontrol.com=parking; lightningtermite.com=COLLISION Goose Creek SC (843-872-9300) \u2260 Elgin TX 512-281-9686.",
         "\u26d4 EMAIL BOUNCED 2026-09-02 (lightningpest@yahoo.com, 552 mailbox not found) \u2014 PHONE-ONLY",
         "\ud83d\udcde Zach to call (512) 281-9686 (out-of-state TX \u2014 email dead, call-only)",
         "\ud83d\udd0d Optional: hunt a valid email via lead-email-enrichment (facebook src was dead)"
@@ -4321,14 +4335,13 @@
       "location": "Colchester, VT",
       "phone": "(802) 734-5444",
       "website": "",
-      "summary": "Concrete cutting in Colchester, VT. Camoufox: GBP not found. 5 reviews detected but no structured panel. Front Porch Forum mention found. Low priority.",
+      "summary": "Concrete cutting in Colchester, VT. Camoufox: GBP not found. 5 reviews detected but no structured panel. Front Porch Forum mention found. Low priority. | [2PASS 09-07: GBP not found; domains NX; G-Score 3 unchanged]",
       "lastContact": "",
-      "lastUpdated": "2026-09-02",
+      "lastUpdated": "2026-09-07",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "\u26a0\ufe0f Re-checked (2026-09-02): still no reliable GBP/panel for Colchester VT concrete cutter; no owned website",
-        "Out-of-state (VT). Low priority.",
+        "\u2705 Second-pass verified (2026-09-07): Camoufox GBP panel NOT found (5-review snippet only, unstructured); no owned website (all name domains NX). Out-of-state VT low priority.",
         "@Supervisor: decide pursue or drop"
       ],
       "seoScore": {
@@ -4643,7 +4656,16 @@
       "demoBuilt": "2026-09-02",
       "demoLive": true,
       "responseStatus": "awaiting",
-      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "be47a7e6-a51d-4478-9c04-44a59e9a9f7e",
+        "verifiedAt": "2026-09-08T11:50:48.290756+00:00",
+        "note": "Branded resend via Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200. Pitch text approved by Zach 2026-09-08."
+      },
+      "sentDate": "2026-09-08T11:50:48.290756+00:00",
+      "pitchSentAt": "2026-09-08T11:50:48.290756+00:00"
     },
     {
       "id": "threlkeld-demolition",
@@ -4683,7 +4705,16 @@
       "demoBuilt": "2026-09-02",
       "demoLive": true,
       "responseStatus": "awaiting",
-      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "a527d3cf-d934-43bb-95ee-a90f166543f9",
+        "verifiedAt": "2026-09-08T11:50:48.290756+00:00",
+        "note": "Branded resend via Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200. Pitch text approved by Zach 2026-09-08."
+      },
+      "sentDate": "2026-09-08T11:50:48.290756+00:00",
+      "pitchSentAt": "2026-09-08T11:50:48.290756+00:00"
     },
     {
       "id": "molinas-tree-service",
@@ -5400,12 +5431,12 @@
       "phone": "(864) 924-9364",
       "website": "",
       "priority": "medium",
-      "summary": "\u26a0\ufe0f HELD at Closer \u2014 verification-gated. Remodeling / roofing / siding / drywall in Greenville. No site (name domains dead or surname collision). Two phones (864-924-9364/9365) \u2014 primary operating line UNCONFIRMED, neither maps to a GBP. Same-surname identity confusion. DO NOT pitch until verified.",
+      "summary": "\u26a0\ufe0f HELD at Closer \u2014 verification-gated. Remodeling / roofing / siding / drywall in Greenville. No site (name domains dead or surname collision). Two phones (864-924-9364/9365) \u2014 primary operating line UNCONFIRMED, neither maps to a GBP. Same-surname identity confusion. DO NOT pitch until verified. | [2PASS 09-07: no owned site; suarezrenovation.com=AR collision; Camoufox GBP 0 reviews; identity FB dual-phone stands; G-Score 9 unchanged]",
       "playbook": [],
       "nextSteps": [
-        "\u26a0\ufe0f Re-checked (2026-09-02) gosom Maps: phone (864) 924-9364 + name search return 0 matching GBP \u2014 still verification-gated",
-        "No hidden website (name domains dead/collision)",
-        "Hold at Closer \u2014 do NOT pitch until identity + operating line confirmed"
+        "\u2705 Second-pass verified (2026-09-07): Camoufox GBP found / 0 reviews; no owned website. suarezrenovation.com = ARKANSAS collision (501.315/316 phones) \u2014 NOT Greenville. suarezrenovations.com NX; suarezllc.com empty 200.",
+        "Identity still FB-corroborated dual phones (864) 924-9364/9365 from prior pass. gosom Maps still DOWN \u2014 structured NAP unconfirmed.",
+        "Closer: Tier A email-first SC pitch OK after Supervisor review; verify email before send"
       ],
       "seoScore": {
         "current": 9,
@@ -5414,7 +5445,7 @@
       },
       "gScore": 9,
       "pitchDraft": null,
-      "lastUpdated": "2026-09-02",
+      "lastUpdated": "2026-09-07",
       "email": "SuarezRenovations5@gmail.com"
     },
     {
@@ -6272,14 +6303,15 @@
       "location": "Greenville, SC (131 Falls St #100)",
       "phone": "(864) 351-3692",
       "website": "",
-      "summary": "\u26a0\ufe0f HELD \u2014 verify Greenville operator identity before Closer drafts. Same-name 'Tuff Deck Builders' in Dallas/OH/PA/NC. No site (tuffdeck.com = Tufdek vinyl manufacturer collision). NO GBP, no reviews. Scout score 72 but Auditor G-SCORE 8.",
+      "summary": "\u26a0\ufe0f HELD \u2014 verify Greenville operator identity before Closer drafts. Same-name 'Tuff Deck Builders' in Dallas/OH/PA/NC. No site (tuffdeck.com = Tufdek vinyl manufacturer collision). NO GBP, no reviews. Scout score 72 but Auditor G-SCORE 8. | [2PASS 09-07: phone-locked GBP absent; 59-review name hit discarded; template/collision domains only; HOLD; G-Score 8 unchanged]",
       "lastContact": "",
-      "lastUpdated": "2026-09-02",
+      "lastUpdated": "2026-09-07",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "\u26a0\ufe0f Re-checked (2026-09-02) gosom Maps: no Greenville SC GBP for Tuff Deck (phone 864-351-3692 = 0; name hits are out-of-market franchises e.g. Alpharetta)",
-        "No owned website (tuffdeck.com = Tufdek manufacturer collision)",
+        "\u26a0\ufe0f HOLD stands \u2014 Second-pass (2026-09-07): phone query 864-351-3692 \u2192 GBP NOT found. Name query \"59 reviews\" DISCARDED as Camoufox/SERP inflation (no phone-locked panel).",
+        "No owned website: tuffdeck.com\u2192Tufdek manufacturer; tuff-deck.com=GoDaddy template dummy phones; tuffdeckbuilders.com 404; tuffdeckbuildersgreenville.com NX. legacydecks.com is a real Greenville competitor (not this lead).",
+        "Only signal remains Instagram @tuffdeckbuildersgreenvillesc. Do NOT pitch until operator identity verified.",
         "Still HELD: Instagram @tuffdeckbuildersgreenvillesc only \u2014 verify operator identity before Closer drafts"
       ],
       "seoScore": {
@@ -6503,7 +6535,16 @@
       "demoBuilt": "2026-09-02",
       "demoLive": true,
       "responseStatus": "awaiting",
-      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link"
+      "sendNote": "Sent 2026-09-02 branded Resend + verified delivered (event: delivered) w/ demo link",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "00d39d18-2fc6-4f31-823f-dbe220ea116a",
+        "verifiedAt": "2026-09-08T11:50:48.290756+00:00",
+        "note": "Branded resend via Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200. Pitch text approved by Zach 2026-09-08."
+      },
+      "sentDate": "2026-09-08T11:50:48.290756+00:00",
+      "pitchSentAt": "2026-09-08T11:50:48.290756+00:00"
     },
     {
       "id": "anna-lee-weddings",
@@ -10480,13 +10521,16 @@
       "website": "",
       "location": "Fountain Inn, SC (105 Ellison St, Fountain Inn SC 29644)",
       "category": "Window Tinting Service",
-      "summary": "AUDITED 2026-09-03 (G-SCORE 34/100): no website (all domain permutations NXDOMAIN, claimed GBP shows no linked website). Claimed GBP 4.9\u2605/74 (72x5, 2x1, owner-claimed) name/addr/phone matched. Tier A no-site build; demo live bishop-tinting.vercel.app awaiting Zach sign-off.",
+      "summary": "AUDITED 2026-09-03 (G-SCORE 34/100): no website (all domain permutations NXDOMAIN, claimed GBP shows no linked website). Claimed GBP 4.9\u2605/74 (72x5, 2x1, owner-claimed) name/addr/phone matched. Tier A no-site build; demo live bishop-tinting.vercel.app awaiting Zach sign-off. | [2PASS 09-07 Camoufox: GBP 74\u2605 panel confirmed, phone match, no owned site; demo curl 200]",
       "stage": "audit",
       "ownerName": "Brandon Bishop",
       "reviewCount": 74,
       "rating": 4.9,
-      "lastUpdated": "2026-09-03",
-      "nextSteps": "Demo live bishop-tinting.vercel.app (hero video, real BMW before/after, FB work gallery). Awaiting Zach sign-off; then pitch email-first (SC rule)",
+      "lastUpdated": "2026-09-07",
+      "nextSteps": [
+        "\u2705 Second-pass verified (2026-09-07): Camoufox GBP CONFIRMED 74 reviews + phone 864-238-9017 match; no owned website (all name domains NXDOMAIN; SERP only business.google.com). Tier A holds.",
+        "Demo live bishop-tinting.vercel.app (curl 200 verified 2026-09-07). Awaiting Zach sign-off; then pitch email-first (SC rule)"
+      ],
       "priority": "high",
       "playbook": [],
       "gScore": 34,
