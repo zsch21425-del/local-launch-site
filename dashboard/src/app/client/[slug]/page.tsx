@@ -2,11 +2,12 @@ import { notFound } from "next/navigation";
 
 import { ClientWorkstation } from "@/components/client-workstation";
 import { MotionBackground } from "@/components/motion-background";
-import { getCompany, getCompanySlugs, getStages } from "@/lib/data";
+import { getCompany, getStages } from "@/lib/data";
+import { readPipelineSafe } from "@/lib/pipeline-store";
 
-export function generateStaticParams() {
-  return getCompanySlugs().map((slug) => ({ slug }));
-}
+// H01: the workstation must reflect LIVE data, not the frozen build snapshot.
+// This page is behind auth (no SEO value), so render it on-demand.
+export const dynamic = "force-dynamic";
 
 export default async function ClientPage({
   params,
@@ -14,10 +15,23 @@ export default async function ClientPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const company = getCompany(slug);
-  if (!company) notFound();
 
-  const stages = getStages();
+  // Live Blob is authoritative; the frozen snapshot is only a fallback so a
+  // transient Blob read error never 404s a company that exists locally.
+  let company = getCompany(slug);
+  let stages = getStages();
+  try {
+    const live = await readPipelineSafe();
+    const liveCompany = (live?.companies ?? []).find((c: any) => c.id === slug);
+    if (liveCompany) company = liveCompany;
+    if (Array.isArray(live?.stages) && live.stages.length > 0) {
+      stages = live.stages;
+    }
+  } catch {
+    /* keep frozen fallback */
+  }
+
+  if (!company) notFound();
 
   return (
     <>

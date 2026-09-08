@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCompany } from "@/lib/data";
+import { readPipelineSafe } from "@/lib/pipeline-store";
 
 export const dynamic = "force-dynamic";
 const IS_SERVERLESS = !!process.env.VERCEL;
@@ -12,7 +13,16 @@ export async function GET(request: Request) {
   const companyId = url.searchParams.get("companyId") ?? "";
   if (!companyId) return NextResponse.json({ error: "companyId required" }, { status: 400 });
 
-  const company = getCompany(companyId);
+  // H01: read the LIVE book (Blob) first; the frozen snapshot is a fallback so
+  // freshly-added/edited leads show their real activity instead of 404ing.
+  let company: any = null;
+  try {
+    const live = await readPipelineSafe();
+    company = (live?.companies ?? []).find((c: any) => c.id === companyId) ?? null;
+  } catch {
+    /* keep frozen fallback */
+  }
+  if (!company) company = getCompany(companyId);
   if (!company) return NextResponse.json({ error: `Unknown company: ${companyId}` }, { status: 404 });
 
   const events: any[] = [];
