@@ -17,7 +17,7 @@ export const glassSubtle =
 
 /** Draggable card: fully opaque, stronger elevation, gentle hover lift. */
 export const glassCard =
-  "hover-lift rounded-xl border border-slate-300 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.10),0_3px_6px_rgba(15,23,42,0.08),0_14px_28px_-6px_rgba(15,23,42,0.22),0_28px_56px_-20px_rgba(15,23,42,0.16)] hover:shadow-[0_2px_4px_rgba(15,23,42,0.12),0_6px_14px_-2px_rgba(15,23,42,0.14),0_24px_48px_-10px_rgba(15,23,42,0.28)]";
+  "hover-lift rounded-xl border border-slate-400/60 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.14),0_4px_8px_rgba(15,23,42,0.12),0_16px_32px_-8px_rgba(15,23,42,0.28),0_36px_72px_-24px_rgba(15,23,42,0.24)] hover:shadow-[0_2px_4px_rgba(15,23,42,0.16),0_8px_18px_-4px_rgba(15,23,42,0.18),0_24px_48px_-10px_rgba(15,23,42,0.32)]";
 
 /** Sticky chrome (header). */
 export const glassBar =
