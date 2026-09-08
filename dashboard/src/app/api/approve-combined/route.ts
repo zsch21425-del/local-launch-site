@@ -20,6 +20,17 @@ const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 const MAX_NOTE = 4000;
 
 /**
+ * A pitch is reviewable only with a non-blank body. A status-only stub
+ * (`{ status: "pending-review" }`, no body) must not trigger the email gate or
+ * be treated as an in-scope pitch, so a demo-only decision is never blocked (M02).
+ */
+const isReviewablePitch = (pd: unknown): boolean =>
+  !!pd &&
+  typeof pd === "object" &&
+  typeof (pd as { body?: unknown }).body === "string" &&
+  (pd as { body: string }).body.trim().length > 0;
+
+/**
  * POST: Unified pitch + demo approval from the client page.
  * Reject REQUIRES reason. Approve-with-pitch is MX-gated.
  * Writes Blob (atomic via mutatePipeline) + relays full work order to Supervisor.
@@ -95,6 +106,7 @@ export async function POST(request: Request) {
   }
   const wantsPitch = scopeVal === "pitch" || scopeVal === "both";
   const wantsDemo = scopeVal === "demo" || scopeVal === "both";
+
   if ((action === "reject" || action === "rework") && (!reason || !reason.trim())) {
     return NextResponse.json(
       { error: "A reason is required so the agent knows what to fix." },
@@ -116,11 +128,27 @@ export async function POST(request: Request) {
   // Pre-read snapshot — used only for the read-only email gate below. The
   // authoritative hadPitch / hadDemo are computed INSIDE the mutation from the
   // fresh company and gated by scope (see below).
-  const preHadPitch = !!preCompany.pitchDraft;
+  const preHadPitch = isReviewablePitch(preCompany.pitchDraft);
+  const preHasDemoUrl = !!(preCompany.demo?.url || preCompany.demoUrl);
   const demoUrl =
     preCompany.demo?.url ??
     preCompany.demoUrl ??
     `https://${companyId}-demo.vercel.app`;
+
+  // Per-scope validation (M02). A single-artifact decision must actually have
+  // that artifact; "both" stays lenient (acts on whatever exists).
+  if (scopeVal === "pitch" && !preHadPitch) {
+    return NextResponse.json(
+      { error: "No reviewable pitch on this company (draft has no body).", field: "scope" },
+      { status: 400 },
+    );
+  }
+  if (scopeVal === "demo" && !preHasDemoUrl) {
+    return NextResponse.json(
+      { error: "No demo URL on this company to act on.", field: "scope" },
+      { status: 400 },
+    );
+  }
 
   // ── Pre-send MX gate (read-only, outside the mutation) ──
   // Only applies when this decision actually touches the pitch.
@@ -182,7 +210,7 @@ export async function POST(request: Request) {
 
       const hasNotes = action === "reject" || action === "rework";
 
-      hadPitch = wantsPitch && !!c.pitchDraft;
+      hadPitch = wantsPitch && isReviewablePitch(c.pitchDraft);
       hadDemo = wantsDemo && !!(c.demoUrl || c.demo?.url);
 
       // ── Revision binding (H06) ──

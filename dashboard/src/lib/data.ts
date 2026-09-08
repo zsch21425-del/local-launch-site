@@ -79,21 +79,30 @@ export interface Company {
     body: string;
     channel: string;
     status:
-      | "pending"
+      // Canonical vocabulary.
       | "pending-review"
       | "pending-supervisor-review"
       | "supervisor-approved"
       | "zach-approved"
       | "rejected"
-      | "conditional"
       | "sent"
-      | "rework";
+      | "rework"
+      // Legacy — tolerated on READ only (older Blob rows / scripts). The approve
+      // route remaps these to a canonical value before any write (M01).
+      | "pending"
+      | "conditional";
     confidence: number;
     notes?: string;
     reviewFeedback?: {
       reason: string;
       suggestedFix?: string;
       reviewedAt: string;
+      /**
+       * Revision hash (hashRevision(subject, body)) of the draft the feedback
+       * was written against. Retained until the body actually changes, so a
+       * bare status flip back to review does not erase the notes (M01).
+       */
+      revisionHash?: string;
     };
   } | null;
   zachApproval?: "approved" | "rejected" | null;
@@ -500,6 +509,18 @@ export function pitchStatus(company: Company): string | null {
 }
 
 /**
+ * A pitch is REVIEWABLE only when it carries a non-blank body. A status-only
+ * stub (e.g. `{ status: "pending-review" }` with no body) must NOT block the
+ * "Build demo" control or trigger the pre-send email gate (M02).
+ */
+export function hasReviewablePitch(company: Company): boolean {
+  const pd = company.pitchDraft;
+  if (!pd || typeof pd !== "object") return false;
+  const body = (pd as { body?: unknown }).body;
+  return typeof body === "string" && body.trim().length > 0;
+}
+
+/**
  * Flags pitches carrying the DEAD $300/$49 pricing or the banned
  * "I look forward to hearing from you" close. Both must be rewritten to
  * $599/$149 + a question-close before the gate can pass them (2026-08-31 backlog).
@@ -621,9 +642,16 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
     }
     const pst = pitchStatus(c);
     const pitchNote = c.pitchDraft?.reviewFeedback?.reason;
-    if (pst === "rejected") {
+    // Both rejected AND rework are work the agent owes Zach (M01).
+    if (pst === "rejected" || pst === "rework") {
       agentWorkList.push(
-        toItem(c, "pitch", "Pitch rejected", undefined, pitchNote),
+        toItem(
+          c,
+          "pitch",
+          pst === "rework" ? "Pitch rework" : "Pitch rejected",
+          undefined,
+          pitchNote,
+        ),
       );
     }
   }

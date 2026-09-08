@@ -11,6 +11,30 @@ import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
 
 const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 
+/** Canonical pitch status vocabulary — the ONLY values ever written. */
+const CANONICAL_PITCH_STATUS = [
+  "pending-review",
+  "pending-supervisor-review",
+  "supervisor-approved",
+  "zach-approved",
+  "rejected",
+  "rework",
+  "sent",
+] as const;
+type PitchStatus = (typeof CANONICAL_PITCH_STATUS)[number];
+
+/**
+ * Legacy inputs still sent by older clients / worker scripts. Remapped to the
+ * nearest canonical value BEFORE any write — a legacy string is never persisted
+ * as-is (M01).
+ *   pending      → pending-review           (back in the reviewer queue)
+ *   conditional  → rework                   (approved-with-changes = needs work)
+ */
+const LEGACY_STATUS_MAP: Record<string, PitchStatus> = {
+  pending: "pending-review",
+  conditional: "rework",
+};
+
 /**
  * POST: approve/reject a pitch.
  * zach-approved / supervisor-approved is gated: email must pass MX
@@ -27,7 +51,7 @@ export async function POST(request: Request) {
 
   const {
     companyId,
-    status,
+    status: statusInput,
     reason,
     suggestedFix,
     forceSend,
@@ -35,13 +59,7 @@ export async function POST(request: Request) {
     expectedPitchHash,
   } = body as {
     companyId?: string;
-    status?:
-      | "pending"
-      | "supervisor-approved"
-      | "zach-approved"
-      | "rejected"
-      | "conditional"
-      | "sent";
+    status?: string;
     reason?: string;
     suggestedFix?: string;
     forceSend?: boolean;
@@ -52,14 +70,27 @@ export async function POST(request: Request) {
     expectedPitchHash?: string;
   };
 
-  if (!companyId || !status) {
+  if (!companyId || !statusInput) {
     return NextResponse.json({ error: "Missing companyId or status" }, { status: 400 });
   }
-  if (
-    !["pending", "supervisor-approved", "zach-approved", "rejected", "conditional", "sent"].includes(status)
-  ) {
-    return NextResponse.json({ error: `Invalid status: ${status}` }, { status: 400 });
+
+  // Canonicalize: remap known legacy values, then require a canonical value.
+  const rawStatus = String(statusInput).trim();
+  const status: PitchStatus | "" =
+    (LEGACY_STATUS_MAP[rawStatus] ??
+      (CANONICAL_PITCH_STATUS.includes(rawStatus as PitchStatus)
+        ? (rawStatus as PitchStatus)
+        : "")) || "";
+  if (!status) {
+    return NextResponse.json(
+      {
+        error: `Invalid status: ${rawStatus}. Expected one of ${CANONICAL_PITCH_STATUS.join(", ")}.`,
+      },
+      { status: 400 },
+    );
   }
+  const remappedFrom = LEGACY_STATUS_MAP[rawStatus] ? rawStatus : null;
+
   if (status === "rejected" && (!reason || !reason.trim())) {
     return NextResponse.json(
       { error: "A rejection reason is required so the pitch can be revised and resubmitted." },
@@ -238,14 +269,42 @@ export async function POST(request: Request) {
         }
       }
       c.pitchDraft.status = status;
-      if (status === "rejected") {
-        c.pitchDraft.reviewFeedback = {
-          reason: reason?.trim() ?? "",
-          suggestedFix: suggestedFix?.trim() ?? "",
-          reviewedAt: now,
-        };
-      } else {
+
+      const currentHash = hashRevision(
+        c.pitchDraft.subject,
+        c.pitchDraft.body,
+      );
+      const trimmedReason = reason?.trim() ?? "";
+
+      if (status === "rejected" || status === "rework") {
+        // Write fresh feedback when a reason came with the decision; otherwise
+        // keep whatever is already on the draft (e.g. a remapped `conditional`).
+        if (trimmedReason) {
+          c.pitchDraft.reviewFeedback = {
+            reason: trimmedReason,
+            suggestedFix: suggestedFix?.trim() ?? "",
+            reviewedAt: now,
+            revisionHash: currentHash,
+          };
+        }
+      } else if (
+        status === "zach-approved" ||
+        status === "supervisor-approved" ||
+        status === "sent"
+      ) {
+        // Decision resolved in the pitch's favour — prior reject notes are moot.
         delete c.pitchDraft.reviewFeedback;
+      } else {
+        // Bare flip back into a review queue (pending-review /
+        // pending-supervisor-review). RETAIN the feedback until the body
+        // actually changes (M01): only drop it once the stored revisionHash no
+        // longer matches the current draft.
+        const fb = c.pitchDraft.reviewFeedback as
+          | { revisionHash?: string }
+          | undefined;
+        if (fb && fb.revisionHash && fb.revisionHash !== currentHash) {
+          delete c.pitchDraft.reviewFeedback;
+        }
       }
       return c;
     });
@@ -284,8 +343,8 @@ export async function POST(request: Request) {
         ].join("\n")
       : status === "rejected"
         ? `PITCH REJECTED for ${company.name} (${companyId}). reason="${reason}" suggestedFix="${suggestedFix}". Closer rework → pending-review.`
-        : status === "pending"
-          ? `PITCH MARKED PENDING for ${company.name} (${companyId}).`
+        : status === "rework"
+          ? `PITCH REWORK for ${company.name} (${companyId}). reason="${reason ?? ""}" suggestedFix="${suggestedFix ?? ""}". Revise the body, then set pitchDraft.status=pending-review.`
           : `PITCH ${status} for ${company.name} (${companyId}).`;
 
   // ── Relay the decision to the Supervisor (AWAITED — serverless kills the
@@ -339,6 +398,7 @@ export async function POST(request: Request) {
   return NextResponse.json({
     ok: true,
     action: status,
+    ...(remappedFrom ? { remappedFrom } : {}),
     relayed,
     relayError,
     ...(crmRelayed !== undefined ? { crmRelayed, crmError } : {}),

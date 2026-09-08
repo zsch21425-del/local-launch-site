@@ -39,19 +39,9 @@ function matchesDemoRegion(demo: DemoEntry, region: RegionFilter): boolean {
 /**
  * Demos triage: pending + rework first (rejected/dead-letter sink),
  * then company priority, then oldest review feedback (stale fixes first).
- * Priority/age ride on client-enriched fields when present.
+ * Priority/age ride on fields enriched onto each entry in state (M17) — so a
+ * late enrichment fetch actually re-sorts the list instead of silently not.
  */
-export type DemoTriageMeta = {
-  priority?: string | null;
-  reviewedAt?: string | null;
-};
-
-const demoMeta = new Map<string, DemoTriageMeta>();
-
-export function setDemoTriageMeta(id: string, meta: DemoTriageMeta) {
-  demoMeta.set(id, meta);
-}
-
 function demoRank(d: DemoEntry): [number, number, string] {
   const statusRank =
     d.status === "pending"
@@ -61,9 +51,8 @@ function demoRank(d: DemoEntry): [number, number, string] {
         : d.status === "rejected"
           ? 2
           : 3;
-  const meta = demoMeta.get(d.companyId);
-  const w = -priorityWeight(meta?.priority ?? "");
-  const age = meta?.reviewedAt ?? d.reviewedAt ?? "9999";
+  const w = -priorityWeight(d.triagePriority ?? "");
+  const age = d.triageReviewedAt ?? d.reviewedAt ?? "9999";
   return [statusRank, w, age];
 }
 
@@ -85,6 +74,9 @@ interface DemoEntry {
   reviewedAt?: string | null;
   rebuildAttempts?: number;
   lastError?: string | null;
+  /** Enriched from the company record at load time (M17) — used for sort only. */
+  triagePriority?: string | null;
+  triageReviewedAt?: string | null;
 }
 
 function thumbGradient(id: string): string {
@@ -210,44 +202,70 @@ function DemoFeedbackForm({
   );
 }
 
+type Notice = { id: string; name: string; message: string };
+
 export default function DemosPage() {
   const [demos, setDemos] = useState<DemoEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [notices, setNotices] = useState<Notice[]>([]);
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState<RegionFilter>("sc");
   const [filter, setFilter] = useState<
     "all" | "pending" | "rejected" | "rework"
   >("all");
 
+  const pushNotice = useCallback((n: Notice) => {
+    setNotices((prev) => [n, ...prev.filter((x) => x.id !== n.id)].slice(0, 8));
+  }, []);
+  const dismissNotice = useCallback((id: string) => {
+    setNotices((prev) => prev.filter((x) => x.id !== id));
+  }, []);
+
   const load = useCallback(async () => {
     try {
       const res = await fetch("/api/demos");
-      const data = await res.json();
-      const list: DemoEntry[] = data.demos ?? [];
-      setDemos(list);
-      // Enrich triage meta (priority + age) from company records.
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json().catch(() => ({}));
+      if (data?.error) throw new Error(String(data.error));
+      let list: DemoEntry[] = data.demos ?? [];
+      // Enrich triage (priority + age) from company records — merged into the
+      // SAME array we render + sort, so a late enrichment re-sorts (M17).
       try {
         const pr = await fetch("/api/pipeline/data");
-        const pd = await pr.json();
-        const byId = new Map(
-          ((pd.companies ?? []) as { id: string; priority?: string; demo?: { reviewedAt?: string }; lastUpdated?: string }[]).map(
-            (c) => [c.id, c],
-          ),
-        );
-        for (const d of list) {
-          const c = byId.get(d.companyId);
-          if (c) {
-            setDemoTriageMeta(d.companyId, {
-              priority: c.priority ?? null,
-              reviewedAt: c.demo?.reviewedAt ?? c.lastUpdated ?? d.reviewedAt ?? null,
-            });
-          }
+        if (pr.ok) {
+          const pd = await pr.json();
+          const byId = new Map(
+            ((pd.companies ?? []) as {
+              id: string;
+              priority?: string;
+              demo?: { reviewedAt?: string };
+              lastUpdated?: string;
+            }[]).map((c) => [c.id, c]),
+          );
+          list = list.map((d) => {
+            const c = byId.get(d.companyId);
+            if (!c) return d;
+            return {
+              ...d,
+              triagePriority: c.priority ?? null,
+              triageReviewedAt:
+                c.demo?.reviewedAt ?? c.lastUpdated ?? d.reviewedAt ?? null,
+            };
+          });
         }
       } catch {
         /* triage still works on status alone */
       }
-    } catch {
-      /* keep last */
+      setDemos(list);
+      setError(null);
+    } catch (e) {
+      // RETAIN the last good list; never collapse to "All caught up" on an error.
+      setError(
+        `Couldn't refresh the demo queue${
+          e instanceof Error && e.message ? ` (${e.message})` : ""
+        }. Showing the last loaded list.`,
+      );
     } finally {
       setLoading(false);
     }
@@ -363,6 +381,46 @@ export default function DemosPage() {
           </div>
         </div>
 
+        {/* Delivery / relay warnings — persist here (parent) so they survive a
+            card being removed after approval (M17). */}
+        {notices.length > 0 ? (
+          <div className="flex flex-col gap-2">
+            {notices.map((n) => (
+              <div
+                key={n.id}
+                className={`${glassCard} flex items-start justify-between gap-3 border-amber-200 bg-amber-50/70 px-4 py-3`}
+              >
+                <p className="text-sm text-amber-800">
+                  <span className="font-semibold">{n.name}:</span> {n.message}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => dismissNotice(n.id)}
+                  className="shrink-0 text-xs font-medium text-amber-700 hover:underline"
+                >
+                  Dismiss
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        {/* HTTP / network error — shown even when a stale list is still on screen. */}
+        {error ? (
+          <div
+            className={`${glassCard} flex flex-wrap items-center justify-between gap-3 border-rose-200 bg-rose-50/60 px-4 py-3`}
+          >
+            <p className="text-sm font-medium text-rose-700">{error}</p>
+            <button
+              type="button"
+              onClick={() => void load()}
+              className="rounded-lg bg-rose-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-rose-700"
+            >
+              Retry
+            </button>
+          </div>
+        ) : null}
+
         {loading ? (
           <div className={`${glassCard} py-16 text-center`}>
             <p className="text-sm text-slate-400">Loading demos…</p>
@@ -370,9 +428,11 @@ export default function DemosPage() {
         ) : visible.length === 0 ? (
           <div className={`${glassCard} py-16 text-center`}>
             <p className="text-lg font-medium text-slate-600">
-              {demos.length === 0
-                ? "All caught up — no demos waiting."
-                : "No demos match your filter."}
+              {error
+                ? "Demo queue unavailable — retry above."
+                : demos.length === 0
+                  ? "All caught up — no demos waiting."
+                  : "No demos match your filter."}
             </p>
             <Link
               href="/"
@@ -389,6 +449,7 @@ export default function DemosPage() {
                 demo={demo}
                 onChange={(patch) => patchLocal(demo.companyId, patch)}
                 onReload={() => void load()}
+                onNotice={pushNotice}
               />
             ))}
           </div>
@@ -402,10 +463,12 @@ function DemoCard({
   demo,
   onChange,
   onReload,
+  onNotice,
 }: {
   demo: DemoEntry;
   onChange: (patch: Partial<DemoEntry> | "remove-approved") => void;
   onReload: () => void;
+  onNotice: (n: Notice) => void;
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -428,17 +491,23 @@ function DemoCard({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ companyId: demo.companyId, action: "approve" }),
       });
-      const json = await res.json();
+      const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) {
-        setError(json.error || "Approve failed");
+        setError(json.error || `Approve failed (HTTP ${res.status})`);
         return;
       }
-      onChange("remove-approved");
+      // Surface a delivery warning in the PERSISTENT parent panel BEFORE the
+      // card is removed (M17) — a note set on the card here would vanish.
       if (!json.relayed) {
-        setRelayNote(
-          "Approved & saved. Agent relay was slow — status is still on the record.",
-        );
+        onNotice({
+          id: demo.companyId,
+          name: demo.name,
+          message: `Demo approved and saved, but the agent relay did not confirm${
+            json.relayError ? ` (${json.relayError})` : ""
+          }. The status is on the record — follow up if the agent doesn't pick it up.`,
+        });
       }
+      onChange("remove-approved");
     } catch {
       setError("Something went wrong — please try again.");
     } finally {
@@ -485,6 +554,17 @@ function DemoCard({
           ? "Saved + sent to the agent. They have your notes — no need to repeat in Telegram."
           : "Saved on the record. Agent relay lagged — notes are still stored; agent will see them on the company.",
       );
+      if (!json.relayed) {
+        onNotice({
+          id: demo.companyId,
+          name: demo.name,
+          message: `${
+            mode === "reject" ? "Rejection" : "Rework"
+          } notes saved, but the agent relay did not confirm${
+            json.relayError ? ` (${json.relayError})` : ""
+          }. Notes are on the company record.`,
+        });
+      }
       // soft refresh so list stays consistent
       setTimeout(onReload, 800);
     } finally {

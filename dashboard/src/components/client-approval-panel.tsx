@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Check, ExternalLink, MonitorPlay, RefreshCw, Send, X } from "lucide-react";
 import { glassCard } from "@/lib/ui";
 import { cn } from "@/lib/utils";
-import { resolveDemoUrl } from "@/lib/data";
+import { hasReviewablePitch, resolveDemoUrl } from "@/lib/data";
 import { hashRevision } from "@/lib/revision";
 
 interface ApprovalPanelProps {
@@ -83,7 +83,9 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
   const pitch = company.pitchDraft;
   const demoUrl = resolveDemoUrl(company);
   const hasDemo = !!(demoUrl && (company.demoUrl || company.demo?.url));
-  const hasPitch = !!pitch;
+  // A status-only pitch stub (no body) is NOT reviewable — it must not render a
+  // pitch block, force the email gate, or add "pitch" to the decision scope (M02).
+  const hasPitch = hasReviewablePitch(company);
 
   const pitchStatus: string | undefined = pitch?.status;
   const demoStatus: string | undefined = company.demo?.status;

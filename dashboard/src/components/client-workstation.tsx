@@ -12,7 +12,7 @@ import { PlaybookChecklist } from "@/components/playbook-checklist";
 import { QuickDispatch } from "@/components/quick-dispatch";
 import { SeoGauge } from "@/components/seo-gauge";
 import { StageTracker } from "@/components/stage-tracker";
-import { isDemoReady } from "@/lib/data";
+import { hasReviewablePitch, isDemoReady } from "@/lib/data";
 import { glassCard } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 import {
@@ -76,7 +76,13 @@ function Section({
  */
 export function ClientWorkstation({ company, stages }: { company: any; stages: any[] }) {
   const currentStage = stages.find((s) => s.id === company.stage) ?? stages[0];
-  const hasDemoOrPitch = !!(company.pitchDraft || company.demoUrl || company.demo?.url);
+  // Demo and pitch are judged INDEPENDENTLY (M02): a status-only pitch stub with
+  // no body is not reviewable and must not hide the "Build demo" control.
+  const hasDemo = !!(company.demoUrl || company.demo?.url);
+  const showApprovalPanel = hasReviewablePitch(company) || hasDemo;
+  const showBuildDemo =
+    !hasDemo &&
+    (isDemoReady(company) || company.demo?.status === "build-requested");
   const hasPlaybook = (company.playbook ?? []).length > 0;
   const hasNextSteps = (company.nextSteps?.length ?? 0) > 0;
   const hasAudit = company.stage === "audit" && !!company.auditData;
@@ -101,14 +107,17 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
         title="Approvals"
         subtitle="Decisions that need you"
       >
-        {hasDemoOrPitch ? (
-          <ClientApprovalPanel company={company} />
-        ) : isDemoReady(company) || company.demo?.status === "build-requested" ? (
-          <ClientBuildDemo
-            companyId={company.id}
-            companyName={company.name}
-            demoStatus={company.demo?.status}
-          />
+        {showApprovalPanel || showBuildDemo ? (
+          <div className="flex flex-col gap-4">
+            {showApprovalPanel ? <ClientApprovalPanel company={company} /> : null}
+            {showBuildDemo ? (
+              <ClientBuildDemo
+                companyId={company.id}
+                companyName={company.name}
+                demoStatus={company.demo?.status}
+              />
+            ) : null}
+          </div>
         ) : (
           <div className={cn(glassCard, "py-8 text-center text-sm text-slate-400")}>
             <CheckCircle2 className="mx-auto mb-2 size-5 text-slate-300" />

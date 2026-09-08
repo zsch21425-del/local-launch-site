@@ -65,8 +65,12 @@ function RejectForm({
     setError("");
     try {
       await onSubmit(reason.trim(), suggestedFix.trim());
-    } catch {
-      setError("Something went wrong — please try again.");
+    } catch (e) {
+      setError(
+        e instanceof Error && e.message
+          ? e.message
+          : "Something went wrong — please try again.",
+      );
     } finally {
       setSaving(false);
     }
@@ -116,73 +120,113 @@ function RejectForm({
 
 function ApproveButtons({
   company,
-  onApproved,
-  onRejected,
-  onResubmitted,
+  onRefresh,
 }: {
   company: Company;
-  onApproved: (id: string) => void;
-  onRejected: (id: string) => void;
-  onResubmitted: (id: string) => void;
+  onRefresh: () => void;
 }) {
   const [loading, setLoading] = useState(false);
   const [showRejectForm, setShowRejectForm] = useState(false);
+  const [actionError, setActionError] = useState<string | null>(null);
+  const [outcome, setOutcome] = useState<string | null>(null);
   const feedback = company.pitchDraft?.reviewFeedback;
+
+  // After a successful decision: show the server-reported outcome, then refresh
+  // the pipeline so this card falls out of the queue on its own (M07) — instead
+  // of silently yanking the card the moment the POST resolves.
+  function settle(message: string) {
+    setActionError(null);
+    setOutcome(message);
+    setTimeout(onRefresh, 1500);
+  }
+
+  async function post(payload: Record<string, unknown>): Promise<{
+    ok?: boolean;
+    error?: string;
+    relayed?: boolean;
+    relayError?: string | null;
+  }> {
+    const res = await fetch("/api/pipeline/approve", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json?.ok) {
+      throw new Error(
+        json?.error ||
+          `Request failed (HTTP ${res.status}). Nothing was changed — try again.`,
+      );
+    }
+    return json;
+  }
 
   async function approve() {
     setLoading(true);
+    setActionError(null);
     try {
-      const res = await fetch("/api/pipeline/approve", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ companyId: company.id, status: "zach-approved" }),
-      });
-      const json = await res.json();
-      if (json.ok) onApproved(company.id);
-    } catch {
-      // ignore
+      const json = await post({ companyId: company.id, status: "zach-approved" });
+      settle(
+        json.relayed
+          ? "Approved — queued to send and the agent was notified."
+          : `Approved and saved${
+              json.relayError ? ` — agent relay lagged (${json.relayError})` : " — agent relay lagged"
+            }. The status is on the record.`,
+      );
+    } catch (e) {
+      setActionError(
+        e instanceof Error
+          ? e.message
+          : "Network error — the approval did not go through.",
+      );
     } finally {
       setLoading(false);
     }
   }
 
+  // Throws on failure so RejectForm keeps its form open and renders the message.
   async function reject(reason: string, suggestedFix: string) {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/pipeline/approve", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ companyId: company.id, status: "rejected", reason, suggestedFix }),
-      });
-      const json = await res.json();
-      if (json.ok) onRejected(company.id);
-      else alert(json.error || "Rejection failed");
-    } catch {
-      alert("Rejection failed");
-    } finally {
-      setLoading(false);
-    }
+    const json = await post({
+      companyId: company.id,
+      status: "rejected",
+      reason,
+      suggestedFix,
+    });
+    setShowRejectForm(false);
+    settle(
+      json.relayed
+        ? "Rejected — feedback saved and sent to the agent."
+        : "Rejected — feedback saved on the record; agent relay lagged.",
+    );
   }
 
   async function resubmit() {
     setLoading(true);
+    setActionError(null);
     try {
-      // Mark back to pending so it's in the queue again (agent will revise the body).
-      const res = await fetch("/api/pipeline/approve", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ companyId: company.id, status: "pending" }),
-      });
-      const json = await res.json();
-      if (json.ok) onResubmitted(company.id);
-    } catch {
-      // ignore
+      // Canonical: back into the reviewer queue (the agent revises the body).
+      const json = await post({ companyId: company.id, status: "pending-review" });
+      settle(
+        json.relayed
+          ? "Back in the review queue — the agent was notified."
+          : "Back in the review queue.",
+      );
+    } catch (e) {
+      setActionError(
+        e instanceof Error ? e.message : "Network error — try again.",
+      );
     } finally {
       setLoading(false);
     }
   }
 
-  // Couldn't be rejected without reason now; if there's feedback, show it + allow re-submit.
+  const statusNote = actionError ? (
+    <p className="mt-2 text-xs font-medium text-rose-600">{actionError}</p>
+  ) : outcome ? (
+    <p className="mt-2 text-xs font-medium text-emerald-700">{outcome}</p>
+  ) : null;
+
+  // If there's feedback, show it + allow re-submit.
   if (feedback) {
     return (
       <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50/70 p-4">
@@ -198,12 +242,13 @@ function ApproveButtons({
         ) : null}
         <button
           type="button"
-          disabled={loading}
+          disabled={loading || !!outcome}
           onClick={resubmit}
           className="mt-3 rounded-lg bg-amber-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-amber-600 disabled:opacity-50"
         >
           {loading ? "Marking…" : "Mark for re-approval"}
         </button>
+        {statusNote}
       </div>
     );
   }
@@ -213,7 +258,7 @@ function ApproveButtons({
       <div className="flex items-center gap-3">
         <button
           type="button"
-          disabled={loading}
+          disabled={loading || !!outcome}
           onClick={approve}
           className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-600 disabled:opacity-50"
         >
@@ -221,7 +266,7 @@ function ApproveButtons({
         </button>
         <button
           type="button"
-          disabled={loading}
+          disabled={loading || !!outcome}
           onClick={() => setShowRejectForm(true)}
           className="rounded-lg bg-rose-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-rose-600 disabled:opacity-50"
         >
@@ -235,6 +280,7 @@ function ApproveButtons({
           onSubmit={reject}
         />
       ) : null}
+      {statusNote}
     </div>
   );
 }
@@ -545,7 +591,7 @@ export default function ApprovalsPage() {
                   company={company}
                   selected={selected.has(company.id)}
                   onToggleSelect={() => toggleSelect(company.id)}
-                  onDone={(id) => setRemovedIds((prev) => new Set(prev).add(id))}
+                  onRefresh={load}
                 />
               ))
             )}
@@ -560,12 +606,12 @@ function ApprovalCard({
   company,
   selected,
   onToggleSelect,
-  onDone,
+  onRefresh,
 }: {
   company: Company;
   selected: boolean;
   onToggleSelect: () => void;
-  onDone: (id: string) => void;
+  onRefresh: () => void;
 }) {
   const draft = company.pitchDraft!;
   const isRejected = draft.status === "rejected";
@@ -635,12 +681,7 @@ function ApprovalCard({
         ) : null}
 
         {/* Buttons / feedback */}
-        <ApproveButtons
-          company={company}
-          onApproved={onDone}
-          onRejected={onDone}
-          onResubmitted={onDone}
-        />
+        <ApproveButtons company={company} onRefresh={onRefresh} />
       </div>
     </div>
   );
