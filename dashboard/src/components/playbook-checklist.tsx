@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ChevronDown, ListChecks, RotateCcw } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ChevronDown, ListChecks, TriangleAlert } from "lucide-react";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
+import { invalidatePipeline } from "@/hooks/use-pipeline";
 import type { PlaybookItem, Stage } from "@/lib/data";
 import { stageTheme } from "@/lib/stages";
 import { cn } from "@/lib/utils";
@@ -16,56 +18,71 @@ interface PlaybookChecklistProps {
 }
 
 /**
- * pipeline.json is the source of truth for `done`, but ticking boxes while
- * working a client should feel immediate. Overrides live in localStorage,
- * keyed per company, and can be cleared back to the file state.
+ * pipeline.json is the source of truth for `done` (M08). Ticking a box POSTs to
+ * /api/pipeline/playbook (atomic mutatePipeline write) so every device, agent
+ * and report sees the same completion state. `pending` is a purely local
+ * optimistic overlay: it shows the new checkbox value while the write is in
+ * flight, is reconciled away by router.refresh() on success, reverts on
+ * failure, and is dropped entirely when the company changes.
  */
-function storageKey(companyId: string) {
-  return `local-launch:playbook:${companyId}`;
-}
-
 export function PlaybookChecklist({
   companyId,
   items,
   stages,
 }: PlaybookChecklistProps) {
-  const [overrides, setOverrides] = useState<Record<string, boolean>>({});
+  const router = useRouter();
+  /** itemId -> optimistic `done` value while its write is in flight. */
+  const [pending, setPending] = useState<Record<string, boolean>>({});
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [saveError, setSaveError] = useState<string | null>(null);
 
-  // Read after mount so server and first client render agree.
+  // Switching to another client must not carry over this client's optimistic
+  // state or a stale error.
   useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(storageKey(companyId));
-      if (raw) setOverrides(JSON.parse(raw) as Record<string, boolean>);
-    } catch {
-      // Corrupt or unavailable storage — fall back to the file state.
-    }
+    setPending({});
+    setSaveError(null);
   }, [companyId]);
 
-  function toggle(itemId: string, done: boolean) {
-    setOverrides((prev) => {
-      const next = { ...prev, [itemId]: done };
-      try {
-        window.localStorage.setItem(storageKey(companyId), JSON.stringify(next));
-      } catch {
-        // Non-fatal: the toggle still applies for this session.
-      }
-      return next;
-    });
-  }
-
-  function reset() {
-    setOverrides({});
+  async function toggle(itemId: string, done: boolean) {
+    setSaveError(null);
+    setPending((prev) => ({ ...prev, [itemId]: done }));
     try {
-      window.localStorage.removeItem(storageKey(companyId));
-    } catch {
-      // Nothing to do.
+      const res = await fetch("/api/pipeline/playbook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ companyId, itemId, done }),
+      });
+      if (!res.ok) {
+        const msg = (
+          await res.json().catch(() => ({ error: `HTTP ${res.status}` }))
+        ).error;
+        throw new Error(msg || `HTTP ${res.status}`);
+      }
+      // Pull the authoritative server state back into the page; keep the
+      // optimistic value until the refreshed props land so the box doesn't flip.
+      router.refresh();
+      // Keep the shared client cache (stats, open-tasks, other views) in step.
+      void invalidatePipeline();
+      setPending((prev) => {
+        const next = { ...prev };
+        delete next[itemId];
+        return next;
+      });
+    } catch (e) {
+      setPending((prev) => {
+        const next = { ...prev };
+        delete next[itemId];
+        return next;
+      });
+      setSaveError(
+        e instanceof Error ? e.message : "Could not save that step. Try again.",
+      );
     }
   }
 
   const resolved = useMemo(
-    () => items.map((item) => ({ ...item, done: overrides[item.id] ?? item.done })),
-    [items, overrides],
+    () => items.map((item) => ({ ...item, done: pending[item.id] ?? item.done })),
+    [items, pending],
   );
 
   const groups = useMemo(
@@ -82,7 +99,6 @@ export function PlaybookChecklist({
   const total = resolved.length;
   const done = resolved.filter((item) => item.done).length;
   const percent = total === 0 ? 0 : Math.round((done / total) * 100);
-  const hasOverrides = Object.keys(overrides).length > 0;
 
   if (total === 0) {
     return (
@@ -107,6 +123,13 @@ export function PlaybookChecklist({
         </div>
         <Progress value={percent} />
       </div>
+
+      {saveError ? (
+        <p className="text-destructive flex items-center gap-1.5 text-xs">
+          <TriangleAlert className="size-3.5 shrink-0" />
+          {saveError}
+        </p>
+      ) : null}
 
       <div className="flex flex-col gap-6">
         {groups.map((group) => {
@@ -136,6 +159,7 @@ export function PlaybookChecklist({
                         <Checkbox
                           id={`${companyId}-${item.id}`}
                           checked={item.done}
+                          disabled={item.id in pending}
                           onCheckedChange={(checked) =>
                             toggle(item.id, checked === true)
                           }
@@ -191,17 +215,6 @@ export function PlaybookChecklist({
           );
         })}
       </div>
-
-      {hasOverrides ? (
-        <button
-          type="button"
-          onClick={reset}
-          className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 self-start text-xs transition-colors"
-        >
-          <RotateCcw className="size-3" />
-          Reset to pipeline.json
-        </button>
-      ) : null}
     </div>
   );
 }

@@ -36,11 +36,13 @@ async function blobGet() {
 
 (async () => {
   const data = await blobGet();
-  const dead = (data.companies || []).filter((c) => c.demo?.status === "dead-letter");
+  const dead = (data.companies || []).filter(
+    (c) => c.rebuildJob?.status === "dead-letter" || c.demo?.status === "dead-letter",
+  );
   if (dead.length === 0) process.exit(0); // no output → cron delivers nothing
 
   const lines = dead.map((c) => {
-    const err = (c.demo?.lastError || "unknown error").slice(0, 90);
+    const err = (c.rebuildJob?.lastError || c.demo?.lastError || "unknown error").slice(0, 90);
     return `• ${c.name || c.id} (${c.id}) — ${err}`;
   });
   console.log(

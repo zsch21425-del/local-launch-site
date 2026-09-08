@@ -2,13 +2,14 @@
 /**
  * verify-demo.js — CLI helper for the vision-verification pass.
  *
- * The rebuild worker flips image/caption reworks to "pending-verify" (not
- * "pending") so a vision pass can confirm the fix before it's cleared. This
- * helper lets a Hermes agent (with vision) list those demos and flip them.
+ * The rebuild worker parks image/caption reworks in rebuildJob.status =
+ * "verifying" (demo.status stays "rework") so a vision pass can confirm the fix
+ * before it's cleared. This helper lets a Hermes agent (with vision) list those
+ * demos and flip them.
  *
- *   node scripts/verify-demo.js list                → JSON of pending-verify demos
- *   node scripts/verify-demo.js pass <id>           → mark fixed (pending)
- *   node scripts/verify-demo.js fail <id> "<why>"   → mark still-broken (rework)
+ *   node scripts/verify-demo.js list                → JSON of verifying demos
+ *   node scripts/verify-demo.js pass <id>           → mark fixed (demo.status=pending)
+ *   node scripts/verify-demo.js fail <id> "<why>"   → mark still-broken (rework, re-queued)
  */
 const { put, get } = require("@vercel/blob");
 const fs = require("fs");
@@ -55,7 +56,9 @@ async function writeBlob(data) {
   const companies = data.companies || [];
 
   if (cmd === "list") {
-    const pend = companies.filter((c) => c.demo?.status === "pending-verify");
+    const pend = companies.filter(
+      (c) => c.rebuildJob?.status === "verifying" || c.demo?.status === "pending-verify",
+    );
     console.log(
       JSON.stringify(
         pend.map((c) => ({
@@ -76,16 +79,17 @@ async function writeBlob(data) {
       process.exit(1);
     }
     c.demo = c.demo || {};
+    delete c.rebuildJob; // vision QA is done either way — clear the job state
     if (cmd === "pass") {
       c.demo.status = "pending";
       c.demo.reviewFeedback = null;
       c.demo.notes = null;
-      console.log(`${id}: pass → pending`);
+      console.log(`${id}: pass → demo.status=pending`);
     } else {
       c.demo.status = "rework";
       c.demo.reviewFeedback = { reason, reviewedAt: new Date().toISOString() };
       c.demo.notes = reason;
-      console.log(`${id}: fail → rework (${reason})`);
+      console.log(`${id}: fail → rework, re-queued (${reason})`);
     }
     await writeBlob(data);
   } else {

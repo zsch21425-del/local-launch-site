@@ -69,6 +69,8 @@ interface DemoEntry {
   location?: string;
   url: string;
   status: "pending" | "rejected" | "rework" | "dead-letter" | "none" | string;
+  /** Rebuild-job state, reported separately from the canonical demo status (M13). */
+  jobStatus?: "running" | "verifying" | "failed" | "dead-letter" | null;
   notes?: string | null;
   reviewFeedback?: ReviewFeedback | null;
   reviewedAt?: string | null;
@@ -475,9 +477,11 @@ function DemoCard({
   const [form, setForm] = useState<null | "reject" | "rework">(null);
   const [relayNote, setRelayNote] = useState<string | null>(null);
 
-  const isRejected = demo.status === "rejected";
-  const isRework = demo.status === "rework";
-  const isDeadLetter = demo.status === "dead-letter";
+  const isDeadLetter =
+    demo.jobStatus === "dead-letter" || demo.status === "dead-letter";
+  const isVerifying = demo.jobStatus === "verifying";
+  const isRejected = demo.status === "rejected" && !isDeadLetter;
+  const isRework = demo.status === "rework" && !isDeadLetter && !isVerifying;
   const pending = demo.status === "pending";
   const fb = demo.reviewFeedback;
 
@@ -574,11 +578,13 @@ function DemoCard({
 
   const badge = isDeadLetter
     ? { label: "Dead-letter", cls: "bg-red-100 text-red-700" }
-    : isRejected
-      ? { label: "Rejected", cls: "bg-rose-100 text-rose-700" }
-      : isRework
-        ? { label: "Rework", cls: "bg-violet-100 text-violet-700" }
-        : { label: "Pending", cls: "bg-sky-100 text-sky-700" };
+    : isVerifying
+      ? { label: "Verifying · QA", cls: "bg-amber-100 text-amber-700" }
+      : isRejected
+        ? { label: "Rejected", cls: "bg-rose-100 text-rose-700" }
+        : isRework
+          ? { label: "Rework", cls: "bg-violet-100 text-violet-700" }
+          : { label: "Pending", cls: "bg-sky-100 text-sky-700" };
 
   return (
     <div
@@ -658,6 +664,15 @@ function DemoCard({
           </div>
         ) : null}
 
+        {isVerifying ? (
+          <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50/80 p-3">
+            <p className="text-xs font-semibold text-amber-900">
+              Rebuilt — awaiting vision QA. Can&apos;t be approved until the
+              verification pass clears it.
+            </p>
+          </div>
+        ) : null}
+
         {isDeadLetter ? (
           <div className="mt-3 rounded-lg border border-red-200 bg-red-50/80 p-3">
             <p className="text-xs font-semibold text-red-800">
@@ -690,7 +705,8 @@ function DemoCard({
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <button
               type="button"
-              disabled={loading}
+              disabled={loading || isVerifying}
+              title={isVerifying ? "Awaiting vision QA — cannot approve yet" : undefined}
               onClick={() => void approve()}
               className="flex-1 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-600 disabled:opacity-50"
             >

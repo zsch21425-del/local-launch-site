@@ -97,6 +97,34 @@ export async function readPipelineSafe() {
   }
 }
 
+/**
+ * Like readPipelineSafe(), but distinguishes a genuinely EMPTY-but-valid book
+ * (`{ companies: [] }` — e.g. after the last lead was deleted) from a
+ * missing/unreadable store (M09). Callers that need to permit "add the first
+ * lead" or render a real zero state must branch on `readable`, not on
+ * `companies.length`.
+ *
+ *   readable:false            → storage is missing/garbled → surface an error
+ *   readable:true, companies:[] → a valid empty book → show zero state, allow adds
+ */
+export async function readPipelineState(): Promise<{
+  readable: boolean;
+  data: { companies: any[]; [k: string]: any } | null;
+}> {
+  try {
+    const data = await readPipeline();
+    if (data && typeof data === "object") {
+      const companies = Array.isArray((data as any).companies)
+        ? (data as any).companies
+        : [];
+      return { readable: true, data: { ...(data as any), companies } };
+    }
+    return { readable: false, data: null };
+  } catch {
+    return { readable: false, data: null };
+  }
+}
+
 /** Write pipeline data with ETag conditional (optimistic concurrency). */
 async function writePipelineWithEtag(
   data: unknown,

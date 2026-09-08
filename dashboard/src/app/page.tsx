@@ -6,7 +6,7 @@ import { MotionBackground } from "@/components/motion-background";
 import { PipelineKanban } from "@/components/pipeline-kanban";
 import { StatsBar } from "@/components/stats-bar";
 import { WorkInboxPanel } from "@/components/work-inbox";
-import { usePipeline } from "@/hooks/use-pipeline";
+import { usePipeline, invalidatePipeline } from "@/hooks/use-pipeline";
 import {
   getStats,
   getWorkInbox,
@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
  * Removed: vanity revenue strip, playbook % noise, inflated email backlog.
  */
 export default function HomePage() {
-  const { companies, stages, agency, loading, error, reload, setCompanies } =
+  const { companies, stages, agency, loading, error, lastSync, reload, setCompanies } =
     usePipeline();
   const [moveError, setMoveError] = React.useState<string | null>(null);
   const [showBoard, setShowBoard] = React.useState(true);
@@ -51,6 +51,9 @@ export default function HomePage() {
         ).error;
         throw new Error(msg || `HTTP ${res.status}`);
       }
+      // Reconcile the shared cache to the server so nav badges / other views
+      // reflect the move too (M16), not just this component's optimistic state.
+      void invalidatePipeline();
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Failed to move card";
       await reload();
@@ -83,6 +86,14 @@ export default function HomePage() {
           {error ? (
             <p className="text-sm text-rose-600">
               Could not load live pipeline: {error}
+              {lastSync
+                ? ` — showing last-known data from ${new Date(lastSync).toLocaleTimeString()}`
+                : ""}
+            </p>
+          ) : null}
+          {!loading && !error && lastSync ? (
+            <p className="text-xs text-slate-400">
+              Live pipeline · synced {new Date(lastSync).toLocaleTimeString()}
             </p>
           ) : null}
         </section>

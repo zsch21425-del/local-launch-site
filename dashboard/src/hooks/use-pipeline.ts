@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
 
 import {
   getAgency,
@@ -19,42 +19,125 @@ type PipelinePayload = {
   error?: string;
 };
 
-/** Live book of record: GET /api/pipeline/data (Blob after Phase 1). */
-export function usePipeline() {
-  const [companies, setCompanies] = useState<Company[]>([]);
-  const [stages, setStages] = useState<Stage[]>(() => getStages());
-  const [agency, setAgency] = useState<Agency>(() => getAgency());
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  /** true when the API returned a valid but empty book (M09) — render a zero
-   *  state, not an error. Distinct from a failed/unreadable fetch. */
-  const [isEmpty, setIsEmpty] = useState(false);
+/**
+ * ONE shared client cache for the live book (M16).
+ *
+ * Every `usePipeline()` instance — home board, sidebar badges, global search,
+ * leads/clients/reports — used to fetch independently on mount and never hear
+ * about each other's mutations. Now they all read the same module-level
+ * snapshot and a single in-flight fetch is de-duped, so a move/approval/
+ * playbook write that calls `invalidatePipeline()` refreshes every consumer
+ * (including the nav badges) at once.
+ */
+type PipelineSnapshot = {
+  companies: Company[];
+  stages: Stage[];
+  agency: Agency;
+  loading: boolean;
+  error: string | null;
+  isEmpty: boolean;
+  /** epoch ms of the last successful load, or null before the first one. */
+  lastSync: number | null;
+};
 
-  const reload = useCallback(async () => {
+let snapshot: PipelineSnapshot = {
+  companies: [],
+  stages: getStages(),
+  agency: getAgency(),
+  loading: true,
+  error: null,
+  isEmpty: false,
+  lastSync: null,
+};
+
+const listeners = new Set<() => void>();
+let inFlight: Promise<void> | null = null;
+
+function emit() {
+  for (const l of listeners) l();
+}
+
+function setSnapshot(patch: Partial<PipelineSnapshot>) {
+  snapshot = { ...snapshot, ...patch };
+  emit();
+}
+
+function subscribe(cb: () => void) {
+  listeners.add(cb);
+  return () => {
+    listeners.delete(cb);
+  };
+}
+
+/** Fetch the live book once; concurrent callers share the same request. */
+export function invalidatePipeline(): Promise<void> {
+  if (inFlight) return inFlight;
+  inFlight = (async () => {
     try {
       const res = await fetch("/api/pipeline/data");
       const data = (await res.json()) as PipelinePayload;
       if (!res.ok) {
-        // Only a real failure (missing/garbled store, HTTP error) lands here.
-        // A valid empty book returns 200 and is handled below.
         throw new Error(data.error || `HTTP ${res.status}`);
       }
       const next = Array.isArray(data.companies) ? data.companies : [];
-      setCompanies(next);
-      setIsEmpty(next.length === 0);
-      if (Array.isArray(data.stages) && data.stages.length) setStages(data.stages);
-      if (data.agency && data.agency.name) setAgency(data.agency);
-      setError(null);
+      setSnapshot({
+        companies: next,
+        isEmpty: next.length === 0,
+        stages:
+          Array.isArray(data.stages) && data.stages.length
+            ? data.stages
+            : snapshot.stages,
+        agency: data.agency && data.agency.name ? data.agency : snapshot.agency,
+        error: null,
+        loading: false,
+        lastSync: Date.now(),
+      });
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Could not load pipeline");
+      setSnapshot({
+        error: e instanceof Error ? e.message : "Could not load pipeline",
+        loading: false,
+      });
     } finally {
-      setLoading(false);
+      inFlight = null;
     }
-  }, []);
+  })();
+  return inFlight;
+}
+
+const getSnapshot = () => snapshot;
+
+/** Live book of record: GET /api/pipeline/data (shared cache). */
+export function usePipeline() {
+  const state = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
 
   useEffect(() => {
-    void reload();
-  }, [reload]);
+    // First mounted consumer kicks off the shared load; later ones reuse it.
+    if (snapshot.lastSync === null && !inFlight) void invalidatePipeline();
+  }, []);
 
-  return { companies, stages, agency, loading, error, isEmpty, reload, setCompanies };
+  const reload = useCallback(() => invalidatePipeline(), []);
+
+  /** Optimistic local patch (e.g. kanban drag) — visible to every consumer. */
+  const setCompanies = useCallback(
+    (updater: Company[] | ((prev: Company[]) => Company[])) => {
+      const nextCompanies =
+        typeof updater === "function"
+          ? (updater as (p: Company[]) => Company[])(snapshot.companies)
+          : updater;
+      setSnapshot({ companies: nextCompanies });
+    },
+    [],
+  );
+
+  return {
+    companies: state.companies,
+    stages: state.stages,
+    agency: state.agency,
+    loading: state.loading,
+    error: state.error,
+    isEmpty: state.isEmpty,
+    lastSync: state.lastSync,
+    reload,
+    setCompanies,
+  };
 }

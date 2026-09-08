@@ -9,6 +9,7 @@
  */
 const { put, get } = require("@vercel/blob");
 const fs = require("fs");
+const { randomUUID } = require("crypto");
 
 // Secrets live in the gitignored .env.local (env var wins if set). Never
 // hardcode a token — read it here. The values are rotated out-of-band.
@@ -78,13 +79,51 @@ function isConflict(e) {
   );
 }
 
+// Atomic claim: transition queued → running so exactly ONE worker wins (M12).
+// Re-read the book, verify it is still `queued`, stamp our runId + claimedAt,
+// and write with ifMatch. A precondition failure OR a status that is no longer
+// `queued` means another invocation beat us here — return null and abort. This
+// write is NEVER retried: a retry would be a second claim.
+async function claimRun() {
+  const { data, etag } = await blobGet();
+  const run = data.fleetRun;
+  if (!run || run.status !== "queued") return null;
+  const now = new Date().toISOString();
+  run.runId = randomUUID();
+  run.status = "running";
+  run.started = now;
+  run.claimedAt = now;
+  run.heartbeatAt = now;
+  run.log = [];
+  try {
+    await blobPut(data, etag);
+  } catch (e) {
+    if (isConflict(e)) return null;
+    throw e;
+  }
+  return run;
+}
+
 // Commit run state: this script owns only data.fleetRun. Re-read the book,
 // re-apply fleetRun, write with ifMatch; on conflict re-read + re-apply
 // (bounded). Never weaken to an unconditional overwrite.
+//
+// M12: once we hold the claim, bail out if the book's runId no longer matches
+// ours — a stale-run reset (see /api/fleet/run) plus a fresh claim by another
+// worker must not be clobbered by this now-orphaned invocation.
 async function commitRun(run) {
   const MAX_ATTEMPTS = 3;
+  run.heartbeatAt = new Date().toISOString();
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     const { data, etag } = await blobGet();
+    if (
+      run.runId &&
+      data.fleetRun &&
+      data.fleetRun.runId &&
+      data.fleetRun.runId !== run.runId
+    ) {
+      throw new Error("run reclaimed by another worker — aborting");
+    }
     data.fleetRun = run;
     try {
       await blobPut(data, etag);
@@ -117,17 +156,18 @@ async function a2a(message) {
 
 async function main() {
   const { data } = await blobGet();
-  const run = data.fleetRun;
-  if (!run || run.status !== "queued") {
+  const pending = data.fleetRun;
+  if (!pending || pending.status !== "queued") {
     console.log("[run-fleet] nothing queued");
     return;
   }
 
-  run.status = "running";
-  run.started = new Date().toISOString();
-  run.log = [];
-  await commitRun(run);
-  console.log("[run-fleet] starting fan-out");
+  const run = await claimRun();
+  if (!run) {
+    console.log("[run-fleet] run already claimed by another worker — aborting");
+    return;
+  }
+  console.log(`[run-fleet] claimed run ${run.runId} — starting fan-out`);
 
   for (const s of STEPS) {
     run.step = s.id;
@@ -137,7 +177,12 @@ async function main() {
     const entry = { step: s.id, label: s.label, at: new Date().toISOString() };
     try {
       const reply = await a2a(s.msg);
-      entry.reply = reply.slice(0, 800);
+      // A blank / sentinel reply is a failed step, not a completed one (M12).
+      if (!reply || !reply.trim() || reply.trim() === "(no reply)") {
+        entry.error = "empty agent reply";
+      } else {
+        entry.reply = reply.slice(0, 800);
+      }
     } catch (e) {
       entry.error = e.message;
     }
@@ -145,10 +190,17 @@ async function main() {
     await commitRun(run);
   }
 
-  run.status = "done";
+  // Final status reflects what actually happened (M12): all steps errored →
+  // failed; some errored → partial; otherwise done.
+  const failed = run.log.filter((e) => e.error);
+  run.status =
+    failed.length === 0 ? "done" : failed.length === run.log.length ? "failed" : "partial";
+  run.error = failed.length
+    ? failed.map((e) => `${e.step}: ${e.error}`).join("; ")
+    : null;
   run.completed = new Date().toISOString();
   await commitRun(run);
-  console.log("[run-fleet] done");
+  console.log(`[run-fleet] ${run.status}${run.error ? ` — ${run.error}` : ""}`);
 }
 
 main().catch((e) => {

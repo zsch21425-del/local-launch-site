@@ -39,6 +39,7 @@ export default function FleetPage() {
   const [panelErrors, setPanelErrors] = useState<Record<string, string>>({});
   const [lastUpdated, setLastUpdated] = useState<Record<string, string>>({});
   const [fleetRun, setFleetRun] = useState<any>(null);
+  const [runStale, setRunStale] = useState(false);
   const [runBusy, setRunBusy] = useState(false);
   const [runError, setRunError] = useState("");
 
@@ -102,10 +103,18 @@ export default function FleetPage() {
     setRunBusy(true);
     setRunError("");
     try {
-      const r = await fetch("/api/fleet/run", { method: "POST" });
+      const r = await fetch("/api/fleet/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // A wedged run (crashed worker) needs an explicit reset to re-queue.
+        body: JSON.stringify(runStale ? { reset: true } : {}),
+      });
       const d = await r.json();
       if (!r.ok) setRunError(d.error || "Failed to queue");
-      else setFleetRun(d.fleetRun);
+      else {
+        setFleetRun(d.fleetRun);
+        setRunStale(false);
+      }
     } catch (e: any) {
       setRunError(e.message || "Failed to queue");
     } finally {
@@ -118,7 +127,11 @@ export default function FleetPage() {
     const poll = async () => {
       try {
         const r = await fetch("/api/fleet/run");
-        if (r.ok) setFleetRun((await r.json()).fleetRun);
+        if (r.ok) {
+          const d = await r.json();
+          setFleetRun(d.fleetRun);
+          setRunStale(Boolean(d.stale));
+        }
       } catch {}
     };
     poll();
@@ -165,12 +178,17 @@ export default function FleetPage() {
             </h2>
             <button
               onClick={runPipeline}
-              disabled={runBusy || fleetRun?.status === "running" || fleetRun?.status === "queued"}
+              disabled={
+                runBusy ||
+                ((fleetRun?.status === "running" || fleetRun?.status === "queued") && !runStale)
+              }
               className="px-4 py-2 rounded-lg bg-[#2AA8A8]/20 border border-[#2AA8A8]/40 text-sm hover:bg-[#2AA8A8]/30 disabled:opacity-40"
             >
-              {fleetRun?.status === "running" || fleetRun?.status === "queued"
-                ? fleetRun?.status === "running" ? "Running…" : "Queued…"
-                : "Run Pipeline (Scout → Auditor → Closer)"}
+              {runStale
+                ? "Reset wedged run & re-run"
+                : fleetRun?.status === "running" || fleetRun?.status === "queued"
+                  ? fleetRun?.status === "running" ? "Running…" : "Queued…"
+                  : "Run Pipeline (Scout → Auditor → Closer)"}
             </button>
           </div>
 
@@ -222,6 +240,19 @@ export default function FleetPage() {
           {fleetRun?.status === "done" && (
             <p className="text-sm text-emerald-600 mt-3">
               ✓ Pipeline run complete{fleetRun.completed ? ` · ${fmtTime(fleetRun.completed)}` : ""}
+            </p>
+          )}
+
+          {(fleetRun?.status === "failed" || fleetRun?.status === "partial") && (
+            <p className="text-sm text-amber-600 mt-3">
+              {fleetRun.status === "failed" ? "✗ Pipeline run failed" : "⚠ Pipeline run finished with errors"}
+              {fleetRun.error ? ` · ${fleetRun.error}` : ""}
+            </p>
+          )}
+
+          {runStale && (
+            <p className="text-sm text-amber-600 mt-3">
+              ⚠ This run looks wedged (no worker heartbeat for 10+ min). Use the button above to reset and re-run.
             </p>
           )}
 

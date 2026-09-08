@@ -122,6 +122,14 @@ export async function POST(request: Request) {
 /**
  * GET /api/agent/chat?health=1 — lightweight connectivity probe for the UI chip.
  * Default GET without health still 405 (legacy poll path is dead).
+ *
+ * M16: this used to POST a real prompt to the supervisor ("reply PONG") and
+ * wait up to 25s for the model to answer — a liveness probe that consumed agent
+ * capacity and ran on every dashboard mount + a 60s interval. It now hits the
+ * relay's token-free `/health` endpoint instead: it tells us the tunnel is up
+ * without spending any agent work. A relay that predates `/health` will read as
+ * offline here — that is honest (we cannot confirm reachability) and cheap to
+ * fix on the relay side.
  */
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -138,30 +146,34 @@ export async function GET(request: Request) {
   }
 
   try {
-    const res = await fetch(`${relayBase}/chat`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Relay-Token": getRelayToken() },
-      body: JSON.stringify({
-        message: "health check — reply PONG one word only",
-        clientId: "system",
-      }),
-      signal: AbortSignal.timeout(25000),
+    const started = Date.now();
+    const res = await fetch(`${relayBase}/health`, {
+      method: "GET",
+      headers: { "X-Relay-Token": getRelayToken() },
+      signal: AbortSignal.timeout(8000),
     });
-    const data = await res.json().catch(() => ({}));
-    const reply = String(data.reply || "");
-    const ok =
-      res.ok &&
-      reply.length > 0 &&
-      !/unavailable|timed out|Error:/i.test(reply);
+    const latencyMs = Date.now() - started;
+    let reply = res.ok ? "ok" : `relay HTTP ${res.status}`;
+    try {
+      const data = await res.json();
+      if (data && typeof data === "object") {
+        reply = String(
+          (data as any).status ?? (data as any).reply ?? reply,
+        );
+      }
+    } catch {
+      /* non-JSON body is fine — res.ok already tells us what we need */
+    }
     return NextResponse.json({
-      connected: ok,
+      connected: res.ok,
       reply: reply.slice(0, 120),
-      latencyMs: null,
+      latencyMs,
     });
   } catch (e: any) {
     return NextResponse.json({
       connected: false,
       reply: e?.message || "unreachable",
+      latencyMs: null,
     });
   }
 }
