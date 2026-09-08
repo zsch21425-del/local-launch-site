@@ -1,0 +1,36 @@
+# Gitleaks secret-scan config for the LLOS dashboard.
+# Run: gitleaks detect --source . --config .gitleaks.toml --redact
+# (install: https://github.com/gitleaks/gitleaks)
+
+title = "LLOS dashboard secret scan"
+
+[[rules]]
+id = "a2a-token"
+description = "Local Launch A2A shared token"
+regex = '''a2a_[a-z0-9]{20,}'''
+tags = ["key", "a2a"]
+
+[[rules]]
+id = "neon-db-password"
+description = "Neon Postgres password prefix"
+regex = '''npg_[A-Za-z0-9]{20,}'''
+tags = ["key", "database"]
+
+[[rules]]
+id = "generic-api-key"
+description = "Generic API key / token assignment"
+regex = '''(?i)(api[_-]?key|secret|token|password|passwd)\s*[:=]\s*['"][A-Za-z0-9_\-]{20,}['"]'''
+tags = ["key"]
+
+[[rules]]
+id = "private-key"
+description = "PEM private key block"
+regex = '''-----BEGIN (RSA |EC |OPENSSH |PGP )?PRIVATE KEY-----'''
+tags = ["key", "crypto"]
+
+[allowlist]
+description = "Allowlist env-var reads (no literal secrets)"
+regexes = [
+  '''process\.env\.[A-Z_]+''',
+  '''os\.environ\.get\(['"][A-Z_]+['"]''',
+]

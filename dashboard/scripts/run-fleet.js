@@ -10,12 +10,24 @@
 const { put, get } = require("@vercel/blob");
 const fs = require("fs");
 
-const token = fs
-  .readFileSync("/mnt/d/LocalLaunch/dashboard/.env.local", "utf8")
-  .match(/^BLOB_READ_WRITE_TOKEN="?([^"\r\n]+)"?/m)[1];
+// Secrets live in the gitignored .env.local (env var wins if set). Never
+// hardcode a token — read it here. The values are rotated out-of-band.
+function secret(key) {
+  const fromEnv = process.env[key];
+  if (fromEnv) return fromEnv;
+  const m = fs
+    .readFileSync("/mnt/d/LocalLaunch/dashboard/.env.local", "utf8")
+    .match(new RegExp(`^${key}="?([^"\\r\\n]+)"?`, "m"));
+  return (m && m[1]) || "";
+}
 
-const SUPERVISOR_URL = "http://127.0.0.1:9913/";
-const A2A_TOKEN = "a2a_d45ce95e03f0c860a0e057796827638f";
+const token = secret("BLOB_READ_WRITE_TOKEN");
+const SUPERVISOR_URL = process.env.SUPERVISOR_A2A_URL || "http://127.0.0.1:9913/";
+const A2A_TOKEN = secret("A2A_TOKEN");
+if (!A2A_TOKEN) {
+  console.error("[run-fleet] A2A_TOKEN not set — add it to .env.local (never hardcode).");
+  process.exit(1);
+}
 
 const STEPS = [
   { id: "scout", label: "Scout — finding new leads", msg: "Fan out to Scout: find new no-website local businesses in the Greenville/Spartanburg area. Return the leads you found (business name + city + phone, if known)." },

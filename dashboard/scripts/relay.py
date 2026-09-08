@@ -5,6 +5,10 @@ import json, http.server, urllib.request, os
 SUPERVISOR_URL = 'http://127.0.0.1:9912/v1/chat/completions'
 PORT = int(os.environ.get('RELAY_PORT', 9924))
 API_SERVER_KEY = os.environ.get('API_SERVER_KEY', '')
+RELAY_TOKEN = os.environ.get('RELAY_TOKEN', '')
+
+# NOTE: superseded by /opt/ll-relay.py (A2A relay) on the droplet. Kept for
+# reference only — bind loopback + require X-Relay-Token so it is never exposed.
 
 
 def _load_api_key():
@@ -33,6 +37,9 @@ class Relay(http.server.BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_POST(self):
+        if RELAY_TOKEN and self.headers.get('X-Relay-Token', '') != RELAY_TOKEN:
+            self._json({'reply': 'unauthorized'}, 401)
+            return
         length = int(self.headers.get('Content-Length', 0))
         body = json.loads(self.rfile.read(length)) if length else {}
 
@@ -78,4 +85,4 @@ class Relay(http.server.BaseHTTPRequestHandler):
         print(f"[relay] {args[0]}")
 
 print(f'Relay on :{PORT} → Supervisor API')
-http.server.HTTPServer(('0.0.0.0', PORT), Relay).serve_forever()
+http.server.HTTPServer(('127.0.0.1', PORT), Relay).serve_forever()

@@ -6,11 +6,32 @@
  */
 const { Pool } = require('pg');
 const http = require('http');
+const fs = require('fs');
 
-const DATABASE_URL = process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_aWgfM0tN1Erv@ep-aged-waterfall-awf3p25s.c-12.us-east-1.aws.neon.tech/neondb?sslmode=require';
+// Secrets live in the gitignored .env.local (env var wins if set). Never
+// hardcode the Neon password — read it here. Rotated out-of-band.
+function secret(key) {
+  const fromEnv = process.env[key];
+  if (fromEnv) return fromEnv;
+  try {
+    const m = fs
+      .readFileSync("/mnt/d/LocalLaunch/dashboard/.env.local", "utf8")
+      .match(new RegExp(`^${key}="?([^"\\r\\n]+)"?`, "m"));
+    return (m && m[1]) || "";
+  } catch {
+    return "";
+  }
+}
+
+const DATABASE_URL = secret("DATABASE_URL");
 const SUPERVISOR_URL = process.env.SUPERVISOR_URL || 'http://127.0.0.1:9912/v1/chat/completions';
 
-const pool = new Pool({ connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } });
+if (!DATABASE_URL) {
+  console.error('DATABASE_URL not set — add it to .env.local (do NOT hardcode the Neon password).');
+  process.exit(1);
+}
+
+const pool = new Pool({ connectionString: DATABASE_URL, ssl: { rejectUnauthorized: true } });
 
 const SYSTEM_PROMPT = `You are the Local Launch Supervisor agent, embedded in the dashboard. You have access to the full pipeline.
 
