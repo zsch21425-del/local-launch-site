@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { readPipelineSafe, mutatePipeline } from "@/lib/pipeline-store";
 import {
   companyEmailCandidate,
+  gateDeadPricing,
   gateEmail,
+  gateScLaw,
 } from "@/lib/email-gate";
 
 const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
@@ -105,6 +107,77 @@ export async function POST(request: Request) {
         },
         { status: 400 },
       );
+    }
+
+    // ── PRE-SEND CONTENT GATES (Astra audit #1, Zach-approved 2026-09-08) ──
+    // Dead pricing ($300/$49/$90/tiers) + SC call/text CTA + demo-live curl.
+    const draftBody = preCompany.pitchDraft?.body ?? "";
+    const priceGate = gateDeadPricing(draftBody);
+    if (!priceGate.ok) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `Draft blocked: ${priceGate.reason}.`,
+          priceGate,
+        },
+        { status: 400 },
+      );
+    }
+    const scGate = gateScLaw(draftBody, (preCompany as any).location ?? null);
+    if (!scGate.ok) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `Draft blocked: ${scGate.reason}.`,
+          scGate,
+        },
+        { status: 400 },
+      );
+    }
+    // Demo-live curl: tier A/B drafts (no/weak site) must carry a live demo URL.
+    const demoMatches: RegExpMatchArray[] = Array.from(
+      draftBody.matchAll(/https?:\/\/[a-z0-9-]+\.vercel\.app[^\s)"']*/gi),
+    );
+    const demoUrls: string[] = Array.from(new Set(demoMatches.map((m) => m[0])));
+    let demoGate: { status: string; reason: string; ok: boolean } = {
+      status: "PASS",
+      reason: "no demo URL in draft — tier C/D or GEO pitch, no demo required",
+      ok: true,
+    };
+    if (demoUrls.length > 0) {
+      const checked = await Promise.all(
+        demoUrls.map(async (u) => {
+          try {
+            const r = await fetch(u, { method: "HEAD", signal: AbortSignal.timeout(15000) });
+            return { url: u, ok: r.ok, status: r.status };
+          } catch {
+            return { url: u, ok: false, status: 0 };
+          }
+        }),
+      );
+      const dead = checked.filter((c) => !c.ok);
+      demoGate =
+        dead.length === 0
+          ? {
+              status: "PASS",
+              reason: `${checked.length} demo URL(s) live`,
+              ok: true,
+            }
+          : {
+              status: "FAIL",
+              reason: `demo URL(s) not live: ${dead.map((d) => `${d.url} (HTTP ${d.status})`).join(", ")} — fix demoUrl before approving`,
+              ok: false,
+            };
+      if (dead.length > 0) {
+        return NextResponse.json(
+          {
+            ok: false,
+            error: `Draft blocked: ${demoGate.reason}.`,
+            demoGate,
+          },
+          { status: 400 },
+        );
+      }
     }
   }
 
