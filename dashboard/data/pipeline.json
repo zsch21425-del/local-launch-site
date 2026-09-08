@@ -10666,6 +10666,24 @@
         "max": 100,
         "label": "G-SCORE"
       }
+    },
+    {
+      "id": "sc-pro-painters-trash",
+      "slug": "sc-pro-painters-trash",
+      "name": "SC Pro Painters (claimed)",
+      "category": "Painting (unverified)",
+      "stage": "prospect",
+      "location": "Upstate SC (unverified)",
+      "phone": "(864) 774-1105",
+      "email": "",
+      "website": "",
+      "summary": "Inbound SMS solicitation to Zach (claimed site down for maintenance, partner Jeff). No GBP/domain/reviews footprint (Scout verified). Marked TRASH per Zach 2026-09-08 \u2014 do not pursue.",
+      "responseStatus": "trash",
+      "sendTruth": {
+        "status": "none"
+      },
+      "demoUrl": "",
+      "lastUpdated": "2026-09-08T19:56:57.392446+00:00"
     }
   ],
   "stages": [
