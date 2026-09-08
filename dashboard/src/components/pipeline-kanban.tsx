@@ -145,7 +145,7 @@ export function PipelineKanban({
     <div className="flex flex-col gap-3">
       {/* Territory scope — SC focus is the daily view, expansion one click away */}
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 text-[11px] font-medium uppercase tracking-wide text-slate-400">
+        <span className="mr-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
           Territory
         </span>
         {(["sc", "upstate", "all", "out-of-state"] as const).map((r) => (
@@ -158,7 +158,7 @@ export function PipelineKanban({
           />
         ))}
         {region !== "sc" ? (
-          <span className="ml-1 text-[11px] text-slate-400">
+          <span className="ml-1 text-[11px] text-muted-foreground">
             {region === "all"
               ? "Full book incl. expansion"
               : region === "upstate"
@@ -170,7 +170,7 @@ export function PipelineKanban({
 
       {/* Stage focus chips */}
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 text-[11px] font-medium uppercase tracking-wide text-slate-400">
+        <span className="mr-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
           Focus
         </span>
         <Chip
@@ -237,8 +237,8 @@ export function PipelineKanban({
           </div>
         </div>
 
-        <p className="mt-1 flex items-center gap-1.5 text-[11px] text-slate-500">
-          <MoveHorizontal className="size-3.5 text-slate-400" aria-hidden />
+        <p className="mt-1 flex items-center gap-1.5 text-[11px] text-muted-foreground">
+          <MoveHorizontal className="size-3.5 text-muted-foreground" aria-hidden />
           {filter === "all"
             ? "Drag by the grip to move stages. Saved live."
             : `Focused on ${stages.find((s) => s.id === filter)?.label ?? filter}. Drag to a slim column to change stage.`}
@@ -266,15 +266,15 @@ function Chip({
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium transition-colors ring-1",
         active
-          ? "bg-emerald-600 text-white ring-emerald-600"
-          : "bg-white/80 text-slate-600 ring-slate-200 hover:bg-white hover:ring-emerald-300",
+          ? "bg-primary text-white ring-ring"
+          : "bg-card/80 text-muted-foreground ring-border hover:bg-card hover:ring-ring",
       )}
     >
       {label}
       <span
         className={cn(
           "tnum rounded-full px-1.5 py-0.5 text-[10px] font-semibold",
-          active ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600",
+          active ? "bg-card/20 text-white" : "bg-muted text-muted-foreground",
         )}
       >
         {count}

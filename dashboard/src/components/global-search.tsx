@@ -30,7 +30,7 @@ export function GlobalSearch({ className }: { className?: string }) {
   return (
     <div className={cn("relative", className)}>
       <div className="relative">
-        <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-slate-400" />
+        <Search className="pointer-events-none absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
         <input
           value={q}
           onChange={(e) => {
@@ -41,16 +41,16 @@ export function GlobalSearch({ className }: { className?: string }) {
           onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder="Find a company…"
           aria-label="Find a company already in the dashboard"
-          className="w-full rounded-lg border border-slate-300 bg-white py-1.5 pl-8 pr-2 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+          className="w-full rounded-lg border border-border bg-card py-1.5 pl-8 pr-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
         />
       </div>
       {open && q.trim() ? (
         <div
           role="listbox"
-          className="absolute left-0 right-0 top-full z-30 mt-1 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg"
+          className="absolute left-0 right-0 top-full z-30 mt-1 overflow-hidden rounded-lg border border-border bg-card shadow-lg"
         >
           {matches.length === 0 ? (
-            <p role="status" className="px-3 py-2.5 text-sm text-slate-500">
+            <p role="status" className="px-3 py-2.5 text-sm text-muted-foreground">
               Not in the dashboard yet.
             </p>
           ) : (
@@ -70,10 +70,10 @@ export function GlobalSearch({ className }: { className?: string }) {
                 // before the click lands; keyboard users get a real onClick.
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={go}
-                className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm hover:bg-slate-50"
+                className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm hover:bg-muted"
               >
-                <span className="truncate font-medium text-slate-700">{c.name}</span>
-                <span className="shrink-0 text-[11px] uppercase tracking-wide text-slate-400">
+                <span className="truncate font-medium text-foreground">{c.name}</span>
+                <span className="shrink-0 text-[11px] uppercase tracking-wide text-muted-foreground">
                   {c.stage}
                 </span>
               </button>

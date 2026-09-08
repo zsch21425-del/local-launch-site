@@ -32,15 +32,15 @@ export default function ClientsPage() {
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 sm:py-12">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               Clients
             </h1>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Won and in-build companies only. Leads live on the Leads tab.
               {loading ? " Loading live list…" : ""}
             </p>
             {error ? (
-              <p role="alert" className="mt-1 text-sm text-rose-600">
+              <p role="alert" className="mt-1 text-sm text-destructive">
                 {error}
               </p>
             ) : null}
@@ -52,30 +52,30 @@ export default function ClientsPage() {
           <label htmlFor="client-search" className="sr-only">
             Search clients by name, category, or location
           </label>
-          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <input
             id="client-search"
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search a client by name, category, or location…"
-            className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+            className="w-full rounded-lg border border-border bg-card py-2 pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
           />
         </div>
 
         {allCompanies.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center">
-            <p className="font-medium text-slate-700">
+          <div className="rounded-xl border border-dashed border-border bg-muted px-6 py-10 text-center">
+            <p className="font-medium text-foreground">
               {loading ? "Loading clients…" : "No won / in-build clients yet"}
             </p>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Prospects stay on Leads until they close. Check the pipeline or Approvals.
             </p>
           </div>
         ) : query.trim() && companies.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center">
-            <p className="font-medium text-slate-700">Not a current client</p>
-            <p className="mt-1 text-sm text-slate-500">
+          <div className="rounded-xl border border-dashed border-border bg-muted px-6 py-10 text-center">
+            <p className="font-medium text-foreground">Not a current client</p>
+            <p className="mt-1 text-sm text-muted-foreground">
               No client matches “{query}”. Try the sidebar search to check Leads, or add them from Leads.
             </p>
           </div>

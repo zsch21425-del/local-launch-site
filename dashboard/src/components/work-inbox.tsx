@@ -59,16 +59,16 @@ export function WorkInboxPanel({ inbox }: { inbox: WorkInbox }) {
       <section className={cn(glass, "p-5")}>
         <div className="mb-3 flex items-end justify-between gap-3">
           <div>
-            <h2 className="text-base font-semibold tracking-tight text-slate-900">
+            <h2 className="text-base font-semibold tracking-tight text-foreground">
               Pipeline position
             </h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <p className="mt-0.5 text-xs text-muted-foreground">
               Live stage counts — where every prospect actually sits.
             </p>
           </div>
           <Link
             href="/#pipeline"
-            className="text-xs font-medium text-emerald-700 hover:underline"
+            className="text-xs font-medium text-primary hover:underline"
           >
             Open board →
           </Link>
@@ -91,12 +91,12 @@ export function WorkInboxPanel({ inbox }: { inbox: WorkInbox }) {
               <Link
                 key={id}
                 href={stageBoardHref(id)}
-                className="rounded-xl border border-slate-200 bg-white/80 px-3 py-3 transition-colors hover:border-emerald-300 hover:bg-white"
+                className="rounded-xl border border-border bg-card/80 px-3 py-3 transition-colors hover:border-primary hover:bg-card"
               >
-                <p className="text-[11px] font-medium text-slate-500">
+                <p className="text-[11px] font-medium text-muted-foreground">
                   {STAGE_LABEL[id] || id}
                 </p>
-                <p className="tnum mt-1 text-2xl font-bold tracking-tight text-slate-900">
+                <p className="tnum mt-1 text-2xl font-bold tracking-tight text-foreground">
                   {n}
                 </p>
                 <span
@@ -201,39 +201,39 @@ export function WorkInboxPanel({ inbox }: { inbox: WorkInbox }) {
       <section id="agent-work" className={cn(glass, "p-5")}>
         <div className="mb-3 flex items-end justify-between gap-3">
           <div>
-            <h2 className="flex items-center gap-2 text-base font-semibold tracking-tight text-slate-900">
-              <Bot className="size-4 text-rose-600" />
+            <h2 className="flex items-center gap-2 text-base font-semibold tracking-tight text-foreground">
+              <Bot className="size-4 text-destructive" />
               Agent work queue
             </h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <p className="mt-0.5 text-xs text-muted-foreground">
               Demo/pitch rejects and blocked sends — with your notes. Agent
               should clear these without you repeating them in Telegram.
             </p>
           </div>
-          <span className="tnum rounded-full bg-rose-600 px-2.5 py-0.5 text-xs font-semibold text-white">
+          <span className="tnum rounded-full bg-destructive px-2.5 py-0.5 text-xs font-semibold text-white">
             {inbox.agentWork}
           </span>
         </div>
         {inbox.agentWorkItems.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-slate-200 py-8 text-center">
-            <CheckCircle2 className="size-5 text-emerald-500" />
-            <p className="text-sm font-medium text-slate-700">
+          <div className="flex flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-border py-8 text-center">
+            <CheckCircle2 className="size-5 text-primary" />
+            <p className="text-sm font-medium text-foreground">
               Nothing waiting on the agent.
             </p>
           </div>
         ) : (
-          <ol className="divide-y divide-slate-900/[0.06]">
+          <ol className="divide-y divide-border/[0.06]">
             {inbox.agentWorkItems.map((item) => {
               const theme = priorityTheme(item.priority);
               return (
                 <li key={item.id}>
                   <Link
                     href={item.href}
-                    className="flex flex-col gap-0.5 py-2.5 transition-colors hover:bg-slate-50/80 sm:flex-row sm:items-start sm:gap-3"
+                    className="flex flex-col gap-0.5 py-2.5 transition-colors hover:bg-muted sm:flex-row sm:items-start sm:gap-3"
                   >
                     <span className="min-w-0 flex-1">
                       <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                        <span className="truncate text-sm font-medium text-slate-800">
+                        <span className="truncate text-sm font-medium text-foreground">
                           {item.companyName}
                         </span>
                         <span
@@ -244,11 +244,11 @@ export function WorkInboxPanel({ inbox }: { inbox: WorkInbox }) {
                         >
                           {formatPriority(item.priority)}
                         </span>
-                        <span className="rounded-full bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-600">
+                        <span className="rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
                           {item.title}
                         </span>
                       </span>
-                      <span className="mt-0.5 block text-xs text-slate-500">
+                      <span className="mt-0.5 block text-xs text-muted-foreground">
                         {item.detail}
                       </span>
                       {item.note ? (
@@ -300,37 +300,37 @@ function Bucket({
   }[];
 }) {
   const tones: Record<string, string> = {
-    emerald: "bg-emerald-600 text-white",
-    rose: "bg-rose-600 text-white",
+    emerald: "bg-primary text-white",
+    rose: "bg-destructive text-white",
     sky: "bg-sky-600 text-white",
     amber: "bg-amber-600 text-white",
     violet: "bg-violet-600 text-white",
-    green: "bg-green-700 text-white",
-    slate: "bg-slate-700 text-white",
+    green: "bg-primary text-white",
+    slate: "bg-foreground text-white",
   };
   const icons: Record<string, string> = {
-    emerald: "bg-emerald-500/10 text-emerald-700",
-    rose: "bg-rose-500/10 text-rose-700",
+    emerald: "bg-primary/10 text-primary",
+    rose: "bg-destructive/10 text-destructive",
     sky: "bg-sky-500/10 text-sky-700",
     amber: "bg-amber-500/10 text-amber-700",
     violet: "bg-violet-500/10 text-violet-700",
-    green: "bg-green-600/10 text-green-800",
-    slate: "bg-slate-500/10 text-slate-700",
+    green: "bg-primary/10 text-primary",
+    slate: "bg-muted-foreground/10 text-foreground",
   };
 
   return (
     <div className={cn(glass, "flex flex-col gap-3 p-5")}>
       <div>
-        <h2 className="text-base font-semibold tracking-tight text-slate-900">
+        <h2 className="text-base font-semibold tracking-tight text-foreground">
           {title}
         </h2>
-        <p className="mt-0.5 text-xs text-slate-500">{subtitle}</p>
+        <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p>
       </div>
       {items.map((it) => (
         <Link
           key={it.label}
           href={it.href}
-          className="flex items-center justify-between rounded-xl border border-slate-200 bg-white/70 px-3.5 py-3 transition-colors hover:border-emerald-400/50 hover:bg-white"
+          className="flex items-center justify-between rounded-xl border border-border bg-card/70 px-3.5 py-3 transition-colors hover:border-primary/50 hover:bg-card"
         >
           <span className="flex items-center gap-2.5">
             <span
@@ -342,10 +342,10 @@ function Bucket({
               <it.icon className="size-4" />
             </span>
             <span>
-              <span className="block text-sm font-medium text-slate-800">
+              <span className="block text-sm font-medium text-foreground">
                 {it.label}
               </span>
-              <span className="text-[11px] text-slate-500">{it.hint}</span>
+              <span className="text-[11px] text-muted-foreground">{it.hint}</span>
             </span>
           </span>
           <span
@@ -373,27 +373,27 @@ function ItemList({
 }) {
   return (
     <div className={cn(glass, "flex flex-col p-5")}>
-      <h2 className="mb-2 text-base font-semibold tracking-tight text-slate-900">
+      <h2 className="mb-2 text-base font-semibold tracking-tight text-foreground">
         {title}
       </h2>
       {items.length === 0 ? (
-        <div className="flex flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-slate-200 py-8 text-center">
-          <CheckCircle2 className="size-5 text-emerald-500" />
-          <p className="text-sm font-medium text-slate-700">{empty}</p>
+        <div className="flex flex-1 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-border py-8 text-center">
+          <CheckCircle2 className="size-5 text-primary" />
+          <p className="text-sm font-medium text-foreground">{empty}</p>
         </div>
       ) : (
-        <ol className="divide-y divide-slate-900/[0.06]">
+        <ol className="divide-y divide-border/[0.06]">
           {items.map((item) => {
             const theme = priorityTheme(item.priority);
             return (
               <li key={item.id}>
                 <Link
                   href={item.href}
-                  className="flex items-start gap-3 py-2.5 transition-colors hover:bg-slate-50/80"
+                  className="flex items-start gap-3 py-2.5 transition-colors hover:bg-muted"
                 >
                   <span className="min-w-0 flex-1">
                     <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                      <span className="truncate text-sm font-medium text-slate-800">
+                      <span className="truncate text-sm font-medium text-foreground">
                         {item.companyName}
                       </span>
                       <span
@@ -405,7 +405,7 @@ function ItemList({
                         {formatPriority(item.priority)}
                       </span>
                     </span>
-                    <span className="mt-0.5 block text-xs text-slate-500">
+                    <span className="mt-0.5 block text-xs text-muted-foreground">
                       {item.title}
                       {item.detail ? ` · ${item.detail}` : ""}
                     </span>

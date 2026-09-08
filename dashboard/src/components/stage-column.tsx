@@ -56,7 +56,7 @@ export function StageColumn({
           </span>
           <h3
             className={cn(
-              "truncate text-[13px] font-semibold tracking-tight text-slate-800",
+              "truncate text-[13px] font-semibold tracking-tight text-foreground",
               compact && "text-[11px] leading-tight whitespace-normal",
             )}
           >
@@ -87,7 +87,7 @@ export function StageColumn({
             className={cn(
               "flex min-h-[8rem] flex-1 flex-col gap-2.5 rounded-b-2xl p-3 transition-colors duration-200",
               compact && "min-h-[10rem] p-2",
-              snapshot.isDraggingOver && "bg-emerald-500/[0.12]",
+              snapshot.isDraggingOver && "bg-primary/[0.12]",
             )}
           >
             {companies.map((company, index) => (
@@ -125,12 +125,12 @@ export function StageColumn({
             {companies.length === 0 && !snapshot.isDraggingOver ? (
               <div
                 className={cn(
-                  "flex flex-1 flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-slate-900/10 text-center",
+                  "flex flex-1 flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-foreground/10 text-center",
                   compact ? "px-1 py-6" : "py-8",
                 )}
               >
-                <Inbox className="size-4 text-slate-300" aria-hidden />
-                <p className="text-[11px] leading-snug text-slate-400">
+                <Inbox className="size-4 text-muted-foreground/60" aria-hidden />
+                <p className="text-[11px] leading-snug text-muted-foreground">
                   {emptyHint || "Drop a client here"}
                 </p>
               </div>

@@ -133,10 +133,10 @@ function DemoFeedbackForm({
   const tone =
     mode === "reject"
       ? {
-          box: "border-rose-200 bg-rose-50/60",
-          title: "text-rose-700",
-          btn: "bg-rose-600 hover:bg-rose-700",
-          ring: "focus:ring-rose-400",
+          box: "border-destructive bg-destructive/10",
+          title: "text-destructive",
+          btn: "bg-destructive hover:bg-destructive/90",
+          ring: "focus:ring-destructive",
           label: "Reject",
         }
       : {
@@ -153,7 +153,7 @@ function DemoFeedbackForm({
         <MessageSquareWarning className="size-4" />
         {tone.label} &quot;{name}&quot; — tell the agent what to fix
       </p>
-      <p className="mb-2 text-[11px] text-slate-500">
+      <p className="mb-2 text-[11px] text-muted-foreground">
         This is saved on the company record and sent to the Local Launch agent.
         You should not need Telegram for the same note.
       </p>
@@ -164,7 +164,7 @@ function DemoFeedbackForm({
         rows={3}
         autoFocus
         className={cn(
-          "w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2",
+          "w-full rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2",
           tone.ring,
         )}
       />
@@ -174,11 +174,11 @@ function DemoFeedbackForm({
         placeholder="What should change? (optional — e.g. 'swap hero to real pour video, fix mobile CTA clip, use Fountain Inn not Greenville')"
         rows={2}
         className={cn(
-          "mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2",
+          "mt-2 w-full rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2",
           tone.ring,
         )}
       />
-      {error ? <p className="mt-1 text-xs text-rose-600">{error}</p> : null}
+      {error ? <p className="mt-1 text-xs text-destructive">{error}</p> : null}
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <button
           type="button"
@@ -195,7 +195,7 @@ function DemoFeedbackForm({
           type="button"
           disabled={saving}
           onClick={onCancel}
-          className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-50"
+          className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted disabled:opacity-50"
         >
           Cancel
         </button>
@@ -323,17 +323,17 @@ export default function DemosPage() {
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
         <Link
           href="/"
-          className="group -ml-2 inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-slate-500 transition-colors hover:text-slate-800"
+          className="group -ml-2 inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
           Back to Ops
         </Link>
 
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             Demo Approvals
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-muted-foreground">
             {pendingCount} waiting · {reworkCount} need fixes · sorted
             pending-first, high-priority + oldest fixes up top
             {" · "}
@@ -343,18 +343,18 @@ export default function DemosPage() {
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <div className="relative flex-1">
-            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400" />
+            <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search name, category, or rejection notes…"
-              className="w-full rounded-lg border border-slate-300 bg-white py-2 pr-3 pl-9 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none"
+              className="w-full rounded-lg border border-border bg-card py-2 pr-3 pl-9 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
             />
           </div>
           <select
             value={region}
             onChange={(e) => setRegion(e.target.value as RegionFilter)}
-            className="rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-xs font-medium text-slate-600 focus:outline-none"
+            className="rounded-lg border border-border bg-card px-2.5 py-2 text-xs font-medium text-muted-foreground focus:outline-none"
             aria-label="Filter by territory"
             title="SC focus = Upstate + rest of SC. Expansion = out-of-state + unknown."
           >
@@ -364,7 +364,7 @@ export default function DemosPage() {
               </option>
             ))}
           </select>
-          <div className="flex gap-1 rounded-lg border border-slate-300 bg-white p-1">
+          <div className="flex gap-1 rounded-lg border border-border bg-card p-1">
             {(["all", "pending", "rejected", "rework"] as const).map((f) => (
               <button
                 key={f}
@@ -373,8 +373,8 @@ export default function DemosPage() {
                 className={
                   "rounded-md px-3 py-1.5 text-xs font-medium capitalize transition-colors " +
                   (filter === f
-                    ? "bg-emerald-500 text-white"
-                    : "text-slate-500 hover:bg-slate-100")
+                    ? "bg-primary text-white"
+                    : "text-muted-foreground hover:bg-muted")
                 }
               >
                 {f}
@@ -410,13 +410,13 @@ export default function DemosPage() {
         {/* HTTP / network error — shown even when a stale list is still on screen. */}
         {error ? (
           <div
-            className={`${glassCard} flex flex-wrap items-center justify-between gap-3 border-rose-200 bg-rose-50/60 px-4 py-3`}
+            className={`${glassCard} flex flex-wrap items-center justify-between gap-3 border-destructive bg-destructive/10 px-4 py-3`}
           >
-            <p className="text-sm font-medium text-rose-700">{error}</p>
+            <p className="text-sm font-medium text-destructive">{error}</p>
             <button
               type="button"
               onClick={() => void load()}
-              className="rounded-lg bg-rose-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-rose-700"
+              className="rounded-lg bg-destructive px-3 py-1.5 text-xs font-medium text-white hover:bg-destructive/90"
             >
               Retry
             </button>
@@ -425,11 +425,11 @@ export default function DemosPage() {
 
         {loading ? (
           <div className={`${glassCard} py-16 text-center`}>
-            <p className="text-sm text-slate-400">Loading demos…</p>
+            <p className="text-sm text-muted-foreground">Loading demos…</p>
           </div>
         ) : visible.length === 0 ? (
           <div className={`${glassCard} py-16 text-center`}>
-            <p className="text-lg font-medium text-slate-600">
+            <p className="text-lg font-medium text-muted-foreground">
               {error
                 ? "Demo queue unavailable — retry above."
                 : demos.length === 0
@@ -438,7 +438,7 @@ export default function DemosPage() {
             </p>
             <Link
               href="/"
-              className="mt-2 inline-block text-sm text-emerald-600 hover:underline"
+              className="mt-2 inline-block text-sm text-primary hover:underline"
             >
               Back to Ops →
             </Link>
@@ -581,7 +581,7 @@ function DemoCard({
     : isVerifying
       ? { label: "Verifying · QA", cls: "bg-amber-100 text-amber-700" }
       : isRejected
-        ? { label: "Rejected", cls: "bg-rose-100 text-rose-700" }
+        ? { label: "Rejected", cls: "bg-destructive/10 text-destructive" }
         : isRework
           ? { label: "Rework", cls: "bg-violet-100 text-violet-700" }
           : { label: "Pending", cls: "bg-sky-100 text-sky-700" };
@@ -597,7 +597,7 @@ function DemoCard({
         className="relative block h-32 w-full"
         style={{ background: thumbGradient(demo.companyId) }}
       >
-        <span className="absolute top-3 left-3 grid size-10 place-items-center rounded-lg bg-white/90 text-sm font-bold text-slate-800">
+        <span className="absolute top-3 left-3 grid size-10 place-items-center rounded-lg bg-card/90 text-sm font-bold text-foreground">
           {initials(demo.name)}
         </span>
         <span className="absolute right-3 bottom-3 inline-flex items-center gap-1 rounded-md bg-black/30 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
@@ -609,7 +609,7 @@ function DemoCard({
         <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
           <Link
             href={`/client/${demo.companyId}`}
-            className="text-base font-semibold text-slate-900 transition-colors hover:text-emerald-600"
+            className="text-base font-semibold text-foreground transition-colors hover:text-primary"
           >
             {demo.name}
           </Link>
@@ -620,7 +620,7 @@ function DemoCard({
           </span>
         </div>
 
-        <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+        <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
           {demo.category ? <span>{demo.category}</span> : null}
           {demo.location ? <span>{demo.location}</span> : null}
         </div>
@@ -629,7 +629,7 @@ function DemoCard({
           href={demo.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-emerald-600 hover:underline"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
         >
           Open demo <ExternalLink className="size-3.5" />
         </a>
@@ -640,24 +640,24 @@ function DemoCard({
             <p className="text-xs font-semibold text-amber-900">
               Your notes to the agent
             </p>
-            <p className="mt-1 text-sm text-slate-800">
-              <span className="font-medium text-slate-600">Reason:</span>{" "}
+            <p className="mt-1 text-sm text-foreground">
+              <span className="font-medium text-muted-foreground">Reason:</span>{" "}
               {fb.reason}
             </p>
             {fb.suggestedFix ? (
-              <p className="mt-1 text-sm text-slate-800">
-                <span className="font-medium text-slate-600">Fix:</span>{" "}
+              <p className="mt-1 text-sm text-foreground">
+                <span className="font-medium text-muted-foreground">Fix:</span>{" "}
                 {fb.suggestedFix}
               </p>
             ) : null}
             {fb.reviewedAt ? (
-              <p className="mt-1 text-[11px] text-slate-400">
+              <p className="mt-1 text-[11px] text-muted-foreground">
                 {new Date(fb.reviewedAt).toLocaleString()}
               </p>
             ) : null}
             <Link
               href={`/client/${demo.companyId}`}
-              className="mt-2 inline-block text-xs font-medium text-emerald-700 hover:underline"
+              className="mt-2 inline-block text-xs font-medium text-primary hover:underline"
             >
               Open client → chat agent about this fix
             </Link>
@@ -679,17 +679,17 @@ function DemoCard({
               ☠ Failed {demo.rebuildAttempts ?? 3} rebuild attempts — needs manual re-queue
             </p>
             {demo.lastError ? (
-              <p className="mt-1 text-sm text-slate-800">
-                <span className="font-medium text-slate-600">Last error:</span>{" "}
+              <p className="mt-1 text-sm text-foreground">
+                <span className="font-medium text-muted-foreground">Last error:</span>{" "}
                 {demo.lastError}
               </p>
             ) : null}
           </div>
         ) : null}
 
-        {error ? <p className="mt-2 text-xs text-rose-600">{error}</p> : null}
+        {error ? <p className="mt-2 text-xs text-destructive">{error}</p> : null}
         {relayNote ? (
-          <p className="mt-2 text-xs text-emerald-700">{relayNote}</p>
+          <p className="mt-2 text-xs text-primary">{relayNote}</p>
         ) : null}
 
         {form ? (
@@ -708,7 +708,7 @@ function DemoCard({
               disabled={loading || isVerifying}
               title={isVerifying ? "Awaiting vision QA — cannot approve yet" : undefined}
               onClick={() => void approve()}
-              className="flex-1 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-600 disabled:opacity-50"
+              className="flex-1 rounded-lg bg-primary px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90 disabled:opacity-50"
             >
               {loading ? "…" : "Approve"}
             </button>
@@ -724,7 +724,7 @@ function DemoCard({
               type="button"
               disabled={loading}
               onClick={() => setForm("reject")}
-              className="flex-1 rounded-lg bg-rose-500 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-rose-600 disabled:opacity-50"
+              className="flex-1 rounded-lg bg-destructive px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-destructive/90 disabled:opacity-50"
             >
               Reject
             </button>

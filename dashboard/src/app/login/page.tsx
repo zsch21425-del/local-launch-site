@@ -53,21 +53,21 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100 p-6">
+    <div className="flex min-h-screen items-center justify-center bg-muted p-6">
       <form
         onSubmit={submit}
-        className="w-full max-w-sm space-y-5 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
+        className="w-full max-w-sm space-y-5 rounded-2xl border border-border bg-card p-8 shadow-sm"
       >
         <div className="text-center">
-          <div className="mx-auto mb-3 grid size-12 place-items-center rounded-full border border-emerald-500/20 bg-emerald-500/10">
-            <Lock className="size-5 text-emerald-700" />
+          <div className="mx-auto mb-3 grid size-12 place-items-center rounded-full border border-primary/20 bg-primary/10">
+            <Lock className="size-5 text-primary" />
           </div>
-          <h1 className="text-xl font-bold text-slate-900">Local Launch OS</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-xl font-bold text-foreground">Local Launch OS</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
             Enter the 4-digit access code
           </p>
           {nextPath !== "/" ? (
-            <p className="mt-1 text-[11px] text-slate-400">
+            <p className="mt-1 text-[11px] text-muted-foreground">
               After sign-in → {nextPath}
             </p>
           ) : null}
@@ -86,17 +86,17 @@ export default function LoginPage() {
           autoFocus
           aria-invalid={!!error}
           aria-describedby={error ? "login-error" : undefined}
-          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+          className="w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-ring/20"
         />
         {error ? (
-          <p id="login-error" role="alert" className="text-sm text-rose-600">
+          <p id="login-error" role="alert" className="text-sm text-destructive">
             {error}
           </p>
         ) : null}
         <button
           type="submit"
           disabled={busy || !token.trim()}
-          className="w-full rounded-lg bg-emerald-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700 disabled:opacity-40"
+          className="w-full rounded-lg bg-primary py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary/90 disabled:opacity-40"
         >
           {busy ? "Signing in…" : "Sign in"}
         </button>

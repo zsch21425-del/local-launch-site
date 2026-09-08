@@ -22,7 +22,7 @@ export function ClientContact({
 
   return (
     <div className={cn(glassCard, "flex flex-col gap-3 p-5", className)}>
-      <h2 className="text-sm font-semibold text-slate-700">Contact</h2>
+      <h2 className="text-sm font-semibold text-foreground">Contact</h2>
 
       <dl className="flex flex-col gap-2.5 text-sm">
         <ContactRow icon={MapPin} label={company.location} />
@@ -54,7 +54,7 @@ export function ClientContact({
       </dl>
 
       {company.lastContact || company.lastUpdated ? (
-        <div className="mt-1 flex flex-col gap-1 border-t border-slate-100 pt-3 text-xs text-slate-400">
+        <div className="mt-1 flex flex-col gap-1 border-t border-border pt-3 text-xs text-muted-foreground">
           {company.lastContact ? (
             <span className="flex items-center gap-1.5">
               <Calendar className="size-3" />
@@ -85,8 +85,8 @@ function ContactRow({
   external?: boolean;
 }) {
   const content = (
-    <span className="flex items-center gap-2 text-slate-600">
-      <Icon className="size-3.5 shrink-0 text-slate-400" aria-hidden />
+    <span className="flex items-center gap-2 text-muted-foreground">
+      <Icon className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
       <span className="truncate">{label}</span>
     </span>
   );
@@ -98,7 +98,7 @@ function ContactRow({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="transition-colors hover:text-emerald-700"
+      className="transition-colors hover:text-primary"
     >
       {content}
     </a>

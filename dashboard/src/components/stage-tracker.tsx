@@ -32,7 +32,7 @@ export function StageTracker({ stages, current }: StageTrackerProps) {
               <span
                 className={cn(
                   "flex size-9 shrink-0 items-center justify-center rounded-full border transition-colors",
-                  isDone && cn(theme.dot, "border-transparent text-slate-950"),
+                  isDone && cn(theme.dot, "border-transparent text-foreground"),
                   isCurrent &&
                     cn(
                       "border-transparent ring-4",

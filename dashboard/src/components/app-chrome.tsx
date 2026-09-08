@@ -20,11 +20,11 @@ export function AppChrome({ children }: { children: React.ReactNode }) {
     <>
       <SidebarNav />
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 border-b border-slate-200/70 bg-white/85 backdrop-blur-md">
+        <header className="sticky top-0 z-20 border-b border-border/70 bg-card/85 backdrop-blur-md">
           <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 pl-14 sm:px-6 sm:pl-6 lg:px-8">
             <Link
               href="/"
-              className="rounded-md text-sm font-semibold tracking-tight text-slate-800 outline-none focus-visible:ring-[3px] focus-visible:ring-emerald-500/50"
+              className="rounded-md text-sm font-semibold tracking-tight text-foreground outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
             >
               {agency.name}
             </Link>
@@ -33,14 +33,14 @@ export function AppChrome({ children }: { children: React.ReactNode }) {
               href={agency.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden text-xs text-slate-400 transition-colors hover:text-slate-600 lg:block"
+              className="hidden text-xs text-muted-foreground transition-colors hover:text-foreground lg:block"
             >
               {agency.website.replace(/^https?:\/\//, "")}
             </a>
           </div>
         </header>
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-slate-100 px-4 py-6 text-center text-xs text-slate-400 sm:px-6">
+        <footer className="border-t border-border px-4 py-6 text-center text-xs text-muted-foreground sm:px-6">
           Local Launch OS · Simpsonville, SC
         </footer>
       </div>

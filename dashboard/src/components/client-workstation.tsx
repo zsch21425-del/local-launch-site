@@ -47,12 +47,12 @@ function Section({
   return (
     <section className={cn("flex flex-col gap-3", className)}>
       <div className="flex items-center gap-2">
-        <span className="grid size-6 place-items-center rounded-md bg-slate-900/[0.05] text-slate-500">
+        <span className="grid size-6 place-items-center rounded-md bg-foreground/[0.05] text-muted-foreground">
           {icon}
         </span>
         <div className="leading-tight">
-          <h2 className="text-sm font-semibold text-slate-800">{title}</h2>
-          {subtitle ? <p className="text-[11px] text-slate-400">{subtitle}</p> : null}
+          <h2 className="text-sm font-semibold text-foreground">{title}</h2>
+          {subtitle ? <p className="text-[11px] text-muted-foreground">{subtitle}</p> : null}
         </div>
       </div>
       {children}
@@ -119,8 +119,8 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
             ) : null}
           </div>
         ) : (
-          <div className={cn(glassCard, "py-8 text-center text-sm text-slate-400")}>
-            <CheckCircle2 className="mx-auto mb-2 size-5 text-slate-300" />
+          <div className={cn(glassCard, "py-8 text-center text-sm text-muted-foreground")}>
+            <CheckCircle2 className="mx-auto mb-2 size-5 text-muted-foreground/60" />
             Nothing needs your approval right now.
           </div>
         )}
@@ -158,14 +158,14 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
             {(company.auditData.issues?.length ?? 0) > 0 ? (
               <ul className="flex flex-col gap-2">
                 {company.auditData.issues?.map((issue: string, i: number) => (
-                  <li key={i} className="flex gap-2.5 text-sm text-slate-600">
+                  <li key={i} className="flex gap-2.5 text-sm text-muted-foreground">
                     <span className="mt-0.5 size-1.5 shrink-0 rounded-full bg-amber-400" />
                     {issue}
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-slate-400">No audit issues documented yet.</p>
+              <p className="text-sm text-muted-foreground">No audit issues documented yet.</p>
             )}
           </div>
         </Section>
@@ -188,10 +188,10 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
       >
         {hasNextSteps ? (
           <div className={cn(glassCard, "p-5")}>
-            <ol className="flex flex-col gap-2.5 text-sm text-slate-600">
+            <ol className="flex flex-col gap-2.5 text-sm text-muted-foreground">
               {company.nextSteps.map((step: string, index: number) => (
                 <li key={step} className="flex gap-2.5">
-                  <span className="grid size-5 shrink-0 place-items-center rounded-full bg-emerald-500/10 text-[11px] font-semibold text-emerald-700">
+                  <span className="grid size-5 shrink-0 place-items-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
                     {index + 1}
                   </span>
                   <span className="leading-snug">{step}</span>
@@ -210,8 +210,8 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
             />
           </div>
         ) : (
-          <div className={cn(glassCard, "py-8 text-center text-sm text-slate-400")}>
-            <ListOrdered className="mx-auto mb-2 size-5 text-slate-300" />
+          <div className={cn(glassCard, "py-8 text-center text-sm text-muted-foreground")}>
+            <ListOrdered className="mx-auto mb-2 size-5 text-muted-foreground/60" />
             No playbook steps yet — check back after the audit.
           </div>
         )}

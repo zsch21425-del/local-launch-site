@@ -50,16 +50,16 @@ export function RevenueTracker({
     <section className={cn(glass, "flex flex-col p-5 sm:p-6", className)}>
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h2 className="flex items-center gap-2 text-base font-semibold tracking-tight text-slate-900">
-            <Wallet className="size-4 text-emerald-600" aria-hidden />
+          <h2 className="flex items-center gap-2 text-base font-semibold tracking-tight text-foreground">
+            <Wallet className="size-4 text-primary" aria-hidden />
             Revenue
           </h2>
-          <p className="mt-0.5 text-xs text-slate-500">
+          <p className="mt-0.5 text-xs text-muted-foreground">
             Booked from closed clients (Sale + Build &amp; Launch) — stage-derived,
             not billed
           </p>
         </div>
-        <span className="tnum rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-500/20">
+        <span className="tnum rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary ring-1 ring-inset ring-ring/20">
           {revenue.clientCount} closed
         </span>
       </div>
@@ -69,7 +69,7 @@ export function RevenueTracker({
           icon={Repeat}
           label="Monthly recurring"
           value={formatCurrency(revenue.mrr)}
-          accent="text-emerald-700 bg-emerald-500/10"
+          accent="text-primary bg-primary/10"
         />
         <MoneyTile
           icon={Banknote}
@@ -86,7 +86,7 @@ export function RevenueTracker({
       </div>
 
       {booked.length > 0 ? (
-        <ul className="mt-5 flex flex-col divide-y divide-slate-900/[0.06]">
+        <ul className="mt-5 flex flex-col divide-y divide-border/[0.06]">
           {booked.map((company) => {
             const mrr = company.revenue?.mrr ?? 0;
             const oneTime = company.revenue?.oneTime ?? 0;
@@ -97,15 +97,15 @@ export function RevenueTracker({
               >
                 <Link
                   href={`/client/${company.id}`}
-                  className="min-w-0 truncate text-sm font-medium text-slate-800 hover:text-emerald-700"
+                  className="min-w-0 truncate text-sm font-medium text-foreground hover:text-primary"
                 >
                   {company.name}
                 </Link>
-                <span className="tnum shrink-0 text-sm font-semibold text-slate-900">
+                <span className="tnum shrink-0 text-sm font-semibold text-foreground">
                   {formatCurrency(mrr)}
-                  <span className="text-xs font-normal text-slate-500">/mo</span>
+                  <span className="text-xs font-normal text-muted-foreground">/mo</span>
                   {oneTime > 0 ? (
-                    <span className="ml-2 text-xs font-normal text-slate-500">
+                    <span className="ml-2 text-xs font-normal text-muted-foreground">
                       + {formatCurrency(oneTime)} setup
                     </span>
                   ) : null}
@@ -115,11 +115,11 @@ export function RevenueTracker({
           })}
         </ul>
       ) : (
-        <div className="mt-5 rounded-xl border border-dashed border-slate-900/10 bg-white/40 p-4">
-          <p className="text-sm font-medium text-slate-800">
+        <div className="mt-5 rounded-xl border border-dashed border-foreground/10 bg-card/40 p-4">
+          <p className="text-sm font-medium text-foreground">
             No revenue recorded on closed clients yet.
           </p>
-          <p className="mt-1 text-xs leading-relaxed text-slate-500">
+          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
             {total === 0
               ? "Add a `revenue` block to a Sale / Build & Launch client in the pipeline to start tracking booked revenue here."
               : "Revenue recorded without a matching closed client."}
@@ -127,7 +127,7 @@ export function RevenueTracker({
 
           {nearest.length > 0 ? (
             <div className="mt-4 flex flex-col gap-3">
-              <p className="text-[11px] font-semibold tracking-wide text-slate-500 uppercase">
+              <p className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
                 Closest to close
               </p>
               {nearest.map(({ company, progress }) => (
@@ -135,22 +135,22 @@ export function RevenueTracker({
                   <div className="flex items-center justify-between gap-2">
                     <Link
                       href={`/client/${company.id}`}
-                      className="group inline-flex min-w-0 items-center gap-1 truncate text-sm font-medium text-slate-800 hover:text-emerald-700"
+                      className="group inline-flex min-w-0 items-center gap-1 truncate text-sm font-medium text-foreground hover:text-primary"
                     >
                       {company.name}
                       <ArrowRight
-                        className="size-3 shrink-0 text-slate-300 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-600"
+                        className="size-3 shrink-0 text-muted-foreground/60 transition-transform group-hover:translate-x-0.5 group-hover:text-primary"
                         aria-hidden
                       />
                     </Link>
-                    <span className="tnum shrink-0 text-xs font-semibold text-slate-600">
+                    <span className="tnum shrink-0 text-xs font-semibold text-muted-foreground">
                       {progress.done}/{progress.total}
                     </span>
                   </div>
                   <Progress
                     value={progress.percent}
-                    className="h-1.5 bg-slate-900/[0.07]"
-                    indicatorClassName="bg-gradient-to-r from-emerald-400 to-emerald-600"
+                    className="h-1.5 bg-foreground/[0.07]"
+                    indicatorClassName="bg-gradient-to-r from-primary to-primary"
                   />
                 </div>
               ))}
@@ -174,17 +174,17 @@ function MoneyTile({
   accent: string;
 }) {
   return (
-    <div className="rounded-xl border border-white/70 bg-white/55 p-3.5">
+    <div className="rounded-xl border border-card/70 bg-card/55 p-3.5">
       <span
         className={cn("grid size-7 place-items-center rounded-lg", accent)}
         aria-hidden
       >
         <Icon className="size-3.5" />
       </span>
-      <p className="tnum mt-2.5 text-xl leading-none font-bold tracking-tight text-slate-900">
+      <p className="tnum mt-2.5 text-xl leading-none font-bold tracking-tight text-foreground">
         {value}
       </p>
-      <p className="mt-1.5 text-[11px] text-slate-500">{label}</p>
+      <p className="mt-1.5 text-[11px] text-muted-foreground">{label}</p>
     </div>
   );
 }

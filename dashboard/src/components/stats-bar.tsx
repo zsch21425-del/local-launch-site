@@ -71,13 +71,13 @@ export function StatsBar({
           className={cn(glass, "animate-rise-in p-4")}
           style={{ animationDelay: `${index * 40}ms` }}
         >
-          <p className="tnum text-2xl leading-none font-bold tracking-tight text-slate-900">
+          <p className="tnum text-2xl leading-none font-bold tracking-tight text-foreground">
             {item.value}
           </p>
-          <p className="mt-1.5 text-xs font-medium text-slate-700">
+          <p className="mt-1.5 text-xs font-medium text-foreground">
             {item.label}
           </p>
-          <p className="mt-0.5 text-[11px] text-slate-500">{item.hint}</p>
+          <p className="mt-0.5 text-[11px] text-muted-foreground">{item.hint}</p>
         </div>
       ))}
     </section>

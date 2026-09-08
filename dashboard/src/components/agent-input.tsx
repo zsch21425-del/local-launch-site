@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SendHorizontal } from "lucide-react";
 
 const FIELD =
-  "flex-1 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none disabled:opacity-60";
+  "flex-1 rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/40 focus:ring-2 focus:ring-ring/20 focus:outline-none disabled:opacity-60";
 
 export function AgentInput({
   onSend,
@@ -26,7 +26,7 @@ export function AgentInput({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center gap-2 border-t border-slate-200 p-3"
+      className="flex items-center gap-2 border-t border-border p-3"
     >
       <input
         value={value}
@@ -40,7 +40,7 @@ export function AgentInput({
         type="submit"
         disabled={disabled || !value.trim()}
         aria-label="Send message"
-        className="grid size-9 shrink-0 place-items-center rounded-full bg-emerald-600 text-white transition-colors hover:bg-emerald-700 disabled:opacity-40"
+        className="grid size-9 shrink-0 place-items-center rounded-full bg-primary text-white transition-colors hover:bg-primary/90 disabled:opacity-40"
       >
         <SendHorizontal className="size-4" aria-hidden />
       </button>

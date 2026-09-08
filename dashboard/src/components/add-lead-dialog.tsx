@@ -16,7 +16,7 @@ import {
 import type { Stage } from "@/lib/data";
 
 const FIELD =
-  "w-full rounded-lg border border-slate-900/10 bg-white/70 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none";
+  "w-full rounded-lg border border-foreground/10 bg-card/70 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/40 focus:ring-2 focus:ring-ring/20 focus:outline-none";
 
 /**
  * Add a new lead. Phase 2 (B1): posts to /api/pipeline/leads (writes Vercel Blob),
@@ -106,7 +106,7 @@ export function AddLeadDialog({
       }}
     >
       <DialogTrigger asChild>
-        <Button className="gap-1.5 rounded-full bg-slate-900 text-white shadow-sm hover:bg-slate-800">
+        <Button className="gap-1.5 rounded-full bg-foreground text-white shadow-sm hover:bg-foreground/90">
           <Plus className="size-4" />
           Add new lead
         </Button>
@@ -198,7 +198,7 @@ export function AddLeadDialog({
         {feedback ? (
           <p
             className={`rounded-lg px-3 py-2 text-sm ${
-              feedback.kind === "ok" ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
+              feedback.kind === "ok" ? "bg-primary/10 text-primary" : "bg-destructive/10 text-destructive"
             }`}
           >
             {dupe && feedback.kind === "error" && dupe.companyId ? (
@@ -224,7 +224,7 @@ export function AddLeadDialog({
             Cancel
           </Button>
           <Button
-            className="gap-1.5 rounded-full bg-slate-900 text-white hover:bg-slate-800"
+            className="gap-1.5 rounded-full bg-foreground text-white hover:bg-foreground/90"
             onClick={() => void submit()}
             disabled={submitting}
           >
@@ -252,7 +252,7 @@ function Field({
 }) {
   return (
     <label className={`flex flex-col gap-1.5 ${className ?? ""}`}>
-      <span className="text-xs font-medium text-slate-600">{label}</span>
+      <span className="text-xs font-medium text-muted-foreground">{label}</span>
       {children}
     </label>
   );

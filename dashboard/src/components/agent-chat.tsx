@@ -136,25 +136,25 @@ export function AgentChat({
     <section
       className={cn(glass, "flex h-full flex-col overflow-hidden", className)}
     >
-      <header className="flex items-center gap-2.5 border-b border-slate-200 px-4 py-3.5">
-        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-emerald-500/10 text-emerald-700">
+      <header className="flex items-center gap-2.5 border-b border-border px-4 py-3.5">
+        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
           <Bot className="size-4" aria-hidden />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold text-slate-900">
+          <p className="text-sm font-semibold text-foreground">
             Local Launch Agent
           </p>
-          <p className="flex items-center gap-1.5 text-[11px] text-slate-500">
+          <p className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
             <span
               className={cn(
                 "size-1.5 rounded-full",
                 waitingForReply
                   ? "animate-pulse bg-amber-500"
                   : connected
-                    ? "bg-emerald-500"
+                    ? "bg-primary"
                     : connected === false
-                      ? "bg-rose-500"
-                      : "bg-slate-300",
+                      ? "bg-destructive"
+                      : "bg-muted",
               )}
               aria-hidden
             />
@@ -168,7 +168,7 @@ export function AgentChat({
         className="flex min-h-[280px] flex-1 flex-col gap-3 overflow-y-auto px-4 py-4"
       >
         {messages.length === 0 ? (
-          <div className="m-auto flex max-w-[280px] flex-col items-center gap-3 text-center text-slate-400">
+          <div className="m-auto flex max-w-[280px] flex-col items-center gap-3 text-center text-muted-foreground">
             <Bot className="size-6" aria-hidden />
             <p className="text-sm">
               Ask about {clientName}&apos;s pipeline, pitch, demo, or next steps.
@@ -181,7 +181,7 @@ export function AgentChat({
                   type="button"
                   disabled={pending || waitingForReply || connected === false}
                   onClick={() => void sendMessage(q)}
-                  className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600 transition-colors hover:border-emerald-300 hover:text-emerald-700 disabled:opacity-40"
+                  className="rounded-full border border-border bg-card px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary disabled:opacity-40"
                 >
                   {q}
                 </button>

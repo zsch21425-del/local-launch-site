@@ -9,8 +9,8 @@ export function ProgressRing({
   max,
   size = 36,
   strokeWidth = 3.5,
-  trackClassName = "text-slate-200",
-  indicatorClassName = "text-emerald-500",
+  trackClassName = "text-muted-foreground/60",
+  indicatorClassName = "text-primary",
   label,
   className,
 }: {
@@ -69,7 +69,7 @@ export function ProgressRing({
         />
       </svg>
       {label ? (
-        <span className="tnum absolute inset-0 flex items-center justify-center text-[10px] font-semibold text-slate-700">
+        <span className="tnum absolute inset-0 flex items-center justify-center text-[10px] font-semibold text-foreground">
           {label}
         </span>
       ) : null}

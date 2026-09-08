@@ -63,15 +63,15 @@ export function ClientBuildDemo({ companyId, companyName, demoStatus }: BuildDem
               <Hammer className="size-4" />
             </span>
             <div className="flex-1">
-              <p className="text-sm font-semibold text-slate-900">
+              <p className="text-sm font-semibold text-foreground">
                 Queued — agent relay failed
               </p>
-              <p className="text-[11px] text-slate-500">
+              <p className="text-[11px] text-muted-foreground">
                 {companyName}&apos;s request is saved but the agent wasn&apos;t
                 reached. Tap to retry — the build won&apos;t start until it goes
                 through.
               </p>
-              {error ? <p className="mt-2 text-xs text-rose-600">{error}</p> : null}
+              {error ? <p className="mt-2 text-xs text-destructive">{error}</p> : null}
             </div>
             <button
               type="button"
@@ -92,8 +92,8 @@ export function ClientBuildDemo({ companyId, companyName, demoStatus }: BuildDem
             <Loader2 className="size-4 animate-spin" />
           </span>
           <div>
-            <p className="text-sm font-semibold text-slate-900">Demo build requested</p>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-sm font-semibold text-foreground">Demo build requested</p>
+            <p className="text-[11px] text-muted-foreground">
               The agent is building {companyName}&apos;s demo. It&apos;ll appear here
               for review when ready.
             </p>
@@ -110,11 +110,11 @@ export function ClientBuildDemo({ companyId, companyName, demoStatus }: BuildDem
           <Hammer className="size-4" />
         </span>
         <div className="flex-1">
-          <p className="text-sm font-semibold text-slate-900">No demo yet</p>
-          <p className="text-[11px] text-slate-500">
+          <p className="text-sm font-semibold text-foreground">No demo yet</p>
+          <p className="text-[11px] text-muted-foreground">
             {companyName} is ready for a demo. Approve to have the agent build one.
           </p>
-          {error ? <p className="mt-2 text-xs text-rose-600">{error}</p> : null}
+          {error ? <p className="mt-2 text-xs text-destructive">{error}</p> : null}
         </div>
         <button
           type="button"

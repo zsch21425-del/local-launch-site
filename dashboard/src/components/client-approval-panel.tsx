@@ -243,15 +243,15 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
         scope ? "ring-1 ring-sky-200" : "",
       )}
     >
-      <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3.5">
+      <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
         <div className="flex items-center gap-2.5">
           <span
             className={cn(
               "grid size-8 place-items-center rounded-lg",
               badgeState === "approved"
-                ? "bg-emerald-500/10 text-emerald-700"
+                ? "bg-primary/10 text-primary"
                 : badgeState === "rejected"
-                  ? "bg-rose-500/10 text-rose-700"
+                  ? "bg-destructive/10 text-destructive"
                   : badgeState === "rework"
                     ? "bg-violet-500/10 text-violet-700"
                     : "bg-sky-500/10 text-sky-700",
@@ -260,8 +260,8 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
             <Send className="size-4" aria-hidden />
           </span>
           <div>
-            <p className="text-sm font-semibold text-slate-900">Approval</p>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-sm font-semibold text-foreground">Approval</p>
+            <p className="text-[11px] text-muted-foreground">
               {[hasPitch && "Pitch", hasDemo && "Demo"]
                 .filter(Boolean)
                 .join(" + ")}
@@ -270,11 +270,11 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
           </div>
         </div>
         {badgeState === "approved" ? (
-          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 ring-1 ring-emerald-500/20 ring-inset">
+          <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary ring-1 ring-ring/20 ring-inset">
             <Check className="size-3" /> Approved
           </span>
         ) : badgeState === "rejected" ? (
-          <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 px-2.5 py-1 text-[11px] font-semibold text-rose-700 ring-1 ring-rose-500/20 ring-inset">
+          <span className="inline-flex items-center gap-1 rounded-full bg-destructive/10 px-2.5 py-1 text-[11px] font-semibold text-destructive ring-1 ring-destructive/20 ring-inset">
             <X className="size-3" /> Rejected
           </span>
         ) : badgeState === "rework" ? (
@@ -290,19 +290,19 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
 
       {hasPitch ? (
         <div className="px-5 pt-4">
-          <p className="text-[11px] font-semibold tracking-wide text-slate-400 uppercase">
+          <p className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
             Pitch{" "}
-            <span className="ml-1 normal-case text-slate-400">
+            <span className="ml-1 normal-case text-muted-foreground">
               · {STATE_LABEL[pitchState]}
             </span>
           </p>
           {pitch.subject ? (
-            <p className="mt-1 text-sm font-medium text-slate-800">
+            <p className="mt-1 text-sm font-medium text-foreground">
               {pitch.subject}
             </p>
           ) : null}
-          <div className="mt-1.5 rounded-lg border border-slate-200 bg-slate-50 p-3.5">
-            <p className="text-[13px] leading-relaxed whitespace-pre-wrap text-slate-700">
+          <div className="mt-1.5 rounded-lg border border-border bg-muted p-3.5">
+            <p className="text-[13px] leading-relaxed whitespace-pre-wrap text-foreground">
               {pitch.body}
             </p>
           </div>
@@ -311,9 +311,9 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
 
       {hasDemo ? (
         <div className="px-5 pt-3">
-          <p className="text-[11px] font-semibold tracking-wide text-slate-400 uppercase">
+          <p className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
             Demo{" "}
-            <span className="ml-1 normal-case text-slate-400">
+            <span className="ml-1 normal-case text-muted-foreground">
               · {STATE_LABEL[demoState]}
             </span>
           </p>
@@ -321,12 +321,12 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
             href={demoUrl!}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-emerald-400 hover:text-emerald-700"
+            className="mt-1 inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
           >
             <MonitorPlay className="size-4" /> Open demo{" "}
-            <ExternalLink className="size-3.5 text-slate-400" />
+            <ExternalLink className="size-3.5 text-muted-foreground" />
           </a>
-          <p className="mt-1 truncate text-xs text-slate-400">{demoUrl}</p>
+          <p className="mt-1 truncate text-xs text-muted-foreground">{demoUrl}</p>
         </div>
       ) : null}
 
@@ -336,13 +336,13 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
           <p className="text-xs font-semibold text-amber-900">
             Your notes to the agent
           </p>
-          <p className="mt-1 text-sm text-slate-800">
-            <span className="font-medium text-slate-600">Reason:</span>{" "}
+          <p className="mt-1 text-sm text-foreground">
+            <span className="font-medium text-muted-foreground">Reason:</span>{" "}
             {displayFb.reason}
           </p>
           {displayFb.suggestedFix ? (
-            <p className="mt-1 text-sm text-slate-800">
-              <span className="font-medium text-slate-600">Fix:</span>{" "}
+            <p className="mt-1 text-sm text-foreground">
+              <span className="font-medium text-muted-foreground">Fix:</span>{" "}
               {displayFb.suggestedFix}
             </p>
           ) : null}
@@ -350,20 +350,20 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
       ) : null}
 
       {error ? (
-        <p role="alert" className="px-5 pt-2 text-xs text-rose-600">{error}</p>
+        <p role="alert" className="px-5 pt-2 text-xs text-destructive">{error}</p>
       ) : null}
       {relayNote ? (
-        <p role="status" aria-live="polite" className="px-5 pt-2 text-xs text-emerald-700">
+        <p role="status" aria-live="polite" className="px-5 pt-2 text-xs text-primary">
           {relayNote}
         </p>
       ) : null}
 
       {showControls ? (
-        <div className="mt-3 border-t border-slate-100 px-5 py-3.5">
+        <div className="mt-3 border-t border-border px-5 py-3.5">
           {scope && mode === "review" ? (
             <>
               {scope === "both" ? null : (
-                <p className="mb-2 text-[11px] text-slate-500">
+                <p className="mb-2 text-[11px] text-muted-foreground">
                   {scope === "demo"
                     ? "Pitch already decided — this acts on the demo only."
                     : "Demo already decided — this acts on the pitch only."}
@@ -374,7 +374,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 type="button"
                 onClick={() => void act("approve")}
                 disabled={loading}
-                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 disabled:opacity-50"
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary/90 disabled:opacity-50"
               >
                 <Check className="size-4" />{" "}
                 {loading ? "Sending…" : approveLabel}
@@ -383,7 +383,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 type="button"
                 onClick={() => setMode("rework")}
                 disabled={loading}
-                className="flex items-center justify-center gap-2 rounded-lg border border-violet-300 bg-white px-4 py-2.5 text-sm font-semibold text-violet-700 transition-colors hover:bg-violet-50 disabled:opacity-50"
+                className="flex items-center justify-center gap-2 rounded-lg border border-violet-300 bg-card px-4 py-2.5 text-sm font-semibold text-violet-700 transition-colors hover:bg-violet-50 disabled:opacity-50"
               >
                 <RefreshCw className="size-4" /> Rework
               </button>
@@ -391,7 +391,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 type="button"
                 onClick={() => setMode("deny")}
                 disabled={loading}
-                className="flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50 disabled:opacity-50"
+                className="flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted disabled:opacity-50"
               >
                 <X className="size-4" /> Disapprove
               </button>
@@ -401,13 +401,13 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
             <div>
               <label
                 htmlFor="approval-reason"
-                className="mb-1 block text-sm font-medium text-slate-800"
+                className="mb-1 block text-sm font-medium text-foreground"
               >
                 {mode === "rework"
                   ? "What needs rework? What should the agent change?"
                   : "Why are you disapproving? What should the agent change?"}
               </label>
-              <p id="approval-reason-hint" className="mb-2 text-[11px] text-slate-500">
+              <p id="approval-reason-hint" className="mb-2 text-[11px] text-muted-foreground">
                 Required. Saved on this company and sent to the agent — skip
                 Telegram for the same note.
               </p>
@@ -420,10 +420,10 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 aria-invalid={!reason.trim() && !!error}
                 aria-describedby="approval-reason-hint"
                 className={cn(
-                  "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none",
+                  "w-full rounded-lg border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none",
                   mode === "rework"
                     ? "focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
-                    : "focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20",
+                    : "focus:border-destructive focus:ring-2 focus:ring-destructive/20",
                 )}
                 rows={2}
                 autoFocus
@@ -437,10 +437,10 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 onChange={(e) => setSuggestedFix(e.target.value)}
                 placeholder="Suggested fix (optional)"
                 className={cn(
-                  "mt-2 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none",
+                  "mt-2 w-full rounded-lg border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none",
                   mode === "rework"
                     ? "focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20"
-                    : "focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20",
+                    : "focus:border-destructive focus:ring-2 focus:ring-destructive/20",
                 )}
                 rows={2}
               />
@@ -459,7 +459,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                     type="button"
                     onClick={() => void act("reject")}
                     disabled={loading || !reason.trim()}
-                    className="flex items-center gap-2 rounded-lg bg-rose-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-rose-700 disabled:opacity-50"
+                    className="flex items-center gap-2 rounded-lg bg-destructive px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-destructive/90 disabled:opacity-50"
                   >
                     {loading ? "Sending to agent…" : "Disapprove & send notes"}
                   </button>
@@ -470,7 +470,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                     setMode("review");
                     setError("");
                   }}
-                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-600 hover:bg-slate-50"
+                  className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-muted-foreground hover:bg-muted"
                 >
                   Cancel
                 </button>
@@ -483,9 +483,9 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
           className={cn(
             "border-t px-5 py-4 text-sm",
             overall === "approved"
-              ? "bg-emerald-50/50 text-emerald-800"
+              ? "bg-primary/10 text-primary"
               : overall === "rejected"
-                ? "bg-rose-50/50 text-rose-800"
+                ? "bg-destructive/10 text-destructive"
                 : "bg-violet-50/50 text-violet-800",
           )}
         >

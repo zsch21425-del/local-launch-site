@@ -66,7 +66,7 @@ export function SidebarNav() {
         type="button"
         onClick={() => setMobileOpen(true)}
         aria-label="Open navigation"
-        className="fixed top-3 left-3 z-30 grid size-10 place-items-center rounded-lg border border-slate-300 bg-white/90 text-slate-600 shadow-sm backdrop-blur-xl sm:hidden"
+        className="fixed top-3 left-3 z-30 grid size-10 place-items-center rounded-lg border border-border bg-card/90 text-muted-foreground shadow-sm backdrop-blur-xl sm:hidden"
       >
         <Menu className="size-5" />
       </button>
@@ -76,18 +76,18 @@ export function SidebarNav() {
           <div
             aria-hidden
             onClick={() => setMobileOpen(false)}
-            className="absolute inset-0 bg-slate-900/30"
+            className="absolute inset-0 bg-foreground/30"
           />
-          <nav className="relative z-10 flex h-full w-64 flex-col gap-1 border-r border-slate-300 bg-white p-3">
+          <nav className="relative z-10 flex h-full w-64 flex-col gap-1 border-r border-border bg-card p-3">
             <div className="mb-2 flex items-center justify-between px-1 py-2">
-              <span className="truncate text-sm font-semibold text-slate-900">
+              <span className="truncate text-sm font-semibold text-foreground">
                 {agency.name}
               </span>
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Close navigation"
-                className="grid size-8 place-items-center rounded-md text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+                className="grid size-8 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
               >
                 <X className="size-4" />
               </button>
@@ -110,7 +110,7 @@ export function SidebarNav() {
 
       <nav
         className={cn(
-          "sticky top-0 z-20 hidden h-svh shrink-0 flex-col gap-1 border-r border-slate-200/70 bg-white/90 py-3 backdrop-blur-md transition-[width] duration-200 sm:flex",
+          "sticky top-0 z-20 hidden h-svh shrink-0 flex-col gap-1 border-r border-border/70 bg-card/90 py-3 backdrop-blur-md transition-[width] duration-200 sm:flex",
           collapsed ? "w-14 px-2" : "w-56 px-3",
         )}
       >
@@ -121,7 +121,7 @@ export function SidebarNav() {
           )}
         >
           {!collapsed ? (
-            <span className="truncate text-sm font-semibold text-slate-900">
+            <span className="truncate text-sm font-semibold text-foreground">
               {agency.name}
             </span>
           ) : null}
@@ -129,7 +129,7 @@ export function SidebarNav() {
             type="button"
             onClick={() => setCollapsed((prev) => !prev)}
             aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
-            className="grid size-7 shrink-0 place-items-center rounded-md text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
+            className="grid size-7 shrink-0 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             {collapsed ? (
               <ChevronRight className="size-4" />
@@ -179,14 +179,14 @@ function NavLink({
         "flex items-center gap-3 rounded-lg px-2.5 py-2 text-sm font-medium transition-colors",
         !expanded && "justify-center",
         active
-          ? "bg-emerald-500/10 text-emerald-700"
-          : "text-slate-500 hover:bg-slate-100 hover:text-slate-800",
+          ? "bg-primary/10 text-primary"
+          : "text-muted-foreground hover:bg-muted hover:text-foreground",
       )}
     >
       <span className="relative shrink-0">
         <Icon className="size-[18px]" aria-hidden />
         {badge ? (
-          <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-bold text-white">
+          <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-bold text-white">
             {badge > 99 ? "99+" : badge}
           </span>
         ) : null}
@@ -195,7 +195,7 @@ function NavLink({
         <span className="flex min-w-0 flex-1 items-center gap-2">
           <span className="truncate">{item.label}</span>
           {badge ? (
-            <span className="tnum ml-auto shrink-0 rounded-full bg-rose-500/12 px-1.5 py-0.5 text-[10px] font-bold text-rose-700 ring-1 ring-inset ring-rose-500/20">
+            <span className="tnum ml-auto shrink-0 rounded-full bg-destructive/12 px-1.5 py-0.5 text-[10px] font-bold text-destructive ring-1 ring-inset ring-destructive/20">
               {badge > 99 ? "99+" : badge}
             </span>
           ) : null}

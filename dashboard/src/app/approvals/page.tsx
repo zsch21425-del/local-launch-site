@@ -77,8 +77,8 @@ function RejectForm({
   }
 
   return (
-    <div className="mt-4 rounded-lg border border-rose-200 bg-rose-50/60 p-4">
-      <p className="mb-2 text-sm font-medium text-rose-700">
+    <div className="mt-4 rounded-lg border border-destructive bg-destructive/10 p-4">
+      <p className="mb-2 text-sm font-medium text-destructive">
         Reject &quot;{company.name}&quot; — tell the agent what to fix
       </p>
       <label htmlFor="reject-reason" className="sr-only">
@@ -93,7 +93,7 @@ function RejectForm({
         aria-required
         aria-invalid={!!error}
         aria-describedby={error ? "reject-error" : undefined}
-        className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-400"
+        className="w-full rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-destructive"
       />
       <label htmlFor="reject-fix" className="sr-only">
         Suggested fix for the agent (optional)
@@ -104,10 +104,10 @@ function RejectForm({
         onChange={(e) => setSuggestedFix(e.target.value)}
         placeholder="What should the agent change or add? (e.g. 'rework the headline to focus on emergency HVAC', 'quote the current offer: $599 one-time + $149/mo Care')"
         rows={2}
-        className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-400"
+        className="mt-2 w-full rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-destructive"
       />
       {error ? (
-        <p id="reject-error" role="alert" className="mt-1 text-xs text-rose-600">
+        <p id="reject-error" role="alert" className="mt-1 text-xs text-destructive">
           {error}
         </p>
       ) : null}
@@ -116,7 +116,7 @@ function RejectForm({
           type="button"
           disabled={saving}
           onClick={handle}
-          className="rounded-lg bg-rose-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-rose-700 disabled:opacity-50"
+          className="rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-destructive/90 disabled:opacity-50"
         >
           {saving ? "Saving…" : "Submit Rejection"}
         </button>
@@ -124,7 +124,7 @@ function RejectForm({
           type="button"
           disabled={saving}
           onClick={onCancel}
-          className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 disabled:opacity-50"
+          className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted disabled:opacity-50"
         >
           Cancel
         </button>
@@ -236,11 +236,11 @@ function ApproveButtons({
   }
 
   const statusNote = actionError ? (
-    <p role="alert" className="mt-2 text-xs font-medium text-rose-600">
+    <p role="alert" className="mt-2 text-xs font-medium text-destructive">
       {actionError}
     </p>
   ) : outcome ? (
-    <p role="status" aria-live="polite" className="mt-2 text-xs font-medium text-emerald-700">
+    <p role="status" aria-live="polite" className="mt-2 text-xs font-medium text-primary">
       {outcome}
     </p>
   ) : null;
@@ -250,12 +250,12 @@ function ApproveButtons({
     return (
       <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50/70 p-4">
         <p className="text-sm font-semibold text-amber-800">Rejected — needs revision</p>
-        <p className="mt-1 text-sm text-slate-700">
-          <span className="font-medium text-slate-600">Reason:</span> {feedback.reason}
+        <p className="mt-1 text-sm text-foreground">
+          <span className="font-medium text-muted-foreground">Reason:</span> {feedback.reason}
         </p>
         {feedback.suggestedFix ? (
-          <p className="mt-1 text-sm text-slate-700">
-            <span className="font-medium text-slate-600">Suggested fix:</span>{" "}
+          <p className="mt-1 text-sm text-foreground">
+            <span className="font-medium text-muted-foreground">Suggested fix:</span>{" "}
             {feedback.suggestedFix}
           </p>
         ) : null}
@@ -279,7 +279,7 @@ function ApproveButtons({
           type="button"
           disabled={loading || !!outcome}
           onClick={approve}
-          className="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-600 disabled:opacity-50"
+          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90 disabled:opacity-50"
         >
           {loading ? "Approving…" : "Approve"}
         </button>
@@ -287,7 +287,7 @@ function ApproveButtons({
           type="button"
           disabled={loading || !!outcome}
           onClick={() => setShowRejectForm(true)}
-          className="rounded-lg bg-rose-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-rose-600 disabled:opacity-50"
+          className="rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-destructive/90 disabled:opacity-50"
         >
           Reject
         </button>
@@ -445,33 +445,33 @@ export default function ApprovalsPage() {
       <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
         <Link
           href="/"
-          className="group -ml-2 inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-slate-500 transition-colors hover:text-slate-800"
+          className="group -ml-2 inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
           Back to pipeline
         </Link>
 
         {error ? (
-          <div className={`${glassCard} border-rose-200 bg-rose-50/60 py-10 text-center`}>
-            <p className="text-sm font-medium text-rose-700">{error}</p>
+          <div className={`${glassCard} border-destructive bg-destructive/10 py-10 text-center`}>
+            <p className="text-sm font-medium text-destructive">{error}</p>
             <button
               onClick={load}
-              className="mt-3 rounded-lg bg-rose-600 px-4 py-2 text-sm font-medium text-white hover:bg-rose-700"
+              className="mt-3 rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-white hover:bg-destructive/90"
             >
               Retry
             </button>
           </div>
         ) : loading ? (
           <div className={`${glassCard} py-16 text-center`}>
-            <p className="text-sm text-slate-400">Loading approvals…</p>
+            <p className="text-sm text-muted-foreground">Loading approvals…</p>
           </div>
         ) : (
           <>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
                 Pitch Approvals
               </h1>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {visible.length} pitch{visible.length !== 1 ? "es" : ""} waiting
                 for review · sorted sendable-first (needs-rewrite sinks to the
                 bottom for the Supervisor batch)
@@ -481,18 +481,18 @@ export default function ApprovalsPage() {
             {/* Search + status filter — stay visible even when the result is empty */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="relative flex-1">
-                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search by name, category, or location…"
-                  className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full rounded-lg border border-border bg-card py-2 pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
                 />
               </div>
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value as RegionFilter)}
-                className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600 focus:outline-none"
+                className="rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground focus:outline-none"
                 aria-label="Filter by territory"
                 title="SC focus = Upstate + rest of SC. Expansion = out-of-state + unknown."
               >
@@ -515,8 +515,8 @@ export default function ApprovalsPage() {
                     onClick={() => setStatusFilter(val)}
                     className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                       statusFilter === val
-                        ? "bg-emerald-600 text-white"
-                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                        ? "bg-primary text-white"
+                        : "bg-muted text-muted-foreground hover:bg-muted"
                     }`}
                   >
                     {label}
@@ -528,7 +528,7 @@ export default function ApprovalsPage() {
                   className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                     rewriteOnly
                       ? "bg-amber-500 text-white"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      : "bg-muted text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   ⚠ Needs rewrite {rewriteCount}
@@ -538,8 +538,8 @@ export default function ApprovalsPage() {
                   title="Show only high + medium-high priority"
                   className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                     highOnly
-                      ? "bg-rose-600 text-white"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      ? "bg-destructive text-white"
+                      : "bg-muted text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   ★ High only
@@ -548,20 +548,20 @@ export default function ApprovalsPage() {
             </div>
 
             {bulkError ? (
-              <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">
+              <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
                 Bulk approve hit an error: {bulkError}
               </p>
             ) : null}
             {selected.size > 0 ? (
-              <div className="flex flex-wrap items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50/70 px-4 py-2.5">
-                <span className="text-sm font-medium text-emerald-800">
+              <div className="flex flex-wrap items-center gap-2 rounded-xl border border-primary bg-primary/10 px-4 py-2.5">
+                <span className="text-sm font-medium text-primary">
                   {selected.size} selected
                 </span>
                 <button
                   type="button"
                   disabled={bulkLoading}
                   onClick={() => void bulkApprove(Array.from(selected))}
-                  className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
+                  className="rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary/90 disabled:opacity-50"
                 >
                   {bulkLoading ? "Approving…" : "Approve selected"}
                 </button>
@@ -569,7 +569,7 @@ export default function ApprovalsPage() {
                   type="button"
                   disabled={bulkLoading}
                   onClick={() => setSelected(new Set())}
-                  className="text-xs font-medium text-slate-500 hover:underline"
+                  className="text-xs font-medium text-muted-foreground hover:underline"
                 >
                   Clear
                 </button>
@@ -578,7 +578,7 @@ export default function ApprovalsPage() {
 
             {visible.length === 0 ? (
               <div className={`${glassCard} py-16 text-center`}>
-                <p className="text-lg font-medium text-slate-600">
+                <p className="text-lg font-medium text-muted-foreground">
                   {queue.length === 0
                     ? "All caught up! No pitches waiting for approval."
                     : "No pitches match that search or filter."}
@@ -590,14 +590,14 @@ export default function ApprovalsPage() {
                       setQuery("");
                       setStatusFilter("all");
                     }}
-                    className="mt-2 text-sm text-emerald-600 hover:underline"
+                    className="mt-2 text-sm text-primary hover:underline"
                   >
                     Clear filters
                   </button>
                 ) : (
                   <Link
                     href="/"
-                    className="mt-2 inline-block text-sm text-emerald-600 hover:underline"
+                    className="mt-2 inline-block text-sm text-primary hover:underline"
                   >
                     Back to pipeline →
                   </Link>
@@ -636,7 +636,7 @@ function ApprovalCard({
   const isRejected = draft.status === "rejected";
 
   return (
-    <div className={`${glassCard} ${isRejected ? "border-amber-300" : ""} ${selected ? "ring-2 ring-emerald-500/50" : ""}`}>
+    <div className={`${glassCard} ${isRejected ? "border-amber-300" : ""} ${selected ? "ring-2 ring-ring/50" : ""}`}>
       <div className="p-5">
         {/* Header */}
         <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
@@ -646,16 +646,16 @@ function ApprovalCard({
               checked={selected}
               onChange={onToggleSelect}
               aria-label={`Select ${company.name} for bulk approve`}
-              className="mt-1 size-4 shrink-0 accent-emerald-600"
+              className="mt-1 size-4 shrink-0 accent-primary"
             />
             <div className="min-w-0">
               <Link
                 href={`/client/${company.id}`}
-                className="text-base font-semibold text-slate-900 hover:text-emerald-600 transition-colors"
+                className="text-base font-semibold text-foreground hover:text-primary transition-colors"
               >
                 {company.name}
               </Link>
-              <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+              <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                 <span>{company.category}</span>
                 <span>{company.location}</span>
               </div>
@@ -678,25 +678,25 @@ function ApprovalCard({
 
         {/* Pitch subject */}
         {draft.subject ? (
-          <p className="mb-2 text-sm font-medium text-slate-800">
+          <p className="mb-2 text-sm font-medium text-foreground">
             Subject: {draft.subject}
           </p>
         ) : null}
 
         {/* Channel + confidence */}
-        <div className="mb-2 flex flex-wrap gap-2 text-xs text-slate-400">
+        <div className="mb-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
           <span>Channel: {draft.channel}</span>
           <span>·</span>
           <span>Confidence: {draft.confidence}/10</span>
         </div>
 
         {/* Pitch body */}
-        <pre className="whitespace-pre-wrap rounded-lg bg-slate-50 p-4 text-sm leading-relaxed text-slate-700 font-sans">
+        <pre className="whitespace-pre-wrap rounded-lg bg-muted p-4 text-sm leading-relaxed text-foreground font-sans">
           {draft.body}
         </pre>
 
         {draft.notes ? (
-          <p className="mt-2 text-xs text-slate-400 italic">{draft.notes}</p>
+          <p className="mt-2 text-xs text-muted-foreground italic">{draft.notes}</p>
         ) : null}
 
         {/* Buttons / feedback */}

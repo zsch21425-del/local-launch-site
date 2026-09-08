@@ -71,20 +71,20 @@ export default function HomePage() {
         <section className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                 {agency.name} Ops
               </h1>
-              <p className="mt-1 max-w-2xl text-sm text-slate-500">
+              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
                 Accurate pipeline position + what to do next. Not a vanity dump.
               </p>
             </div>
             <AgentLinkChip />
           </div>
           {loading ? (
-            <p className="text-xs text-slate-400">Loading live pipeline…</p>
+            <p className="text-xs text-muted-foreground">Loading live pipeline…</p>
           ) : null}
           {error ? (
-            <p className="text-sm text-rose-600">
+            <p className="text-sm text-destructive">
               Could not load live pipeline: {error}
               {lastSync
                 ? ` — showing last-known data from ${new Date(lastSync).toLocaleTimeString()}`
@@ -92,7 +92,7 @@ export default function HomePage() {
             </p>
           ) : null}
           {!loading && !error && lastSync ? (
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-muted-foreground">
               Live pipeline · synced {new Date(lastSync).toLocaleTimeString()}
             </p>
           ) : null}
@@ -100,19 +100,19 @@ export default function HomePage() {
 
         <section id="pipeline" className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-lg font-semibold text-slate-800">
+            <h2 className="text-lg font-semibold text-foreground">
               Board (drag to move stage)
             </h2>
             <button
               type="button"
               onClick={() => setShowBoard((v) => !v)}
-              className="text-xs font-medium text-emerald-700 hover:underline"
+              className="text-xs font-medium text-primary hover:underline"
             >
               {showBoard ? "Hide board" : "Show board"}
             </button>
           </div>
           {moveError ? (
-            <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">
+            <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
               Could not save that move: {moveError}. Reloaded live state.
             </p>
           ) : null}
@@ -180,20 +180,20 @@ function AgentLinkChip() {
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ring-1",
         connected === null
-          ? "bg-slate-50 text-slate-500 ring-slate-200"
+          ? "bg-muted text-muted-foreground ring-border"
           : connected
-            ? "bg-emerald-50 text-emerald-700 ring-emerald-200"
-            : "bg-rose-50 text-rose-700 ring-rose-200",
+            ? "bg-primary/10 text-primary ring-ring"
+            : "bg-destructive/10 text-destructive ring-destructive",
       )}
     >
       <span
         className={cn(
           "size-1.5 rounded-full",
           connected === null
-            ? "animate-pulse bg-slate-400"
+            ? "animate-pulse bg-muted-foreground"
             : connected
-              ? "bg-emerald-500"
-              : "bg-rose-500",
+              ? "bg-primary"
+              : "bg-destructive",
         )}
       />
       {label}

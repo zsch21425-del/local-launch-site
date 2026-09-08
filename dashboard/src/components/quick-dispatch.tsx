@@ -70,7 +70,7 @@ export function QuickDispatch({ companyId, companyName }: { companyId: string; c
 
   return (
     <div className={cn(glass, "rounded-xl p-5")}>
-      <h2 className="mb-3 text-sm font-semibold text-slate-700">Quick Actions</h2>
+      <h2 className="mb-3 text-sm font-semibold text-foreground">Quick Actions</h2>
       <div className="flex flex-wrap gap-2">
         {ACTIONS.map((a) => (
           <button
@@ -84,9 +84,9 @@ export function QuickDispatch({ companyId, companyName }: { companyId: string; c
           </button>
         ))}
       </div>
-      {busy && <p className="mt-3 text-xs text-slate-400">Dispatching to Supervisor…</p>}
+      {busy && <p className="mt-3 text-xs text-muted-foreground">Dispatching to Supervisor…</p>}
       {reply && (
-        <div className="mt-3 rounded-lg bg-slate-50 border border-slate-200 p-3 text-xs whitespace-pre-wrap max-h-48 overflow-auto text-slate-700">
+        <div className="mt-3 rounded-lg bg-muted border border-border p-3 text-xs whitespace-pre-wrap max-h-48 overflow-auto text-foreground">
           {reply}
         </div>
       )}

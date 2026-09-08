@@ -21,14 +21,14 @@ export default function LeadsPage() {
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 sm:py-12">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               Leads
             </h1>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Early-funnel companies — prospect through first response.{" "}
               {loading ? "Loading…" : `${rows.length} in this list.`}
             </p>
-            {error ? <p className="mt-1 text-sm text-rose-600">{error}</p> : null}
+            {error ? <p className="mt-1 text-sm text-destructive">{error}</p> : null}
           </div>
           <AddLeadDialog stages={stages} onAdded={() => void reload()} />
         </div>

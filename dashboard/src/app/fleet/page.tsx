@@ -142,19 +142,19 @@ export default function FleetPage() {
   const onlineCount = status.filter((a) => a.online).length;
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-800 p-6">
+    <div className="min-h-screen bg-muted text-foreground p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold flex items-center gap-2 text-slate-900">
+            <h1 className="text-2xl font-bold flex items-center gap-2 text-foreground">
               <Terminal className="text-[#2AA8A8]" /> Fleet Command Center
             </h1>
-            <p className="text-slate-500 text-sm mt-1">
+            <p className="text-muted-foreground text-sm mt-1">
               {onlineCount}/{status.length} agents online · {activity.length} recent actions · auto-refresh 30s
             </p>
           </div>
-          <button onClick={refresh} className={cn(glass, "px-4 py-2 rounded-lg text-sm hover:bg-slate-100")}>
+          <button onClick={refresh} className={cn(glass, "px-4 py-2 rounded-lg text-sm hover:bg-muted")}>
             ⟳ Refresh
           </button>
         </div>
@@ -173,7 +173,7 @@ export default function FleetPage() {
         {/* PANEL 0 — Pipeline Run */}
         <section className={cn(glass, "rounded-xl p-5 animate-rise-in")}>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold flex items-center gap-2 text-slate-800">
+            <h2 className="text-lg font-semibold flex items-center gap-2 text-foreground">
               <Play className="w-4 h-4 text-[#2AA8A8]" /> Pipeline Run
             </h2>
             <button
@@ -206,13 +206,13 @@ export default function FleetPage() {
                       innerCard,
                       "p-3",
                       isActive ? "border-[#2AA8A8] bg-[#2AA8A8]/10 animate-pulse"
-                        : isDone ? "border-emerald-400 bg-emerald-50"
+                        : isDone ? "border-primary bg-primary/10"
                         : ""
                     )}
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{s.label}</span>
-                      <span className={cn("text-sm", isActive ? "text-[#2AA8A8]" : isDone ? "text-emerald-500" : "text-slate-300")}>
+                      <span className={cn("text-sm", isActive ? "text-[#2AA8A8]" : isDone ? "text-primary" : "text-muted-foreground/60")}>
                         {isActive ? "…" : isDone ? "✓" : "·"}
                       </span>
                     </div>
@@ -226,11 +226,11 @@ export default function FleetPage() {
             <div className="mt-4 space-y-2 max-h-64 overflow-auto">
               {fleetRun.log.map((entry: any, i: number) => (
                 <div key={i} className={cn(innerCard, "p-3 text-sm")}>
-                  <div className="font-medium text-slate-700">{entry.label}</div>
+                  <div className="font-medium text-foreground">{entry.label}</div>
                   {entry.error ? (
                     <p className="text-red-500 mt-1">⚠ {entry.error}</p>
                   ) : (
-                    <p className="text-slate-600 mt-1 whitespace-pre-wrap line-clamp-4">{entry.reply}</p>
+                    <p className="text-muted-foreground mt-1 whitespace-pre-wrap line-clamp-4">{entry.reply}</p>
                   )}
                 </div>
               ))}
@@ -238,7 +238,7 @@ export default function FleetPage() {
           )}
 
           {fleetRun?.status === "done" && (
-            <p className="text-sm text-emerald-600 mt-3">
+            <p className="text-sm text-primary mt-3">
               ✓ Pipeline run complete{fleetRun.completed ? ` · ${fmtTime(fleetRun.completed)}` : ""}
             </p>
           )}
@@ -257,13 +257,13 @@ export default function FleetPage() {
           )}
 
           {!fleetRun && (
-            <p className="text-sm text-slate-400">No run yet — click "Run Pipeline" to fan out to Scout → Auditor → Closer.</p>
+            <p className="text-sm text-muted-foreground">No run yet — click "Run Pipeline" to fan out to Scout → Auditor → Closer.</p>
           )}
         </section>
 
         {/* PANEL 1 — Fleet Status Grid */}
         <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:60ms]")}>
-          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-foreground">
             <Cpu className="w-4 h-4 text-[#2AA8A8]" /> Agent Status
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
@@ -271,9 +271,9 @@ export default function FleetPage() {
               <div key={a.name} className={cn(innerCardInteractive, "p-4")}>
                 <div className="flex items-center justify-between">
                   <span className="font-medium">{a.label}</span>
-                  <span className={cn("w-2.5 h-2.5 rounded-full", a.online ? "bg-emerald-400" : "bg-red-500")} />
+                  <span className={cn("w-2.5 h-2.5 rounded-full", a.online ? "bg-primary" : "bg-red-500")} />
                 </div>
-                <p className="text-xs text-slate-500 mt-1 line-clamp-2">{a.role}</p>
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{a.role}</p>
               </div>
             ))}
           </div>
@@ -281,7 +281,7 @@ export default function FleetPage() {
 
         {/* PANEL 2 — Current Tasks */}
         <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:120ms]")}>
-          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-foreground">
             <Radio className="w-4 h-4 text-[#2AA8A8]" /> What Each Agent Is Doing Now
           </h2>
           <div className="space-y-2">
@@ -289,8 +289,8 @@ export default function FleetPage() {
               <div key={t.name} className={cn(innerCardInteractive, "flex items-start gap-3 p-3")}>
                 <Bot className="w-4 h-4 text-[#2AA8A8] mt-0.5 shrink-0" />
                 <div className="min-w-0">
-                  <span className="text-sm font-medium text-slate-800">{t.label}</span>
-                  <p className="text-sm text-slate-600 line-clamp-2">{t.task ?? (t.error ? `⚠ ${t.error}` : "idle")}</p>
+                  <span className="text-sm font-medium text-foreground">{t.label}</span>
+                  <p className="text-sm text-muted-foreground line-clamp-2">{t.task ?? (t.error ? `⚠ ${t.error}` : "idle")}</p>
                 </div>
               </div>
             ))}
@@ -299,14 +299,14 @@ export default function FleetPage() {
 
         {/* PANEL 3 — Dispatch */}
         <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:180ms]")}>
-          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-foreground">
             <Send className="w-4 h-4 text-[#2AA8A8]" /> Dispatch Work
           </h2>
           <div className="flex gap-3 flex-wrap">
             <select
               value={dispatchAgent}
               onChange={(e) => setDispatchAgent(e.target.value)}
-              className="bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800"
+              className="bg-card border border-border rounded-lg px-3 py-2 text-sm text-foreground"
             >
               {status.map((a) => (
                 <option key={a.name} value={a.name}>{a.label}</option>
@@ -317,7 +317,7 @@ export default function FleetPage() {
               onChange={(e) => setDispatchMsg(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && dispatch()}
               placeholder='e.g. "Check reviews for Redwood" or "Draft a pitch for Chandler Bros"'
-              className="flex-1 min-w-[280px] bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800"
+              className="flex-1 min-w-[280px] bg-card border border-border rounded-lg px-3 py-2 text-sm text-foreground"
             />
             <button
               onClick={dispatch}
@@ -328,7 +328,7 @@ export default function FleetPage() {
             </button>
           </div>
           {dispatchReply && (
-            <div className="mt-3 rounded-lg bg-black/30 border border-white/10 p-3 text-sm whitespace-pre-wrap max-h-48 overflow-auto">
+            <div className="mt-3 rounded-lg bg-black/30 border border-card/10 p-3 text-sm whitespace-pre-wrap max-h-48 overflow-auto">
               {dispatchReply}
             </div>
           )}
@@ -336,25 +336,25 @@ export default function FleetPage() {
 
         {/* PANEL 4 — Activity Feed */}
         <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:240ms]")}>
-          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-foreground">
             <Activity className="w-4 h-4 text-[#2AA8A8]" /> Fleet Activity
           </h2>
           <div className="space-y-1 max-h-96 overflow-auto">
             {activity.map((e, i) => (
-              <div key={i} className="flex items-start gap-2 text-sm py-1 border-b border-slate-100">
-                <span className="text-slate-500 text-xs mt-1 shrink-0 w-14 text-right">{fmtAgo(e.ts)}</span>
-                <span className="text-slate-400 shrink-0">{e.direction === "inbound" ? "←" : "→"}</span>
+              <div key={i} className="flex items-start gap-2 text-sm py-1 border-b border-border">
+                <span className="text-muted-foreground text-xs mt-1 shrink-0 w-14 text-right">{fmtAgo(e.ts)}</span>
+                <span className="text-muted-foreground shrink-0">{e.direction === "inbound" ? "←" : "→"}</span>
                 <span className="font-medium text-[#2AA8A8] shrink-0">{e.label.split(" ")[0]}</span>
-                <span className="text-slate-600 line-clamp-2">{e.summary}</span>
+                <span className="text-muted-foreground line-clamp-2">{e.summary}</span>
               </div>
             ))}
-            {activity.length === 0 && <p className="text-slate-400 text-sm">No activity yet.</p>}
+            {activity.length === 0 && <p className="text-muted-foreground text-sm">No activity yet.</p>}
           </div>
         </section>
 
         {/* PANEL 5 — Cron Last Runs */}
         <section className={cn(glass, "rounded-xl p-5 animate-rise-in [animation-delay:300ms]")}>
-          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-slate-800">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4 text-foreground">
             <Clock className="w-4 h-4 text-[#2AA8A8]" /> Automated Jobs
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
@@ -362,12 +362,12 @@ export default function FleetPage() {
               <div key={a.name} className={cn(innerCardInteractive, "p-3")}>
                 <div className="flex justify-between text-sm">
                   <span className="font-medium">{a.label}</span>
-                  <span className="text-slate-500">{a.jobCount} jobs</span>
+                  <span className="text-muted-foreground">{a.jobCount} jobs</span>
                 </div>
                 {a.recentRuns.slice(0, 3).map((j, i) => (
-                  <div key={i} className="text-xs text-slate-500 mt-1 flex justify-between">
+                  <div key={i} className="text-xs text-muted-foreground mt-1 flex justify-between">
                     <span className="truncate pr-2">{j.name}</span>
-                    <span className={cn(j.lastStatus === "ok" ? "text-emerald-400" : "text-red-400")}>
+                    <span className={cn(j.lastStatus === "ok" ? "text-primary" : "text-red-400")}>
                       {j.lastStatus}
                     </span>
                   </div>
@@ -377,7 +377,7 @@ export default function FleetPage() {
           </div>
         </section>
 
-        {loading && <p className="text-slate-400 text-center py-8">Loading fleet…</p>}
+        {loading && <p className="text-muted-foreground text-center py-8">Loading fleet…</p>}
       </div>
     </div>
   );

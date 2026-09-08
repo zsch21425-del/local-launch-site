@@ -24,12 +24,12 @@ export function AgentMessage({
         className={cn(
           "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed break-words",
           isUser
-            ? "bg-slate-900 text-white"
-            : "border border-emerald-500/20 bg-emerald-500/[0.06] text-slate-800",
+            ? "bg-foreground text-white"
+            : "border border-primary/20 bg-primary/[0.06] text-foreground",
         )}
       >
         {pending ? (
-          <span className="flex items-center gap-1.5 text-slate-500">
+          <span className="flex items-center gap-1.5 text-muted-foreground">
             <Loader2 className="size-3.5 animate-spin" aria-hidden />
             Thinking…
           </span>

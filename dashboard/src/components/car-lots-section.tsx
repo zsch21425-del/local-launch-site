@@ -113,8 +113,8 @@ export function CarLotsSection({ data }: { data: CarLotsPipeline }) {
                           className={cn(
                             "inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs font-medium",
                             competitor.hasSchema
-                              ? "bg-emerald-500/15 text-emerald-300 ring-1 ring-inset ring-emerald-400/25"
-                              : "bg-slate-500/15 text-slate-300 ring-1 ring-inset ring-slate-400/25",
+                              ? "bg-primary/15 text-primary ring-1 ring-inset ring-ring/25"
+                              : "bg-muted-foreground/15 text-muted-foreground/60 ring-1 ring-inset ring-border",
                           )}
                         >
                           {competitor.hasSchema ? (

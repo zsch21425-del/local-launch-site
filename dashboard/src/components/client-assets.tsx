@@ -44,24 +44,24 @@ export function ClientAssets({ companyId }: { companyId: string }) {
   return (
     <div className={cn(glass, "rounded-xl p-5")}>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+        <h2 className="flex items-center gap-2 text-sm font-semibold text-foreground">
           <FolderOpen className="size-4 text-[#2AA8A8]" /> Assets & Work Files
-          {files.length > 0 && <span className="text-xs font-normal text-slate-400">({files.length})</span>}
+          {files.length > 0 && <span className="text-xs font-normal text-muted-foreground">({files.length})</span>}
         </h2>
-        <button onClick={load} className="text-xs text-slate-400 hover:text-slate-600" aria-label="Refresh assets">
+        <button onClick={load} className="text-xs text-muted-foreground transition-colors hover:text-foreground" aria-label="Refresh assets">
           <RefreshCw className={cn("size-3.5", loading && "animate-spin")} />
         </button>
       </div>
 
       {error === "local-only" ? (
-        <p className="text-sm text-slate-400 py-2">Work files are available on the local dashboard only (vault lives on the office machine).</p>
+        <p className="text-sm text-muted-foreground py-2">Work files are available on the local dashboard only (vault lives on the office machine).</p>
       ) : error ? (
         <p className="text-sm text-red-500 mb-3">{error}</p>
       ) : null}
       {loading && files.length === 0 ? (
-        <p className="text-sm text-slate-400 py-2">Loading assets…</p>
+        <p className="text-sm text-muted-foreground py-2">Loading assets…</p>
       ) : files.length === 0 ? (
-        <p className="text-sm text-slate-400 py-2">No work files in the vault for this client yet.</p>
+        <p className="text-sm text-muted-foreground py-2">No work files in the vault for this client yet.</p>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
           {files.map((f) => (
@@ -70,12 +70,12 @@ export function ClientAssets({ companyId }: { companyId: string }) {
                 href={`/api/client/file?companyId=${encodeURIComponent(companyId)}&file=${encodeURIComponent(f.name)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 hover:border-[#2AA8A8]/40 hover:bg-slate-100 transition-colors"
+                className="flex items-center gap-2 rounded-lg border border-border bg-muted px-3 py-2 text-sm text-foreground hover:border-[#2AA8A8]/40 hover:bg-muted transition-colors"
                 title={f.name}
               >
                 <FileText className="size-4 shrink-0 text-[#2AA8A8]" />
                 <span className="truncate font-medium">{f.name.replace(/\.md$/, "")}</span>
-                <span className="ml-auto shrink-0 text-[10px] uppercase tracking-wide text-slate-400">md</span>
+                <span className="ml-auto shrink-0 text-[10px] uppercase tracking-wide text-muted-foreground">md</span>
               </a>
             </li>
           ))}

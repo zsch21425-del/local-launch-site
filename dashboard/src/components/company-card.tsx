@@ -65,7 +65,7 @@ export function CompanyCard({
         glassCard,
         "group relative p-3.5 transition-all duration-200",
         isDragging
-          ? "rotate-[1.5deg] scale-[1.02] shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] ring-2 ring-emerald-500/30"
+          ? "rotate-[1.5deg] scale-[1.02] shadow-[0_20px_45px_-12px_rgba(15,23,42,0.35)] ring-2 ring-ring/30"
           : "hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-14px_rgba(15,23,42,0.32)]",
         theme.glow,
         className,
@@ -96,13 +96,13 @@ export function CompanyCard({
           <div className="flex items-start justify-between gap-2">
             <Link
               href={`/client/${company.id}`}
-              className="focus-visible:ring-ring/50 min-w-0 rounded-sm text-sm leading-snug font-semibold text-slate-900 outline-none after:absolute after:inset-0 after:content-[''] hover:text-emerald-700 focus-visible:ring-2"
+              className="focus-visible:ring-ring/50 min-w-0 rounded-sm text-sm leading-snug font-semibold text-foreground outline-none after:absolute after:inset-0 after:content-[''] hover:text-primary focus-visible:ring-2"
             >
               {company.name}
             </Link>
             <span className="flex shrink-0 items-center gap-0.5">
               <ArrowUpRight
-                className="size-3.5 text-slate-300 transition-colors group-hover:text-emerald-600"
+                className="size-3.5 text-muted-foreground/60 transition-colors group-hover:text-primary"
                 aria-hidden
               />
               {/* Sits above the card-wide link overlay so drags register. */}
@@ -112,15 +112,15 @@ export function CompanyCard({
             </span>
           </div>
 
-          <p className="mt-0.5 truncate text-[11px] text-slate-500">
+          <p className="mt-0.5 truncate text-[11px] text-muted-foreground">
             {company.category}
           </p>
 
           {/* Cold-call facts: owner name + offer tier, at a glance. */}
-          <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-slate-600">
+          <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-muted-foreground">
             {company.ownerName ? (
-              <span className="flex items-center gap-1 font-medium text-slate-700">
-                <User className="size-3 text-slate-400" aria-hidden />
+              <span className="flex items-center gap-1 font-medium text-foreground">
+                <User className="size-3 text-muted-foreground" aria-hidden />
                 {company.ownerName}
               </span>
             ) : null}
@@ -129,7 +129,7 @@ export function CompanyCard({
                 className={cn(
                   "rounded-full px-1.5 py-0.5 text-[10px] font-semibold ring-1",
                   company.offer.includes("599")
-                    ? "bg-emerald-50 text-emerald-700 ring-emerald-200"
+                    ? "bg-primary/10 text-primary ring-ring"
                     : "bg-sky-50 text-sky-700 ring-sky-200",
                 )}
               >
@@ -148,13 +148,13 @@ export function CompanyCard({
 
       <div className="mt-3 flex flex-wrap items-center gap-1.5 pl-2.5">
         <PriorityBadge priority={company.priority} />
-        <span className="inline-flex items-center gap-1 text-[11px] text-slate-500">
-          <MapPin className="size-3 text-slate-400" aria-hidden />
+        <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground">
+          <MapPin className="size-3 text-muted-foreground" aria-hidden />
           {company.location}
         </span>
       </div>
 
-      <div className="mt-3 flex items-center justify-between gap-3 border-t border-slate-900/[0.06] pt-3 pl-2.5">
+      <div className="mt-3 flex items-center justify-between gap-3 border-t border-foreground/[0.06] pt-3 pl-2.5">
         <div className="flex items-center gap-2.5">
           <ProgressRing
             value={progress.done}
@@ -163,17 +163,17 @@ export function CompanyCard({
             label={`${progress.percent}`}
           />
           <div className="leading-tight">
-            <p className="tnum text-xs font-semibold text-slate-800">
+            <p className="tnum text-xs font-semibold text-foreground">
               {progress.done}/{progress.total}
             </p>
-            <p className="text-[10px] tracking-wide text-slate-500 uppercase">
+            <p className="text-[10px] tracking-wide text-muted-foreground uppercase">
               Playbook
             </p>
           </div>
         </div>
 
         {updated ? (
-          <span className="inline-flex items-center gap-1 text-[10px] whitespace-nowrap text-slate-400">
+          <span className="inline-flex items-center gap-1 text-[10px] whitespace-nowrap text-muted-foreground">
             <CalendarClock className="size-3" aria-hidden />
             {updated}
           </span>
@@ -190,10 +190,10 @@ export function CompanyCard({
 function SendStatusBadge({ company }: { company: Company }) {
   const s = sendState(company);
   const styles: Record<string, string> = {
-    sent: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+    sent: "bg-primary/10 text-primary ring-ring",
     bounced: "bg-red-50 text-red-700 ring-red-200",
     awaiting: "bg-amber-50 text-amber-700 ring-amber-200",
-    none: "bg-slate-50 text-slate-500 ring-slate-200",
+    none: "bg-muted text-muted-foreground ring-border",
   };
   const Icon = s.tone === "sent" ? MailCheck : s.tone === "bounced" ? MailX : Send;
   return (
@@ -225,7 +225,7 @@ function DemoLink({ company }: { company: Company }) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={(e) => e.stopPropagation()}
-      className="relative z-10 inline-flex items-center gap-1 rounded-full bg-emerald-600/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700 ring-1 ring-emerald-600/20 transition-colors hover:bg-emerald-600/20"
+      className="relative z-10 inline-flex items-center gap-1 rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary ring-1 ring-ring/20 transition-colors hover:bg-primary/20"
       title={url}
     >
       <ExternalLink className="size-3" aria-hidden />
@@ -243,7 +243,7 @@ export function CardGrip({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "grid size-7 -mr-1.5 place-items-center rounded-md text-slate-300 transition-colors hover:bg-slate-900/5 hover:text-slate-600 focus-visible:ring-2 focus-visible:ring-emerald-500/40 focus-visible:outline-none",
+        "grid size-7 -mr-1.5 place-items-center rounded-md text-muted-foreground/60 transition-colors hover:bg-foreground/5 hover:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none",
         className,
       )}
     >
