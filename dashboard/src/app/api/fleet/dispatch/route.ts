@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { FLEET_AGENTS } from "@/lib/fleet";
 import { a2aSend } from "@/lib/a2a";
+import { isObject, badField, str } from "@/lib/validate";
 
 export const dynamic = "force-dynamic";
 const IS_SERVERLESS = !!process.env.VERCEL;
@@ -16,6 +17,21 @@ export async function POST(request: Request) {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  // M06: reject wrong-shape bodies before `.trim()` / lookup below.
+  if (!isObject(body)) {
+    return NextResponse.json(
+      { error: "Body must be a JSON object", field: "body" },
+      { status: 400 },
+    );
+  }
+  const bad = badField(body, { agent: str, message: str });
+  if (bad) {
+    return NextResponse.json(
+      { error: `Invalid or missing field: ${bad}`, field: bad },
+      { status: 400 },
+    );
   }
 
   const { agent, message } = body as { agent?: string; message?: string };

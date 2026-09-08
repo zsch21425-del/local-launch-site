@@ -6,8 +6,18 @@ import {
 } from "@/lib/email-gate";
 import { hashRevision } from "@/lib/revision";
 import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
+import {
+  isObject,
+  badField,
+  str,
+  strMax,
+  bool,
+  optional,
+  oneOf,
+} from "@/lib/validate";
 
 const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
+const MAX_NOTE = 4000;
 
 /**
  * POST: Unified pitch + demo approval from the client page.
@@ -20,6 +30,32 @@ export async function POST(request: Request) {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  // M06: strict body-shape validation before destructuring. A wrong-typed field
+  // (numeric companyId, object reason, "true" forceSend) would otherwise survive
+  // to `.trim()` / gate logic and throw an uncaught 500.
+  if (!isObject(body)) {
+    return NextResponse.json(
+      { error: "Body must be a JSON object", field: "body" },
+      { status: 400 },
+    );
+  }
+  const bad = badField(body, {
+    companyId: str,
+    action: (v) => oneOf(v, ["approve", "reject", "rework"]),
+    reason: (v) => optional(v, (x) => strMax(x, MAX_NOTE)),
+    suggestedFix: (v) => optional(v, (x) => strMax(x, MAX_NOTE)),
+    forceSend: (v) => optional(v, bool),
+    scope: (v) => optional(v, (x) => oneOf(x, ["demo", "pitch", "both"])),
+    expectedDemoUrl: (v) => optional(v, str),
+    expectedPitchHash: (v) => optional(v, str),
+  });
+  if (bad) {
+    return NextResponse.json(
+      { error: `Invalid or missing field: ${bad}`, field: bad },
+      { status: 400 },
+    );
   }
 
   const {

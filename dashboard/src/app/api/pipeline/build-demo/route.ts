@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { mutatePipeline, readPipelineSafe } from "@/lib/pipeline-store";
 import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
+import { isObject, badField, str, strMax, optional } from "@/lib/validate";
 
 const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
+const MAX_NOTE = 4000;
 
 /**
  * POST /api/pipeline/build-demo
@@ -17,6 +19,24 @@ export async function POST(request: Request) {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
+
+  // M06: strict body-shape validation before destructuring / `.trim()`.
+  if (!isObject(body)) {
+    return NextResponse.json(
+      { error: "Body must be a JSON object", field: "body" },
+      { status: 400 },
+    );
+  }
+  const bad = badField(body, {
+    companyId: str,
+    notes: (v) => optional(v, (x) => strMax(x, MAX_NOTE)),
+  });
+  if (bad) {
+    return NextResponse.json(
+      { error: `Invalid or missing field: ${bad}`, field: bad },
+      { status: 400 },
+    );
   }
 
   const { companyId, notes } = body as { companyId?: string; notes?: string };

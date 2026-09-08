@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mutatePipeline } from "@/lib/pipeline-store";
 import { isRequestAuthed } from "@/lib/session";
+import { isObject, badField, str, strMax, optional } from "@/lib/validate";
+
+const MAX_STR = 4000;
 
 const VALID_PRIORITY = ["high", "medium-high", "medium", "low"];
 // Runtime stage set — MUST match the StageId union in src/lib/data.ts.
@@ -28,6 +31,35 @@ export async function POST(req: NextRequest) {
   if (!(await isRequestAuthed(req))) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const body = await req.json().catch(() => ({}));
+
+  // M06: valid JSON with wrong types (numeric name, object category, …) would
+  // slip past the catch and throw on `.trim()` below → uncaught 500. Validate
+  // the outer shape first; `priority` / `stage` values are still checked against
+  // their allow-lists further down.
+  if (!isObject(body)) {
+    return NextResponse.json(
+      { error: "Body must be a JSON object", field: "body" },
+      { status: 400 },
+    );
+  }
+  const s = (v: unknown) => optional(v, (x) => strMax(x, MAX_STR));
+  const bad = badField(body, {
+    name: (v) => strMax(v, MAX_STR),
+    category: s,
+    location: s,
+    phone: s,
+    website: s,
+    priority: s,
+    stage: s,
+    summary: s,
+  });
+  if (bad) {
+    return NextResponse.json(
+      { error: `Invalid or missing field: ${bad}`, field: bad },
+      { status: 400 },
+    );
+  }
+
   const { name, category, location, phone, website, priority, stage, summary } = body as {
     name?: string;
     category?: string;

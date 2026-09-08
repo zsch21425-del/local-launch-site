@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mutatePipeline } from "@/lib/pipeline-store";
 import { isRequestAuthed } from "@/lib/session";
+import { isObject } from "@/lib/validate";
 
 /**
  * Editable fields on the client workstation cold-call sheet. Whitelist keeps
@@ -85,9 +86,18 @@ export async function PATCH(
 
   const { id } = await params;
   const body = await req.json().catch(() => ({}));
-  const fields = (body?.fields ?? {}) as Record<string, unknown>;
 
-  if (!fields || typeof fields !== "object" || Object.keys(fields).length === 0) {
+  // M06: reject a wrong-shape OUTER body (null, array, string, number) with a
+  // structured 400. The H11 per-field value validation below is unchanged.
+  if (!isObject(body)) {
+    return NextResponse.json(
+      { error: "Body must be a JSON object", field: "body" },
+      { status: 400 },
+    );
+  }
+  const fields = (body.fields ?? {}) as Record<string, unknown>;
+
+  if (!isObject(fields) || Object.keys(fields).length === 0) {
     return NextResponse.json({ error: "fields is required" }, { status: 400 });
   }
 

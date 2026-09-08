@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { readPipelineSafe } from "@/lib/pipeline-store";
 import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
+import { isObject, badField, str, optional } from "@/lib/validate";
 
 const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 
@@ -11,8 +12,29 @@ const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
  */
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
-  const message = body?.message?.trim();
-  const clientId = typeof body?.clientId === "string" ? body.clientId.trim() : "";
+
+  // M06: a numeric `message` would throw on `.trim()` below (uncaught 500).
+  // Require an object with a string `message` and optional string `clientId`.
+  if (!isObject(body)) {
+    return NextResponse.json(
+      { error: "Body must be a JSON object", field: "body" },
+      { status: 400 },
+    );
+  }
+  const bad = badField(body, {
+    message: str,
+    clientId: (v) => optional(v, str),
+  });
+  if (bad) {
+    return NextResponse.json(
+      { error: `Invalid or missing field: ${bad}`, field: bad },
+      { status: 400 },
+    );
+  }
+
+  const message = (body.message as string).trim();
+  const clientId =
+    typeof body.clientId === "string" ? body.clientId.trim() : "";
 
   if (!message) {
     return NextResponse.json({ error: "message is required" }, { status: 400 });

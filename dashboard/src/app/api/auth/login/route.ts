@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { issueSession } from "@/lib/session";
+import { isObject, badField, strMax } from "@/lib/validate";
 
 // Short numeric access code for browser login (e.g. "0613"). Falls back to the
 // longer DASHBOARD_TOKEN if ACCESS_CODE isn't set. The code is ONLY a login
@@ -53,6 +54,22 @@ export async function POST(request: Request) {
   } catch {
     return NextResponse.json({ error: "Invalid body" }, { status: 400 });
   }
+  // M06: reject wrong-shape bodies (null, numeric token, …) with a structured
+  // 400 before they reach the checks below.
+  if (!isObject(body)) {
+    return NextResponse.json(
+      { error: "Body must be a JSON object", field: "body" },
+      { status: 400 },
+    );
+  }
+  const bad = badField(body, { token: (v) => strMax(v, 200) });
+  if (bad) {
+    return NextResponse.json(
+      { error: `Invalid or missing field: ${bad}`, field: bad },
+      { status: 400 },
+    );
+  }
+
   const { token } = body as { token?: string };
   const okCodes = [ACCESS_CODE, DASHBOARD_TOKEN].filter(Boolean);
   if (!token || !okCodes.includes(token)) {
