@@ -1,35 +1,32 @@
 /**
- * Shared card recipes — crisp, warm borders and a soft elevation system so
- * surfaces read as layered content, not glassmorphism. Kept token-free here
- * (Tailwind utilities) but tuned to the warm off-white base in globals.css.
+ * Shared card recipes — crisp, visible borders and a real layered-elevation
+ * shadow system so white surfaces stand OUT from the warm background with
+ * genuine 3D depth, not a flat outline.
+ *
+ * Depth recipe: a tight contact shadow + a mid "lift" shadow + a wide diffuse
+ * ambient shadow (negative spread pulls it in for a soft elevated cast).
  */
 
-/**
- * Every opaque surface gets an inset top-light hairline
- * (`inset_0_1px_0_rgba(255,255,255,0.8)`) on top of its drop shadow — that's
- * what gives the "carved" edge instead of a flat outline.
- */
-
-/** Standard content card: opaque white with a crisp, layered elevation. */
+/** Standard content card: opaque white, visible border, layered elevation. */
 export const glass =
-  "rounded-2xl border border-slate-200/80 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_2px_rgba(15,23,42,0.05),0_2px_6px_-2px_rgba(15,23,42,0.06),0_16px_40px_-20px_rgba(15,23,42,0.18)]";
+  "rounded-2xl border border-slate-300/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.06),0_4px_10px_-2px_rgba(15,23,42,0.10),0_18px_40px_-16px_rgba(15,23,42,0.18)]";
 
 /** Lighter weight — used for kanban columns so cards stay the focal point. */
 export const glassSubtle =
-  "rounded-2xl border border-slate-200/60 bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1px_2px_rgba(15,23,42,0.03)]";
+  "rounded-2xl border border-slate-200/90 bg-white/80 shadow-[0_1px_2px_rgba(15,23,42,0.04)]";
 
 /** Draggable card: fully opaque, stronger elevation, gentle hover lift. */
 export const glassCard =
-  "hover-lift rounded-xl border border-slate-200/80 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_2px_rgba(15,23,42,0.05),0_8px_20px_-14px_rgba(15,23,42,0.2)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_2px_rgba(15,23,42,0.05),0_18px_34px_-16px_rgba(15,23,42,0.28)]";
+  "hover-lift rounded-xl border border-slate-300 bg-white shadow-[0_1px_3px_rgba(15,23,42,0.08),0_4px_10px_-2px_rgba(15,23,42,0.12),0_20px_40px_-16px_rgba(15,23,42,0.20)] hover:shadow-[0_2px_4px_rgba(15,23,42,0.10),0_8px_18px_-4px_rgba(15,23,42,0.16),0_28px_56px_-18px_rgba(15,23,42,0.26)]";
 
 /** Sticky chrome (header). */
 export const glassBar =
-  "border-b border-slate-200/70 bg-white/85 backdrop-blur-md";
+  "border-b border-slate-300/70 bg-white/90 backdrop-blur-md";
 
 /** Inner card nested inside a `glass` panel — flat-but-lifted, for status tiles and list rows. */
 export const innerCard =
-  "rounded-lg border border-slate-200/90 bg-slate-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(15,23,42,0.05)]";
+  "rounded-lg border border-slate-300/70 bg-slate-50 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_3px_6px_-2px_rgba(15,23,42,0.08)]";
 
 /** Interactive inner-card variant — adds the same gentle hover lift as `glassCard`. */
 export const innerCardInteractive =
-  "hover-lift rounded-lg border border-slate-200/90 bg-slate-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(15,23,42,0.05)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(15,23,42,0.05),0_12px_26px_-14px_rgba(15,23,42,0.2)]";
+  "hover-lift rounded-lg border border-slate-300/70 bg-slate-50 shadow-[0_1px_2px_rgba(15,23,42,0.06),0_3px_6px_-2px_rgba(15,23,42,0.08)] hover:shadow-[0_1px_2px_rgba(15,23,42,0.06),0_8px_20px_-6px_rgba(15,23,42,0.16)]";
