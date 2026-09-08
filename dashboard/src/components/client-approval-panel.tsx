@@ -6,10 +6,73 @@ import { Check, ExternalLink, MonitorPlay, RefreshCw, Send, X } from "lucide-rea
 import { glassCard } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 import { resolveDemoUrl } from "@/lib/data";
+import { hashRevision } from "@/lib/revision";
 
 interface ApprovalPanelProps {
   company: any;
 }
+
+/** A single artifact's decision state. Demo and pitch each carry their own —
+ *  they are never collapsed into one shared "approved" flag. */
+type ArtifactState =
+  | "approved"
+  | "sent"
+  | "rejected"
+  | "rework"
+  | "pending"
+  | "none";
+
+/** demo.status ∈ {pending, approved, rejected, rework, build-requested}. */
+function normalizeDemoState(
+  status: string | undefined,
+  hasDemo: boolean,
+): ArtifactState {
+  switch (status) {
+    case "approved":
+      return "approved";
+    case "rejected":
+      return "rejected";
+    case "rework":
+      return "rework";
+    case "pending":
+    case "build-requested":
+      return "pending";
+    default:
+      return hasDemo ? "pending" : "none";
+  }
+}
+
+/** pitchDraft.status ∈ {pending-review, pending-supervisor-review,
+ *  supervisor-approved, zach-approved, sent, rejected, rework}. Only
+ *  zach-approved is an approval here; `sent` is a distinct terminal send. */
+function normalizePitchState(status: string | undefined): ArtifactState {
+  switch (status) {
+    case "zach-approved":
+      return "approved";
+    case "sent":
+      return "sent";
+    case "rejected":
+      return "rejected";
+    case "rework":
+      return "rework";
+    case "pending":
+    case "pending-review":
+    case "pending-supervisor-review":
+    case "supervisor-approved":
+      return "pending";
+    default:
+      return status ? "pending" : "none";
+  }
+}
+
+const STATE_LABEL: Record<ArtifactState, string> = {
+  approved: "Approved",
+  sent: "Sent",
+  rejected: "Rejected",
+  rework: "Rework",
+  pending: "Awaiting review",
+  none: "—",
+};
 
 /**
  * Unified pitch + demo approval on the client page.
@@ -22,24 +85,58 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
   const hasDemo = !!(demoUrl && (company.demoUrl || company.demo?.url));
   const hasPitch = !!pitch;
 
-  const pitchStatus = pitch?.status;
-  const demoStatus =
-    company.demo?.status ?? (company.demoUrl || company.demo?.url ? "pending" : "none");
+  const pitchStatus: string | undefined = pitch?.status;
+  const demoStatus: string | undefined = company.demo?.status;
 
   const pitchFb = pitch?.reviewFeedback;
   const demoFb = company.demo?.reviewFeedback;
   const anyFb = demoFb?.reason ? demoFb : pitchFb?.reason ? pitchFb : null;
 
-  const storedResult: "approved" | "rejected" | "rework" | null =
-    demoStatus === "approved" ||
-    pitchStatus === "zach-approved" ||
-    pitchStatus === "sent"
-      ? "approved"
-      : demoStatus === "rework" || pitchStatus === "rework"
-        ? "rework"
-        : demoStatus === "rejected" || pitchStatus === "rejected"
-          ? "rejected"
+  // Optimistic per-artifact overrides applied after a successful POST — kept
+  // separate so an approved demo never hides a still-pending pitch.
+  const [demoOverride, setDemoOverride] = useState<ArtifactState | null>(null);
+  const [pitchOverride, setPitchOverride] = useState<ArtifactState | null>(null);
+
+  const demoState: ArtifactState =
+    demoOverride ?? normalizeDemoState(demoStatus, hasDemo);
+  const pitchState: ArtifactState =
+    pitchOverride ?? normalizePitchState(pitchStatus);
+
+  // Which artifacts still need Zach's decision.
+  const demoPending = hasDemo && demoState === "pending";
+  const pitchPending = hasPitch && pitchState === "pending";
+  const scope: "demo" | "pitch" | "both" | null =
+    demoPending && pitchPending
+      ? "both"
+      : demoPending
+        ? "demo"
+        : pitchPending
+          ? "pitch"
           : null;
+
+  // Overall is "approved" ONLY when every included artifact is individually
+  // approved (a `sent` pitch counts as already past approval).
+  const demoOk = !hasDemo || demoState === "approved";
+  const pitchOk =
+    !hasPitch || pitchState === "approved" || pitchState === "sent";
+  const overall: "approved" | "rejected" | "rework" | null =
+    (hasDemo || hasPitch) && demoOk && pitchOk
+      ? "approved"
+      : demoState === "rejected" || pitchState === "rejected"
+        ? "rejected"
+        : demoState === "rework" || pitchState === "rework"
+          ? "rework"
+          : null;
+
+  // Artifacts that were already bounced (rejected/rework) and can have their
+  // notes edited + re-sent even though they are no longer "pending".
+  const resendList: ("demo" | "pitch")[] = [];
+  if (hasDemo && (demoState === "rejected" || demoState === "rework"))
+    resendList.push("demo");
+  if (hasPitch && (pitchState === "rejected" || pitchState === "rework"))
+    resendList.push("pitch");
+  const resendScope: "demo" | "pitch" | "both" | null =
+    resendList.length === 2 ? "both" : (resendList[0] ?? null);
 
   const [mode, setMode] = useState<"review" | "deny" | "rework">("review");
   const [reason, setReason] = useState(anyFb?.reason ?? "");
@@ -47,17 +144,6 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [relayNote, setRelayNote] = useState<string | null>(null);
-  const [actionResult, setActionResult] = useState<
-    "approved" | "rejected" | "rework" | null
-  >(
-    storedResult === "approved"
-      ? "approved"
-      : storedResult === "rejected"
-        ? "rejected"
-        : storedResult === "rework"
-          ? "rework"
-          : null,
-  );
   const [savedFb, setSavedFb] = useState<{
     reason: string;
     suggestedFix?: string;
@@ -74,6 +160,16 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
   async function act(action: "approve" | "reject" | "rework") {
     setError("");
     setRelayNote(null);
+    const actScope = scope ?? resendScope;
+    if (!actScope) return;
+    // Bind the decision to the exact artifact the reviewer saw (H06). Only send
+    // the expectation for artifacts actually in scope; omit (undefined) otherwise.
+    const actWantsDemo = actScope === "demo" || actScope === "both";
+    const actWantsPitch = actScope === "pitch" || actScope === "both";
+    const expectedDemoUrl =
+      actWantsDemo && demoUrl ? demoUrl : undefined;
+    const expectedPitchHash =
+      actWantsPitch && pitch ? hashRevision(pitch?.subject, pitch?.body) : undefined;
     if ((action === "reject" || action === "rework") && !reason.trim()) {
       setError("A reason is required so the agent knows what to fix.");
       return;
@@ -86,8 +182,13 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
         body: JSON.stringify({
           companyId: company.id,
           action,
+          // Explicit action scope — which artifact(s) this decision covers
+          // (demo | pitch | both). A cleanly-approved artifact is never in scope.
+          scope: actScope,
           reason: action !== "approve" ? reason.trim() : undefined,
           suggestedFix: action !== "approve" ? suggestedFix.trim() : undefined,
+          expectedDemoUrl,
+          expectedPitchHash,
         }),
       });
       const json = await res.json().catch(() => ({}));
@@ -95,11 +196,17 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
         setError(json.error || "Request failed");
         return;
       }
+      const next: ArtifactState =
+        action === "approve"
+          ? "approved"
+          : action === "rework"
+            ? "rework"
+            : "rejected";
+      if (actScope === "demo" || actScope === "both") setDemoOverride(next);
+      if (actScope === "pitch" || actScope === "both") setPitchOverride(next);
       if (action === "approve") {
-        setActionResult("approved");
         setSavedFb(null);
       } else {
-        setActionResult(action === "rework" ? "rework" : "rejected");
         setSavedFb({
           reason: reason.trim(),
           suggestedFix: suggestedFix.trim() || undefined,
@@ -118,15 +225,11 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
     }
   }
 
-  const result = actionResult ?? storedResult;
-  const pending =
-    !result &&
-    (pitchStatus === "pending" ||
-      pitchStatus === "pending-review" ||
-      pitchStatus === "pending-supervisor-review" ||
-      pitchStatus === "supervisor-approved" ||
-      demoStatus === "pending" ||
-      demoStatus === "rework");
+  // Header badge reflects the overall state only once nothing is still pending.
+  const badgeState = scope ? null : overall;
+  const showControls = !!scope || mode === "deny" || mode === "rework";
+  const approveLabel =
+    scope === "demo" ? "Approve demo" : scope === "pitch" ? "Approve pitch" : "Approve";
 
   const displayFb = savedFb ?? (anyFb?.reason ? anyFb : null);
 
@@ -135,7 +238,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
       className={cn(
         glassCard,
         "overflow-hidden",
-        pending ? "ring-1 ring-sky-200" : "",
+        scope ? "ring-1 ring-sky-200" : "",
       )}
     >
       <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3.5">
@@ -143,11 +246,11 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
           <span
             className={cn(
               "grid size-8 place-items-center rounded-lg",
-              result === "approved"
+              badgeState === "approved"
                 ? "bg-emerald-500/10 text-emerald-700"
-                : result === "rejected"
+                : badgeState === "rejected"
                   ? "bg-rose-500/10 text-rose-700"
-                  : result === "rework"
+                  : badgeState === "rework"
                     ? "bg-violet-500/10 text-violet-700"
                     : "bg-sky-500/10 text-sky-700",
             )}
@@ -164,15 +267,15 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
             </p>
           </div>
         </div>
-        {result === "approved" ? (
+        {badgeState === "approved" ? (
           <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 ring-1 ring-emerald-500/20 ring-inset">
             <Check className="size-3" /> Approved
           </span>
-        ) : result === "rejected" ? (
+        ) : badgeState === "rejected" ? (
           <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/10 px-2.5 py-1 text-[11px] font-semibold text-rose-700 ring-1 ring-rose-500/20 ring-inset">
             <X className="size-3" /> Rejected
           </span>
-        ) : result === "rework" ? (
+        ) : badgeState === "rework" ? (
           <span className="inline-flex items-center gap-1 rounded-full bg-violet-500/10 px-2.5 py-1 text-[11px] font-semibold text-violet-700 ring-1 ring-violet-500/20 ring-inset">
             Rework
           </span>
@@ -186,7 +289,10 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
       {hasPitch ? (
         <div className="px-5 pt-4">
           <p className="text-[11px] font-semibold tracking-wide text-slate-400 uppercase">
-            Pitch
+            Pitch{" "}
+            <span className="ml-1 normal-case text-slate-400">
+              · {STATE_LABEL[pitchState]}
+            </span>
           </p>
           {pitch.subject ? (
             <p className="mt-1 text-sm font-medium text-slate-800">
@@ -204,7 +310,10 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
       {hasDemo ? (
         <div className="px-5 pt-3">
           <p className="text-[11px] font-semibold tracking-wide text-slate-400 uppercase">
-            Demo
+            Demo{" "}
+            <span className="ml-1 normal-case text-slate-400">
+              · {STATE_LABEL[demoState]}
+            </span>
           </p>
           <a
             href={demoUrl!}
@@ -245,9 +354,17 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
         <p className="px-5 pt-2 text-xs text-emerald-700">{relayNote}</p>
       ) : null}
 
-      {!result || mode === "deny" || mode === "rework" ? (
+      {showControls ? (
         <div className="mt-3 border-t border-slate-100 px-5 py-3.5">
-          {mode === "review" && !result ? (
+          {scope && mode === "review" ? (
+            <>
+              {scope === "both" ? null : (
+                <p className="mb-2 text-[11px] text-slate-500">
+                  {scope === "demo"
+                    ? "Pitch already decided — this acts on the demo only."
+                    : "Demo already decided — this acts on the pitch only."}
+                </p>
+              )}
             <div className="flex gap-2">
               <button
                 type="button"
@@ -256,7 +373,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-700 disabled:opacity-50"
               >
                 <Check className="size-4" />{" "}
-                {loading ? "Sending…" : "Approve"}
+                {loading ? "Sending…" : approveLabel}
               </button>
               <button
                 type="button"
@@ -275,6 +392,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 <X className="size-4" /> Disapprove
               </button>
             </div>
+            </>
           ) : mode === "deny" || mode === "rework" ? (
             <div>
               <p className="mb-1 text-sm font-medium text-slate-800">
@@ -349,19 +467,19 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
         <div
           className={cn(
             "border-t px-5 py-4 text-sm",
-            result === "approved"
+            overall === "approved"
               ? "bg-emerald-50/50 text-emerald-800"
-              : result === "rejected"
+              : overall === "rejected"
                 ? "bg-rose-50/50 text-rose-800"
                 : "bg-violet-50/50 text-violet-800",
           )}
         >
-          {result === "approved" ? (
+          {overall === "approved" ? (
             <p className="flex items-center gap-1.5 font-medium">
-              <Check className="size-4" /> Approved — agent can proceed
-              (send / next steps).
+              <Check className="size-4" /> Approved — every artifact is cleared;
+              agent can proceed (send / next steps).
             </p>
-          ) : result === "rework" ? (
+          ) : overall === "rework" ? (
             <p className="flex items-center gap-1.5 font-medium">
               <RefreshCw className="size-4" /> Rework — agent has the notes
               on this record.
@@ -372,13 +490,12 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
               record for the agent.
             </p>
           )}
-          {result !== "approved" ? (
+          {overall !== "approved" ? (
             <div className="mt-2 flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => {
-                  setActionResult(null);
-                  setMode(result === "rework" ? "rework" : "deny");
+                  setMode(overall === "rework" ? "rework" : "deny");
                 }}
                 className="text-xs font-medium underline"
               >

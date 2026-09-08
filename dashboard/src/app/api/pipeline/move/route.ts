@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mutatePipeline } from "@/lib/pipeline-store";
-
-const ACCESS = process.env.ACCESS_CODE || process.env.DASHBOARD_TOKEN;
-
-function isAuthed(req: NextRequest) {
-  return req.cookies.get("ll_dash_auth")?.value === ACCESS;
-}
+import { isRequestAuthed } from "@/lib/session";
 
 // Runtime stage set — MUST match the StageId union in src/lib/data.ts.
 // `sale` is the current closed-won stage; legacy `won`/`lost` are no longer
@@ -19,7 +14,7 @@ const VALID_STAGES = ["prospect", "audit", "pitch", "contacted", "response", "sa
  * Body: { companyId, stage }
  */
 export async function POST(req: NextRequest) {
-  if (!isAuthed(req)) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  if (!(await isRequestAuthed(req))) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const body = await req.json().catch(() => ({}));
   const { companyId, stage } = body as { companyId?: string; stage?: string };

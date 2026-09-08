@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mutatePipeline } from "@/lib/pipeline-store";
-
-const ACCESS = process.env.ACCESS_CODE || process.env.DASHBOARD_TOKEN;
-
-function isAuthed(req: NextRequest) {
-  return req.cookies.get("ll_dash_auth")?.value === ACCESS;
-}
+import { isRequestAuthed } from "@/lib/session";
 
 /**
  * Editable fields on the client workstation cold-call sheet. Whitelist keeps
@@ -86,7 +81,7 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  if (!isAuthed(req)) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  if (!(await isRequestAuthed(req))) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const { id } = await params;
   const body = await req.json().catch(() => ({}));

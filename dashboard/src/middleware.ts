@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
+import { verifySession } from "@/lib/session";
 
 /**
  * Auth gate for the LL OS dashboard.
  *
- * Browser: cookie `ll_dash_auth` set by POST /api/auth/login (ACCESS_CODE, e.g. 0613).
- * API: same cookie OR `Authorization: Bearer <ACCESS_CODE|DASHBOARD_TOKEN>`.
+ * Browser: cookie `ll_dash_auth` — an HMAC-signed, expiring session token minted
+ *   by POST /api/auth/login and verified here against DASHBOARD_TOKEN. The raw
+ *   ACCESS_CODE is NEVER accepted as a credential; login exchanges it for a
+ *   session (see src/lib/session.ts).
+ * API: `Authorization: Bearer <DASHBOARD_TOKEN>` only (long machine token).
+ *
+ * Fails closed when DASHBOARD_TOKEN is unconfigured — 503 for `/api/*`,
+ * redirect to /login otherwise.
  *
  * HARD RULE: the whole app is gated (except login + static). Leaving `/` open
  * made it feel like "login worked" then every tab bounced back to login and
@@ -12,13 +19,12 @@ import { NextRequest, NextResponse } from "next/server";
  */
 
 const TOKEN = process.env.DASHBOARD_TOKEN || "";
-const ACCESS_CODE =
-  process.env.ACCESS_CODE || process.env.DASHBOARD_TOKEN || "";
 const COOKIE = "ll_dash_auth";
 
 function isPublic(pathname: string): boolean {
   if (pathname === "/login") return true;
   if (pathname === "/api/auth/login") return true;
+  if (pathname === "/api/auth/logout") return true;
   if (pathname.startsWith("/_next")) return true;
   if (pathname === "/favicon.ico") return true;
   // public brand assets only
@@ -26,25 +32,23 @@ function isPublic(pathname: string): boolean {
   return false;
 }
 
-function isAuthed(req: NextRequest): boolean {
-  if (!TOKEN && !ACCESS_CODE) return false;
+async function isAuthed(req: NextRequest): Promise<boolean> {
+  if (!TOKEN) return false;
   const auth = req.headers.get("authorization") || "";
+  // Machine token: the long DASHBOARD_TOKEN as a Bearer credential.
+  if (auth === `Bearer ${TOKEN}`) return true;
+  // Browser: a signed, unexpired session cookie.
   const cookie = req.cookies.get(COOKIE)?.value || "";
-  // Accept either the short access code or the long dashboard token in cookie/bearer.
-  const okValues = [ACCESS_CODE, TOKEN].filter(Boolean);
-  if (okValues.includes(cookie)) return true;
-  for (const v of okValues) {
-    if (auth === `Bearer ${v}`) return true;
-  }
+  if (cookie && (await verifySession(cookie, TOKEN))) return true;
   return false;
 }
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (isPublic(pathname)) {
     // Already logged in? Don't trap on /login — send them where they were going.
-    if (pathname === "/login" && isAuthed(req)) {
+    if (pathname === "/login" && (await isAuthed(req))) {
       const next = req.nextUrl.searchParams.get("next");
       const dest =
         next && next.startsWith("/") && !next.startsWith("//") ? next : "/";
@@ -53,8 +57,8 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // Fail closed if nothing configured
-  if (!TOKEN && !ACCESS_CODE) {
+  // Fail closed if the signing secret isn't configured.
+  if (!TOKEN) {
     if (pathname.startsWith("/api/")) {
       return NextResponse.json(
         { error: "Dashboard auth not configured" },
@@ -64,7 +68,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (!isAuthed(req)) {
+  if (!(await isAuthed(req))) {
     if (pathname.startsWith("/api/")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

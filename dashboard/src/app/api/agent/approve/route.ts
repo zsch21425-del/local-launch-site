@@ -1,40 +1,29 @@
 import { NextResponse } from "next/server";
 
-const RELAY_URL = "http://137.184.135.50:9930/chat";
-
 /**
- * POST: Approve or deny a pitch. Forwards to Supervisor agent via relay.
+ * RETIRED 2026-09-08 (HIGH H07).
+ *
+ * This endpoint accepted {clientId, action, feedback} with NO company lookup,
+ * NO persistent approval record, and NO pre-send email gate, then forwarded a
+ * free-text "send the pitch" instruction to the Supervisor relay. That let a
+ * pitch go out with a dead/bounce-risk email and left no auditable decision on
+ * the pipeline record.
+ *
+ * It is now a fail-closed deprecation shim: every method returns HTTP 410 Gone.
+ * Callers must move to:
+ *   - POST /api/approve-combined   → combined demo + pitch decisions (scope-aware, MX-gated)
+ *   - POST /api/pipeline/approve   → pitch status transitions only (MX + content gated)
  */
-export async function POST(request: Request) {
-  const body = await request.json().catch(() => null);
-  const clientId = body?.clientId;
-  const action = body?.action;
-  const feedback = body?.feedback?.trim() || "";
 
-  if (!clientId || !action) {
-    return NextResponse.json({ error: "clientId and action required" }, { status: 400 });
-  }
+const GONE_BODY = {
+  error:
+    "This endpoint is retired. Use POST /api/approve-combined for combined demo+pitch decisions, or POST /api/pipeline/approve for pitch status changes. Neither forwards an ungated 'send the pitch' instruction.",
+};
 
-  const isApprove = action === "approve";
+export async function POST() {
+  return NextResponse.json(GONE_BODY, { status: 410 });
+}
 
-  const message = isApprove
-    ? `APPROVE pitch for client ${clientId}. Update the playbook step "Get Zach approval and send" to done. Then send the pitch to the client.`
-    : `DENY pitch for client ${clientId}. Reason: "${feedback}". Send this feedback back to the Closer agent to rework the pitch.`;
-
-  try {
-    const res = await fetch(RELAY_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message }),
-      signal: AbortSignal.timeout(120000),
-    });
-
-    const data = await res.json();
-    return NextResponse.json({ ok: true, action, reply: data.reply });
-  } catch (e: any) {
-    return NextResponse.json(
-      { ok: false, error: e.message },
-      { status: 502 }
-    );
-  }
+export async function GET() {
+  return NextResponse.json(GONE_BODY, { status: 410 });
 }

@@ -6,8 +6,10 @@ import {
   gateEmail,
   gateScLaw,
 } from "@/lib/email-gate";
+import { hashRevision } from "@/lib/revision";
+import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
 
-const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
+const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 
 /**
  * POST: approve/reject a pitch.
@@ -23,7 +25,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { companyId, status, reason, suggestedFix, forceSend } = body as {
+  const {
+    companyId,
+    status,
+    reason,
+    suggestedFix,
+    forceSend,
+    expectedDemoUrl,
+    expectedPitchHash,
+  } = body as {
     companyId?: string;
     status?:
       | "pending"
@@ -35,6 +45,11 @@ export async function POST(request: Request) {
     reason?: string;
     suggestedFix?: string;
     forceSend?: boolean;
+    // Revision binding (H06): what the reviewer actually saw. Verified inside
+    // the atomic mutation; a mismatch → HTTP 409, no write. This route only ever
+    // acts on the pitch, so expectedDemoUrl is accepted but never in scope here.
+    expectedDemoUrl?: string;
+    expectedPitchHash?: string;
   };
 
   if (!companyId || !status) {
@@ -187,6 +202,24 @@ export async function POST(request: Request) {
     const r = await mutatePipeline((d: any) => {
       const c = d.companies.find((x: any) => x.id === companyId);
       if (!c) throw new Error("__NOTFOUND__");
+
+      // ── Revision binding (H06) ──
+      // The pitch is always in scope on this route. Verify it still matches what
+      // the reviewer saw, here (inside the mutator) so the check races against
+      // the atomic winning read rather than the earlier pre-read.
+      if (typeof expectedPitchHash === "string" && expectedPitchHash && c.pitchDraft) {
+        const currentPitchHash = hashRevision(
+          c.pitchDraft.subject,
+          c.pitchDraft.body,
+        );
+        if (currentPitchHash !== expectedPitchHash) {
+          throw new Error("__REVISION_CONFLICT__");
+        }
+      }
+      // expectedDemoUrl is accepted for a uniform client contract, but the demo
+      // is never in scope on this pitch-only route, so it is not verified here.
+      void expectedDemoUrl;
+
       if (emailGate) c.emailGate = { ...emailGate, checkedAt: now };
       c.pitchDraft.status = status;
       if (status === "rejected") {
@@ -205,6 +238,16 @@ export async function POST(request: Request) {
     }
     company = r.result;
   } catch (e: any) {
+    if (e?.message === "__REVISION_CONFLICT__") {
+      return NextResponse.json(
+        {
+          error:
+            "The item changed since you reviewed it. Please re-review and resubmit.",
+          conflict: true,
+        },
+        { status: 409 },
+      );
+    }
     return NextResponse.json({ error: e?.message || "Unknown error" }, { status: 500 });
   }
 
@@ -229,19 +272,37 @@ export async function POST(request: Request) {
           ? `PITCH MARKED PENDING for ${company.name} (${companyId}).`
           : `PITCH ${status} for ${company.name} (${companyId}).`;
 
-  setTimeout(() => {
-    fetch(RELAY_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: decisionMsg, clientId: companyId }),
-      signal: AbortSignal.timeout(10000),
-    }).catch(() => {});
-  }, 0);
+  // ── Relay the decision to the Supervisor (AWAITED — serverless kills the
+  //    function after the response, so setTimeout(…, 0) never runs). Report the
+  //    real outcome instead of an unconditional relayed:true. ──
+  let relayed = false;
+  let relayError: string | null = null;
+  const relayBase = getRelayUrl();
+  if (!relayBase) {
+    relayError = RELAY_NOT_CONFIGURED;
+  } else {
+    try {
+      const res = await fetch(`${relayBase}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Relay-Token": getRelayToken() },
+        body: JSON.stringify({ message: decisionMsg, clientId: companyId }),
+        signal: AbortSignal.timeout(90000),
+      });
+      relayed = res.ok;
+      if (!res.ok) relayError = `relay HTTP ${res.status}`;
+    } catch (e: any) {
+      relayError = e?.message || "relay timeout";
+    }
+  }
 
+  // ── CRM upsert (AWAITED, best-effort). A CRM failure must NOT fail this
+  //    response, but it is reported truthfully via crmRelayed / crmError. ──
+  let crmRelayed: boolean | undefined;
+  let crmError: string | undefined;
   if (process.env.CRM_SESSION_TOKEN) {
-    const { crmUpsertCompany } = await import("@/lib/crm-client");
-    setTimeout(() => {
-      crmUpsertCompany({
+    try {
+      const { crmUpsertCompany } = await import("@/lib/crm-client");
+      const crmId = await crmUpsertCompany({
         name: company.name,
         domain: company.website?.replace(/^https?:\/\//, "") ?? undefined,
         description: `[${company.stage}] ${company.summary ?? ""} — pitch ${status}`.trim(),
@@ -250,9 +311,21 @@ export async function POST(request: Request) {
         stateCode: company.location?.toLowerCase().includes("sc") ? "SC" : undefined,
         phone: company.phone,
         email: company.email,
-      }).catch(() => {});
-    }, 0);
+      });
+      crmRelayed = crmId !== null;
+      if (!crmRelayed) crmError = "crm upsert returned null (unreachable or not persisted)";
+    } catch (e: any) {
+      crmRelayed = false;
+      crmError = e?.message || "crm upsert failed";
+    }
   }
 
-  return NextResponse.json({ ok: true, action: status, relayed: true, emailGate });
+  return NextResponse.json({
+    ok: true,
+    action: status,
+    relayed,
+    relayError,
+    ...(crmRelayed !== undefined ? { crmRelayed, crmError } : {}),
+    emailGate,
+  });
 }

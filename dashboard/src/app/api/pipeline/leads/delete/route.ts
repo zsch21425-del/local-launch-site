@@ -1,15 +1,10 @@
 // POST /api/pipeline/leads/delete — body: { companyId }
 import { NextRequest, NextResponse } from "next/server";
 import { mutatePipeline } from "@/lib/pipeline-store";
-
-const ACCESS = process.env.ACCESS_CODE || process.env.DASHBOARD_TOKEN;
-
-function isAuthed(req: NextRequest) {
-  return req.cookies.get("ll_dash_auth")?.value === ACCESS;
-}
+import { isRequestAuthed } from "@/lib/session";
 
 export async function POST(req: NextRequest) {
-  if (!isAuthed(req)) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  if (!(await isRequestAuthed(req))) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   const body = await req.json().catch(() => ({}));
   const { companyId } = body as { companyId?: string };
   if (!companyId) return NextResponse.json({ error: "Missing companyId" }, { status: 400 });

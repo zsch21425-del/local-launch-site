@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { mutatePipeline, readPipelineSafe } from "@/lib/pipeline-store";
+import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
 
-const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
+const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 
 /**
  * POST /api/pipeline/build-demo
@@ -106,17 +107,22 @@ export async function POST(request: Request) {
 
   let relayed = false;
   let relayError: string | null = null;
-  try {
-    const res = await fetch(RELAY_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: workOrder, clientId: companyId }),
-      signal: AbortSignal.timeout(90000),
-    });
-    relayed = res.ok;
-    if (!res.ok) relayError = `relay HTTP ${res.status}`;
-  } catch (e: any) {
-    relayError = e?.message || "relay timeout";
+  const relayBase = getRelayUrl();
+  if (!relayBase) {
+    relayError = RELAY_NOT_CONFIGURED;
+  } else {
+    try {
+      const res = await fetch(`${relayBase}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Relay-Token": getRelayToken() },
+        body: JSON.stringify({ message: workOrder, clientId: companyId }),
+        signal: AbortSignal.timeout(90000),
+      });
+      relayed = res.ok;
+      if (!res.ok) relayError = `relay HTTP ${res.status}`;
+    } catch (e: any) {
+      relayError = e?.message || "relay timeout";
+    }
   }
 
   return NextResponse.json({ ok: true, relayed, relayError });

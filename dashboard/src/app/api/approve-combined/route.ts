@@ -4,8 +4,10 @@ import {
   companyEmailCandidate,
   gateEmail,
 } from "@/lib/email-gate";
+import { hashRevision } from "@/lib/revision";
+import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
 
-const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
+const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 
 /**
  * POST: Unified pitch + demo approval from the client page.
@@ -20,12 +22,26 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { companyId, action, reason, suggestedFix, forceSend } = body as {
+  const {
+    companyId,
+    action,
+    reason,
+    suggestedFix,
+    forceSend,
+    scope,
+    expectedDemoUrl,
+    expectedPitchHash,
+  } = body as {
     companyId?: string;
     action?: "approve" | "reject" | "rework";
     reason?: string;
     suggestedFix?: string;
     forceSend?: boolean;
+    scope?: "demo" | "pitch" | "both";
+    // Revision binding (H06): what the reviewer actually saw. Verified inside
+    // the atomic mutation; a mismatch → HTTP 409, no write.
+    expectedDemoUrl?: string;
+    expectedPitchHash?: string;
   };
 
   if (!companyId || !action) {
@@ -34,6 +50,15 @@ export async function POST(request: Request) {
   if (!["approve", "reject", "rework"].includes(action)) {
     return NextResponse.json({ error: `Invalid action: ${action}` }, { status: 400 });
   }
+
+  // Which artifact(s) this decision covers. Absent/undefined = "both" (the
+  // pre-scope client behaviour, kept for backward compatibility).
+  const scopeVal: "demo" | "pitch" | "both" = scope ?? "both";
+  if (!["demo", "pitch", "both"].includes(scopeVal)) {
+    return NextResponse.json({ error: `Invalid scope: ${scope}` }, { status: 400 });
+  }
+  const wantsPitch = scopeVal === "pitch" || scopeVal === "both";
+  const wantsDemo = scopeVal === "demo" || scopeVal === "both";
   if ((action === "reject" || action === "rework") && (!reason || !reason.trim())) {
     return NextResponse.json(
       { error: "A reason is required so the agent knows what to fix." },
@@ -52,16 +77,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: `Company not found: ${companyId}` }, { status: 404 });
   }
 
-  const hadPitch = !!preCompany.pitchDraft;
-  const hadDemo = !!(preCompany.demoUrl || preCompany.demo?.url);
+  // Pre-read snapshot — used only for the read-only email gate below. The
+  // authoritative hadPitch / hadDemo are computed INSIDE the mutation from the
+  // fresh company and gated by scope (see below).
+  const preHadPitch = !!preCompany.pitchDraft;
   const demoUrl =
     preCompany.demo?.url ??
     preCompany.demoUrl ??
     `https://${companyId}-demo.vercel.app`;
 
   // ── Pre-send MX gate (read-only, outside the mutation) ──
+  // Only applies when this decision actually touches the pitch.
   let emailGate: Awaited<ReturnType<typeof gateEmail>> | null = null;
-  if (action === "approve" && hadPitch) {
+  if (action === "approve" && wantsPitch && preHadPitch) {
     const email = companyEmailCandidate(preCompany);
     if (!email) {
       return NextResponse.json(
@@ -104,7 +132,12 @@ export async function POST(request: Request) {
   }
 
   // ── Main mutation (atomic) ──
+  // hadPitch / hadDemo reflect what was ACTUALLY processed: the artifact must
+  // exist on the fresh company AND be in scope. Assigned inside the mutator so a
+  // retried mutation (ETag conflict) recomputes them against the winning read.
   let company: any;
+  let hadPitch = false;
+  let hadDemo = false;
   try {
     const r = await mutatePipeline((d: any) => {
       const c = d.companies.find((x: any) => x.id === companyId);
@@ -112,6 +145,29 @@ export async function POST(request: Request) {
       if (emailGate) c.emailGate = { ...emailGate, checkedAt: now };
 
       const hasNotes = action === "reject" || action === "rework";
+
+      hadPitch = wantsPitch && !!c.pitchDraft;
+      hadDemo = wantsDemo && !!(c.demoUrl || c.demo?.url);
+
+      // ── Revision binding (H06) ──
+      // Verify the artifact the reviewer saw still matches the one we're about
+      // to authorize. Checked here (inside the mutator) so it races against the
+      // atomic winning read, not the earlier pre-read.
+      if (typeof expectedDemoUrl === "string" && expectedDemoUrl && hadDemo) {
+        const currentDemoUrl = ((c.demo?.url ?? c.demoUrl) ?? "").trim();
+        if (currentDemoUrl !== expectedDemoUrl.trim()) {
+          throw new Error("__REVISION_CONFLICT__");
+        }
+      }
+      if (typeof expectedPitchHash === "string" && expectedPitchHash && hadPitch) {
+        const currentPitchHash = hashRevision(
+          c.pitchDraft.subject,
+          c.pitchDraft.body,
+        );
+        if (currentPitchHash !== expectedPitchHash) {
+          throw new Error("__REVISION_CONFLICT__");
+        }
+      }
 
       if (hadPitch) {
         const pitch = c.pitchDraft!;
@@ -154,12 +210,34 @@ export async function POST(request: Request) {
     }
     company = r.result;
   } catch (e: any) {
+    if (e?.message === "__REVISION_CONFLICT__") {
+      return NextResponse.json(
+        {
+          error:
+            "The item changed since you reviewed it. Please re-review and resubmit.",
+          conflict: true,
+        },
+        { status: 409 },
+      );
+    }
     return NextResponse.json({ error: e?.message || "Unknown error" }, { status: 500 });
   }
 
-  const buildWorkOrderMsg = (title: string) =>
+  // Label the relay message by the artifacts ACTUALLY in scope for this
+  // decision, so a demo-only approval never says "Pitch: zach-approved".
+  const inScope: ("pitch" | "demo")[] = [];
+  if (hadPitch) inScope.push("pitch");
+  if (hadDemo) inScope.push("demo");
+  const scopeLabel =
+    inScope.length === 2
+      ? "COMBINED"
+      : inScope.length === 1
+        ? inScope[0].toUpperCase()
+        : "NO-OP";
+
+  const buildWorkOrderMsg = (verb: string) =>
     [
-      `${title} — WORK ORDER FROM DASHBOARD`,
+      `${scopeLabel} ${verb} — WORK ORDER FROM DASHBOARD`,
       `Do NOT ask Zach to repeat this. Fix from these notes.`,
       ``,
       `Company: ${company.name} (id=${companyId})`,
@@ -178,34 +256,51 @@ export async function POST(request: Request) {
       `3. Leave short note / agent chat when ready for Zach re-review.`,
     ].join("\n");
 
+  const approveTitle =
+    scopeLabel === "COMBINED"
+      ? "COMBINED APPROVAL"
+      : scopeLabel === "NO-OP"
+        ? "APPROVAL — nothing in scope"
+        : `${scopeLabel} APPROVED`;
+
   const decisionMsg =
     action === "approve"
       ? [
-          `COMBINED APPROVAL — from dashboard client page.`,
+          `${approveTitle} — from dashboard client page.`,
           `Company: ${company.name} (id=${companyId})`,
-          hadPitch
-            ? `Pitch: zach-approved. Email gate=${emailGate?.status ?? "n/a"} (${emailGate?.reason ?? ""}). To=${companyEmailCandidate(company) || "(no email)"}. Send via send_pitch.py only.`
-            : `Pitch: none.`,
-          hadDemo ? `Demo approved: ${demoUrl}` : `Demo: none.`,
+          ...(hadPitch
+            ? [
+                `Pitch: zach-approved. Email gate=${emailGate?.status ?? "n/a"} (${emailGate?.reason ?? ""}). To=${companyEmailCandidate(company) || "(no email)"}. Send via send_pitch.py only.`,
+              ]
+            : []),
+          ...(hadDemo ? [`Demo approved: ${demoUrl}`] : []),
+          ...(inScope.length === 0
+            ? [`No in-scope artifact existed on the company — no change made.`]
+            : []),
           `Proceed per Local Launch process.`,
         ].join("\n")
       : action === "rework"
-        ? buildWorkOrderMsg("COMBINED REWORK")
-        : buildWorkOrderMsg("COMBINED REJECTION");
+        ? buildWorkOrderMsg("REWORK")
+        : buildWorkOrderMsg("REJECTION");
 
   let relayed = false;
   let relayError: string | null = null;
-  try {
-    const res = await fetch(RELAY_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: decisionMsg, clientId: companyId }),
-      signal: AbortSignal.timeout(90000),
-    });
-    relayed = res.ok;
-    if (!res.ok) relayError = `relay HTTP ${res.status}`;
-  } catch (e: any) {
-    relayError = e?.message || "relay timeout";
+  const relayBase = getRelayUrl();
+  if (!relayBase) {
+    relayError = RELAY_NOT_CONFIGURED;
+  } else {
+    try {
+      const res = await fetch(`${relayBase}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Relay-Token": getRelayToken() },
+        body: JSON.stringify({ message: decisionMsg, clientId: companyId }),
+        signal: AbortSignal.timeout(90000),
+      });
+      relayed = res.ok;
+      if (!res.ok) relayError = `relay HTTP ${res.status}`;
+    } catch (e: any) {
+      relayError = e?.message || "relay timeout";
+    }
   }
 
   return NextResponse.json({

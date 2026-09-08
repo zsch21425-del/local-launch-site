@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mutatePipeline } from "@/lib/pipeline-store";
-
-const ACCESS = process.env.ACCESS_CODE || process.env.DASHBOARD_TOKEN;
-
-function isAuthed(req: NextRequest) {
-  return req.cookies.get("ll_dash_auth")?.value === ACCESS;
-}
+import { isRequestAuthed } from "@/lib/session";
 
 const VALID_PRIORITY = ["high", "medium-high", "medium", "low"];
 // Runtime stage set — MUST match the StageId union in src/lib/data.ts.
@@ -30,7 +25,7 @@ function slugify(name: string): string {
  * Body: { name, category, location, phone?, website?, priority, stage, summary? }
  */
 export async function POST(req: NextRequest) {
-  if (!isAuthed(req)) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  if (!(await isRequestAuthed(req))) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const body = await req.json().catch(() => ({}));
   const { name, category, location, phone, website, priority, stage, summary } = body as {

@@ -8,13 +8,16 @@
  * (secure prefix because APP_URL is https).
  *
  * Env vars (server-side only, never client):
- *   CRM_API_URL          e.g. http://137.184.135.50:3001
+ *   CRM_ENDPOINT / CRM_API_URL   CRM base URL — MUST be https:// (or an explicit
+ *                                loopback host for local dev). Plaintext http on
+ *                                a public host is refused and every call is
+ *                                skipped (fail closed) — see src/lib/relay-config.ts.
  *   CRM_SESSION_TOKEN    raw session token from /opt/crm-svc-cred.env
  *   CRM_BETTER_AUTH_SECRET  BETTER_AUTH_SECRET from the CRM .env
  */
 import { createHmac } from "crypto";
+import { getCrmBaseUrl } from "./relay-config";
 
-const API_URL = process.env.CRM_API_URL || "http://137.184.135.50:3001";
 const TOKEN = process.env.CRM_SESSION_TOKEN || "";
 const SECRET = process.env.CRM_BETTER_AUTH_SECRET || "";
 const COOKIE_NAME = "__Secure-crm.session_token";
@@ -27,10 +30,12 @@ function signCookie(): string {
 
 /** tRPC query (GET) — returns parsed result.data */
 export async function crmQuery<T>(path: string, input: unknown): Promise<T | null> {
+  const base = getCrmBaseUrl();
+  if (!base) return null; // CRM endpoint unset or plaintext http on a public host — fail closed
   const cookie = signCookie();
   if (!cookie) return null;
   try {
-    const url = `${API_URL}/api/trpc/${path}?input=${encodeURIComponent(JSON.stringify({ json: input }))}`;
+    const url = `${base}/api/trpc/${path}?input=${encodeURIComponent(JSON.stringify({ json: input }))}`;
     const res = await fetch(url, {
       headers: { Cookie: `${COOKIE_NAME}=${cookie}` },
       signal: AbortSignal.timeout(8000),
@@ -46,10 +51,12 @@ export async function crmQuery<T>(path: string, input: unknown): Promise<T | nul
 /** tRPC mutation (POST) — fire-and-forget friendly; returns parsed result.data
  * NOTE: mutations take the raw input object (no {json:} wrapper) — verified. */
 export async function crmMutation<T>(path: string, input: unknown): Promise<T | null> {
+  const base = getCrmBaseUrl();
+  if (!base) return null; // CRM endpoint unset or plaintext http on a public host — fail closed
   const cookie = signCookie();
   if (!cookie) return null;
   try {
-    const url = `${API_URL}/api/trpc/${path}`;
+    const url = `${base}/api/trpc/${path}`;
     const res = await fetch(url, {
       method: "POST",
       headers: {

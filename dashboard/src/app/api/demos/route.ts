@@ -1,7 +1,19 @@
 import { NextResponse } from "next/server";
 import { mutatePipeline } from "@/lib/pipeline-store";
+import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
 
-const RELAY_URL = `${process.env.SUPERVISOR_RELAY_URL || "http://137.184.135.50:9930"}/chat`;
+const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
+
+/** True only for a well-formed absolute http(s) URL. Used to reject approvals
+ *  that have no real, verified demo URL (no invented `<slug>-demo.vercel.app`). */
+function isHttpUrl(s: string): boolean {
+  try {
+    const u = new URL(s);
+    return u.protocol === "http:" || u.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
 
 /**
  * GET: demos awaiting Zach's review (pending/rejected/rework).
@@ -70,12 +82,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const { companyId, action, notes, reason, suggestedFix } = body as {
+  const { companyId, action, notes, reason, suggestedFix, url } = body as {
     companyId?: string;
     action?: "approve" | "reject" | "rework";
     notes?: string;
     reason?: string;
     suggestedFix?: string;
+    url?: string;
   };
 
   if (!companyId || !action) {
@@ -107,8 +120,64 @@ export async function POST(request: Request) {
 
   const now = new Date().toISOString();
 
+  // ── Pre-read: verify a real demo URL + short-circuit an idempotent re-approve.
+  // Read-only, before the atomic mutation. We never invent a fallback URL.
+  const { readPipelineSafe } = await import("@/lib/pipeline-store");
+  const pre = await readPipelineSafe();
+  const preCompanies: any[] = Array.isArray(pre?.companies) ? pre.companies : [];
+  if (preCompanies.length === 0) {
+    return NextResponse.json(
+      { error: "Pipeline store empty or unreadable" },
+      { status: 500 },
+    );
+  }
+  const preCompany = preCompanies.find((x: any) => x.id === companyId);
+  if (!preCompany) {
+    return NextResponse.json(
+      { error: `Company not found: ${companyId}` },
+      { status: 404 },
+    );
+  }
+
+  const bodyUrl = typeof url === "string" ? url.trim() : "";
+  const storedUrl =
+    (typeof preCompany.demo?.url === "string" && preCompany.demo.url.trim()) ||
+    (typeof preCompany.demoUrl === "string" && preCompany.demoUrl.trim()) ||
+    "";
+  // The URL an approval would record: an explicit one from the request, else the
+  // one already stored on the company. Never `<slug>-demo.vercel.app`.
+  const verifiedUrl = bodyUrl || storedUrl;
+
+  if (action === "approve") {
+    if (!isHttpUrl(verifiedUrl)) {
+      return NextResponse.json(
+        {
+          error:
+            "Cannot approve: no verified demo URL on this company. Store a real (http/https) demo URL first.",
+        },
+        { status: 400 },
+      );
+    }
+    // Idempotent: this exact revision is already approved → benign success,
+    // no state change and no second relay to the Supervisor.
+    if (
+      preCompany.demo?.status === "approved" &&
+      typeof preCompany.demo?.url === "string" &&
+      preCompany.demo.url.trim() === verifiedUrl
+    ) {
+      return NextResponse.json({
+        ok: true,
+        action,
+        idempotent: true,
+        relayed: false,
+        relayError: null,
+        reviewFeedback: null,
+      });
+    }
+  }
+
   let company: any;
-  let demoUrl = "";
+  let demoUrl = verifiedUrl || storedUrl;
   try {
     const r = await mutatePipeline((data: any) => {
       const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
@@ -116,30 +185,17 @@ export async function POST(request: Request) {
       const c = companies.find((x: any) => x.id === companyId);
       if (!c) throw new Error("__NOTFOUND__");
 
-      demoUrl =
-        c.demo?.url || c.demoUrl || `https://${companyId}-demo.vercel.app`;
-
       c.demo = c.demo ?? {};
       if (!c.demo.url && c.demoUrl) c.demo.url = c.demoUrl;
 
       if (action === "approve") {
+        // Versioned demo decision ONLY. Pin the approved revision's URL and do
+        // NOT advance the company stage — stage advancement belongs to explicit
+        // send/response/sale events, not to a demo approval.
+        c.demo.url = verifiedUrl;
         c.demo.status = "approved";
         c.demo.reviewedAt = now;
         delete c.demo.reviewFeedback;
-        // Demo cleared → advance the company one stage toward outreach/pitch.
-        const order = [
-          "prospect",
-          "audit",
-          "pitch",
-          "contacted",
-          "response",
-          "build-launch",
-        ];
-        const idx = order.indexOf(c.stage);
-        if (idx >= 0 && idx < order.length - 1) {
-          c.stage = order[idx + 1];
-          c.stageMovedAt = now;
-        }
       } else if (action === "reject" || action === "rework") {
         c.demo.status = action === "reject" ? "rejected" : "rework";
         c.demo.reviewedAt = now;
@@ -181,7 +237,6 @@ export async function POST(request: Request) {
   }
 
   // Re-read the company for the relay/CRM (already mutated + persisted).
-  const { readPipelineSafe } = await import("@/lib/pipeline-store");
   const fresh = await readPipelineSafe();
   company = (fresh?.companies ?? []).find((x: any) => x.id === companyId);
 
@@ -191,7 +246,7 @@ export async function POST(request: Request) {
     msg = [
       `DEMO APPROVED — work from dashboard (no Telegram needed for context).`,
       `Company: ${company?.name} (id=${companyId})`,
-      `Demo URL: ${demoUrl}`,
+      `Demo URL: ${demoUrl || "(none on record)"}`,
       `Next: treat as Zach-approved demo. Ready for pitch/send path if email+pitch exist; otherwise note demo is cleared.`,
     ].join("\n");
   } else {
@@ -200,7 +255,7 @@ export async function POST(request: Request) {
       `Do NOT ask Zach to repeat this. Fix the demo from these notes.`,
       ``,
       `Company: ${company?.name} (id=${companyId})`,
-      `Demo URL: ${demoUrl}`,
+      `Demo URL: ${demoUrl || "(none on record)"}`,
       `Stage: ${company?.stage ?? "unknown"}`,
       `Action: ${action}`,
       `Reason: ${why}`,
@@ -216,20 +271,25 @@ export async function POST(request: Request) {
   // Await relay so Zach gets a real "sent to agent" signal (not fire-and-forget 10s)
   let relayed = false;
   let relayError: string | null = null;
-  try {
-    const res = await fetch(RELAY_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: msg, clientId: companyId }),
-      signal: AbortSignal.timeout(90000),
-    });
-    relayed = res.ok;
-    if (!res.ok) {
-      const t = await res.text().catch(() => "");
-      relayError = `relay HTTP ${res.status} ${t.slice(0, 120)}`;
+  const relayBase = getRelayUrl();
+  if (!relayBase) {
+    relayError = RELAY_NOT_CONFIGURED;
+  } else {
+    try {
+      const res = await fetch(`${relayBase}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Relay-Token": getRelayToken() },
+        body: JSON.stringify({ message: msg, clientId: companyId }),
+        signal: AbortSignal.timeout(90000),
+      });
+      relayed = res.ok;
+      if (!res.ok) {
+        const t = await res.text().catch(() => "");
+        relayError = `relay HTTP ${res.status} ${t.slice(0, 120)}`;
+      }
+    } catch (e: any) {
+      relayError = e?.message || "relay timeout";
     }
-  } catch (e: any) {
-    relayError = e?.message || "relay timeout";
   }
 
   if (process.env.CRM_SESSION_TOKEN && company) {

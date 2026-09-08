@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { readPipelineSafe } from "@/lib/pipeline-store";
+import { getRelayUrl, getRelayToken } from "@/lib/relay-config";
 
-const RELAY_URL = "http://137.184.135.50:9930/chat";
+const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 
 /**
  * POST /api/agent/chat
@@ -48,10 +49,23 @@ export async function POST(request: Request) {
     }
   }
 
+  const relayBase = getRelayUrl();
+  if (!relayBase) {
+    return NextResponse.json(
+      {
+        reply: `Agent unavailable: ${RELAY_NOT_CONFIGURED}.`,
+        connected: false,
+        relayed: false,
+        relayError: RELAY_NOT_CONFIGURED,
+      },
+      { status: 200 },
+    );
+  }
+
   try {
-    const res = await fetch(RELAY_URL, {
+    const res = await fetch(`${relayBase}/chat`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "X-Relay-Token": getRelayToken() },
       body: JSON.stringify({ message: framed, clientId: clientId || "system" }),
       signal: AbortSignal.timeout(120000),
     });
@@ -96,10 +110,15 @@ export async function GET(request: Request) {
     );
   }
 
+  const relayBase = getRelayUrl();
+  if (!relayBase) {
+    return NextResponse.json({ connected: false, reply: RELAY_NOT_CONFIGURED });
+  }
+
   try {
-    const res = await fetch(RELAY_URL, {
+    const res = await fetch(`${relayBase}/chat`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "X-Relay-Token": getRelayToken() },
       body: JSON.stringify({
         message: "health check — reply PONG one word only",
         clientId: "system",
