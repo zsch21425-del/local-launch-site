@@ -2858,7 +2858,7 @@
       "id": "kings-power-washing-of-charlotte",
       "name": "Kings Power Washing of Charlotte",
       "category": "Pressure Washing",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Charlotte, NC",
       "phone": "(980) 298-5785",
       "website": "",
@@ -2892,7 +2892,16 @@
       "email": "charlottepowerwashing@gmail.com",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "f7d169a3-aad3-468e-8cb0-7931c98dc88e",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event sent. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "junk-busters",
@@ -6962,7 +6971,12 @@
       "email": "concrete@apcrpro.com",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "bounce-risk",
+        "reason": "apcrpro.com has no MX (dead domain) \u2014 MX gate blocked send 2026-09-08; needs email re-enrichment",
+        "checkedAt": "2026-09-08T19:12:07.385368+00:00"
+      }
     },
     {
       "id": "gulottas-window",
@@ -7090,7 +7104,7 @@
       "id": "montes-tree",
       "name": "Monte's Tree Service",
       "category": "Tree service (removal, trimming)",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Easley, SC",
       "phone": "(864) 430-0010",
       "website": "",
@@ -7127,7 +7141,16 @@
       "offer": "$599 build",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "84120cf4-c750-4100-94da-0472bec6289d",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "reed-concrete",
@@ -7400,7 +7423,7 @@
       "id": "km-excavating",
       "name": "K&M Excavating And Hardscape LLC",
       "category": "Excavating, hardscape (landscape/paver work)",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Travelers Rest, SC",
       "phone": "(864) 510-8176",
       "website": "",
@@ -7436,7 +7459,16 @@
       "email": "tbill565656@gmail.com",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "5e77fedf-0dc6-47a7-aa32-d3dede4d823f",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "blu-rhino-junk",
@@ -8869,7 +8901,7 @@
       "id": "quinn-services",
       "name": "Quinn Services",
       "category": "Concrete, deck building/renovation, home repairs, handyman, construction",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Spartanburg, SC",
       "phone": "(864) 308-6981",
       "website": "",
@@ -8906,7 +8938,16 @@
       "offer": "$599 build",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "850da312-8ac9-4fd3-9567-fff39f80e55b",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "renaissance-handyman-service",
@@ -9091,7 +9132,7 @@
       "id": "tb-contractors-llc",
       "name": "TB Contractors LLC",
       "category": "Exterior residential remodeling \u2014 roofing, siding, windows, doors, decks, fences",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Mauldin, SC",
       "phone": "(864) 966-0225",
       "website": "",
@@ -9126,13 +9167,22 @@
       "email": "tbcontractorsllcsc@gmail.com",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "18898210-92ed-4a88-a140-d310ae1b7c1e",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "whittier-fence-and-deck",
       "name": "Whittier Fence and Deck",
       "category": "Fencing / deck building / general contracting",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Simpsonville, SC (600 Scuffletown Rd, Simpsonville SC 29681)",
       "phone": "(864) 303-1453 (Yelp/FB) \u00b7 (864) 303-1645 (Nextdoor/Houzz) \u2014 two-number flag",
       "website": "",
@@ -9167,7 +9217,16 @@
       "email": "whittierfencellc@gmail.com",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "8a48c04c-e932-4730-863d-0fed17766e64",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "aquablade-llc",
@@ -9328,7 +9387,7 @@
       "id": "knockit-junk-removal",
       "name": "KnockIt Junk Removal",
       "category": "Junk removal, furniture removal, debris removal, hauling, small moves",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Spartanburg (29301) / Greenville / Pacolet, SC",
       "phone": "(864) 384-4817",
       "website": "",
@@ -9365,7 +9424,16 @@
       "offer": "$599 build",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "4742f215-c190-4ca1-b03b-695f9f312274",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "bearden-forestry",
@@ -9580,7 +9648,7 @@
       "id": "kirk-johnson-handyman-contractor",
       "name": "Kirk Johnson Handyman Contractor",
       "category": "Handyman / general contractor \u2014 plumbing, electrical, roofing, crawl space, siding, lighting/fans, gazebos, decks, walkways, docks",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Easley, SC 29640 (307 Asbury Circle)",
       "phone": "(941) 626-6146 \u26a0\ufe0f out-of-region area code (FL-origin, likely ported/VoIP) \u2014 verify before outreach",
       "website": "",
@@ -9617,7 +9685,16 @@
       "ownerName": "Kirk",
       "offer": "$599 build",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "13298f58-dcdd-4bc5-addc-e57091edbc2b",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "l-f-handymen",
@@ -10023,7 +10100,7 @@
       "id": "lees-decks-and-more",
       "name": "Lees Decks and More",
       "category": "Deck building / fence building / deck repair",
-      "stage": "pitch",
+      "stage": "contacted",
       "location": "Easley, SC",
       "phone": "(864) 364-7316",
       "website": "",
@@ -10058,7 +10135,16 @@
       "email": "detalansmith74@gmail.com",
       "emailSource": "auditor-enrichment-2026-09-08",
       "demoLive": true,
-      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00",
+      "sendTruth": {
+        "status": "sent_verified",
+        "provider": "resend",
+        "resendId": "387ed1d4-74da-4228-9a02-e6cf238c8454",
+        "verifiedAt": "2026-09-08T19:12:07.385368+00:00",
+        "note": "Branded Resend (zach@locallaunchupstate.com) \u2014 event delivered. Demo-first gate satisfied: demoUrl live curl 200 + Zach demo approval 2026-09-08."
+      },
+      "sentDate": "2026-09-08T19:12:07.385368+00:00",
+      "pitchSentAt": "2026-09-08T19:12:07.385368+00:00"
     },
     {
       "id": "maid-spotless",
