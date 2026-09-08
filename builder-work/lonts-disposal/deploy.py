@@ -16,15 +16,20 @@ def _load_token():
         raise SystemExit("No VERCEL_TOKEN found in .env or auth.json")
 
 VERCEL_TOKEN = _load_token()
-PROJECT = "lonts-demo"
+PROJECT = "lonts-disposal"
 HEADERS = {"Authorization": f"Bearer {VERCEL_TOKEN}"}
 SITE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def compute_files():
     files = []
     for root, dirs, filenames in os.walk(SITE_DIR):
-        dirs[:] = [d for d in dirs if not d.startswith(".git") and not d.startswith("__")]
+        dirs[:] = [d for d in dirs if not d.startswith(".") and not d.startswith("__")]
         for fn in filenames:
+            # SECURITY: only deploy real site assets — never secrets, scripts, or Vercel metadata
+            if fn.startswith(".") or fn.endswith(".py") or fn.endswith(".pyc"):
+                continue
+            if fn.endswith((".env", ".env.local", ".env.production")):
+                continue
             fpath = os.path.join(root, fn)
             with open(fpath, "rb") as f:
                 content = f.read()

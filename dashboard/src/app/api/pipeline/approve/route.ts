@@ -142,7 +142,7 @@ export async function POST(request: Request) {
       ? [
           `PITCH APPROVED for ${company.name} (${companyId}).`,
           `Email gate: ${emailGate?.status ?? "n/a"} — ${emailGate?.reason ?? ""}`,
-          `Send ONLY via: send_pitch.py (verify+himalaya -a locallaunch)`,
+          `Send ONLY via: send_pitch.py (Resend branded zach@locallaunchupstate.com, SMTP fallback)`,
           `To: ${email}`,
           `Subject: ${draft.subject ?? ""}`,
           `Body:`,

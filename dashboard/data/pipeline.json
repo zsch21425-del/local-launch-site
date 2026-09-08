@@ -509,7 +509,7 @@
         "notes": "Brothers Ryan & Zach Jackson. No email \u2014 phone only. Great tagline. 6-city coverage area. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you",
         "email": "jacksonsjunkandstuff@gmail.com",
         "sentDate": "2026-08-14",
-        "demoUrl": "https://jacksons-junk.vercel.app"
+        "demoUrl": "https://jacksons-junk-demo.vercel.app"
       },
       "responseStatus": "awaiting",
       "saleValue": null,
@@ -956,7 +956,7 @@
         "confidence": 8,
         "notes": "5.0\u2605 Yelp, 27 photos. Best social proof in batch. No email \u2014 FB DM only. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you",
         "email": "lonts247disposal@yahoo.com",
-        "demoUrl": "https://lonts-demo.vercel.app",
+        "demoUrl": "https://lonts-disposal.vercel.app",
         "sentDate": "2026-08-14"
       },
       "responseStatus": "awaiting",
@@ -965,7 +965,7 @@
       "zachApproval": null,
       "demoUrl": "https://lonts-disposal.vercel.app",
       "demo": {
-        "url": "",
+        "url": "https://lonts-disposal.vercel.app",
         "status": "pending"
       },
       "email": "lonts247disposal@yahoo.com",
