@@ -45,19 +45,31 @@ export function GlobalSearch({ className }: { className?: string }) {
         />
       </div>
       {open && q.trim() ? (
-        <div className="absolute left-0 right-0 top-full z-30 mt-1 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
+        <div
+          role="listbox"
+          className="absolute left-0 right-0 top-full z-30 mt-1 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg"
+        >
           {matches.length === 0 ? (
-            <p className="px-3 py-2.5 text-sm text-slate-500">Not in the dashboard yet.</p>
+            <p role="status" className="px-3 py-2.5 text-sm text-slate-500">
+              Not in the dashboard yet.
+            </p>
           ) : (
-            matches.map((c) => (
+            matches.map((c) => {
+              const go = () => {
+                router.push(`/client/${c.id}`);
+                setOpen(false);
+                setQ("");
+              };
+              return (
               <button
                 key={c.id}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  router.push(`/client/${c.id}`);
-                  setOpen(false);
-                  setQ("");
-                }}
+                type="button"
+                role="option"
+                aria-selected={false}
+                // preventDefault on mousedown keeps the input from blurring
+                // before the click lands; keyboard users get a real onClick.
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={go}
                 className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm hover:bg-slate-50"
               >
                 <span className="truncate font-medium text-slate-700">{c.name}</span>
@@ -65,7 +77,8 @@ export function GlobalSearch({ className }: { className?: string }) {
                   {c.stage}
                 </span>
               </button>
-            ))
+              );
+            })
           )}
         </div>
       ) : null}

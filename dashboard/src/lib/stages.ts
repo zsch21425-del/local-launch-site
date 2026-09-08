@@ -1,12 +1,14 @@
 import {
   Circle,
   Clipboard,
+  DollarSign,
   Hammer,
   Megaphone,
   MessageSquare,
   Phone,
   Rocket,
   Search,
+  Send,
   Trophy,
   type LucideIcon,
 } from "lucide-react";
@@ -114,6 +116,11 @@ const STAGE_ICONS: Record<string, LucideIcon> = {
   Trophy,
   Rocket,
   Hammer,
+  // Aliases used by FALLBACK_STAGES in data.ts — without these the pitch,
+  // response and sale stages rendered as bare circles.
+  Send,
+  Message: MessageSquare,
+  Dollar: DollarSign,
 };
 
 export function stageIcon(name: string): LucideIcon {

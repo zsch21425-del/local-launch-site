@@ -81,21 +81,36 @@ function RejectForm({
       <p className="mb-2 text-sm font-medium text-rose-700">
         Reject &quot;{company.name}&quot; — tell the agent what to fix
       </p>
+      <label htmlFor="reject-reason" className="sr-only">
+        Reason for rejecting this pitch (required)
+      </label>
       <textarea
+        id="reject-reason"
         value={reason}
         onChange={(e) => setReason(e.target.value)}
         placeholder="Why are you rejecting this pitch? Be specific…"
         rows={2}
+        aria-required
+        aria-invalid={!!error}
+        aria-describedby={error ? "reject-error" : undefined}
         className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-400"
       />
+      <label htmlFor="reject-fix" className="sr-only">
+        Suggested fix for the agent (optional)
+      </label>
       <textarea
+        id="reject-fix"
         value={suggestedFix}
         onChange={(e) => setSuggestedFix(e.target.value)}
-        placeholder="What should the agent change or add? (e.g. 'rework the headline to focus on emergency HVAC', 'lower the price to $300')"
+        placeholder="What should the agent change or add? (e.g. 'rework the headline to focus on emergency HVAC', 'quote the current offer: $599 one-time + $149/mo Care')"
         rows={2}
         className="mt-2 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-rose-400"
       />
-      {error ? <p className="mt-1 text-xs text-rose-600">{error}</p> : null}
+      {error ? (
+        <p id="reject-error" role="alert" className="mt-1 text-xs text-rose-600">
+          {error}
+        </p>
+      ) : null}
       <div className="mt-3 flex items-center gap-2">
         <button
           type="button"
@@ -221,9 +236,13 @@ function ApproveButtons({
   }
 
   const statusNote = actionError ? (
-    <p className="mt-2 text-xs font-medium text-rose-600">{actionError}</p>
+    <p role="alert" className="mt-2 text-xs font-medium text-rose-600">
+      {actionError}
+    </p>
   ) : outcome ? (
-    <p className="mt-2 text-xs font-medium text-emerald-700">{outcome}</p>
+    <p role="status" aria-live="polite" className="mt-2 text-xs font-medium text-emerald-700">
+      {outcome}
+    </p>
   ) : null;
 
   // If there's feedback, show it + allow re-submit.

@@ -72,7 +72,11 @@ export default function LoginPage() {
             </p>
           ) : null}
         </div>
+        <label htmlFor="access-code" className="sr-only">
+          Access code
+        </label>
         <input
+          id="access-code"
           type="password"
           inputMode="numeric"
           autoComplete="one-time-code"
@@ -80,9 +84,15 @@ export default function LoginPage() {
           onChange={(e) => setToken(e.target.value)}
           placeholder="Access code"
           autoFocus
+          aria-invalid={!!error}
+          aria-describedby={error ? "login-error" : undefined}
           className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
         />
-        {error ? <p className="text-sm text-rose-600">{error}</p> : null}
+        {error ? (
+          <p id="login-error" role="alert" className="text-sm text-rose-600">
+            {error}
+          </p>
+        ) : null}
         <button
           type="submit"
           disabled={busy || !token.trim()}

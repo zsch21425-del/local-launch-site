@@ -39,14 +39,23 @@ export default function ClientsPage() {
               Won and in-build companies only. Leads live on the Leads tab.
               {loading ? " Loading live list…" : ""}
             </p>
-            {error ? <p className="mt-1 text-sm text-rose-600">{error}</p> : null}
+            {error ? (
+              <p role="alert" className="mt-1 text-sm text-rose-600">
+                {error}
+              </p>
+            ) : null}
           </div>
           <AddLeadDialog stages={allStages} onAdded={() => void reload()} />
         </div>
 
         <div className="relative max-w-md">
+          <label htmlFor="client-search" className="sr-only">
+            Search clients by name, category, or location
+          </label>
           <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
           <input
+            id="client-search"
+            type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search a client by name, category, or location…"

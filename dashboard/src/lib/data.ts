@@ -296,10 +296,15 @@ export interface DemoItem {
  * was intentionally stored on the company record.
  */
 export function resolveDemoUrl(company: Company): string | null {
-  const explicit = company.demo?.url ?? company.demoUrl ?? null;
-  if (!explicit || typeof explicit !== "string") return null;
-  const url = explicit.trim();
-  return url.length ? url : null;
+  // First NON-BLANK candidate wins. `??` only skips null/undefined, so a
+  // present-but-empty `demo.url` ("") used to shadow a populated legacy
+  // `demoUrl` and hide the demo from the queue.
+  for (const candidate of [company.demo?.url, company.demoUrl]) {
+    if (typeof candidate !== "string") continue;
+    const url = candidate.trim();
+    if (url.length) return url;
+  }
+  return null;
 }
 
 /**
@@ -416,13 +421,46 @@ function isSouthCarolina(location: string): boolean {
   return /,\s*sc\b/i.test(location) || /south carolina/i.test(location);
 }
 
+/** Two-letter USPS codes (incl. DC). SC is handled separately upstream. */
+const US_STATE_CODES = new Set([
+  "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID",
+  "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO",
+  "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA",
+  "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+]);
+
+const US_STATE_NAMES = [
+  "alabama", "alaska", "arizona", "arkansas", "california", "colorado",
+  "connecticut", "delaware", "florida", "georgia", "hawaii", "idaho",
+  "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine",
+  "maryland", "massachusetts", "michigan", "minnesota", "mississippi",
+  "missouri", "montana", "nebraska", "nevada", "new hampshire", "new jersey",
+  "new mexico", "new york", "north carolina", "north dakota", "ohio",
+  "oklahoma", "oregon", "pennsylvania", "rhode island", "south dakota",
+  "tennessee", "texas", "utah", "vermont", "virginia", "washington",
+  "west virginia", "wisconsin", "wyoming",
+];
+
+/** True only when the string actually pins a concrete US state. */
+function namesUsState(location: string): boolean {
+  const code = /,\s*([A-Za-z]{2})\b/.exec(location);
+  if (code && US_STATE_CODES.has(code[1].toUpperCase())) return true;
+  const lower = location.toLowerCase();
+  return US_STATE_NAMES.some((name) => lower.includes(name));
+}
+
 export function regionOfLocation(location?: string | null): RegionId {
   const loc = (location ?? "").trim();
   if (!loc) return "unknown";
-  if (!isSouthCarolina(loc)) return "out-of-state";
-  return UPSTATE_CITIES.some((city) => primaryCity(loc).includes(city))
-    ? "upstate"
-    : "sc";
+  if (isSouthCarolina(loc)) {
+    return UPSTATE_CITIES.some((city) => primaryCity(loc).includes(city))
+      ? "upstate"
+      : "sc";
+  }
+  // Only call it "out-of-state" when a non-SC state is actually identifiable.
+  // An unparseable / ambiguous string (bare city, country-only, junk) stays
+  // "unknown" so it lands in the enrichment bucket, not the expansion book.
+  return namesUsState(loc) ? "out-of-state" : "unknown";
 }
 
 export function companyRegion(company: Company): RegionId {
@@ -946,10 +984,23 @@ export function groupPlaybookByStage(
     .filter((group) => group.items.length > 0);
 }
 
+/**
+ * Parse a stored date value consistently in UTC. A bare `YYYY-MM-DD` is pinned
+ * to UTC midnight — `new Date("2026-08-07T00:00:00")` (no zone) is parsed in the
+ * LOCAL zone, then formatting/diffing in UTC shifts it a day west of GMT.
+ * Full datetime strings are passed through untouched.
+ */
+function parseStoredDate(value: string): Date {
+  const v = value.trim();
+  return /^\d{4}-\d{2}-\d{2}$/.test(v)
+    ? new Date(`${v}T00:00:00Z`)
+    : new Date(v);
+}
+
 /** "2026-08-07" -> "Aug 7, 2026". Returns null for empty/invalid dates. */
 export function formatDate(value?: string): string | null {
   if (!value) return null;
-  const parsed = new Date(`${value}T00:00:00`);
+  const parsed = parseStoredDate(value);
   if (Number.isNaN(parsed.getTime())) return null;
   return parsed.toLocaleDateString("en-US", {
     month: "short",
@@ -962,7 +1013,7 @@ export function formatDate(value?: string): string | null {
 /** Whole days between a `YYYY-MM-DD` value and now. Null for empty/invalid dates. */
 export function daysSince(value?: string): number | null {
   if (!value) return null;
-  const parsed = new Date(`${value}T00:00:00`);
+  const parsed = parseStoredDate(value);
   if (Number.isNaN(parsed.getTime())) return null;
   return Math.max(0, Math.floor((Date.now() - parsed.getTime()) / 86_400_000));
 }
@@ -976,7 +1027,20 @@ export function toHref(website?: string): string | null {
   if (!website) return null;
   const cleaned = website.split(" ")[0].trim();
   if (!cleaned) return null;
-  return cleaned.startsWith("http") ? cleaned : `https://${cleaned}`;
+  // A bare host ("acme.com", "acme.com:8080") is assumed https. Anything that
+  // carries a real scheme ("ftp://", "javascript:…") is parsed and allow-listed
+  // to http(s) — `startsWith("http")` waved through junk and produced an
+  // unclickable href.
+  const hasScheme = /^[a-z][a-z0-9+.-]*:(?:\/\/|[^0-9/])/i.test(cleaned);
+  const candidate = hasScheme ? cleaned : `https://${cleaned}`;
+  let parsed: URL;
+  try {
+    parsed = new URL(candidate);
+  } catch {
+    return null;
+  }
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return null;
+  return candidate;
 }
 
 /** Strips protocol and trailing slash for display. */

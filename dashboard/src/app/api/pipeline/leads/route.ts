@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mutatePipeline } from "@/lib/pipeline-store";
+import { regionOfLocation } from "@/lib/data";
 import { isRequestAuthed } from "@/lib/session";
 import { isObject, badField, str, strMax, optional } from "@/lib/validate";
 
@@ -73,7 +74,10 @@ export async function POST(req: NextRequest) {
 
   const n = (name ?? "").trim();
   const cat = (category ?? "").trim() || "Uncategorized";
-  const loc = (location ?? "").trim() || "Greenville, SC";
+  // L06: never invent a location. An unknown territory stays unknown (empty) —
+  // `regionOfLocation("")` → "unknown", which is the correct enrichment bucket.
+  // Defaulting to "Greenville, SC" silently mislabels every out-of-state lead.
+  const loc = (location ?? "").trim();
   const pr = (priority ?? "medium").trim();
   const st = (stage ?? "prospect").trim();
   const sum = (summary ?? "").trim();
@@ -91,6 +95,20 @@ export async function POST(req: NextRequest) {
   const now = new Date();
   const isoDate = now.toISOString().slice(0, 10);
 
+  // L06: derive the first outreach step from policy, not a hardcoded "Call".
+  // Local Launch is email-first across SC, and email-first by default whenever
+  // the territory is unknown; only a confirmed out-of-state lead skips that.
+  const region = regionOfLocation(loc);
+  const emailFirst = region !== "out-of-state";
+  const firstStepLabel = emailFirst
+    ? "Find the owner's email and send the intro pitch"
+    : "Confirm territory + preferred contact channel, then reach out";
+  const firstStepDetail = emailFirst
+    ? phone
+      ? `Email-first (house policy). Phone on file as a fallback: ${phone}.`
+      : "Email-first (house policy). Enrich a contact email before outreach."
+    : "Out-of-state lead — verify the territory and best channel before contacting.";
+
   const newCompany = {
     id,
     name: n,
@@ -106,13 +124,13 @@ export async function POST(req: NextRequest) {
     playbook: [
       {
         id: `${id}-contact`,
-        label: "Make initial contact",
+        label: firstStepLabel,
         stage: "prospect",
         done: false,
-        detail: phone ? `Call ${phone}.` : "Find a phone number and call.",
+        detail: firstStepDetail,
       },
     ],
-    nextSteps: ["Make initial contact"],
+    nextSteps: [firstStepLabel],
     seoScore: null,
     gScore: null,
     saleValue: null,

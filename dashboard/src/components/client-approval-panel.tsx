@@ -350,10 +350,12 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
       ) : null}
 
       {error ? (
-        <p className="px-5 pt-2 text-xs text-rose-600">{error}</p>
+        <p role="alert" className="px-5 pt-2 text-xs text-rose-600">{error}</p>
       ) : null}
       {relayNote ? (
-        <p className="px-5 pt-2 text-xs text-emerald-700">{relayNote}</p>
+        <p role="status" aria-live="polite" className="px-5 pt-2 text-xs text-emerald-700">
+          {relayNote}
+        </p>
       ) : null}
 
       {showControls ? (
@@ -397,19 +399,26 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
             </>
           ) : mode === "deny" || mode === "rework" ? (
             <div>
-              <p className="mb-1 text-sm font-medium text-slate-800">
+              <label
+                htmlFor="approval-reason"
+                className="mb-1 block text-sm font-medium text-slate-800"
+              >
                 {mode === "rework"
                   ? "What needs rework? What should the agent change?"
                   : "Why are you disapproving? What should the agent change?"}
-              </p>
-              <p className="mb-2 text-[11px] text-slate-500">
+              </label>
+              <p id="approval-reason-hint" className="mb-2 text-[11px] text-slate-500">
                 Required. Saved on this company and sent to the agent — skip
                 Telegram for the same note.
               </p>
               <textarea
+                id="approval-reason"
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="Reason (required) — e.g. hero too dark, wrong city, AI slop copy…"
+                aria-required
+                aria-invalid={!reason.trim() && !!error}
+                aria-describedby="approval-reason-hint"
                 className={cn(
                   "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none",
                   mode === "rework"
@@ -419,7 +428,11 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 rows={2}
                 autoFocus
               />
+              <label htmlFor="approval-fix" className="sr-only">
+                Suggested fix (optional)
+              </label>
               <textarea
+                id="approval-fix"
                 value={suggestedFix}
                 onChange={(e) => setSuggestedFix(e.target.value)}
                 placeholder="Suggested fix (optional)"
