@@ -3,6 +3,7 @@ import { ArrowRight, Banknote, Repeat, Sparkles, Wallet } from "lucide-react";
 
 import { Progress } from "@/components/ui/progress";
 import {
+  CLIENT_STAGES,
   formatCurrency,
   getPlaybookProgress,
   type Company,
@@ -12,9 +13,11 @@ import { glass } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
 /**
- * Money view. Recurring + one-time is summed from every company that has
- * reached the "won" stage; until one does, this shows the honest zero state
- * alongside the live clients that are closest to converting.
+ * Money view. Booked (stage-derived, NOT paid/MRR truth): recurring + one-time
+ * is summed from every closed client — `sale` AND `build-launch` (M15). The
+ * per-client breakdown lists closed clients that carry a `revenue` block; until
+ * one does, this shows the honest zero state alongside the clients closest to
+ * converting.
  */
 export function RevenueTracker({
   revenue,
@@ -25,7 +28,12 @@ export function RevenueTracker({
   companies: Company[];
   className?: string;
 }) {
-  const won = companies.filter((company) => company.stage === "sale");
+  const booked = companies
+    .filter((company) => CLIENT_STAGES.includes(company.stage))
+    .filter(
+      (company) =>
+        (company.revenue?.mrr ?? 0) > 0 || (company.revenue?.oneTime ?? 0) > 0,
+    );
   const annualRunRate = revenue.mrr * 12;
   const total = revenue.mrr + revenue.oneTime;
 
@@ -47,11 +55,12 @@ export function RevenueTracker({
             Revenue
           </h2>
           <p className="mt-0.5 text-xs text-slate-500">
-            Booked from clients in the Won stage
+            Booked from closed clients (Sale + Build &amp; Launch) — stage-derived,
+            not billed
           </p>
         </div>
         <span className="tnum rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 ring-1 ring-inset ring-emerald-500/20">
-          {revenue.clientCount} paying
+          {revenue.clientCount} closed
         </span>
       </div>
 
@@ -76,9 +85,9 @@ export function RevenueTracker({
         />
       </div>
 
-      {won.length > 0 ? (
+      {booked.length > 0 ? (
         <ul className="mt-5 flex flex-col divide-y divide-slate-900/[0.06]">
-          {won.map((company) => {
+          {booked.map((company) => {
             const mrr = company.revenue?.mrr ?? 0;
             const oneTime = company.revenue?.oneTime ?? 0;
             return (
@@ -108,12 +117,12 @@ export function RevenueTracker({
       ) : (
         <div className="mt-5 rounded-xl border border-dashed border-slate-900/10 bg-white/40 p-4">
           <p className="text-sm font-medium text-slate-800">
-            No paying clients booked yet.
+            No revenue recorded on closed clients yet.
           </p>
           <p className="mt-1 text-xs leading-relaxed text-slate-500">
             {total === 0
-              ? "Move a client to Won and add a `revenue` block in data/pipeline.json to start tracking here."
-              : "Revenue recorded without a matching Won client."}
+              ? "Add a `revenue` block to a Sale / Build & Launch client in the pipeline to start tracking booked revenue here."
+              : "Revenue recorded without a matching closed client."}
           </p>
 
           {nearest.length > 0 ? (

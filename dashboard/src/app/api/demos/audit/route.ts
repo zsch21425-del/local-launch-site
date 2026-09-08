@@ -18,13 +18,19 @@ function normalize(s: string): string {
     .trim();
 }
 
-/** Heuristic "does this page title belong to this company" — catches the
- *  wrong-business case (e.g. B&M serving FIX Home Projects) without flagging
- *  benign title decorations ("B&M Pressure Washing — Fountain Inn, SC"). */
-function titleMatchesName(title: string, name: string): boolean {
+type IdentityCheck = "verified" | "mismatch" | "unknown";
+
+/** Heuristic "does this page title belong to this company" — TRIAGE only, never
+ *  a send-authorization gate. Catches the wrong-business case (e.g. B&M serving
+ *  FIX Home Projects) without flagging benign title decorations ("B&M Pressure
+ *  Washing — Fountain Inn, SC").
+ *
+ *  Returns "unknown" when there is not enough identity evidence on BOTH sides to
+ *  judge (missing/blank title, or a company name that reduces to an empty core)
+ *  — an empty core would otherwise match every title via `includes("")`. */
+function checkTitleIdentity(title: string, name: string): IdentityCheck {
   const t = normalize(title);
   const n = normalize(name);
-  if (!n || !t) return true; // cannot judge → don't flag
   const core = n
     .replace(
       /\b(llc|inc|incorporated|company|co|corp|corporation|llp|lp|service|services|group|of|the|and|a|an)\b/g,
@@ -32,9 +38,12 @@ function titleMatchesName(title: string, name: string): boolean {
     )
     .replace(/\s+/g, " ")
     .trim();
-  if (t.includes(core)) return true;
+  // Need a meaningful, non-empty identity token on BOTH sides before we judge.
+  if (t.length < 3 || core.length < 3) return "unknown";
+  if (t.includes(core)) return "verified";
   const firstTwo = core.split(" ").filter((w) => w.length > 2).slice(0, 2).join(" ");
-  return firstTwo.length > 3 && t.includes(firstTwo);
+  if (firstTwo.length > 3 && t.includes(firstTwo)) return "verified";
+  return "mismatch";
 }
 
 function extractTitle(html: string): string {
@@ -178,8 +187,9 @@ interface AuditEntry {
   url: string;
   httpStatus: number | null;
   title: string;
-  status: "ok" | "404" | "wrong-business" | "error";
-  /** Set when the URL was rejected by policy or was otherwise not fetchable. */
+  status: "ok" | "404" | "wrong-business" | "unknown" | "error";
+  /** Set when the URL was rejected by policy, was not fetchable, or the identity
+   *  of the page could not be verified either way. */
   note?: string;
 }
 
@@ -219,7 +229,21 @@ async function auditOne(company: any): Promise<AuditEntry> {
     if (httpStatus >= 400) {
       return { ...base, httpStatus, title, status: "error" };
     }
-    const status = titleMatchesName(title, company.name) ? "ok" : "wrong-business";
+    // Identity is verified truthfully as verified | mismatch | unknown — an
+    // unparseable/blank title is NOT treated as a pass.
+    const identity = checkTitleIdentity(title, company.name);
+    if (identity === "unknown") {
+      return {
+        ...base,
+        httpStatus,
+        title,
+        status: "unknown",
+        note: title
+          ? "page title does not carry a usable identity token — needs manual review"
+          : "no <title> on page — identity unverifiable, needs manual review",
+      };
+    }
+    const status = identity === "verified" ? "ok" : "wrong-business";
     return { ...base, httpStatus, title, status };
   } catch {
     return { ...base, httpStatus: null, title: "", status: "error", note: "fetch failed" };
@@ -265,6 +289,7 @@ export async function GET() {
     ok: audited.filter((a) => a.status === "ok").length,
     broken404: audited.filter((a) => a.status === "404").length,
     wrongBusiness: audited.filter((a) => a.status === "wrong-business").length,
+    needsReview: audited.filter((a) => a.status === "unknown").length,
     errored: audited.filter((a) => a.status === "error").length,
   };
 

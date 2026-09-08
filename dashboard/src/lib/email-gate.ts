@@ -38,7 +38,11 @@ export type EmailGateResult = {
   email: string;
   domain: string;
   reason: string;
-  /** true only when safe to send */
+  /**
+   * true only when the domain passed every check we can run. An MX record does
+   * NOT prove the recipient mailbox exists — this is a domain gate, not mailbox
+   * verification.
+   */
   ok: boolean;
 };
 
@@ -49,23 +53,65 @@ function parseEmail(raw: string): { local: string; domain: string } | null {
   return { local: m[1], domain: m[2] };
 }
 
-async function hasMx(domain: string): Promise<"yes" | "no" | "error"> {
+/**
+ * MX lookup outcome.
+ *  - "mx"        real, usable MX records present
+ *  - "null-mx"   RFC 7505 null MX — the domain explicitly accepts no mail
+ *  - "no-mx"     domain resolves but publishes no MX (implicit A/AAAA delivery
+ *                is still *possible* per RFC 5321 §5.1 — absence is not proof)
+ *  - "nxdomain"  the domain itself does not exist
+ *  - "temporary" SERVFAIL / timeout / REFUSED / network error — retryable,
+ *                NEVER proof of invalidity
+ */
+type MxLookup =
+  | { kind: "mx" }
+  | { kind: "null-mx" }
+  | { kind: "no-mx" }
+  | { kind: "nxdomain" }
+  | { kind: "temporary"; detail: string };
+
+/** DNS error codes that mean "ask again later", not "this domain is bad". */
+const TEMP_DNS_CODES = new Set([
+  "ESERVFAIL",
+  "ETIMEOUT",
+  "ETIMEDOUT",
+  "EREFUSED",
+  "ECONNREFUSED",
+  "ECONNRESET",
+  "ENETUNREACH",
+  "EHOSTUNREACH",
+  "EAI_AGAIN",
+  "EBADRESP",
+]);
+
+async function lookupMx(domain: string): Promise<MxLookup> {
   try {
     const mx = await dns.resolveMx(domain);
-    if (Array.isArray(mx) && mx.length > 0) return "yes";
-    return "no";
-  } catch (e: any) {
-    const code = e?.code || "";
-    // ENOTFOUND / ENODATA / ESERVFAIL for NXDOMAIN-ish
+    if (!Array.isArray(mx) || mx.length === 0) return { kind: "no-mx" };
+    // RFC 7505 "Null MX": a single MX with preference 0 and a "." exchange.
     if (
-      code === "ENOTFOUND" ||
-      code === "ENODATA" ||
-      code === "ESERVFAIL" ||
-      /nxdomain/i.test(String(e?.message || ""))
+      mx.length === 1 &&
+      (mx[0].exchange === "." || mx[0].exchange === "") &&
+      (mx[0].priority === 0 || Number.isNaN(Number(mx[0].priority)))
     ) {
-      return "no";
+      return { kind: "null-mx" };
     }
-    return "error";
+    // Any placeholder "." exchanges are unroutable; if none remain, treat as null.
+    const real = mx.filter((r) => r.exchange && r.exchange !== ".");
+    if (real.length === 0) return { kind: "null-mx" };
+    return { kind: "mx" };
+  } catch (e: any) {
+    const code = String(e?.code || "");
+    const msg = String(e?.message || "");
+    if (code === "ENOTFOUND" || /nxdomain|enotfound/i.test(msg)) {
+      return { kind: "nxdomain" };
+    }
+    if (code === "ENODATA") return { kind: "no-mx" };
+    if (TEMP_DNS_CODES.has(code)) {
+      return { kind: "temporary", detail: code };
+    }
+    // Unrecognised failure — be conservative, treat as retryable not invalid.
+    return { kind: "temporary", detail: code || msg || "DNS error" };
   }
 }
 
@@ -85,9 +131,13 @@ async function hasA(domain: string): Promise<boolean> {
 
 /**
  * Gate an address before send.
- * INVALID = never send (dead domain / malformed).
- * VALID = MX present (or free-mail).
- * UNKNOWN = DNS error — caller may allow with caution.
+ * INVALID = proven undeliverable — never send (malformed, NXDOMAIN, null MX,
+ *           or no MX *and* no A/AAAA). Absence of MX alone is NOT proof.
+ * VALID   = domain checks passed (real MX, or free-mail). Does NOT prove the
+ *           mailbox exists.
+ * UNKNOWN = could not prove either way — temporary resolver failure, or an
+ *           MX-less domain that might still accept mail via its A/AAAA record.
+ *           Retryable; caller may allow with caution.
  */
 export async function gateEmail(raw: string): Promise<EmailGateResult> {
   const parsed = parseEmail(raw);
@@ -108,31 +158,54 @@ export async function gateEmail(raw: string): Promise<EmailGateResult> {
       status: "VALID",
       email,
       domain,
-      reason: "free-mail provider",
+      reason: "free-mail provider — domain checks passed (mailbox not verified)",
       ok: true,
     };
   }
 
-  const mx = await hasMx(domain);
-  if (mx === "yes") {
+  const mx = await lookupMx(domain);
+
+  if (mx.kind === "mx") {
     return {
       status: "VALID",
       email,
       domain,
-      reason: "MX records present",
+      reason: "domain checks passed (MX present) — recipient mailbox not verified",
       ok: true,
     };
   }
-  if (mx === "no") {
-    // Some tiny setups use A-only + null MX uncommon; still refuse if no MX
-    // Dead domains that bounce are almost always no MX + NXDOMAIN
+
+  if (mx.kind === "null-mx") {
+    return {
+      status: "INVALID",
+      email,
+      domain,
+      reason: "domain does not accept email (RFC 7505 null MX)",
+      ok: false,
+    };
+  }
+
+  if (mx.kind === "nxdomain") {
+    return {
+      status: "INVALID",
+      email,
+      domain,
+      reason: "domain does not exist (NXDOMAIN — would bounce)",
+      ok: false,
+    };
+  }
+
+  if (mx.kind === "no-mx") {
+    // No MX published. RFC 5321 §5.1 permits implicit delivery to the domain's
+    // A/AAAA record, so a missing MX is NOT proof the address is dead.
     const a = await hasA(domain);
-    if (!a) {
+    if (a) {
       return {
-        status: "INVALID",
+        status: "UNKNOWN",
         email,
         domain,
-        reason: "no MX and no A/AAAA (dead domain — would bounce)",
+        reason:
+          "no MX record, but domain has an A/AAAA record — implicit mail delivery is possible but unverified",
         ok: false,
       };
     }
@@ -140,16 +213,17 @@ export async function gateEmail(raw: string): Promise<EmailGateResult> {
       status: "INVALID",
       email,
       domain,
-      reason: "no MX records (mail undeliverable — would bounce)",
+      reason: "no MX and no A/AAAA record (nothing to deliver to — would bounce)",
       ok: false,
     };
   }
 
+  // mx.kind === "temporary"
   return {
     status: "UNKNOWN",
     email,
     domain,
-    reason: "DNS lookup error — cannot verify MX",
+    reason: `temporary DNS resolver failure (${mx.detail}) — retryable, not proven invalid`,
     ok: false, // strict by default for dashboard gate
   };
 }

@@ -466,6 +466,33 @@ export function companyEmail(company: Company): string | null {
   return null;
 }
 
+/**
+ * A stored `emailGate` is only meaningful while it still describes the address
+ * we would actually send to. After an email edit the gate is stale — a verdict
+ * for a different address must not keep a company flagged as bounce-risk (M04).
+ * Returns the gate only when it is still bound to the current email.
+ */
+export function activeEmailGate(
+  company: Company,
+): { status?: string; email?: string; reason?: string; checkedAt?: string } | null {
+  const eg = (
+    company as {
+      emailGate?: {
+        status?: string;
+        email?: string;
+        reason?: string;
+        checkedAt?: string;
+      };
+    }
+  ).emailGate;
+  if (!eg || typeof eg !== "object") return null;
+  const current = (companyEmail(company) || "").trim().toLowerCase();
+  const checked = (eg.email || "").trim().toLowerCase();
+  // If we can compare and they differ, the gate is stale → treat as "no gate".
+  if (current && checked && current !== checked) return null;
+  return eg;
+}
+
 export function pitchStatus(company: Company): string | null {
   const pd = company.pitchDraft;
   if (!pd || typeof pd !== "object") return null;
@@ -497,8 +524,9 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
       if (c.stage !== "pitch") return false;
       if (pitchStatus(c) !== "supervisor-approved") return false;
       if (!companyEmail(c)) return false;
-      // Pre-send gate: never offer dead domains as "send now"
-      const eg = (c as { emailGate?: { status?: string } }).emailGate?.status;
+      // Pre-send gate: never offer dead domains as "send now" (M04: only trust a
+      // gate still bound to the current email).
+      const eg = activeEmailGate(c)?.status;
       if (eg === "INVALID") return false;
       if ((c.responseStatus || "").toLowerCase() === "bounce-risk") return false;
       return true;
@@ -508,9 +536,11 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
       if (pitchStatus(c) !== "supervisor-approved") return false;
       return !companyEmail(c);
     });
-    // Dead-domain / bounce-risk — approved or not, must not be mailed
+    // Dead-domain / bounce-risk — approved or not, must not be mailed. A stale
+    // gate for an old address is ignored (M04); a lingering "bounce-risk"
+    // responseStatus still counts until it is cleared by a fresh passing gate.
     const bounceRiskList = companies.filter((c) => {
-      const eg = (c as { emailGate?: { status?: string } }).emailGate?.status;
+      const eg = activeEmailGate(c)?.status;
       if (eg === "INVALID") return true;
       return (c.responseStatus || "").toLowerCase() === "bounce-risk";
     });
@@ -608,8 +638,7 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
   }
   for (const c of bounceRiskList) {
     if (agentWorkList.some((w) => w.companyId === c.id)) continue;
-    const eg = (c as { emailGate?: { email?: string; reason?: string } })
-      .emailGate;
+    const eg = activeEmailGate(c);
     agentWorkList.push(
       toItem(
         c,
@@ -673,8 +702,7 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
       .sort(byPri)
       .slice(0, 8)
       .map((c) => {
-        const eg = (c as { emailGate?: { email?: string; reason?: string } })
-          .emailGate;
+        const eg = activeEmailGate(c);
         return toItem(
           c,
           "pitch",
@@ -698,23 +726,27 @@ export function getStageIndex(id: StageId): number {
 /* --------------------------------------------------------------- revenue --- */
 
 /**
- * Totals for the revenue tracker. Prefers an explicit top-level `revenue`
- * block in pipeline.json; otherwise sums the `revenue` on every company that
- * has reached the "won" stage. With neither present the tracker renders its
- * zero state rather than inventing numbers.
+ * Booked revenue for the revenue tracker — always STAGE-DERIVED from the live
+ * `companies` list, never paid/MRR truth (we hold no payment data). Both closed
+ * stages count: `sale` AND `build-launch` — a deal that has advanced into build
+ * is still booked, not lost (M15). The bundled top-level `data.revenue` snapshot
+ * is a fallback ONLY when there are no companies to derive from; it never
+ * overrides a live book.
  */
 export function getRevenue(companies: Company[] = data.companies): Revenue {
-  if (data.revenue) return data.revenue;
+  if (companies.length === 0 && data.revenue) return data.revenue;
 
-  const won = companies.filter((company) => company.stage === "sale");
+  const booked = companies.filter((company) =>
+    CLIENT_STAGES.includes(company.stage),
+  );
 
   return {
-    mrr: won.reduce((sum, company) => sum + (company.revenue?.mrr ?? 0), 0),
-    oneTime: won.reduce(
+    mrr: booked.reduce((sum, company) => sum + (company.revenue?.mrr ?? 0), 0),
+    oneTime: booked.reduce(
       (sum, company) => sum + (company.revenue?.oneTime ?? 0),
       0,
     ),
-    clientCount: won.length,
+    clientCount: booked.length,
   };
 }
 

@@ -121,7 +121,33 @@ export async function PATCH(
       if (idx === -1) throw new Error("__NOTFOUND__");
 
       const now = new Date().toISOString().slice(0, 10);
-      companies[idx] = { ...companies[idx], ...updates, lastUpdated: now };
+      const prev = companies[idx];
+      const next: any = { ...prev, ...updates, lastUpdated: now };
+
+      // M04: a changed recipient email invalidates any stored pre-send gate —
+      // it was checked against the OLD address. Drop the stale `emailGate` and
+      // clear a stale "bounce-risk" `responseStatus` so a fresh gate for the
+      // new address starts clean. Genuine bounce history lives in
+      // `reviewFeedback` / `sendTruth` and is left untouched here.
+      if ("email" in updates) {
+        const prevEmail = (prev.email ?? "").trim().toLowerCase();
+        const nextEmail = (
+          typeof updates.email === "string" ? updates.email : ""
+        )
+          .trim()
+          .toLowerCase();
+        if (prevEmail !== nextEmail) {
+          delete next.emailGate;
+          if (
+            !("responseStatus" in updates) &&
+            String(next.responseStatus ?? "").toLowerCase() === "bounce-risk"
+          ) {
+            next.responseStatus = "unknown";
+          }
+        }
+      }
+
+      companies[idx] = next;
       updatedCompany = companies[idx];
       return true;
     });

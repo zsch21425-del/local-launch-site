@@ -95,7 +95,9 @@ export async function POST(request: Request) {
     }
     emailGate = await gateEmail(email);
     if (emailGate.status === "INVALID") {
-      // Bounce-risk is a real mutation → write it atomically.
+      // Bounce-risk is a real mutation → write it atomically. The stored gate
+      // carries `emailGate.email` (M04) so it stays bound to the exact address
+      // it was checked against; a later email edit invalidates it.
       await mutatePipeline((d: any) => {
         const c = d.companies.find((x: any) => x.id === companyId);
         if (c) {
@@ -220,7 +222,21 @@ export async function POST(request: Request) {
       // is never in scope on this pitch-only route, so it is not verified here.
       void expectedDemoUrl;
 
-      if (emailGate) c.emailGate = { ...emailGate, checkedAt: now };
+      if (emailGate) {
+        const priorGate = c.emailGate;
+        c.emailGate = { ...emailGate, checkedAt: now };
+        // M04: a fresh passing gate for a DIFFERENT address clears a stale
+        // "bounce-risk" flag that belonged to the OLD address. Only the
+        // obsolete flag is removed — historical bounce evidence in
+        // `reviewFeedback` / `sendTruth` is left intact.
+        if (
+          emailGate.ok &&
+          String(c.responseStatus ?? "").toLowerCase() === "bounce-risk" &&
+          (!priorGate || priorGate.email !== emailGate.email)
+        ) {
+          c.responseStatus = "unknown";
+        }
+      }
       c.pitchDraft.status = status;
       if (status === "rejected") {
         c.pitchDraft.reviewFeedback = {
