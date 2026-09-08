@@ -48,8 +48,13 @@ export async function GET() {
           reviewedAt: null as string | null,
         };
       }
-      const status: string = c.demo?.status ?? "pending";
+      const CANON = ["pending", "approved", "rejected", "rework", "build-requested"];
+      const rawStatus = c.demo?.status ?? "pending";
+      // demo.status is canonical; rebuild-job state (verifying/dead-letter) is
+      // reported separately as jobStatus (M13).
+      const status: string = CANON.includes(rawStatus) ? rawStatus : "rework";
       const fb = c.demo?.reviewFeedback ?? null;
+      const job = c.rebuildJob ?? null;
       return {
         companyId: c.id,
         name: c.name,
@@ -57,11 +62,12 @@ export async function GET() {
         location: c.location,
         url: explicit,
         status,
+        jobStatus: job?.status ?? null,
         notes: c.demo?.notes ?? fb?.reason ?? null,
         reviewFeedback: fb,
         reviewedAt: c.demo?.reviewedAt ?? fb?.reviewedAt ?? null,
-        rebuildAttempts: c.demo?.rebuildAttempts ?? 0,
-        lastError: c.demo?.lastError ?? null,
+        rebuildAttempts: job?.attempts ?? c.demo?.rebuildAttempts ?? 0,
+        lastError: job?.lastError ?? c.demo?.lastError ?? null,
       };
     })
     .filter((d) => d.status !== "none" && d.status !== "approved" && d.url);
@@ -149,6 +155,20 @@ export async function POST(request: Request) {
   const verifiedUrl = bodyUrl || storedUrl;
 
   if (action === "approve") {
+    // M13: a rebuild in flight / awaiting vision QA is not approvable yet.
+    const jobStatus = preCompany.rebuildJob?.status;
+    if (jobStatus === "running" || jobStatus === "verifying") {
+      return NextResponse.json(
+        {
+          error:
+            jobStatus === "verifying"
+              ? "Cannot approve: this rebuild is awaiting the vision-QA pass. Clear it in verify-demo first."
+              : "Cannot approve: a rebuild is currently running for this demo.",
+          jobStatus,
+        },
+        { status: 409 },
+      );
+    }
     if (!isHttpUrl(verifiedUrl)) {
       return NextResponse.json(
         {
@@ -205,7 +225,10 @@ export async function POST(request: Request) {
           ...(fix ? { suggestedFix: fix } : {}),
           reviewedAt: now,
         };
-        // Re-queue: reset the rebuild failure state (attempts/backoff/dead-letter)
+        // Re-queue: clear all rebuild-job state (attempts/backoff/verifying/
+        // dead-letter) so the worker picks it up fresh (M13). Legacy demo.*
+        // failure fields are cleared too.
+        delete c.rebuildJob;
         delete c.demo.rebuildAttempts;
         delete c.demo.lastError;
         delete c.demo.retryAfter;

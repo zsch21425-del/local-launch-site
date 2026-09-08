@@ -122,8 +122,13 @@ export async function POST(req: NextRequest) {
 
   try {
     const r = await mutatePipeline((data: any) => {
-      const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
-      if (companies.length === 0) throw new Error("__EMPTY__");
+      // M09: a valid but empty book (`companies: []`, e.g. after the last lead
+      // was deleted) is NOT a dead end — the first lead must be addable.
+      // mutatePipeline() already fails closed on a missing/unreadable store, so
+      // reaching the mutator means the book is real; an empty array is fine.
+      const companies: any[] = Array.isArray(data?.companies)
+        ? data.companies
+        : (data.companies = []);
       const dup = companies.find(
         (c: any) =>
           (c.id ?? "").toLowerCase() === id.toLowerCase() ||
@@ -141,8 +146,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: r.error, ok: false }, { status: 500 });
     }
   } catch (e: any) {
-    if (e?.message === "__EMPTY__")
-      return NextResponse.json({ error: "Pipeline store empty or unreadable" }, { status: 500 });
     if (e?.message === "__DUP__")
       return NextResponse.json(
         { error: "Already in the dashboard", companyId: e.dup.id, name: e.dup.name, stage: e.dup.stage },

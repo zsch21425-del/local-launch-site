@@ -28,33 +28,48 @@ function signCookie(): string {
   return encodeURIComponent(`${TOKEN}.${sig}`);
 }
 
-/** tRPC query (GET) — returns parsed result.data */
-export async function crmQuery<T>(path: string, input: unknown): Promise<T | null> {
+/**
+ * Typed result for every CRM call (M10). `ok:false` carries WHY — a swallowed
+ * `null` used to be indistinguishable from "the CRM answered with no data",
+ * which made callers report a dead CRM as connected.
+ */
+export type CrmResult<T> =
+  | { ok: true; data: T }
+  | { ok: false; error: string };
+
+/** tRPC query (GET) — typed result. */
+export async function crmQueryResult<T>(
+  path: string,
+  input: unknown,
+): Promise<CrmResult<T>> {
   const base = getCrmBaseUrl();
-  if (!base) return null; // CRM endpoint unset or plaintext http on a public host — fail closed
+  if (!base) return { ok: false, error: "CRM endpoint unset or insecure (HTTPS required)" };
   const cookie = signCookie();
-  if (!cookie) return null;
+  if (!cookie) return { ok: false, error: "CRM credentials incomplete (token/secret missing)" };
   try {
     const url = `${base}/api/trpc/${path}?input=${encodeURIComponent(JSON.stringify({ json: input }))}`;
     const res = await fetch(url, {
       headers: { Cookie: `${COOKIE_NAME}=${cookie}` },
       signal: AbortSignal.timeout(8000),
     });
-    if (!res.ok) return null;
+    if (!res.ok) return { ok: false, error: `CRM HTTP ${res.status} on ${path}` };
     const body = await res.json();
-    return body?.result?.data ?? null;
-  } catch {
-    return null; // CRM unreachable — callers fall back to pipeline.json
+    return { ok: true, data: (body?.result?.data ?? null) as T };
+  } catch (e: any) {
+    return { ok: false, error: e?.message || `CRM unreachable on ${path}` };
   }
 }
 
-/** tRPC mutation (POST) — fire-and-forget friendly; returns parsed result.data
+/** tRPC mutation (POST) — typed result.
  * NOTE: mutations take the raw input object (no {json:} wrapper) — verified. */
-export async function crmMutation<T>(path: string, input: unknown): Promise<T | null> {
+export async function crmMutationResult<T>(
+  path: string,
+  input: unknown,
+): Promise<CrmResult<T>> {
   const base = getCrmBaseUrl();
-  if (!base) return null; // CRM endpoint unset or plaintext http on a public host — fail closed
+  if (!base) return { ok: false, error: "CRM endpoint unset or insecure (HTTPS required)" };
   const cookie = signCookie();
-  if (!cookie) return null;
+  if (!cookie) return { ok: false, error: "CRM credentials incomplete (token/secret missing)" };
   try {
     const url = `${base}/api/trpc/${path}`;
     const res = await fetch(url, {
@@ -66,12 +81,26 @@ export async function crmMutation<T>(path: string, input: unknown): Promise<T | 
       body: JSON.stringify(input),
       signal: AbortSignal.timeout(8000),
     });
-    if (!res.ok) return null;
+    if (!res.ok) return { ok: false, error: `CRM HTTP ${res.status} on ${path}` };
     const body = await res.json();
-    return body?.result?.data ?? null;
-  } catch {
-    return null;
+    return { ok: true, data: (body?.result?.data ?? null) as T };
+  } catch (e: any) {
+    return { ok: false, error: e?.message || `CRM unreachable on ${path}` };
   }
+}
+
+/** tRPC query (GET) — returns parsed result.data, or null on any failure.
+ * Back-compat wrapper; prefer crmQueryResult for new code. */
+export async function crmQuery<T>(path: string, input: unknown): Promise<T | null> {
+  const r = await crmQueryResult<T>(path, input);
+  return r.ok ? r.data : null;
+}
+
+/** tRPC mutation (POST) — returns parsed result.data, or null on any failure.
+ * Back-compat wrapper; prefer crmMutationResult for new code. */
+export async function crmMutation<T>(path: string, input: unknown): Promise<T | null> {
+  const r = await crmMutationResult<T>(path, input);
+  return r.ok ? r.data : null;
 }
 
 export interface CrmCompany {
@@ -92,15 +121,43 @@ export interface CrmListResult {
   total: number;
 }
 
-/** List companies from the CRM (limit/take). */
-export async function crmListCompanies(limit = 500): Promise<CrmCompany[]> {
-  const data = await crmQuery<CrmListResult>("companies.list", { page: 1, pageSize: limit });
-  return data?.rows ?? [];
+/** List companies from the CRM — typed result (M10). Pages through the full set
+ * (bounded) so an upsert lookup can't miss a match past the first page. */
+export async function crmListCompaniesResult(
+  limit = 500,
+): Promise<CrmResult<CrmCompany[]>> {
+  const pageSize = Math.min(Math.max(limit, 1), 500);
+  const rows: CrmCompany[] = [];
+  const MAX_PAGES = 40; // hard cap: 40 * 500 = 20k companies
+  for (let page = 1; page <= MAX_PAGES; page++) {
+    const r = await crmQueryResult<CrmListResult>("companies.list", { page, pageSize });
+    if (!r.ok) return r;
+    const batch = r.data?.rows ?? [];
+    rows.push(...batch);
+    if (rows.length >= limit) return { ok: true, data: rows.slice(0, limit) };
+    if (batch.length < pageSize) break; // last page
+  }
+  return { ok: true, data: rows };
 }
 
-/** Upsert a company into the CRM. Looks up by name first (companies.list has
- * no search-by-name in the minimal contract, so we list and match), then
- * creates or updates. Returns the CRM company id or null on failure. */
+/** List companies from the CRM (limit/take). Returns [] on any failure —
+ * back-compat wrapper; prefer crmListCompaniesResult so callers can tell a
+ * genuine empty CRM from an outage. */
+export async function crmListCompanies(limit = 500): Promise<CrmCompany[]> {
+  const r = await crmListCompaniesResult(limit);
+  return r.ok ? r.data : [];
+}
+
+/**
+ * Upsert a company into the CRM. Looks up by name (companies.list has no
+ * search-by-name in the minimal contract, so we list and match), then creates
+ * or updates. Returns the CRM company id, or null on failure.
+ *
+ * M10: a FAILED lookup aborts (returns null) instead of falling through to a
+ * blind create (which produced duplicates). An update that fails no longer
+ * reports the stale existing id as success. create/update now send every
+ * supplied field, not just name+domain.
+ */
 export async function crmUpsertCompany(input: {
   name: string;
   domain?: string;
@@ -111,38 +168,53 @@ export async function crmUpsertCompany(input: {
   phone?: string;
   email?: string;
 }): Promise<string | null> {
-  try {
-    // Try to find an existing company with this name (limit 200 to cover the pipeline)
-    const existing = await crmListCompanies(200);
-    const match = existing.find(
-      (c) => c.name.toLowerCase() === input.name.toLowerCase(),
-    );
+  const r = await crmUpsertCompanyResult(input);
+  return r.ok ? r.data : null;
+}
 
-    if (match) {
-      // Update the existing company's profile fields
-      const res = await crmMutation<{ id: string }>("companies.update", {
-        id: match.id,
-        data: {
-          domain: input.domain,
-          website: input.domain ? `https://${input.domain}` : undefined,
-          description: input.description,
-          industry: input.industry,
-          city: input.city,
-          stateCode: input.stateCode,
-          phone: input.phone,
-          email: input.email,
-        },
-      });
-      return res?.id ?? match.id;
-    }
+/** Typed variant of crmUpsertCompany — carries the failure reason (M10). */
+export async function crmUpsertCompanyResult(input: {
+  name: string;
+  domain?: string;
+  description?: string;
+  industry?: string;
+  city?: string;
+  stateCode?: string;
+  phone?: string;
+  email?: string;
+}): Promise<CrmResult<string>> {
+  const profile = {
+    domain: input.domain,
+    website: input.domain ? `https://${input.domain}` : undefined,
+    description: input.description,
+    industry: input.industry,
+    city: input.city,
+    stateCode: input.stateCode,
+    phone: input.phone,
+    email: input.email,
+  };
 
-    // Create a new company
-    const res = await crmMutation<{ id: string }>("companies.create", {
-      name: input.name,
-      domain: input.domain,
+  // Lookup — a failure here must NOT be treated as "not found".
+  const list = await crmListCompaniesResult(500);
+  if (!list.ok) return { ok: false, error: `lookup failed: ${list.error}` };
+  const match = list.data.find(
+    (c) => (c.name ?? "").toLowerCase() === input.name.toLowerCase(),
+  );
+
+  if (match) {
+    const res = await crmMutationResult<{ id: string }>("companies.update", {
+      id: match.id,
+      data: profile,
     });
-    return res?.id ?? null;
-  } catch {
-    return null; // best-effort mirror; dashboard state is authoritative
+    if (!res.ok) return { ok: false, error: `update failed: ${res.error}` };
+    return { ok: true, data: res.data?.id ?? match.id };
   }
+
+  const res = await crmMutationResult<{ id: string }>("companies.create", {
+    name: input.name,
+    ...profile,
+  });
+  if (!res.ok) return { ok: false, error: `create failed: ${res.error}` };
+  if (!res.data?.id) return { ok: false, error: "create returned no id (not persisted)" };
+  return { ok: true, data: res.data.id };
 }

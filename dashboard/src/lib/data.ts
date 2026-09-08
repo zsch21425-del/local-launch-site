@@ -123,16 +123,38 @@ export interface Company {
    */
   demo?: {
     url?: string;
+    /**
+     * CANONICAL demo-decision union — nothing else belongs here. Rebuild-job
+     * bookkeeping (pending-verify / dead-letter / retry backoff) lives in
+     * `rebuildJob` below, NOT in this field (M13).
+     */
     status?: "pending" | "approved" | "rejected" | "rework" | "build-requested";
     /** Freeform notes (legacy + combined with reviewFeedback) */
     notes?: string;
     reviewedAt?: string;
+    rebuiltAt?: string;
     /** Structured reject/rework feedback — same shape as pitchDraft.reviewFeedback */
     reviewFeedback?: {
       reason: string;
       suggestedFix?: string;
       reviewedAt: string;
     };
+  } | null;
+  /**
+   * Rebuild-worker job state (M13) — separate from `demo.status` so the demo
+   * decision union stays canonical. `verifying` = rebuilt, awaiting the vision
+   * QA pass; `dead-letter` = failed 3× and needs a manual re-queue. A demo with
+   * a `running`/`verifying` job must not be approvable until QA completes.
+   */
+  rebuildJob?: {
+    status: "running" | "verifying" | "failed" | "dead-letter";
+    attempts?: number;
+    lastError?: string;
+    retryAfter?: string;
+    rebuiltAt?: string;
+    deployedUrl?: string;
+    deadLetteredAt?: string;
+    updatedAt?: string;
   } | null;
   auditData?: {
     issues?: string[];
@@ -260,6 +282,8 @@ export interface DemoItem {
   company: Company;
   url: string;
   status: "pending" | "approved" | "rejected" | "rework" | "build-requested";
+  /** Rebuild-job state, when a rebuild is in flight / dead-lettered (M13). */
+  jobStatus?: "running" | "verifying" | "failed" | "dead-letter" | null;
 }
 
 /**
@@ -303,9 +327,16 @@ export function getDemoQueue(companies: Company[] = data.companies): DemoItem[] 
   for (const company of companies) {
     const url = resolveDemoUrl(company);
     if (!url) continue;
-    const status = company.demo?.status ?? "pending";
-    if (status === "approved") continue;
-    items.push({ company, url, status });
+    // Only the canonical union counts; a non-canonical legacy value ("pending-verify",
+    // "dead-letter") is normalised to "rework" so the queue stays consistent (M13).
+    const raw = company.demo?.status ?? "pending";
+    const canonical: DemoItem["status"] = (
+      ["pending", "approved", "rejected", "rework", "build-requested"] as const
+    ).includes(raw as DemoItem["status"])
+      ? (raw as DemoItem["status"])
+      : "rework";
+    if (canonical === "approved") continue;
+    items.push({ company, url, status: canonical, jobStatus: company.rebuildJob?.status ?? null });
   }
   return items;
 }

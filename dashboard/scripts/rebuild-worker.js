@@ -104,6 +104,8 @@ async function commitPatches(token, patches, firstData, firstEtag) {
         const fc = (data.companies || []).find((x) => x.id === id);
         if (!fc) continue;
         fc.demo = p.demo;
+        if (p.rebuildJob) fc.rebuildJob = p.rebuildJob;
+        else delete fc.rebuildJob;
         if (p.lastUpdated) fc.lastUpdated = p.lastUpdated;
         if (p.timelineEntry) {
           fc.timeline = fc.timeline || [];
@@ -139,13 +141,23 @@ function claudeRebuild(dir, briefPath) {
 
 function redeploy(dir) {
   const deployPy = path.join(dir, "deploy.py");
-  if (!fs.existsSync(deployPy)) return { ok: false, why: "no deploy.py" };
+  if (!fs.existsSync(deployPy)) return { ok: false, why: "no deploy.py", url: "", output: "" };
   const r = spawnSync("python3", [deployPy], {
     cwd: dir,
     encoding: "utf8",
     timeout: 5 * 60 * 1000,
   });
-  return { ok: r.status === 0, code: r.status };
+  const output = `${r.stdout || ""}\n${r.stderr || ""}`.trim();
+  // The deployment we must verify is the one deploy.py actually shipped — parse
+  // its production URL from the output rather than guessing <slug>-demo later.
+  const urls = output.match(/https:\/\/[a-z0-9.-]+\.vercel\.app/gi) || [];
+  return {
+    ok: r.status === 0 && !r.error,
+    code: r.status,
+    why: r.error ? String(r.error.message || r.error) : undefined,
+    url: urls.length ? urls[urls.length - 1] : "",
+    output: output.slice(-600),
+  };
 }
 
 /**
@@ -208,11 +220,16 @@ async function fetchWithRetry(url, tries = 4, delayMs = 3000) {
   return "";
 }
 
-async function verifyRebuild(company, reason, allCompanies) {
-  const liveUrl = `https://${company.id}-demo.vercel.app`;
+async function verifyRebuild(company, reason, allCompanies, deployedUrl) {
+  // Verify the deployment deploy.py actually shipped. Only fall back to the
+  // conventional <slug>-demo host when deploy.py printed no URL.
+  const liveUrl = deployedUrl || `https://${company.id}-demo.vercel.app`;
+  if (deployedUrl && company.id && !deployedUrl.toLowerCase().includes(company.id.toLowerCase())) {
+    return [`deployed URL ${deployedUrl} does not match slug "${company.id}"`];
+  }
   const html = await fetchWithRetry(liveUrl);
   if (!html) {
-    return ["could not fetch live demo (empty/error after retries)"];
+    return [`could not fetch deployed demo ${liveUrl} (empty/error after retries)`];
   }
   const lower = html.toLowerCase();
   const failures = [];
@@ -324,24 +341,42 @@ function recordPatch(c, timelineEntry) {
   const prev = PATCHES.get(c.id) || {};
   PATCHES.set(c.id, {
     demo: c.demo,
+    rebuildJob: c.rebuildJob ?? null,
     lastUpdated: c.lastUpdated ?? prev.lastUpdated,
     timelineEntry: timelineEntry ?? prev.timelineEntry,
   });
 }
 
+/**
+ * Record a retryable rebuild failure. Job state lives in `c.rebuildJob` (its own
+ * enum: failed / dead-letter / verifying / running) — `c.demo.status` stays in
+ * the canonical union (rework/rejected/pending/approved/build-requested) so the
+ * dashboard's demo queue and approval gate keep working (M13).
+ */
 function markFailure(c, error) {
-  c.demo = c.demo || {};
-  const attempts = (c.demo.rebuildAttempts || 0) + 1;
-  c.demo.rebuildAttempts = attempts;
-  c.demo.lastError = error;
-  if (attempts >= 3) {
-    c.demo.status = "dead-letter";
-    c.demo.deadLetteredAt = nowIso();
+  const job = c.rebuildJob || {};
+  // Seed attempt count from any legacy demo.rebuildAttempts, then migrate off it.
+  const attempts = (job.attempts ?? c.demo?.rebuildAttempts ?? 0) + 1;
+  if (c.demo) {
+    delete c.demo.rebuildAttempts;
+    delete c.demo.lastError;
     delete c.demo.retryAfter;
+    delete c.demo.deadLetteredAt;
+  }
+  c.rebuildJob = {
+    ...job,
+    status: attempts >= 3 ? "dead-letter" : "failed",
+    attempts,
+    lastError: error,
+    updatedAt: nowIso(),
+  };
+  if (attempts >= 3) {
+    c.rebuildJob.deadLetteredAt = nowIso();
+    delete c.rebuildJob.retryAfter;
     console.log(`  [${c.id}] dead-lettered after ${attempts} failed attempts: ${error}`);
   } else {
-    c.demo.retryAfter = new Date(Date.now() + 30 * 60 * 1000).toISOString();
-    console.log(`  [${c.id}] attempt ${attempts}/3 failed — retry after ${c.demo.retryAfter}`);
+    c.rebuildJob.retryAfter = new Date(Date.now() + 30 * 60 * 1000).toISOString();
+    console.log(`  [${c.id}] attempt ${attempts}/3 failed — retry after ${c.rebuildJob.retryAfter}`);
   }
   recordPatch(c);
   return attempts;
@@ -359,8 +394,12 @@ async function main() {
   const jobs = (data.companies || []).filter((c) => {
     const s = c.demo?.status;
     if (s !== "rework" && s !== "rejected") return false;
+    // Job already in flight or terminal — don't re-pick it.
+    const js = c.rebuildJob?.status;
+    if (js === "running" || js === "verifying" || js === "dead-letter") return false;
     // backoff: skip demos whose retryAfter is still in the future
-    if (c.demo?.retryAfter && new Date(c.demo.retryAfter) > new Date()) return false;
+    const retryAfter = c.rebuildJob?.retryAfter || c.demo?.retryAfter;
+    if (retryAfter && new Date(retryAfter) > new Date()) return false;
     return true;
   });
   console.log(`[rebuild-worker] ${jobs.length} rework/rejected job(s) in queue.`);
@@ -427,10 +466,21 @@ async function main() {
 
     // 3. Redeploy.
     const dep = redeploy(dir);
-    console.log(`  [${slug}] redeploy ok=${dep.ok}${dep.why ? ` (${dep.why})` : ""}`);
+    console.log(
+      `  [${slug}] redeploy ok=${dep.ok}${dep.why ? ` (${dep.why})` : ""}${dep.url ? ` url=${dep.url}` : ""}`,
+    );
 
-    // 3.5. Verify the rebuild actually fixed the complaint before flipping.
-    const failures = await verifyRebuild(c, reason, data.companies);
+    // 3a. GATE: a failed deploy STOPS here. Do NOT check the old live page and
+    //     do NOT mark the work ready — record a retryable failure and move on.
+    if (!dep.ok) {
+      const tail = dep.output ? ` — ${dep.output.replace(/\s+/g, " ").slice(-200)}` : "";
+      markFailure(c, `deploy failed (exit ${dep.code ?? "?"})${dep.why ? `: ${dep.why}` : ""}${tail}`);
+      done += 1; // persist attempt/backoff state
+      continue;
+    }
+
+    // 3.5. Verify the deployment deploy.py actually shipped fixed the complaint.
+    const failures = await verifyRebuild(c, reason, data.companies, dep.url);
     if (failures.length > 0) {
       const errMsg = `verification failed: ${failures.join("; ")}`;
       markFailure(c, errMsg);
@@ -445,23 +495,41 @@ async function main() {
     }
     console.log(`  [${slug}] ✓ verification passed.`);
 
-    // 4. Flip status. Image/caption reasons need a vision pass before "pending".
+    // 4. Mark the result. `demo.status` stays canonical. Image/caption reasons
+    //    need a vision pass first — hold in rebuildJob.status="verifying" and
+    //    keep demo.status="rework" so it can't be approved until QA clears it
+    //    (verify-demo.js). Otherwise it's genuinely ready → demo.status="pending".
     const isVision = /image|title|caption|photo|card|match|picture|visual|icon|swap|label|mismatch/i.test(reason);
-    c.demo.status = isVision ? "pending-verify" : "pending";
     c.demo.rebuiltAt = nowIso();
-    c.demo.reviewFeedback = null;
-    c.demo.notes = null;
     c.lastUpdated = nowIso().slice(0, 10);
+    let timelineDetail;
+    if (isVision) {
+      c.rebuildJob = {
+        status: "verifying",
+        attempts: c.rebuildJob?.attempts || 0,
+        rebuiltAt: nowIso(),
+        deployedUrl: dep.url || undefined,
+        updatedAt: nowIso(),
+      };
+      timelineDetail = `Demo rebuilt after rework (awaiting vision QA): "${reason.slice(0, 80)}"`;
+      console.log(`  [${slug}] → rebuildJob.status = verifying (needs vision QA before re-review).`);
+    } else {
+      c.demo.status = "pending";
+      c.demo.reviewFeedback = null;
+      c.demo.notes = null;
+      delete c.rebuildJob;
+      timelineDetail = `Demo rebuilt after rework: "${reason.slice(0, 80)}"`;
+      console.log(`  [${slug}] → demo.status = pending (ready for re-review).`);
+    }
     const timelineEntry = {
       ts: nowIso(),
       type: "playbook",
-      detail: `Demo rebuilt after rework: "${reason.slice(0, 80)}"`,
+      detail: timelineDetail,
       actor: "rebuild-worker",
     };
     (c.timeline || (c.timeline = [])).unshift(timelineEntry);
     recordPatch(c, timelineEntry);
     done += 1;
-    console.log(`  [${slug}] → demo.status = pending (ready for re-review).`);
   }
 
   if (done > 0) {
