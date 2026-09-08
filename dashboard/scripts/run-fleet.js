@@ -23,36 +23,65 @@ const STEPS = [
   { id: "closer", label: "Closer — drafting pitches", msg: "Fan out to Closer: draft a pitch for the top 3 audited leads (highest G-SCORE / most likely to convert). Return the 3 pitch drafts, each ~150 words." },
 ];
 
-async function blobGet() {
-  const got = await get("pipeline.json", { access: "private", token });
-  let text;
-  if (typeof got.text === "function") text = await got.text();
-  else {
-    const reader = got.stream.getReader();
-    const chunks = [];
-    for (;;) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      chunks.push(value);
-    }
-    const total = chunks.reduce((s, c) => s + c.length, 0);
-    const buf = new Uint8Array(total);
-    let off = 0;
-    for (const c of chunks) {
-      buf.set(c, off);
-      off += c.length;
-    }
-    text = new TextDecoder().decode(buf);
+async function streamText(stream) {
+  const reader = stream.getReader();
+  const chunks = [];
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
   }
-  return JSON.parse(text);
+  const total = chunks.reduce((s, c) => s + c.length, 0);
+  const buf = new Uint8Array(total);
+  let off = 0;
+  for (const c of chunks) {
+    buf.set(c, off);
+    off += c.length;
+  }
+  return new TextDecoder().decode(buf);
 }
 
-async function blobPut(data) {
+// Read the full book WITH its ETag for conditional writes — bug C01.
+async function blobGet() {
+  const got = await get("pipeline.json", { access: "private", token, useCache: false });
+  if (!got || !got.stream) throw new Error("pipeline.json missing from Blob");
+  const text = await streamText(got.stream);
+  return { data: JSON.parse(text), etag: got.blob?.etag ?? null };
+}
+
+async function blobPut(data, etag) {
   await put("pipeline.json", JSON.stringify(data, null, 2), {
     access: "private",
     allowOverwrite: true,
     token,
+    ...(etag ? { ifMatch: etag } : {}),
   });
+}
+
+function isConflict(e) {
+  return (
+    e?.name === "BlobPreconditionFailedError" ||
+    e?.statusCode === 412 ||
+    /precondition failed/i.test(String(e?.message || ""))
+  );
+}
+
+// Commit run state: this script owns only data.fleetRun. Re-read the book,
+// re-apply fleetRun, write with ifMatch; on conflict re-read + re-apply
+// (bounded). Never weaken to an unconditional overwrite.
+async function commitRun(run) {
+  const MAX_ATTEMPTS = 3;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const { data, etag } = await blobGet();
+    data.fleetRun = run;
+    try {
+      await blobPut(data, etag);
+      return;
+    } catch (e) {
+      if (!isConflict(e) || attempt === MAX_ATTEMPTS) throw e;
+      console.warn(`[run-fleet] write conflict — retry ${attempt}/${MAX_ATTEMPTS}`);
+    }
+  }
 }
 
 async function a2a(message) {
@@ -75,7 +104,7 @@ async function a2a(message) {
 }
 
 async function main() {
-  const data = await blobGet();
+  const { data } = await blobGet();
   const run = data.fleetRun;
   if (!run || run.status !== "queued") {
     console.log("[run-fleet] nothing queued");
@@ -85,13 +114,13 @@ async function main() {
   run.status = "running";
   run.started = new Date().toISOString();
   run.log = [];
-  await blobPut(data);
+  await commitRun(run);
   console.log("[run-fleet] starting fan-out");
 
   for (const s of STEPS) {
     run.step = s.id;
     run.stepLabel = s.label;
-    await blobPut(data);
+    await commitRun(run);
     console.log(`[run-fleet] ${s.id}…`);
     const entry = { step: s.id, label: s.label, at: new Date().toISOString() };
     try {
@@ -101,12 +130,12 @@ async function main() {
       entry.error = e.message;
     }
     run.log.push(entry);
-    await blobPut(data);
+    await commitRun(run);
   }
 
   run.status = "done";
   run.completed = new Date().toISOString();
-  await blobPut(data);
+  await commitRun(run);
   console.log("[run-fleet] done");
 }
 

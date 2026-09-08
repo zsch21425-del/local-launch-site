@@ -44,18 +44,36 @@ const IS_SERVERLESS = !!process.env.VERCEL;
 async function readPipelineWithEtag(): Promise<{ data: any; etag: string | null }> {
   const token = getToken();
   if (token) {
+    // Blob-backed mode. The live Blob is the ONLY source of truth here — a
+    // failed/garbled read must NOT silently fall back to the local file, or a
+    // subsequent mutatePipeline() would put() stale local data over the live
+    // book (data-loss bug C02). Instead we fail closed: return {data:null},
+    // which trips mutatePipeline()'s "store empty or unreadable" guard.
+    let res: Awaited<ReturnType<typeof get>>;
     try {
-      const res = await get(BLOB_PATH, { access: "private", token });
-      if (res?.stream) {
-        const text = await readBlobStream(res.stream);
-        return { data: JSON.parse(text), etag: res.blob?.etag ?? null };
-      }
+      // useCache:false → mutation reads (and read-after-write) hit origin, not
+      // a stale CDN copy that would hand back an outdated ETag (bug H03).
+      res = await get(BLOB_PATH, { access: "private", token, useCache: false });
     } catch (e: any) {
-      if (!(e?.message?.includes("not found") || e?.statusCode === 404)) {
-        console.warn("Blob read failed:", e?.message);
-      }
+      const notFound =
+        e?.message?.includes("not found") ||
+        e?.statusCode === 404 ||
+        e?.name === "BlobNotFoundError";
+      if (notFound) return { data: null, etag: null }; // valid "empty/missing" state
+      console.warn("Blob read failed — failing closed (no local fallback):", e?.message);
+      return { data: null, etag: null };
+    }
+    // get() resolves to null when the blob does not exist.
+    if (!res || !res.stream) return { data: null, etag: null };
+    try {
+      const text = await readBlobStream(res.stream);
+      return { data: JSON.parse(text), etag: res.blob?.etag ?? null };
+    } catch (e: any) {
+      console.warn("Blob body unreadable/invalid — failing closed:", e?.message);
+      return { data: null, etag: null };
     }
   }
+  // No token configured → explicit local-only mode; the file is the store.
   if (!IS_SERVERLESS && fs.existsSync(PIPELINE_PATH)) {
     return { data: JSON.parse(fs.readFileSync(PIPELINE_PATH, "utf-8")), etag: null };
   }
@@ -85,19 +103,23 @@ async function writePipelineWithEtag(
   etag: string | null,
 ): Promise<{ ok: boolean; error?: string; conflict?: boolean }> {
   const jsonStr = JSON.stringify(data, null, 2);
+  const token = getToken();
 
-  if (!IS_SERVERLESS) {
+  const writeLocalMirror = (): { ok: boolean; error?: string } => {
     try {
       const dir = path.dirname(PIPELINE_PATH);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(PIPELINE_PATH, jsonStr, "utf-8");
+      return { ok: true };
     } catch (e: any) {
-      if (!getToken()) return { ok: false, error: e.message };
+      return { ok: false, error: e?.message || String(e) };
     }
-  }
+  };
 
-  const token = getToken();
   if (token) {
+    // Commit to the Blob FIRST — it is the source of truth. Only touch the
+    // local mirror once the authoritative write has succeeded, so a caller
+    // never sees {ok:true} for a commit that didn't land (bug C02).
     try {
       await put(BLOB_PATH, jsonStr, {
         access: "private",
@@ -105,21 +127,28 @@ async function writePipelineWithEtag(
         token,
         ...(etag ? { ifMatch: etag } : {}),
       });
-      return { ok: true };
     } catch (e: any) {
       const conflict =
         e instanceof BlobPreconditionFailedError ||
         e?.name === "BlobPreconditionFailedError" ||
         e?.statusCode === 412;
       if (conflict) return { ok: false, conflict: true, error: "Concurrent write conflict" };
-      if (IS_SERVERLESS) return { ok: false, error: e.message };
-      console.warn("Blob write failed (local still persisted):", e?.message);
-      return { ok: true };
+      return { ok: false, error: e?.message || String(e) };
     }
+    // Blob committed. Refresh the local mirror with the COMMITTED json
+    // (best-effort — the durable copy already exists on the Blob).
+    if (!IS_SERVERLESS) {
+      const m = writeLocalMirror();
+      if (!m.ok) console.warn("Local mirror refresh failed (Blob commit is durable):", m.error);
+    }
+    return { ok: true };
   }
-  return IS_SERVERLESS
-    ? { ok: false, error: "No persistent store available on serverless" }
-    : { ok: true };
+
+  // No token → local-only mode; the file is the only store.
+  if (IS_SERVERLESS) {
+    return { ok: false, error: "No persistent store available on serverless" };
+  }
+  return writeLocalMirror();
 }
 
 /** Backward-compat write (no etag — last-write-wins). Prefer mutatePipeline(). */

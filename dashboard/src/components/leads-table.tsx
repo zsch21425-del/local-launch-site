@@ -6,12 +6,33 @@ import { ArrowUpRight, Filter, Inbox, Search } from "lucide-react";
 
 import { PriorityBadge } from "@/components/priority-badge";
 import { StagePill } from "@/components/stage-pill";
-import { getStage, type Company } from "@/lib/data";
+import {
+  companyRegion,
+  getStage,
+  type Company,
+  type RegionId,
+} from "@/lib/data";
 import { formatPriority } from "@/lib/stages";
 import { glass } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
 const ALL = "all";
+type RegionFilter = "sc" | "upstate" | "all" | "out-of-state";
+
+const REGION_LABEL: Record<RegionFilter, string> = {
+  sc: "SC focus",
+  upstate: "Upstate",
+  all: "Everywhere",
+  "out-of-state": "Expansion",
+};
+
+function matchesRegion(company: Company, region: RegionFilter): boolean {
+  if (region === "all") return true;
+  const r: RegionId = companyRegion(company);
+  if (region === "upstate") return r === "upstate";
+  if (region === "sc") return r === "upstate" || r === "sc";
+  return r === "out-of-state" || r === "unknown";
+}
 
 const SELECT =
   "rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs text-slate-700 focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none";
@@ -25,6 +46,7 @@ export interface LeadRow {
 export function LeadsTable({ rows }: { rows: LeadRow[] }) {
   const [priority, setPriority] = useState(ALL);
   const [category, setCategory] = useState(ALL);
+  const [region, setRegion] = useState<RegionFilter>("sc");
   const [query, setQuery] = useState("");
 
   const priorities = useMemo(
@@ -37,6 +59,7 @@ export function LeadsTable({ rows }: { rows: LeadRow[] }) {
   );
 
   const filtered = rows.filter((row) => {
+    if (!matchesRegion(row.company, region)) return false;
     if (priority !== ALL && row.company.priority !== priority) return false;
     if (category !== ALL && row.company.category !== category) return false;
     if (query.trim()) {
@@ -67,6 +90,19 @@ export function LeadsTable({ rows }: { rows: LeadRow[] }) {
           <Filter className="size-3.5" aria-hidden />
           Filter
         </span>
+        <select
+          value={region}
+          onChange={(event) => setRegion(event.target.value as RegionFilter)}
+          className={SELECT}
+          aria-label="Filter by territory"
+          title="SC focus = Upstate + rest of SC. Expansion = out-of-state + unknown."
+        >
+          {(Object.keys(REGION_LABEL) as RegionFilter[]).map((r) => (
+            <option key={r} value={r}>
+              {REGION_LABEL[r]}
+            </option>
+          ))}
+        </select>
         <select
           value={priority}
           onChange={(event) => setPriority(event.target.value)}

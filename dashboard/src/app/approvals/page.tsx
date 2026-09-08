@@ -6,9 +6,40 @@ import { ArrowLeft, Search } from "lucide-react";
 
 import { MotionBackground } from "@/components/motion-background";
 import { PriorityBadge } from "@/components/priority-badge";
-import { needsPricingRewrite } from "@/lib/data";
+import {
+  companyRegion,
+  needsPricingRewrite,
+  type RegionId,
+} from "@/lib/data";
 import type { Company } from "@/lib/data";
+import { priorityWeight } from "@/lib/stages";
 import { glassCard } from "@/lib/ui";
+
+type RegionFilter = "sc" | "upstate" | "all" | "out-of-state";
+
+const REGION_LABEL: Record<RegionFilter, string> = {
+  sc: "SC focus",
+  upstate: "Upstate",
+  all: "Everywhere",
+  "out-of-state": "Expansion",
+};
+
+function matchesRegion(company: Company, region: RegionFilter): boolean {
+  if (region === "all") return true;
+  const r: RegionId = companyRegion(company);
+  if (region === "upstate") return r === "upstate";
+  if (region === "sc") return r === "upstate" || r === "sc";
+  return r === "out-of-state" || r === "unknown";
+}
+
+/** Triage order: needs-rewrite last (Supervisor batch), then priority, then confidence. */
+function triageRank(c: Company): [number, number, number] {
+  return [
+    needsPricingRewrite(c) ? 1 : 0,
+    -priorityWeight(c.priority ?? ""),
+    -(c.pitchDraft?.confidence ?? 0),
+  ];
+}
 
 /* Rejection feedback form — shown when Zach clicks Reject. */
 function RejectForm({
@@ -222,6 +253,11 @@ export default function ApprovalsPage() {
     | "rejected"
   >("all");
   const [rewriteOnly, setRewriteOnly] = useState(false);
+  const [region, setRegion] = useState<RegionFilter>("sc");
+  const [highOnly, setHighOnly] = useState(false);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [bulkLoading, setBulkLoading] = useState(false);
+  const [bulkError, setBulkError] = useState<string | null>(null);
 
   // Deep-link: /approvals?status=supervisor-approved (from Home "Ready to send")
   useEffect(() => {
@@ -269,8 +305,14 @@ export default function ApprovalsPage() {
 
   const visible = queue
     .filter((c) => !removedIds.has(c.id))
+    .filter((c) => matchesRegion(c, region))
     .filter((c) => (statusFilter === "all" ? true : c.pitchDraft?.status === statusFilter))
     .filter((c) => (rewriteOnly ? needsPricingRewrite(c) : true))
+    .filter((c) =>
+      highOnly
+        ? c.priority === "high" || c.priority === "medium-high"
+        : true,
+    )
     .filter((c) => {
       if (!query.trim()) return true;
       const q = query.toLowerCase();
@@ -279,6 +321,11 @@ export default function ApprovalsPage() {
         (c.category ?? "").toLowerCase().includes(q) ||
         (c.location ?? "").toLowerCase().includes(q)
       );
+    })
+    .sort((a, b) => {
+      const [a0, a1, a2] = triageRank(a);
+      const [b0, b1, b2] = triageRank(b);
+      return a0 - b0 || a1 - b1 || a2 - b2;
     });
 
   const counts = queue.reduce<Record<string, number>>((acc, c) => {
@@ -288,6 +335,44 @@ export default function ApprovalsPage() {
   }, {});
 
   const rewriteCount = queue.filter((c) => needsPricingRewrite(c)).length;
+
+  function toggleSelect(id: string) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  /** Sequential bulk approve via the gated single-approve endpoint. */
+  async function bulkApprove(ids: string[]) {
+    setBulkLoading(true);
+    setBulkError(null);
+    try {
+      const done: string[] = [];
+      for (const id of ids) {
+        const res = await fetch("/api/pipeline/approve", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ companyId: id, status: "zach-approved" }),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json.ok) {
+          throw new Error(
+            json.error || `Approve failed for ${id} (HTTP ${res.status})`,
+          );
+        }
+        done.push(id);
+      }
+      setRemovedIds((prev) => new Set([...prev, ...done]));
+      setSelected(new Set());
+    } catch (e) {
+      setBulkError(e instanceof Error ? e.message : "Bulk approve failed");
+    } finally {
+      setBulkLoading(false);
+    }
+  }
 
   return (
     <>
@@ -323,7 +408,8 @@ export default function ApprovalsPage() {
               </h1>
               <p className="mt-1 text-sm text-slate-500">
                 {visible.length} pitch{visible.length !== 1 ? "es" : ""} waiting
-                for review
+                for review · sorted sendable-first (needs-rewrite sinks to the
+                bottom for the Supervisor batch)
               </p>
             </div>
 
@@ -338,6 +424,19 @@ export default function ApprovalsPage() {
                   className="w-full rounded-lg border border-slate-300 bg-white py-2 pl-9 pr-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
                 />
               </div>
+              <select
+                value={region}
+                onChange={(e) => setRegion(e.target.value as RegionFilter)}
+                className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600 focus:outline-none"
+                aria-label="Filter by territory"
+                title="SC focus = Upstate + rest of SC. Expansion = out-of-state + unknown."
+              >
+                {(Object.keys(REGION_LABEL) as RegionFilter[]).map((r) => (
+                  <option key={r} value={r}>
+                    {REGION_LABEL[r]}
+                  </option>
+                ))}
+              </select>
               <div className="flex flex-wrap gap-1.5">
                 {([
                   ["all", `All ${queue.length}`],
@@ -369,8 +468,48 @@ export default function ApprovalsPage() {
                 >
                   ⚠ Needs rewrite {rewriteCount}
                 </button>
+                <button
+                  onClick={() => setHighOnly((v) => !v)}
+                  title="Show only high + medium-high priority"
+                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                    highOnly
+                      ? "bg-rose-600 text-white"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  ★ High only
+                </button>
               </div>
             </div>
+
+            {bulkError ? (
+              <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">
+                Bulk approve hit an error: {bulkError}
+              </p>
+            ) : null}
+            {selected.size > 0 ? (
+              <div className="flex flex-wrap items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50/70 px-4 py-2.5">
+                <span className="text-sm font-medium text-emerald-800">
+                  {selected.size} selected
+                </span>
+                <button
+                  type="button"
+                  disabled={bulkLoading}
+                  onClick={() => void bulkApprove(Array.from(selected))}
+                  className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
+                >
+                  {bulkLoading ? "Approving…" : "Approve selected"}
+                </button>
+                <button
+                  type="button"
+                  disabled={bulkLoading}
+                  onClick={() => setSelected(new Set())}
+                  className="text-xs font-medium text-slate-500 hover:underline"
+                >
+                  Clear
+                </button>
+              </div>
+            ) : null}
 
             {visible.length === 0 ? (
               <div className={`${glassCard} py-16 text-center`}>
@@ -404,6 +543,8 @@ export default function ApprovalsPage() {
                 <ApprovalCard
                   key={company.id}
                   company={company}
+                  selected={selected.has(company.id)}
+                  onToggleSelect={() => toggleSelect(company.id)}
                   onDone={(id) => setRemovedIds((prev) => new Set(prev).add(id))}
                 />
               ))
@@ -417,29 +558,42 @@ export default function ApprovalsPage() {
 
 function ApprovalCard({
   company,
+  selected,
+  onToggleSelect,
   onDone,
 }: {
   company: Company;
+  selected: boolean;
+  onToggleSelect: () => void;
   onDone: (id: string) => void;
 }) {
   const draft = company.pitchDraft!;
   const isRejected = draft.status === "rejected";
 
   return (
-    <div className={`${glassCard} ${isRejected ? "border-amber-300" : ""}`}>
+    <div className={`${glassCard} ${isRejected ? "border-amber-300" : ""} ${selected ? "ring-2 ring-emerald-500/50" : ""}`}>
       <div className="p-5">
         {/* Header */}
         <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
-          <div>
-            <Link
-              href={`/client/${company.id}`}
-              className="text-base font-semibold text-slate-900 hover:text-emerald-600 transition-colors"
-            >
-              {company.name}
-            </Link>
-            <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
-              <span>{company.category}</span>
-              <span>{company.location}</span>
+          <div className="flex min-w-0 items-start gap-2">
+            <input
+              type="checkbox"
+              checked={selected}
+              onChange={onToggleSelect}
+              aria-label={`Select ${company.name} for bulk approve`}
+              className="mt-1 size-4 shrink-0 accent-emerald-600"
+            />
+            <div className="min-w-0">
+              <Link
+                href={`/client/${company.id}`}
+                className="text-base font-semibold text-slate-900 hover:text-emerald-600 transition-colors"
+              >
+                {company.name}
+              </Link>
+              <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+                <span>{company.category}</span>
+                <span>{company.location}</span>
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-2">

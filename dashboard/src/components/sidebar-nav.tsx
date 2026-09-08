@@ -186,12 +186,21 @@ function NavLink({
       <span className="relative shrink-0">
         <Icon className="size-[18px]" aria-hidden />
         {badge ? (
-          <span className="absolute -right-1.5 -top-1.5 flex size-4 items-center justify-center rounded-full bg-rose-500 text-[10px] font-bold text-white">
-            {badge > 9 ? "9+" : badge}
+          <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-bold text-white">
+            {badge > 99 ? "99+" : badge}
           </span>
         ) : null}
       </span>
-      {expanded ? <span className="truncate">{item.label}</span> : null}
+      {expanded ? (
+        <span className="flex min-w-0 flex-1 items-center gap-2">
+          <span className="truncate">{item.label}</span>
+          {badge ? (
+            <span className="tnum ml-auto shrink-0 rounded-full bg-rose-500/12 px-1.5 py-0.5 text-[10px] font-bold text-rose-700 ring-1 ring-inset ring-rose-500/20">
+              {badge > 99 ? "99+" : badge}
+            </span>
+          ) : null}
+        </span>
+      ) : null}
     </Link>
   );
 }

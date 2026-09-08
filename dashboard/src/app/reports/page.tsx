@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { CalendarClock, Funnel, ListChecks } from "lucide-react";
 
@@ -5,25 +7,30 @@ import { MotionBackground } from "@/components/motion-background";
 import { RevenueTracker } from "@/components/revenue-tracker";
 import { SeoGauge } from "@/components/seo-gauge";
 import { Progress } from "@/components/ui/progress";
+import { usePipeline } from "@/hooks/use-pipeline";
 import {
   formatDate,
-  getCompanies,
   getRevenue,
   getStageCounts,
-  getStages,
   getStats,
 } from "@/lib/data";
 import { stageTheme } from "@/lib/stages";
 import { glass } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
+/**
+ * Reports — live Blob book via usePipeline (same as Home/Leads/Clients).
+ * Was still on getCompanies() bundled snapshot until the 2026-09-01 LLOS upgrade.
+ */
 export default function ReportsPage() {
-  const companies = getCompanies();
-  const stages = getStages();
+  const { companies, stages, loading, error } = usePipeline();
   const stats = getStats(companies);
   const revenue = getRevenue(companies);
   const stageCounts = getStageCounts(companies);
-  const maxStageCount = Math.max(1, ...stages.map((stage) => stageCounts[stage.id] ?? 0));
+  const maxStageCount = Math.max(
+    1,
+    ...stages.map((stage) => stageCounts[stage.id] ?? 0),
+  );
 
   const timeline = [...companies]
     .filter((company) => company.lastUpdated)
@@ -39,7 +46,9 @@ export default function ReportsPage() {
           </h1>
           <p className="mt-1 text-sm text-slate-500">
             Pipeline health, revenue, and SEO across every client.
+            {loading ? " Loading live book…" : null}
           </p>
+          {error ? <p className="mt-1 text-sm text-rose-600">{error}</p> : null}
         </div>
 
         <div className="grid gap-6 lg:grid-cols-2">
@@ -53,7 +62,10 @@ export default function ReportsPage() {
               {stages.map((stage) => {
                 const count = stageCounts[stage.id] ?? 0;
                 const theme = stageTheme(stage.color);
-                const width = count === 0 ? 0 : Math.max(6, Math.round((count / maxStageCount) * 100));
+                const width =
+                  count === 0
+                    ? 0
+                    : Math.max(6, Math.round((count / maxStageCount) * 100));
                 return (
                   <div key={stage.id} className="flex items-center gap-3">
                     <span className="w-28 shrink-0 truncate text-xs font-medium text-slate-600 sm:w-32">
@@ -61,7 +73,10 @@ export default function ReportsPage() {
                     </span>
                     <div className="h-6 flex-1 overflow-hidden rounded-full bg-slate-900/[0.04]">
                       <div
-                        className={cn("h-full rounded-full transition-[width] duration-700", theme.bar)}
+                        className={cn(
+                          "h-full rounded-full transition-[width] duration-700",
+                          theme.bar,
+                        )}
                         style={{ width: `${width}%` }}
                       />
                     </div>
@@ -109,27 +124,28 @@ export default function ReportsPage() {
 
             <div className="mt-1 flex flex-col gap-2.5 border-t border-slate-100 pt-3">
               {companies
-                .filter((c) => c.playbook.length > 0)
+                .filter((c) => Array.isArray(c.playbook) && c.playbook.length > 0)
                 .slice(0, 12)
                 .map((company) => {
-                const total = company.playbook.length;
-                const done = company.playbook.filter((item) => item.done).length;
-                const percent = total === 0 ? 0 : Math.round((done / total) * 100);
-                return (
-                  <div key={company.id} className="flex items-center gap-3">
-                    <Link
-                      href={`/client/${company.id}`}
-                      className="w-32 shrink-0 truncate text-xs font-medium text-slate-600 hover:text-emerald-700 sm:w-40"
-                    >
-                      {company.name}
-                    </Link>
-                    <Progress value={percent} className="h-1.5 flex-1" />
-                    <span className="tnum w-10 shrink-0 text-right text-[11px] text-slate-500">
-                      {done}/{total}
-                    </span>
-                  </div>
-                );
-              })}
+                  const total = company.playbook.length;
+                  const done = company.playbook.filter((item) => item.done).length;
+                  const percent =
+                    total === 0 ? 0 : Math.round((done / total) * 100);
+                  return (
+                    <div key={company.id} className="flex items-center gap-3">
+                      <Link
+                        href={`/client/${company.id}`}
+                        className="w-32 shrink-0 truncate text-xs font-medium text-slate-600 hover:text-emerald-700 sm:w-40"
+                      >
+                        {company.name}
+                      </Link>
+                      <Progress value={percent} className="h-1.5 flex-1" />
+                      <span className="tnum w-10 shrink-0 text-right text-[11px] text-slate-500">
+                        {done}/{total}
+                      </span>
+                    </div>
+                  );
+                })}
             </div>
           </section>
 
@@ -139,13 +155,16 @@ export default function ReportsPage() {
               <CalendarClock className="size-4 text-slate-500" aria-hidden />
               Activity timeline
             </h2>
-            {timeline.length === 0 ? (
+            {loading ? (
+              <p className="text-sm text-slate-500">Loading…</p>
+            ) : timeline.length === 0 ? (
               <p className="text-sm text-slate-500">No dated activity yet.</p>
             ) : (
               <ol className="flex flex-col gap-1 border-l border-slate-200 pl-4">
                 {timeline.slice(0, 12).map((company) => {
                   const theme = stageTheme(
-                    stages.find((stage) => stage.id === company.stage)?.color ?? "slate",
+                    stages.find((stage) => stage.id === company.stage)?.color ??
+                      "slate",
                   );
                   return (
                     <li key={company.id} className="relative py-2 pl-2">

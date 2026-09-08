@@ -8,7 +8,10 @@ function isAuthed(req: NextRequest) {
 }
 
 const VALID_PRIORITY = ["high", "medium-high", "medium", "low"];
-const VALID_STAGES = ["prospect", "audit", "pitch", "contacted", "response", "build-launch", "won", "lost"];
+// Runtime stage set — MUST match the StageId union in src/lib/data.ts.
+// `sale` is the current closed-won stage; legacy `won`/`lost` are no longer
+// accepted on new writes (H04). Existing records are left as-is (no migration).
+const VALID_STAGES = ["prospect", "audit", "pitch", "contacted", "response", "sale", "build-launch"];
 
 function slugify(name: string): string {
   return (

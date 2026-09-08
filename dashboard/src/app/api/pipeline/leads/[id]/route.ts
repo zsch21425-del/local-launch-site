@@ -31,6 +31,52 @@ const EDITABLE_FIELDS = [
 
 type EditableField = (typeof EDITABLE_FIELDS)[number];
 
+const VALID_PRIORITY = ["high", "medium-high", "medium", "low"] as const;
+const MAX_STR = 4000;
+
+/**
+ * Runtime value schema. Whitelisting keys is not enough — a bad *value*
+ * (priority:null, name:{}, email:42, saleValue:"lots") persists and later
+ * crashes downstream `.toLowerCase()` / `.trim()` / arithmetic. Every editable
+ * field is validated here and a non-conforming value is rejected with a 400 +
+ * field detail BEFORE anything is written. Values are never silently coerced.
+ */
+function validateFieldValue(
+  key: EditableField,
+  value: unknown,
+): { ok: true; value: unknown } | { ok: false; error: string } {
+  if (key === "priority") {
+    if (typeof value === "string" && (VALID_PRIORITY as readonly string[]).includes(value)) {
+      return { ok: true, value };
+    }
+    return { ok: false, error: `priority must be one of: ${VALID_PRIORITY.join(", ")}` };
+  }
+
+  if (key === "saleValue") {
+    if (value === null) return { ok: true, value: null };
+    if (typeof value === "number" && Number.isFinite(value) && value >= 0) {
+      return { ok: true, value };
+    }
+    return { ok: false, error: "saleValue must be a finite number >= 0, or null" };
+  }
+
+  if (key === "name") {
+    if (typeof value === "string" && value.trim().length > 0 && value.length <= MAX_STR) {
+      return { ok: true, value };
+    }
+    return { ok: false, error: `name must be a non-empty string (<= ${MAX_STR} chars)` };
+  }
+
+  // Remaining editable fields: bounded string, or explicit null to clear.
+  // (category, location, phone, email, website, facebook, instagram,
+  //  ownerName, offer, summary, responseStatus, demoUrl)
+  if (value === null) return { ok: true, value: null };
+  if (typeof value === "string" && value.length <= MAX_STR) {
+    return { ok: true, value };
+  }
+  return { ok: false, error: `${key} must be a string (<= ${MAX_STR} chars) or null` };
+}
+
 /**
  * PATCH /api/pipeline/leads/[id] — edit a single lead's fields.
  * Body: { fields: { [key]: value, ... } }
@@ -50,10 +96,18 @@ export async function PATCH(
     return NextResponse.json({ error: "fields is required" }, { status: 400 });
   }
 
-  // Whitelist filter
+  // Whitelist filter + runtime value validation
   const updates: Record<string, unknown> = {};
   for (const key of EDITABLE_FIELDS) {
-    if (key in fields) updates[key] = fields[key];
+    if (!(key in fields)) continue;
+    const checked = validateFieldValue(key, fields[key]);
+    if (!checked.ok) {
+      return NextResponse.json(
+        { error: `invalid value for "${key}": ${checked.error}`, field: key },
+        { status: 400 },
+      );
+    }
+    updates[key] = checked.value;
   }
   if (Object.keys(updates).length === 0) {
     return NextResponse.json(

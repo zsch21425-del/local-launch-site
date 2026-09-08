@@ -13,6 +13,59 @@ import {
 import { MotionBackground } from "@/components/motion-background";
 import { glassCard } from "@/lib/ui";
 import { cn } from "@/lib/utils";
+import {
+  regionOfLocation,
+  type RegionId,
+} from "@/lib/data";
+import { priorityWeight } from "@/lib/stages";
+
+type RegionFilter = "sc" | "upstate" | "all" | "out-of-state";
+
+const REGION_LABEL: Record<RegionFilter, string> = {
+  sc: "SC focus",
+  upstate: "Upstate",
+  all: "Everywhere",
+  "out-of-state": "Expansion",
+};
+
+function matchesDemoRegion(demo: DemoEntry, region: RegionFilter): boolean {
+  if (region === "all") return true;
+  const r: RegionId = regionOfLocation(demo.location);
+  if (region === "upstate") return r === "upstate";
+  if (region === "sc") return r === "upstate" || r === "sc";
+  return r === "out-of-state" || r === "unknown";
+}
+
+/**
+ * Demos triage: pending + rework first (rejected/dead-letter sink),
+ * then company priority, then oldest review feedback (stale fixes first).
+ * Priority/age ride on client-enriched fields when present.
+ */
+export type DemoTriageMeta = {
+  priority?: string | null;
+  reviewedAt?: string | null;
+};
+
+const demoMeta = new Map<string, DemoTriageMeta>();
+
+export function setDemoTriageMeta(id: string, meta: DemoTriageMeta) {
+  demoMeta.set(id, meta);
+}
+
+function demoRank(d: DemoEntry): [number, number, string] {
+  const statusRank =
+    d.status === "pending"
+      ? 0
+      : d.status === "rework"
+        ? 1
+        : d.status === "rejected"
+          ? 2
+          : 3;
+  const meta = demoMeta.get(d.companyId);
+  const w = -priorityWeight(meta?.priority ?? "");
+  const age = meta?.reviewedAt ?? d.reviewedAt ?? "9999";
+  return [statusRank, w, age];
+}
 
 interface ReviewFeedback {
   reason: string;
@@ -161,6 +214,7 @@ export default function DemosPage() {
   const [demos, setDemos] = useState<DemoEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
+  const [region, setRegion] = useState<RegionFilter>("sc");
   const [filter, setFilter] = useState<
     "all" | "pending" | "rejected" | "rework"
   >("all");
@@ -169,7 +223,29 @@ export default function DemosPage() {
     try {
       const res = await fetch("/api/demos");
       const data = await res.json();
-      setDemos(data.demos ?? []);
+      const list: DemoEntry[] = data.demos ?? [];
+      setDemos(list);
+      // Enrich triage meta (priority + age) from company records.
+      try {
+        const pr = await fetch("/api/pipeline/data");
+        const pd = await pr.json();
+        const byId = new Map(
+          ((pd.companies ?? []) as { id: string; priority?: string; demo?: { reviewedAt?: string }; lastUpdated?: string }[]).map(
+            (c) => [c.id, c],
+          ),
+        );
+        for (const d of list) {
+          const c = byId.get(d.companyId);
+          if (c) {
+            setDemoTriageMeta(d.companyId, {
+              priority: c.priority ?? null,
+              reviewedAt: c.demo?.reviewedAt ?? c.lastUpdated ?? d.reviewedAt ?? null,
+            });
+          }
+        }
+      } catch {
+        /* triage still works on status alone */
+      }
     } catch {
       /* keep last */
     } finally {
@@ -184,6 +260,7 @@ export default function DemosPage() {
   const visible = useMemo(() => {
     return demos
       .filter((d) => (filter === "all" ? true : d.status === filter))
+      .filter((d) => matchesDemoRegion(d, region))
       .filter((d) => {
         if (!query.trim()) return true;
         const q = query.toLowerCase();
@@ -193,8 +270,13 @@ export default function DemosPage() {
           (d.location ?? "").toLowerCase().includes(q) ||
           (d.reviewFeedback?.reason ?? "").toLowerCase().includes(q)
         );
+      })
+      .sort((a, b) => {
+        const [a0, a1, a2] = demoRank(a);
+        const [b0, b1, b2] = demoRank(b);
+        return a0 - b0 || a1 - b1 || a2.localeCompare(b2);
       });
-  }, [demos, filter, query]);
+  }, [demos, filter, region, query]);
 
   const pendingCount = demos.filter((d) => d.status === "pending").length;
   const reworkCount = demos.filter(
@@ -232,7 +314,8 @@ export default function DemosPage() {
             Demo Approvals
           </h1>
           <p className="mt-1 text-sm text-slate-500">
-            {pendingCount} waiting · {reworkCount} need fixes
+            {pendingCount} waiting · {reworkCount} need fixes · sorted
+            pending-first, high-priority + oldest fixes up top
             {" · "}
             Reject/rework requires notes — sent straight to the agent
           </p>
@@ -248,6 +331,19 @@ export default function DemosPage() {
               className="w-full rounded-lg border border-slate-300 bg-white py-2 pr-3 pl-9 text-sm text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none"
             />
           </div>
+          <select
+            value={region}
+            onChange={(e) => setRegion(e.target.value as RegionFilter)}
+            className="rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-xs font-medium text-slate-600 focus:outline-none"
+            aria-label="Filter by territory"
+            title="SC focus = Upstate + rest of SC. Expansion = out-of-state + unknown."
+          >
+            {(Object.keys(REGION_LABEL) as RegionFilter[]).map((r) => (
+              <option key={r} value={r}>
+                {REGION_LABEL[r]}
+              </option>
+            ))}
+          </select>
           <div className="flex gap-1 rounded-lg border border-slate-300 bg-white p-1">
             {(["all", "pending", "rejected", "rework"] as const).map((f) => (
               <button

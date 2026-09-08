@@ -46,7 +46,7 @@ class Relay(http.server.BaseHTTPRequestHandler):
                     data=json.dumps({
                         'model': 'deepseek-v4-flash',
                         'messages': [
-                            {'role': 'system', 'content': 'You are the Local Launch Supervisor. Be concise. Pipeline data in /mnt/d/Documents/Hermes Vault/Local Launch/. Pricing: $300 one-time, $49/mo optional. Phone: (503) 358-5860. Help Zach manage pipeline, approve pitches, answer questions.'},
+                            {'role': 'system', 'content': 'You are the Local Launch Supervisor. Be concise. Pipeline data in /mnt/d/LocalLaunch/dashboard/data/pipeline.json. Vault: /mnt/d/Obsidian/Local-Launch/ (Clients/ + Client Index). Pricing: $599 one-time build + $149/mo Care. Phone: (503) 358-5860. Phone: (503) 358-5860. Help Zach manage pipeline, approve pitches, answer questions.'},
                             {'role': 'user', 'content': body.get('message', '')}
                         ],
                         'max_tokens': 500
@@ -59,7 +59,7 @@ class Relay(http.server.BaseHTTPRequestHandler):
                 self._json({'reply': f'Error: {e}'}, 500)
         elif self.path == '/pipeline':
             try:
-                with open('/mnt/d/Documents/Hermes Vault/Local Launch/pipeline.json') as f:
+                with open('/mnt/d/LocalLaunch/dashboard/data/pipeline.json') as f:
                     data = json.load(f)
                 self._json(data)
             except:

@@ -7,7 +7,10 @@ function isAuthed(req: NextRequest) {
   return req.cookies.get("ll_dash_auth")?.value === ACCESS;
 }
 
-const VALID_STAGES = ["prospect", "audit", "pitch", "contacted", "response", "build-launch", "won", "lost"];
+// Runtime stage set — MUST match the StageId union in src/lib/data.ts.
+// `sale` is the current closed-won stage; legacy `won`/`lost` are no longer
+// accepted on new writes (H04). Existing records are left as-is (no migration).
+const VALID_STAGES = ["prospect", "audit", "pitch", "contacted", "response", "sale", "build-launch"];
 
 /**
  * POST /api/pipeline/move — move a company to another stage on the kanban.

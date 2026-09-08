@@ -36,40 +36,89 @@ function loadToken() {
   return m[1];
 }
 
-async function blobGet(token) {
-  const got = await get(BLOB_PATH, { access: "private", token });
-  let text;
-  if (typeof got.text === "function") text = await got.text();
-  else if (got.stream) {
-    const reader = got.stream.getReader();
-    const chunks = [];
-    for (;;) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      chunks.push(value);
-    }
-    text = new TextDecoder().decode(
-      (() => {
-        const total = chunks.reduce((s, c) => s + c.length, 0);
-        const buf = new Uint8Array(total);
-        let off = 0;
-        for (const c of chunks) {
-          buf.set(c, off);
-          off += c.length;
-        }
-        return buf;
-      })(),
-    );
-  } else text = JSON.stringify(got);
-  return JSON.parse(text);
+async function streamText(stream) {
+  const reader = stream.getReader();
+  const chunks = [];
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+  }
+  const total = chunks.reduce((s, c) => s + c.length, 0);
+  const buf = new Uint8Array(total);
+  let off = 0;
+  for (const c of chunks) {
+    buf.set(c, off);
+    off += c.length;
+  }
+  return new TextDecoder().decode(buf);
 }
 
-async function blobPut(token, data) {
+// Read the full book WITH its ETag so the end-of-run write is conditional and
+// cannot clobber a concurrent mutation (collect-fleet, run-fleet, approvals) —
+// bug C01.
+async function blobGet(token) {
+  const got = await get(BLOB_PATH, { access: "private", token, useCache: false });
+  if (!got || !got.stream) throw new Error("pipeline.json missing from Blob");
+  const text = await streamText(got.stream);
+  return { data: JSON.parse(text), etag: got.blob?.etag ?? null };
+}
+
+async function blobPut(token, data, etag) {
   await put(BLOB_PATH, JSON.stringify(data, null, 2), {
     access: "private",
     allowOverwrite: true,
     token,
+    ...(etag ? { ifMatch: etag } : {}),
   });
+}
+
+function isConflict(e) {
+  return (
+    e?.name === "BlobPreconditionFailedError" ||
+    e?.statusCode === 412 ||
+    /precondition failed/i.test(String(e?.message || ""))
+  );
+}
+
+/**
+ * Commit only this worker's owned changes (per-company `demo`, `lastUpdated`
+ * and a prepended timeline entry) with an ifMatch conditional write. On a
+ * conflict, re-read the fresh book and re-apply the same per-id patches, then
+ * retry (bounded). Never weakens to an unconditional overwrite.
+ *
+ * @param patches Map<companyId, { demo, lastUpdated?, timelineEntry? }>
+ * @param firstData the already-mutated book from the initial read
+ * @param firstEtag its etag
+ */
+async function commitPatches(token, patches, firstData, firstEtag) {
+  const MAX_ATTEMPTS = 3;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    let data, etag;
+    if (attempt === 1) {
+      data = firstData;
+      etag = firstEtag;
+    } else {
+      ({ data, etag } = await blobGet(token));
+      for (const [id, p] of patches) {
+        const fc = (data.companies || []).find((x) => x.id === id);
+        if (!fc) continue;
+        fc.demo = p.demo;
+        if (p.lastUpdated) fc.lastUpdated = p.lastUpdated;
+        if (p.timelineEntry) {
+          fc.timeline = fc.timeline || [];
+          fc.timeline.unshift(p.timelineEntry);
+        }
+      }
+    }
+    try {
+      await blobPut(token, data, etag);
+      return;
+    } catch (e) {
+      if (!isConflict(e) || attempt === MAX_ATTEMPTS) throw e;
+      console.warn(`[rebuild-worker] write conflict — retry ${attempt}/${MAX_ATTEMPTS}`);
+    }
+  }
 }
 
 function claudeRebuild(dir, briefPath) {
@@ -266,6 +315,20 @@ function releaseLock() {
   try { fs.unlinkSync(LOCK); } catch {}
 }
 
+/**
+ * Per-company patches this run has produced, keyed by company id. Re-applied
+ * on a conditional-write conflict (see commitPatches).
+ */
+const PATCHES = new Map();
+function recordPatch(c, timelineEntry) {
+  const prev = PATCHES.get(c.id) || {};
+  PATCHES.set(c.id, {
+    demo: c.demo,
+    lastUpdated: c.lastUpdated ?? prev.lastUpdated,
+    timelineEntry: timelineEntry ?? prev.timelineEntry,
+  });
+}
+
 function markFailure(c, error) {
   c.demo = c.demo || {};
   const attempts = (c.demo.rebuildAttempts || 0) + 1;
@@ -280,6 +343,7 @@ function markFailure(c, error) {
     c.demo.retryAfter = new Date(Date.now() + 30 * 60 * 1000).toISOString();
     console.log(`  [${c.id}] attempt ${attempts}/3 failed — retry after ${c.demo.retryAfter}`);
   }
+  recordPatch(c);
   return attempts;
 }
 
@@ -290,7 +354,7 @@ async function main() {
   }
   try {
   const token = loadToken();
-  const data = await blobGet(token);
+  const { data, etag } = await blobGet(token);
 
   const jobs = (data.companies || []).filter((c) => {
     const s = c.demo?.status;
@@ -375,6 +439,7 @@ async function main() {
         reviewedAt: nowIso(),
       };
       c.demo.notes = c.demo.reviewFeedback.reason;
+      recordPatch(c);
       done += 1; // persist attempt/backoff state + note
       continue;
     }
@@ -387,18 +452,20 @@ async function main() {
     c.demo.reviewFeedback = null;
     c.demo.notes = null;
     c.lastUpdated = nowIso().slice(0, 10);
-    (c.timeline || (c.timeline = [])).unshift({
+    const timelineEntry = {
       ts: nowIso(),
       type: "playbook",
       detail: `Demo rebuilt after rework: "${reason.slice(0, 80)}"`,
       actor: "rebuild-worker",
-    });
+    };
+    (c.timeline || (c.timeline = [])).unshift(timelineEntry);
+    recordPatch(c, timelineEntry);
     done += 1;
     console.log(`  [${slug}] → demo.status = pending (ready for re-review).`);
   }
 
   if (done > 0) {
-    await blobPut(token, data);
+    await commitPatches(token, PATCHES, data, etag);
     console.log(`[rebuild-worker] ${done} job(s) rebuilt + saved to Blob.`);
   }
   } finally {

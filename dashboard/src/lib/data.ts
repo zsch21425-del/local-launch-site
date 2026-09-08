@@ -114,7 +114,7 @@ export interface Company {
    */
   demo?: {
     url?: string;
-    status?: "pending" | "approved" | "rejected" | "rework";
+    status?: "pending" | "approved" | "rejected" | "rework" | "build-requested";
     /** Freeform notes (legacy + combined with reviewFeedback) */
     notes?: string;
     reviewedAt?: string;
@@ -250,7 +250,7 @@ export function getCarLotsPipeline(): CarLotsPipeline {
 export interface DemoItem {
   company: Company;
   url: string;
-  status: "pending" | "approved" | "rejected" | "rework";
+  status: "pending" | "approved" | "rejected" | "rework" | "build-requested";
 }
 
 /**
@@ -276,6 +276,19 @@ export function resolveDemoUrl(company: Company): string | null {
  * review instead of being silently hidden. "rework" (builder reworked after a
  * rejection) also stays in the queue for re-review.
  */
+
+/**
+ * A prospect is "demo-ready" when Zach could greenlight building a demo:
+ * it has NO demo yet, a build wasn't already requested, and it's past the
+ * fresh-`prospect` stage (audit/pitch/contacted/response — the pre-sale lead
+ * stages where a proof-of-concept demo is the natural next step).
+ */
+export function isDemoReady(company: Company): boolean {
+  if (resolveDemoUrl(company)) return false;                 // already has a demo
+  if (company.demo?.status === "build-requested") return false; // already requested
+  return ["audit", "pitch", "contacted", "response"].includes(company.stage);
+}
+
 export function getDemoQueue(companies: Company[] = data.companies): DemoItem[] {
   const items: DemoItem[] = [];
   for (const company of companies) {
@@ -330,6 +343,67 @@ export function pendingApprovalCount(
   companies: Company[] = data.companies,
 ): number {
   return getApprovalQueue(companies).length;
+}
+
+/* --------------------------------------------------------------- region --- */
+
+/**
+ * Territory model (2026-09): Local Launch focuses on SC (Upstate first) and
+ * is expanding out-of-state. Regions derive from `company.location` only —
+ * never invented. `unknown` = missing/unparseable location.
+ */
+export type RegionId = "upstate" | "sc" | "out-of-state" | "unknown";
+
+/** Upstate SC cities (lowercase). Matched against the primary city segment. */
+const UPSTATE_CITIES = [
+  "greenville", "spartanburg", "anderson", "greer", "simpsonville",
+  "mauldin", "easley", "taylors", "travelers rest", "pickens",
+  "clemson", "seneca", "fountain inn", "woodruff", "duncan", "moore",
+  "wellford", "laurens", "belton", "honea", "piedmont", "pelzer",
+  "liberty", "central", "powdersville", "five forks", "gantt",
+  "tigerville", "slater", "marietta", "chesnee", "inman", "landrum",
+  "campobello", "boiling springs", "roebuck", "cowpens", "lyman",
+  "startex", "saxon", "arcadia", "pacolet", "union", "gaffney",
+  "pendleton", "walhalla", "westminster", "six mile", "norris",
+];
+
+/** Primary city segment: "Greenville, SC (6-city area)" -> "greenville". */
+function primaryCity(location: string): string {
+  return location.split(/[,()]/)[0]?.trim().toLowerCase() ?? "";
+}
+
+function isSouthCarolina(location: string): boolean {
+  return /,\s*sc\b/i.test(location) || /south carolina/i.test(location);
+}
+
+export function regionOfLocation(location?: string | null): RegionId {
+  const loc = (location ?? "").trim();
+  if (!loc) return "unknown";
+  if (!isSouthCarolina(loc)) return "out-of-state";
+  return UPSTATE_CITIES.some((city) => primaryCity(loc).includes(city))
+    ? "upstate"
+    : "sc";
+}
+
+export function companyRegion(company: Company): RegionId {
+  return regionOfLocation(company.location);
+}
+
+/** SC-first book: Upstate + rest-of-SC. The default working view. */
+export function isScFocus(company: Company): boolean {
+  const r = companyRegion(company);
+  return r === "upstate" || r === "sc";
+}
+
+/** Expansion book: out-of-state + unknown-location (needs enrichment). */
+export function isExpansion(company: Company): boolean {
+  return !isScFocus(company);
+}
+
+/** Two-letter state code parsed from location ("Greenville, SC" -> "SC"). */
+export function stateCode(company: Company): string | null {
+  const m = /,?\s*\b([A-Z]{2})\b/.exec(company.location ?? "");
+  return m ? m[1] : null;
 }
 
 export type WorkKind = "pitch" | "demo" | "prospect" | "follow-up" | "build";

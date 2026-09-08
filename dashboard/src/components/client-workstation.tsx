@@ -7,20 +7,23 @@ import { ClientHeader } from "@/components/client-header";
 import { ClientSummary } from "@/components/client-summary";
 import { ClientTimeline } from "@/components/client-timeline";
 import { ClientApprovalPanel } from "@/components/client-approval-panel";
+import { ClientBuildDemo } from "@/components/client-build-demo";
 import { PlaybookChecklist } from "@/components/playbook-checklist";
 import { QuickDispatch } from "@/components/quick-dispatch";
 import { SeoGauge } from "@/components/seo-gauge";
 import { StageTracker } from "@/components/stage-tracker";
+import { isDemoReady } from "@/lib/data";
 import { glassCard } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 import {
   Activity,
   Bot,
+  CheckCircle2,
   FileText,
   FolderOpen,
   ListChecks,
   ListOrdered,
-  MonitorPlay,
+  ShieldCheck,
   User,
 } from "lucide-react";
 
@@ -92,16 +95,27 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
         />
       ) : null}
 
-      {/* Demo & pitch — the review action */}
-      {hasDemoOrPitch ? (
-        <Section
-          icon={<MonitorPlay className="size-3.5" />}
-          title="Demo & Pitch"
-          subtitle="Review, approve, or send rework notes to the agent"
-        >
+      {/* Approvals — every decision that needs Zach, in one place */}
+      <Section
+        icon={<ShieldCheck className="size-3.5" />}
+        title="Approvals"
+        subtitle="Decisions that need you"
+      >
+        {hasDemoOrPitch ? (
           <ClientApprovalPanel company={company} />
-        </Section>
-      ) : null}
+        ) : isDemoReady(company) || company.demo?.status === "build-requested" ? (
+          <ClientBuildDemo
+            companyId={company.id}
+            companyName={company.name}
+            demoStatus={company.demo?.status}
+          />
+        ) : (
+          <div className={cn(glassCard, "py-8 text-center text-sm text-slate-400")}>
+            <CheckCircle2 className="mx-auto mb-2 size-5 text-slate-300" />
+            Nothing needs your approval right now.
+          </div>
+        )}
+      </Section>
 
       {/* Prospect details */}
       <Section

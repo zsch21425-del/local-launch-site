@@ -35,7 +35,7 @@ export async function GET() {
   let crmConnected = false;
   if (process.env.CRM_SESSION_TOKEN) {
     try {
-      crmCompanies = await crmListCompanies(50);
+      crmCompanies = await crmListCompanies(500);
       crmConnected = true;
     } catch {
       crmCompanies = [];

@@ -13,21 +13,36 @@ import { cn } from "@/lib/utils";
 export function StageColumn({
   stage,
   companies,
+  compact = false,
+  emptyHint,
+  badgeCount,
 }: {
   stage: Stage;
   companies: Company[];
+  /** Slim drop-target column when board is focused on another stage */
+  compact?: boolean;
+  emptyHint?: string;
+  /** When compact+empty, show true stage size in header */
+  badgeCount?: number;
 }) {
   const theme = stageTheme(stage.color);
   const Icon = stageIcon(stage.icon);
+  const count = badgeCount ?? companies.length;
 
   return (
     <div
       className={cn(
         glassSubtle,
-        "flex w-[86vw] shrink-0 flex-col sm:w-[19rem]",
+        "flex h-full w-full flex-col",
+        compact && "min-h-[12rem]",
       )}
     >
-      <div className="flex items-center justify-between gap-2 px-3.5 pt-3.5 pb-3">
+      <div
+        className={cn(
+          "flex items-center justify-between gap-2 px-3.5 pt-3.5 pb-3",
+          compact && "flex-col items-start gap-1 px-2.5 pt-2.5 pb-2",
+        )}
+      >
         <div className="flex min-w-0 items-center gap-2">
           <span
             className={cn(
@@ -39,8 +54,13 @@ export function StageColumn({
           >
             <Icon className="size-3.5" />
           </span>
-          <h3 className="truncate text-[13px] font-semibold tracking-tight text-slate-800">
-            {stage.label}
+          <h3
+            className={cn(
+              "truncate text-[13px] font-semibold tracking-tight text-slate-800",
+              compact && "text-[11px] leading-tight whitespace-normal",
+            )}
+          >
+            {compact ? `→ ${stage.label}` : stage.label}
           </h3>
         </div>
         <span
@@ -49,13 +69,15 @@ export function StageColumn({
             theme.pill,
           )}
         >
-          {companies.length}
+          {count}
         </span>
       </div>
 
-      <div className="px-3.5">
-        <div className={cn("h-1 w-full rounded-full", theme.bar)} aria-hidden />
-      </div>
+      {!compact ? (
+        <div className="px-3.5">
+          <div className={cn("h-1 w-full rounded-full", theme.bar)} aria-hidden />
+        </div>
+      ) : null}
 
       <Droppable droppableId={stage.id}>
         {(provided, snapshot) => (
@@ -64,7 +86,8 @@ export function StageColumn({
             {...provided.droppableProps}
             className={cn(
               "flex min-h-[8rem] flex-1 flex-col gap-2.5 rounded-b-2xl p-3 transition-colors duration-200",
-              snapshot.isDraggingOver && "bg-emerald-500/[0.07]",
+              compact && "min-h-[10rem] p-2",
+              snapshot.isDraggingOver && "bg-emerald-500/[0.12]",
             )}
           >
             {companies.map((company, index) => (
@@ -100,9 +123,16 @@ export function StageColumn({
             {provided.placeholder}
 
             {companies.length === 0 && !snapshot.isDraggingOver ? (
-              <div className="flex flex-1 flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-slate-900/10 py-8 text-center">
+              <div
+                className={cn(
+                  "flex flex-1 flex-col items-center justify-center gap-1.5 rounded-xl border border-dashed border-slate-900/10 text-center",
+                  compact ? "px-1 py-6" : "py-8",
+                )}
+              >
                 <Inbox className="size-4 text-slate-300" aria-hidden />
-                <p className="text-[11px] text-slate-400">Drop a client here</p>
+                <p className="text-[11px] leading-snug text-slate-400">
+                  {emptyHint || "Drop a client here"}
+                </p>
               </div>
             ) : null}
           </div>
