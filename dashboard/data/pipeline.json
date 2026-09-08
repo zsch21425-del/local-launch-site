@@ -2032,7 +2032,9 @@
       "zachApproval": null,
       "ownerName": "Alex",
       "demoUrl": "https://adv-garage-door-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "johnsons-paint",
@@ -2886,7 +2888,11 @@
       "zachApproval": null,
       "ownerName": "Nic",
       "demoUrl": "https://kings-power-washing-charlotte-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "email": "charlottepowerwashing@gmail.com",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "junk-busters",
@@ -6952,7 +6958,11 @@
       "zachApproval": null,
       "ownerName": "Gabriel",
       "demoUrl": "https://aplus-concrete-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "email": "concrete@apcrpro.com",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "gulottas-window",
@@ -7110,11 +7120,14 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "montestreeservice579@gmail.com",
       "notes": [],
       "ownerName": "Travis",
       "demoUrl": "https://montes-tree-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "reed-concrete",
@@ -7297,7 +7310,9 @@
       "saleValue": null,
       "zachApproval": null,
       "demoUrl": "https://rob-perry-fence-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "royal-pro-wash",
@@ -7417,7 +7432,11 @@
       "zachApproval": null,
       "ownerName": "Trevor",
       "demoUrl": "https://km-excavating-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "email": "tbill565656@gmail.com",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "blu-rhino-junk",
@@ -8880,11 +8899,14 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "Quinn.Kevin23@yahoo.com",
       "notes": [],
       "ownerName": "Kevin",
       "demoUrl": "https://quinn-services-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "renaissance-handyman-service",
@@ -9027,7 +9049,9 @@
       "zachApproval": null,
       "ownerName": "Mike",
       "demoUrl": "https://sommers-heating-air-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "stephen-stephen",
@@ -9098,7 +9122,11 @@
       "zachApproval": null,
       "ownerName": "Thomas",
       "demoUrl": "https://tb-contractors-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "email": "tbcontractorsllcsc@gmail.com",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "whittier-fence-and-deck",
@@ -9135,7 +9163,11 @@
       "zachApproval": null,
       "ownerName": "Chris",
       "demoUrl": "https://whittier-fence-deck-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "email": "whittierfencellc@gmail.com",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "aquablade-llc",
@@ -9326,11 +9358,14 @@
       "responseStatus": null,
       "saleValue": null,
       "zachApproval": null,
-      "email": "",
+      "email": "KnockItJunkRemoval@gmail.com",
       "notes": [],
       "ownerName": "Kadeem",
       "demoUrl": "https://knockit-junk-removal-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "bearden-forestry",
@@ -9580,7 +9615,9 @@
         "status": "pending"
       },
       "ownerName": "Kirk",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "l-f-handymen",
@@ -10017,7 +10054,11 @@
       "zachApproval": null,
       "ownerName": "Del",
       "demoUrl": "https://lees-decks-demo.vercel.app",
-      "offer": "$599 build"
+      "offer": "$599 build",
+      "email": "detalansmith74@gmail.com",
+      "emailSource": "auditor-enrichment-2026-09-08",
+      "demoLive": true,
+      "demoLiveVerifiedAt": "2026-09-08T12:13:45.105918+00:00"
     },
     {
       "id": "maid-spotless",
