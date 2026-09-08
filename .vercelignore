@@ -1,10 +1,16 @@
 # Exclude heavy/dev dirs from Vercel deploys (Aug 7 2026 — was causing ENOMEM uploads)
+# Sep 8 2026 — added builder-work (446MB) + fairway-site + audits + qa:
+#   these were blowing the 250MB serverless-function limit (RUNTIME_DEPENDENCY_INSTALLATION_FAILED).
 ads/
 receptionist/
 sandboxes/
 demos/
 templates/
 tmp_shots/
+builder-work/
+fairway-site/
+audits/
+qa/
 .git/
 node_modules/
 __pycache__/
