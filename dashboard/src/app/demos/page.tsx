@@ -141,7 +141,7 @@ function DemoFeedbackForm({
         }
       : {
           box: "border-violet-200 bg-violet-50/60",
-          title: "text-violet-800",
+          title: "text-violet-200",
           btn: "bg-violet-600 hover:bg-violet-700",
           ring: "focus:ring-violet-400",
           label: "Request rework",
@@ -392,13 +392,13 @@ export default function DemosPage() {
                 key={n.id}
                 className={`${glassCard} flex items-start justify-between gap-3 border-amber-200 bg-amber-50/70 px-4 py-3`}
               >
-                <p className="text-sm text-amber-800">
+                <p className="text-sm text-amber-200">
                   <span className="font-semibold">{n.name}:</span> {n.message}
                 </p>
                 <button
                   type="button"
                   onClick={() => dismissNotice(n.id)}
-                  className="shrink-0 text-xs font-medium text-amber-700 hover:underline"
+                  className="shrink-0 text-xs font-medium text-amber-300 hover:underline"
                 >
                   Dismiss
                 </button>
@@ -577,14 +577,14 @@ function DemoCard({
   }
 
   const badge = isDeadLetter
-    ? { label: "Dead-letter", cls: "bg-red-100 text-red-700" }
+    ? { label: "Dead-letter", cls: "bg-red-100 text-red-300" }
     : isVerifying
-      ? { label: "Verifying · QA", cls: "bg-amber-100 text-amber-700" }
+      ? { label: "Verifying · QA", cls: "bg-amber-100 text-amber-300" }
       : isRejected
         ? { label: "Rejected", cls: "bg-destructive/10 text-destructive" }
         : isRework
-          ? { label: "Rework", cls: "bg-violet-100 text-violet-700" }
-          : { label: "Pending", cls: "bg-sky-100 text-sky-700" };
+          ? { label: "Rework", cls: "bg-violet-100 text-violet-300" }
+          : { label: "Pending", cls: "bg-sky-100 text-sky-300" };
 
   return (
     <div
@@ -637,7 +637,7 @@ function DemoCard({
         {/* Prior feedback — always visible when present */}
         {fb?.reason ? (
           <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50/80 p-3">
-            <p className="text-xs font-semibold text-amber-900">
+            <p className="text-xs font-semibold text-amber-100">
               Your notes to the agent
             </p>
             <p className="mt-1 text-sm text-foreground">
@@ -666,7 +666,7 @@ function DemoCard({
 
         {isVerifying ? (
           <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50/80 p-3">
-            <p className="text-xs font-semibold text-amber-900">
+            <p className="text-xs font-semibold text-amber-100">
               Rebuilt — awaiting vision QA. Can&apos;t be approved until the
               verification pass clears it.
             </p>
@@ -675,7 +675,7 @@ function DemoCard({
 
         {isDeadLetter ? (
           <div className="mt-3 rounded-lg border border-red-200 bg-red-50/80 p-3">
-            <p className="text-xs font-semibold text-red-800">
+            <p className="text-xs font-semibold text-red-200">
               ☠ Failed {demo.rebuildAttempts ?? 3} rebuild attempts — needs manual re-queue
             </p>
             {demo.lastError ? (

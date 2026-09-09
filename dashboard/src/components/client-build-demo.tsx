@@ -59,7 +59,7 @@ export function ClientBuildDemo({ companyId, companyName, demoStatus }: BuildDem
       return (
         <div className={cn(glassCard, "overflow-hidden ring-1 ring-amber-200")}>
           <div className="flex items-start gap-3 px-5 py-4">
-            <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-amber-500/10 text-amber-700">
+            <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-amber-500/10 text-amber-300">
               <Hammer className="size-4" />
             </span>
             <div className="flex-1">
@@ -88,7 +88,7 @@ export function ClientBuildDemo({ companyId, companyName, demoStatus }: BuildDem
     return (
       <div className={cn(glassCard, "overflow-hidden")}>
         <div className="flex items-center gap-3 px-5 py-4">
-          <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-amber-500/10 text-amber-700">
+          <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-amber-500/10 text-amber-300">
             <Loader2 className="size-4 animate-spin" />
           </span>
           <div>
@@ -106,7 +106,7 @@ export function ClientBuildDemo({ companyId, companyName, demoStatus }: BuildDem
   return (
     <div className={cn(glassCard, "overflow-hidden ring-1 ring-sky-200")}>
       <div className="flex items-start gap-3 px-5 py-4">
-        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-sky-500/10 text-sky-700">
+        <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-sky-500/10 text-sky-300">
           <Hammer className="size-4" />
         </span>
         <div className="flex-1">

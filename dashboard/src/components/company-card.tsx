@@ -130,7 +130,7 @@ export function CompanyCard({
                   "rounded-full px-1.5 py-0.5 text-[10px] font-semibold ring-1",
                   company.offer.includes("599")
                     ? "bg-primary/10 text-primary ring-ring"
-                    : "bg-sky-50 text-sky-700 ring-sky-200",
+                    : "bg-sky-50 text-sky-300 ring-sky-200",
                 )}
               >
                 {company.offer}
@@ -191,8 +191,8 @@ function SendStatusBadge({ company }: { company: Company }) {
   const s = sendState(company);
   const styles: Record<string, string> = {
     sent: "bg-primary/10 text-primary ring-ring",
-    bounced: "bg-red-50 text-red-700 ring-red-200",
-    awaiting: "bg-amber-50 text-amber-700 ring-amber-200",
+    bounced: "bg-red-50 text-red-300 ring-red-200",
+    awaiting: "bg-amber-50 text-amber-300 ring-amber-200",
     none: "bg-muted text-muted-foreground ring-border",
   };
   const Icon = s.tone === "sent" ? MailCheck : s.tone === "bounced" ? MailX : Send;

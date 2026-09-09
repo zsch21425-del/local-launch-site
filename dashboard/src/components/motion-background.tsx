@@ -59,14 +59,14 @@ export function MotionBackground() {
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 3 + 2.5,
-        hue: 200 + Math.random() * 40, // gray-blue range
+        radius: Math.random() * 4 + 3,
+        hue: 185 + Math.random() * 45, // cyan-blue range
       }));
     }
 
     function draw() {
       // Semi-transparent clear for trail effect
-      cx.fillStyle = "rgba(241, 245, 249, 0.25)";
+      cx.fillStyle = "rgba(10, 14, 20, 0.25)";
       cx.fillRect(0, 0, width, height);
 
       // Draw connecting lines
@@ -81,7 +81,7 @@ export function MotionBackground() {
             cx.beginPath();
             cx.moveTo(particles[i].x, particles[i].y);
             cx.lineTo(particles[j].x, particles[j].y);
-            cx.strokeStyle = `hsla(${particles[i].hue}, 70%, 55%, ${alpha})`;
+            cx.strokeStyle = `hsla(${particles[i].hue}, 80%, 65%, ${alpha})`;
             cx.lineWidth = 0.8;
             cx.stroke();
           }
@@ -98,21 +98,10 @@ export function MotionBackground() {
         if (p.y < -30) p.y = height + 30;
         if (p.y > height + 30) p.y = -30;
 
-        // Glow effect
-        const gradient = cx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 3);
-        gradient.addColorStop(0, `hsla(${p.hue}, 70%, 55%, 0.5)`);
-        gradient.addColorStop(0.4, `hsla(${p.hue}, 70%, 55%, 0.15)`);
-        gradient.addColorStop(1, `hsla(${p.hue}, 70%, 55%, 0)`);
-
-        cx.beginPath();
-        cx.arc(p.x, p.y, p.radius * 3, 0, Math.PI * 2);
-        cx.fillStyle = gradient;
-        cx.fill();
-
-        // Solid core
+        // Crisp particle — solid dot with a hard edge, no blurry glow
         cx.beginPath();
         cx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        cx.fillStyle = `hsla(${p.hue}, 70%, 55%, 0.7)`;
+        cx.fillStyle = `hsla(${p.hue}, 85%, 62%, 0.9)`;
         cx.fill();
       }
 
@@ -141,10 +130,10 @@ export function MotionBackground() {
         style={{
           zIndex: 0,
           background: `
-            radial-gradient(ellipse 80% 60% at 20% 30%, rgba(100,116,139,0.12) 0%, transparent 50%),
-            radial-gradient(ellipse 60% 80% at 80% 70%, rgba(71,85,105,0.10) 0%, transparent 50%),
-            radial-gradient(ellipse 50% 50% at 50% 50%, rgba(148,163,184,0.06) 0%, transparent 60%),
-            #F1F5F9
+            radial-gradient(ellipse 80% 60% at 20% 30%, rgba(34,211,238,0.18) 0%, rgba(34,211,238,0.07) 42%, transparent 68%),
+            radial-gradient(ellipse 60% 80% at 80% 70%, rgba(129,140,248,0.15) 0%, rgba(129,140,248,0.06) 42%, transparent 68%),
+            radial-gradient(ellipse 50% 50% at 50% 50%, rgba(94,234,212,0.10) 0%, rgba(94,234,212,0.04) 42%, transparent 72%),
+            #0A0E14
           `,
           animation: "gradient-shift 8s ease-in-out infinite alternate",
         }}
@@ -163,9 +152,9 @@ export function MotionBackground() {
         className="pointer-events-none fixed inset-0"
         style={{
           zIndex: 2,
-          background: "rgba(226, 232, 240, 0.55)",
-          backdropFilter: "blur(6px) saturate(0.9)",
-          WebkitBackdropFilter: "blur(6px) saturate(0.9)",
+          background: "rgba(10, 14, 20, 0.30)",
+          backdropFilter: "none",
+          WebkitBackdropFilter: "none",
         }}
       />
     </>

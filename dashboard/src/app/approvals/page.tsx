@@ -249,7 +249,7 @@ function ApproveButtons({
   if (feedback) {
     return (
       <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50/70 p-4">
-        <p className="text-sm font-semibold text-amber-800">Rejected — needs revision</p>
+        <p className="text-sm font-semibold text-amber-200">Rejected — needs revision</p>
         <p className="mt-1 text-sm text-foreground">
           <span className="font-medium text-muted-foreground">Reason:</span> {feedback.reason}
         </p>
@@ -663,12 +663,12 @@ function ApprovalCard({
           </div>
           <div className="flex items-center gap-2">
             {needsPricingRewrite(company) ? (
-              <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+              <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-300">
                 ⚠ Needs rewrite
               </span>
             ) : null}
             {isRejected ? (
-              <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+              <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-300">
                 Rejected
               </span>
             ) : null}

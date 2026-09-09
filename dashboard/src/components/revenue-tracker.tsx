@@ -75,13 +75,13 @@ export function RevenueTracker({
           icon={Banknote}
           label="One-time"
           value={formatCurrency(revenue.oneTime)}
-          accent="text-sky-700 bg-sky-500/10"
+          accent="text-sky-300 bg-sky-500/10"
         />
         <MoneyTile
           icon={Sparkles}
           label="Annual run rate"
           value={formatCurrency(annualRunRate)}
-          accent="text-violet-700 bg-violet-500/10"
+          accent="text-violet-300 bg-violet-500/10"
         />
       </div>
 

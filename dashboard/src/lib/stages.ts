@@ -39,63 +39,63 @@ export interface StageTheme {
 
 const STAGE_THEMES: Record<StageColor, StageTheme> = {
   slate: {
-    pill: "bg-slate-500/12 text-slate-700 ring-1 ring-inset ring-slate-500/20",
+    pill: "bg-slate-500/12 text-slate-300 ring-1 ring-inset ring-slate-500/20",
     dot: "bg-slate-500",
-    text: "text-slate-700",
+    text: "text-slate-300",
     surface: "bg-slate-500/8",
     border: "border-slate-400/40",
     bar: "bg-gradient-to-r from-slate-400 to-slate-500",
     glow: "hover:border-slate-300 hover:shadow-slate-500/15",
   },
   blue: {
-    pill: "bg-blue-500/12 text-blue-700 ring-1 ring-inset ring-blue-500/20",
+    pill: "bg-blue-500/12 text-blue-300 ring-1 ring-inset ring-blue-500/20",
     dot: "bg-blue-500",
-    text: "text-blue-700",
+    text: "text-blue-300",
     surface: "bg-blue-500/8",
     border: "border-blue-400/40",
     bar: "bg-gradient-to-r from-blue-400 to-blue-600",
     glow: "hover:border-blue-300 hover:shadow-blue-500/15",
   },
   amber: {
-    pill: "bg-amber-500/15 text-amber-800 ring-1 ring-inset ring-amber-500/25",
+    pill: "bg-amber-500/15 text-amber-200 ring-1 ring-inset ring-amber-500/25",
     dot: "bg-amber-500",
-    text: "text-amber-800",
+    text: "text-amber-200",
     surface: "bg-amber-500/10",
     border: "border-amber-400/40",
     bar: "bg-gradient-to-r from-amber-400 to-amber-500",
     glow: "hover:border-amber-300 hover:shadow-amber-500/15",
   },
   violet: {
-    pill: "bg-violet-500/12 text-violet-700 ring-1 ring-inset ring-violet-500/20",
+    pill: "bg-violet-500/12 text-violet-300 ring-1 ring-inset ring-violet-500/20",
     dot: "bg-violet-500",
-    text: "text-violet-700",
+    text: "text-violet-300",
     surface: "bg-violet-500/8",
     border: "border-violet-400/40",
     bar: "bg-gradient-to-r from-violet-400 to-violet-600",
     glow: "hover:border-violet-300 hover:shadow-violet-500/15",
   },
   emerald: {
-    pill: "bg-emerald-500/12 text-emerald-700 ring-1 ring-inset ring-emerald-500/20",
+    pill: "bg-emerald-500/12 text-emerald-300 ring-1 ring-inset ring-emerald-500/20",
     dot: "bg-emerald-500",
-    text: "text-emerald-700",
+    text: "text-emerald-300",
     surface: "bg-emerald-500/8",
     border: "border-emerald-400/40",
     bar: "bg-gradient-to-r from-emerald-400 to-emerald-600",
     glow: "hover:border-emerald-300 hover:shadow-emerald-500/15",
   },
   green: {
-    pill: "bg-green-600/12 text-green-800 ring-1 ring-inset ring-green-600/20",
+    pill: "bg-green-600/12 text-green-200 ring-1 ring-inset ring-green-600/20",
     dot: "bg-green-600",
-    text: "text-green-800",
+    text: "text-green-200",
     surface: "bg-green-600/8",
     border: "border-green-500/40",
     bar: "bg-gradient-to-r from-green-500 to-green-700",
     glow: "hover:border-green-300 hover:shadow-green-600/15",
   },
   sky: {
-    pill: "bg-sky-500/12 text-sky-700 ring-1 ring-inset ring-sky-500/20",
+    pill: "bg-sky-500/12 text-sky-300 ring-1 ring-inset ring-sky-500/20",
     dot: "bg-sky-500",
-    text: "text-sky-700",
+    text: "text-sky-300",
     surface: "bg-sky-500/8",
     border: "border-sky-400/40",
     bar: "bg-gradient-to-r from-sky-400 to-sky-600",
@@ -150,26 +150,26 @@ export interface PriorityTheme {
 
 const PRIORITY_THEMES: Record<string, PriorityTheme> = {
   high: {
-    badge: "bg-rose-500/12 text-rose-700 ring-1 ring-inset ring-rose-500/20",
+    badge: "bg-rose-500/12 text-rose-300 ring-1 ring-inset ring-rose-500/20",
     dot: "bg-rose-500",
     icon: "text-rose-500",
     weight: 4,
   },
   "medium-high": {
     badge:
-      "bg-orange-500/12 text-orange-700 ring-1 ring-inset ring-orange-500/20",
+      "bg-orange-500/12 text-orange-300 ring-1 ring-inset ring-orange-500/20",
     dot: "bg-orange-500",
     icon: "text-orange-500",
     weight: 3,
   },
   medium: {
-    badge: "bg-amber-500/15 text-amber-800 ring-1 ring-inset ring-amber-500/25",
+    badge: "bg-amber-500/15 text-amber-200 ring-1 ring-inset ring-amber-500/25",
     dot: "bg-amber-500",
     icon: "text-amber-500",
     weight: 2,
   },
   low: {
-    badge: "bg-sky-500/12 text-sky-700 ring-1 ring-inset ring-sky-500/20",
+    badge: "bg-sky-500/12 text-sky-300 ring-1 ring-inset ring-sky-500/20",
     dot: "bg-sky-500",
     icon: "text-sky-500",
     weight: 1,
@@ -177,7 +177,7 @@ const PRIORITY_THEMES: Record<string, PriorityTheme> = {
 };
 
 const FALLBACK_PRIORITY: PriorityTheme = {
-  badge: "bg-slate-500/12 text-slate-700 ring-1 ring-inset ring-slate-500/20",
+  badge: "bg-slate-500/12 text-slate-300 ring-1 ring-inset ring-slate-500/20",
   dot: "bg-slate-400",
   icon: "text-slate-400",
   weight: 0,
@@ -208,13 +208,13 @@ export function scoreTheme(percent: number): {
   label: string;
 } {
   if (percent >= 70) {
-    return { stroke: "#059669", text: "text-emerald-700", label: "Strong" };
+    return { stroke: "#059669", text: "text-emerald-300", label: "Strong" };
   }
   if (percent >= 40) {
-    return { stroke: "#d97706", text: "text-amber-700", label: "Developing" };
+    return { stroke: "#d97706", text: "text-amber-300", label: "Developing" };
   }
   if (percent >= 20) {
-    return { stroke: "#ea580c", text: "text-orange-700", label: "Weak" };
+    return { stroke: "#ea580c", text: "text-orange-300", label: "Weak" };
   }
-  return { stroke: "#e11d48", text: "text-rose-700", label: "Critical" };
+  return { stroke: "#e11d48", text: "text-rose-300", label: "Critical" };
 }

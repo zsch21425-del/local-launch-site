@@ -253,8 +253,8 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 : badgeState === "rejected"
                   ? "bg-destructive/10 text-destructive"
                   : badgeState === "rework"
-                    ? "bg-violet-500/10 text-violet-700"
-                    : "bg-sky-500/10 text-sky-700",
+                    ? "bg-violet-500/10 text-violet-300"
+                    : "bg-sky-500/10 text-sky-300",
             )}
           >
             <Send className="size-4" aria-hidden />
@@ -278,11 +278,11 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
             <X className="size-3" /> Rejected
           </span>
         ) : badgeState === "rework" ? (
-          <span className="inline-flex items-center gap-1 rounded-full bg-violet-500/10 px-2.5 py-1 text-[11px] font-semibold text-violet-700 ring-1 ring-violet-500/20 ring-inset">
+          <span className="inline-flex items-center gap-1 rounded-full bg-violet-500/10 px-2.5 py-1 text-[11px] font-semibold text-violet-300 ring-1 ring-violet-500/20 ring-inset">
             Rework
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1 rounded-full bg-sky-500/10 px-2.5 py-1 text-[11px] font-semibold text-sky-700 ring-1 ring-sky-500/20 ring-inset">
+          <span className="inline-flex items-center gap-1 rounded-full bg-sky-500/10 px-2.5 py-1 text-[11px] font-semibold text-sky-300 ring-1 ring-sky-500/20 ring-inset">
             Awaiting review
           </span>
         )}
@@ -333,7 +333,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
       {/* Always show stored feedback */}
       {displayFb?.reason ? (
         <div className="mx-5 mt-3 rounded-lg border border-amber-200 bg-amber-50/80 p-3">
-          <p className="text-xs font-semibold text-amber-900">
+          <p className="text-xs font-semibold text-amber-100">
             Your notes to the agent
           </p>
           <p className="mt-1 text-sm text-foreground">
@@ -383,7 +383,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 type="button"
                 onClick={() => setMode("rework")}
                 disabled={loading}
-                className="flex items-center justify-center gap-2 rounded-lg border border-violet-300 bg-card px-4 py-2.5 text-sm font-semibold text-violet-700 transition-colors hover:bg-violet-50 disabled:opacity-50"
+                className="flex items-center justify-center gap-2 rounded-lg border border-violet-300 bg-card px-4 py-2.5 text-sm font-semibold text-violet-300 transition-colors hover:bg-violet-50 disabled:opacity-50"
               >
                 <RefreshCw className="size-4" /> Rework
               </button>
@@ -486,7 +486,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
               ? "bg-primary/10 text-primary"
               : overall === "rejected"
                 ? "bg-destructive/10 text-destructive"
-                : "bg-violet-50/50 text-violet-800",
+                : "bg-violet-50/50 text-violet-200",
           )}
         >
           {overall === "approved" ? (

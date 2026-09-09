@@ -311,9 +311,9 @@ function Bucket({
   const icons: Record<string, string> = {
     emerald: "bg-primary/10 text-primary",
     rose: "bg-destructive/10 text-destructive",
-    sky: "bg-sky-500/10 text-sky-700",
-    amber: "bg-amber-500/10 text-amber-700",
-    violet: "bg-violet-500/10 text-violet-700",
+    sky: "bg-sky-500/10 text-sky-300",
+    amber: "bg-amber-500/10 text-amber-300",
+    violet: "bg-violet-500/10 text-violet-300",
     green: "bg-primary/10 text-primary",
     slate: "bg-muted-foreground/10 text-foreground",
   };
