@@ -339,7 +339,7 @@ export async function POST(request: Request) {
           `Body:`,
           draft.body ?? "",
           ``,
-          `After send: pitchDraft.status=sent, stage=contacted, run send_truth_audit if batch.`,
+          `After send: pitchDraft.status=sent, stage=outreach, run send_truth_audit if batch.`,
         ].join("\n")
       : status === "rejected"
         ? `PITCH REJECTED for ${company.name} (${companyId}). reason="${reason}" suggestedFix="${suggestedFix}". Closer rework → pending-review.`

@@ -1,0 +1,466 @@
+{
+  "checked": 32,
+  "dirty": [
+    {
+      "slug": "yardsmith",
+      "name": "YardSmith Landscaping",
+      "url": "https://yardsmith-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8646869394"
+      ],
+      "tel": [],
+      "pipe": "8646869394",
+      "issues": [
+        "EMOJI (6)",
+        "FOOTER: @gmail.com, zsch21425"
+      ]
+    },
+    {
+      "slug": "jacksons-junk",
+      "name": "Jackson's Junk and Stuff",
+      "url": "https://jacksons-junk-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8644494987"
+      ],
+      "tel": [],
+      "pipe": "8644494987",
+      "issues": [
+        "PLACEHOLDER: coming soon, family-run, join our happy, publish your review, your name here",
+        "EMOJI (9)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "upstate-window",
+      "name": "Upstate Window Cleaning LLC",
+      "url": "https://upstate-window-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8643980766"
+      ],
+      "tel": [],
+      "pipe": "8643980766",
+      "issues": [
+        "PLACEHOLDER: coming soon, join our happy, your name here",
+        "EMOJI (6)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "greenville-cleaning",
+      "name": "Greenville Cleaning Company",
+      "url": "https://greenville-cleaning-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8642026431"
+      ],
+      "tel": [],
+      "pipe": "8642026431",
+      "issues": [
+        "PLACEHOLDER: coming soon, join our happy, your name here",
+        "EMOJI (8)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "greenville-pro-painters",
+      "name": "Greenville Pro Painters",
+      "url": "https://greenville-pro-painters-demo.vercel.app",
+      "displayed": [
+        "8645238330"
+      ],
+      "tel": [],
+      "pipe": "8645238330",
+      "issues": [
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "smith-irrigation",
+      "name": "Smith Irrigation",
+      "url": "https://smith-irrigation-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8643469714"
+      ],
+      "tel": [],
+      "pipe": "8643469714",
+      "issues": [
+        "PLACEHOLDER: coming soon, publish your review, your name here",
+        "EMOJI (6)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "jtp-lawncare",
+      "name": "JTP Lawncare and Junk Removal",
+      "url": "https://jtp-lawncare-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8642190831"
+      ],
+      "tel": [],
+      "pipe": "8642190831",
+      "issues": [
+        "PLACEHOLDER: coming soon, publish your review, your name here",
+        "EMOJI (6)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "sandy-springs-detailing",
+      "name": "Sandy Spring's Detailing LLC",
+      "url": "https://sandy-springs-detailing-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8643091674"
+      ],
+      "tel": [],
+      "pipe": "8643091674",
+      "issues": [
+        "PLACEHOLDER: coming soon, publish your review, your name here",
+        "EMOJI (7)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "adv-garage-door",
+      "name": "ADV Garage Door LLC",
+      "url": "https://adv-garage-door-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8644356497"
+      ],
+      "tel": [],
+      "pipe": "8644356497",
+      "issues": [
+        "EMOJI (5)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "raleigh-handyman",
+      "name": "The Raleigh Handyman",
+      "url": "https://raleigh-handyman-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "9192101525"
+      ],
+      "tel": [],
+      "pipe": "9192101525",
+      "issues": [
+        "PLACEHOLDER: coming soon, publish your review, years of experience, your name here",
+        "EMOJI (7)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "kings-power-washing-of-charlotte",
+      "name": "Kings Power Washing of Charlotte",
+      "url": "https://kings-power-washing-charlotte-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "9802985785"
+      ],
+      "tel": [],
+      "pipe": "9802985785",
+      "issues": [
+        "PLACEHOLDER: coming soon, join our happy, your name here",
+        "EMOJI (13)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "charlotte-pressure-washing",
+      "name": "Charlotte Pressure Washing",
+      "url": "https://charlotte-pressure-washing-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "7045528949"
+      ],
+      "tel": [],
+      "pipe": "7048914902",
+      "issues": [
+        "PHONE: pipeline 7048914902 not on page (shown ['5033585860', '7045528949'])",
+        "PLACEHOLDER: coming soon, join our happy, your name here",
+        "EMOJI (11)",
+        "FOOTER: @gmail.com, zsch21425"
+      ]
+    },
+    {
+      "slug": "mmk-pressure-washing",
+      "name": "MM&K Pressure Washing",
+      "url": "https://mmk-pressure-washing-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8649403308"
+      ],
+      "tel": [],
+      "pipe": "8649403308",
+      "issues": [
+        "EMOJI (1)"
+      ]
+    },
+    {
+      "slug": "sky-branch-llc",
+      "name": "Sky Branch LLC",
+      "url": "https://sky-branch-llc-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8646210858"
+      ],
+      "tel": [],
+      "pipe": "8646210858",
+      "issues": [
+        "PLACEHOLDER: years of experience",
+        "EMOJI (10)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "wilks-junk",
+      "name": "Wilk's Junk Service",
+      "url": "https://wilks-junk-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8642665469"
+      ],
+      "tel": [],
+      "pipe": "8642665469",
+      "issues": [
+        "PLACEHOLDER: family-run",
+        "EMOJI (7)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "kr-junk",
+      "name": "K & R Junk Removal",
+      "url": "https://kr-junk-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8649151914"
+      ],
+      "tel": [],
+      "pipe": "8649151914",
+      "issues": [
+        "PLACEHOLDER: join our happy, publish your review, your name here",
+        "EMOJI (4)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "montes-tree",
+      "name": "Monte's Tree Service",
+      "url": "https://montes-tree-demo.vercel.app",
+      "displayed": [
+        "8644300010"
+      ],
+      "tel": [],
+      "pipe": "8644300010",
+      "issues": [
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "rob-perry-fence",
+      "name": "Rob Perry Fence Contractors Inc",
+      "url": "https://rob-perry-fence-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8648347147"
+      ],
+      "tel": [],
+      "pipe": "8648348176",
+      "issues": [
+        "PHONE: pipeline 8648348176 not on page (shown ['5033585860', '8648347147'])"
+      ]
+    },
+    {
+      "slug": "km-excavating",
+      "name": "K&M Excavating And Hardscape LLC",
+      "url": "https://km-excavating-demo.vercel.app",
+      "displayed": [
+        "8645108176"
+      ],
+      "tel": [],
+      "pipe": "8645108176",
+      "issues": [
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "fresh-start-pressure-washing",
+      "name": "Fresh Start Pressure Washing",
+      "url": "https://fresh-start-pressure-washing-demo.vercel.app",
+      "displayed": [
+        "8646337810"
+      ],
+      "tel": [],
+      "pipe": "8646337810",
+      "issues": [
+        "EMOJI (1)"
+      ]
+    },
+    {
+      "slug": "sommers-heating-and-air-llc",
+      "name": "Sommers Heating and Air LLC",
+      "url": "https://sommers-heating-air-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8645663032"
+      ],
+      "tel": [],
+      "pipe": "8645663032",
+      "issues": [
+        "EMOJI (5)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "tb-contractors-llc",
+      "name": "TB Contractors LLC",
+      "url": "https://tb-contractors-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8649660225"
+      ],
+      "tel": [],
+      "pipe": "8649660225",
+      "issues": [
+        "EMOJI (5)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "whittier-fence-and-deck",
+      "name": "Whittier Fence and Deck",
+      "url": "https://whittier-fence-deck-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8643031453"
+      ],
+      "tel": [],
+      "pipe": "8643031645",
+      "issues": [
+        "PHONE: pipeline 8643031645 not on page (shown ['5033585860', '8643031453'])"
+      ]
+    },
+    {
+      "slug": "knockit-junk-removal",
+      "name": "KnockIt Junk Removal",
+      "url": "https://knockit-junk-removal-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8643844817"
+      ],
+      "tel": [],
+      "pipe": "8643844817",
+      "issues": [
+        "PLACEHOLDER: coming soon, join our happy, publish your review, your name here",
+        "EMOJI (9)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "kirk-johnson-handyman-contractor",
+      "name": "Kirk Johnson Handyman Contractor",
+      "url": "https://kirk-johnson-handyman-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "9416266146"
+      ],
+      "tel": [],
+      "pipe": "9416266146",
+      "issues": [
+        "EMOJI (5)",
+        "FOOTER: @gmail.com"
+      ]
+    },
+    {
+      "slug": "lees-decks-and-more",
+      "name": "Lees Decks and More",
+      "url": "https://lees-decks-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8643647316"
+      ],
+      "tel": [],
+      "pipe": "8643647316",
+      "issues": [
+        "FOOTER: @gmail.com"
+      ]
+    }
+  ],
+  "clean": [
+    {
+      "slug": "mm-plumbing",
+      "name": "M&M Plumbing Services",
+      "url": "https://mm-plumbing-demo.vercel.app",
+      "displayed": [
+        "5033585860",
+        "8643864005"
+      ],
+      "tel": [],
+      "pipe": "8643864005",
+      "issues": []
+    },
+    {
+      "slug": "country-life-tires",
+      "name": "Country Life Tires & Service",
+      "url": "https://country-life-tires-demo.vercel.app",
+      "displayed": [
+        "8649918707"
+      ],
+      "tel": [],
+      "pipe": "8649918707",
+      "issues": []
+    },
+    {
+      "slug": "sparrow-fencing",
+      "name": "Sparrow Fencing LLC",
+      "url": "https://sparrow-fencing-demo.vercel.app",
+      "displayed": [
+        "8646628867"
+      ],
+      "tel": [],
+      "pipe": "8646628867",
+      "issues": []
+    },
+    {
+      "slug": "spartan-paver-sealing",
+      "name": "Spartan Paver Sealing",
+      "url": "https://spartan-paver-sealing-demo.vercel.app",
+      "displayed": [
+        "8645905864"
+      ],
+      "tel": [],
+      "pipe": "8645905864",
+      "issues": []
+    },
+    {
+      "slug": "a-plus-concrete",
+      "name": "A+ Concrete & Remodeling",
+      "url": "https://aplus-concrete-demo.vercel.app",
+      "displayed": [
+        "8645182588"
+      ],
+      "tel": [],
+      "pipe": "8645182588",
+      "issues": []
+    },
+    {
+      "slug": "quinn-services",
+      "name": "Quinn Services",
+      "url": "https://quinn-services-demo.vercel.app",
+      "displayed": [
+        "8643086981"
+      ],
+      "tel": [],
+      "pipe": "8643086981",
+      "issues": []
+    }
+  ]
+}

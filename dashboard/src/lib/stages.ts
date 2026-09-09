@@ -1,14 +1,17 @@
 import {
   Circle,
   Clipboard,
+  ClipboardCheck,
   DollarSign,
   Hammer,
   Megaphone,
   MessageSquare,
   Phone,
+  RefreshCw,
   Rocket,
   Search,
   Send,
+  ShieldCheck,
   Trophy,
   type LucideIcon,
 } from "lucide-react";
@@ -101,6 +104,24 @@ const STAGE_THEMES: Record<StageColor, StageTheme> = {
     bar: "bg-gradient-to-r from-sky-400 to-sky-600",
     glow: "hover:border-sky-300 hover:shadow-sky-500/15",
   },
+  orange: {
+    pill: "bg-orange-500/15 text-orange-200 ring-1 ring-inset ring-orange-500/25",
+    dot: "bg-orange-500",
+    text: "text-orange-300",
+    surface: "bg-orange-500/10",
+    border: "border-orange-400/40",
+    bar: "bg-gradient-to-r from-orange-400 to-orange-600",
+    glow: "hover:border-orange-300 hover:shadow-orange-500/15",
+  },
+  cyan: {
+    pill: "bg-cyan-500/12 text-cyan-300 ring-1 ring-inset ring-cyan-500/20",
+    dot: "bg-cyan-500",
+    text: "text-cyan-300",
+    surface: "bg-cyan-500/8",
+    border: "border-cyan-400/40",
+    bar: "bg-gradient-to-r from-cyan-400 to-cyan-600",
+    glow: "hover:border-cyan-300 hover:shadow-cyan-500/15",
+  },
 };
 
 export function stageTheme(color: StageColor): StageTheme {
@@ -116,6 +137,9 @@ const STAGE_ICONS: Record<string, LucideIcon> = {
   Trophy,
   Rocket,
   Hammer,
+  ShieldCheck,
+  ClipboardCheck,
+  RefreshCw,
   // Aliases used by FALLBACK_STAGES in data.ts — without these the pitch,
   // response and sale stages rendered as bare circles.
   Send,
@@ -131,7 +155,7 @@ export function stageIcon(name: string): LucideIcon {
  * Stages where work is actively moving. Their pills pulse on the cards; the
  * bookend stages (untouched prospect, closed win) sit still.
  */
-const IN_PROGRESS_STAGES: StageId[] = ["audit", "pitch", "contacted", "response"];
+const IN_PROGRESS_STAGES: StageId[] = ["audit", "pitch", "quality-check", "approval", "outreach", "follow-up"];
 
 export function isInProgress(stage: StageId): boolean {
   return IN_PROGRESS_STAGES.includes(stage);

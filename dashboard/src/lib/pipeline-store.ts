@@ -40,6 +40,71 @@ async function readBlobStream(stream: ReadableStream<Uint8Array>): Promise<strin
 /** True when running on Vercel's serverless runtime (read-only filesystem). */
 const IS_SERVERLESS = !!process.env.VERCEL;
 
+/**
+ * One-time migration of the legacy stage vocabulary (pre 2026-09-09) to the
+ * 7-stage prospecting funnel + won/building section. Renames
+ * `contacted`→`outreach`, `response`→`follow-up`, and splits the overloaded
+ * `pitch` stage into `quality-check` / `approval` / `outreach` by pitch status.
+ * Idempotent — already-migrated rows are left untouched. Returns true if any
+ * row changed.
+ */
+const NEW_STAGES = [
+  { id: "prospect", label: "Prospects", icon: "Search", color: "slate" },
+  { id: "audit", label: "Audit", icon: "Clipboard", color: "blue" },
+  { id: "pitch", label: "Pitch", icon: "Megaphone", color: "amber" },
+  { id: "quality-check", label: "Quality check", icon: "ShieldCheck", color: "violet" },
+  { id: "approval", label: "Approval", icon: "ClipboardCheck", color: "sky" },
+  { id: "outreach", label: "Outreach", icon: "Send", color: "emerald" },
+  { id: "follow-up", label: "Follow up", icon: "RefreshCw", color: "orange" },
+  { id: "sale", label: "Sale", icon: "Trophy", color: "green" },
+  { id: "build-launch", label: "Build & Launch", icon: "Rocket", color: "cyan" },
+];
+
+export function migrateLegacyStages(data: any): boolean {
+  if (!data || typeof data !== "object") return false;
+  let changed = false;
+  if (Array.isArray(data.companies)) {
+    for (const c of data.companies) {
+      if (!c || typeof c !== "object") continue;
+      const st = c.stage;
+      if (st === "contacted") {
+        c.stage = "outreach";
+        changed = true;
+      } else if (st === "response") {
+        c.stage = "follow-up";
+        changed = true;
+      } else if (st === "pitch") {
+        const ps = c.pitchDraft?.status;
+        let next = "pitch";
+        if (ps === "pending-review" || ps === "pending-supervisor-review") next = "quality-check";
+        else if (ps === "supervisor-approved" || ps === "zach-approved") next = "approval";
+        else if (ps === "sent" || ps === "unproven-send") next = "outreach";
+        else if (ps === "bounced") next = "follow-up";
+        if (next !== st) {
+          c.stage = next;
+          changed = true;
+        }
+      }
+    }
+  }
+  // Rewrite the stages array too (labels + the two new stages).
+  const stagesArr = Array.isArray(data.stages)
+    ? data.stages
+    : data.pipeline?.stages;
+  if (Array.isArray(stagesArr) && stagesArr.length) {
+    const hasLegacy = stagesArr.some(
+      (s: any) => s?.id === "contacted" || s?.id === "response",
+    );
+    const hasQuality = stagesArr.some((s: any) => s?.id === "quality-check");
+    if (hasLegacy || !hasQuality) {
+      if (Array.isArray(data.stages)) data.stages = NEW_STAGES;
+      else if (data.pipeline) data.pipeline.stages = NEW_STAGES;
+      changed = true;
+    }
+  }
+  return changed;
+}
+
 /** Read pipeline data + its ETag (for optimistic concurrency). */
 async function readPipelineWithEtag(): Promise<{ data: any; etag: string | null }> {
   const token = getToken();
@@ -67,7 +132,9 @@ async function readPipelineWithEtag(): Promise<{ data: any; etag: string | null 
     if (!res || !res.stream) return { data: null, etag: null };
     try {
       const text = await readBlobStream(res.stream);
-      return { data: JSON.parse(text), etag: res.blob?.etag ?? null };
+      const data = JSON.parse(text);
+      migrateLegacyStages(data);
+      return { data, etag: res.blob?.etag ?? null };
     } catch (e: any) {
       console.warn("Blob body unreadable/invalid — failing closed:", e?.message);
       return { data: null, etag: null };
@@ -75,7 +142,9 @@ async function readPipelineWithEtag(): Promise<{ data: any; etag: string | null 
   }
   // No token configured → explicit local-only mode; the file is the store.
   if (!IS_SERVERLESS && fs.existsSync(PIPELINE_PATH)) {
-    return { data: JSON.parse(fs.readFileSync(PIPELINE_PATH, "utf-8")), etag: null };
+    const data = JSON.parse(fs.readFileSync(PIPELINE_PATH, "utf-8"));
+    migrateLegacyStages(data);
+    return { data, etag: null };
   }
   return { data: null, etag: null };
 }

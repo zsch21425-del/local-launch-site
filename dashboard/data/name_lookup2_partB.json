@@ -1,0 +1,32 @@
+[
+  {
+    "name": "KnockIt Junk Removal",
+    "email": "KnockItjunkremoval@gmail.com",
+    "first_name": "Kadeem",
+    "source": "yelp business owner profile 'Kadeem S. - Business Owner'"
+  },
+  {
+    "name": "Rig Line Tree Service",
+    "email": "Riglinetreeservice@yahoo.com",
+    "first_name": "Angelo",
+    "source": "facebook page mentions signed 'Angelo Menin' + upstate1stop.com owner listing"
+  },
+  {
+    "name": "Kirk Johnson Handyman",
+    "email": "kirk12johnson@gmail.com",
+    "first_name": "Kirk",
+    "source": "nextdoor business page 'I'm Kirk Johnson, handyman/construction services' + email handle match"
+  },
+  {
+    "name": "My Titan Services",
+    "email": "jamison@mytitanusa.com",
+    "first_name": "Jamison",
+    "source": "linkedin 'Jamison Medlin - Owner of My Titan Services' + facebook posts signed Jamison Medlin + email handle match"
+  },
+  {
+    "name": "Country Life Tires",
+    "email": "tonygatto@charter.net",
+    "first_name": "Tony",
+    "source": "yelp business owner profile 'Tony G. - Business Owner' + iATN directory 'Tony Gatto - Owner/Technician' + email handle match"
+  }
+]

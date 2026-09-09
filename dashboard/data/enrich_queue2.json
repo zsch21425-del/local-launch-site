@@ -1,0 +1,1297 @@
+[
+  {
+    "name": "B&M Pressure Washing",
+    "category": "Pressure Washing",
+    "location": "Fountain Inn, SC",
+    "phone": "(864) 804-8883",
+    "id": "bm-pressure"
+  },
+  {
+    "name": "Kimbrell's Plumbing",
+    "category": "Plumbing",
+    "location": "Greenville, SC",
+    "phone": "(864) 346-7220",
+    "id": "kimbrells-plumbing"
+  },
+  {
+    "name": "Lonts 24/7 Disposal",
+    "category": "Junk Removal",
+    "location": "Greer, SC",
+    "phone": "(864) 322-3377",
+    "id": "lonts-disposal"
+  },
+  {
+    "name": "YACA Auto Mechanics",
+    "category": "Auto Repair",
+    "location": "Greer, SC",
+    "phone": "(864) 469-6828",
+    "id": "yaca-auto"
+  },
+  {
+    "name": "Machado Handyman and HVAC Solutions",
+    "category": "Handyman / HVAC",
+    "location": "Greenville, SC",
+    "phone": "(864) 704-4048",
+    "id": "machado-handyman"
+  },
+  {
+    "name": "Moriaan Construction Company LLC",
+    "category": "Concrete, Excavating & Landscaping",
+    "location": "Greenville, SC",
+    "phone": "(864) 230-2465",
+    "id": "moriaan-construction"
+  },
+  {
+    "name": "Pro Kutz Lawn Care & Landscaping",
+    "category": "Lawn Care & Landscaping",
+    "location": "Greenville, SC",
+    "phone": "(864) 501-4137",
+    "id": "pro-kutz-lawn"
+  },
+  {
+    "name": "Lands Tree Care",
+    "category": "Tree service \u2014 removal, trimming, stump grinding (24+ years, Anderson/Oconee/Pickens)",
+    "location": "Anderson, SC",
+    "phone": "(864) 225-0325",
+    "id": "lands-tree-care"
+  },
+  {
+    "name": "JR Concrete",
+    "category": "Concrete",
+    "location": "Greenville, SC",
+    "phone": "(864) 494-6731",
+    "id": "jr-concrete"
+  },
+  {
+    "name": "Locomotion Auto Detail",
+    "category": "Auto Detailing",
+    "location": "Anderson, SC",
+    "phone": "(864) 749-4013",
+    "id": "locomotion-auto-detail"
+  },
+  {
+    "name": "Perpetual Painters LLC",
+    "category": "Painting",
+    "location": "Boiling Springs, SC",
+    "phone": "(864) 597-6450",
+    "id": "perpetual-painters"
+  },
+  {
+    "name": "Black's Paint Contracting",
+    "category": "Painting",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 621-1833",
+    "id": "blacks-paint"
+  },
+  {
+    "name": "Acorn Fencing & Repair",
+    "category": "Fencing",
+    "location": "Greer, SC (owner says \"Located in Five Forks\")",
+    "phone": "(864) 510-4593",
+    "id": "acorn-fencing"
+  },
+  {
+    "name": "Johnson's Paint Contracting",
+    "category": "Painting",
+    "location": "Moore, SC",
+    "phone": "(864) 576-2435",
+    "id": "johnsons-paint"
+  },
+  {
+    "name": "Lightning Pest & Termite Control",
+    "category": "Pest Control",
+    "location": "Elgin, TX",
+    "phone": "(512) 281-9686",
+    "id": "lightning-pest"
+  },
+  {
+    "name": "Titan Wash",
+    "category": "Pressure Washing",
+    "location": "Hialeah, FL",
+    "phone": "(786) 479-1262",
+    "id": "titan-wash"
+  },
+  {
+    "name": "Mr. Painter Company LLC",
+    "category": "Painting",
+    "location": "Snellville, GA",
+    "phone": "(470) 314-7101",
+    "id": "mr-painter-ga"
+  },
+  {
+    "name": "JPG Painting",
+    "category": "Painting",
+    "location": "Mableton, GA",
+    "phone": "(404) 966-4797",
+    "id": "jpg-painting-ga"
+  },
+  {
+    "name": "El Valle Junk Removal",
+    "category": "Junk Removal",
+    "location": "Phoenix, AZ",
+    "phone": "(602) 639-2971",
+    "id": "el-valle-junk"
+  },
+  {
+    "name": "MM Tree Services",
+    "category": "Tree Service",
+    "location": "Hermitage, TN",
+    "phone": "(615) 719-4683",
+    "id": "mm-tree-services"
+  },
+  {
+    "name": "The Stallion Concrete LLC",
+    "category": "Concrete",
+    "location": "Grove City, OH",
+    "phone": "(614) 743-8486",
+    "id": "stallion-concrete"
+  },
+  {
+    "name": "Baucom Auto Detailing",
+    "category": "Auto Detailing",
+    "location": "Charlotte, NC",
+    "phone": "(743) 217-6176",
+    "id": "baucom-auto-detailing"
+  },
+  {
+    "name": "Bullseye HVAC",
+    "category": "HVAC",
+    "location": "Belton, SC",
+    "phone": "(864) 392-4949",
+    "id": "bullseye-hvac"
+  },
+  {
+    "name": "Henrys AC",
+    "category": "HVAC",
+    "location": "Anderson, SC",
+    "phone": "(864) 375-0007",
+    "id": "henrys-ac"
+  },
+  {
+    "name": "Palmetto Exterminating Co",
+    "category": "Pest Control",
+    "location": "Easley, SC",
+    "phone": "(864) 859-3507",
+    "id": "palmetto-exterminating-co"
+  },
+  {
+    "name": "Norvell's Tree & Landscape Services LLC",
+    "category": "Tree Service",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 345-0466",
+    "id": "norvells-tree-and-landscape-services-llc"
+  },
+  {
+    "name": "Two Brothers Landscaping",
+    "category": "Landscaping",
+    "location": "Charleston, SC",
+    "phone": "(843) 735-4742",
+    "id": "two-brothers-landscaping"
+  },
+  {
+    "name": "O'Sullivan Family Tree Services",
+    "category": "Tree Service",
+    "location": "Duncan, SC",
+    "phone": "(864) 439-6501",
+    "id": "osullivan-family-tree-services"
+  },
+  {
+    "name": "Anderson Heating & Air Conditioning",
+    "category": "HVAC",
+    "location": "Anderson, SC",
+    "phone": "(864) 618-5889",
+    "id": "anderson-heating-and-air-conditioning"
+  },
+  {
+    "name": "Joe Hopkins Concrete",
+    "category": "Concrete",
+    "location": "Piedmont, SC",
+    "phone": "(864) 207-8947",
+    "id": "joe-hopkins-concrete"
+  },
+  {
+    "name": "3D Heating & Air, LLC",
+    "category": "HVAC",
+    "location": "Belton, SC",
+    "phone": "(864) 309-6969",
+    "id": "3d-heating-and-air-llc"
+  },
+  {
+    "name": "Bug Killers Termite & Pest Control",
+    "category": "Pest Control",
+    "location": "Easley, SC",
+    "phone": "(864) 859-0327",
+    "id": "bug-killers-termite-and-pest-control"
+  },
+  {
+    "name": "Green Suds Pressure Washing",
+    "category": "Pressure Washing",
+    "location": "Harrisburg, NC",
+    "phone": "(980) 272-7659",
+    "id": "green-suds-pressure-washing"
+  },
+  {
+    "name": "Junk Busters",
+    "category": "Junk Removal",
+    "location": "Miami Beach, FL",
+    "phone": "(305) 992-8545",
+    "id": "junk-busters"
+  },
+  {
+    "name": "24/7 Emergency Plumber Nashville",
+    "category": "Plumbing",
+    "location": "Nashville, TN",
+    "phone": "(615) 768-8780",
+    "id": "24/7-emergency-plumber-nashville"
+  },
+  {
+    "name": "Good Work Pressure Washing",
+    "category": "Pressure Washing",
+    "location": "Charlotte, NC",
+    "phone": "(704) 957-4254",
+    "id": "good-work-pressure-washing"
+  },
+  {
+    "name": "Turner Service Repair LLC",
+    "category": "Handyman",
+    "location": "Adamsville, AL",
+    "phone": "(205) 674-1993",
+    "id": "turner-service-repair-llc"
+  },
+  {
+    "name": "Junk Master Services",
+    "category": "Junk Removal",
+    "location": "Miami, FL",
+    "phone": "(786) 970-5398",
+    "id": "junk-master-services"
+  },
+  {
+    "name": "DDS Handyman Service",
+    "category": "Handyman",
+    "location": "Birmingham, AL",
+    "phone": "(205) 860-3930",
+    "id": "dds-handyman-service"
+  },
+  {
+    "name": "Scott Handiworks",
+    "category": "Deck Building & Handyman",
+    "location": "Liberty/Clemson, SC",
+    "phone": "(864) 626-2908",
+    "id": "scott-handiworks"
+  },
+  {
+    "name": "Taylor Jones Signature Tree Service",
+    "category": "Tree Service",
+    "location": "Taylors, SC",
+    "phone": "(864) 691-6001",
+    "id": "taylor-jones-signature-tree"
+  },
+  {
+    "name": "AB Tree Service",
+    "category": "Tree Service",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 574-7770",
+    "id": "ab-tree-service"
+  },
+  {
+    "name": "Devil Dog Fencing",
+    "category": "Fencing Contractor",
+    "location": "Greenville, SC",
+    "phone": "(864) 243-1069",
+    "id": "devil-dog-fencing"
+  },
+  {
+    "name": "Perino's Junk Removal",
+    "category": "Junk Removal",
+    "location": "Inman, SC",
+    "phone": "(209) 606-1737",
+    "id": "perino-s-junk-removal"
+  },
+  {
+    "name": "SA Tree Service & More",
+    "category": "Tree Service",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 595-6900",
+    "id": "sa-tree-service-more"
+  },
+  {
+    "name": "West Construction",
+    "category": "General Contractor",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 809-7164",
+    "id": "west-construction"
+  },
+  {
+    "name": "Charlie Brown Decks, Etc.",
+    "category": "Deck Construction & Repair",
+    "location": "Anderson, SC",
+    "phone": "(864) 356-2368",
+    "id": "charlie-brown-decks"
+  },
+  {
+    "name": "SDB Lawncare Services and Gutter Cleaning",
+    "category": "Lawn care, leaf removal, gutter cleaning",
+    "location": "Greenville, SC",
+    "phone": "(864) 417-8163",
+    "id": "sdb-lawncare"
+  },
+  {
+    "name": "Solid Foundations Plus LLC",
+    "category": "Handyman / Remodel & Repair",
+    "location": "Greenville, SC",
+    "phone": "(864) 593-2696",
+    "id": "solid-foundations-plus"
+  },
+  {
+    "name": "Upstate Jack of Trades LLC",
+    "category": "Handyman & Lawncare",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 777-3019",
+    "id": "upstate-jack-of-trades"
+  },
+  {
+    "name": "Upstate Tree Solutions",
+    "category": "Tree Service",
+    "location": "Anderson, SC",
+    "phone": "(864) 221-2435",
+    "id": "upstate-tree-solutions"
+  },
+  {
+    "name": "Chad's Tree Service, LLC",
+    "category": "Tree Service",
+    "location": "Townville, SC",
+    "phone": "(864) 280-5290",
+    "id": "chads-tree-service"
+  },
+  {
+    "name": "Steve Cantrell Tree Services",
+    "category": "Tree Service",
+    "location": "Belton, SC",
+    "phone": "(864) 314-2120",
+    "id": "steve-cantrell-tree"
+  },
+  {
+    "name": "Haul Away LLC",
+    "category": "Junk Removal",
+    "location": "Columbia, SC",
+    "phone": "(803) 724-3189",
+    "id": "haul-away-llc"
+  },
+  {
+    "name": "Morris Heating & Air",
+    "category": "HVAC",
+    "location": "Roebuck, SC",
+    "phone": "(864) 573-1174",
+    "id": "morris-heating-air"
+  },
+  {
+    "name": "Arbor Pro Inc",
+    "category": "Tree Service",
+    "location": "Anderson, SC",
+    "phone": "(864) 225-8888",
+    "id": "arbor-pro-inc"
+  },
+  {
+    "name": "Milligan Residential Junk Removal",
+    "category": "Junk Removal",
+    "location": "Columbia, SC",
+    "phone": "(803) 995-2491",
+    "id": "milligan-junk-removal"
+  },
+  {
+    "name": "Smith Heating And Air Conditioning",
+    "category": "HVAC",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 576-4801",
+    "id": "smith-heating-air-spartanburg"
+  },
+  {
+    "name": "David Smith Tree Service",
+    "category": "Tree Service",
+    "location": "Anderson, SC",
+    "phone": "(864) 316-1300",
+    "id": "david-smith-tree"
+  },
+  {
+    "name": "Honea Tree Service",
+    "category": "Tree Service",
+    "location": "Honea Path, SC",
+    "phone": "(864) 634-4694",
+    "id": "honea-tree-service"
+  },
+  {
+    "name": "Green Vision",
+    "category": "Landscaping",
+    "location": "Manchester, NH",
+    "phone": "(603) 600-1414",
+    "id": "green-vision-manchester"
+  },
+  {
+    "name": "Pat's Concrete Cutting, LLC",
+    "category": "Concrete",
+    "location": "Colchester, VT",
+    "phone": "(802) 734-5444",
+    "id": "pats-concrete-cutting"
+  },
+  {
+    "name": "J & M Concrete Inc",
+    "category": "Concrete",
+    "location": "Richmond, VT",
+    "phone": "(802) 434-2994",
+    "id": "jm-concrete-vt"
+  },
+  {
+    "name": "Vermont Custom Stone",
+    "category": "Masonry",
+    "location": "Colchester, VT",
+    "phone": "(802) 288-7553",
+    "id": "vermont-custom-stone"
+  },
+  {
+    "name": "Antigua's Landscaping",
+    "category": "Landscaping",
+    "location": "Providence, RI",
+    "phone": "(401) 419-9784",
+    "id": "antiguas-landscaping"
+  },
+  {
+    "name": "AK Landscaping",
+    "category": "Landscaping",
+    "location": "Pawtucket, RI",
+    "phone": "(401) 428-9222",
+    "id": "ak-landscaping-ri"
+  },
+  {
+    "name": "Pressure Washing Solutions LLC",
+    "category": "Pressure Washing",
+    "location": "Londonderry, NH",
+    "phone": "(603) 260-3471",
+    "id": "pressure-washing-solutions-nh"
+  },
+  {
+    "name": "Trim All Tree Service",
+    "category": "Tree service (removal, trimming \u2014 \"reasonable and do a great job\" per Nextdoor recs)",
+    "location": "Fountain Inn, SC",
+    "phone": "(864) 862-5127",
+    "id": "trim-all-tree"
+  },
+  {
+    "name": "Carolina Clear Property Services",
+    "category": "Pressure washing, exterior window cleaning, property cleanouts, junk/debris removal & hauling, contractor cleanouts",
+    "location": "Greenville, SC",
+    "phone": "(864) 586-8965",
+    "id": "carolina-clear-property"
+  },
+  {
+    "name": "Threlkeld Demolition LLC",
+    "category": "Demolition, tree service, general yard clean-up",
+    "location": "Fountain Inn, SC",
+    "phone": "(864) 354-8267",
+    "id": "threlkeld-demolition"
+  },
+  {
+    "name": "Molinas Tree Service",
+    "category": "Tree Service",
+    "location": "Fountain Inn/Greenville, SC",
+    "phone": "(864) 982-1927",
+    "id": "molinas-tree-service"
+  },
+  {
+    "name": "LC Fence Builders",
+    "category": "Fencing (install + repair, chain link, wood)",
+    "location": "Greer, SC",
+    "phone": "(864) 520-4869",
+    "id": "lc-fence-builders"
+  },
+  {
+    "name": "Aright Construction and Land Services LLC",
+    "category": "Exterior construction, painting, carpentry, lawn service, landscaping, home repair",
+    "location": "Liberty, SC",
+    "phone": "(864) 704-9888",
+    "id": "aright-construction"
+  },
+  {
+    "name": "Locked & Loaded Junk Removal LLC",
+    "category": "Junk removal \u2014 house cleanouts, appliance removal, garage cleanouts, general junk",
+    "location": "Simpsonville / Mauldin, SC (serves Golden Strip + Upstate)",
+    "phone": "(864) 704-5248",
+    "id": "locked-loaded-junk"
+  },
+  {
+    "name": "Around The Grounds Tree Service",
+    "category": "Tree service \u2014 tree removal, 24/7 emergency services",
+    "location": "Anderson, SC",
+    "phone": "(864) 770-5067",
+    "id": "around-the-grounds-tree"
+  },
+  {
+    "name": "Grass Monkey Lawn Care and More",
+    "category": "Lawn care, mowing, landscaping around decks, cleanup",
+    "location": "Travelers Rest, SC (serving TR area)",
+    "phone": "(864) 729-1868",
+    "id": "grass-monkey-lawn"
+  },
+  {
+    "name": "Spartan Concrete LLC",
+    "category": "Concrete",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 457-6531",
+    "id": "spartan-concrete-llc"
+  },
+  {
+    "name": "S Pugh Plumbing LLC",
+    "category": "Plumbing",
+    "location": "Easley, SC",
+    "phone": "(864) 201-6151",
+    "id": "s-pugh-plumbing-llc"
+  },
+  {
+    "name": "K&W Cleaning Service",
+    "category": "Cleaning",
+    "location": "Easley, SC",
+    "phone": "(864) 419-5562",
+    "id": "kandw-cleaning-service"
+  },
+  {
+    "name": "Upstate Handyman and Landscaping",
+    "category": "Handyman",
+    "location": "Simpsonville, SC",
+    "phone": "(864) 918-5096",
+    "id": "upstate-handyman-and-landscaping"
+  },
+  {
+    "name": "Ted's Handyman Service",
+    "category": "Handyman",
+    "location": "Mauldin, SC",
+    "phone": "(864) 525-0813",
+    "id": "teds-handyman-service"
+  },
+  {
+    "name": "Zeroscapes Landscaping LLC",
+    "category": "Landscaping",
+    "location": "Wellford, SC",
+    "phone": "(864) 473-5530",
+    "id": "zeroscapes-landscaping-llc"
+  },
+  {
+    "name": "Uptown Renovations LLC",
+    "category": "Renovation",
+    "location": "Greenville, SC",
+    "phone": "(864) 702-0527",
+    "id": "uptown-renovations-llc"
+  },
+  {
+    "name": "Woodies Junk Removal LLC",
+    "category": "Junk Removal",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 494-1276",
+    "id": "woodies"
+  },
+  {
+    "name": "Rodriquez Painting",
+    "category": "Painting",
+    "location": "Easley, SC",
+    "phone": "(864) 884-5266",
+    "id": "rodriquez"
+  },
+  {
+    "name": "B&B Painting",
+    "category": "Painting",
+    "location": "Easley, SC",
+    "phone": "(864) 516-3040",
+    "id": "bb-painting"
+  },
+  {
+    "name": "GD Junk Removal",
+    "category": "Junk Removal",
+    "location": "Greer, SC",
+    "phone": "(864) 682-0861",
+    "id": "gd-junk-removal"
+  },
+  {
+    "name": "Universal Junk Removal",
+    "category": "Junk Removal",
+    "location": "Greer, SC",
+    "phone": "(864) 551-7502",
+    "id": "universal-junk-removal"
+  },
+  {
+    "name": "Turf Touch",
+    "category": "Landscaping",
+    "location": "Greenville, SC",
+    "phone": "(864) 325-9939",
+    "id": "turf-touch"
+  },
+  {
+    "name": "Suarez LLC Renovations",
+    "category": "Remodeling",
+    "location": "Greenville, SC",
+    "phone": "(864) 924-9364",
+    "id": "suarez-llc-renovations"
+  },
+  {
+    "name": "Superior Clean Power Washing Services, LLC",
+    "category": "Pressure Washing",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 285-5623",
+    "id": "superior-clean-pw"
+  },
+  {
+    "name": "Southwestern Irrigation & Landscaping Inc.",
+    "category": "Landscaping & Irrigation",
+    "location": "Fountain Inn, SC",
+    "phone": "(864) 303-5293",
+    "id": "southwestern-irrigation"
+  },
+  {
+    "name": "Holy Grounds Landscaping",
+    "category": "Landscaping",
+    "location": "Woodruff, SC",
+    "phone": "(864) 921-6519",
+    "id": "holy-grounds-landscaping"
+  },
+  {
+    "name": "Pristine Cleaners Services",
+    "category": "Cleaning Service",
+    "location": "Greenville, SC",
+    "phone": "(864) 518-5045",
+    "id": "pristine-cleaners-sc"
+  },
+  {
+    "name": "Harrison Landscape Management",
+    "category": "Landscaping",
+    "location": "Woodruff, SC",
+    "phone": "(864) 476-0042",
+    "id": "harrison-landscape-mgmt"
+  },
+  {
+    "name": "Sease's Tree Services",
+    "category": "Tree Service",
+    "location": "Newberry, SC",
+    "phone": "(803) 276-1737",
+    "id": "seases-tree-services"
+  },
+  {
+    "name": "Brown's Tree Surgeons",
+    "category": "Tree Service",
+    "location": "Greenwood, SC",
+    "phone": "(843) 305-3609",
+    "id": "browns-tree-surgeons"
+  },
+  {
+    "name": "Cooper's Plumbing Company Inc",
+    "category": "Plumbing",
+    "location": "Aiken, SC",
+    "phone": "(803) 648-0203",
+    "id": "coopers-plumbing-aiken"
+  },
+  {
+    "name": "Byars Plumbing",
+    "category": "Plumbing",
+    "location": "Aiken, SC",
+    "phone": "(803) 649-7151",
+    "id": "byars-plumbing-aiken"
+  },
+  {
+    "name": "Gold Star Hvacr",
+    "category": "HVAC",
+    "location": "Madison, WI",
+    "phone": "(608) 259-0913",
+    "id": "gold-star-hvacr"
+  },
+  {
+    "name": "Madison Heating & Cooling",
+    "category": "HVAC",
+    "location": "Madison, WI",
+    "phone": "(608) 454-5607",
+    "id": "madison-heating-cooling"
+  },
+  {
+    "name": "Diaz Landscaping & Snowplow LLC",
+    "category": "Landscaping & Snow Removal",
+    "location": "Wyoming, MI",
+    "phone": "(616) 335-1331",
+    "id": "diaz-landscaping-mi"
+  },
+  {
+    "name": "Buy Sell Landscape Supply LLC",
+    "category": "Landscaping Supply",
+    "location": "Grand Rapids, MI",
+    "phone": "(616) 291-1982",
+    "id": "buy-sell-landscape-mi"
+  },
+  {
+    "name": "Garcia's Painting Company",
+    "category": "Painting",
+    "location": "Fort Wayne, IN",
+    "phone": "(260) 600-8628",
+    "id": "garcias-painting-in"
+  },
+  {
+    "name": "Jasper Painting",
+    "category": "Painting",
+    "location": "Fort Wayne, IN",
+    "phone": "(260) 437-1973",
+    "id": "jasper-painting-in"
+  },
+  {
+    "name": "Elite Sweep Property Cleaning",
+    "category": "Cleaning & Pressure Washing",
+    "location": "Kettering, OH",
+    "phone": "(937) 776-4600",
+    "id": "elite-sweep-cleaning-oh"
+  },
+  {
+    "name": "MC Cleaning Solutions",
+    "category": "Cleaning Service",
+    "location": "Fairborn, OH",
+    "phone": "(937) 689-7137",
+    "id": "mc-cleaning-oh"
+  },
+  {
+    "name": "Brittain & Son Concrete Construction",
+    "category": "Concrete",
+    "location": "Des Moines, IA",
+    "phone": "(515) 277-8523",
+    "id": "brittain-concrete-ia"
+  },
+  {
+    "name": "Rich Mitchell Painting & Pressure Washing",
+    "category": "Painting & Pressure Washing",
+    "location": "Dayton, OH",
+    "phone": "(937) 572-1217",
+    "id": "rich-mitchell-painting-oh"
+  },
+  {
+    "name": "Campbell's Tree Service",
+    "category": "Tree Service",
+    "location": "Anderson, SC (1029 Old Roberts Church Rd, Anderson SC 29626)",
+    "phone": "(864) 225-5886",
+    "id": "campbells-tree"
+  },
+  {
+    "name": "ProKlean Window and Gutter Cleaning",
+    "category": "Window & Gutter Cleaning",
+    "location": "Greenville, SC (based Simpsonville, serves Upstate)",
+    "phone": "(864) 518-6834",
+    "id": "proklean-window"
+  },
+  {
+    "name": "Tomberlin Hauling and Cleaning",
+    "category": "Junk Removal / Cleaning",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 580-0788",
+    "id": "tomberlin-hauling"
+  },
+  {
+    "name": "CLZ Drywall and Painting LLC",
+    "category": "Drywall / Painting",
+    "location": "Greer, SC (415 Sunnydale Dr, Greer SC 29651)",
+    "phone": "(864) 549-2030",
+    "id": "clz-drywall"
+  },
+  {
+    "name": "Tuff Deck Builders (Greenville SC)",
+    "category": "Deck Building",
+    "location": "Greenville, SC (131 Falls St #100)",
+    "phone": "(864) 351-3692",
+    "id": "tuff-deck"
+  },
+  {
+    "name": "J & D Tree Care LLC",
+    "category": "Tree Service",
+    "location": "Easley, SC (360 Hwy 183, Piedmont SC 29673; serves Upstate)",
+    "phone": "(864) 326-3030",
+    "id": "jd-tree"
+  },
+  {
+    "name": "KB's Lawn Care LLC",
+    "category": "Lawn care / gutter / tree",
+    "location": "Simpsonville, SC",
+    "phone": "(864) 714-4987",
+    "id": "kbs-lawn-care"
+  },
+  {
+    "name": "Anna Lee \u2014 Wedding Planning",
+    "category": "Wedding Planning",
+    "location": "Portland, OR (503)",
+    "phone": "(503) 358-5860",
+    "id": "anna-lee-weddings"
+  },
+  {
+    "name": "Palmetto Pro Painters",
+    "category": "Painting contractors / pressure washing",
+    "location": "Anderson, SC 29626 (2091 Scarborough Rd, Anderson SC per YellowPages)",
+    "phone": "(864) 940-3719",
+    "id": "palmetto-pro-painters"
+  },
+  {
+    "name": "B&S Painting",
+    "category": "Painting / handyman",
+    "location": "Anderson, SC 29625 (addresses vary across directories: 133 Tabitha Ct per Yahoo Local; 2000 Dobbins Bridge Rd per Buzzfile \u2014 verify on outreach)",
+    "phone": "(864) 356-4863",
+    "id": "bs-painting"
+  },
+  {
+    "name": "Schroder Services",
+    "category": "Handyman-style home services \u2014 fence building, plumbing, deck renovation",
+    "location": "Greer, SC 29650 (104 Downing Place, Greer SC 29650)",
+    "phone": "(864) 360-6635",
+    "id": "schroder-services"
+  },
+  {
+    "name": "Yankee Tree Service",
+    "category": "Tree service (removal, trimming)",
+    "location": "Easley, SC (138 Oak Springs Ct, Easley SC 29640)",
+    "phone": "(864) 569-9220",
+    "id": "yankee-tree"
+  },
+  {
+    "name": "Carolina Outdoor Care LLC",
+    "category": "Tree service, landscaping",
+    "location": "Easley, SC (201 Oakfield Ave, Easley SC 29640)",
+    "phone": "(864) 982-3573",
+    "id": "carolina-outdoor-care"
+  },
+  {
+    "name": "Chieftain Concrete Construction",
+    "category": "Concrete (construction)",
+    "location": "Simpsonville, SC (700 NE Main St, Simpsonville SC 29681)",
+    "phone": "(864) 962-0136",
+    "id": "chieftain-concrete"
+  },
+  {
+    "name": "Gambrell Roofing",
+    "category": "Roofing (residential/commercial)",
+    "location": "Anderson, SC (1911 Linda Drive, Anderson SC 29626)",
+    "phone": "(864) 934-2657",
+    "id": "gambrell-roofing"
+  },
+  {
+    "name": "Reed Concrete Construction Inc",
+    "category": "Concrete construction (residential/commercial)",
+    "location": "Anderson, SC (29625 area)",
+    "phone": "(864) 934-0643",
+    "id": "reed-concrete"
+  },
+  {
+    "name": "Bossman Concrete",
+    "category": "Concrete contractor (pours, sealcoating)",
+    "location": "Simpsonville, SC (1 Dapple Gray Ct, Simpsonville SC 29680)",
+    "phone": "(864) 733-8560 / (864) 733-1076",
+    "id": "bossman-concrete"
+  },
+  {
+    "name": "Royal Pro Wash",
+    "category": "Gutter cleaning, house washing / pressure washing (bundle packages)",
+    "location": "Simpsonville, SC",
+    "phone": "(864) 775-0102",
+    "id": "royal-pro-wash"
+  },
+  {
+    "name": "Blu Rhino Junk Removal",
+    "category": "Junk Removal",
+    "location": "Pelzer, SC",
+    "phone": "(864) 501-2000",
+    "id": "blu-rhino-junk"
+  },
+  {
+    "name": "DHG Tree Service, LLC",
+    "category": "Tree Service",
+    "location": "Travelers Rest, SC (Taylors 29687 on Yelp)",
+    "phone": "(864) 293-4155",
+    "id": "dhg-tree-service"
+  },
+  {
+    "name": "Skyline Renovation",
+    "category": "Handyman / Home Improvements",
+    "location": "Moore, SC (serves Greer area)",
+    "phone": "(864) 823-9433",
+    "id": "skyline-renovation"
+  },
+  {
+    "name": "Southern Unlimited Services",
+    "category": "Electrical",
+    "location": "Easley, SC 29640",
+    "phone": "(864) 421-5885",
+    "id": "southern-unlimited-services"
+  },
+  {
+    "name": "Jones Appliance Service",
+    "category": "Appliance Repair",
+    "location": "Spartanburg, SC 29302",
+    "phone": "(864) 342-9923",
+    "id": "jones-appliance-service"
+  },
+  {
+    "name": "Atlas Appliance Repair",
+    "category": "Appliance Repair",
+    "location": "Greenville, SC 29617",
+    "phone": "(864) 380-7217",
+    "id": "atlas-appliance-repair"
+  },
+  {
+    "name": "Accurate Leak Finders Inc",
+    "category": "Pool Leak Detection",
+    "location": "Greer, SC 29651",
+    "phone": "(864) 989-0529",
+    "id": "accurate-leak-finders"
+  },
+  {
+    "name": "Automated Door Products",
+    "category": "Garage Door",
+    "location": "Duncan, SC 29334",
+    "phone": "(864) 439-8002",
+    "id": "automated-door-products"
+  },
+  {
+    "name": "Thomas & Son Appliance Services",
+    "category": "Appliance Repair",
+    "location": "Greer, SC 29651",
+    "phone": "(864) 918-9531",
+    "id": "thomas-and-son-appliance"
+  },
+  {
+    "name": "Crane Pressure Washing LLC",
+    "category": "Pressure Washing",
+    "location": "Greenville, SC 29607",
+    "phone": "(864) 329-5123",
+    "id": "crane-pressure-washing"
+  },
+  {
+    "name": "Ultra Pro Pressure Washing",
+    "category": "Pressure Washing",
+    "location": "Greenville, SC 29607",
+    "phone": "(864) 982-8014",
+    "id": "ultra-pro-pressure-washing"
+  },
+  {
+    "name": "Load & Go Junk Co",
+    "category": "Junk Removal",
+    "location": "Anderson, SC 29621",
+    "phone": "(864) 318-0354",
+    "id": "load-and-go-junk"
+  },
+  {
+    "name": "Downers Multi Service",
+    "category": "Junk Removal",
+    "location": "Pendleton, SC",
+    "phone": "(864) 280-9830",
+    "id": "downers-multi-service"
+  },
+  {
+    "name": "Overhaul Properties",
+    "category": "Junk Removal",
+    "location": "Anderson, SC",
+    "phone": "(864) 617-8611",
+    "id": "overhaul-properties"
+  },
+  {
+    "name": "Platinum Landscapes",
+    "category": "Landscaping",
+    "location": "Travelers Rest, SC 29690",
+    "phone": "(864) 362-9403",
+    "id": "platinum-landscapes"
+  },
+  {
+    "name": "Arrow Fence & Flooring LLC",
+    "category": "Fencing",
+    "location": "Greenville, SC",
+    "phone": "(864) 518-6203",
+    "id": "arrow-fence-flooring"
+  },
+  {
+    "name": "4 Point Lawn Care LLC",
+    "category": "Lawn care / landscaping",
+    "location": "Boiling Springs, SC",
+    "phone": "(864) 776-8517",
+    "id": "4-point-lawn-care-llc"
+  },
+  {
+    "name": "Affordable Handyman Services",
+    "category": "Handyman (insured and bonded per Nextdoor)",
+    "location": "Pickens, SC (S. Pickens area)",
+    "phone": "(864) 340-0609",
+    "id": "affordable-handyman-services"
+  },
+  {
+    "name": "Blue Sky Painting LLC",
+    "category": "Painting (interior & exterior, residential)",
+    "location": "Easley, SC (4544 Calhoun Memorial Hwy, Easley SC 29640 per FB group posts)",
+    "phone": "(864) 940-7591 (Easley SC group self-post) / (864) 859-1981 (other FB group posts w/ address) \u2014 \u26a0\ufe0f verify primary line before outreach",
+    "id": "blue-sky-painting-llc"
+  },
+  {
+    "name": "Cheap & Great Tree Services",
+    "category": "Tree removal, tree trimming, tree cutting; open 24 hours",
+    "location": "Greenville, SC (4 Woodward St, Greensville/Greenville SC 29605; BBB profile under Anderson SC)",
+    "phone": "(864) 365-6320",
+    "id": "cheap-great-tree-services"
+  },
+  {
+    "name": "Dougies Cleaning Service LLC",
+    "category": "Home/commercial cleaning, deep cleaning, quotes",
+    "location": "Mauldin, SC (serving surrounding areas, Greenville)",
+    "phone": "(864) 747-4630",
+    "id": "dougies-cleaning-service-llc"
+  },
+  {
+    "name": "Flynn Maintenance Services",
+    "category": "Handyman / maintenance (carpentry, plumbing, basic electrical, painting, pressure washing)",
+    "location": "Fountain Inn, SC",
+    "phone": "(864) 884-7273",
+    "id": "flynn-maintenance-services"
+  },
+  {
+    "name": "House Cleaning BC LLC",
+    "category": "Residential / commercial cleaning, deep cleaning, free quotes",
+    "location": "Mauldin, SC (serves Upstate SC area)",
+    "phone": "(864) 686-2756",
+    "id": "house-cleaning-bc-llc"
+  },
+  {
+    "name": "Mikes Home Solutions",
+    "category": "Handyman services / home solutions",
+    "location": "Travelers Rest, SC",
+    "phone": "(864) 517-9904",
+    "id": "mikes-home-solutions"
+  },
+  {
+    "name": "Nesbitt Junk Removal",
+    "category": "Junk removal \u2014 furniture, appliances, mattresses, yard waste, whole-property cleanouts",
+    "location": "Greer, SC 29651 (1000 Robinson Road)",
+    "phone": "(864) 215-0828",
+    "id": "nesbitt-junk-removal"
+  },
+  {
+    "name": "Owens Heat and Air LLC",
+    "category": "HVAC \u2014 heat and air repair, AC service",
+    "location": "Greer, SC",
+    "phone": "(864) 304-0688",
+    "id": "owens-heat-and-air-llc"
+  },
+  {
+    "name": "Renaissance Handyman Service",
+    "category": "Handyman (electrical, plumbing, upgrades, general handyman)",
+    "location": "Easley, SC (serves Easley, Travelers Rest, Marietta, Simpsonville, surrounding)",
+    "phone": "(864) 506-4905 (Nextdoor / showmelocal) \u2014 Chad Green owner",
+    "id": "renaissance-handyman-service"
+  },
+  {
+    "name": "Robertsons Tree Service",
+    "category": "Tree service",
+    "location": "Travelers Rest, SC (15 Randy Point Ct, Travelers Rest SC 29690)",
+    "phone": "(864) 834-1854",
+    "id": "robertsons-tree-service"
+  },
+  {
+    "name": "See Clearly Window Cleaning",
+    "category": "Window cleaning, pressure washing",
+    "location": "Taylors / Greenville, SC",
+    "phone": "(864) 365-5437",
+    "id": "see-clearly-window-cleaning"
+  },
+  {
+    "name": "Stephen & Stephen",
+    "category": "Handyman, painting, junk/removal services",
+    "location": "Travelers Rest / Greenville, SC (Nextdoor page: Travelers Rest, SC)",
+    "phone": "(864) 327-5333",
+    "id": "stephen-stephen"
+  },
+  {
+    "name": "AquaBlade LLC",
+    "category": "Pressure washing / handyman / landscaping / tree service / property management",
+    "location": "Greer, SC 29650 (700 Rosebud Lane, Greer)",
+    "phone": "(864) 354-2700",
+    "id": "aquablade-llc"
+  },
+  {
+    "name": "Ellason Tree Service",
+    "category": "Tree removal, tree care, stump removal \u2014 \"In business for 35 years, all types of tree care including stump removal\"",
+    "location": "Simpsonville, SC (Golden Strip / Upstate SC)",
+    "phone": "(864) 967-8346",
+    "id": "ellason-tree-service"
+  },
+  {
+    "name": "Hydro Wash",
+    "category": "Pressure washing / exterior cleaning (house wash, gutters)",
+    "location": "Travelers Rest, SC 29690 (452 Bowers Rd)",
+    "phone": "(864) 214-6360",
+    "id": "hydro-wash"
+  },
+  {
+    "name": "Bearden Forestry",
+    "category": "Tree service (removal, pruning, storm cleanup)",
+    "location": "Seneca, SC (serves Upstate SC \u2014 Greenwood, Oconee, Easley markets)",
+    "phone": "(864) 557-2411",
+    "id": "bearden-forestry"
+  },
+  {
+    "name": "Chase Dump Removel",
+    "category": "Junk removal / hauling",
+    "location": "Greer, SC (3703 N Hwy 101, Greer SC 29651)",
+    "phone": "(864) 230-9593",
+    "id": "chase-dump-removel"
+  },
+  {
+    "name": "Clean Slate Pressure Washing",
+    "category": "Pressure washing, house washing, soft washing",
+    "location": "Greer, SC (also mentioned in Greenville SC groups)",
+    "phone": "(864) 525-5493",
+    "id": "clean-slate-pressure-washing"
+  },
+  {
+    "name": "Farrs Exterior Cleaning Service",
+    "category": "Pressure washing / exterior cleaning",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 205-3465",
+    "id": "farrs-exterior-cleaning-service"
+  },
+  {
+    "name": "Girl Dad Handyman Services",
+    "category": "Handyman repairs, painting, maintenance (\"quality workmanship with honest service\")",
+    "location": "Anderson, SC",
+    "phone": "(864) 749-7146",
+    "id": "girl-dad-handyman-services"
+  },
+  {
+    "name": "JHA Land Clearing LLC",
+    "category": "Land clearing / forestry mulching / grading / stump grinding (tree-service adjacent)",
+    "location": "Greer, SC (121 Connecticut Ave, Greer SC 29650)",
+    "phone": "(864) 804-2889",
+    "id": "jha-land-clearing-llc"
+  },
+  {
+    "name": "L & F Handymen",
+    "category": "Handyman / junk removal & hauling / tree service / lawn service / flooring / drywall",
+    "location": "Anderson, SC",
+    "phone": "(864) 387-0554 (primary); Allen (864) 760-0222 (secondary) \u2014 two-number flag",
+    "id": "l-f-handymen"
+  },
+  {
+    "name": "Ortiz Tree Service",
+    "category": "Tree service",
+    "location": "Taylors, SC (38 Gandy Ave, Taylors SC 29687)",
+    "phone": "(864) 506-3986",
+    "id": "ortiz-tree-service"
+  },
+  {
+    "name": "Pablo Tree Services",
+    "category": "Tree service (tree removal, trimming & pruning, land clearing)",
+    "location": "Taylors, SC",
+    "phone": "(864) 924-7576",
+    "id": "pablo-tree-services"
+  },
+  {
+    "name": "Precision Concrete Mauldin",
+    "category": "Concrete (driveways, walkways, patios)",
+    "location": "Mauldin, SC 29662",
+    "phone": "(864) 881-8063",
+    "id": "precision-concrete-mauldin"
+  },
+  {
+    "name": "Smiths Handy Solutions LLC",
+    "category": "Handyman, electrical, remodeling, drywall, realtor punch lists",
+    "location": "Greenville, SC",
+    "phone": "(864) 626-2920",
+    "id": "smiths-handy-solutions-llc"
+  },
+  {
+    "name": "Studs Gutter Cleaning",
+    "category": "Gutter cleaning / gutter service",
+    "location": "Greer, SC",
+    "phone": "(864) 434-2450 (Nextdoor) / (864) 605-8457 (Yelp) \u2014 \u26a0\ufe0f verify primary line before outreach",
+    "id": "studs-gutter-cleaning"
+  },
+  {
+    "name": "Swamp Rabbit Softwash",
+    "category": "Pressure washing / soft wash (house + concrete)",
+    "location": "Travelers Rest, SC 29690 (125 Ledbetter Rd)",
+    "phone": "(864) 630-2544",
+    "id": "swamp-rabbit-softwash"
+  },
+  {
+    "name": "West Fence Company",
+    "category": "Fencing",
+    "location": "Spartanburg, SC (3418 Stone Station Rd, Spartanburg SC 29306)",
+    "phone": "(864) 205-7641 (Yelp / fencecontractors.org) \u2014 \u26a0\ufe0f verify primary line",
+    "id": "west-fence-company"
+  },
+  {
+    "name": "L&C Paint and Pressure Washing LLC",
+    "category": "Painting (interior/exterior) / pressure washing / gutter cleaning",
+    "location": "Fountain Inn, SC",
+    "phone": "(864) 494-8411 (second number on listing truncated: 864-230-\u2026)",
+    "id": "l-c-paint-and-pressure-washing-llc"
+  },
+  {
+    "name": "Maid Spotless",
+    "category": "House cleaning (maintenance cleans from $125, tidy-ups from $100, move-out/hospice cleanup)",
+    "location": "Greenville / Ware Shoals, SC",
+    "phone": "(864) 705-9422",
+    "id": "maid-spotless"
+  },
+  {
+    "name": "Omars Tree Service",
+    "category": "Tree service \u2014 tree/shrub removal, trimming, site-specific plant-health advice",
+    "location": "Travelers Rest, SC 29690 (51 Bethany Road)",
+    "phone": "(864) 775-9747",
+    "id": "omars-tree-service"
+  },
+  {
+    "name": "Parkers Pressure Washing LLC",
+    "category": "Pressure washing \u2014 residential/commercial exterior cleaning",
+    "location": "Simpsonville, SC",
+    "phone": "(864) 477-8630",
+    "id": "parkers-pressure-washing-llc"
+  },
+  {
+    "name": "R&R Lawn LLC",
+    "category": "Residential lawn care, turf management, landscaping",
+    "location": "Travelers Rest, SC (29690)",
+    "phone": "(864) 608-4324",
+    "id": "r-r-lawn-llc"
+  },
+  {
+    "name": "Rig Line Tree Service",
+    "category": "Tree service (removal, thinning, pruning)",
+    "location": "Westminster / Anderson area, SC (Oconee County, Upstate SC)",
+    "phone": "(864) 247-9107",
+    "id": "rig-line-tree-service"
+  },
+  {
+    "name": "Sterling Home Services LLC",
+    "category": "Handyman / home improvement (multi-task: home improvement needs)",
+    "location": "Travelers Rest, SC",
+    "phone": "(864) 361-8835",
+    "id": "sterling-home-services-llc"
+  },
+  {
+    "name": "Superior Fix",
+    "category": "Handyman / home repair / free estimates",
+    "location": "Anderson, SC",
+    "phone": "(864) 772-7216",
+    "id": "superior-fix"
+  },
+  {
+    "name": "The Pack Landscaping and Lawn Care",
+    "category": "Landscaping / lawn care (mowing, mulching, edging, weed control, metal edging, driveway clearing/salting)",
+    "location": "Spartanburg, SC 29301",
+    "phone": "(864) 504-7174",
+    "id": "the-pack-landscaping-and-lawn-care"
+  },
+  {
+    "name": "Turners Touch Detailing & Pressure Washing",
+    "category": "Pressure washing, auto detailing, gutter service",
+    "location": "Fountain Inn, SC (Simpsonville neighborhood favorite; Greenville County)",
+    "phone": "(864) 551-3972",
+    "id": "turners-touch-detailing-pressure-washing"
+  },
+  {
+    "name": "Wilkins Lawn Services LLC",
+    "category": "Lawn care / landscaping / yard maintenance",
+    "location": "Boiling Springs, SC",
+    "phone": "(864) 431-6057",
+    "id": "wilkins-lawn-services-llc"
+  }
+]

@@ -8,8 +8,10 @@ export type StageId =
   | "prospect"
   | "audit"
   | "pitch"
-  | "contacted"
-  | "response"
+  | "quality-check"
+  | "approval"
+  | "outreach"
+  | "follow-up"
   | "sale"
   | "build-launch";
 
@@ -20,7 +22,9 @@ export type StageColor =
   | "violet"
   | "emerald"
   | "green"
-  | "sky";
+  | "sky"
+  | "orange"
+  | "cyan";
 
 export interface Stage {
   id: StageId;
@@ -218,13 +222,15 @@ type PipelineBook = {
 const data = pipelineData as unknown as PipelineBook;
 
 const FALLBACK_STAGES: Stage[] = [
-  { id: "prospect", label: "Prospect", icon: "Search", color: "slate" },
+  { id: "prospect", label: "Prospects", icon: "Search", color: "slate" },
   { id: "audit", label: "Audit", icon: "Clipboard", color: "blue" },
-  { id: "pitch", label: "Pitch", icon: "Send", color: "amber" },
-  { id: "contacted", label: "Contacted", icon: "Phone", color: "violet" },
-  { id: "response", label: "Response", icon: "Message", color: "sky" },
-  { id: "sale", label: "Sale", icon: "Dollar", color: "emerald" },
-  { id: "build-launch", label: "Build & Launch", icon: "Rocket", color: "green" },
+  { id: "pitch", label: "Pitch", icon: "Megaphone", color: "amber" },
+  { id: "quality-check", label: "Quality check", icon: "ShieldCheck", color: "violet" },
+  { id: "approval", label: "Approval", icon: "ClipboardCheck", color: "sky" },
+  { id: "outreach", label: "Outreach", icon: "Send", color: "emerald" },
+  { id: "follow-up", label: "Follow up", icon: "RefreshCw", color: "orange" },
+  { id: "sale", label: "Sale", icon: "Trophy", color: "green" },
+  { id: "build-launch", label: "Build & Launch", icon: "Rocket", color: "cyan" },
 ];
 
 const FALLBACK_AGENCY: Agency = {
@@ -324,7 +330,7 @@ export function resolveDemoUrl(company: Company): string | null {
 export function isDemoReady(company: Company): boolean {
   if (resolveDemoUrl(company)) return false;                 // already has a demo
   if (company.demo?.status === "build-requested") return false; // already requested
-  return ["audit", "pitch", "contacted", "response"].includes(company.stage);
+  return ["audit", "pitch", "quality-check", "approval", "outreach", "follow-up"].includes(company.stage);
 }
 
 export function getDemoQueue(companies: Company[] = data.companies): DemoItem[] {
@@ -358,8 +364,10 @@ export const LEAD_STAGES: StageId[] = [
   "prospect",
   "audit",
   "pitch",
-  "contacted",
-  "response",
+  "quality-check",
+  "approval",
+  "outreach",
+  "follow-up",
 ];
 export const CLIENT_STAGES: StageId[] = ["sale", "build-launch"];
 
@@ -379,9 +387,7 @@ export function isOpenPitchStatus(status?: string): boolean {
 export function getApprovalQueue(
   companies: Company[] = data.companies,
 ): Company[] {
-  return companies.filter(
-    (c) => c.stage === "pitch" && isOpenPitchStatus(c.pitchDraft?.status),
-  );
+  return companies.filter((c) => c.stage === "approval");
 }
 
 export function pendingApprovalCount(
@@ -611,7 +617,7 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
   const demos = getDemoQueue(companies).length;
 
   const sendNowList = companies.filter((c) => {
-      if (c.stage !== "pitch") return false;
+      if (c.stage !== "approval") return false;
       if (pitchStatus(c) !== "supervisor-approved") return false;
       if (!companyEmail(c)) return false;
       // Pre-send gate: never offer dead domains as "send now" (M04: only trust a
@@ -622,7 +628,7 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
       return true;
     });
     const sendBlockedList = companies.filter((c) => {
-      if (c.stage !== "pitch") return false;
+      if (c.stage !== "approval") return false;
       if (pitchStatus(c) !== "supervisor-approved") return false;
       return !companyEmail(c);
     });
@@ -636,7 +642,7 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
     });
 
   const reviewList = companies.filter((c) => {
-    if (c.stage !== "pitch") return false;
+    if (c.stage !== "quality-check") return false;
     const st = pitchStatus(c);
     return st === "pending-review" || st === "pending-supervisor-review";
   });
@@ -646,10 +652,10 @@ export function getWorkInbox(companies: Company[] = data.companies): WorkInbox {
     if (st === "bounced" || c.responseStatus === "bounced") return false;
     // Prefer send-truth: only verified sends still in contacted/response
     if (st === "sent_unverified" || st === "sent_domain_risk") {
-      return c.stage === "contacted" || c.stage === "response";
+      return c.stage === "outreach" || c.stage === "follow-up";
     }
     if (st === "unproven") return false;
-    if (c.stage === "contacted" || c.stage === "response") return true;
+    if (c.stage === "outreach" || c.stage === "follow-up") return true;
     const rs = (c.responseStatus || "").toLowerCase();
     return rs === "awaiting" || rs === "pitch-sent";
   });
@@ -870,7 +876,7 @@ export interface PipelineStats {
 }
 
 /** Stages that count as "in flight" — audit through response. */
-const ACTIVE_STAGES: StageId[] = ["audit", "pitch", "contacted", "response"];
+const ACTIVE_STAGES: StageId[] = ["audit", "pitch", "quality-check", "approval", "outreach", "follow-up"];
 
 export function getStats(companies: Company[] = data.companies): PipelineStats {
   const scored = companies.filter((company) => company.seoScore);

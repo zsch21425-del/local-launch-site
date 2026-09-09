@@ -1,0 +1,1213 @@
+[
+ {
+  "name": "Omega Auto Sales",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB posts show phone only; only email found (omegacars757@gmail.com) belongs to unrelated Norfolk VA omegaautosales.us - collision rejected"
+ },
+ {
+  "name": "Mom & A Mop",
+  "email_found": "momandamop1818@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor page co-renders (336) 462-8843 + email, Yadkinville NC 27055"
+ },
+ {
+  "name": "Redwood Landscaping",
+  "email_found": "redwoodlandscapingupstate@gmail.com",
+  "email_source": "website",
+  "confidence": "high",
+  "notes": "On own site redwoodlandscapingsc.com with phone 864-357-4530 on-page"
+ },
+ {
+  "name": "YACA Auto Mechanics",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Scribd brochure garbled, IG reels only; no public email found"
+ },
+ {
+  "name": "Machado Handyman and HVAC Solutions",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Only IG reels advertise services w/ 864-704-4048; bio render yielded no email"
+ },
+ {
+  "name": "Greenville Pro Painters",
+  "email_found": "info@paintingservicegreenville.com",
+  "email_source": "directory",
+  "confidence": "medium",
+  "notes": "Columbia Business Monthly listing co-renders 864-523-8330 + email; old own-domain now parked"
+ },
+ {
+  "name": "Unique Concrete",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Site contact-form only; vault/Yelp/FB show no published email"
+ },
+ {
+  "name": "JR Concrete",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page email JRCONCRETE07@GMAIL.COM rejected - contact block shows (803) 427-0280, diff area code vs roster 864-494-6731 = collision"
+ },
+ {
+  "name": "Prime Concrete Solutions",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Modern site has quote form only; no public email anywhere"
+ },
+ {
+  "name": "Locomotion Auto Detail",
+  "email_found": "locomotionautodetail@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page snippet co-renders 118 E Mauldin St Anderson + (864) 749-4013 + email"
+ },
+ {
+  "name": "Perpetual Painters LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp/MapQuest/Cybo listings only; no public email found in 3 searches"
+ },
+ {
+  "name": "Black's Paint Contracting",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Angi/Birdeye/MapQuest listings; no email published"
+ },
+ {
+  "name": "Top Choice Fence & Decks",
+  "email_found": "jonsaylors@yahoo.com",
+  "email_source": "website",
+  "confidence": "high",
+  "notes": "On own site topchoicefenceanddecks.com; confirmed by prior master-list verification"
+ },
+ {
+  "name": "Acorn Fencing & Repair",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page rendered: phone 864-510-4593 + owner Aiken Marshall, no email on page"
+ },
+ {
+  "name": "ADV Garage Door LLC",
+  "email_found": "advgaragedoor@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page snippet co-renders (864) 569-7147 + email, 'family owned garage door' Lyman; roster # 864-435-6497 from chamber - same business, alt line"
+ },
+ {
+  "name": "Johnson's Paint Contracting",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp/MapQuest/YP listings only; no email published"
+ },
+ {
+  "name": "Lightning Pest & Termite Control",
+  "email_found": "lightningpest@yahoo.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page dump shows email + (512) 281-9686 = exact roster phone, Elgin TX"
+ },
+ {
+  "name": "Eco Wash Systems",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Own site phone-only (equipment supply/repair); eco-washsystems.com is a different entity"
+ },
+ {
+  "name": "Titan Wash",
+  "email_found": "info@gotitanwash.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB snippet co-renders 9500 NW 77th Ave Hialeah + (786) 479-1262 + email"
+ },
+ {
+  "name": "JPG Painting",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Identity confirmed (Javier, Mableton) but no public email in listings/article"
+ },
+ {
+  "name": "El Valle Junk Removal",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "valleystingllc@gmail.com rejected - belongs to Valley Sting LLC (Glendale AZ, 602-488-6586), a different Phoenix company"
+ },
+ {
+  "name": "MM Tree Services",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "mmtreeservices.com = Myrtle Beach (843); FB page = 931 Cookeville collision; Hermitage TN roster no email"
+ },
+ {
+  "name": "Baucom Auto Detailing",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB dump: no email; page lists 704-699-3854 (diff from roster 743); no email published"
+ },
+ {
+  "name": "Bullseye HVAC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "bull@bullseye-hvacr.com rejected - East Haven CT (203) company; IL bullseyehvac.net also collision; Belton SC lead no email"
+ },
+ {
+  "name": "Henrys AC",
+  "email_found": "Office@henrysac.com",
+  "email_source": "facebook",
+  "confidence": "medium",
+  "notes": "Official FB page henrysac1948 renders email + 864-472-6258 (roster 864-375-0007 differs, same Anderson business); henrysac.com live"
+ },
+ {
+  "name": "Palmetto Exterminating Co",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page: 208 Liberty Dr Easley + 864-859-3507 confirmed, no email"
+ },
+ {
+  "name": "Norvell's Tree & Landscape Services LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page: 161 Bearden Heights Rd + 864-345-0466 confirmed, no email"
+ },
+ {
+  "name": "Two Brothers Landscaping",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "twobrotherslandscapingllc.com = Raleigh NC business; zillaoutdoorservices@gmail.com unproven brand; Charleston roster no email"
+ },
+ {
+  "name": "O'Sullivan Family Tree Services",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page: 160 W Bright Rd Duncan + 864-439-6501 (Eston O'Sullivan), no email"
+ },
+ {
+  "name": "Anderson Heating & Air Conditioning",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "andersonheatingair.com = Elk Grove CA (916); SC Anderson roster no public email"
+ },
+ {
+  "name": "Joe Hopkins Concrete",
+  "email_found": "jobleezy43@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor snippet co-renders (864) 207-8947 + email, Piedmont SC"
+ },
+ {
+  "name": "3D Heating & Air, LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "MapQuest/Birdeye/Kompass listings only; no email published"
+ },
+ {
+  "name": "Bug Killers Termite & Pest Control",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Directories confirm phone 864-859-0327; no public email"
+ },
+ {
+  "name": "Green Suds Pressure Washing",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "GigoPro profile confirms 10610 Coronet Ct + 980-272-7659 but no email listed"
+ },
+ {
+  "name": "Kings Power Washing of Charlotte",
+  "email_found": "charlottepowerwashing@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Master-list verified: Nextdoor page, phone (980) 298-5785"
+ },
+ {
+  "name": "Junk Busters",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp/MapQuest/wastebits listings; no email published"
+ },
+ {
+  "name": "24/7 Emergency Plumber Nashville",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "ServiceAgent GBP mirror confirms 1600 Division St + 615-768-8780; no email"
+ },
+ {
+  "name": "Good Work Pressure Washing",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor: owner Gerald Crawford, 405 State St Charlotte; no email"
+ },
+ {
+  "name": "Turner Service Repair LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Manta page: 5008 Hazelwood Rd + (205) 674-1993 confirmed, no email"
+ },
+ {
+  "name": "Junk Master Services",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "junkmasterservicesllc.com now hijacked gambling spam; no legitimate email found"
+ },
+ {
+  "name": "DDS Handyman Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Directories (zerofi/nears.me/homerepairone) confirm identity; no email"
+ },
+ {
+  "name": "Sparrow Fencing LLC",
+  "email_found": "sparrowfencingllc@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Master-list verified: FB page, phone (864) 662-8867"
+ },
+ {
+  "name": "Taylor Jones Signature Tree Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB group recommendations only; no public email"
+ },
+ {
+  "name": "Perino's Junk Removal",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page: 12099 Lansbury Dr + 209-606-1737 confirmed, no email"
+ },
+ {
+  "name": "SA Tree Service & More",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page + MapQuest listing found; no public email published anywhere"
+ },
+ {
+  "name": "Charlie Brown Decks, Etc.",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp/MapQuest/homeyou listings; no public email"
+ },
+ {
+  "name": "SDB Lawncare Services and Gutter Cleaning",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page exists; no public email published"
+ },
+ {
+  "name": "Solid Foundations Plus LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page w/ roster phone (864) 593-2696; no email published"
+ },
+ {
+  "name": "The Creek Crew",
+  "email_found": "smfriedholm14@icloud.com",
+  "email_source": "website",
+  "confidence": "medium",
+  "notes": "Contact email in ContactSection of own jobbersites site, co-located with roster phone (843) 330-9291; personal iCloud handle"
+ },
+ {
+  "name": "Upstate Tree Solutions",
+  "email_found": "devinwithtreesolutions@gmail.com",
+  "email_source": "directory",
+  "confidence": "medium",
+  "notes": "Manta listing snippet co-rendered email + roster phone (864) 221-2435; own/other sites have no email"
+ },
+ {
+  "name": "Chad's Tree Service, LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB + bestprosintown listings only; no public email"
+ },
+ {
+  "name": "Morris Heating & Air",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "morris.air.heat@gmail.com found on listings but those show (512) TX phone vs roster (864) 573-1174 = area-code collision, rejected"
+ },
+ {
+  "name": "Arbor Pro Inc",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "arborproinc.com is Detroit (313) - collision; Anderson SC listings have no email"
+ },
+ {
+  "name": "Milligan Residential Junk Removal",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "milliganresidential.com parked/blank; directories show phone only, no email"
+ },
+ {
+  "name": "Smith Heating And Air Conditioning",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "ehardhat/n49 Spartanburg listings; no public email"
+ },
+ {
+  "name": "David Smith Tree Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "us-info listing only; no public email"
+ },
+ {
+  "name": "Honea Tree Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Phone-scoped searches rate-limited/empty; no public email surfaced"
+ },
+ {
+  "name": "Green Vision",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor + Instagram pages exist; no public email"
+ },
+ {
+  "name": "Pat's Concrete Cutting, LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Active FB page (login-walled); homeadvisor/buzzfile have no email"
+ },
+ {
+  "name": "J & M Concrete Inc",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "ehardhat/allbiz/chamberofcommerce listings; no email published"
+ },
+ {
+  "name": "Vermont Custom Stone",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page (login-walled); findglocal listing; no public email"
+ },
+ {
+  "name": "Pressure Washing Solutions LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "No results beyond ad listings; no public email"
+ },
+ {
+  "name": "Trim All Tree Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "No results surfaced; no public email"
+ },
+ {
+  "name": "Carolina Clear Property Services",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "No results surfaced; no public email"
+ },
+ {
+  "name": "Molinas Tree Service",
+  "email_found": "molinastreeservice2000@gmail.com",
+  "email_source": "website",
+  "confidence": "high",
+  "notes": "Published on molinastreeservicelandscaping.com/contact with roster phone (864) 982-1927 on same page"
+ },
+ {
+  "name": "LC Fence Builders",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB pages only; no roster phone to verify; no public email"
+ },
+ {
+  "name": "Aright Construction and Land Services LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB + nextdoor pages; no public email"
+ },
+ {
+  "name": "Locked & Loaded Junk Removal LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Active FB page; no public email"
+ },
+ {
+  "name": "Around The Grounds Tree Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "BBB/homeadvisor/nextdoor listings; no public email"
+ },
+ {
+  "name": "Grass Monkey Lawn Care and More",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "No results surfaced; no public email"
+ },
+ {
+  "name": "Ted's Handyman Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "No results surfaced; no public email"
+ },
+ {
+  "name": "Woodies Junk Removal LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "No results surfaced; no public email"
+ },
+ {
+  "name": "Rodriquez Painting",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Manta/YP/home8 listings; no public email"
+ },
+ {
+  "name": "B&B Painting",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "wixsite has bandbpaintingservices2000@gmail.com but no phone/city to confirm identity - rejected"
+ },
+ {
+  "name": "GD Junk Removal",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Godaddy site shows roster phone (864) 682-0861 but only theme-credit email; no business email"
+ },
+ {
+  "name": "Universal Junk Removal",
+  "email_found": "removalcrew3@gmail.com",
+  "email_source": "facebook",
+  "confidence": "medium",
+  "notes": "Shown on FB page (universaljunkremovalSC, Greer SC) snippet; same city + business identity, no phone co-render"
+ },
+ {
+  "name": "Turf Touch",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Own site turf-touch.com (contact.php) shows roster phone (864) 325-9939 but no email"
+ },
+ {
+  "name": "Suarez LLC Renovations",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page exists; no public email"
+ },
+ {
+  "name": "Holy Grounds Landscaping",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Searches timed out/rate-limited; no email surfaced"
+ },
+ {
+  "name": "Harrison Landscape Management",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "No email surfaced in searches"
+ },
+ {
+  "name": "Sease's Tree Services",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "tellows/ehardhat/YP listings; no public email"
+ },
+ {
+  "name": "Brown's Tree Surgeons",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Only directory-generated email (licensed.contractors) = reject; FB login-walled"
+ },
+ {
+  "name": "Byars Plumbing",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "tier E_fake - not a real/active business (skipped per rules)"
+ },
+ {
+  "name": "Gold Star Hvacr",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "hvacservice.io lists roster phone (608) 259-0913 but only directory's own email; FB walled"
+ },
+ {
+  "name": "Madison Heating & Cooling",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "madisonheatingcooling.com is a different company ((608) 453-4100 != roster (608) 454-5607); identity unverified, no email"
+ },
+ {
+  "name": "Buy Sell Landscape Supply LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "allbiz/chamberofcommerce listings; no public email"
+ },
+ {
+  "name": "Elite Sweep Property Cleaning",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Active FB page (walled); chamberofcommerce/localmint listings; no public email"
+ },
+ {
+  "name": "MC Cleaning Solutions",
+  "email_found": "Max@mccleaning.solutions",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page mccleaningsolutionsohio shows email + (937) 689-7137 in contact tiles; cybo lists mccleaning.solutions as their site."
+ },
+ {
+  "name": "Brittain & Son Concrete Construction",
+  "email_found": "kim9brittain@mchsi.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor structured email field + phone +151****8523; neighbor post shows full (515) 277-8523."
+ },
+ {
+  "name": "Rich Mitchell Painting & Pressure Washing",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "BBB page has 'Email Business' form link but no public address; Yelp/thecontractors.group phone-only. No published email found."
+ },
+ {
+  "name": "Campbell's Tree Service",
+  "email_found": "larry.campbell@campbellstreeservices.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Email on their Nextdoor business page (Anderson SC), phone (864) 225-5886 matches roster."
+ },
+ {
+  "name": "ProKlean Window and Gutter Cleaning",
+  "email_found": "Proklean2016@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page mkdegreenville contact block shows proklean2016@gmail.com; phone 864-518-6834 on same page."
+ },
+ {
+  "name": "Tomberlin Hauling and Cleaning",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB group posts confirm 864-978-6678/580-0788 but no email published in visible post text; snippet email truncated, not reconstructible."
+ },
+ {
+  "name": "CLZ Drywall and Painting LLC",
+  "email_found": "clzdrypaintllc@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Owner FB post 'contact me at clzdrypaintllc@gmail.com or on my cell at 864-549-2030'; also co-renders on Yelp with same phone."
+ },
+ {
+  "name": "Tuff Deck Builders (Greenville SC)",
+  "email_found": "tuffdeckbuildersgreenvillesc@gmail.com",
+  "email_source": "instagram",
+  "confidence": "medium",
+  "notes": "IG post co-renders email + tuffdeckbuildersgreenvillesc.com + (864) 351-3692; FB page lists same email. | SUPERVISOR: business+phone confirmed via search, but email not independently re-renderable (source blocks); worker rendered on-page."
+ },
+ {
+  "name": "J & D Tree Care LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Own site easleytreeservicecompany.com has no email (contact form only); FB page phone-only. No public email found."
+ },
+ {
+  "name": "KB's Lawn Care LLC",
+  "email_found": "kbeeks19@icloud.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor business page shows (864) 714-4987 and kbeeks19@icloud.com co-listed."
+ },
+ {
+  "name": "Anna Lee \u2014 Wedding Planning",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "tier E_fake - not a real/active business."
+ },
+ {
+  "name": "Palmetto Pro Painters",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page no email published; palmettopropainters.com 404. Yelp/YP phone-only. No public email found."
+ },
+ {
+  "name": "B&S Painting",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp only listing with (864) 356-4863; FB page 'i work for b&s painting' has no email. Not found."
+ },
+ {
+  "name": "Schroder Services",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page phone (864) 360-6635 confirmed but no email in structured fields; rwhoade@yahoo.com on page is neighbor's radio-club post, not business."
+ },
+ {
+  "name": "Yankee Tree Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp/Manta/Yahoo phone-only listings; Manta page JS shell no email. Not found."
+ },
+ {
+  "name": "Carolina Outdoor Care LLC",
+  "email_found": "melissa@carolinaoutdoorservice.com",
+  "email_source": "website",
+  "confidence": "high",
+  "notes": "melissa@ in JSON-LD schema on own site carolinaoutdoorservice.com; phone (864) 982-3573 on same page."
+ },
+ {
+  "name": "A+ Concrete & Remodeling",
+  "email_found": "concrete@apcrpro.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page apcrpro contact block shows concrete@apcrpro.com + (864) 518-2588; domain apcrpro.com dead but email published on FB."
+ },
+ {
+  "name": "Chieftain Concrete Construction",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp/Cybo phone-only (864) 962-0136; no FB/Nextdoor page with email found. Not found."
+ },
+ {
+  "name": "Gambrell Roofing",
+  "email_found": "gambrellroofing@hotmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor structured email field gambrellroofing@hotmail.com + phone (864) 934-2657; yellowpages.com listed too."
+ },
+ {
+  "name": "Monte's Tree Service",
+  "email_found": "montestreeservice579@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page contact shows montestreeservice579@gmail.com + (864) 430-0010; cover-image OCR variant is typo'd, structured field correct."
+ },
+ {
+  "name": "Reed Concrete Construction Inc",
+  "email_found": "eccprocrete@yahoo.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor structured email field eccprocrete@yahoo.com + masked phone +186****0643 (roster 864-934-0643)."
+ },
+ {
+  "name": "Bossman Concrete",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp/MapQuest phone-only (864) 733-8560; bossmanconstructionsc.com is a DIFFERENT Lexington SC company (803). Not found."
+ },
+ {
+  "name": "Rob Perry Fence Contractors Inc",
+  "email_found": "robperryfencecon@bellsouth.net",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor structured email robperryfencecon@bellsouth.net + masked +186****8176; body post shows 'Ph 864 834-7147'."
+ },
+ {
+  "name": "Royal Pro Wash",
+  "email_found": "RoyalProWash@Gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor page (Kevin Rankin) structured email RoyalProWash@Gmail.com + masked +186****0102 (roster 864-775-0102)."
+ },
+ {
+  "name": "K&M Excavating And Hardscape LLC",
+  "email_found": "tbill565656@gmail.com",
+  "email_source": "website",
+  "confidence": "high",
+  "notes": "Own site kmexcavatingandhardscapellc.com contact blocks show tbill565656@gmail.com + phone +1864-510-8176."
+ },
+ {
+  "name": "Blu Rhino Junk Removal",
+  "email_found": "blu@blurhinojunkremoval.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page blurhinojunkremoval snippet '864-501-2000 Or email blu@blurhinojunkremoval.com'; also on IG caption."
+ },
+ {
+  "name": "DHG Tree Service, LLC",
+  "email_found": "derek.redding777@yahoo.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor structured email derek.redding777@yahoo.com + masked +186****4155 (roster 864-293-4155)."
+ },
+ {
+  "name": "Skyline Renovation",
+  "email_found": "Alex7sky7@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor page email Alex7sky7@gmail.com + masked +186****9433; body '864-823-9433 Alex Licensed and insured'."
+ },
+ {
+  "name": "Southern Unlimited Services",
+  "email_found": "southernunlimitedservices@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page contact info shows southernunlimitedservices@gmail.com + (864) 421-5885."
+ },
+ {
+  "name": "Jones Appliance Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp points to joneselec.net which is a 114-byte dead stub; Nextdoor page throttled; BBB 'Email Business' is form-only. Not found."
+ },
+ {
+  "name": "Atlas Appliance Repair",
+  "email_found": "atlasappliancesc@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor snippet '864-380-7217 \u00b7 atlasappliancesc.com \u00b7 atlasappliancesc@gmail.com' phone-match co-render."
+ },
+ {
+  "name": "Accurate Leak Finders Inc",
+  "email_found": "acculeak@charter.net",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor structured email acculeak@charter.net + masked +186****0529 (roster 864-989-0529)."
+ },
+ {
+  "name": "Automated Door Products",
+  "email_found": "scdoorman@yahoo.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor snippet '864-439-8002 \u00b7 automateddoorproducts.net \u00b7 scdoorman@yahoo.com' phone-match co-render."
+ },
+ {
+  "name": "Thomas & Son Appliance Services",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page phone 864-301-6082 differs from roster 918-9531 (maptons confirms 305 Rock Rd + 918-9531); no email on any page. Not found."
+ },
+ {
+  "name": "Crane Pressure Washing LLC",
+  "email_found": "jcrane9799@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor structured email jcrane9799@gmail.com + masked +186****5123 (roster 864-329-5123); FB page also lists jcranebusiness@gmail.com."
+ },
+ {
+  "name": "Load & Go Junk Co",
+  "email_found": "secorhudson40@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page contact tile sequence: Page\u00b7Business service / Mobile Anderson SC / (864) 318-0354 / secorhudson40@gmail.com."
+ },
+ {
+  "name": "Downers Multi Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "IG bio shows phone (864)-280-9830 only, no email; no other listing with email. Not found."
+ },
+ {
+  "name": "Overhaul Properties",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page OverhaulProperties shows (256) 434-1519 = ALABAMA real-estate co - collision, reject. Roster 864-617-8611 confirmed via BBB + owner FB post but no email on those. Not found."
+ },
+ {
+  "name": "Platinum Landscapes",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp/Angi/Houzz listings phone-only; no FB/Nextdoor page with email. Not found."
+ },
+ {
+  "name": "Arrow Fence & Flooring LLC",
+  "email_found": "Arrowfence.flooringllc@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page 61550888819370 snippet co-renders Arrowfence.flooringllc@gmail.com + (864) 518-6203; Nextdoor confirms phone."
+ },
+ {
+  "name": "4 Point Lawn Care LLC",
+  "email_found": "4pointlawncare@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "FB page shows 4pointlawncare@gmail.com + (864) 776-8517; Nextdoor also lists email + masked +186****8517."
+ },
+ {
+  "name": "Affordable Handyman Services",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page posts phone 864-340-0609 only; ipetrenko.llc@gmail.com on page is a Florida (850) number's business - collision. Not found."
+ },
+ {
+  "name": "Blue Sky Painting LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page shows (864) 940-7591 (alternate entity line) but roster 859-1981 appears in group posts with no email; blueskyprc.com dead. Not found."
+ },
+ {
+  "name": "Cheap & Great Tree Services",
+  "email_found": "Cheapandgreate10@icloud.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email in FB page bio tile co-rendered with roster phone (864) 365-6320 on the business's own FB page."
+ },
+ {
+  "name": "Dougies Cleaning Service LLC",
+  "email_found": "Dougiescleaningservice@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-747-4630."
+ },
+ {
+  "name": "Flynn Maintenance Services",
+  "email_found": "Flynnmaintenance@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Email link on Tommy Flynn's Nextdoor page co-rendered with 864-884-7273."
+ },
+ {
+  "name": "House Cleaning BC LLC",
+  "email_found": "cleaningbere@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Email link on Nextdoor page co-rendered with roster phone 864-686-2756 (owner Berenice)."
+ },
+ {
+  "name": "Mikes Home Solutions",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page + neighborhood threads show phone 864-517-9904 only; mikeshomesolutions1-gmail.com is a Webador template placeholder (support@webador.com), not theirs. No public email found."
+ },
+ {
+  "name": "Nesbitt Junk Removal",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page + Nextdoor page checked; phone 864-215-0828 only, no email published (group-post email Justjunknaround570@gmail.com belongs to a different business)."
+ },
+ {
+  "name": "Owens Heat and Air LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Phone-only business (Keith Owens) recommended in FB group posts; no page or published email found."
+ },
+ {
+  "name": "Quinn Services",
+  "email_found": "quinn.kevin23@yahoo.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email in FB page bio co-rendered with roster phone (864) 308-6981."
+ },
+ {
+  "name": "Renaissance Handyman Service",
+  "email_found": "renaissancehandyservice@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page (Easley SC); page phone 864-506-4905, roster 864-449-9111 - both numbers in circulation per lead file."
+ },
+ {
+  "name": "Robertsons Tree Service",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Site robertsonstreeservice.com + /contact checked (Thryv template, phone 864-834-1854, contact form only, placeholder your@email.com); no published email in searches either."
+ },
+ {
+  "name": "See Clearly Window Cleaning",
+  "email_found": "seeclearlywc@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with roster phone 864-365-5437."
+ },
+ {
+  "name": "Sommers Heating and Air LLC",
+  "email_found": "sommersheatingandairllc@outlook.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 8645663032."
+ },
+ {
+  "name": "Stephen & Stephen",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page shows phone (864) 327-5333 only; no FB page or email found after multiple searches."
+ },
+ {
+  "name": "TB Contractors LLC",
+  "email_found": "tbcontractorsllcsc@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-966-0225."
+ },
+ {
+  "name": "Whittier Fence and Deck",
+  "email_found": "cleewhittier@aol.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with roster phone 864-303-1453."
+ },
+ {
+  "name": "AquaBlade LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page, Instagram, HomeAdvisor checked; phone 864-354-2700 only, no email published."
+ },
+ {
+  "name": "Ellason Tree Service",
+  "email_found": "ellasontree@icloud.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with roster phone 864-967-8346."
+ },
+ {
+  "name": "Hydro Wash",
+  "email_found": "bobgriffin@hydrowash.org",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Nextdoor contact block: bobgriffin@hydrowash.org + (864) 214-6360; Bob Griffin matches Yelp owner 'Bob G.'."
+ },
+ {
+  "name": "KnockIt Junk Removal",
+  "email_found": "KnockItjunkremoval@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-384-4817."
+ },
+ {
+  "name": "Bearden Forestry",
+  "email_found": "hunterdbearden@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with roster phone 864-557-2411."
+ },
+ {
+  "name": "Chase Dump Removel",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp listing only (phone 864-230-9593); no website, FB page, or email found."
+ },
+ {
+  "name": "Clean Slate Pressure Washing",
+  "email_found": "mwhannah_93@yahoo.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with (864) 525-5493; owner McCauley Walker Hannah per Greer group post."
+ },
+ {
+  "name": "Farrs Exterior Cleaning Service",
+  "email_found": "farrexteriorcleaningservice@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on Farr's FB page (Spartanburg); page phone 864-741-9057, roster 864-205-3465 also on their Nextdoor page - same business, two lines."
+ },
+ {
+  "name": "Girl Dad Handyman Services",
+  "email_found": "AllBiz101816@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on Girl Dad Handyman (Anderson SC) FB page co-rendered with roster phone (864) 749-7146; girldadhandyman.com is Sarasota FL collision, ignored."
+ },
+ {
+  "name": "JHA Land Clearing LLC",
+  "email_found": "tuckerallen@jhalandclearing.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with 864-804-2889 (page post: call for free estimate)."
+ },
+ {
+  "name": "L & F Handymen",
+  "email_found": "kennethjford43@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "medium",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-387-0554. | SUPERVISOR: business+phone confirmed via search, but email not independently re-renderable (source blocks); worker rendered on-page."
+ },
+ {
+  "name": "Pablo Tree Services",
+  "email_found": "pablotreeservices00@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-924-7576."
+ },
+ {
+  "name": "Precision Concrete Mauldin",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Yelp listing only; n49 lists standonprecision.com but domain does not resolve (dead). No email found."
+ },
+ {
+  "name": "Smiths Handy Solutions LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "FB page, Nextdoor page, and FB intro post checked; phone 864-626-2920 only, no email published."
+ },
+ {
+  "name": "Studs Gutter Cleaning",
+  "email_found": "studsgutters@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on Studs Gutter FB page co-rendered with roster phone (864) 605-8457; Yelp-listed studsgutters.com does not resolve."
+ },
+ {
+  "name": "Swamp Rabbit Softwash",
+  "email_found": "Jerry@swamprabbitsoftwash.com",
+  "email_source": "nextdoor",
+  "confidence": "medium",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-630-2544 (125 Ledbetter Rd). | SUPERVISOR: business+phone confirmed via search, but email not independently re-renderable (source blocks); worker rendered on-page."
+ },
+ {
+  "name": "West Fence Company",
+  "email_found": "westfenceco@aol.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on West Fence Company FB page (Spartanburg); roster phone 864-205-7641 verified on their Nextdoor page."
+ },
+ {
+  "name": "L&C Paint and Pressure Washing LLC",
+  "email_found": null,
+  "email_source": "null",
+  "confidence": "low",
+  "notes": "Nextdoor page + for-sale listing show no email; input phone (864) 494-8411 is flagged as unattributable; no verified contact found."
+ },
+ {
+  "name": "Lees Decks and More",
+  "email_found": "detalansmith74@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-364-7316."
+ },
+ {
+  "name": "Maid Spotless",
+  "email_found": "MaidSpotless.ltd@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with roster phone (864) 705-9422."
+ },
+ {
+  "name": "Omars Tree Service",
+  "email_found": "Omartreessevice@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on Omar's tree service FB page co-rendered with roster phone (864) 775-9747 (owner Omar Pluma)."
+ },
+ {
+  "name": "Parkers Pressure Washing LLC",
+  "email_found": "parkerhyatt4790@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on Parker's Pressure Washing (Simpsonville SC) FB page co-rendered with 864-477-8630; parkerspressurewashing.com (Winston-Salem NC, parkerspressurewashing@yahoo.com) rejected as name collision."
+ },
+ {
+  "name": "Rig Line Tree Service",
+  "email_found": "Riglinetreeservice@yahoo.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with roster phone 864-247-9107."
+ },
+ {
+  "name": "Sterling Home Services LLC",
+  "email_found": "sterlinghomeservices.holly@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-361-8835 (Holly's line 864-238-7270 also on page)."
+ },
+ {
+  "name": "Superior Fix",
+  "email_found": "Agilstr21@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-772-7216 (Anderson SC)."
+ },
+ {
+  "name": "The Pack Landscaping and Lawn Care",
+  "email_found": "thepack864@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with 864-504-7174; also in Nextdoor snippet."
+ },
+ {
+  "name": "Turners Touch Detailing & Pressure Washing",
+  "email_found": "Jason.turnerstouch@gmail.com",
+  "email_source": "facebook",
+  "confidence": "high",
+  "notes": "Email on FB page co-rendered with roster phone (864) 551-3972 (owner Jason Turner)."
+ },
+ {
+  "name": "Wilkins Lawn Services LLC",
+  "email_found": "Wilkinslawnservices@gmail.com",
+  "email_source": "nextdoor",
+  "confidence": "high",
+  "notes": "Business email link on Nextdoor page co-rendered with roster phone 864-431-6057."
+ }
+]

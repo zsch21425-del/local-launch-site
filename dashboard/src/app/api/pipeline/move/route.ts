@@ -5,7 +5,7 @@ import { isRequestAuthed } from "@/lib/session";
 // Runtime stage set — MUST match the StageId union in src/lib/data.ts.
 // `sale` is the current closed-won stage; legacy `won`/`lost` are no longer
 // accepted on new writes (H04). Existing records are left as-is (no migration).
-const VALID_STAGES = ["prospect", "audit", "pitch", "contacted", "response", "sale", "build-launch"];
+const VALID_STAGES = ["prospect", "audit", "pitch", "quality-check", "approval", "outreach", "follow-up", "sale", "build-launch"];
 
 /**
  * POST /api/pipeline/move — move a company to another stage on the kanban.

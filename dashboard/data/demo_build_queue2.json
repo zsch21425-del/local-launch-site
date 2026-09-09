@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Leo's Pro Line Painting LLC",
+    "category": "Painting",
+    "location": "Travelers Rest / Easley, SC",
+    "phone": "(864) 325-6313",
+    "email": "Leosproline@gmail.com",
+    "id": "leos-pro-line-painting"
+  },
+  {
+    "name": "Cleaning Angels",
+    "category": "House Cleaning",
+    "location": "Fountain Inn, SC",
+    "phone": "(864) 404-9955",
+    "email": "Ericagraysonwilson@icloud.com",
+    "id": "cleaning-angels"
+  },
+  {
+    "name": "Taylor's Tree Service",
+    "category": "Tree Service",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 585-5381",
+    "email": "penny@taylorstreeservices.com",
+    "id": "taylor-s-tree-service"
+  },
+  {
+    "name": "Gray Wolf Concrete & Construction",
+    "category": "Concrete & Construction",
+    "location": "Greer, SC",
+    "phone": "(864) 906-1914",
+    "email": "graywolfconcrete@gmail.com",
+    "id": "gray-wolf"
+  },
+  {
+    "name": "L And P Lawncare And Landscaping",
+    "category": "Lawn care / landscaping",
+    "location": "Spartanburg, SC",
+    "phone": "(864) 612-3912",
+    "email": "LandPofSC@gmail.com",
+    "id": "l-and-p-lawncare"
+  },
+  {
+    "name": "Joshua Truitt Handyman",
+    "category": "Handyman (door replacement, gutter service, auto mechanic adjacent)",
+    "location": "Fountain Inn, SC",
+    "phone": "(864) 601-0891",
+    "email": "joshuatruitt602@gmail.com",
+    "id": "joshua-truitt-handyman"
+  },
+  {
+    "name": "Cedar Guy Tree Service",
+    "category": "Tree removal, limb pruning, arborist, emergency tree work, storm cleanup (24/7)",
+    "location": "Travelers Rest, SC 29690 (State Park Road)",
+    "phone": "(864) 906-0183",
+    "email": "customcedarguy@gmail.com",
+    "id": "cedar-guy-tree-service"
+  },
+  {
+    "name": "Marshall Cleaning",
+    "category": "Cleaning service (residential/commercial, family-owned)",
+    "location": "Simpsonville, SC",
+    "phone": "(864) 417-9750",
+    "email": "MarshallCleanings@gmail.com",
+    "id": "marshall-cleaning"
+  },
+  {
+    "name": "PVP Home Services LLC",
+    "category": "Handyman (indoor + outdoor home repairs, TV mounts, ceiling fans, wall repair, water-damage fixes)",
+    "location": "Simpsonville, SC",
+    "phone": "(864) 606-9777",
+    "email": "pvphomeservices@gmail.com",
+    "id": "pvp-home-services-llc"
+  },
+  {
+    "name": "Simpsonville Cleaning Authority",
+    "category": "House cleaning (customized cleaning, shed/organization services)",
+    "location": "Simpsonville, SC",
+    "phone": "(864) 735-6183 \u26a0\ufe0f verify \u2014 also seen (864) 214-6235 in group posts; confirm which is current",
+    "email": "simpsonvillecleaningauthority@gmail.com",
+    "id": "simpsonville-cleaning-authority"
+  }
+]

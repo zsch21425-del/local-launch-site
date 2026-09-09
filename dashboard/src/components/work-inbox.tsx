@@ -23,28 +23,27 @@ const STAGE_ORDER = [
   "prospect",
   "audit",
   "pitch",
-  "contacted",
-  "response",
+  "quality-check",
+  "approval",
+  "outreach",
+  "follow-up",
   "sale",
   "build-launch",
 ] as const;
 
 const STAGE_LABEL: Record<string, string> = {
-  prospect: "Prospect",
+  prospect: "Prospects",
   audit: "Audit",
   pitch: "Pitch",
-  contacted: "Contacted",
-  response: "Response",
+  "quality-check": "Quality check",
+  approval: "Approval",
+  outreach: "Outreach",
+  "follow-up": "Follow up",
   sale: "Sale",
   "build-launch": "Clients",
 };
 
 function stageBoardHref(id: string) {
-  // Deep-link home board focus
-  if (id === "build-launch") return "/?stage=build-launch#pipeline";
-  if (id === "pitch") return "/?stage=pitch#pipeline";
-  if (id === "contacted" || id === "response") return `/?stage=${id}#pipeline`;
-  if (id === "prospect" || id === "audit") return `/?stage=${id}#pipeline`;
   return `/?stage=${id}#pipeline`;
 }
 
@@ -78,14 +77,22 @@ export function WorkInboxPanel({ inbox }: { inbox: WorkInbox }) {
             const n = inbox.stageCounts[id] || 0;
             const theme = stageTheme(
               id === "build-launch"
-                ? "green"
-                : id === "pitch"
-                  ? "amber"
-                  : id === "contacted"
-                    ? "violet"
-                    : id === "audit"
-                      ? "blue"
-                      : "slate",
+                ? "cyan"
+                : id === "sale"
+                  ? "green"
+                  : id === "pitch"
+                    ? "amber"
+                    : id === "quality-check"
+                      ? "violet"
+                      : id === "approval"
+                        ? "sky"
+                        : id === "outreach"
+                          ? "emerald"
+                          : id === "follow-up"
+                            ? "orange"
+                            : id === "audit"
+                              ? "blue"
+                              : "slate",
             );
             return (
               <Link

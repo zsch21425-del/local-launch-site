@@ -2,26 +2,37 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { ArrowRight, ChevronRight, Rocket, Search, Sparkles } from "lucide-react";
+import { ChevronRight, Rocket, Search, Sparkles } from "lucide-react";
 
 import { PageHero } from "@/components/page-hero";
 import { PriorityBadge } from "@/components/priority-badge";
-import { resolveDemoUrl, type Company } from "@/lib/data";
+import type { Company, Stage } from "@/lib/data";
 import { priorityWeight } from "@/lib/stages";
 import { glassCard } from "@/lib/ui";
 
+/** Funnel order — used to compute "the next stage" for any given stage. */
+const FUNNEL_ORDER = [
+  "prospect",
+  "audit",
+  "pitch",
+  "quality-check",
+  "approval",
+  "outreach",
+  "follow-up",
+];
+
 /**
- * Next Batch — the launchpad, not an approvals desk. Pick which fresh
- * prospects move into demo + pitch creation. Ordered by recommendation
- * (priority first), select a batch, start them all in one shot.
+ * Next Batch — move a batch of companies from one stage to the next. Pick the
+ * source stage, select N (or your own), and advance them one step.
  */
 export default function NextBatchPage() {
   const [companies, setCompanies] = useState<Company[]>([]);
+  const [stages, setStages] = useState<Stage[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  const [fromStage, setFromStage] = useState<string>("prospect");
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [startedIds, setStartedIds] = useState<Set<string>>(new Set());
   const [batchLoading, setBatchLoading] = useState(false);
   const [batchError, setBatchError] = useState<string | null>(null);
   const [batchDone, setBatchDone] = useState<string | null>(null);
@@ -32,6 +43,7 @@ export default function NextBatchPage() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       setCompanies(data.companies ?? []);
+      if (Array.isArray(data.stages) && data.stages.length) setStages(data.stages);
       setError(null);
     } catch {
       setError("Could not load pipeline data. Check your connection and refresh.");
@@ -44,9 +56,13 @@ export default function NextBatchPage() {
     load();
   }, [load]);
 
-  // Candidates: fresh prospects (untouched stage, no demo, no pitch yet).
+  const funnelStages = stages.filter((s) => FUNNEL_ORDER.includes(s.id));
+  const fromIdx = FUNNEL_ORDER.indexOf(fromStage);
+  const nextStageId = FUNNEL_ORDER[fromIdx + 1] ?? null;
+  const nextStage = stages.find((s) => s.id === nextStageId);
+
   const candidates = companies
-    .filter((c) => c.stage === "prospect" && !resolveDemoUrl(c) && !c.pitchDraft)
+    .filter((c) => c.stage === fromStage)
     .filter((c) => {
       if (!query.trim()) return true;
       const q = query.toLowerCase();
@@ -73,8 +89,8 @@ export default function NextBatchPage() {
     setSelected(new Set(candidates.slice(0, n).map((c) => c.id)));
   }
 
-  /** Move each selected prospect into the pipeline: request a demo build, then advance to audit. */
   async function startBatch(ids: string[]) {
+    if (!nextStageId) return;
     setBatchLoading(true);
     setBatchError(null);
     setBatchDone(null);
@@ -84,37 +100,25 @@ export default function NextBatchPage() {
       const company = candidates.find((c) => c.id === id);
       const label = company?.name ?? id;
       try {
-        const demoRes = await fetch("/api/pipeline/build-demo", {
+        const res = await fetch("/api/pipeline/move", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ companyId: id }),
+          body: JSON.stringify({ companyId: id, stage: nextStageId }),
         });
-        const demoJson = await demoRes.json().catch(() => ({}));
-        if (!demoRes.ok || !demoJson.ok) {
-          throw new Error(demoJson.error || `demo build HTTP ${demoRes.status}`);
-        }
-        const moveRes = await fetch("/api/pipeline/move", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ companyId: id, stage: "audit" }),
-        });
-        const moveJson = await moveRes.json().catch(() => ({}));
-        if (!moveRes.ok || !moveJson.ok) {
-          throw new Error(moveJson.error || `move HTTP ${moveRes.status}`);
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || !json.ok) {
+          throw new Error(json.error || `move HTTP ${res.status}`);
         }
         ok += 1;
-        setStartedIds((prev) => new Set([...prev, id]));
       } catch (e) {
-        failures.push(
-          `${label} (${e instanceof Error ? e.message : "unknown error"})`,
-        );
+        failures.push(`${label} (${e instanceof Error ? e.message : "unknown"})`);
       }
     }
     setSelected(new Set());
     if (failures.length) {
-      setBatchError(`${ok} started · ${failures.length} failed: ${failures.join("; ")}`);
+      setBatchError(`${ok} moved · ${failures.length} failed: ${failures.join("; ")}`);
     } else {
-      setBatchDone(`${ok} prospect${ok === 1 ? "" : "s"} moved into demo + pitch.`);
+      setBatchDone(`${ok} moved → ${nextStage?.label ?? nextStageId}.`);
     }
     setBatchLoading(false);
     await load();
@@ -126,7 +130,7 @@ export default function NextBatchPage() {
         image="/art/prospect.png"
         eyebrow="the launchpad"
         title="Next Batch"
-        subtitle="Pick the prospects to move into demo + pitch, ordered by recommendation. Start them in one shot."
+        subtitle="Move a batch of companies from one stage to the next."
         backHref="/"
         backLabel="Back to pipeline"
       />
@@ -143,18 +147,51 @@ export default function NextBatchPage() {
           </div>
         ) : loading ? (
           <div className={`${glassCard} py-16 text-center`}>
-            <p className="text-sm text-muted-foreground">Loading prospects…</p>
+            <p className="text-sm text-muted-foreground">Loading pipeline…</p>
           </div>
         ) : (
           <>
-            {/* Controls */}
+            {/* Source stage selector */}
+            <div className="flex flex-col gap-3">
+              <label className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                Move from
+              </label>
+              <div className="flex flex-wrap gap-1.5">
+                {funnelStages.map((s) => {
+                  const count = companies.filter((c) => c.stage === s.id).length;
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => {
+                        setFromStage(s.id);
+                        setSelected(new Set());
+                      }}
+                      className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
+                        fromStage === s.id
+                          ? "bg-primary text-white"
+                          : "bg-muted text-muted-foreground hover:bg-muted"
+                      }`}
+                    >
+                      {s.label} {count}
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {nextStage
+                  ? `${fromStage === "prospect" ? "Prospects" : stages.find((s) => s.id === fromStage)?.label} → ${nextStage.label}`
+                  : "This is the last funnel stage — nothing to advance to."}
+              </p>
+            </div>
+
+            {/* Search + select */}
             <div className="flex flex-col gap-3">
               <div className="relative">
                 <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search prospects by name, category, or location…"
+                  placeholder="Search by name, category, or location…"
                   className="w-full rounded-lg border border-border bg-card py-2 pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
                 />
               </div>
@@ -187,8 +224,8 @@ export default function NextBatchPage() {
               </div>
             </div>
 
-            {/* Batch action bar */}
-            {selected.size > 0 ? (
+            {/* Batch action */}
+            {selected.size > 0 && nextStageId ? (
               <div className="flex flex-wrap items-center gap-3 rounded-xl border border-primary bg-primary/10 px-4 py-3">
                 <Sparkles className="size-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
@@ -201,7 +238,9 @@ export default function NextBatchPage() {
                   className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-[0_0_24px_-8px_rgba(139,92,246,0.7)] transition-all hover:shadow-[0_0_32px_-6px_rgba(139,92,246,0.9)] disabled:opacity-50"
                 >
                   <Rocket className="size-3.5" />
-                  {batchLoading ? "Starting…" : `Start ${selected.size} → demo + pitch`}
+                  {batchLoading
+                    ? "Moving…"
+                    : `Move ${selected.size} → ${nextStage?.label ?? nextStageId}`}
                 </button>
               </div>
             ) : null}
@@ -221,7 +260,7 @@ export default function NextBatchPage() {
             {candidates.length === 0 ? (
               <div className={`${glassCard} py-16 text-center`}>
                 <p className="text-lg font-medium text-muted-foreground">
-                  No fresh prospects waiting. Every prospect is already in motion.
+                  No companies in this stage.
                 </p>
                 <Link href="/pipeline" className="mt-2 inline-block text-sm text-primary hover:underline">
                   Open the pipeline →
@@ -232,17 +271,14 @@ export default function NextBatchPage() {
                 {candidates.map((c, i) => (
                   <div
                     key={c.id}
-                    className={`${glassCard} ${selected.has(c.id) ? "ring-2 ring-ring/60" : ""} ${
-                      startedIds.has(c.id) ? "opacity-60" : ""
-                    }`}
+                    className={`${glassCard} ${selected.has(c.id) ? "ring-2 ring-ring/60" : ""}`}
                   >
                     <div className="flex items-center gap-3 p-4">
                       <input
                         type="checkbox"
                         checked={selected.has(c.id)}
                         onChange={() => toggleSelect(c.id)}
-                        disabled={startedIds.has(c.id)}
-                        aria-label={`Select ${c.name} for the next batch`}
+                        aria-label={`Select ${c.name} to advance`}
                         className="size-4 shrink-0 accent-primary"
                       />
                       <span className="w-6 shrink-0 text-center font-display text-sm text-muted-foreground tabular-nums">
@@ -258,9 +294,6 @@ export default function NextBatchPage() {
                         <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                           <span>{c.category}</span>
                           <span>{c.location}</span>
-                          {startedIds.has(c.id) ? (
-                            <span className="text-emerald-200">✓ started</span>
-                          ) : null}
                         </div>
                       </div>
                       <div className="flex shrink-0 items-center gap-2">
@@ -272,12 +305,6 @@ export default function NextBatchPage() {
                 ))}
               </div>
             )}
-
-            {/* Quiet footer */}
-            <p className="border-t border-border pt-6 text-center text-xs text-muted-foreground">
-              Starting a batch requests a demo build and moves the prospect into
-              the audit stage — the agent takes it from there.
-            </p>
           </>
         )}
       </div>

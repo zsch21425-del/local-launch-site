@@ -9,12 +9,13 @@ import { hasReviewablePitch, type Company, type StageId } from "@/lib/data";
 import { stageIcon } from "@/lib/stages";
 
 function nextAction(c: Company): string {
-  if (hasReviewablePitch(c)) return "Review pitch";
-  if (c.demoUrl || c.demo?.url) return "Review demo";
   if (c.stage === "prospect") return "Begin audit";
   if (c.stage === "audit") return "Finish audit";
-  if (c.stage === "contacted") return "Follow up";
-  if (c.stage === "response") return "Close";
+  if (c.stage === "pitch") return "Build demo + pitch";
+  if (c.stage === "quality-check") return "Quality check";
+  if (c.stage === "approval") return "Approve";
+  if (c.stage === "outreach") return "Contact";
+  if (c.stage === "follow-up") return "Follow up";
   return "Continue";
 }
 

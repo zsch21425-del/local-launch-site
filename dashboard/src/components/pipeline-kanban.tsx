@@ -32,7 +32,7 @@ function matchesRegion(company: Company, region: RegionFilter): boolean {
  *   (out-of-state + unknown location) is one click away, not the daily view.
  * - All: full kanban for the active territory. One stage: that column wide +
  *   other stages as slim drop targets (so drag-out still works).
- * Deep-link: ?stage=contacted&region=all or #stage=contacted
+ * Deep-link: ?stage=outreach&region=all or #stage=outreach
  */
 export function PipelineKanban({
   stages,

@@ -22,7 +22,7 @@ export default function HomePage() {
   ).length;
   const demoCount = companies.filter((c) => resolveDemoUrl(c)).length;
   const active = companies.filter((c) =>
-    ["audit", "pitch", "contacted", "response"].includes(c.stage),
+    ["audit", "pitch", "quality-check", "approval", "outreach", "follow-up"].includes(c.stage),
   ).length;
 
   const stageGroups = stages
