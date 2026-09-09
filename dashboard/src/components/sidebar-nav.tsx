@@ -9,6 +9,7 @@ import {
   ChevronRight,
   ClipboardCheck,
   Cpu,
+  Home,
   KanbanSquare,
   Menu,
   MonitorPlay,
@@ -31,7 +32,8 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { href: "/", label: "Pipeline", icon: KanbanSquare },
+  { href: "/", label: "Home", icon: Home },
+  { href: "/pipeline", label: "Pipeline", icon: KanbanSquare },
   { href: "/fleet", label: "Fleet", icon: Cpu },
   { href: "/leads", label: "Leads", icon: Radar },
   { href: "/clients", label: "Clients", icon: Users },

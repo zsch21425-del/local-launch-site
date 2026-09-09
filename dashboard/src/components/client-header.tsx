@@ -17,7 +17,7 @@ export function ClientHeader({
   return (
     <div className="flex flex-col gap-4">
       <Link
-        href="/"
+        href="/pipeline"
         className="group -ml-2 inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />

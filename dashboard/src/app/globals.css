@@ -101,6 +101,16 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* Cinematic display + editorial serif for flagship headlines. */
+  .font-display {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+  }
+  .font-serif {
+    font-family: var(--font-serif), Georgia, serif;
+  }
+
   /*
    * Consistent keyboard focus across every interactive element — an evergreen
    * ring in the brand primary. Components that set their own `focus-visible:ring-*`

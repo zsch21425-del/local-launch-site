@@ -1,202 +1,238 @@
 "use client";
 
+import Link from "next/link";
 import * as React from "react";
+import { ArrowRight, ArrowUpRight, Globe, Layers, ShieldCheck } from "lucide-react";
 
-import { MotionBackground } from "@/components/motion-background";
-import { PipelineKanban } from "@/components/pipeline-kanban";
-import { StatsBar } from "@/components/stats-bar";
-import { WorkInboxPanel } from "@/components/work-inbox";
-import { usePipeline, invalidatePipeline } from "@/hooks/use-pipeline";
-import {
-  getStats,
-  getWorkInbox,
-  type StageId,
-} from "@/lib/data";
+import { usePipeline } from "@/hooks/use-pipeline";
+import { hasReviewablePitch, type Company } from "@/lib/data";
+import { stageIcon } from "@/lib/stages";
 import { cn } from "@/lib/utils";
 
+/** A prospect's next concrete action, right-aligned in the index. */
+function nextAction(c: Company): string {
+  if (hasReviewablePitch(c)) return "Review pitch";
+  if (c.demoUrl || c.demo?.url) return "Review demo";
+  if (c.stage === "prospect") return "Begin audit";
+  if (c.stage === "audit") return "Finish audit";
+  if (c.stage === "contacted") return "Follow up";
+  if (c.stage === "response") return "Close";
+  return "Continue";
+}
+
 /**
- * Home = operational command center.
- * 1) Honest stage funnel + action buckets
- * 2) Kanban board for drag-move (still live Blob)
- * Removed: vanity revenue strip, playbook % noise, inflated email backlog.
+ * Home — a flagship entry, not a dashboard. A cinematic hero sells the product;
+ * three unequal chapters route to the real work. Prospects are an index of
+ * names, not a wall of cards.
  */
 export default function HomePage() {
-  const { companies, stages, agency, loading, error, lastSync, reload, setCompanies } =
-    usePipeline();
-  const [moveError, setMoveError] = React.useState<string | null>(null);
-  const [showBoard, setShowBoard] = React.useState(true);
+  const { companies, stages, agency, loading } = usePipeline();
 
-  async function handleMove(companyId: string, stage: StageId, index: number) {
-    setCompanies((prev) => {
-      const next = prev.map((c) =>
-        c.id === companyId ? { ...c, stage } : c,
-      );
-      const inStage = next.filter((c) => c.stage === stage);
-      const moved = inStage.find((c) => c.id === companyId);
-      if (!moved) return next;
-      const others = inStage.filter((c) => c.id !== companyId);
-      others.splice(index, 0, moved);
-      return next.map((c) => (c.stage === stage ? (others.shift() ?? c) : c));
-    });
-
-    try {
-      const res = await fetch("/api/pipeline/move", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ companyId, stage }),
-      });
-      if (!res.ok) {
-        const msg = (
-          await res.json().catch(() => ({ error: `HTTP ${res.status}` }))
-        ).error;
-        throw new Error(msg || `HTTP ${res.status}`);
-      }
-      // Reconcile the shared cache to the server so nav badges / other views
-      // reflect the move too (M16), not just this component's optimistic state.
-      void invalidatePipeline();
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : "Failed to move card";
-      await reload();
-      setMoveError(msg);
-    }
-  }
-
-  const stats = getStats(companies);
-  const inbox = getWorkInbox(companies);
+  const pending = companies.filter(
+    (c) => hasReviewablePitch(c) || (c.demoUrl || c.demo?.url),
+  );
+  const demos = companies.filter((c) => c.demoUrl || c.demo?.url).slice(0, 4);
+  const stageGroups = stages
+    .map((s) => ({
+      stage: s,
+      companies: companies.filter((c) => c.stage === s.id),
+    }))
+    .filter((g) => g.companies.length > 0);
 
   return (
-    <>
-      <MotionBackground />
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-        <section className="flex flex-col gap-2">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                {agency.name} Ops
-              </h1>
-              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-                Accurate pipeline position + what to do next. Not a vanity dump.
-              </p>
-            </div>
-            <AgentLinkChip />
-          </div>
-          {loading ? (
-            <p className="text-xs text-muted-foreground">Loading live pipeline…</p>
-          ) : null}
-          {error ? (
-            <p className="text-sm text-destructive">
-              Could not load live pipeline: {error}
-              {lastSync
-                ? ` — showing last-known data from ${new Date(lastSync).toLocaleTimeString()}`
-                : ""}
-            </p>
-          ) : null}
-          {!loading && !error && lastSync ? (
-            <p className="text-xs text-muted-foreground">
-              Live pipeline · synced {new Date(lastSync).toLocaleTimeString()}
-            </p>
-          ) : null}
-        </section>
-
-        <section id="pipeline" className="flex flex-col gap-3">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-lg font-semibold text-foreground">
-              Board (drag to move stage)
-            </h2>
-            <button
-              type="button"
-              onClick={() => setShowBoard((v) => !v)}
-              className="text-xs font-medium text-primary hover:underline"
-            >
-              {showBoard ? "Hide board" : "Show board"}
-            </button>
-          </div>
-          {moveError ? (
-            <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
-              Could not save that move: {moveError}. Reloaded live state.
-            </p>
-          ) : null}
-          {showBoard ? (
-            <PipelineKanban
-              stages={stages}
-              companies={companies}
-              onMove={handleMove}
-            />
-          ) : null}
-        </section>
-
-        <StatsBar
-          stats={stats}
-          ops={{
-            sendNow: inbox.sendNow,
-            awaitingReply: inbox.awaitingReply,
-            clients: inbox.clients,
-            inReview: inbox.inReview,
-            sentUnverified: inbox.sentUnverified,
-            sentBounced: inbox.sentBounced,
-            bounceRisk: inbox.bounceRisk,
-          }}
+    <div className="relative z-10">
+      {/* ---------------------------------------------------------- HERO --- */}
+      <section className="relative flex min-h-[68vh] items-end overflow-hidden">
+        <img
+          src="/art/hero.png"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover object-[68%_center]"
         />
+        {/* Localized scrims — text sits on the dark left edge, art flows right. */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/5" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/35 to-transparent" />
 
-        <WorkInboxPanel inbox={inbox} />
+        <div className="relative mx-auto w-full max-w-[1440px] px-6 pb-16 pt-32 md:px-20 md:pb-24">
+          <p className="font-serif text-lg italic text-cyan-300/90 md:text-xl">
+            the agency, in motion
+          </p>
+          <h1 className="font-display mt-4 max-w-4xl text-5xl font-medium text-foreground sm:text-6xl md:text-7xl lg:text-[88px]">
+            Every client.
+            <br />
+            One elegant view.
+          </h1>
+          <p className="mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
+            Prospects, approvals, and demos — orchestrated on a surface built to
+            feel like a flagship product, not a spreadsheet.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Link
+              href="/pipeline"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-cyan-300"
+            >
+              Enter the pipeline
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href="/approvals"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ShieldCheck className="size-4" />
+              {pending.length} decision{pending.length === 1 ? "" : "s"} need you
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------ CHAPTERS --- */}
+      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-20">
+        {/* Chapter 1 — Move work forward */}
+        <Chapter label="01" title="Move work forward">
+          <Link
+            href="/approvals"
+            className="group flex flex-col gap-3 border-b border-border py-8 transition-colors md:flex-row md:items-end md:justify-between"
+          >
+            <div>
+              <p className="font-serif text-lg italic text-muted-foreground">
+                Decisions that are waiting on you
+              </p>
+              <h3 className="font-display mt-2 text-3xl text-foreground md:text-5xl">
+                {loading ? "…" : pending.length} approval{pending.length === 1 ? "" : "s"}
+              </h3>
+            </div>
+            <span className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground">
+              Review now
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </Link>
+        </Chapter>
+
+        {/* Chapter 2 — Build the next client (prospects as an index) */}
+        <Chapter label="02" title="Build the next client">
+          <div className="mb-8 flex items-center justify-between">
+            <p className="max-w-md text-sm text-muted-foreground">
+              {companies.length} prospects across the pipeline, ordered by stage.
+            </p>
+            <Link
+              href="/pipeline"
+              className="inline-flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Open board <ArrowUpRight className="size-3.5" />
+            </Link>
+          </div>
+
+          <div className="flex flex-col gap-10">
+            {stageGroups.map(({ stage, companies: group }, i) => {
+              const Icon = stageIcon(stage.icon);
+              return (
+                <section key={stage.id}>
+                  <div className="flex items-baseline gap-3 border-b border-border pb-2">
+                    <span className="font-display text-sm text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex items-center gap-1.5 text-base text-foreground">
+                      <Icon className="size-3.5" />
+                      {stage.label}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {group.length}
+                    </span>
+                  </div>
+                  <ul className="flex flex-col">
+                    {group.map((c) => (
+                      <li key={c.id}>
+                        <Link
+                          href={`/client/${c.id}`}
+                          className="group flex items-center justify-between gap-4 border-b border-border/70 py-4 transition-colors"
+                        >
+                          <span className="font-display text-2xl text-foreground decoration-cyan-400/40 underline-offset-4 group-hover:underline md:text-[28px]">
+                            {c.name}
+                          </span>
+                          <span className="flex shrink-0 items-center gap-3 text-sm text-muted-foreground">
+                            <span className="hidden sm:inline">{c.location}</span>
+                            <span className="tabular-nums text-muted-foreground/80">
+                              {nextAction(c)}
+                            </span>
+                            <ArrowRight className="size-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              );
+            })}
+          </div>
+        </Chapter>
+
+        {/* Chapter 3 — See what we can make */}
+        <Chapter label="03" title="See what we can make">
+          {demos.length > 0 ? (
+            <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
+              {demos.map((c) => (
+                <a
+                  key={c.id}
+                  href={c.demoUrl || c.demo?.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex min-h-[160px] flex-col justify-between gap-4 bg-card p-6 transition-colors hover:bg-cyan-400/5"
+                >
+                  <div className="flex items-center justify-between">
+                    <Globe className="size-4 text-muted-foreground" />
+                    <ArrowUpRight className="size-4 text-muted-foreground transition-colors group-hover:text-foreground" />
+                  </div>
+                  <div>
+                    <h4 className="font-display text-xl text-foreground">{c.name}</h4>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {c.category ?? "Client site"} · {c.location}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p className="border-b border-border py-8 text-sm text-muted-foreground">
+              No live demos yet — approve a build and it lands here.
+            </p>
+          )}
+        </Chapter>
+
+        {/* Quiet utility footer */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border py-10">
+          <p className="text-sm text-muted-foreground">
+            {agency.name} — {agency.tagline}
+          </p>
+          <Link
+            href="/reports"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <Layers className="size-3.5" /> Reports
+          </Link>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
-function AgentLinkChip() {
-  const [connected, setConnected] = React.useState<boolean | null>(null);
-
-  React.useEffect(() => {
-    let cancelled = false;
-    async function probe() {
-      try {
-        const res = await fetch("/api/agent/chat?health=1", {
-          signal: AbortSignal.timeout(28000),
-        });
-        const data = (await res.json()) as { connected?: boolean };
-        if (!cancelled) setConnected(Boolean(data.connected));
-      } catch {
-        if (!cancelled) setConnected(false);
-      }
-    }
-    void probe();
-    const t = setInterval(probe, 60_000);
-    return () => {
-      cancelled = true;
-      clearInterval(t);
-    };
-  }, []);
-
-  const label =
-    connected === null
-      ? "Checking agent…"
-      : connected
-        ? "Agent connected"
-        : "Agent offline";
-
+function Chapter({
+  label,
+  title,
+  children,
+}: {
+  label: string;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ring-1",
-        connected === null
-          ? "bg-muted text-muted-foreground ring-border"
-          : connected
-            ? "bg-primary/10 text-primary ring-ring"
-            : "bg-destructive/10 text-destructive ring-destructive",
-      )}
-    >
-      <span
-        className={cn(
-          "size-1.5 rounded-full",
-          connected === null
-            ? "animate-pulse bg-muted-foreground"
-            : connected
-              ? "bg-primary"
-              : "bg-destructive",
-        )}
-      />
-      {label}
-    </span>
+    <section className="pt-20 md:pt-28">
+      <div className="mb-10 flex items-baseline gap-4">
+        <span className="font-display text-sm text-muted-foreground">{label}</span>
+        <h2 className="font-display text-2xl font-medium text-foreground md:text-4xl">
+          {title}
+        </h2>
+      </div>
+      {children}
+    </section>
   );
 }

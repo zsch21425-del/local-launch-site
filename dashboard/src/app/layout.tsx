@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
 
 import { AppChrome } from "@/components/app-chrome";
 import { getAgency } from "@/lib/data";
@@ -17,6 +17,20 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 const agency = getAgency();
 
 export const metadata: Metadata = {
@@ -30,7 +44,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full bg-background font-sans text-foreground">
         <AppChrome>{children}</AppChrome>
       </body>
