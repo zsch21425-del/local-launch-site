@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import * as React from "react";
-import { Activity, ArrowRight, ArrowUpRight, Globe, Layers, ShieldCheck, Users } from "lucide-react";
+import { Activity, ArrowRight, ArrowUpRight, Globe, Layers, Rocket, Users } from "lucide-react";
 
 import { usePipeline } from "@/hooks/use-pipeline";
-import { hasReviewablePitch, type Company } from "@/lib/data";
+import { hasReviewablePitch, resolveDemoUrl, type Company } from "@/lib/data";
 import { stageIcon } from "@/lib/stages";
 import { cn } from "@/lib/utils";
 import { MetricCard } from "@/components/metric-card";
@@ -29,9 +29,9 @@ function nextAction(c: Company): string {
 export default function HomePage() {
   const { companies, stages, agency, loading } = usePipeline();
 
-  const pending = companies.filter(
-    (c) => hasReviewablePitch(c) || (c.demoUrl || c.demo?.url),
-  );
+  const batchReady = companies.filter(
+    (c) => c.stage === "prospect" && !resolveDemoUrl(c) && !c.pitchDraft,
+  ).length;
   const demos = companies.filter((c) => c.demoUrl || c.demo?.url).slice(0, 4);
   const demoCount = companies.filter((c) => c.demoUrl || c.demo?.url).length;
   const active = companies.filter((c) =>
@@ -83,8 +83,8 @@ export default function HomePage() {
               href="/approvals"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              <ShieldCheck className="size-4" />
-              {pending.length} decision{pending.length === 1 ? "" : "s"} need you
+              <Rocket className="size-4" />
+              {batchReady} prospect{batchReady === 1 ? "" : "s"} ready to start
             </Link>
           </div>
         </div>
@@ -111,10 +111,10 @@ export default function HomePage() {
             progress={companies.length ? Math.round((active / companies.length) * 100) : 0}
           />
           <MetricCard
-            label="Approvals"
-            value={String(pending.length)}
-            note="need your decision"
-            icon={ShieldCheck}
+            label="Next batch"
+            value={String(batchReady)}
+            note="ready to start"
+            icon={Rocket}
             tone="teal"
             progress={100}
           />
@@ -128,22 +128,22 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Chapter 1 — Move work forward */}
-        <Chapter label="01" title="Move work forward">
+        {/* Chapter 1 — Start the next batch */}
+        <Chapter label="01" title="Start the next batch">
           <Link
             href="/approvals"
             className="group flex flex-col gap-3 border-b border-border py-8 transition-colors md:flex-row md:items-end md:justify-between"
           >
             <div>
               <p className="font-serif text-lg italic text-muted-foreground">
-                Decisions that are waiting on you
+                Prospects ready to move into demo + pitch
               </p>
               <h3 className="font-display mt-2 text-3xl text-foreground md:text-5xl">
-                {loading ? "…" : pending.length} approval{pending.length === 1 ? "" : "s"}
+                {loading ? "…" : batchReady} prospect{batchReady === 1 ? "" : "s"}
               </h3>
             </div>
             <span className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors group-hover:text-foreground">
-              Review now
+              Start a batch
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </span>
           </Link>

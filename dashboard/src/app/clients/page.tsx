@@ -67,7 +67,7 @@ export default function ClientsPage() {
               {loading ? "Loading clients…" : "No won / in-build clients yet"}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              Prospects stay on Leads until they close. Check the pipeline or Approvals.
+              Prospects stay on Leads until they close. Check the pipeline or Next Batch.
             </p>
           </div>
         ) : query.trim() && companies.length === 0 ? (

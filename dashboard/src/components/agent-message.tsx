@@ -24,7 +24,7 @@ export function AgentMessage({
         className={cn(
           "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed break-words",
           isUser
-            ? "bg-foreground text-white"
+            ? "bg-foreground text-background"
             : "border border-primary/20 bg-primary/[0.06] text-foreground",
         )}
       >

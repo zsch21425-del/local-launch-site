@@ -565,14 +565,14 @@ function DemoCard({
   }
 
   const badge = isDeadLetter
-    ? { label: "Dead-letter", cls: "bg-red-100 text-red-300" }
+    ? { label: "Dead-letter", cls: "bg-red-500/15 text-red-200" }
     : isVerifying
-      ? { label: "Verifying · QA", cls: "bg-amber-100 text-amber-300" }
+      ? { label: "Verifying · QA", cls: "bg-amber-500/15 text-amber-200" }
       : isRejected
         ? { label: "Rejected", cls: "bg-destructive/10 text-destructive" }
         : isRework
-          ? { label: "Rework", cls: "bg-violet-100 text-violet-300" }
-          : { label: "Pending", cls: "bg-sky-100 text-sky-300" };
+          ? { label: "Rework", cls: "bg-violet-500/15 text-violet-200" }
+          : { label: "Pending", cls: "bg-sky-500/15 text-sky-200" };
 
   return (
     <div

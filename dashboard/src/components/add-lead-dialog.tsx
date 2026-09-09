@@ -106,7 +106,7 @@ export function AddLeadDialog({
       }}
     >
       <DialogTrigger asChild>
-        <Button className="gap-1.5 rounded-full bg-foreground text-white shadow-sm hover:bg-foreground/90">
+        <Button className="gap-1.5 rounded-full bg-foreground text-background shadow-sm hover:bg-foreground/90">
           <Plus className="size-4" />
           Add new lead
         </Button>
@@ -224,7 +224,7 @@ export function AddLeadDialog({
             Cancel
           </Button>
           <Button
-            className="gap-1.5 rounded-full bg-foreground text-white hover:bg-foreground/90"
+            className="gap-1.5 rounded-full bg-foreground text-background hover:bg-foreground/90"
             onClick={() => void submit()}
             disabled={submitting}
           >

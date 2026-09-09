@@ -2,345 +2,29 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowRight, ChevronRight, Rocket, Search, Sparkles } from "lucide-react";
 
 import { PageHero } from "@/components/page-hero";
 import { PriorityBadge } from "@/components/priority-badge";
-import {
-  companyRegion,
-  needsPricingRewrite,
-  type RegionId,
-} from "@/lib/data";
-import type { Company } from "@/lib/data";
+import { resolveDemoUrl, type Company } from "@/lib/data";
 import { priorityWeight } from "@/lib/stages";
 import { glassCard } from "@/lib/ui";
 
-type RegionFilter = "sc" | "upstate" | "all" | "out-of-state";
-
-const REGION_LABEL: Record<RegionFilter, string> = {
-  sc: "SC focus",
-  upstate: "Upstate",
-  all: "Everywhere",
-  "out-of-state": "Expansion",
-};
-
-function matchesRegion(company: Company, region: RegionFilter): boolean {
-  if (region === "all") return true;
-  const r: RegionId = companyRegion(company);
-  if (region === "upstate") return r === "upstate";
-  if (region === "sc") return r === "upstate" || r === "sc";
-  return r === "out-of-state" || r === "unknown";
-}
-
-/** Triage order: needs-rewrite last (Supervisor batch), then priority, then confidence. */
-function triageRank(c: Company): [number, number, number] {
-  return [
-    needsPricingRewrite(c) ? 1 : 0,
-    -priorityWeight(c.priority ?? ""),
-    -(c.pitchDraft?.confidence ?? 0),
-  ];
-}
-
-/* Rejection feedback form — shown when Zach clicks Reject. */
-function RejectForm({
-  company,
-  onCancel,
-  onSubmit,
-}: {
-  company: Company;
-  onCancel: () => void;
-  onSubmit: (reason: string, suggestedFix: string) => Promise<void>;
-}) {
-  const [reason, setReason] = useState("");
-  const [suggestedFix, setSuggestedFix] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState("");
-
-  async function handle() {
-    if (!reason.trim()) {
-      setError("A reason is required so the pitch can be revised.");
-      return;
-    }
-    setSaving(true);
-    setError("");
-    try {
-      await onSubmit(reason.trim(), suggestedFix.trim());
-    } catch (e) {
-      setError(
-        e instanceof Error && e.message
-          ? e.message
-          : "Something went wrong — please try again.",
-      );
-    } finally {
-      setSaving(false);
-    }
-  }
-
-  return (
-    <div className="mt-4 rounded-lg border border-destructive bg-destructive/10 p-4">
-      <p className="mb-2 text-sm font-medium text-destructive">
-        Reject &quot;{company.name}&quot; — tell the agent what to fix
-      </p>
-      <label htmlFor="reject-reason" className="sr-only">
-        Reason for rejecting this pitch (required)
-      </label>
-      <textarea
-        id="reject-reason"
-        value={reason}
-        onChange={(e) => setReason(e.target.value)}
-        placeholder="Why are you rejecting this pitch? Be specific…"
-        rows={2}
-        aria-required
-        aria-invalid={!!error}
-        aria-describedby={error ? "reject-error" : undefined}
-        className="w-full rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-destructive"
-      />
-      <label htmlFor="reject-fix" className="sr-only">
-        Suggested fix for the agent (optional)
-      </label>
-      <textarea
-        id="reject-fix"
-        value={suggestedFix}
-        onChange={(e) => setSuggestedFix(e.target.value)}
-        placeholder="What should the agent change or add? (e.g. 'rework the headline to focus on emergency HVAC', 'quote the current offer: $599 one-time + $149/mo Care')"
-        rows={2}
-        className="mt-2 w-full rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-destructive"
-      />
-      {error ? (
-        <p id="reject-error" role="alert" className="mt-1 text-xs text-destructive">
-          {error}
-        </p>
-      ) : null}
-      <div className="mt-3 flex items-center gap-2">
-        <button
-          type="button"
-          disabled={saving}
-          onClick={handle}
-          className="rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-destructive/90 disabled:opacity-50"
-        >
-          {saving ? "Saving…" : "Submit Rejection"}
-        </button>
-        <button
-          type="button"
-          disabled={saving}
-          onClick={onCancel}
-          className="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted disabled:opacity-50"
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function ApproveButtons({
-  company,
-  onRefresh,
-}: {
-  company: Company;
-  onRefresh: () => void;
-}) {
-  const [loading, setLoading] = useState(false);
-  const [showRejectForm, setShowRejectForm] = useState(false);
-  const [actionError, setActionError] = useState<string | null>(null);
-  const [outcome, setOutcome] = useState<string | null>(null);
-  const feedback = company.pitchDraft?.reviewFeedback;
-
-  // After a successful decision: show the server-reported outcome, then refresh
-  // the pipeline so this card falls out of the queue on its own (M07) — instead
-  // of silently yanking the card the moment the POST resolves.
-  function settle(message: string) {
-    setActionError(null);
-    setOutcome(message);
-    setTimeout(onRefresh, 1500);
-  }
-
-  async function post(payload: Record<string, unknown>): Promise<{
-    ok?: boolean;
-    error?: string;
-    relayed?: boolean;
-    relayError?: string | null;
-  }> {
-    const res = await fetch("/api/pipeline/approve", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const json = await res.json().catch(() => ({}));
-    if (!res.ok || !json?.ok) {
-      throw new Error(
-        json?.error ||
-          `Request failed (HTTP ${res.status}). Nothing was changed — try again.`,
-      );
-    }
-    return json;
-  }
-
-  async function approve() {
-    setLoading(true);
-    setActionError(null);
-    try {
-      const json = await post({ companyId: company.id, status: "zach-approved" });
-      settle(
-        json.relayed
-          ? "Approved — queued to send and the agent was notified."
-          : `Approved and saved${
-              json.relayError ? ` — agent relay lagged (${json.relayError})` : " — agent relay lagged"
-            }. The status is on the record.`,
-      );
-    } catch (e) {
-      setActionError(
-        e instanceof Error
-          ? e.message
-          : "Network error — the approval did not go through.",
-      );
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  // Throws on failure so RejectForm keeps its form open and renders the message.
-  async function reject(reason: string, suggestedFix: string) {
-    const json = await post({
-      companyId: company.id,
-      status: "rejected",
-      reason,
-      suggestedFix,
-    });
-    setShowRejectForm(false);
-    settle(
-      json.relayed
-        ? "Rejected — feedback saved and sent to the agent."
-        : "Rejected — feedback saved on the record; agent relay lagged.",
-    );
-  }
-
-  async function resubmit() {
-    setLoading(true);
-    setActionError(null);
-    try {
-      // Canonical: back into the reviewer queue (the agent revises the body).
-      const json = await post({ companyId: company.id, status: "pending-review" });
-      settle(
-        json.relayed
-          ? "Back in the review queue — the agent was notified."
-          : "Back in the review queue.",
-      );
-    } catch (e) {
-      setActionError(
-        e instanceof Error ? e.message : "Network error — try again.",
-      );
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const statusNote = actionError ? (
-    <p role="alert" className="mt-2 text-xs font-medium text-destructive">
-      {actionError}
-    </p>
-  ) : outcome ? (
-    <p role="status" aria-live="polite" className="mt-2 text-xs font-medium text-primary">
-      {outcome}
-    </p>
-  ) : null;
-
-  // If there's feedback, show it + allow re-submit.
-  if (feedback) {
-    return (
-      <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50/70 p-4">
-        <p className="text-sm font-semibold text-amber-200">Rejected — needs revision</p>
-        <p className="mt-1 text-sm text-foreground">
-          <span className="font-medium text-muted-foreground">Reason:</span> {feedback.reason}
-        </p>
-        {feedback.suggestedFix ? (
-          <p className="mt-1 text-sm text-foreground">
-            <span className="font-medium text-muted-foreground">Suggested fix:</span>{" "}
-            {feedback.suggestedFix}
-          </p>
-        ) : null}
-        <button
-          type="button"
-          disabled={loading || !!outcome}
-          onClick={resubmit}
-          className="mt-3 rounded-lg bg-amber-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-amber-600 disabled:opacity-50"
-        >
-          {loading ? "Marking…" : "Mark for re-approval"}
-        </button>
-        {statusNote}
-      </div>
-    );
-  }
-
-  return (
-    <div className="mt-4 flex flex-col gap-3">
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          disabled={loading || !!outcome}
-          onClick={approve}
-          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary/90 disabled:opacity-50"
-        >
-          {loading ? "Approving…" : "Approve"}
-        </button>
-        <button
-          type="button"
-          disabled={loading || !!outcome}
-          onClick={() => setShowRejectForm(true)}
-          className="rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-destructive/90 disabled:opacity-50"
-        >
-          Reject
-        </button>
-      </div>
-      {showRejectForm ? (
-        <RejectForm
-          company={company}
-          onCancel={() => setShowRejectForm(false)}
-          onSubmit={reject}
-        />
-      ) : null}
-      {statusNote}
-    </div>
-  );
-}
-
-export default function ApprovalsPage() {
+/**
+ * Next Batch — the launchpad, not an approvals desk. Pick which fresh
+ * prospects move into demo + pitch creation. Ordered by recommendation
+ * (priority first), select a batch, start them all in one shot.
+ */
+export default function NextBatchPage() {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [removedIds, setRemovedIds] = useState<Set<string>>(new Set());
   const [query, setQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<
-    | "all"
-    | "pending-review"
-    | "supervisor-approved"
-    | "pending-supervisor-review"
-    | "rejected"
-  >("all");
-  const [rewriteOnly, setRewriteOnly] = useState(false);
-  const [region, setRegion] = useState<RegionFilter>("sc");
-  const [highOnly, setHighOnly] = useState(false);
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [bulkLoading, setBulkLoading] = useState(false);
-  const [bulkError, setBulkError] = useState<string | null>(null);
-
-  // Deep-link: /approvals?status=supervisor-approved (from Home "Ready to send")
-  useEffect(() => {
-    try {
-      const sp = new URLSearchParams(window.location.search);
-      const s = sp.get("status");
-      if (
-        s === "pending-review" ||
-        s === "supervisor-approved" ||
-        s === "pending-supervisor-review" ||
-        s === "rejected"
-      ) {
-        setStatusFilter(s);
-      }
-    } catch {
-      /* ignore */
-    }
-  }, []);
+  const [startedIds, setStartedIds] = useState<Set<string>>(new Set());
+  const [batchLoading, setBatchLoading] = useState(false);
+  const [batchError, setBatchError] = useState<string | null>(null);
+  const [batchDone, setBatchDone] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -349,7 +33,7 @@ export default function ApprovalsPage() {
       const data = await res.json();
       setCompanies(data.companies ?? []);
       setError(null);
-    } catch (e) {
+    } catch {
       setError("Could not load pipeline data. Check your connection and refresh.");
     } finally {
       setLoading(false);
@@ -360,46 +44,21 @@ export default function ApprovalsPage() {
     load();
   }, [load]);
 
-  // Show pitches that need Zach's final review (see filter below for which statuses).
-  const queue = companies.filter((c) => {
-    const st = c.pitchDraft?.status;
-    if (!st) return false;
-    if (st === "zach-approved" || st === "sent") return false; // already decided/sent
-    return c.stage === "pitch";
-  });
-
-  const visible = queue
-    .filter((c) => !removedIds.has(c.id))
-    .filter((c) => matchesRegion(c, region))
-    .filter((c) => (statusFilter === "all" ? true : c.pitchDraft?.status === statusFilter))
-    .filter((c) => (rewriteOnly ? needsPricingRewrite(c) : true))
-    .filter((c) =>
-      highOnly
-        ? c.priority === "high" || c.priority === "medium-high"
-        : true,
-    )
+  // Candidates: fresh prospects (untouched stage, no demo, no pitch yet).
+  const candidates = companies
+    .filter((c) => c.stage === "prospect" && !resolveDemoUrl(c) && !c.pitchDraft)
     .filter((c) => {
       if (!query.trim()) return true;
       const q = query.toLowerCase();
-      return (
-        c.name.toLowerCase().includes(q) ||
-        (c.category ?? "").toLowerCase().includes(q) ||
-        (c.location ?? "").toLowerCase().includes(q)
-      );
+      return `${c.name} ${c.category ?? ""} ${c.location ?? ""}`
+        .toLowerCase()
+        .includes(q);
     })
-    .sort((a, b) => {
-      const [a0, a1, a2] = triageRank(a);
-      const [b0, b1, b2] = triageRank(b);
-      return a0 - b0 || a1 - b1 || a2 - b2;
-    });
-
-  const counts = queue.reduce<Record<string, number>>((acc, c) => {
-    const s = c.pitchDraft?.status ?? "other";
-    acc[s] = (acc[s] ?? 0) + 1;
-    return acc;
-  }, {});
-
-  const rewriteCount = queue.filter((c) => needsPricingRewrite(c)).length;
+    .sort(
+      (a, b) =>
+        priorityWeight(b.priority ?? "") - priorityWeight(a.priority ?? "") ||
+        a.name.localeCompare(b.name),
+    );
 
   function toggleSelect(id: string) {
     setSelected((prev) => {
@@ -410,46 +69,68 @@ export default function ApprovalsPage() {
     });
   }
 
-  /** Sequential bulk approve via the gated single-approve endpoint. */
-  async function bulkApprove(ids: string[]) {
-    setBulkLoading(true);
-    setBulkError(null);
-    try {
-      const done: string[] = [];
-      for (const id of ids) {
-        const res = await fetch("/api/pipeline/approve", {
+  function selectTop(n: number) {
+    setSelected(new Set(candidates.slice(0, n).map((c) => c.id)));
+  }
+
+  /** Move each selected prospect into the pipeline: request a demo build, then advance to audit. */
+  async function startBatch(ids: string[]) {
+    setBatchLoading(true);
+    setBatchError(null);
+    setBatchDone(null);
+    let ok = 0;
+    const failures: string[] = [];
+    for (const id of ids) {
+      const company = candidates.find((c) => c.id === id);
+      const label = company?.name ?? id;
+      try {
+        const demoRes = await fetch("/api/pipeline/build-demo", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ companyId: id, status: "zach-approved" }),
+          body: JSON.stringify({ companyId: id }),
         });
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok || !json.ok) {
-          throw new Error(
-            json.error || `Approve failed for ${id} (HTTP ${res.status})`,
-          );
+        const demoJson = await demoRes.json().catch(() => ({}));
+        if (!demoRes.ok || !demoJson.ok) {
+          throw new Error(demoJson.error || `demo build HTTP ${demoRes.status}`);
         }
-        done.push(id);
+        const moveRes = await fetch("/api/pipeline/move", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ companyId: id, stage: "audit" }),
+        });
+        const moveJson = await moveRes.json().catch(() => ({}));
+        if (!moveRes.ok || !moveJson.ok) {
+          throw new Error(moveJson.error || `move HTTP ${moveRes.status}`);
+        }
+        ok += 1;
+        setStartedIds((prev) => new Set([...prev, id]));
+      } catch (e) {
+        failures.push(
+          `${label} (${e instanceof Error ? e.message : "unknown error"})`,
+        );
       }
-      setRemovedIds((prev) => new Set([...prev, ...done]));
-      setSelected(new Set());
-    } catch (e) {
-      setBulkError(e instanceof Error ? e.message : "Bulk approve failed");
-    } finally {
-      setBulkLoading(false);
     }
+    setSelected(new Set());
+    if (failures.length) {
+      setBatchError(`${ok} started · ${failures.length} failed: ${failures.join("; ")}`);
+    } else {
+      setBatchDone(`${ok} prospect${ok === 1 ? "" : "s"} moved into demo + pitch.`);
+    }
+    setBatchLoading(false);
+    await load();
   }
 
   return (
     <div className="relative z-10">
       <PageHero
-        image="/art/approvals.png"
-        eyebrow="the decision desk"
-        title="Approvals"
-        subtitle={`${visible.length} decision${visible.length !== 1 ? "s" : ""} waiting on you.`}
+        image="/art/prospect.png"
+        eyebrow="the launchpad"
+        title="Next Batch"
+        subtitle="Pick the prospects to move into demo + pitch, ordered by recommendation. Start them in one shot."
         backHref="/"
         backLabel="Back to pipeline"
       />
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12">
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10 sm:px-6 sm:py-12">
         {error ? (
           <div className={`${glassCard} border-destructive bg-destructive/10 py-10 text-center`}>
             <p className="text-sm font-medium text-destructive">{error}</p>
@@ -462,233 +143,143 @@ export default function ApprovalsPage() {
           </div>
         ) : loading ? (
           <div className={`${glassCard} py-16 text-center`}>
-            <p className="text-sm text-muted-foreground">Loading approvals…</p>
+            <p className="text-sm text-muted-foreground">Loading prospects…</p>
           </div>
         ) : (
           <>
-            {/* Search + status filter — stay visible even when the result is empty */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div className="relative flex-1">
+            {/* Controls */}
+            <div className="flex flex-col gap-3">
+              <div className="relative">
                 <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search by name, category, or location…"
+                  placeholder="Search prospects by name, category, or location…"
                   className="w-full rounded-lg border border-border bg-card py-2 pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/20"
                 />
               </div>
-              <select
-                value={region}
-                onChange={(e) => setRegion(e.target.value as RegionFilter)}
-                className="rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground focus:outline-none"
-                aria-label="Filter by territory"
-                title="SC focus = Upstate + rest of SC. Expansion = out-of-state + unknown."
-              >
-                {(Object.keys(REGION_LABEL) as RegionFilter[]).map((r) => (
-                  <option key={r} value={r}>
-                    {REGION_LABEL[r]}
-                  </option>
-                ))}
-              </select>
-              <div className="flex flex-wrap gap-1.5">
-                {([
-                  ["all", `All ${queue.length}`],
-                  ["pending-review", `Pending ${counts["pending-review"] ?? 0}`],
-                  ["supervisor-approved", `Sup. approved ${counts["supervisor-approved"] ?? 0}`],
-                  ["pending-supervisor-review", `Sup. review ${counts["pending-supervisor-review"] ?? 0}`],
-                  ["rejected", `Rejected ${counts["rejected"] ?? 0}`],
-                ] as const).map(([val, label]) => (
-                  <button
-                    key={val}
-                    onClick={() => setStatusFilter(val)}
-                    className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                      statusFilter === val
-                        ? "bg-primary text-white"
-                        : "bg-muted text-muted-foreground hover:bg-muted"
-                    }`}
-                  >
-                    {label}
-                  </button>
-                ))}
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <span className="font-medium text-muted-foreground">Select:</span>
                 <button
-                  onClick={() => setRewriteOnly((v) => !v)}
-                  title="Show only pitches with dead $300/$49 pricing or the banned 'I look forward to hearing from you' close"
-                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                    rewriteOnly
-                      ? "bg-amber-500 text-white"
-                      : "bg-muted text-muted-foreground hover:bg-muted"
-                  }`}
+                  onClick={() => selectTop(5)}
+                  className="rounded-full border border-border bg-card px-3 py-1.5 font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
                 >
-                  ⚠ Needs rewrite {rewriteCount}
+                  Top 5
                 </button>
                 <button
-                  onClick={() => setHighOnly((v) => !v)}
-                  title="Show only high + medium-high priority"
-                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                    highOnly
-                      ? "bg-destructive text-white"
-                      : "bg-muted text-muted-foreground hover:bg-muted"
-                  }`}
+                  onClick={() => selectTop(10)}
+                  className="rounded-full border border-border bg-card px-3 py-1.5 font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
                 >
-                  ★ High only
+                  Top 10
+                </button>
+                <button
+                  onClick={() => selectTop(candidates.length)}
+                  className="rounded-full border border-border bg-card px-3 py-1.5 font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+                >
+                  All {candidates.length}
+                </button>
+                <button
+                  onClick={() => setSelected(new Set())}
+                  className="rounded-full px-3 py-1.5 font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Clear
                 </button>
               </div>
             </div>
 
-            {bulkError ? (
-              <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
-                Bulk approve hit an error: {bulkError}
-              </p>
-            ) : null}
+            {/* Batch action bar */}
             {selected.size > 0 ? (
-              <div className="flex flex-wrap items-center gap-2 rounded-xl border border-primary bg-primary/10 px-4 py-2.5">
+              <div className="flex flex-wrap items-center gap-3 rounded-xl border border-primary bg-primary/10 px-4 py-3">
+                <Sparkles className="size-4 text-primary" />
                 <span className="text-sm font-medium text-primary">
                   {selected.size} selected
                 </span>
                 <button
                   type="button"
-                  disabled={bulkLoading}
-                  onClick={() => void bulkApprove(Array.from(selected))}
-                  className="rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-white hover:bg-primary/90 disabled:opacity-50"
+                  disabled={batchLoading}
+                  onClick={() => void startBatch(Array.from(selected))}
+                  className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-[0_0_24px_-8px_rgba(139,92,246,0.7)] transition-all hover:shadow-[0_0_32px_-6px_rgba(139,92,246,0.9)] disabled:opacity-50"
                 >
-                  {bulkLoading ? "Approving…" : "Approve selected"}
-                </button>
-                <button
-                  type="button"
-                  disabled={bulkLoading}
-                  onClick={() => setSelected(new Set())}
-                  className="text-xs font-medium text-muted-foreground hover:underline"
-                >
-                  Clear
+                  <Rocket className="size-3.5" />
+                  {batchLoading ? "Starting…" : `Start ${selected.size} → demo + pitch`}
                 </button>
               </div>
             ) : null}
 
-            {visible.length === 0 ? (
+            {batchError ? (
+              <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                {batchError}
+              </p>
+            ) : null}
+            {batchDone ? (
+              <p className="rounded-lg bg-emerald-500/10 px-3 py-2 text-sm text-emerald-200">
+                {batchDone}
+              </p>
+            ) : null}
+
+            {/* Candidate list */}
+            {candidates.length === 0 ? (
               <div className={`${glassCard} py-16 text-center`}>
                 <p className="text-lg font-medium text-muted-foreground">
-                  {queue.length === 0
-                    ? "All caught up! No pitches waiting for approval."
-                    : "No pitches match that search or filter."}
+                  No fresh prospects waiting. Every prospect is already in motion.
                 </p>
-                {queue.length > 0 ? (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setQuery("");
-                      setStatusFilter("all");
-                    }}
-                    className="mt-2 text-sm text-primary hover:underline"
-                  >
-                    Clear filters
-                  </button>
-                ) : (
-                  <Link
-                    href="/"
-                    className="mt-2 inline-block text-sm text-primary hover:underline"
-                  >
-                    Back to pipeline →
-                  </Link>
-                )}
+                <Link href="/pipeline" className="mt-2 inline-block text-sm text-primary hover:underline">
+                  Open the pipeline →
+                </Link>
               </div>
             ) : (
-              visible.map((company) => (
-                <ApprovalCard
-                  key={company.id}
-                  company={company}
-                  selected={selected.has(company.id)}
-                  onToggleSelect={() => toggleSelect(company.id)}
-                  onRefresh={load}
-                />
-              ))
+              <div className="flex flex-col gap-3">
+                {candidates.map((c, i) => (
+                  <div
+                    key={c.id}
+                    className={`${glassCard} ${selected.has(c.id) ? "ring-2 ring-ring/60" : ""} ${
+                      startedIds.has(c.id) ? "opacity-60" : ""
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 p-4">
+                      <input
+                        type="checkbox"
+                        checked={selected.has(c.id)}
+                        onChange={() => toggleSelect(c.id)}
+                        disabled={startedIds.has(c.id)}
+                        aria-label={`Select ${c.name} for the next batch`}
+                        className="size-4 shrink-0 accent-primary"
+                      />
+                      <span className="w-6 shrink-0 text-center font-display text-sm text-muted-foreground tabular-nums">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <Link
+                          href={`/client/${c.id}`}
+                          className="font-display text-lg text-foreground transition-colors hover:text-primary"
+                        >
+                          {c.name}
+                        </Link>
+                        <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+                          <span>{c.category}</span>
+                          <span>{c.location}</span>
+                          {startedIds.has(c.id) ? (
+                            <span className="text-emerald-200">✓ started</span>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="flex shrink-0 items-center gap-2">
+                        <PriorityBadge priority={c.priority} />
+                        <ChevronRight className="size-4 text-muted-foreground" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             )}
+
+            {/* Quiet footer */}
+            <p className="border-t border-border pt-6 text-center text-xs text-muted-foreground">
+              Starting a batch requests a demo build and moves the prospect into
+              the audit stage — the agent takes it from there.
+            </p>
           </>
         )}
-      </div>
-    </div>
-  );
-}
-
-function ApprovalCard({
-  company,
-  selected,
-  onToggleSelect,
-  onRefresh,
-}: {
-  company: Company;
-  selected: boolean;
-  onToggleSelect: () => void;
-  onRefresh: () => void;
-}) {
-  const draft = company.pitchDraft!;
-  const isRejected = draft.status === "rejected";
-
-  return (
-    <div className={`${glassCard} ${isRejected ? "border-amber-300" : ""} ${selected ? "ring-2 ring-ring/50" : ""}`}>
-      <div className="p-5">
-        {/* Header */}
-        <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
-          <div className="flex min-w-0 items-start gap-2">
-            <input
-              type="checkbox"
-              checked={selected}
-              onChange={onToggleSelect}
-              aria-label={`Select ${company.name} for bulk approve`}
-              className="mt-1 size-4 shrink-0 accent-primary"
-            />
-            <div className="min-w-0">
-              <Link
-                href={`/client/${company.id}`}
-                className="text-base font-semibold text-foreground hover:text-primary transition-colors"
-              >
-                {company.name}
-              </Link>
-              <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                <span>{company.category}</span>
-                <span>{company.location}</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {needsPricingRewrite(company) ? (
-              <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-300">
-                ⚠ Needs rewrite
-              </span>
-            ) : null}
-            {isRejected ? (
-              <span className="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-300">
-                Rejected
-              </span>
-            ) : null}
-            <PriorityBadge priority={company.priority} />
-          </div>
-        </div>
-
-        {/* Pitch subject */}
-        {draft.subject ? (
-          <p className="mb-2 text-sm font-medium text-foreground">
-            Subject: {draft.subject}
-          </p>
-        ) : null}
-
-        {/* Channel + confidence */}
-        <div className="mb-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
-          <span>Channel: {draft.channel}</span>
-          <span>·</span>
-          <span>Confidence: {draft.confidence}/10</span>
-        </div>
-
-        {/* Pitch body */}
-        <pre className="whitespace-pre-wrap rounded-lg bg-muted p-4 text-sm leading-relaxed text-foreground font-sans">
-          {draft.body}
-        </pre>
-
-        {draft.notes ? (
-          <p className="mt-2 text-xs text-muted-foreground italic">{draft.notes}</p>
-        ) : null}
-
-        {/* Buttons / feedback */}
-        <ApproveButtons company={company} onRefresh={onRefresh} />
       </div>
     </div>
   );
