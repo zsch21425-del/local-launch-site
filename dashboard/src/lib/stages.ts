@@ -151,6 +151,19 @@ export function stageIcon(name: string): LucideIcon {
   return STAGE_ICONS[name] ?? Circle;
 }
 
+/** One-line plain-English description of each stage (the 7-stage funnel). */
+export const STAGE_DESCRIPTIONS: Record<string, string> = {
+  prospect: "Businesses we've found that could use our services.",
+  audit: "Full audit — learn everything and map what they have to what we can offer.",
+  pitch: "Build a demo (if it applies), write the pitch, and define the offer.",
+  "quality-check": "Double-check that standards are met before it reaches you.",
+  approval: "Your sign-off that the offer is ready to send.",
+  outreach: "Offer sent — we're contacting the prospect.",
+  "follow-up": "No response yet — monitor and retry at 3, 10, and 21 days.",
+  sale: "Won — a paying client.",
+  "build-launch": "Client site in build & launch.",
+};
+
 /**
  * Stages where work is actively moving. Their pills pulse on the cards; the
  * bookend stages (untouched prospect, closed win) sit still.

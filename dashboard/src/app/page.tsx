@@ -2,40 +2,40 @@
 
 import Link from "next/link";
 import * as React from "react";
-import { Activity, Globe, Rocket, Users } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 
 import { usePipeline } from "@/hooks/use-pipeline";
-import { resolveDemoUrl } from "@/lib/data";
-import { MetricCard } from "@/components/metric-card";
-import { CompanyTile } from "@/components/company-tile";
+import { stageIcon, stageTheme, STAGE_DESCRIPTIONS } from "@/lib/stages";
+import { CLIENT_STAGES } from "@/lib/data";
+
+/** The 7-stage prospecting funnel, in order. */
+const FUNNEL = [
+  "prospect",
+  "audit",
+  "pitch",
+  "quality-check",
+  "approval",
+  "outreach",
+  "follow-up",
+];
 
 /**
- * Home — a dashboard, not a website. A slow-moving cinematic hero up top,
- * four live KPI cards, then every company as a compact rectangular tile
- * grouped by stage. Click any tile to open that company's workstation.
+ * Home — a launchpad of the 7 stages. Each stage is a clickable card that
+ * opens that stage's page, where its prospects live and each company links to
+ * its own workstation.
  */
 export default function HomePage() {
   const { companies, stages, loading } = usePipeline();
 
-  const batchReady = companies.filter(
-    (c) => c.stage === "prospect" && !resolveDemoUrl(c) && !c.pitchDraft,
-  ).length;
-  const demoCount = companies.filter((c) => resolveDemoUrl(c)).length;
-  const active = companies.filter((c) =>
-    ["audit", "pitch", "quality-check", "approval", "outreach", "follow-up"].includes(c.stage),
-  ).length;
-
-  const stageGroups = stages
-    .map((s) => ({
-      stage: s,
-      companies: companies.filter((c) => c.stage === s.id),
-    }))
-    .filter((g) => g.companies.length > 0);
+  const funnelStages = FUNNEL.map((id) => stages.find((s) => s.id === id)).filter(
+    (s): s is NonNullable<typeof s> => Boolean(s),
+  );
+  const clientCount = companies.filter((c) => CLIENT_STAGES.includes(c.stage)).length;
 
   return (
     <div className="relative z-10">
       {/* --------------------------------------------------------- HERO --- */}
-      <section className="relative flex h-[36vh] min-h-[260px] items-end overflow-hidden">
+      <section className="relative flex h-[32vh] min-h-[220px] items-end overflow-hidden">
         <img
           src="/art/hero.png"
           alt=""
@@ -45,89 +45,89 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/20 to-transparent" />
 
-        <div className="relative mx-auto w-full max-w-[1440px] px-6 pb-8 md:px-20">
+        <div className="relative mx-auto w-full max-w-[1440px] px-6 pb-7 md:px-20">
           <p className="font-serif text-lg italic text-cyan-300/90">
             the agency, in motion
           </p>
-          <h1 className="font-display mt-3 max-w-3xl text-4xl font-medium text-foreground sm:text-5xl md:text-6xl">
-            Every client.
-            <br />
-            One elegant view.
+          <h1 className="font-display mt-2 max-w-3xl text-3xl font-medium text-foreground sm:text-4xl md:text-5xl">
+            Every client. One elegant view.
           </h1>
         </div>
       </section>
 
-      {/* ----------------------------------------------------------- KPI --- */}
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-20">
-        <div className="-mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <MetricCard
-            label="Prospects"
-            value={String(companies.length)}
-            note="across the pipeline"
-            icon={Users}
-            tone="violet"
-            progress={100}
-          />
-          <MetricCard
-            label="Active pipeline"
-            value={String(active)}
-            note="moving toward launch"
-            icon={Activity}
-            tone="cyan"
-            progress={companies.length ? Math.round((active / companies.length) * 100) : 0}
-          />
-          <MetricCard
-            label="Next batch"
-            value={String(batchReady)}
-            note="ready to start"
-            icon={Rocket}
-            tone="teal"
-            progress={100}
-          />
-          <MetricCard
-            label="Live demos"
-            value={String(demoCount)}
-            note="client sites shipped"
-            icon={Globe}
-            tone="magenta"
-            progress={companies.length ? Math.round((demoCount / companies.length) * 100) : 0}
-          />
-        </div>
-      </div>
-
-      {/* ---------------------------------------------------- COMPANY GRID --- */}
+      {/* --------------------------------------------------- STAGE CARDS --- */}
       <div className="mx-auto w-full max-w-[1440px] px-6 py-10 md:px-20">
         {loading ? (
           <p className="py-16 text-center text-sm text-muted-foreground">
             Loading pipeline…
           </p>
-        ) : stageGroups.length === 0 ? (
-          <p className="py-16 text-center text-sm text-muted-foreground">
-            No companies in the pipeline yet.
-          </p>
         ) : (
-          stageGroups.map(({ stage, companies: group }) => (
-            <section key={stage.id} className="mb-10">
-              <div className="mb-3 flex items-baseline gap-2">
-                <h2 className="font-display text-sm font-medium text-foreground">
-                  {stage.label}
-                </h2>
-                <span className="tnum text-xs text-muted-foreground">
-                  {group.length}
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {funnelStages.map((stage, i) => {
+              const Icon = stageIcon(stage.icon);
+              const theme = stageTheme(stage.color);
+              const count = companies.filter((c) => c.stage === stage.id).length;
+              const desc = STAGE_DESCRIPTIONS[stage.id] ?? "";
+              return (
+                <Link
+                  key={stage.id}
+                  href={`/stage/${stage.id}`}
+                  className="group flex flex-col rounded-2xl border border-slate-700/60 bg-slate-900 p-5 transition-all hover:-translate-y-0.5 hover:border-violet-500/40 hover:shadow-[0_0_24px_-6px_rgba(139,92,246,0.35)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-2">
+                      <span className="font-display text-sm text-muted-foreground">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <Icon className={`size-4 ${theme.text}`} />
+                    </span>
+                    <span className="tnum rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">
+                      {count}
+                    </span>
+                  </div>
+                  <h2 className="font-display mt-4 text-xl text-foreground">
+                    {stage.label}
+                  </h2>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                    {desc}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors group-hover:text-primary">
+                    Open stage
+                    <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              );
+            })}
+
+            {/* Won + Building — paying clients, separate section */}
+            <Link
+              href="/clients"
+              className="group flex flex-col rounded-2xl border border-emerald-500/20 bg-slate-900/60 p-5 transition-all hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-[0_0_24px_-6px_rgba(16,185,129,0.35)]"
+            >
+              <div className="flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <Users className="size-4 text-emerald-300" />
                 </span>
-                <span className="h-px flex-1 bg-border/70" />
+                <span className="tnum rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">
+                  {clientCount}
+                </span>
               </div>
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {group.map((c) => (
-                  <CompanyTile key={c.id} company={c} />
-                ))}
-              </div>
-            </section>
-          ))
+              <h2 className="font-display mt-4 text-xl text-foreground">
+                Won + Building
+              </h2>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Paying clients in their own section — the highest level of attention.
+              </p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors group-hover:text-emerald-300">
+                Open clients
+                <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          </div>
         )}
 
         {/* Quiet footer */}
-        <div className="mt-4 flex items-center justify-between border-t border-border pt-6 text-sm text-muted-foreground">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6 text-sm text-muted-foreground">
           <Link
             href="/pipeline"
             className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
@@ -135,12 +135,14 @@ export default function HomePage() {
             Open the full pipeline
             <span aria-hidden>→</span>
           </Link>
-          <Link
-            href="/approvals"
-            className="transition-colors hover:text-foreground"
-          >
-            Next batch
-          </Link>
+          <div className="flex items-center gap-5">
+            <Link href="/approvals" className="transition-colors hover:text-foreground">
+              Next Batch
+            </Link>
+            <Link href="/reports" className="transition-colors hover:text-foreground">
+              Reports
+            </Link>
+          </div>
         </div>
       </div>
     </div>
