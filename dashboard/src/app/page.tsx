@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import * as React from "react";
-import { ArrowRight, ArrowUpRight, Globe, Layers, ShieldCheck } from "lucide-react";
+import { Activity, ArrowRight, ArrowUpRight, Globe, Layers, ShieldCheck, Users } from "lucide-react";
 
 import { usePipeline } from "@/hooks/use-pipeline";
 import { hasReviewablePitch, type Company } from "@/lib/data";
 import { stageIcon } from "@/lib/stages";
 import { cn } from "@/lib/utils";
+import { MetricCard } from "@/components/metric-card";
 
 /** A prospect's next concrete action, right-aligned in the index. */
 function nextAction(c: Company): string {
@@ -32,6 +33,10 @@ export default function HomePage() {
     (c) => hasReviewablePitch(c) || (c.demoUrl || c.demo?.url),
   );
   const demos = companies.filter((c) => c.demoUrl || c.demo?.url).slice(0, 4);
+  const demoCount = companies.filter((c) => c.demoUrl || c.demo?.url).length;
+  const active = companies.filter((c) =>
+    ["audit", "pitch", "contacted", "response"].includes(c.stage),
+  ).length;
   const stageGroups = stages
     .map((s) => ({
       stage: s,
@@ -69,7 +74,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/pipeline"
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-cyan-300"
+              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-indigo-500 px-6 py-3 text-sm font-medium text-white shadow-[0_0_24px_-8px_rgba(139,92,246,0.7)] transition-all hover:shadow-[0_0_32px_-6px_rgba(139,92,246,0.9)]"
             >
               Enter the pipeline
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -87,6 +92,42 @@ export default function HomePage() {
 
       {/* ------------------------------------------------------ CHAPTERS --- */}
       <div className="mx-auto w-full max-w-[1440px] px-6 md:px-20">
+        {/* --------------------------------------------------- KPI METRICS --- */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <MetricCard
+            label="Prospects"
+            value={String(companies.length)}
+            note="across the pipeline"
+            icon={Users}
+            tone="violet"
+            progress={100}
+          />
+          <MetricCard
+            label="Active pipeline"
+            value={String(active)}
+            note="moving toward launch"
+            icon={Activity}
+            tone="cyan"
+            progress={companies.length ? Math.round((active / companies.length) * 100) : 0}
+          />
+          <MetricCard
+            label="Approvals"
+            value={String(pending.length)}
+            note="need your decision"
+            icon={ShieldCheck}
+            tone="teal"
+            progress={100}
+          />
+          <MetricCard
+            label="Live demos"
+            value={String(demoCount)}
+            note="client sites shipped"
+            icon={Globe}
+            tone="magenta"
+            progress={companies.length ? Math.round((demoCount / companies.length) * 100) : 0}
+          />
+        </div>
+
         {/* Chapter 1 — Move work forward */}
         <Chapter label="01" title="Move work forward">
           <Link
