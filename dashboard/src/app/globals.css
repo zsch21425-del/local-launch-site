@@ -230,6 +230,21 @@
   animation: rise-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Slow cinematic pan/zoom — makes a static hero feel alive. */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.02) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.16) translate(1.5%, -1.5%);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
 /* Shared hover-lift for interactive cards (glassCard / innerCardInteractive). */
 .hover-lift {
   transition: transform 200ms ease-out, box-shadow 200ms ease-out;
@@ -242,6 +257,7 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-stage-pulse,
   .animate-rise-in,
+  .animate-kenburns,
   .animate-mesh-a,
   .animate-mesh-b,
   .animate-mesh-c,
