@@ -1,41 +1,43 @@
 "use client";
 
+import Link from "next/link";
 import * as React from "react";
+import { ArrowRight } from "lucide-react";
 
-import { MotionBackground } from "@/components/motion-background";
-import { PipelineKanban } from "@/components/pipeline-kanban";
-import { StatsBar } from "@/components/stats-bar";
-import { WorkInboxPanel } from "@/components/work-inbox";
 import { usePipeline, invalidatePipeline } from "@/hooks/use-pipeline";
-import {
-  getStats,
-  getWorkInbox,
-  type StageId,
-} from "@/lib/data";
-import { cn } from "@/lib/utils";
+import { hasReviewablePitch, type Company, type StageId } from "@/lib/data";
+import { stageIcon } from "@/lib/stages";
+
+function nextAction(c: Company): string {
+  if (hasReviewablePitch(c)) return "Review pitch";
+  if (c.demoUrl || c.demo?.url) return "Review demo";
+  if (c.stage === "prospect") return "Begin audit";
+  if (c.stage === "audit") return "Finish audit";
+  if (c.stage === "contacted") return "Follow up";
+  if (c.stage === "response") return "Close";
+  return "Continue";
+}
 
 /**
- * Pipeline — the operational kanban board (drag to move stage).
- * Moved from `/` to `/pipeline` when the Home page became a flagship entry.
+ * Pipeline — the full prospects index. Stage-grouped, numbered, clickable
+ * names (not cards). The stage is movable via a quiet inline selector.
  */
 export default function PipelinePage() {
-  const { companies, stages, agency, loading, error, lastSync, reload, setCompanies } =
-    usePipeline();
+  const { companies, stages, loading, reload, setCompanies } = usePipeline();
   const [moveError, setMoveError] = React.useState<string | null>(null);
 
-  async function handleMove(companyId: string, stage: StageId, index: number) {
-    setCompanies((prev) => {
-      const next = prev.map((c) =>
-        c.id === companyId ? { ...c, stage } : c,
-      );
-      const inStage = next.filter((c) => c.stage === stage);
-      const moved = inStage.find((c) => c.id === companyId);
-      if (!moved) return next;
-      const others = inStage.filter((c) => c.id !== companyId);
-      others.splice(index, 0, moved);
-      return next.map((c) => (c.stage === stage ? (others.shift() ?? c) : c));
-    });
+  const stageGroups = stages
+    .map((s) => ({
+      stage: s,
+      companies: companies.filter((c) => c.stage === s.id),
+    }))
+    .filter((g) => g.companies.length > 0);
 
+  async function moveStage(companyId: string, stage: StageId) {
+    setCompanies((prev) =>
+      prev.map((c) => (c.id === companyId ? { ...c, stage } : c)),
+    );
+    setMoveError(null);
     try {
       const res = await fetch("/api/pipeline/move", {
         method: "POST",
@@ -50,139 +52,86 @@ export default function PipelinePage() {
       }
       void invalidatePipeline();
     } catch (e) {
-      const msg = e instanceof Error ? e.message : "Failed to move card";
+      const msg = e instanceof Error ? e.message : "Failed to move prospect";
       await reload();
       setMoveError(msg);
     }
   }
 
-  const stats = getStats(companies);
-  const inbox = getWorkInbox(companies);
-
   return (
-    <>
-      <MotionBackground />
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-        <section className="flex flex-col gap-2">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                {agency.name} Ops
-              </h1>
-              <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-                Accurate pipeline position + what to do next. Not a vanity dump.
-              </p>
-            </div>
-            <AgentLinkChip />
-          </div>
-          {loading ? (
-            <p className="text-xs text-muted-foreground">Loading live pipeline…</p>
-          ) : null}
-          {error ? (
-            <p className="text-sm text-destructive">
-              Could not load live pipeline: {error}
-              {lastSync
-                ? ` — showing last-known data from ${new Date(lastSync).toLocaleTimeString()}`
-                : ""}
-            </p>
-          ) : null}
-          {!loading && !error && lastSync ? (
-            <p className="text-xs text-muted-foreground">
-              Live pipeline · synced {new Date(lastSync).toLocaleTimeString()}
-            </p>
-          ) : null}
-        </section>
+    <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 py-16 md:px-20 md:py-24">
+      {/* Header */}
+      <header className="mb-16 md:mb-20">
+        <p className="font-serif text-lg italic text-cyan-300/90">the pipeline</p>
+        <h1 className="font-display mt-4 text-5xl font-medium text-foreground sm:text-6xl">
+          Every prospect, in motion.
+        </h1>
+        <p className="mt-4 max-w-xl text-base text-muted-foreground">
+          {loading ? "Loading…" : `${companies.length} prospects`} across{" "}
+          {stages.length} stages — ordered by where each one is in the work.
+        </p>
+        {moveError ? (
+          <p className="mt-4 text-sm text-destructive">
+            Couldn&apos;t save that move: {moveError}. Reloaded live state.
+          </p>
+        ) : null}
+      </header>
 
-        <section id="pipeline" className="flex flex-col gap-3">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-lg font-semibold text-foreground">
-              Board (drag to move stage)
-            </h2>
-          </div>
-          {moveError ? (
-            <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">
-              Could not save that move: {moveError}. Reloaded live state.
-            </p>
-          ) : null}
-          <PipelineKanban
-            stages={stages}
-            companies={companies}
-            onMove={handleMove}
-          />
-        </section>
+      {/* Stage-grouped index */}
+      <div className="flex flex-col gap-12">
+        {stageGroups.map(({ stage, companies: group }, i) => {
+          const Icon = stageIcon(stage.icon);
+          return (
+            <section key={stage.id}>
+              <div className="flex items-baseline gap-3 border-b border-border pb-2">
+                <span className="font-display text-sm text-muted-foreground">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="flex items-center gap-1.5 text-base text-foreground">
+                  <Icon className="size-3.5" />
+                  {stage.label}
+                </span>
+                <span className="text-xs text-muted-foreground">{group.length}</span>
+              </div>
 
-        <StatsBar
-          stats={stats}
-          ops={{
-            sendNow: inbox.sendNow,
-            awaitingReply: inbox.awaitingReply,
-            clients: inbox.clients,
-            inReview: inbox.inReview,
-            sentUnverified: inbox.sentUnverified,
-            sentBounced: inbox.sentBounced,
-            bounceRisk: inbox.bounceRisk,
-          }}
-        />
-
-        <WorkInboxPanel inbox={inbox} />
+              <ul className="flex flex-col">
+                {group.map((c) => (
+                  <li key={c.id}>
+                    <div className="group flex items-center justify-between gap-4 border-b border-border/70 py-4">
+                      <Link
+                        href={`/client/${c.id}`}
+                        className="font-display text-2xl text-foreground decoration-cyan-400/40 underline-offset-4 group-hover:underline md:text-[28px]"
+                      >
+                        {c.name}
+                      </Link>
+                      <div className="flex shrink-0 items-center gap-4">
+                        <span className="hidden text-sm text-muted-foreground sm:inline">
+                          {c.location}
+                        </span>
+                        <span className="hidden text-sm text-muted-foreground/80 md:inline">
+                          {nextAction(c)}
+                        </span>
+                        <select
+                          value={c.stage}
+                          onChange={(e) => moveStage(c.id, e.target.value as StageId)}
+                          aria-label={`Move ${c.name} to stage`}
+                          className="rounded-md border border-transparent bg-transparent px-2 py-1 text-sm text-muted-foreground transition-colors hover:border-border hover:text-foreground focus:border-border focus:outline-none"
+                        >
+                          {stages.map((s) => (
+                            <option key={s.id} value={s.id} className="bg-card">
+                              {s.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
       </div>
-    </>
-  );
-}
-
-function AgentLinkChip() {
-  const [connected, setConnected] = React.useState<boolean | null>(null);
-
-  React.useEffect(() => {
-    let cancelled = false;
-    async function probe() {
-      try {
-        const res = await fetch("/api/agent/chat?health=1", {
-          signal: AbortSignal.timeout(28000),
-        });
-        const data = (await res.json()) as { connected?: boolean };
-        if (!cancelled) setConnected(Boolean(data.connected));
-      } catch {
-        if (!cancelled) setConnected(false);
-      }
-    }
-    void probe();
-    const t = setInterval(probe, 60_000);
-    return () => {
-      cancelled = true;
-      clearInterval(t);
-    };
-  }, []);
-
-  const label =
-    connected === null
-      ? "Checking agent…"
-      : connected
-        ? "Agent connected"
-        : "Agent offline";
-
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ring-1",
-        connected === null
-          ? "bg-muted text-muted-foreground ring-border"
-          : connected
-            ? "bg-primary/10 text-primary ring-ring"
-            : "bg-destructive/10 text-destructive ring-destructive",
-      )}
-    >
-      <span
-        className={cn(
-          "size-1.5 rounded-full",
-          connected === null
-            ? "animate-pulse bg-muted-foreground"
-            : connected
-              ? "bg-primary"
-              : "bg-destructive",
-        )}
-      />
-      {label}
-    </span>
+    </div>
   );
 }

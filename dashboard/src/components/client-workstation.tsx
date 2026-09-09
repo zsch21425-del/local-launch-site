@@ -3,7 +3,6 @@
 import { AgentChat } from "@/components/agent-chat";
 import { ClientAssets } from "@/components/client-assets";
 import { ColdCallSheet } from "@/components/cold-call-sheet";
-import { ClientHeader } from "@/components/client-header";
 import { ClientSummary } from "@/components/client-summary";
 import { ClientTimeline } from "@/components/client-timeline";
 import { ClientApprovalPanel } from "@/components/client-approval-panel";
@@ -75,7 +74,6 @@ function Section({
  *   10. quick dispatch
  */
 export function ClientWorkstation({ company, stages }: { company: any; stages: any[] }) {
-  const currentStage = stages.find((s) => s.id === company.stage) ?? stages[0];
   // Demo and pitch are judged INDEPENDENTLY (M02): a status-only pitch stub with
   // no body is not reviewable and must not hide the "Build demo" control.
   const hasDemo = !!(company.demoUrl || company.demo?.url);
@@ -89,8 +87,6 @@ export function ClientWorkstation({ company, stages }: { company: any; stages: a
 
   return (
     <div className="flex flex-col gap-6">
-      <ClientHeader company={company} stage={currentStage} />
-
       {/* Pipeline position + scores */}
       <StageTracker current={company.stage} stages={stages} />
       {company.seoScore ? (
