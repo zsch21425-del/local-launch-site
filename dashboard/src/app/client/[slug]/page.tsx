@@ -36,7 +36,7 @@ export default async function ClientPage({
   return (
     <>
       <MotionBackground />
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] bg-background px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <ClientWorkstation company={company} stages={stages} />
       </div>
     </>

@@ -39,7 +39,7 @@ export function StageTracker({ stages, current }: StageTrackerProps) {
                       theme.pill,
                       "ring-current/10",
                     ),
-                  !isDone && !isCurrent && "border-border text-muted-foreground/60",
+                  !isDone && !isCurrent && "border-border bg-card text-muted-foreground",
                 )}
               >
                 {isDone ? (
