@@ -13,7 +13,7 @@ export const glass =
 
 /** Lighter weight — used for kanban columns so cards stay the focal point. */
 export const glassSubtle =
-  "rounded-2xl border border-slate-200/90 bg-white/80 shadow-[0_1px_2px_rgba(15,23,42,0.04)]";
+  "rounded-2xl border border-slate-200 bg-slate-100 shadow-[0_1px_2px_rgba(15,23,42,0.04)]";
 
 /** Draggable card: fully opaque, stronger elevation, gentle hover lift. */
 export const glassCard =
