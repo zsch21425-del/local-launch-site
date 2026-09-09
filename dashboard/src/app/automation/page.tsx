@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Workflow, Search, Radio } from "lucide-react";
 
-import { MotionBackground } from "@/components/motion-background";
+import { PageHero } from "@/components/page-hero";
 import { glass } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 
@@ -96,17 +96,13 @@ export default function AutomationPage() {
 
   return (
     <>
-      <MotionBackground />
+      <PageHero
+        image="/art/automation.png"
+        eyebrow="the infrastructure"
+        title="Automation"
+        subtitle="The automation brain behind Local Launch OS."
+      />
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 sm:py-12">
-        <div>
-          <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            <Workflow className="size-6 text-primary" aria-hidden />
-            Automation
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            The automation brain behind Local Launch OS — n8n workflows, LibreCrawl SEO audits, and the Patter voice stack.
-          </p>
-        </div>
 
         <div className="grid gap-6 lg:grid-cols-3">
           {/* n8n */}

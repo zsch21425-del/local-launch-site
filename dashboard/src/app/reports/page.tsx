@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { CalendarClock, Funnel, ListChecks } from "lucide-react";
 
-import { MotionBackground } from "@/components/motion-background";
+import { PageHero } from "@/components/page-hero";
 import { RevenueTracker } from "@/components/revenue-tracker";
 import { SeoGauge } from "@/components/seo-gauge";
 import { Progress } from "@/components/ui/progress";
@@ -38,18 +38,14 @@ export default function ReportsPage() {
 
   return (
     <>
-      <MotionBackground />
+      <PageHero
+        image="/art/reports.png"
+        eyebrow="the observatory"
+        title="Reports"
+        subtitle="Pipeline health, revenue, and SEO across every client."
+      />
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Reports
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Pipeline health, revenue, and SEO across every client.
-            {loading ? " Loading live book…" : null}
-          </p>
-          {error ? <p className="mt-1 text-sm text-destructive">{error}</p> : null}
-        </div>
+        {error ? <p className="mt-1 text-sm text-destructive">{error}</p> : null}
 
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Pipeline funnel */}

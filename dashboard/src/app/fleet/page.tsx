@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Activity, Bot, Clock, Cpu, Play, Radio, Send, Terminal } from "lucide-react";
 import { glass, innerCard, innerCardInteractive } from "@/lib/ui";
 import { cn } from "@/lib/utils";
+import { PageHero } from "@/components/page-hero";
 
 interface AgentStatus {
   name: string; label: string; role: string; port: number;
@@ -142,18 +143,16 @@ export default function FleetPage() {
   const onlineCount = status.filter((a) => a.online).length;
 
   return (
-    <div className="min-h-screen bg-muted text-foreground p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="relative z-10">
+      <PageHero
+        image="/art/fleet.png"
+        eyebrow="the ensemble"
+        title="Fleet"
+        subtitle={`${onlineCount}/${status.length} agents online · ${activity.length} recent actions.`}
+      />
+      <div className="max-w-7xl mx-auto space-y-6 px-4 py-10 sm:px-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold flex items-center gap-2 text-foreground">
-              <Terminal className="text-[#2AA8A8]" /> Fleet Command Center
-            </h1>
-            <p className="text-muted-foreground text-sm mt-1">
-              {onlineCount}/{status.length} agents online · {activity.length} recent actions · auto-refresh 30s
-            </p>
-          </div>
           <button onClick={refresh} className={cn(glass, "px-4 py-2 rounded-lg text-sm hover:bg-muted")}>
             ⟳ Refresh
           </button>

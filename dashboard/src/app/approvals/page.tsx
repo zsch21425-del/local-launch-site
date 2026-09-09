@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { ArrowLeft, Search } from "lucide-react";
 
-import { MotionBackground } from "@/components/motion-background";
+import { PageHero } from "@/components/page-hero";
 import { PriorityBadge } from "@/components/priority-badge";
 import {
   companyRegion,
@@ -440,17 +440,16 @@ export default function ApprovalsPage() {
   }
 
   return (
-    <>
-      <MotionBackground />
-      <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
-        <Link
-          href="/"
-          className="group -ml-2 inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
-          Back to pipeline
-        </Link>
-
+    <div className="relative z-10">
+      <PageHero
+        image="/art/approvals.png"
+        eyebrow="the decision desk"
+        title="Approvals"
+        subtitle={`${visible.length} decision${visible.length !== 1 ? "s" : ""} waiting on you.`}
+        backHref="/"
+        backLabel="Back to pipeline"
+      />
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-10 sm:px-6 sm:py-12">
         {error ? (
           <div className={`${glassCard} border-destructive bg-destructive/10 py-10 text-center`}>
             <p className="text-sm font-medium text-destructive">{error}</p>
@@ -467,17 +466,6 @@ export default function ApprovalsPage() {
           </div>
         ) : (
           <>
-            <div>
-              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Pitch Approvals
-              </h1>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {visible.length} pitch{visible.length !== 1 ? "es" : ""} waiting
-                for review · sorted sendable-first (needs-rewrite sinks to the
-                bottom for the Supervisor batch)
-              </p>
-            </div>
-
             {/* Search + status filter — stay visible even when the result is empty */}
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="relative flex-1">
@@ -617,7 +605,7 @@ export default function ApprovalsPage() {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

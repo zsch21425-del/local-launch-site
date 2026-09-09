@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 
 import { AddLeadDialog } from "@/components/add-lead-dialog";
-import { MotionBackground } from "@/components/motion-background";
+import { PageHero } from "@/components/page-hero";
 import { StageFilter } from "@/components/stage-filter";
 import { usePipeline } from "@/hooks/use-pipeline";
 import { isClient } from "@/lib/data";
@@ -28,17 +28,15 @@ export default function ClientsPage() {
 
   return (
     <>
-      <MotionBackground />
+      <PageHero
+        image="/art/clients.png"
+        eyebrow="the directory"
+        title="Clients"
+        subtitle="Won and in-build companies only."
+      />
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 sm:py-12">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Clients
-            </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Won and in-build companies only. Leads live on the Leads tab.
-              {loading ? " Loading live list…" : ""}
-            </p>
             {error ? (
               <p role="alert" className="mt-1 text-sm text-destructive">
                 {error}

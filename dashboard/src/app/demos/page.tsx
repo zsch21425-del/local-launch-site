@@ -10,7 +10,7 @@ import {
   Search,
 } from "lucide-react";
 
-import { MotionBackground } from "@/components/motion-background";
+import { PageHero } from "@/components/page-hero";
 import { glassCard } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 import {
@@ -319,27 +319,15 @@ export default function DemosPage() {
 
   return (
     <>
-      <MotionBackground />
+      <PageHero
+        image="/art/demos.png"
+        eyebrow="the exhibition"
+        title="Demos"
+        subtitle={`${pendingCount} waiting · ${reworkCount} need fixes.`}
+        backHref="/"
+        backLabel="Back to Ops"
+      />
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-8 sm:px-6 sm:py-12">
-        <Link
-          href="/"
-          className="group -ml-2 inline-flex w-fit items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
-          Back to Ops
-        </Link>
-
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Demo Approvals
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {pendingCount} waiting · {reworkCount} need fixes · sorted
-            pending-first, high-priority + oldest fixes up top
-            {" · "}
-            Reject/rework requires notes — sent straight to the agent
-          </p>
-        </div>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <div className="relative flex-1">
