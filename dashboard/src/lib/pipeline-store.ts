@@ -96,6 +96,12 @@ export function migrateLegacyStages(data: any): boolean {
         else if (ps === "sent") next = "outreach";
         else if (ps === "bounced") next = "follow-up";
       }
+      // Normalize already-migrated books too: a "quality-check" row whose pitch
+      // is still "pending-review" was audited + auto-drafted but never got a
+      // "go" — it belongs in Audit, not Quality check.
+      if (next === "quality-check" && (ps === "pending-review" || ps === "pending-supervisor-review" || ps === "pending")) {
+        next = "audit";
+      }
       // An explicitly unproven send is not delivery evidence. Missing drafts
       // need writing; existing drafts need quality review before approval.
       if (ps === "unproven-send" && ["pitch", "outreach", "follow-up"].includes(next)) {
