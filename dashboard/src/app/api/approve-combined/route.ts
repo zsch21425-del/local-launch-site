@@ -266,6 +266,18 @@ export async function POST(request: Request) {
         }
       }
 
+      // After a clean approval, advance to Outreach (the offer is ready to send).
+      if (action === "approve") {
+        const demoApproved = !c.demo?.url || c.demo.status === "approved";
+        const pitchApproved =
+          !isReviewablePitch(c.pitchDraft) ||
+          c.pitchDraft?.status === "zach-approved" ||
+          c.pitchDraft?.status === "sent";
+        if (demoApproved && pitchApproved) {
+          c.stage = "outreach";
+        }
+      }
+
       c.lastUpdated = now.slice(0, 10);
       return c;
     });

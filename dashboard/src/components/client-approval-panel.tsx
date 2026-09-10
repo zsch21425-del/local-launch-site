@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Check, ExternalLink, MonitorPlay, RefreshCw, Send, X } from "lucide-react";
 import { glassCard } from "@/lib/ui";
 import { cn } from "@/lib/utils";
-import { hasReviewablePitch, resolveDemoUrl } from "@/lib/data";
+import { hasReviewablePitch, needsPricingRewrite, resolveDemoUrl } from "@/lib/data";
 import { hashRevision } from "@/lib/revision";
 
 interface ApprovalPanelProps {
@@ -290,6 +290,18 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
 
       {hasPitch ? (
         <div className="px-5 pt-4">
+          {needsPricingRewrite(company) ? (
+            <div className="mb-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3">
+              <p className="text-xs font-semibold text-amber-200">
+                ⚠ Dead pricing — rewrite before sending
+              </p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                This pitch still uses the old $300/$49 offer (or the banned
+                &quot;I look forward to hearing from you&quot; close). It should
+                be $599 build + $149/mo care before it goes out.
+              </p>
+            </div>
+          ) : null}
           <p className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
             Pitch{" "}
             <span className="ml-1 normal-case text-muted-foreground">
