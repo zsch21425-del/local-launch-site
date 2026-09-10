@@ -100,6 +100,8 @@ export function migrateLegacyStages(data: any): boolean {
         next = String(c.pitchDraft?.body ?? "").trim() ? "quality-check" : "pitch";
       }
       if (ps === "bounced" && ["prospect", "outreach"].includes(next)) next = "follow-up";
+      // A pitch already sent should never sit in approval — advance to outreach.
+      if (next === "approval" && ps === "sent") next = "outreach";
 
       // Apply the demo gate LAST, including legacy build-stage repairs. Empty
       // demo.url must fall back to demoUrl; absent status means pending, as in
