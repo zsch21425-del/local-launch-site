@@ -89,7 +89,9 @@ export function migrateLegacyStages(data: any): boolean {
       else if (next === "response") next = "follow-up";
 
       if (next === "pitch") {
-        if (ps === "pending-review" || ps === "pending-supervisor-review" || ps === "pending") next = "quality-check";
+        // "pending-review" = audit done + pitch auto-drafted, waiting for Zach's
+        // "go" on demo + pitch — that's the Audit stage, not Quality check.
+        if (ps === "pending-review" || ps === "pending-supervisor-review" || ps === "pending") next = "audit";
         else if (ps === "supervisor-approved" || ps === "zach-approved") next = "approval";
         else if (ps === "sent") next = "outreach";
         else if (ps === "bounced") next = "follow-up";
