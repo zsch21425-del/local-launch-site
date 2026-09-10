@@ -45,8 +45,8 @@ const IS_SERVERLESS = !!process.env.VERCEL;
  * 7-stage prospecting funnel + won/building section. Renames
  * `contacted`→`outreach`, `response`→`follow-up`, and splits the overloaded
  * `pitch` stage into `quality-check` / `approval` / `outreach` by pitch status.
- * Idempotent — already-migrated rows are left untouched. Returns true if any
- * row changed.
+ * Idempotent — repairs known legacy inconsistencies as well as stage names.
+ * Returns true if any row or migration metadata changed.
  */
 const NEW_STAGES = [
   { id: "prospect", label: "Prospects", icon: "Search", color: "slate" },
@@ -64,41 +64,61 @@ export function migrateLegacyStages(data: any): boolean {
   if (!data || typeof data !== "object") return false;
   let changed = false;
   if (Array.isArray(data.companies)) {
+    // Scope the historical build-stage repair to the identified legacy leads,
+    // once per book. A sent pitch is normal history for a paying client; never
+    // demote arbitrary/current clients based on that status or a name allowlist.
+    const legacyBuildLeads = new Set([
+      "omega-auto", "lumberjack-tree", "upstate-window", "fix-home",
+      "mmk-pressure-washing", "sky-branch-llc", "gotta-guy-home-services",
+      "home-shield-roofing", "gulottas-window", "milford-mountain",
+      "sbc-handyman", "kanebreak-backyards", "wright-time-disposal",
+      "all-in-one-maintenance", "fresh-blades-lawn",
+      "fresh-start-pressure-washing", "tree-wisemen-upstate",
+      "brb-pressure-washing",
+    ]);
+    const repairLegacyBuild = data.legacyBuildStageMigrationVersion !== 1;
     for (const c of data.companies) {
       if (!c || typeof c !== "object") continue;
-      const st = c.stage;
-      if (st === "contacted") {
-        c.stage = "outreach";
-        changed = true;
-      } else if (st === "response") {
-        c.stage = "follow-up";
-        changed = true;
-      } else if (st === "pitch") {
-        const ps = c.pitchDraft?.status;
-        let next = "pitch";
-        if (ps === "pending-review" || ps === "pending-supervisor-review") next = "quality-check";
+      const original = c.stage;
+      const ps = c.pitchDraft?.status;
+      let next = original;
+      if (repairLegacyBuild && next === "build-launch" && legacyBuildLeads.has(c.id)) {
+        next = c.id === "omega-auto" && !ps ? "prospect" : "pitch";
+      }
+      if (next === "contacted") next = "outreach";
+      else if (next === "response") next = "follow-up";
+
+      if (next === "pitch") {
+        if (ps === "pending-review" || ps === "pending-supervisor-review" || ps === "pending") next = "quality-check";
         else if (ps === "supervisor-approved" || ps === "zach-approved") next = "approval";
-        else if (ps === "sent" || ps === "unproven-send") next = "outreach";
+        else if (ps === "sent") next = "outreach";
         else if (ps === "bounced") next = "follow-up";
-        if (next !== st) {
-          c.stage = next;
-          changed = true;
-        }
+      }
+      // An explicitly unproven send is not delivery evidence. Missing drafts
+      // need writing; existing drafts need quality review before approval.
+      if (ps === "unproven-send" && ["pitch", "outreach", "follow-up"].includes(next)) {
+        next = String(c.pitchDraft?.body ?? "").trim() ? "quality-check" : "pitch";
+      }
+      if (ps === "bounced" && ["prospect", "outreach"].includes(next)) next = "follow-up";
+
+      // Apply the demo gate LAST, including legacy build-stage repairs. Empty
+      // demo.url must fall back to demoUrl; absent status means pending, as in
+      // getDemoQueue(). Do not infer a live demo from pitchDraft.demoUrl.
+      const demoUrl = String(c.demo?.url ?? "").trim() || String(c.demoUrl ?? "").trim();
+      const demoStatus = c.demo?.status ?? "pending";
+      if (demoUrl && demoStatus === "pending" &&
+          (["outreach", "follow-up"].includes(next) ||
+           (ps === "unproven-send" && ["pitch", "quality-check"].includes(next)))) {
+        next = "approval";
+      }
+      if (next !== original) {
+        c.stage = next;
+        changed = true;
       }
     }
-    // Correct pending demos: a built-but-unapproved demo (non-empty URL) blocks
-    // sending, so it belongs in Approval, not Outreach/Follow-up.
-    for (const c of data.companies) {
-      if (!c || typeof c !== "object") continue;
-      const demoUrl = String(c.demo?.url ?? c.demoUrl ?? "").trim();
-      if (
-        c.demo?.status === "pending" &&
-        demoUrl &&
-        (c.stage === "outreach" || c.stage === "follow-up")
-      ) {
-        c.stage = "approval";
-        changed = true;
-      }
+    if (repairLegacyBuild) {
+      data.legacyBuildStageMigrationVersion = 1;
+      changed = true;
     }
   }
   // Rewrite the stages array too (labels + the two new stages).

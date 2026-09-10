@@ -1,0 +1,276 @@
+LLOS LOCAL STAGE MAPPING REVIEW
+Scope: all 265 company records in data/pipeline.json; local files only. No Blob, network, send, or deployment calls.
+
+APPLIED CHANGES
+Lightning Pest & Termite Control: prospect -> follow-up
+MM&K Pressure Washing: outreach -> approval
+Sky Branch LLC: outreach -> approval
+Mishoe's Handy Services and Closing Contractor: outreach -> pitch
+AB Tree Service: outreach -> pitch
+Upstate Handyman and Landscaping: outreach -> pitch
+Fresh Start Pressure Washing: outreach -> approval
+Southern Unlimited Services: outreach -> approval
+
+MIGRATION FIXES
+Compute the final stage in one pass; run pending-demo gate after build-stage repair.
+Use trimmed nonempty demo.url OR demoUrl; absent demo status follows queue default pending.
+Never treat unproven-send as a proven send; without a stored body route back to Pitch.
+Route bounced prospects to Follow up (alternate-channel follow-up, not an automatic retry to a dead email).
+Limit historical build-stage cleanup to the 18 identified legacy lead IDs, once per book. Preserve known and future paying clients even when pitch history says sent.
+Keep pitch/demo/send history unchanged. Add legacyBuildStageMigrationVersion=1 to prevent repeating historical build cleanup.
+
+REMAINING REVIEW ITEMS — NOT CLAIMED RESOLVED
+Recorded status is not proof of delivery or of a complete audit/offer. Prose can be stale and was not used to fabricate structured approvals.
+A pending demo in Approval does not mean the pitch is complete or approved. No sends are authorized by this migration.
+
+Audit-to-Pitch handoff candidates (confirm holds; the six especially clear examples are Greenville Pro Painters, Unique Concrete, Moriaan Construction Company LLC, One Call Plumbing — Greenville, Ken's Plumbing, Country Life Tires & Service) (31):
+Randy's Home Services
+Greenville Pro Painters
+Unique Concrete
+Moriaan Construction Company LLC
+One Call Plumbing — Greenville
+Country Life Tires & Service
+Ken's Plumbing
+Bullseye HVAC
+Junk Busters
+Sparrow Fencing LLC
+CPM Home Services LLC
+Chad's Tree Service, LLC
+Morris Heating & Air
+Arbor Pro Inc
+Milligan Residential Junk Removal
+Smith Heating And Air Conditioning
+David Smith Tree Service
+Honea Tree Service
+Green Vision
+J & M Concrete Inc
+Vermont Custom Stone
+Molinas Tree Service
+Pristine Cleaners Services
+Harrison Landscape Management
+Brown's Tree Surgeons
+Byars Plumbing
+Gold Star Hvacr
+Jasper Painting
+MC Cleaning Solutions
+Brittain & Son Concrete Construction
+Rich Mitchell Painting & Pressure Washing
+
+Prospects with existing research; likely Audit work, not untouched discovery (4):
+Anna Lee — Wedding Planning
+Blu Rhino Junk Removal
+DHG Tree Service, LLC
+Skyline Renovation
+
+Missing inbound approval draft (1):
+Anna Lee — Wedding Planning
+
+Old awaiting sends; recommend Follow up once delivery/no-response is confirmed, using 3/10/21 days rather than old 4/8/14 prose. Do not send automatically (64):
+B&M Pressure Washing
+Lumberjack Tree Service
+Kimbrell's Plumbing
+Upstate Window Cleaning LLC
+FIX Home Projects LLC
+Pro Kutz Lawn Care & Landscaping
+Smith Irrigation
+Locomotion Auto Detail
+Titan Wash
+Mr. Painter Company LLC
+The Stallion Concrete LLC
+Norvell's Tree & Landscape Services LLC
+Two Brothers Landscaping
+WipeOUT Junk Removal Miami
+Scott Handiworks
+Leo's Pro Line Painting LLC
+Cleaning Angels
+Upstate Jack of Trades LLC
+Upstate Tree Solutions
+Steve Cantrell Tree Services
+Haul Away LLC
+Antigua's Landscaping
+AK Landscaping
+Pressure Washing Solutions LLC
+Spartan Concrete LLC
+S Pugh Plumbing LLC
+Zeroscapes Landscaping LLC
+Uptown Renovations LLC
+Gray Wolf Concrete & Construction
+Universal Junk Removal
+Superior Clean Power Washing Services, LLC
+Southwestern Irrigation & Landscaping Inc.
+Holy Grounds Landscaping
+Sease's Tree Services
+Cooper's Plumbing Company Inc
+Diaz Landscaping & Snowplow LLC
+Buy Sell Landscape Supply LLC
+Garcia's Painting Company
+Elite Sweep Property Cleaning
+Pipedex Plumbing and Drains
+Gotta Guy Home Services
+L And P Lawncare And Landscaping
+Home Shield Roofing
+Gulotta's Window Cleaning
+Milford Mountain Landscape
+SBC Handyman Services
+Kanebreak Custom Backyards
+Wright Time Disposal Service
+All In One Maintenance
+Fresh Blades Lawn Care
+Atlas Appliance Repair
+Automated Door Products
+Tree Wisemen Upstate
+Crane Pressure Washing LLC
+Ultra Pro Pressure Washing
+Load & Go Junk Co
+Arrow Fence & Flooring LLC
+BRB Pressure Washing Service
+Joshua Truitt Handyman
+Cedar Guy Tree Service
+Marshall Cleaning
+PVP Home Services LLC
+Rig Line Tree Service
+Simpsonville Cleaning Authority
+
+Quality-check rows with no stored pitch body; restore external drafts, otherwise Pitch (17):
+Machado Handyman and HVAC Solutions
+Brian Dillard Concrete LLC
+Taylor Jones Signature Tree Service
+Devil Dog Fencing
+Lucas Maintenance Power & Soft Wash LLC
+Perino's Junk Removal
+SA Tree Service & More
+Taylor's Tree Service
+West Construction
+Charlie Brown Decks, Etc.
+Solid Foundations Plus LLC
+The Creek Crew
+K&W Cleaning Service
+Ted's Handyman Service
+Woodies Junk Removal LLC
+Rodriquez Painting
+B&B Painting
+
+Sent history without stored body; do not assume unsent (52):
+Lumberjack Tree Service
+Greenville Cleaning Company
+Titan Wash
+Norvell's Tree & Landscape Services LLC
+Two Brothers Landscaping
+Scott Handiworks
+MM&K Pressure Washing
+Sky Branch LLC
+Leo's Pro Line Painting LLC
+Cleaning Angels
+Upstate Jack of Trades LLC
+Upstate Tree Solutions
+Steve Cantrell Tree Services
+Haul Away LLC
+Antigua's Landscaping
+AK Landscaping
+Pressure Washing Solutions LLC
+Spartan Concrete LLC
+S Pugh Plumbing LLC
+Zeroscapes Landscaping LLC
+Uptown Renovations LLC
+Gray Wolf Concrete & Construction
+Superior Clean Power Washing Services, LLC
+Southwestern Irrigation & Landscaping Inc.
+Holy Grounds Landscaping
+Sease's Tree Services
+Cooper's Plumbing Company Inc
+Diaz Landscaping & Snowplow LLC
+Buy Sell Landscape Supply LLC
+Garcia's Painting Company
+Elite Sweep Property Cleaning
+Pipedex Plumbing and Drains
+L And P Lawncare And Landscaping
+Home Shield Roofing
+Milford Mountain Landscape
+SBC Handyman Services
+Kanebreak Custom Backyards
+Wright Time Disposal Service
+All In One Maintenance
+Fresh Blades Lawn Care
+Fresh Start Pressure Washing
+Southern Unlimited Services
+Atlas Appliance Repair
+Automated Door Products
+Crane Pressure Washing LLC
+Ultra Pro Pressure Washing
+Load & Go Junk Co
+Arrow Fence & Flooring LLC
+Joshua Truitt Handyman
+Cedar Guy Tree Service
+Marshall Cleaning
+PVP Home Services LLC
+
+Pending demos without canonical URL; do not infer built/approved from a placeholder (11):
+Machado Handyman and HVAC Solutions
+Moriaan Construction Company LLC
+WipeOUT Junk Removal Miami
+Mishoe's Handy Services and Closing Contractor
+Haul Away LLC
+Spartan Concrete LLC
+S Pugh Plumbing LLC
+Uptown Renovations LLC
+Gulotta's Window Cleaning
+Royal Pro Wash
+Simpsonville Cleaning Authority
+
+Noncanonical demo_url aliases; verify and normalize before gate (2):
+Tree Wisemen Upstate
+BRB Pressure Washing Service
+
+Obsolete nested playbook stages (live/audited/website-built/prospected); separate from company.stage and not automatically remapped (26):
+CC Headlight Restoration
+Omega Auto Sales
+Mom & A Mop
+Redwood Landscaping
+B&M Pressure Washing
+YardSmith Landscaping
+Jackson's Junk and Stuff
+Lumberjack Tree Service
+Kimbrell's Plumbing
+M&M Plumbing Services
+Upstate Window Cleaning LLC
+My Titan Services LLC
+Lonts 24/7 Disposal
+FIX Home Projects LLC
+Greenville Cleaning Company
+YACA Auto Mechanics
+Machado Handyman and HVAC Solutions
+Sparrow Fencing LLC
+CPM Home Services LLC
+Scott Handiworks
+MM&K Pressure Washing
+Sky Branch LLC
+Woodies Junk Removal LLC
+Gray Wolf Concrete & Construction
+Rodriquez Painting
+B&B Painting
+
+Critical conflicting identity/contact instructions (2):
+Fresh Start Pressure Washing
+Simpsonville Cleaning Authority
+
+Type mismatch: unproven-send and bounced occur in data but are absent from Company.pitchDraft.status in src/lib/data.ts. Leave legacy history intact; a separate type/read-normalization fix is recommended.
+Stage IDs, labels, colors/icons and lead/client groupings in data.ts/stages.ts already match the new funnel.
+Confirmed client membership follows user-provided context: CC Headlight Restoration, Mom & A Mop, Redwood Landscaping. Payment cannot independently be proven from this JSON (saleValue is null).
+
+FINAL DISTRIBUTION
+prospect: 5
+audit: 42
+pitch: 3
+quality-check: 103
+approval: 44
+outreach: 64
+follow-up: 1
+sale: 0
+build-launch: 3
+Total: 265
+
+VERIFICATION
+6 regression tests passed, including all-265 fixed-point validation and future client preservation.
+TypeScript: tsc --noEmit --incremental false passed.
+All company properties other than the eight stage values were preserved.
+CSV: stage-mapping-review.csv contains one row per company, including exact status fields and next-step evidence.
