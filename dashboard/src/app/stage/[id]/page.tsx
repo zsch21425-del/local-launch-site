@@ -1,36 +1,41 @@
+"use client";
+
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { useParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
+import { ClientApprovalPanel } from "@/components/client-approval-panel";
 import { CompanyTile } from "@/components/company-tile";
-import { getStages } from "@/lib/data";
-import { readPipelineSafe } from "@/lib/pipeline-store";
+import { usePipeline } from "@/hooks/use-pipeline";
 import { priorityWeight, stageIcon, STAGE_DESCRIPTIONS } from "@/lib/stages";
 
-// H01: reflect LIVE data, not the frozen build snapshot.
-export const dynamic = "force-dynamic";
+export default function StagePage() {
+  const { id } = useParams<{ id: string }>();
+  const { companies, stages, loading } = usePipeline();
 
-export default async function StagePage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
-  const stages = getStages();
   const stage = stages.find((s) => s.id === id);
-  if (!stage) notFound();
+  if (!stage) {
+    return (
+      <div className="relative z-10 mx-auto max-w-2xl px-6 py-24 text-center">
+        <p className="text-lg text-muted-foreground">Stage not found.</p>
+        <Link href="/" className="mt-2 inline-block text-sm text-primary hover:underline">
+          Back to stages
+        </Link>
+      </div>
+    );
+  }
 
-  const live = await readPipelineSafe();
-  const companies = (live?.companies ?? [])
-    .filter((c: any) => c.stage === id)
+  const stageCompanies = companies
+    .filter((c) => c.stage === id)
     .sort(
-      (a: any, b: any) =>
+      (a, b) =>
         priorityWeight(b.priority ?? "") - priorityWeight(a.priority ?? "") ||
         a.name.localeCompare(b.name),
     );
 
   const Icon = stageIcon(stage.icon);
   const desc = STAGE_DESCRIPTIONS[id] ?? "";
+  const isApproval = id === "approval";
 
   return (
     <div className="relative z-10">
@@ -50,15 +55,19 @@ export default async function StagePage({
             {stage.label}
           </h1>
           <span className="tnum rounded-full bg-muted px-2.5 py-1 text-sm font-semibold text-muted-foreground">
-            {companies.length}
+            {stageCompanies.length}
           </span>
         </div>
         <p className="mt-3 max-w-2xl text-base text-muted-foreground">{desc}</p>
       </div>
 
-      {/* Companies in this stage */}
+      {/* Companies */}
       <div className="mx-auto w-full max-w-[1440px] px-6 py-8 md:px-20">
-        {companies.length === 0 ? (
+        {loading ? (
+          <p className="py-16 text-center text-sm text-muted-foreground">
+            Loading pipeline…
+          </p>
+        ) : stageCompanies.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-border py-16 text-center">
             <p className="text-muted-foreground">No companies in this stage yet.</p>
             <Link
@@ -68,9 +77,16 @@ export default async function StagePage({
               Move a batch here →
             </Link>
           </div>
+        ) : isApproval ? (
+          // Approval: show the full demo + pitch together, with combined approve.
+          <div className="mx-auto flex max-w-3xl flex-col gap-4">
+            {stageCompanies.map((c: any) => (
+              <ClientApprovalPanel key={c.id} company={c} />
+            ))}
+          </div>
         ) : (
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {companies.map((c: any) => (
+            {stageCompanies.map((c: any) => (
               <CompanyTile key={c.id} company={c} />
             ))}
           </div>
