@@ -86,6 +86,20 @@ export function migrateLegacyStages(data: any): boolean {
         }
       }
     }
+    // Correct pending demos: a built-but-unapproved demo (non-empty URL) blocks
+    // sending, so it belongs in Approval, not Outreach/Follow-up.
+    for (const c of data.companies) {
+      if (!c || typeof c !== "object") continue;
+      const demoUrl = String(c.demo?.url ?? c.demoUrl ?? "").trim();
+      if (
+        c.demo?.status === "pending" &&
+        demoUrl &&
+        (c.stage === "outreach" || c.stage === "follow-up")
+      ) {
+        c.stage = "approval";
+        changed = true;
+      }
+    }
   }
   // Rewrite the stages array too (labels + the two new stages).
   const stagesArr = Array.isArray(data.stages)
