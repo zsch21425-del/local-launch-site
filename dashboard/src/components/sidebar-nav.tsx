@@ -13,8 +13,6 @@ import {
   KanbanSquare,
   Menu,
   MonitorPlay,
-  Radar,
-  Rocket,
   Users,
   Workflow,
   X,
@@ -23,7 +21,7 @@ import {
 
 import { GlobalSearch } from "@/components/global-search";
 import { usePipeline } from "@/hooks/use-pipeline";
-import { getAgency, pendingDemoCount, resolveDemoUrl } from "@/lib/data";
+import { getAgency, pendingDemoCount } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -35,11 +33,9 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home", icon: Home },
   { href: "/pipeline", label: "Pipeline", icon: KanbanSquare },
-  { href: "/fleet", label: "Fleet", icon: Cpu },
-  { href: "/leads", label: "Leads", icon: Radar },
   { href: "/clients", label: "Clients", icon: Users },
-  { href: "/approvals", label: "Next Batch", icon: Rocket },
   { href: "/demos", label: "Demos", icon: MonitorPlay },
+  { href: "/fleet", label: "Fleet", icon: Cpu },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/automation", label: "Automation", icon: Workflow },
 ];
@@ -60,9 +56,6 @@ export function SidebarNav() {
   const [collapsed, setCollapsed] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const batchCount = companies.filter(
-    (c) => c.stage === "prospect" && !resolveDemoUrl(c) && !c.pitchDraft,
-  ).length;
   const demoCount = pendingDemoCount(companies);
 
   return (
@@ -105,7 +98,7 @@ export function SidebarNav() {
                 item={item}
                 active={isActive(pathname, item.href)}
                 expanded
-                badge={item.href === "/approvals" ? batchCount : item.href === "/demos" ? demoCount : undefined}
+                badge={item.href === "/demos" ? demoCount : undefined}
                 onClick={() => setMobileOpen(false)}
               />
             ))}
@@ -152,7 +145,7 @@ export function SidebarNav() {
             item={item}
             active={isActive(pathname, item.href)}
             expanded={!collapsed}
-            badge={item.href === "/approvals" ? batchCount : item.href === "/demos" ? demoCount : undefined}
+            badge={item.href === "/demos" ? demoCount : undefined}
           />
         ))}
       </nav>

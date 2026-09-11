@@ -113,10 +113,10 @@ export default function HomePage() {
                 </span>
               </div>
               <h2 className="font-display mt-4 text-xl text-foreground">
-                Won + Building
+                Clients
               </h2>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Paying clients in their own section — the highest level of attention.
+                Finished clients in their own section — monthly SEO audits to keep improving their side.
               </p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors group-hover:text-emerald-300">
                 Open clients
@@ -136,9 +136,6 @@ export default function HomePage() {
             <span aria-hidden>→</span>
           </Link>
           <div className="flex items-center gap-5">
-            <Link href="/approvals" className="transition-colors hover:text-foreground">
-              Next Batch
-            </Link>
             <Link href="/reports" className="transition-colors hover:text-foreground">
               Reports
             </Link>

@@ -369,7 +369,7 @@ export const LEAD_STAGES: StageId[] = [
   "outreach",
   "follow-up",
 ];
-export const CLIENT_STAGES: StageId[] = ["sale", "build-launch"];
+export const CLIENT_STAGES: StageId[] = ["sale"];
 
 export function isLead(company: Company): boolean {
   return LEAD_STAGES.includes(company.stage);

@@ -62,6 +62,11 @@ const NEW_STAGES = [
 
 export function migrateLegacyStages(data: any): boolean {
   if (!data || typeof data !== "object") return false;
+  // Post-migration no-op: once the book is persisted at stageMigrationVersion 2
+  // (correct 7-stage funnel + terminal clients), the migrator must NOT re-guess
+  // stages from pitchDraft.status on every read — that was re-scattering the
+  // already-correct stages (e.g. 97 prospects → 5). Return early.
+  if (data.stageMigrationVersion && data.stageMigrationVersion >= 2) return false;
   let changed = false;
   if (Array.isArray(data.companies)) {
     // Scope the historical build-stage repair to the identified legacy leads,
