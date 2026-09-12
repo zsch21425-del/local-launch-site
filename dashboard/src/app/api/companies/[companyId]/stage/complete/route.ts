@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readPipelineSafe } from "@/lib/pipeline-store";
-import { validateCompletionCapability, type StageResultEvidence } from "@/lib/stage-orders";
+import {
+  validateCompletionCapability,
+  computeEvidenceDigest,
+  type StageResultEvidence,
+} from "@/lib/stage-orders";
 import { completeStageRun } from "@/lib/stage-runs";
 import { isObject } from "@/lib/validate";
 
@@ -21,10 +25,8 @@ function validateEvidence(raw: any): { ok: boolean; error?: string; evidence?: S
   if (!isObject(raw)) return { ok: false, error: "body must be an object" };
   const runId = raw.runId;
   const status = raw.status;
-  const resultDigest = raw.resultDigest;
   if (typeof runId !== "string" || !runId) return { ok: false, error: "runId required" };
   if (status !== "completed" && status !== "failed") return { ok: false, error: "invalid status" };
-  if (typeof resultDigest !== "string" || !resultDigest) return { ok: false, error: "resultDigest required" };
   // Reject any attempt to pass a stage field (advancement is dashboard-only).
   if (raw.stage !== undefined) return { ok: false, error: "stage may not be submitted here" };
 
@@ -41,6 +43,7 @@ function validateEvidence(raw: any): { ok: boolean; error?: string; evidence?: S
     if (typeof t?.reviewerId !== "string" || !t.reviewerId) return { ok: false, error: "reviewerId required" };
     if (typeof t?.blind !== "boolean") return { ok: false, error: "blind flag required" };
     if (t?.verdict !== "pass" && t?.verdict !== "fail") return { ok: false, error: "invalid verdict" };
+    if (typeof t?.scores !== "object" || t?.scores === null || Array.isArray(t?.scores)) return { ok: false, error: "attestation scores must be an object" };
     if (typeof t?.artifactHash !== "string" || !t.artifactHash) return { ok: false, error: "attestation artifactHash required" };
   }
 
@@ -51,7 +54,7 @@ function validateEvidence(raw: any): { ok: boolean; error?: string; evidence?: S
       companyId: raw.companyId,
       stage: raw.submittedStage, // informational only — validated against capability
       status,
-      resultDigest,
+      resultDigest: "", // derived server-side below (never trusted from the caller)
       artifacts,
       attestations,
       error: raw.error,
@@ -100,16 +103,27 @@ export async function POST(
     return NextResponse.json({ error: "run id mismatch" }, { status: 409 });
   }
 
+  // Derive the evidence digest SERVER-SIDE from the submitted artifacts +
+  // attestations — the caller's word is never trusted as the digest.
+  const resultDigest = computeEvidenceDigest({
+    runId: evidence.runId,
+    status: evidence.status,
+    artifacts: evidence.artifacts ?? [],
+    attestations: evidence.attestations ?? [],
+  });
+
   const done = await completeStageRun(
     companyId,
     run.runId,
     evidence.status,
-    evidence.resultDigest,
+    resultDigest,
+    evidence.artifacts ?? [],
+    evidence.attestations ?? [],
     evidence.error,
   );
   if (!done.ok) {
     return NextResponse.json({ error: done.error, ok: false }, { status: 409 });
   }
 
-  return NextResponse.json({ ok: true, runId: run.runId, status: evidence.status });
+  return NextResponse.json({ ok: true, runId: run.runId, status: evidence.status, resultDigest });
 }

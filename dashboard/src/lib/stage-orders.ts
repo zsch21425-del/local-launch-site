@@ -118,6 +118,99 @@ export function newRunId(): string {
 }
 
 /**
+ * Server-computed evidence digest. Hermes must NOT supply resultDigest — it can
+ * assert any string. Instead the dashboard derives the digest from the submitted
+ * evidence (artifacts + attestations) so the digest is bound to what was actually
+ * reported, not to a caller's claim. A digest match then means "Zach reviewed
+ * THIS exact evidence", not "Zach reviewed whatever Hermes asserted".
+ */
+export function computeEvidenceDigest(evidence: {
+  runId: string;
+  status: "completed" | "failed";
+  artifacts?: { kind: string; version: number; contentHash: string; location: string }[];
+  attestations?: { reviewerRole: string; reviewerId: string; blind: boolean; scores: Record<string, number>; verdict: "pass" | "fail"; artifactHash: string }[];
+}): string {
+  const stable = {
+    runId: evidence.runId,
+    status: evidence.status,
+    artifacts: (evidence.artifacts ?? []).map((a) => ({
+      kind: a.kind,
+      version: a.version,
+      contentHash: a.contentHash,
+      location: a.location,
+    })),
+    attestations: (evidence.attestations ?? []).map((t) => ({
+      reviewerRole: t.reviewerRole,
+      reviewerId: t.reviewerId,
+      blind: t.blind,
+      scores: t.scores,
+      verdict: t.verdict,
+      artifactHash: t.artifactHash,
+    })),
+  };
+  return createHmac("sha256", SECRET || "no-secret")
+    .update(JSON.stringify(stable))
+    .digest("hex");
+}
+
+/**
+ * Verify that a completed run's attestations actually satisfy the stage's
+ * required checks (the DELIVERABLE gates), so advancing is bound to real
+ * evidence — not to unrelated pre-existing company flags.
+ *
+ * Required-check → attestation mapping:
+ *   six-pass-audit     → audit attestation, verdict "pass", every score ≥ 8
+ *   visual-8.5         → visual attestation, verdict "pass", every score ≥ 8.5
+ *   blind-critic-9.5   → ux + product + security attestations, each blind,
+ *                        verdict "pass", every score ≥ 9.5 (security vetoes)
+ *   five-pitch-standards → product attestation, verdict "pass", every score ≥ 9
+ */
+export function verifyRequiredChecks(
+  requiredChecks: string[],
+  attestations: { reviewerRole: string; blind: boolean; scores: Record<string, number>; verdict: "pass" | "fail" }[],
+): { ok: boolean; missing: string[] } {
+  const missing: string[] = [];
+  const byRole = (role: string) =>
+    attestations.filter((t) => t.reviewerRole === role && t.verdict === "pass");
+
+  const allAtLeast = (scores: Record<string, number>, min: number) =>
+    Object.values(scores).length > 0 && Object.values(scores).every((s) => typeof s === "number" && s >= min);
+
+  for (const check of requiredChecks) {
+    switch (check) {
+      case "six-pass-audit": {
+        const a = byRole("audit");
+        if (!a.some((t) => allAtLeast(t.scores, 8))) missing.push("six-pass-audit (audit review ≥8)");
+        break;
+      }
+      case "visual-8.5": {
+        const a = byRole("visual");
+        if (!a.some((t) => allAtLeast(t.scores, 8.5))) missing.push("visual-8.5 (visual QA ≥8.5 @1280+390)");
+        break;
+      }
+      case "blind-critic-9.5": {
+        const ux = byRole("ux").some((t) => t.blind && allAtLeast(t.scores, 9.5));
+        const product = byRole("product").some((t) => t.blind && allAtLeast(t.scores, 9.5));
+        const security = byRole("security").some((t) => t.blind && allAtLeast(t.scores, 9.5));
+        if (!ux) missing.push("blind-critic-9.5 (UX critic ≥9.5)");
+        if (!product) missing.push("blind-critic-9.5 (product critic ≥9.5)");
+        if (!security) missing.push("blind-critic-9.5 (security critic ≥9.5, veto)");
+        break;
+      }
+      case "five-pitch-standards": {
+        const a = byRole("product");
+        if (!a.some((t) => allAtLeast(t.scores, 9))) missing.push("five-pitch-standards (product review ≥9)");
+        break;
+      }
+      default:
+        // Unknown check → don't silently pass; require an explicit attestation.
+        missing.push(`unrecognized required check: ${check}`);
+    }
+  }
+  return { ok: missing.length === 0, missing };
+}
+
+/**
  * Deterministic input-revision hash for a company (freeze the inputs a work
  * order was dispatched against). This is NOT a security boundary — it's for
  * detecting staleness — so a stable, non-cryptographic hash is fine.

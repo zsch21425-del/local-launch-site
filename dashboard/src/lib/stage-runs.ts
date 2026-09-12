@@ -21,6 +21,9 @@ export interface StageRun {
   requestedAt: string;
   status: StageRunStatus;
   resultDigest?: string;
+  /** Evidence persisted at completion (bound to the digest). */
+  artifacts?: { kind: string; version: number; contentHash: string; location: string }[];
+  attestations?: { reviewerRole: string; reviewerId: string; blind: boolean; scores: Record<string, number>; verdict: "pass" | "fail"; artifactHash: string }[];
   error?: string;
   completedAt?: string;
   approvedAt?: string;
@@ -57,12 +60,14 @@ export async function setStageRun(
   return { ok: true };
 }
 
-/** Mark a run complete with its evidence digest (from Hermes' completion). */
+/** Mark a run complete with its evidence (from Hermes' completion). */
 export async function completeStageRun(
   companyId: string,
   runId: string,
   status: "completed" | "failed",
   resultDigest: string,
+  artifacts: { kind: string; version: number; contentHash: string; location: string }[],
+  attestations: { reviewerRole: string; reviewerId: string; blind: boolean; scores: Record<string, number>; verdict: "pass" | "fail"; artifactHash: string }[],
   error?: string,
 ): Promise<{ ok: boolean; error?: string }> {
   const r = await mutatePipeline((data: any) => {
@@ -77,6 +82,8 @@ export async function completeStageRun(
     }
     c.stageRun.status = status;
     c.stageRun.resultDigest = resultDigest;
+    c.stageRun.artifacts = artifacts;
+    c.stageRun.attestations = attestations;
     c.stageRun.completedAt = new Date().toISOString();
     if (error) c.stageRun.error = error;
     return { code: "__OK__" as const };
