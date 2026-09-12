@@ -160,12 +160,20 @@ export function computeEvidenceDigest(evidence: {
  * required checks (the DELIVERABLE gates), so advancing is bound to real
  * evidence — not to unrelated pre-existing company flags.
  *
- * Required-check → attestation mapping:
- *   six-pass-audit     → audit attestation, verdict "pass", every score ≥ 8
- *   visual-8.5         → visual attestation, verdict "pass", every score ≥ 8.5
+ * Required-check → attestation mapping (EXACT rubric dimensions, not arbitrary):
+ *   six-pass-audit     → audit attestation, verdict "pass", ALL six dimensions
+ *                        {correctness, robustness, craft, efficiency,
+ *                         futureRisk, process} each ≥ 8
+ *   visual-8.5         → visual attestation, verdict "pass", BOTH viewports
+ *                        {desktop, mobile} each ≥ 8.5
  *   blind-critic-9.5   → ux + product + security attestations, each blind,
  *                        verdict "pass", every score ≥ 9.5 (security vetoes)
- *   five-pitch-standards → product attestation, verdict "pass", every score ≥ 9
+ *   five-pitch-standards → product attestation, verdict "pass", ALL five
+ *                        {humanVoice, specificity, lowPressure, accuracy,
+ *                         brevity} each ≥ 9
+ *
+ * Each check requires its EXACT rubric keys to be present (finite numbers) and
+ * meet the threshold — a single arbitrary key no longer satisfies a check.
  */
 export function verifyRequiredChecks(
   requiredChecks: string[],
@@ -175,19 +183,27 @@ export function verifyRequiredChecks(
   const byRole = (role: string) =>
     attestations.filter((t) => t.reviewerRole === role && t.verdict === "pass");
 
+  // Require the EXACT rubric keys to be present and each meet the minimum.
+  const hasDimensions = (scores: Record<string, number>, keys: string[], min: number) =>
+    keys.every((k) => typeof scores[k] === "number" && Number.isFinite(scores[k]) && scores[k] >= min);
+
+  // For blind critics: no fixed rubric keys, but every supplied score must meet
+  // the bar (and there must be at least one) — blind + ≥9.5 per role.
   const allAtLeast = (scores: Record<string, number>, min: number) =>
     Object.values(scores).length > 0 && Object.values(scores).every((s) => typeof s === "number" && Number.isFinite(s) && s >= min);
 
   for (const check of requiredChecks) {
     switch (check) {
       case "six-pass-audit": {
+        const dims = ["correctness", "robustness", "craft", "efficiency", "futureRisk", "process"];
         const a = byRole("audit");
-        if (!a.some((t) => allAtLeast(t.scores, 8))) missing.push("six-pass-audit (audit review ≥8)");
+        if (!a.some((t) => hasDimensions(t.scores, dims, 8))) missing.push("six-pass-audit (6 dimensions each ≥8)");
         break;
       }
       case "visual-8.5": {
+        const dims = ["desktop", "mobile"];
         const a = byRole("visual");
-        if (!a.some((t) => allAtLeast(t.scores, 8.5))) missing.push("visual-8.5 (visual QA ≥8.5 @1280+390)");
+        if (!a.some((t) => hasDimensions(t.scores, dims, 8.5))) missing.push("visual-8.5 (desktop+mobile each ≥8.5)");
         break;
       }
       case "blind-critic-9.5": {
@@ -200,8 +216,9 @@ export function verifyRequiredChecks(
         break;
       }
       case "five-pitch-standards": {
+        const dims = ["humanVoice", "specificity", "lowPressure", "accuracy", "brevity"];
         const a = byRole("product");
-        if (!a.some((t) => allAtLeast(t.scores, 9))) missing.push("five-pitch-standards (product review ≥9)");
+        if (!a.some((t) => hasDimensions(t.scores, dims, 9))) missing.push("five-pitch-standards (5 standards each ≥9)");
         break;
       }
       default:

@@ -96,3 +96,36 @@ export async function isRequestAuthed(req: {
   const cookie = req.cookies.get(COOKIE)?.value || "";
   return cookie ? verifySession(cookie, secret) : false;
 }
+
+/**
+ * CSRF defense for cookie-authenticated state-changing requests. `SameSite=Lax`
+ * stops ordinary cross-site POSTs, but a SAME-SITE sibling origin (e.g.
+ * `evil.locallaunchupstate.com`) shares the registrable domain and WOULD carry
+ * the cookie — so we additionally require any browser `Origin` header to match
+ * a trusted origin.
+ *
+ *   - No Origin header        → non-browser client (curl / Hermes local / Bearer)
+ *                               → allowed (not CSRF-able via a browser).
+ *   - Origin present, trusted  → allowed.
+ *   - Origin present, untrusted → rejected (cross-origin form/fetch).
+ *
+ * Trusted origins = the request's own origin + any `DASHBOARD_ORIGINS` (CSV).
+ */
+export function isSameOrigin(req: {
+  headers: { get(name: string): string | null };
+  nextUrl?: { origin?: string };
+}): boolean {
+  const origin = req.headers.get("origin");
+  if (!origin) return true; // non-browser client — not CSRF-able
+  const allowed = new Set<string>();
+  const own = req.nextUrl?.origin;
+  if (own) allowed.add(own);
+  const extra = (process.env.DASHBOARD_ORIGINS || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  for (const o of extra) allowed.add(o);
+  // If we cannot determine any trusted origin, do not invent one — but this
+  // should never happen on Vercel (nextUrl.origin is always populated).
+  return allowed.size === 0 ? true : allowed.has(origin);
+}

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isRequestAuthed } from "@/lib/session";
+import { isRequestAuthed, isSameOrigin } from "@/lib/session";
 import { mutatePipeline, readPipelineSafe } from "@/lib/pipeline-store";
 import { evaluateTransition, FUNNEL_ORDER, TERMINAL_STAGE } from "@/lib/gates";
 import { hashCompanyInputs, verifyRequiredChecks } from "@/lib/stage-orders";
@@ -44,6 +44,10 @@ export async function POST(
 ) {
   if (!(await isRequestAuthed(req))) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+  // CSRF: cookie-authenticated mutation — reject untrusted browser origins.
+  if (!isSameOrigin(req)) {
+    return NextResponse.json({ error: "forbidden origin" }, { status: 403 });
   }
   const { companyId } = await params;
   const body = await req.json().catch(() => null);
