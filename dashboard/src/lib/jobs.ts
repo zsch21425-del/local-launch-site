@@ -15,6 +15,15 @@
 
 import { mutatePipeline, readPipelineSafe } from "./pipeline-store";
 
+/**
+ * Actors with distinct authority. A single shared DASHBOARD_TOKEN is NOT
+ * sufficient separation — the executor, workers, reviewers, Zach, and the
+ * evaluator must not be interchangeable. Until per-principal tokens exist,
+ * the transition graph below is the enforcement boundary: it decides WHO may
+ * perform each transition, and every state change goes through it.
+ */
+export type Actor = "zach" | "executor" | "worker" | "reviewer" | "evaluator" | "system";
+
 export type JobState =
   | "new"
   | "proposed"
@@ -31,6 +40,37 @@ export type JobState =
   | "blocked"
   | "failed"
   | "cancelled";
+
+/**
+ * The ENFORCED transition graph. Key invariant: "passed" is evaluator-owned —
+ * no worker/reviewer/executor may set it. "approved" is Zach-owned. Movement
+ * into running/queued is executor-owned. `undefined` from-state means the job
+ * does not exist yet (creation).
+ */
+export const TRANSITIONS: Record<JobState, { to: JobState[]; by: Actor[] }> = {
+  new: { to: ["proposed"], by: ["system", "zach"] },
+  proposed: { to: ["approved", "cancelled"], by: ["zach"] },
+  approved: { to: ["queued", "cancelled"], by: ["executor", "zach"] },
+  queued: { to: ["running", "cancelled"], by: ["executor"] },
+  running: { to: ["pending_QA", "repairing", "failed", "blocked", "cancelled"], by: ["executor", "worker"] },
+  pending_QA: { to: ["repairing", "passed", "failed", "blocked"], by: ["evaluator"] },
+  repairing: { to: ["pending_QA", "failed", "blocked"], by: ["executor"] },
+  passed: { to: ["awaiting_human_approval", "ready_to_commit", "failed"], by: ["evaluator"] },
+  awaiting_human_approval: { to: ["ready_to_commit", "repairing", "cancelled"], by: ["zach"] },
+  ready_to_commit: { to: ["committing", "cancelled", "failed"], by: ["executor"] },
+  committing: { to: ["completed", "failed", "blocked"], by: ["executor", "system"] },
+  completed: { to: [], by: [] },
+  blocked: { to: ["queued", "repairing", "failed", "cancelled"], by: ["executor", "zach"] },
+  failed: { to: ["cancelled"], by: ["zach"] },
+  cancelled: { to: [], by: [] },
+};
+
+/** Is `from → to` legal, and may `actor` perform it? */
+export function legalTransition(from: JobState, to: JobState, actor: Actor): boolean {
+  const rule = TRANSITIONS[from];
+  if (!rule) return false;
+  return rule.to.includes(to) && rule.by.includes(actor);
+}
 
 export type JobActionType = "move" | "audit" | "build-demo" | "write-pitch" | "monthly-seo";
 
@@ -192,15 +232,24 @@ export function evaluateJobGates(job: WorkJob): {
     return { passed: true, missing: [] };
   }
 
-  // A deliverable job must have produced an artifact.
-  if (artifacts.length === 0) {
-    missing.push("no artifact produced");
-    return { passed: false, missing };
+  // A deliverable job must have produced an artifact PER COMPANY. A batch must
+  // not pass because one company got an artifact — every frozen company needs
+  // its required deliverable + a passing blind review on the CURRENT version.
+  for (const companyId of job.companyIds) {
+    const companyArtifacts = artifacts.filter((a) => a.companyId === companyId);
+    if (companyArtifacts.length === 0) {
+      missing.push(`company ${companyId}: no artifact produced`);
+    }
   }
 
   for (const a of artifacts) {
     if (!a.contentHash) missing.push(`artifact ${a.id}: missing content hash`);
     if (!a.location) missing.push(`artifact ${a.id}: missing location`);
+    // A placeholder hash is never a real digest — reject it explicitly so a
+    // stubbed executor can't be mistaken for a finished artifact.
+    if (typeof a.contentHash === "string" && /REPLACE|sha256:placeholder/i.test(a.contentHash)) {
+      missing.push(`artifact ${a.id}: placeholder hash (not a real digest)`);
+    }
   }
 
   // Required reviewer roles depend on the artifact kind.

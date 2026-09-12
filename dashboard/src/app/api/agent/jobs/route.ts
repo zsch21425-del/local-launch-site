@@ -57,7 +57,9 @@ export async function POST(req: NextRequest) {
     actionType: body.actionType as JobActionType,
     companyIds: Array.from(new Set(body.companyIds as string[])),
     targetStage: body.targetStage ? (body.targetStage as string).trim() : undefined,
-    state: "proposed",
+    // A job created by Zach (from the chat "Approve & queue" card) is already
+    // human-approved. The executor polls "approved"/"queued" and may run it.
+    state: "approved",
     artifacts: [],
     reviews: [],
     createdAt: now,

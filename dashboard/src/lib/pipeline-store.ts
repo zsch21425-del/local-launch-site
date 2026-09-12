@@ -183,7 +183,13 @@ async function readPipelineWithEtag(): Promise<{ data: any; etag: string | null 
       const text = await readBlobStream(res.stream);
       const data = JSON.parse(text);
       migrateLegacyStages(data);
-      return { data, etag: res.blob?.etag ?? null };
+      // The Blob returns a WEAK ETag ("W/\"…\""). `ifMatch` requires a STRONG
+      // validator, so the "W/" prefix must be stripped before the value is
+      // round-tripped back as `ifMatch` — otherwise every conditional write
+      // fails 412 "ETag mismatch" and mutatePipeline() loops into a bogus
+      // "Concurrent write conflict after 5 retries" (bug C08).
+      const strongEtag = (res.blob?.etag ?? "").replace(/^W\//, "");
+      return { data, etag: strongEtag || null };
     } catch (e: any) {
       console.warn("Blob body unreadable/invalid — failing closed:", e?.message);
       return { data: null, etag: null };

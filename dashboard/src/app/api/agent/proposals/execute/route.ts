@@ -41,9 +41,9 @@ export async function POST(req: NextRequest) {
   const companyIds = body.companyIds as string[];
   const toStage = (body.toStage as string).trim();
 
-  if (!FUNNEL_ORDER.includes(toStage as any)) {
+  if (!FUNNEL_ORDER.includes(toStage as any) && toStage !== "sale") {
     return NextResponse.json(
-      { error: `toStage must be one of: ${FUNNEL_ORDER.join(", ")}` },
+      { error: `toStage must be one of: ${FUNNEL_ORDER.join(", ")} or "sale"` },
       { status: 400 },
     );
   }

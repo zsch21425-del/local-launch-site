@@ -76,6 +76,23 @@ export function evaluateTransition(c: any, toStage: string): TransitionResult {
   const zachApproval = c?.zachApproval;
   const auditData = c?.auditData;
 
+  // Terminal transition: follow-up → sale (won). This is NOT a funnel-adjacency
+  // move (sale is outside FUNNEL_ORDER), so it must be handled explicitly.
+  if (toStage === TERMINAL_STAGE) {
+    if (from !== "follow-up") {
+      return { ok: false, error: `can only enter ${TERMINAL_STAGE} (Clients) from follow-up` };
+    }
+    const won = c?.revenue != null || c?.saleValue != null;
+    if (!won) {
+      return {
+        ok: false,
+        error: "missing evidence to advance follow-up → sale",
+        missing: ["won evidence (revenue / saleValue recorded)"],
+      };
+    }
+    return { ok: true };
+  }
+
   // Per-transition evidence. Each gate is what the WORK must have produced —
   // the gate evaluator only verifies the evidence landed, it does not re-do
   // the work.
@@ -86,7 +103,16 @@ export function evaluateTransition(c: any, toStage: string): TransitionResult {
 
     case "pitch":
       // Audit → Pitch requires the audit deliverable: gathered business info.
-      if (!auditData || typeof auditData !== "object") {
+      // A mere `{}` does not demonstrate a completed audit — require at least
+      // one populated field (issues/competitors/gScore/topFixes).
+      const hasAudit =
+        auditData &&
+        typeof auditData === "object" &&
+        (Array.isArray(auditData.issues) && auditData.issues.length > 0 ||
+          Array.isArray(auditData.competitors) && auditData.competitors.length > 0 ||
+          typeof auditData.gScore === "number" ||
+          Array.isArray(auditData.topFixes) && auditData.topFixes.length > 0);
+      if (!hasAudit) {
         missing.push("audit data (website/contact/competitors gathered)");
       }
       break;
@@ -115,8 +141,14 @@ export function evaluateTransition(c: any, toStage: string): TransitionResult {
 
     case "follow-up":
       // Outreach → Follow up: a confirmed send exists (not just a drafted pitch).
-      if (pitchStatus !== "sent" && !c?.responseStatus) {
-        missing.push("confirmed send (pitch sent / response recorded)");
+      // `responseStatus` presence is too loose — only a QUALIFYING terminal
+      // enum counts (sent, replied, won, bounced, opted-out). Default/negative/
+      // unrelated values do not prove a send happened.
+      const qualifyingResponses = ["sent", "replied", "reply", "won", "bounced", "opted-out", "opt-out", "unsubscribed"];
+      const rs = String(c?.responseStatus ?? "").toLowerCase();
+      const hasSend = pitchStatus === "sent" || qualifyingResponses.includes(rs);
+      if (!hasSend) {
+        missing.push("confirmed send (pitch sent / qualifying response recorded)");
       }
       break;
 

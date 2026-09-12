@@ -6,7 +6,9 @@ import {
   addArtifact,
   addReview,
   evaluateJobGates,
+  legalTransition,
   type JobState,
+  type Actor,
   type JobArtifact,
   type JobReview,
 } from "@/lib/jobs";
@@ -57,11 +59,31 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     if (!isObject(body)) {
       return NextResponse.json({ error: "Body must be a JSON object", field: "body" }, { status: 400 });
     }
-    const bad = badField(body, { state: (v) => oneOf(v, JOB_STATES) });
+    const bad = badField(body, {
+      state: (v) => oneOf(v, JOB_STATES),
+      actor: (v) => oneOf(v, ["zach", "executor", "worker", "reviewer", "evaluator", "system"]),
+    });
     if (bad) {
       return NextResponse.json({ error: `Invalid or missing field: ${bad}`, field: bad }, { status: 400 });
     }
-    const r = await setJobState(id, body.state as JobState);
+    const targetState = body.state as JobState;
+    const actor = (body.actor as Actor) ?? "system";
+
+    const job = await getJob(id);
+    if (!job) return NextResponse.json({ error: "job not found" }, { status: 404 });
+
+    // Enforce the transition graph. "passed" is evaluator-owned; no worker/
+    // reviewer/executor may set it. This is the authority boundary Astra flagged.
+    if (!legalTransition(job.state, targetState, actor)) {
+      return NextResponse.json(
+        {
+          error: `Illegal transition ${job.state} → ${targetState} for actor "${actor}"`,
+          ok: false,
+        },
+        { status: 403 },
+      );
+    }
+    const r = await setJobState(id, targetState);
     if (!r.ok) return NextResponse.json({ error: r.error, ok: false }, { status: 404 });
     return NextResponse.json({ ok: true, job: r.job });
   }
@@ -132,6 +154,13 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
   if (action === "evaluate") {
     const job = await getJob(id);
     if (!job) return NextResponse.json({ error: "job not found" }, { status: 404 });
+    // Evaluation is evaluator-owned and only valid from pending_QA.
+    if (!legalTransition(job.state, "passed", "evaluator") && job.state !== "pending_QA") {
+      return NextResponse.json(
+        { error: `cannot evaluate from state "${job.state}"` },
+        { status: 403 },
+      );
+    }
     const gates = evaluateJobGates(job);
     if (gates.passed) {
       await setJobState(id, "passed").catch(() => {});
