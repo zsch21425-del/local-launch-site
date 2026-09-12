@@ -6,6 +6,42 @@ import { isObject, badField, str, optional } from "@/lib/validate";
 const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 
 /**
+ * Builds the full context frame for a single client — "everything current to
+ * the stage they're in": identity, stage + playbook, pitch (full body),
+ * demo state, review feedback, and next steps. Missing fields are omitted,
+ * never fabricated.
+ */
+function frameClient(c: any): string {
+  const pd = c?.pitchDraft ?? null;
+  const demo = c?.demo ?? null;
+  const fb = pd?.reviewFeedback ?? demo?.reviewFeedback ?? null;
+  const bits = [
+    `Client: ${c?.name ?? "?"} (id=${c?.id ?? "?"})`,
+    c?.stage ? `stage=${c.stage}` : null,
+    c?.priority ? `priority=${c.priority}` : null,
+    c?.ownerName ? `owner=${c.ownerName}` : null,
+    c?.phone ? `phone=${c.phone}` : null,
+    c?.email ? `email=${c.email}` : null,
+    c?.website ? `website=${c.website}` : null,
+    c?.offer ? `offer=${c.offer}` : null,
+    c?.location ? `loc=${c.location}` : null,
+    c?.summary ? `summary=${String(c.summary).slice(0, 300)}` : null,
+    pd?.status ? `pitchStatus=${pd.status}` : null,
+    pd?.subject ? `pitchSubject=${pd.subject}` : null,
+    pd?.body
+      ? `pitchBody="${String(pd.body).slice(0, 1200)}${String(pd.body).length > 1200 ? "…[truncated]" : ""}"`
+      : null,
+    demo?.url || c?.demoUrl ? `demoUrl=${demo?.url || c?.demoUrl}` : null,
+    demo?.status ? `demoStatus=${demo.status}` : null,
+    fb?.reason ? `reviewFeedback=${fb.reason}` : null,
+    Array.isArray(c?.nextSteps) && c.nextSteps.length
+      ? `nextSteps=${c.nextSteps.join(" | ")}`
+      : null,
+  ].filter(Boolean);
+  return `[Dashboard client context — ${bits.join(" · ")}]`;
+}
+
+/**
  * POST /api/agent/chat
  * Forwards to the droplet relay → supervisor tunnel.
  * Includes clientId context so the agent knows which company Zach is on.
@@ -24,6 +60,9 @@ export async function POST(request: Request) {
   const bad = badField(body, {
     message: str,
     clientId: (v) => optional(v, str),
+    stageId: (v) => optional(v, str),
+    batchCompanyIds: (v) =>
+      optional(v, (x) => Array.isArray(x) && x.every((y) => typeof y === "string")),
   });
   if (bad) {
     return NextResponse.json(
@@ -35,9 +74,34 @@ export async function POST(request: Request) {
   const message = (body.message as string).trim();
   const clientId =
     typeof body.clientId === "string" ? body.clientId.trim() : "";
+  const stageId =
+    typeof body.stageId === "string" ? body.stageId.trim() : "";
+  const batchCompanyIds: string[] = Array.isArray(body.batchCompanyIds)
+    ? (body.batchCompanyIds as string[])
+    : [];
 
   if (!message) {
     return NextResponse.json({ error: "message is required" }, { status: 400 });
+  }
+  // Exactly one scope: client OR stage. Reject mixed fields (not just XOR
+  // truthiness) — a request carrying both clientId and stageId is ambiguous.
+  if (clientId && stageId) {
+    return NextResponse.json(
+      { error: "Provide clientId OR stageId, not both." },
+      { status: 400 },
+    );
+  }
+  if (!clientId && !stageId) {
+    return NextResponse.json(
+      { error: "Provide exactly one scope: clientId OR stageId." },
+      { status: 400 },
+    );
+  }
+  if (stageId && batchCompanyIds.length === 0) {
+    return NextResponse.json(
+      { error: "stageId requires a non-empty batchCompanyIds[]." },
+      { status: 400 },
+    );
   }
 
   // Enrich with client facts when chatting from a company page.
@@ -50,24 +114,34 @@ export async function POST(request: Request) {
         (x) => String(x?.id ?? "").toLowerCase() === clientId.toLowerCase(),
       );
       if (c) {
-        const bits = [
-          `Client: ${c.name} (id=${c.id})`,
-          c.stage ? `stage=${c.stage}` : null,
-          c.priority ? `priority=${c.priority}` : null,
-          c.ownerName ? `owner=${c.ownerName}` : null,
-          c.phone ? `phone=${c.phone}` : null,
-          c.email ? `email=${c.email}` : null,
-          c.demoUrl ? `demo=${c.demoUrl}` : null,
-          c.offer ? `offer=${c.offer}` : null,
-          c.responseStatus ? `sendStatus=${c.responseStatus}` : null,
-          c.location ? `loc=${c.location}` : null,
-        ].filter(Boolean);
-        framed = `[Dashboard context — ${bits.join(" · ")}]\n\n${message}`;
+        framed = `${frameClient(c)}\n\n${message}`;
       } else {
         framed = `[Dashboard context — clientId=${clientId} (not found in pipeline)]\n\n${message}`;
       }
     } catch {
       framed = `[Dashboard context — clientId=${clientId}]\n\n${message}`;
+    }
+  } else if (stageId) {
+    // Stage scope: describe the stage + its batch. Resolve requested ids against
+    // the stage (authoritative), not the client's claim.
+    try {
+      const data: any = await readPipelineSafe();
+      const companies: any[] = Array.isArray(data?.companies) ? data.companies : [];
+      const byId = new Map(companies.map((x) => [x.id, x]));
+      const batch = batchCompanyIds
+        .map((id) => byId.get(id))
+        .filter((x) => x && x.stage === stageId);
+      const roster = batch
+        .map(
+          (x) =>
+            `${x.id}|${x.name}|prio=${x.priority ?? "?"}|pitch=${x?.pitchDraft?.status ?? "none"}`,
+        )
+        .join("\n  ");
+      framed =
+        `[Dashboard stage context — stage=${stageId}, batch of ${batch.length} ` +
+        `(requested ${batchCompanyIds.length})]\n  ${roster || "(none matched)"}\n\n${message}`;
+    } catch {
+      framed = `[Dashboard context — stageId=${stageId}]\n\n${message}`;
     }
   }
 

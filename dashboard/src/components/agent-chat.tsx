@@ -21,14 +21,20 @@ const QUICK_PROMPTS = [
   "Summarize pipeline status in 3 bullets.",
 ];
 
-/** Chat panel scoped to one client. POSTs to /api/agent/chat (reply inline). */
+/** Chat panel scoped to one client OR one stage (a batch). POSTs to /api/agent/chat. */
 export function AgentChat({
   clientId,
   clientName,
+  stageId,
+  stageLabel,
+  batchCompanyIds,
   className,
 }: {
-  clientId: string;
-  clientName: string;
+  clientId?: string;
+  clientName?: string;
+  stageId?: string;
+  stageLabel?: string;
+  batchCompanyIds?: string[];
   className?: string;
 }) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -84,7 +90,11 @@ export function AgentChat({
       const res = await fetch("/api/agent/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ clientId, message: text }),
+        body: JSON.stringify(
+          stageId
+            ? { stageId, batchCompanyIds: batchCompanyIds ?? [], message: text }
+            : { clientId, message: text },
+        ),
       });
       const data = (await res.json()) as {
         reply?: string;
@@ -125,11 +135,12 @@ export function AgentChat({
     }
   }
 
+  const scopeName = stageId ? (stageLabel ?? stageId) : (clientName ?? "this lead");
   const statusLabel =
     connected === null
       ? "Checking link…"
       : connected
-        ? `Online — ${clientName}`
+        ? `Online — ${scopeName}`
         : "Disconnected — tunnel/relay";
 
   return (
@@ -171,7 +182,9 @@ export function AgentChat({
           <div className="m-auto flex max-w-[280px] flex-col items-center gap-3 text-center text-muted-foreground">
             <Bot className="size-6" aria-hidden />
             <p className="text-sm">
-              Ask about {clientName}&apos;s pipeline, pitch, demo, or next steps.
+              {stageId
+                ? `Ask about the ${scopeName} batch, its prospects, or next moves.`
+                : `Ask about ${clientName}&apos;s pipeline, pitch, demo, or next steps.`}
               Context is auto-attached.
             </p>
             <div className="flex flex-wrap justify-center gap-1.5">
