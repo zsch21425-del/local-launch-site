@@ -25,6 +25,11 @@ function isPublic(pathname: string): boolean {
   if (pathname === "/login") return true;
   if (pathname === "/api/auth/login") return true;
   if (pathname === "/api/auth/logout") return true;
+  // Capability-authenticated endpoint: Hermes submits EVIDENCE here using a
+  // signed run-bound capability (not dashboard auth). Middleware must NOT gate
+  // it behind dashboard auth, or Hermes can never report completion. The route
+  // itself validates the capability strictly.
+  if (/^\/api\/companies\/[^/]+\/stage\/complete$/.test(pathname)) return true;
   if (pathname.startsWith("/_next")) return true;
   if (pathname === "/favicon.ico") return true;
   // public brand assets only

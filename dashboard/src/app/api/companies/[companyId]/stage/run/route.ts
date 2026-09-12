@@ -61,6 +61,9 @@ export async function POST(
   }
 
   // Persist the run receipt FIRST (idempotent anchor), then dispatch.
+  // NOTE: replace=false so the ATOMIC in-mutation overlap guard is authoritative.
+  // The read-only pre-check above gives a fast 409, but the real enforcement is
+  // inside mutatePipeline (concurrent requests can't both slip past it).
   const saved = await setStageRun(
     companyId,
     {
@@ -70,10 +73,16 @@ export async function POST(
       requestedAt: new Date().toISOString(),
       status: "requested",
     },
-    true,
+    false,
   );
   if (!saved.ok) {
-    return NextResponse.json({ error: saved.error, ok: false }, { status: 500 });
+    // A 409-style overlap (a run is already in progress) surfaces here from the
+    // atomic guard — map it to 409, not 500.
+    const conflict = saved.error === "a run is already in progress";
+    return NextResponse.json(
+      { error: saved.error, ok: false },
+      { status: conflict ? 409 : 500 },
+    );
   }
 
   // Issue a run-bound capability so Hermes can submit evidence for THIS run only.

@@ -58,26 +58,10 @@ export function evaluateTransition(c: any, toStage: string): TransitionResult {
       error: `cannot advance from non-funnel stage "${from}"`,
     };
   }
-  if (toIdx === -1) {
-    return { ok: false, error: `not a funnel stage: "${toStage}"` };
-  }
-  if (toIdx !== fromIdx + 1) {
-    return {
-      ok: false,
-      error: `expected next stage "${FUNNEL_ORDER[fromIdx + 1]}", got "${toStage}"`,
-    };
-  }
 
-  const missing: string[] = [];
-  const demoUrl = String(c?.demo?.url ?? c?.demoUrl ?? "").trim();
-  const pitchBody = String(c?.pitchDraft?.body ?? "").trim();
-  const pitchStatus = c?.pitchDraft?.status;
-  const demoStatus = c?.demo?.status;
-  const zachApproval = c?.zachApproval;
-  const auditData = c?.auditData;
-
-  // Terminal transition: follow-up → sale (won). This is NOT a funnel-adjacency
-  // move (sale is outside FUNNEL_ORDER), so it must be handled explicitly.
+  // Terminal transition: follow-up → sale (won). Must be checked BEFORE the
+  // "not a funnel stage" rejection — sale is OUTSIDE FUNNEL_ORDER, so a
+  // toIdx === -1 check above would wrongly reject it (bug: sale unreachable).
   if (toStage === TERMINAL_STAGE) {
     if (from !== "follow-up") {
       return { ok: false, error: `can only enter ${TERMINAL_STAGE} (Clients) from follow-up` };
@@ -99,6 +83,24 @@ export function evaluateTransition(c: any, toStage: string): TransitionResult {
     }
     return { ok: true };
   }
+
+  if (toIdx === -1) {
+    return { ok: false, error: `not a funnel stage: "${toStage}"` };
+  }
+  if (toIdx !== fromIdx + 1) {
+    return {
+      ok: false,
+      error: `expected next stage "${FUNNEL_ORDER[fromIdx + 1]}", got "${toStage}"`,
+    };
+  }
+
+  const missing: string[] = [];
+  const demoUrl = String(c?.demo?.url ?? c?.demoUrl ?? "").trim();
+  const pitchBody = String(c?.pitchDraft?.body ?? "").trim();
+  const pitchStatus = c?.pitchDraft?.status;
+  const demoStatus = c?.demo?.status;
+  const zachApproval = c?.zachApproval;
+  const auditData = c?.auditData;
 
   // Per-transition evidence. Each gate is what the WORK must have produced —
   // the gate evaluator only verifies the evidence landed, it does not re-do
