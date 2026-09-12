@@ -41,14 +41,6 @@ export function AgentChat({
   const [pending, setPending] = useState(false);
   const [waitingForReply, setWaitingForReply] = useState(false);
   const [connected, setConnected] = useState<boolean | null>(null);
-  const [proposal, setProposal] = useState<{
-    actionType: string;
-    companyIds: string[];
-    targetStage?: string;
-    summary?: string;
-  } | null>(null);
-  const [proposalBusy, setProposalBusy] = useState(false);
-  const [proposalResult, setProposalResult] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollBottom = useCallback(() => {
@@ -107,16 +99,9 @@ export function AgentChat({
       const data = (await res.json()) as {
         reply?: string;
         connected?: boolean;
-        proposal?: {
-          actionType: string;
-          companyIds: string[];
-          targetStage?: string;
-          summary?: string;
-        };
       };
 
       if (typeof data.connected === "boolean") setConnected(data.connected);
-      if (data.proposal) setProposal(data.proposal);
 
       if (data.reply) {
         setMessages((prev) => [
@@ -158,31 +143,6 @@ export function AgentChat({
         ? `Online — ${scopeName}`
         : "Disconnected — tunnel/relay";
 
-  async function approveProposal() {
-    if (!proposal) return;
-    setProposalBusy(true);
-    setProposalResult(null);
-    try {
-      const res = await fetch("/api/agent/jobs", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          actionType: proposal.actionType,
-          companyIds: proposal.companyIds,
-          targetStage: proposal.targetStage,
-        }),
-      });
-      const d = await res.json();
-      if (!d.ok) throw new Error(d.error || "failed");
-      setProposal(null);
-      setProposalResult(`Queued as job ${d.job.id} — the agent will work it under the quality gates.`);
-    } catch (e: any) {
-      setProposalResult(e.message || "Failed to queue proposal");
-    } finally {
-      setProposalBusy(false);
-    }
-  }
-
   return (
     <section
       className={cn(glass, "flex h-full flex-col overflow-hidden", className)}
@@ -218,42 +178,6 @@ export function AgentChat({
         ref={scrollRef}
         className="flex min-h-[280px] flex-1 flex-col gap-3 overflow-y-auto px-4 py-4"
       >
-        {proposal ? (
-          <div className="rounded-xl border border-primary/40 bg-primary/5 p-3">
-            <p className="text-xs font-semibold text-foreground">Proposed action</p>
-            <p className="mt-1 text-sm text-foreground">
-              <span className="font-medium">{proposal.actionType}</span> for{" "}
-              {proposal.companyIds.length} lead{proposal.companyIds.length === 1 ? "" : "s"}
-              {proposal.targetStage ? ` → ${proposal.targetStage}` : ""}
-            </p>
-            {proposal.summary ? (
-              <p className="mt-1 text-xs text-muted-foreground">{proposal.summary}</p>
-            ) : null}
-            <div className="mt-2 flex items-center gap-2">
-              <button
-                type="button"
-                disabled={proposalBusy}
-                onClick={() => void approveProposal()}
-                className="rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground disabled:opacity-50"
-              >
-                {proposalBusy ? "Queuing…" : "Approve & queue"}
-              </button>
-              <button
-                type="button"
-                disabled={proposalBusy}
-                onClick={() => setProposal(null)}
-                className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground disabled:opacity-50"
-              >
-                Dismiss
-              </button>
-            </div>
-          </div>
-        ) : null}
-        {proposalResult ? (
-          <p className="rounded-lg bg-muted px-3 py-2 text-xs text-muted-foreground">
-            {proposalResult}
-          </p>
-        ) : null}
         {messages.length === 0 ? (
           <div className="m-auto flex max-w-[280px] flex-col items-center gap-3 text-center text-muted-foreground">
             <Bot className="size-6" aria-hidden />

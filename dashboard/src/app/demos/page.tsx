@@ -432,7 +432,7 @@ export default function DemosPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-8 sm:grid-cols-2">
             {visible.map((demo) => (
               <DemoCard
                 key={demo.companyId}
@@ -582,13 +582,13 @@ function DemoCard({
         href={demo.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative block h-32 w-full"
+        className="relative flex h-16 w-full items-center justify-between px-3"
         style={{ background: thumbGradient(demo.companyId) }}
       >
-        <span className="absolute top-3 left-3 grid size-10 place-items-center rounded-lg bg-card/90 text-sm font-bold text-foreground">
+        <span className="grid size-10 place-items-center rounded-lg bg-card/90 text-sm font-bold text-foreground">
           {initials(demo.name)}
         </span>
-        <span className="absolute right-3 bottom-3 inline-flex items-center gap-1 rounded-md bg-black/30 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+        <span className="inline-flex items-center gap-1 rounded-md bg-black/30 px-2 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
           <MonitorPlay className="size-3" /> Live demo
         </span>
       </Link>

@@ -1,0 +1,1867 @@
+[
+  {
+    "id": "bm-pressure",
+    "name": "B&M Pressure Washing",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "B&M",
+      "body": "Hey,\n\nI was looking up pressure washing companies in Fountain Inn. B&M doesn't show up on Google Maps at all — and you've got the family-owned reputation the big guys can't touch. Meanwhile Foothills Exterior pops up first for every \"pressure washing near me\" search — that's where your calls are going.\n\nHere's a preview of what a B&M site could look like: https://bm-pressure-washing-demo.vercel.app\n\nTwo things would fix this fast: a proper Google Business Profile so people actually find you, and a modern site that loads on phones — the JouwWeb one you're using now is slow and isn't helping you rank. The site, SEO, and Google setup together run $300 one-time. Monthly plans with extra help start at $49 — or you can just do the one-time fix-up with no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 9,
+      "notes": "Demo link moved between problem and solution paragraphs per Zach. Awaiting rev-gen demo update.",
+      "sentDate": "2026-08-07"
+    }
+  },
+  {
+    "id": "yardsmith",
+    "name": "YardSmith Landscaping",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "Jordan",
+      "body": "Hey Jordan,\n\nSaw YardSmith is a Neighborhood Favorite on Nextdoor — that's the kind of thing you can't buy. But here's the problem: yardsmithgvl.com is down (looks like the /lander page isn't loading), so when someone searches \"landscaping Greenville\" on Google, they find your competitors instead of you.\n\nThat's a quick fix. Here's a preview of what a working YardSmith site could look like: https://yardsmith-demo.vercel.app\n\nI'd get the site back up — actually, build something that loads fast and works — then make sure your Nextdoor reputation shows up on Google too, where the customers actually are. $300 one-time covers the rebuild, Google setup, and ranking work. Monthly plans start at $49 if you want ongoing help, or you can do just the one-time fix-up.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 9,
+      "notes": "\"5-star\" removed from pitch. Site rescue angle. Jordan clearly invested before — knows they need it. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you",
+      "sentDate": "2026-08-11"
+    }
+  },
+  {
+    "id": "jacksons-junk",
+    "name": "Jackson's Junk and Stuff",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "junk removal in Greenville",
+      "body": "\"Hey, is this Ryan or Zach? This is Zach from Local Launch. I came across Jackson's Junk and Stuff on Instagram — love the before-and-after shots. 'You don't lift it, we shift it' — great tagline.\n\nLook, the reason I'm calling: you guys cover six cities but don't have a website. Junk King Greenville is getting every Google search because they've got a site and you don't. I build websites for local businesses — for a junk removal company like yours, a site with a dedicated page for each city you serve would pull in the people searching 'junk removal Greenville' or 'Simpsonville junk hauling' who never find you right now.\n\nHere's a preview: https://jacksons-junk.vercel.app\n\n$300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 if you want extras, or just the one-time fix-up. I look forward to hearing from you.\"",
+      "channel": "Phone",
+      "status": "sent",
+      "confidence": 8,
+      "notes": "Brothers Ryan & Zach Jackson. No email — phone only. Great tagline. 6-city coverage area. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you",
+      "email": "jacksonsjunkandstuff@gmail.com",
+      "sentDate": "2026-08-14",
+      "demoUrl": "https://jacksons-junk.vercel.app"
+    }
+  },
+  {
+    "id": "kimbrells-plumbing",
+    "name": "Kimbrell's Plumbing",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "plumber in Greenville",
+      "body": "\"Hey, is this Daniel? This is Zach from Local Launch in Simpsonville. I was looking at plumbers in Greenville and came across your Yelp — 7 reviews, all five stars, people raving about your pricing and how fast you are. That's a decade of happy customers.\n\nBut here's the thing: when someone searches 'plumber Greenville' on Google, you're not there. All those five-star reviews only help people already on Yelp — and 90% of people start on Google. I build simple plumbing sites that get you on the map. $300 one-time covers the site, SEO, and Google setup. Monthly plans after that start at $49, or just the one-time deal and you're done.\n\nI look forward to hearing from you.\"",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 7,
+      "notes": "7× 5★ Yelp since 2016. Daniel Kimbrell. No email — phone only. Strong reviews hook. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you",
+      "email": "ldanielk18@gmail.com",
+      "sentDate": "2026-08-13"
+    }
+  },
+  {
+    "id": "upstate-window",
+    "name": "Upstate Window Cleaning LLC",
+    "stage": "build-launch",
+    "pitchDraft": {
+      "subject": "window cleaning in Inman",
+      "body": "$300 build pitch sent 8/12 with demo upstate-window-demo.vercel.app",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 8,
+      "notes": "Owner Austin Perry. Solid Nextdoor rep. Email available. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you",
+      "email": "uscwindowcleaning@gmail.com",
+      "sentDate": "2026-08-24"
+    }
+  },
+  {
+    "id": "my-titan",
+    "name": "My Titan Services LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": null,
+      "body": "Hey Jameson — you run five services and you're hiring, but none of it shows up on Google. A site with a page per service pulls in each one's searches. $300 one-time gets you the site, SEO, and Google setup. I look forward to hearing from you.",
+      "channel": "FB DM",
+      "status": "supervisor-approved",
+      "confidence": 7,
+      "notes": "Simpsonville-based = genuine local credibility. 5 services = multi-keyword SEO. No email — FB DM. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you"
+    }
+  },
+  {
+    "id": "lonts-disposal",
+    "name": "Lonts 24/7 Disposal",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "junk removal in Greer",
+      "body": "Hey — you've got a 5.0★ Yelp rating and 24/7 service, but nobody searching Google knows it. A site that puts that reputation in front of \"junk removal Greer\" searches is $300 one-time, Google setup included. I look forward to hearing from you.",
+      "channel": "FB DM",
+      "status": "unproven-send",
+      "confidence": 8,
+      "notes": "5.0★ Yelp, 27 photos. Best social proof in batch. No email — FB DM only. | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you",
+      "email": "lonts247disposal@yahoo.com",
+      "demoUrl": "https://lonts-demo.vercel.app",
+      "sentDate": "2026-08-14"
+    }
+  },
+  {
+    "id": "fix-home",
+    "name": "FIX Home Projects LLC",
+    "stage": "build-launch",
+    "pitchDraft": {
+      "subject": "deck builder in Greenville",
+      "body": "Hey Shaun — your Instagram reels show off beautiful deck and porch builds, and you're Chamber-listed on top of it. But when someone Googles \"deck builder Greenville,\" they see Archadeck and Palmetto Outdoor Spaces — not you.\n\nAt $5-20K a job, that's a lot of money walking to whoever has a portfolio online. Here's what that could look like: https://fix-home-projects.vercel.app\n\nI'd build you a clean portfolio site with your project photos, plus get you on Google Maps. $300 one-time covers the site, SEO, and Google setup. Monthly extras start at $49 — or just the one-time fix-up, no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 9,
+      "notes": "Best prospect in pipeline. High-ticket deck building. Email available. Strongest G-Score (15). | Updated: natural subjects, demo links embedded, close=I look forward to hearing from you",
+      "sentDate": "2026-08-24"
+    }
+  },
+  {
+    "id": "pro-kutz-lawn",
+    "name": "Pro Kutz Lawn Care & Landscaping",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "lawn care in Greenville",
+      "body": "Hey Angel,\n\nPro Kutz came up when I was looking at lawn care companies in Greenville. You're promoting on social but don't have a website — so when someone searches \"lawn care Greenville,\" they find your competitors.\n\nA clean site with your services and service area would catch those searches. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 7,
+      "email": "prokutzlawncare@gmail.com",
+      "sentDate": "2026-08-13"
+    }
+  },
+  {
+    "id": "smith-irrigation",
+    "name": "Smith Irrigation",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "Smith Irrigation",
+      "body": "Hey,\n\nI was looking at irrigation companies in Greenville — you're in a specialized niche that's exactly what people search for. But your current site is a Duda template that doesn't rank for \"irrigation Greenville SC.\"\n\nHere's what a modern site could look like: https://smith-irrigation-demo.vercel.app\n\n$300 one-time covers a full rebuild, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build, no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 8,
+      "email": "mistysmith724@gmail.com",
+      "sentDate": "2026-08-13"
+    }
+  },
+  {
+    "id": "jtp-lawncare",
+    "name": "JTP Lawncare and Junk Removal",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "lawn care in Simpsonville",
+      "body": "Hey,\n\nVeteran-owned lawn care and junk removal — that's a strong story, and you cover two searchable services. But your current site (hibu template) doesn't rank for either.\n\nHere's what a modern site could look like: https://jtp-lawncare-demo.vercel.app\n\n$300 one-time covers a full rebuild, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build, no monthly anything.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 8,
+      "email": "jtplawncare.junkremoval@gmail.com",
+      "website": "jtpjunkremovalandlawn.com",
+      "sentDate": "2026-08-13"
+    }
+  },
+  {
+    "id": "lands-tree-care",
+    "name": "Lands Tree Care",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Lands Tree Care — your 5-star rep (29 Google reviews) should be winning you jobs",
+      "body": "A 5-star rating from 29 Google reviews is gold for a tree company — but it only converts if homeowners can find you when they need tree work.\n\nWhen a neighbor searches for tree service near you, they find competitors before you. I build your site so that great reputation actually lands you the job.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through getting those 29 reviews in front of more neighbors.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "jr-concrete",
+    "name": "JR Concrete",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "JR Concrete",
+      "body": "Hey, is this JR Concrete?\n\nThis is Zach from Local Launch in Simpsonville. You've got 31 reviews on Google — all referral, which is great. But there's no website for people to find you outside of word of mouth.\n\nConcrete jobs run thousands of dollars — people want to see your work before they commit. I'd build you a site with project photos and the kind of SEO that brings in new customers who aren't in your referral circle. $300 one-time covers the site, SEO, and Google setup. Monthly help starts at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "prime-concrete",
+    "name": "Prime Concrete Solutions",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Prime Concrete",
+      "body": "Hey, is this Prime Concrete Solutions?\n\nThis is Zach from Local Launch — I'm right here in Simpsonville too. You've got 70 reviews on Google, that's serious. But I found scprimeconcretesolutions.com and it looks like that site isn't doing much for you right now.\n\nSeventy reviews with no real website to land on — you're probably losing calls to competitors who show up in search results. I'd rebuild that into a professional concrete site that actually converts those searches into jobs. $300 one-time — and you stop paying that monthly hosting fee for a site that isn't working for the rebuild, SEO, and Google setup. Monthly help starts at $49, or just the one-time fix-up with no commitment.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 9,
+      "notes": "Camoufox-verified pitch. Need: Hidden site rebuild + SEO. Phone-only — call script. | No hosting fee angle added"
+    }
+  },
+  {
+    "id": "sandy-springs-detailing",
+    "name": "Sandy Spring's Detailing LLC",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "auto detailing in Pendleton",
+      "body": "Hey, is this Sandy Spring's Detailing?\n\nThis is Zach from Local Launch in Simpsonville. I saw your mobile detailing business on Google — reviews are starting to come in, which is great. But you've got no website for people to find you outside of Maps.\n\nMobile detailing is all about trust — people want to see before-and-afters before they hand you their keys. I'd build you a site that shows your work, makes booking easy, and ranks for \"mobile detailing Pendleton.\" $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "sent",
+      "confidence": 7,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script.",
+      "email": "1974dawg@gmail.com",
+      "demoUrl": "https://sandy-springs-detailing-demo.vercel.app",
+      "sentDate": "2026-08-14"
+    }
+  },
+  {
+    "id": "locomotion-auto-detail",
+    "name": "Locomotion Auto Detail",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "Locomotion Auto Detail",
+      "body": "Hey, is this Locomotion Auto Detail?\n\nThis is Zach from Local Launch in Simpsonville. You've got 28 five-star reviews on Google — your shop on E Mauldin St is clearly doing quality work. But there's no website for people to find you beyond Google Maps.\n\nTwenty-eight perfect reviews and nowhere to send people — that's a missed opportunity. I'd build you a detailing site with a gallery, service menu, and booking built in. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "sent",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script.",
+      "sentDate": "2026-08-23"
+    }
+  },
+  {
+    "id": "perpetual-painters",
+    "name": "Perpetual Painters LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Perpetual Painters",
+      "body": "Hey, is this Perpetual Painters?\n\nThis is Zach from Local Launch in Simpsonville. I saw your LLC is registered with 14 solid reviews on Google — but no website for people to check you out before calling.\n\nPainting is a competitive space in Boiling Springs. A good site with project photos and local SEO puts you ahead of the guys running on Google Maps alone. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49, or just the one-time build with no commitment.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "blacks-paint",
+    "name": "Black's Paint Contracting",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Black's Paint Contracting",
+      "body": "Hey, is this Black's Paint Contracting?\n\nThis is Zach from Local Launch in Simpsonville. You've been around a while — 11 reviews on Google, established in Spartanburg. But no website. Everything beyond your GBP is invisible.\n\nA painting site with project galleries, reviews, and local SEO would bring in customers who aren't finding you on Maps alone. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "top-choice-fence",
+    "name": "Top Choice Fence & Decks",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Top Choice Fence",
+      "body": "Hey, is this Top Choice Fence & Decks?\n\nThis is Zach from Local Launch in Simpsonville. I saw your reviews on Google and found topchoicefenceanddecks.com — but it doesn't look like that site is working for you right now.\n\nFencing and decks are visual — people want to see your work. I'd rebuild that into a site that shows off what you build and gets you found when someone searches \"fence contractor Mauldin.\" $300 one-time — and you stop paying that monthly hosting fee for a site that isn't working covers the rebuild, SEO, and Google setup. Monthly plans start at $49 — or just the one-time fix-up.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Hidden site rebuild + SEO. Phone-only — call script. | No hosting fee angle added"
+    }
+  },
+  {
+    "id": "acorn-fencing",
+    "name": "Acorn Fencing & Repair",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Acorn Fencing — your neighbors already leave you great reviews",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina, and I came across Acorn Fencing. Your 4.6-star rating from 21 Google reviews shows neighbors trust the work — but when I looked, there was no easy way to see your services or reach you.\n\nWhen a neighbor in Upstate SC searches for a fence builder, they find competitors first, not you. We build you a clean site and get your local setup right so you finally get found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to take a look at how you show up when someone near you searches for fencing? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "adv-garage-door",
+    "name": "ADV Garage Door LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "ADV Garage Door",
+      "body": "Hey, is this ADV Garage Door?\n\nThis is Zach from Local Launch in Simpsonville. I was looking at garage door companies in the Lyman area — you're an LLC but I couldn't find you on Google Maps and there's no website.\n\nGarage door repair is an emergency service — people search for it the moment they need it. Without a Google presence and a site, you're invisible during those searches. I'd fix both: professional site plus Google Business Profile plus SEO. $300 one-time covers all three. Monthly plans start at $49 — or just the one-time setup.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Full package: site + GBP + SEO. Phone-only — call script."
+    }
+  },
+  {
+    "id": "johnsons-paint",
+    "name": "Johnson's Paint Contracting",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Johnson's Paint Contracting",
+      "body": "Hey, is this Johnson's Paint Contracting?\n\nThis is Zach from Local Launch in Simpsonville. I saw your GBP is new — just getting started with reviews, which is the right time to build a website too.\n\nA painting site now, while you're still building your reputation, puts you way ahead. Project galleries, service pages, local SEO — the kind of presence that brings in jobs while your review count grows. $300 one-time covers the site, SEO, and Google setup. Monthly help starts at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 7,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "lightning-pest",
+    "name": "Lightning Pest & Termite Control",
+    "stage": "prospect",
+    "pitchDraft": {
+      "subject": "Lightning Pest Control",
+      "body": "Hey, is this Lightning Pest & Termite?\n\nThis is Zach from Local Launch. I build websites for pest control companies across the country — I was looking at the Austin area and saw you've got 8 reviews on Google but no website for those customers to land on.\n\nPest control is a trust business — people want to check you out before they let you in their home. I'd build you a site that pulls in those reviews, lists your services, and ranks for searches in Elgin and the Austin metro. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "bounced",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script.",
+      "sentAt": "2026-09-01T15:09:59.817950Z",
+      "email": null,
+      "bounced": true,
+      "bouncedNote": "2026-09-02 DSN: 552 1 Requested mail action aborted, mailbox not found (Yahoo live domain, mailbox dead)"
+    }
+  },
+  {
+    "id": "eco-wash-systems",
+    "name": "Eco Wash Systems",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Eco Wash Systems",
+      "body": "Hey, is this Eco Wash Systems?\n\nThis is Zach from Local Launch. I build websites for pressure washing companies — was looking at Miami and saw you've got 52 reviews on Google. That's impressive in a market that competitive. But no website to send people to.\n\nFifty-two reviews and nowhere to land — that's a lot of potential customers who just move on. I'd build you a site that showcases your work, pulls in those reviews, and ranks for pressure washing searches across Miami. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 9,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "mr-painter-ga",
+    "name": "Mr. Painter Company LLC",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "painter in Snellville",
+      "body": "Hey, is this Mr. Painter Company?\n\nThis is Zach from Local Launch. I build websites for painting contractors across the country — I was looking at the Atlanta area and saw you've got 71 five-star reviews on Google. That's serious. But no website.\n\nSeventy-one perfect reviews and nowhere to send people who find you on Google Maps — in the Atlanta metro, that's leaving money on the table. I'd build you a painting site with project galleries, reviews front and center, and the SEO to rank in Snellville and beyond. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "sent",
+      "confidence": 9,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script.",
+      "email": "mrpaintercompanyllc@yahoo.com",
+      "demoUrl": "https://mr-painter-demo.vercel.app",
+      "sentDate": "2026-08-14"
+    }
+  },
+  {
+    "id": "jpg-painting-ga",
+    "name": "JPG Painting",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "JPG Painting",
+      "body": "Hey, is this JPG Painting?\n\nThis is Zach from Local Launch. I build websites for painters — was looking at the Atlanta area and saw you've got 28 perfect reviews on Google, all referral. But no website for anyone outside your word-of-mouth circle to find you.\n\nThat referral-only model works until it doesn't. I'd build you a painting site with galleries and SEO that brings in new customers you're not reaching now. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "el-valle-junk",
+    "name": "El Valle Junk Removal",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "El Valle Junk Removal",
+      "body": "Hey, is this El Valle Junk Removal?\n\nThis is Zach from Local Launch. I build websites for junk removal companies — I was looking at Phoenix and saw you've got 15 near-perfect reviews on Google. But no website for those customers to land on.\n\nJunk removal in Phoenix is competitive — a good site with booking and local SEO puts you ahead. I'd build you one that shows your reviews, makes scheduling easy, and ranks for searches across the valley. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "mm-tree-services",
+    "name": "MM Tree Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "MM Tree Services",
+      "body": "Hey, is this MM Tree Services?\n\nThis is Zach from Local Launch. I build websites for tree services — I was looking at the Nashville area and saw you've got 58 reviews with a perfect rating on Google. But no website.\n\nTree work is expensive and people want to vet you before they call. Fifty-eight perfect reviews and nowhere to send them — that's leaving jobs on the table. I'd build you a site that shows your work, pulls in those reviews, and ranks for tree service searches in Hermitage and Nashville. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 9,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "raleigh-handyman",
+    "name": "The Raleigh Handyman",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "handyman in Raleigh",
+      "body": "Hey, is this the Raleigh Handyman?\n\nThis is Zach from Local Launch. I build websites for home service businesses — I was looking at Raleigh and saw you've got 200 reviews on Google. That is one of the strongest review profiles I've seen for an independent handyman anywhere. But no website.\n\nTwo hundred people singing your praises and nowhere to point new customers. I'd build you a site that matches your reputation — reviews, services, booking, the whole thing. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49, or just the one-time build with no monthly anything.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "sent",
+      "confidence": 10,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script.",
+      "email": "ac63thompson@gmail.com",
+      "demoUrl": "https://raleigh-handyman-demo.vercel.app",
+      "sentDate": "2026-08-14"
+    }
+  },
+  {
+    "id": "stallion-concrete",
+    "name": "The Stallion Concrete LLC",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "concrete in Columbus",
+      "body": "Hey, is this Stallion Concrete?\n\nThis is Zach from Local Launch. I build websites for concrete contractors — I was looking at the Columbus area and couldn't find you on Google Maps. No website either.\n\nConcrete is high-ticket work and homeowners search online before they call anyone. Without a Google presence and a site, you're invisible to everyone who isn't a referral. I'd fix both: professional concrete site, Google Business Profile setup, and local SEO. $300 one-time covers all three. Monthly plans start at $49 — or just the one-time setup.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "sent",
+      "confidence": 8,
+      "notes": "Camoufox-verified pitch. Need: Full package: site + GBP + SEO. Phone-only — call script.",
+      "email": "thestallionconcretellc@gmail.com",
+      "demoUrl": "https://stallion-concrete-demo.vercel.app",
+      "sentDate": "2026-08-14"
+    }
+  },
+  {
+    "id": "baucom-auto-detailing",
+    "name": "Baucom Auto Detailing",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Baucom Auto Detailing",
+      "body": "Hey, is this Baucom Auto Detailing?\n\nThis is Zach from Local Launch. I build websites for detailers — I was looking at Charlotte and saw your GBP is new with your first review coming in. That's the perfect time to get a website up too.\n\nA detailing site with a gallery and booking makes you look established from day one — and in Charlotte, that matters. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49, or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 7,
+      "notes": "Camoufox-verified pitch. Need: Website only. Phone-only — call script."
+    }
+  },
+  {
+    "id": "henrys-ac",
+    "name": "Henrys AC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Henry",
+      "body": "Hey,\n\n409 reviews on Google — Henry's AC is clearly the name people trust in Anderson. But there's no website for those customers to land on. When someone searches \"AC repair Anderson SC,\" they find your competitors.\n\nA clean site that shows your services, service area, and those 409 reviews would fix that. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8
+    }
+  },
+  {
+    "id": "palmetto-exterminating-co",
+    "name": "Palmetto Exterminating Co",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Palmetto",
+      "body": "Hey,\n\nPalmetto Exterminating has 33 five-star reviews in Easley — that's the kind of reputation that sells itself. But there's no website for customers to land on when they find you on Google.\n\nHere's what I'd build: https://palmetto-exterminating-demo.vercel.app\n\n$300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 9
+    }
+  },
+  {
+    "id": "osullivan-family-tree-services",
+    "name": "O'Sullivan Family Tree Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "O'Sullivan",
+      "body": "Hey,\n\nO'Sullivan Family Tree Services in Duncan — 21 reviews on Google and a family name people trust. But there's no website, so when someone searches \"tree service Duncan SC,\" they find someone else.\n\nA clean site showing your tree work and those reviews would catch those searches. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 7
+    }
+  },
+  {
+    "id": "anderson-heating-and-air-conditioning",
+    "name": "Anderson Heating & Air Conditioning",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Anderson Heating",
+      "body": "Hey,\n\nAnderson Heating & Air is exactly the kind of company people search for in an emergency — \"AC repair Anderson SC.\" But there's no website, so those searches go to competitors.\n\nA fast, mobile-friendly site with your services and a click-to-call button would catch those emergency searches. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8
+    }
+  },
+  {
+    "id": "bug-killers-termite-and-pest-control",
+    "name": "Bug Killers Termite & Pest Control",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Bug Killers",
+      "body": "Hey,\n\nBug Killers has 175 reviews on Google — that's a serious reputation in Easley. But when someone searches \"pest control Easley SC,\" they find companies with websites instead of you.\n\nPest control is a trust business. People want to check you out before they let you in their home. A clean site with your services and those 175 reviews would close that gap. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nI look forward to hearing from you.\n\nZach | Local Launch | Simpsonville, SC | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8
+    }
+  },
+  {
+    "id": "wipeout-junk-removal-miami",
+    "name": "WipeOUT Junk Removal Miami",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "junk removal in Miami",
+      "body": "Hey,\n\nWipeOUT Junk Removal has a Wix site, but it's not showing up when people search \"junk removal Miami.\" That's where your customers are looking.\n\nI'd rebuild it into a fast, modern site that ranks for those searches — and you'd stop paying Wix that monthly fee for a site that isn't working. $300 one-time covers the rebuild, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 9,
+      "email": "wipeoutjunk@gmail.com",
+      "demoUrl": "https://wipeout-junk-demo.vercel.app",
+      "sentDate": "2026-08-14"
+    }
+  },
+  {
+    "id": "kings-power-washing-of-charlotte",
+    "name": "Kings Power Washing of Charlotte",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Kings Power Washing",
+      "body": "Hey,\n\nKings Power Washing in Charlotte — pressure washing is competitive, and right now the companies with websites are getting the calls. No website means those searches go to someone else.\n\nA modern site that ranks for \"pressure washing Charlotte\" would fix that. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 7
+    }
+  },
+  {
+    "id": "24/7-emergency-plumber-nashville",
+    "name": "24/7 Emergency Plumber Nashville",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Nashville plumber",
+      "body": "Hey,\n\n24/7 Emergency Plumber in Nashville — that's exactly what people search for at 2am with a burst pipe. But there's no website, so those searches go to companies with one.\n\nA fast, mobile-friendly site with a click-to-call button would catch those emergency searches. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 8
+    }
+  },
+  {
+    "id": "charlotte-pressure-washing",
+    "name": "Charlotte Pressure Washing",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "Charlotte pressure washing",
+      "body": "Hey,\n\nI was looking up pressure washing companies in Charlotte and found Charlotte Pressure Washing — BBB accredited with a solid reputation. But your website looks like it hasn't been updated since 2016, and it's not showing up when people search \"pressure washing near me\" in Charlotte.\n\nA modern site that loads fast on phones would fix that. $300 one-time covers a full rebuild, SEO, and Google setup. Monthly plans start at $49 if you want ongoing help — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 9,
+      "sentDate": "2026-08-31"
+    }
+  },
+  {
+    "id": "dds-handyman-service",
+    "name": "DDS Handyman Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "DDS Handyman",
+      "body": "Hey,\n\nDDS Handyman Service in Birmingham — handyman work is one of the most-searched home services, but without a website, those searches go to someone else.\n\nA clean site listing your services and service area would catch those Google searches. $300 one-time covers the site, SEO, and Google setup. Monthly plans start at $49 — or just the one-time build.\n\nOur clients typically see more leads by their second month — the service pays for itself.\n\nI look forward to hearing from you.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Call",
+      "status": "supervisor-approved",
+      "confidence": 7
+    }
+  },
+  {
+    "id": "sdb-lawncare",
+    "name": "SDB Lawncare Services and Gutter Cleaning",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "SDB Lawncare and Gutter Cleaning — neighbors can't find you in search",
+      "body": "I help Upstate lawn and gutter businesses get found online, and right now SDB has no web presence ready to catch those search clicks.\n\nWhen a neighbor searches for lawn care or gutter cleaning near you, they find competitors, not you. I build your site so you get found and win the work.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a lawn or gutter search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "trim-all-tree",
+    "name": "Trim All Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Trim All Tree Service — your 4.2-star Google rating (17 reviews) is costing you tree jobs",
+      "body": "Your Google presence works against you right now — a 4.2 rating from 17 reviews sits below where it should to win the tree work you're competing for.\n\nLow ratings silently send homeowners to your competitors. We clean up your Google presence and build local trust so your listing stops losing you jobs and starts converting.\n\n$300 one-time — Google Business Profile cleanup and local SEO so your rating works for you. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own the setup.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how your Google listing currently reads to a neighbor searching for tree service.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "carolina-clear-property",
+    "name": "Carolina Clear Property Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Carolina Clear — hard to find when homeowners search property work",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Carolina Clear Property Services while helping local trades get found online, and I couldn't find a clear website or easy way to see what you offer.\n\nWhen a neighbor in Upstate SC searches for property services, other companies come up first. We build you a site and get you the local setup so you get found instead.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to take a look at how you show up when someone near you searches for property services? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "threlkeld-demolition",
+    "name": "Threlkeld Demolition LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Threlkeld Demolition — hard to find when jobs come looking",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Threlkeld Demolition keeps a perfect 5.0-star rating from 7 Google reviews — a solid reputation — but I couldn't find a clear website for your demolition work.\n\nWhen a neighbor in Upstate SC searches for demolition, competitors come up before you. We build your site so you get found for those bigger jobs.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for demolition? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "lc-fence-builders",
+    "name": "LC Fence Builders",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "LC Fence Builders — hard to find when people need fences",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across LC Fence Builders while helping local trades get found online, and I couldn't find a real website for your fence work.\n\nWhen a neighbor in Upstate SC searches for fencing, other builders come up ahead of you. We build your site so you get found for the jobs you're missing.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you show up when someone near you searches for fence builders? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "aright-construction",
+    "name": "Aright Construction and Land Services LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Aright Construction — neighbors can't find you when they search",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Aright Construction and Land Services while helping local trades get found online, and I couldn't find a clear website for your work.\n\nWhen a homeowner in Upstate SC searches for construction or land services, they land on other crews before you. We build you a site and get you found, so the work stops going to competitors.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for construction or land work? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "locked-loaded-junk",
+    "name": "Locked & Loaded Junk Removal LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Locked & Loaded Junk Removal — 79 happy reviews that nobody finds",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Locked & Loaded Junk Removal keeps a perfect 5.0-star rating from 79 Google reviews — that's a great reputation — but I couldn't find a solid website to send that traffic to.\n\nWhen a neighbor in Upstate SC searches for junk removal, competitors come up before you. We build your site so that strong reputation actually gets you found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for junk removal? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "around-the-grounds-tree",
+    "name": "Around The Grounds Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Around The Grounds Tree Service — your next tree job is searching for you and can't find you",
+      "body": "Storm season brings steady tree work, but only if homeowners can actually find you when they search. Right now Around The Grounds has no presence ready to catch those calls.\n\nWhen a neighbor searches for tree service near you, they find competitors, not you. I build your site so you get found and win more of those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a neighbor's tree-service search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "grass-monkey-lawn",
+    "name": "Grass Monkey Lawn Care and More",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Grass Monkey — lawn clients aren't finding you in search",
+      "body": "Grass Monkey is a fun, memorable name — but it only helps if homeowners can find you when they search for lawn care near them.\n\nWhen a neighbor searches for lawn care, they find competitors, not you. I build your site so Grass Monkey shows up and gets found first.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a lawn-care search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "gd-junk-removal",
+    "name": "GD Junk Removal",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "GD Junk Removal — you're 5-star on Google but showing 3 reviews while College Hunks shows 1,270",
+      "body": "GD Junk pitch drafted by Closer 2026-08-12. Phone (864) 682-0861. $300 one-time site+SEO+Google setup; optional $49/mo.",
+      "channel": "Phone",
+      "status": "pending-supervisor-review",
+      "confidence": 8,
+      "notes": "Pitched Aug 12 — Closer: pending Supervisor review. Tier A no-site build. College Hunks 1,270 / 1-800-GOT-JUNK 156 competitors."
+    }
+  },
+  {
+    "id": "universal-junk-removal",
+    "name": "Universal Junk Removal",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "Universal Junk Removal — 85 five-star reviews nobody can find",
+      "body": "Universal Junk pitch drafted by Closer 2026-08-12. Phone (864) 551-7502. $300 one-time site+SEO+GBP; optional $49/mo.",
+      "channel": "Phone",
+      "status": "sent",
+      "confidence": 8,
+      "notes": "Pitched Aug 12 — Closer: pending Supervisor review. Tier A no-site build + GBP/review optimization. 5.0★/85 reviews is the asset.",
+      "sentDate": "2026-08-26"
+    }
+  },
+  {
+    "id": "turf-touch",
+    "name": "Turf Touch",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Turf Touch — multi-service landscaping with zero search presence",
+      "body": "Turf Touch pitch drafted by Closer 2026-08-12. Phone (864) 325-9939. $300 one-time site+SEO+new GBP; optional $49/mo.",
+      "channel": "Phone",
+      "status": "pending-supervisor-review",
+      "confidence": 7,
+      "notes": "Pitched Aug 12 — Closer: pending Supervisor review. Tier A build + GBP creation. No site, no GBP, no reviews."
+    }
+  },
+  {
+    "id": "campbells-tree",
+    "name": "Campbell's Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Campbell's Tree Service — 40 years in Anderson, and your own name is parked for sale on GoDaddy",
+      "body": "Campbell's pitch drafted by Closer 2026-08-12. Phone (864) 225-5886 (GBP-verified primary; 933-2080 alternate only, NOT quoted). $300 one-time; optional $49/mo.",
+      "channel": "Phone",
+      "status": "pending-supervisor-review",
+      "confidence": 8,
+      "notes": "Pitched Aug 12 (r2) — pending Supervisor review. Tier A build. Two-phone question resolved: 225-5886 is primary. Domain parked/for-sale = urgency."
+    }
+  },
+  {
+    "id": "proklean-window",
+    "name": "ProKlean Window and Gutter Cleaning",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "ProKlean — 40 five-star reviews on Google and nowhere for people to find them",
+      "body": "ProKlean pitch drafted by Closer 2026-08-12. Phone (864) 518-6834 (FB line; GBP phone UNVERIFIED — not quoted). $300 one-time; optional $49/mo.",
+      "channel": "Phone",
+      "status": "pending-supervisor-review",
+      "confidence": 8,
+      "notes": "Pitched Aug 12 (r2) — pending Supervisor review. Tier A build. 40×5.0★ GBP + 45 Birdeye reviews = reputation-forward angle."
+    }
+  },
+  {
+    "id": "tomberlin-hauling",
+    "name": "Tomberlin Hauling and Cleaning",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Tomberlin Hauling and Cleaning — Spartanburg's junk haulers are all franchises; you just don't exist online yet",
+      "body": "Tomberlin pitch drafted by Closer 2026-08-12. Phone (864) 580-0788 (FB-posts-sourced, NOT dialed — confirm operating status at first contact). $300 one-time site+SEO+new GBP; optional $49/mo.",
+      "channel": "Phone",
+      "status": "pending-supervisor-review",
+      "confidence": 7,
+      "notes": "Pitched Aug 12 (r2) — pending Supervisor review. Tier A build + GBP creation. Owner Renee Haddy Tomberlin. Verify operating status at first contact."
+    }
+  },
+  {
+    "id": "clz-drywall",
+    "name": "CLZ Drywall and Painting LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "CLZ Drywall and Painting — Greer's looking for drywall help and you're invisible",
+      "body": "CLZ pitch drafted by Closer 2026-08-12. Phone (864) 549-2030 (Yelp/FB-verified; confirm operating status at first contact). $300 one-time site+SEO+new GBP; optional $49/mo.",
+      "channel": "Phone",
+      "status": "pending-supervisor-review",
+      "confidence": 7,
+      "notes": "Pitched Aug 12 (r2) — pending Supervisor review. Tier A build + GBP creation. Subcontractor AND direct-to-consumer angles."
+    }
+  },
+  {
+    "id": "wilks-junk",
+    "name": "Wilk's Junk Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "junk removal in Spartanburg",
+      "body": "Wilk's pitch drafted by Closer 2026-08-11. Phone (864) 266-5469. Tier B broken-site rebuild. $300 one-time; optional $49/mo.",
+      "channel": "Phone",
+      "status": "unproven-send",
+      "confidence": 8,
+      "notes": "Drafted Aug 11 — pending Supervisor review. Tier B (broken Shopify store). 5.0★/100 GBP is strong.",
+      "email": "wilkiedustin18@gmail.com",
+      "demoUrl": "https://wilks-junk-demo.vercel.app",
+      "sentDate": "2026-08-14"
+    }
+  },
+  {
+    "id": "kr-junk",
+    "name": "K & R Junk Removal",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "junk removal in the Upstate",
+      "body": "K&R pitch drafted by Closer 2026-08-11. Phone (864) 915-1914. Tier A no-site build. $300 one-time; optional $49/mo.",
+      "channel": "Phone",
+      "status": "unproven-send",
+      "confidence": 8,
+      "notes": "Drafted Aug 11 — pending Supervisor review. Tier A. 5.0★/146 GBP is a strong foundation.",
+      "email": "kandrjunk21@gmail.com",
+      "demoUrl": "https://kr-junk-demo.vercel.app",
+      "sentDate": "2026-08-14"
+    }
+  },
+  {
+    "id": "jd-tree",
+    "name": "J & D Tree Care LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "J & D Tree Care — recommended tree work, invisible to Google",
+      "body": "J&D pitch drafted by Closer 2026-08-11. Phone (864) 326-3030. Tier A no-site build. $300 one-time; optional $49/mo.",
+      "channel": "Phone",
+      "status": "pending-supervisor-review",
+      "confidence": 8,
+      "notes": "Drafted Aug 11 — pending Supervisor review. Tier A. 4.8★/61 GBP. X recommendation from @LocalGuysMover (2018)."
+    }
+  },
+  {
+    "id": "gotta-guy-home-services",
+    "name": "Gotta Guy Home Services",
+    "stage": "build-launch",
+    "pitchDraft": {
+      "subject": "handyman in Simpsonville",
+      "body": "You've got a 4.9-star rating with 27 reviews — that's better than most handymen around here. But when I looked you up, Google showed your business as three separate listings with different hours and different locations, and none of them links to a website. So people who find you can't tell which listing is real, and the people searching for a handyman are clicking a competitor who has a proper site.\n\nOne website plus one claimed, cleaned-up Google listing puts all 27 reviews behind a single door. 'Handyman near me' searches land on you instead of the operators with sites. We also consolidate the duplicate listings so your reviews stop being split three ways — and we'll use a fresh SC-specific domain, because gottaguy.com belongs to an unrelated company in New Jersey (not you).\n\n$300 one-time — website + SEO + Google Business Profile setup & consolidation. No monthly required. $49/month optional — ongoing care (updates, monitoring, review follow-up). One-time-only path: yes — $300 flat, no ongoing commitment. Prefer to see the problem first? $90 audit & fix report — a written map of exactly what's wrong with your Google listings.\n\nIf you've got two minutes, I can show you the three listings side by side and what a customer sees when they search for a handyman — want me to text you the screenshot?\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Email",
+      "status": "sent",
+      "confidence": 9,
+      "notes": "Pitch drafted 2026-08-13, awaiting Zach review. NOT SENT. First call: confirm primary address (Simpsonville vs Fountain Inn vs south pin) + travel radius. Do NOT quote a city in copy. Do NOT name 'Jamie Marler' (unverified). gottaguy.com = Belleville NJ collision. GBP duplicate consolidation (2-3 placeIds, 4.9★/27) is the $90 audit/fix wedge.",
+      "demoUrl": "https://gotta-guy-demo.vercel.app",
+      "email": "gottaguy5@gmail.com",
+      "sentAt": "2026-08-19",
+      "sentDate": "2026-08-24"
+    }
+  },
+  {
+    "id": "kbs-lawn-care",
+    "name": "KB's Lawn Care LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "KB's Lawn Care — 22 Google reviews and no website to send them to",
+      "body": "You've got 4.8 stars on Google with 22 reviews, plus another 23 on Birdeye — that's a lot of trust for a business with no website. Your Google listing even has an 'Add website' button with nothing behind it. Meanwhile, someone in Simpsonville searching for lawn care sees Red Lab with 177 reviews and Yard Sarge with a site — and you're not in that picture at all.\n\nYou handle mowing, gutters, and tree work — one website can rank for all three searches. We build the site, wire it to your Google listing, and turn your existing reviews into new customers instead of leaving them stranded on review platforms. The trust is already there; it just needs a home.\n\n$300 one-time — website + SEO + Google setup. No monthly required. $49/month optional — ongoing care (updates, monitoring, review follow-up). One-time-only path: yes — $300 flat, no ongoing commitment.\n\nWant me to text you a screenshot of what shows up when someone searches 'lawn care Simpsonville'? Two minutes and you'll see exactly what I mean.\n\nZach | Local Launch | (503) 358-5860",
+      "channel": "Phone",
+      "status": "pending-supervisor-review",
+      "confidence": 9,
+      "notes": "Pitch drafted 2026-08-13, awaiting Zach review. NOT SENT. Phone (864) 714-4987 ownership phone-verified at Google level — dial confidently; keep 'are you the owner' soft confirm (common-name brand). kbslawncare.com = Olathe KS collision. No email on file — phone-first."
+    }
+  },
+  {
+    "id": "palmetto-pro-painters",
+    "name": "Palmetto Pro Painters",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Palmetto Pro Painters — homeowners booking painters can't find you",
+      "body": "Homeowners are booking painters online as we speak, and Palmetto Pro Painters isn't showing up in front of them.\n\nWhen a neighbor searches for a painter, they find competitors, not you. I build your site so you get found and stop losing jobs to painters who show up online.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a painter search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "bs-painting",
+    "name": "B&S Painting",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Who shows up when locals search painting",
+      "body": "B&S Painting — I build sites for local painting crews. When a neighbor searches for painters in your area, it's the big names they're seeing, not your crew.\n\nWhen a neighbor searches for painting, they find competitors — not you. We build your site so you get found and start showing up in those local results.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to see how you show up for painting searches near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "schroder-services",
+    "name": "Schroder Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Schroder Services — hard to find when work comes looking",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Schroder Services while helping local trades get found online, and I couldn't find a clear website for your services.\n\nWhen a neighbor in Upstate SC searches for the kind of work you do, competitors come up before you. We build you a site so you get found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to take a look at how you show up when someone near you searches for those services? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "superhuman-junk",
+    "name": "Superhuman Junk Removal & Hauling LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Superhuman Junk Removal — 15 five-star reviews nobody searching can see",
+      "body": "You have a spotless 5-star rating from 15 Google reviews — real trust-builder. The issue is people cleaning out a space rarely find you online to see it.\n\nWhen a neighbor near you searches for junk removal, they find competitors first. I build your site so that great reputation actually wins you the jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through putting those 15 reviews in front of more neighbors.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "m-and-i-junk",
+    "name": "M&I Junk Removal & Hauling",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "M&I Junk Removal — 61 five-star reviews nobody searching for junk hauling can see",
+      "body": "You have a standout 5-star rating from a whopping 61 Google reviews — that's serious credibility. The frustrating part is new customers rarely find you to see it.\n\nWhen a neighbor near you searches for junk removal, they hit competitors first. I build your site so that powerful reputation actually lands you the hauling jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll show you how to put those 61 reviews to work finding more jobs.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "yankee-tree",
+    "name": "Yankee Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Yankee Tree Service — hard to find when trees need work",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Yankee Tree Service while helping local trades get found online, and I couldn't find a real website for your tree work.\n\nWhen a neighbor in Upstate SC searches for tree service, competitors come up before you. We build your site and get you found, so the jobs stop going elsewhere.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for tree work? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "carolina-outdoor-care",
+    "name": "Carolina Outdoor Care LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Carolina Outdoor Care — your 5-star reputation (29 Google reviews) isn't working hard enough",
+      "body": "You have a solid 5-star rating from 29 Google reviews — that's real social proof. The problem is it only counts if people can find you in the first place.\n\nWhen a neighbor searches for outdoor or property care near you, they find competitors before you. I build your site so that strong reputation actually converts.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant to put those 29 reviews to work? Call or text Local Launch at (503) 358-5860 and I'll walk you through getting found.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "a-plus-concrete",
+    "name": "A+ Concrete & Remodeling",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Better search results for A+ Concrete & Remodeling",
+      "body": "I build websites for local concrete and remodeling crews. Right now, when a neighbor searches for concrete work in your area, the results aren't pointing to A+ Concrete & Remodeling.\n\nThat's the gap: when a neighbor searches for concrete work, they find competitors — not you. We build your site so you actually get found for the jobs you already do well.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to take a look at how you show up when someone near you searches for concrete work? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "gulottas-window",
+    "name": "Gulotta's Window Cleaning",
+    "stage": "build-launch",
+    "pitchDraft": {
+      "subject": "Put Gulotta's in front of window-cleaning searches",
+      "body": "Gulotta's Window Cleaning — I build websites for local service crews. Locals searching for window cleaning near you are probably finding competitors before they find you.\n\nWhen a neighbor searches for window cleaning, they find competitors — not you. We build your site so you get found right when the work comes up.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to see how you show up for window-cleaning searches near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "sent",
+      "sentDate": "2026-08-31"
+    }
+  },
+  {
+    "id": "chieftain-concrete",
+    "name": "Chieftain Concrete Construction",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Give Chieftain a fighting chance online",
+      "body": "Chieftain Concrete Construction — I build websites for local concrete crews. When someone near you searches for concrete work, competitors are showing up where you should be.\n\nWhen a neighbor searches for concrete work, they find competitors — not you. We build your site so you get found before the job is ever handed off.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to check how you show up for concrete searches near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "gambrell-roofing",
+    "name": "Gambrell Roofing",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Where does Gambrell show up in local roofing searches?",
+      "body": "Gambrell Roofing — I build sites for local roofers. When a neighbor searches for a roofer in your area, you should be easy to find, and right now you're competing just to get seen.\n\nWhen a neighbor searches for roofing, they find competitors — not you. We build your site so you get found and start winning those local searches.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to look at how you rank for roofing near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "montes-tree",
+    "name": "Monte's Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Monte's Tree Service — great reviews, but hard to find online",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Monte's Tree Service keeps a strong 4.9-star rating from 14 Google reviews — clearly neighbors trust the work — but I couldn't find a real website behind it.\n\nWhen a neighbor in Upstate SC searches for tree service, competitors come up first. We build your site so you get found for the work you already do well.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you come up when someone near you searches for tree service? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "reed-concrete",
+    "name": "Reed Concrete Construction Inc",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Reed Concrete — hard to find when calls come in for concrete",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Reed Concrete Construction while helping local trades get found online, and I couldn't find a real website for your concrete work.\n\nWhen a homeowner in Upstate SC searches for concrete, competitors come up before you. We build you a site so you get found for the jobs you're missing.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you come up when someone near you searches for concrete work? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "kleen-sweep",
+    "name": "Kleen Sweep Hauling",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Kleen Sweep Hauling — people looking to haul away junk can't find you",
+      "body": "Folks cleaning out a house or garage search for hauling help online, and right now Kleen Sweep Hauling has no presence ready to catch them.\n\nWhen a neighbor near you searches for junk hauling, they find competitors, not you. I build your site so you get found and win those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a hauling search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "bossman-concrete",
+    "name": "Bossman Concrete",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Make Bossman the first name locals find",
+      "body": "Bossman Concrete — I build websites for local concrete crews. Neighbors in your area searching for concrete work are likely landing on competitors' pages instead of yours.\n\nThat's the gap: when a neighbor searches for concrete work, they find competitors — not you. We build your site so you get found for the jobs you already do.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to look at how you show up in local concrete searches? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "rob-perry-fence",
+    "name": "Rob Perry Fence Contractors Inc",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Rob Perry Fence — a fence rating that neighbors can't find behind",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Rob Perry Fence Contractors carries a solid 4.5-star rating from 11 Google reviews, but when I looked, there was no easy website to back that reputation up.\n\nWhen a neighbor in Upstate SC searches for fencing, competitors come up first. We build your site so your good reputation actually gets you found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to take a look at how you show up when someone near you searches for fence builders? Call or text me once we've confirmed your number and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "royal-pro-wash",
+    "name": "Royal Pro Wash",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Royal Pro Wash — your website link is broken, and so is the search traffic it should be catching",
+      "body": "Your Nextdoor page points customers to RoyalProWash.com, but that site doesn't work anymore — so the searches that should find you are going to competitors.\n\nWhen a neighbor searches for pressure washing or gutter cleaning near you, they land on competitors. I get you a working site so you show up and win those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up for a washing search near you.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "km-excavating",
+    "name": "K&M Excavating And Hardscape LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "K&M has 12 five-star reviews — make them count",
+      "body": "K&M Excavating And Hardscape carries a perfect 5.0-star rating from 12 Google reviews. That's real social proof — but it only works if neighbors can find you in a search.\n\nWhen a neighbor searches for excavating or hardscape work, they find competitors — not you. We build your site so that strong reputation gets seen where it counts.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to look at how you show up for excavating searches near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "jones-appliance-service",
+    "name": "Jones Appliance Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "body": "Hi,\n\n116 people rated you on Google. That's a lot of trust. But your only home online is a Facebook page, so most people never find you. Your competitors have real websites pulling those searches away.\n\nI can fix that. For a one-time $300, you get a full website, basic SEO, and your Google Business Profile set up right. No monthly cost unless you want it, and if you do, plans start at $49.\n\nWant me to send a quick example of what your site could look like? One tap back, that's all it takes.",
+      "channel": "Phone",
+      "confidence": 8,
+      "notes": "Phone (864) 342-9923 — phone-first, no email found. Cite claimed 4.2★/116 Google reviews. Tier A $300 build.",
+      "status": "supervisor-approved",
+      "subject": "116 reviews, and your customers can't find you"
+    }
+  },
+  {
+    "id": "accurate-leak-finders",
+    "name": "Accurate Leak Finders Inc",
+    "stage": "pitch",
+    "pitchDraft": {
+      "body": "Hi,\n\nYou hold a perfect 5.0 stars across 17 reviews in a niche few tackle. That's gold in the Upstate. But search your name and you get a lead-gen page that guesses your number and poaches your calls. You deserve your own site.\n\nFor one payment of $300, I'll build you a clean site, add basic SEO, and set up your Google Business Profile. Optional monthly plans start at $49. One-time only is always on the table.\n\nWant a quick look at what I'd put together? Just reply, and I'll send it.",
+      "channel": "Phone",
+      "confidence": 8,
+      "notes": "Phone (864) 989-0529 — phone-first. Cite 5.0★/17. Build on distinct SC domain (NOT accurateleakfinders.com — lead-gen poacher).",
+      "status": "supervisor-approved",
+      "subject": "A perfect 5.0 rating, and no place to land"
+    }
+  },
+  {
+    "id": "thomas-and-son-appliance",
+    "name": "Thomas & Son Appliance Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "body": "Hi,\n\nYou've got 18 Google reviews and an active appliance-repair business serving Greer. But no website means people looking for help land on banksappliance.com and the big chains instead of you. Greer is a busy market, and you're invisible in it.\n\nI'll change that with a one-time $300 build: a full website, basic SEO, and your Google Business Profile set up. No monthly fee required — you can add a plan later if you want, starting at $49.\n\nCan I show you a sample? Just reply and I'll send one over.",
+      "channel": "Phone",
+      "confidence": 8,
+      "notes": "Phone (864) 918-9531 — phone-first. Cite 4.2★/18. Tier A $300 build.",
+      "status": "supervisor-approved",
+      "subject": "Greer customers can't find Thomas & Son online"
+    }
+  },
+  {
+    "id": "tree-wisemen-upstate",
+    "name": "Tree Wisemen Upstate",
+    "stage": "build-launch",
+    "pitchDraft": {
+      "body": "Hi,\n\nYou advertise treewisemenupstate.com on your Instagram and Google has you at 4.9 stars from 69 reviews. But that site is a parked, empty page. Anyone who clicks it lands on nothing, and you lose the job.\n\nYou already own that domain. I'll rebuild it into a real tree-service site, with basic SEO and your Google Business Profile tightened up. One-time $300, or you can add a monthly plan from $49. No pressure either way.\n\nWant me to show you a sample of what your site could be? Reply and I'll send it.",
+      "channel": "Email",
+      "confidence": 8,
+      "notes": "Email Treewisemenupstate@gmail.com — direct outreach. Do NOT quote the 415 phone; verify NAP at first contact. Tier B rebuild on owned parked domain.",
+      "status": "sent",
+      "subject": "Your website is down — let's flip it on",
+      "sentDate": "2026-08-31"
+    }
+  },
+  {
+    "id": "downers-multi-service",
+    "name": "Downers Multi Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "body": "Hi,\n\nYou've built a perfect 5.0 rating across 12 Angi reviews since 2022. That's a real business with happy customers. But there's no website and no Google listing, so people in Pendleton and Anderson can't find you online. Your reputation lives where nobody searches.\n\nI'll give you a website and a Google Business Profile to capture that. One-time $300 for the full site, basic SEO, and Google setup. Monthly care is optional, from $49.\n\nWant to see a quick sample? Just reply and I'll send it.",
+      "channel": "Phone",
+      "confidence": 8,
+      "notes": "Phone (864) 280-9830 — phone-first. Confirm service area. No Google review claims (Angi 5.0/12 only).",
+      "status": "supervisor-approved",
+      "subject": "Your Angi 5.0 stars aren't reaching Google"
+    }
+  },
+  {
+    "id": "overhaul-properties",
+    "name": "Overhaul Properties",
+    "stage": "pitch",
+    "pitchDraft": {
+      "body": "Hi,\n\nTwenty years in the junk and dumpster business in Anderson is a real track record. But you have no website and no Google listing, so all that experience stays invisible. People hunting for junk removal get your competitors instead.\n\nI'll build you a site and get you on Google Maps so 20 years of work finally works for you online. One-time $300 for the full build, basic SEO, and Google setup. Optional monthly from $49. One-time only is fine too.\n\nCan I send a sample your way? Just reply and I'll show you.",
+      "channel": "Phone",
+      "confidence": 8,
+      "notes": "Phone (864) 617-8611 — phone-first. Confirm service area. Lead with 20-yr tenure; do not present BBB 3.0★ as strength. No review claims.",
+      "status": "supervisor-approved",
+      "subject": "20 years hauling, and Google can't find you"
+    }
+  },
+  {
+    "id": "platinum-landscapes",
+    "name": "Platinum Landscapes",
+    "stage": "pitch",
+    "pitchDraft": {
+      "body": "Hi,\n\nYou run a locally owned landscaping company serving both homes and businesses in Travelers Rest. But type your name into Google and you get a company in Utah that isn't yours. There's no website carrying your name here.\n\nI'll build you a site on a clean South Carolina domain so Travelers Rest customers finally find the real you. One-time $300 covers the full site, basic SEO, and Google setup. Monthly is optional, starting at $49.\n\nWant a quick look at a sample? Just reply and I'll send it over.",
+      "channel": "Phone",
+      "confidence": 8,
+      "notes": "Phone (864) 362-9403 — phone-first. Build on distinct SC domain (name collides with UT co + a for-sale lander). No review claims.",
+      "status": "supervisor-approved",
+      "subject": "Travelers Rest homeowners can't find you"
+    }
+  },
+  {
+    "id": "brb-pressure-washing",
+    "name": "BRB Pressure Washing Service",
+    "stage": "build-launch",
+    "pitchDraft": {
+      "body": "Hi,\n\nYou're an operating pressure-washing business in the Greenville area, but there's no website and no Google listing for people to find you. On Nextdoor you're visible, but that's it. Searches for house washing go straight to your competitors.\n\nI'll change that with a one-time $300 build: a full website on a clean BRB domain, basic SEO, and a Google Business Profile set up. Monthly is optional, from $49; one-time only works too.\n\nWant me to send a quick sample? Just reply and I'll show you what I'd build.",
+      "channel": "Email",
+      "confidence": 8,
+      "notes": "Email hbelin@bellsouth.net — direct email outreach available. Phone (864) 630-3757. Verify Simpsonville vs Greenville area. No review claims.",
+      "status": "sent",
+      "subject": "BRB Pressure Washing has no footprint online",
+      "sentDate": "2026-08-31"
+    }
+  },
+  {
+    "id": "4-point-lawn-care-llc",
+    "name": "4 Point Lawn Care LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "4 Point Lawn Care — when a neighbor searches \"lawn care,\" those calls go to someone else",
+      "body": "I help Upstate lawn and property companies get found online, and right now 4 Point doesn't have a web presence to send those search clicks to.\n\nWhen a neighbor near you searches for lawn care, they land on competitors — not you. I build your site so you show up and get found first.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to take a quick look at how you show up when a neighbor searches for lawn care near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "affordable-handyman-services",
+    "name": "Affordable Handyman Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Affordable Handyman Services — homeowners can't find you when they Google \"handyman\"",
+      "body": "Homeowners in your area punch \"handyman near me\" into Google every week, and right now nothing points them to Affordable Handyman Services.\n\nWhen a neighbor searches for a handyman, they find competitors, not you. I build your site so you get found and start capturing those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nIf you'd like, call or text me at (864) 340-0609 and I'll walk you through how people currently find (or miss) you online.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "blue-sky-painting-llc",
+    "name": "Blue Sky Painting LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Blue Sky Painting — painters who get found online get the booked-out calendar",
+      "body": "Homeowners are booking painters online right now, and Blue Sky Painting isn't in front of them. I help Upstate painters get found.\n\nWhen a neighbor searches for a painter, they find competitors, not you. I build your site so you get found first and stop losing jobs to painters who show up in search.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up when a neighbor looks for a painter near you.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "cheap-great-tree-services",
+    "name": "Cheap & Great Tree Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Cheap & Great Tree Services — are homeowners able to find you when a storm hits?",
+      "body": "I help Upstate tree companies get found online, and right now Cheap & Great Tree Services has no real web presence ready for the busy season.\n\nWhen a neighbor near you searches for tree removal, they land on competitors — not you. I build your site so you get found and catch those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how people find you when they search for tree services near you.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "dougies-cleaning-service-llc",
+    "name": "Dougies Cleaning Service LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Dougie's Cleaning Service — homes looking for a cleaner can't find you",
+      "body": "Homes in your area search for a house cleaner every week, and right now nothing points them to Dougie's Cleaning Service.\n\nWhen a neighbor searches for cleaning services near you, they find competitors, not you. I build your site so you get found and start filling your schedule.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a cleaning search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "flynn-maintenance-services",
+    "name": "Flynn Maintenance Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Flynn Maintenance Services — property managers looking for help can't find you",
+      "body": "Property owners and managers search for maintenance help constantly, and right now Flynn Maintenance Services has no way to catch those inquiries online.\n\nWhen a neighbor searches for maintenance services near you, they find competitors, not you. I build your site so you get found and win the work.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how people currently find you online.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "house-cleaning-bc-llc",
+    "name": "House Cleaning BC LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "House Cleaning BC — busy households booking online can't find you",
+      "body": "Busy households in your area search for a house cleaner online, and right now House Cleaning BC isn't in front of them.\n\nWhen a neighbor searches for house cleaning near you, they find competitors, not you. I build your site so you get found and keep your calendar full.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how people find you when they search for a house cleaner near you.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "mikes-home-solutions",
+    "name": "Mikes Home Solutions",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Mike's Home Solutions — homeowners looking for home help can't find you",
+      "body": "I help Upstate home-service businesses get found online, and right now Mike's Home Solutions doesn't have a web presence ready to catch those searches.\n\nWhen a neighbor searches for home solutions near you, they find competitors, not you. I build your site so you get found and win those projects.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to take a quick look at how you show up when a neighbor searches for home help near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "nesbitt-junk-removal",
+    "name": "Nesbitt Junk Removal",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Nesbitt Junk Removal — let's make sure people clearing out spaces can find you",
+      "body": "Cleaning out a garage or estate is a common need, and right now Nesbitt Junk Removal has no way to catch those people when they search.\n\nWhen a neighbor near you searches for junk removal, they find competitors, not you. I build your site so you get found and win those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up for a junk-removal search.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "owens-heat-and-air-llc",
+    "name": "Owens Heat and Air LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Owens Heat and Air — homeowners Googling HVAC can't find you",
+      "body": "When an AC goes out, homeowners Google for help fast — and right now nothing points them to Owens Heat and Air.\n\nWhen a neighbor searches for heating and air services near you, they find competitors, not you. I build your site so you get found when it matters most.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up when a homeowner near you searches for HVAC help.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "quinn-services",
+    "name": "Quinn Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Quinn Services — 175 five-star reviews, and neighbors searching can't see them",
+      "body": "You've built an incredible 5-star reputation from 175 Google reviews — that alone should be pulling in steady work. The problem is people rarely find you online to see it.\n\nWhen a neighbor searches for your type of service near you, they find competitors first. I build your site so that mountain of social proof actually converts.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through putting those 175 reviews in front of more neighbors.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "renaissance-handyman-service",
+    "name": "Renaissance Handyman Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Renaissance Handyman Service — your reviews (about 4 stars, 3-4 of them) deserve more eyes",
+      "body": "Customers have left you solid reviews — about 4 stars from a few Google reviews — but that reputation only works if homeowners can find you when they search for a handyman.\n\nWhen a neighbor searches for a handyman near you, they find competitors, not you. I build your site so your reputation actually lands you the jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to take a quick look at how you show up for a handyman search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "robertsons-tree-service",
+    "name": "Robertsons Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Robertson's Tree Service — your site is fine, but neighbors can't find it",
+      "body": "Your website exists and looks fine — the real issue is that neighbors searching for tree service rarely get pointed to it.\n\nYour site's fine — the problem is nobody can FIND it. I do local SEO and Google optimization so customers and AI recommend Robertson's first.\n\n$300 one-time — local SEO setup and Google Business Profile optimization so your existing site gets found. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own the setup.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through how you currently show up when a neighbor searches for tree service.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "see-clearly-window-cleaning",
+    "name": "See Clearly Window Cleaning",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "See Clearly Window Cleaning — homeowners Googling window cleaning can't find you",
+      "body": "Homes and storefronts search for window cleaning online, and right now See Clearly Window Cleaning isn't in front of them.\n\nWhen a neighbor searches for window cleaning near you, they find competitors, not you. I build your site so you get found and keep your schedule busy.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up for a window-cleaning search near you.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "sommers-heating-and-air-llc",
+    "name": "Sommers Heating and Air LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Sommers Heating and Air — homeowners Googling HVAC can't find you",
+      "body": "Homeowners around you search for heating and air help online, and right now Sommers Heating and Air has no real web presence ready to catch those calls when their heat or AC goes out.\n\nWhen a neighbor searches for heating and air near you, they find competitors, not you. I build your site so you get found when it matters most. When a neighbor searches for heating and air near you, they land on competitors first. I build your site so that good reputation actually wins you the service calls.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up when a homeowner near you searches for HVAC help.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "stephen-stephen",
+    "name": "Stephen & Stephen",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Stephen & Stephen — let's make sure customers can actually find you",
+      "body": "I help Upstate service businesses get found online, and right now Stephen & Stephen has no real web presence ready to catch search clicks.\n\nWhen a neighbor searches for your type of service near you, they find competitors, not you. I build your site so you get found and win those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up when a neighbor searches for your services.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "tb-contractors-llc",
+    "name": "TB Contractors LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "TB Contractors — your 5-star rating (2 Google reviews) deserves more exposure",
+      "body": "You've earned a perfect 5-star rating from 2 Google reviews — a real asset. The problem is new customers rarely find you online to see it.\n\nWhen a neighbor searches for your type of contracting service near you, they find competitors, not you. I build your site so that reputation actually brings in work.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "whittier-fence-and-deck",
+    "name": "Whittier Fence and Deck",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Whittier Fence and Deck — 26 years of work, but a 3.2-star Google rating is hiding it",
+      "body": "You've been building fences and decks since 1999 — real staying power. That's being undercut by a 3.2-star Google rating from 9 reviews.\n\nA low Google rating is quietly steering homeowners to competitors before they ever call. We clean up your Google presence and rebuild local trust so your reputation stops costing you jobs.\n\n$300 one-time — Google Business Profile cleanup and local SEO so your rating works for you. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own the setup.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through how your listing looks to a neighbor searching for a fence or deck builder.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "aquablade-llc",
+    "name": "AquaBlade LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "5 stars that people can't find",
+      "body": "I saw you've carried a solid 5.0-star rating on Google from 6 reviews. That's a great reputation — but it only helps if people can actually find your business first.\n\nFor most service companies the problem isn't the work — it's that neighbors searching for what you offer meet competitors before they ever reach AquaBlade. We build your site so you get found.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to look at how you show up when someone searches for your services? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "ellason-tree-service",
+    "name": "Ellason Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Make Ellason easy to find",
+      "body": "I noticed Ellason Tree Service holds a solid 4.4-star rating from 29 Google reviews — clearly you earn trust. But that reputation only counts if people can find you when they search.\n\nWhen a neighbor searches for tree service, they find competitors — not you. We build your site so that hard-earned reputation actually shows up where it counts.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to see how you show up when someone searches for tree service near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "hydro-wash",
+    "name": "Hydro Wash",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Who locals find when they search pressure washing",
+      "body": "Hydro Wash — I build sites for local pressure-washing businesses. A neighbor searching for a wash near you is meeting your competitors on Google, not you.\n\nWhen a neighbor searches for pressure washing, they find competitors — not you. We build your site so you get found before the job moves on.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to check how you show up in pressure-washing searches near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "knockit-junk-removal",
+    "name": "KnockIt Junk Removal",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "87 five-star reviews nobody can find",
+      "body": "KnockIt Junk Removal, you've built a killer 5.0-star rating from 87 Google reviews. That's hard to do. It just doesn't pay off if people can't find you when they search junk removal.\n\nWhen a neighbor searches for junk removal, they find competitors — not you. We build your site so that mountain of proof actually brings in calls.\n\n$300 one-time — website plus basic SEO and Google Business Profile set up. Monthly care is optional from $49/mo. Or keep it simple: pay the $300 once, no monthly required.\n\nWant me to see how you show up for junk-removal searches near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "bearden-forestry",
+    "name": "Bearden Forestry",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Bearden Forestry — 15+ years in, but hard to find online",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Bearden Forestry has been at it since 2007 and keeps a perfect 5.0-star rating from 3 Google reviews — a strong reputation, but I couldn't find a real website behind it.\n\nWhen a neighbor in Upstate SC searches for forestry or tree work, competitors show up ahead of you. We build your site so you get found for the work you already do well.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you come up when someone near you searches for forestry work? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "chase-dump-removel",
+    "name": "Chase Dump Removel",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Chase Dump Removal — nobody finds you when they need junk hauled",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Chase Dump Removal while helping local trades get found online, and I couldn't find a website for your junk hauling service.\n\nWhen a neighbor in Upstate SC searches for junk or dump removal, other haulers come up before you. We build you a site so you get found for the calls you're missing.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you come up when someone near you searches for dump removal? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "clean-slate-pressure-washing",
+    "name": "Clean Slate Pressure Washing",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Clean Slate Pressure Washing — hard to find when driveways need cleaning",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Clean Slate Pressure Washing while helping local trades get found online, and I couldn't find a real website for your work.\n\nWhen a neighbor in Upstate SC searches for pressure washing, other companies show up before you. We build you a site and get you the local setup so you get found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to take a look at how you show up when someone near you searches for pressure washing? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "farrs-exterior-cleaning-service",
+    "name": "Farrs Exterior Cleaning Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Farr's Exterior Cleaning — great reviews, but neighbors can't find you",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Farr's Exterior Cleaning keeps a perfect 5.0-star rating from 8 Google reviews — clearly customers trust the work — but I couldn't find a website to back it up.\n\nWhen a neighbor in Upstate SC searches for exterior cleaning, competitors come up first. We build your site so you get found for the work you already do well.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you come up when someone near you searches for exterior cleaning? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "girl-dad-handyman-services",
+    "name": "Girl Dad Handyman Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Girl Dad Handyman — neighbors can't reach you when they search",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Girl Dad Handyman Services while helping local trades get found online, and I couldn't find a clear website or easy way to book your work.\n\nWhen a homeowner in Upstate SC searches for handyman help, other pros come up before you. We build you a site and get you found so those calls stop going elsewhere.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for a handyman? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "jha-land-clearing-llc",
+    "name": "JHA Land Clearing LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "JHA Land Clearing — hard to find when landowners need clearing",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across JHA Land Clearing while helping local trades get found online, and I couldn't find a website for your clearing work.\n\nWhen a landowner in Upstate SC searches for land clearing, other crews come up before you. We build your site so you get found for those bigger jobs.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you come up when someone near you searches for land clearing? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "kirk-johnson-handyman-contractor",
+    "name": "Kirk Johnson Handyman Contractor",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Kirk Johnson Handyman — neighbors can't find you online",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Kirk Johnson Handyman/Contractor while helping local trades get found online, and I couldn't find a clear website for your handyman and contractor work.\n\nWhen a homeowner in your area searches for a handyman or contractor, other pros come up before you. We build you a site so you get found for the work you're missing.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to take a look at how you show up when someone near you searches for handyman work? Call or text me once we've confirmed your number and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "l-f-handymen",
+    "name": "L & F Handymen",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "L & F Handymen — hard to find when homeowners need help",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across L & F Handymen while helping local trades get found online, and I couldn't find a clear website for your work.\n\nWhen a homeowner in Upstate SC searches for a handyman, other pros come up before you. We build you a site and get you the local setup so you get found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for handyman help? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "ortiz-tree-service",
+    "name": "Ortiz Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Ortiz Tree Service — your reviews are solid, but neighbors can't find you",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Ortiz Tree Service carries a solid 4.5-star rating from 10 Google reviews, but when I looked, there was no easy website to send that interest to.\n\nWhen a neighbor in Upstate SC searches for tree service, other crews show up before you. We build your site so you get found for the work you're missing.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for tree service? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "pablo-tree-services",
+    "name": "Pablo Tree Services",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Pablo Tree Services — 15+ years in, but hard to find online",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Pablo Tree Services has been at it since 2008, but when I looked, I couldn't find a real website for your tree work.\n\nWhen a neighbor in Upstate SC searches for tree service, competitors come up ahead of you. We build your site so the years of experience actually get you found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to take a look at how you show up when someone near you searches for tree work? Call or text me once we've confirmed your number and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "precision-concrete-mauldin",
+    "name": "Precision Concrete Mauldin",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Precision Concrete — hard to find when driveways need pouring",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Precision Concrete in Mauldin while helping local trades get found online, and I couldn't find a clear website for your concrete work.\n\nWhen a homeowner in or near Mauldin searches for concrete work, other crews come up before you. We build your site and get you the local setup so you get found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for concrete work? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "smiths-handy-solutions-llc",
+    "name": "Smiths Handy Solutions LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Smith's Handy Solutions — hard to find when homeowners need help",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. I came across Smith's Handy Solutions while helping local trades get found online, and I couldn't find a real website for your handy work.\n\nWhen a homeowner in Upstate SC searches for a handyman, other pros come up before you. We build your site and get you found, so those calls stop going elsewhere.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for handy help? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "steadfast-roofing-and-construction-llc",
+    "name": "Steadfast Roofing and Construction LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Steadfast Roofing — a perfect rating that neighbors can't find behind",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Steadfast Roofing and Construction keeps a perfect 5.0-star rating from 14 Google reviews — that's a strong reputation — but I couldn't find a solid website to back it up.\n\nWhen a homeowner in Upstate SC searches for a roofer, competitors come up before you. We build your site so that good reputation actually gets you found.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you come up when someone near you searches for roofing? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "studs-gutter-cleaning",
+    "name": "Studs Gutter Cleaning",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Studs Gutter Cleaning — great reviews, but neighbors can't find you",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Studs Gutter Cleaning keeps a perfect 5.0-star rating from 6 Google reviews — clearly customers trust the work — but I couldn't find a website behind it.\n\nWhen a homeowner in Upstate SC searches for gutter cleaning, competitors come up first. We build your site so you get found for the work you already do well.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to check how you show up when someone near you searches for gutter cleaning? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "swamp-rabbit-softwash",
+    "name": "Swamp Rabbit Softwash",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Swamp Rabbit Softwash — a perfect rating, but hard to find",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. Swamp Rabbit Softwash keeps a perfect 5.0-star rating from 4 Google reviews, but when I looked, I couldn't find a real website to send that interest to.\n\nWhen a neighbor in Upstate SC searches for soft washing, competitors come up before you. We build your site so you get found for the work you're missing.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you come up when someone near you searches for soft washing? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "west-fence-company",
+    "name": "West Fence Company",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "West Fence Company — great reviews, but neighbors can't find you",
+      "body": "I run a small web and SEO shop here in Upstate South Carolina. West Fence Company carries a strong 4.7-star rating from 7 Google reviews, but when I looked, there was no easy website for your fence work.\n\nWhen a neighbor in Upstate SC searches for fencing, competitors come up first. We build your site so you get found for the work you already do well.\n\n$300 one-time — website + basic SEO + Google Business Profile set up. Monthly care optional from $49/mo. One-time-only path available: $300 once, no monthly required.\n\nWant me to look at how you come up when someone near you searches for fencing? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "l-c-paint-and-pressure-washing-llc",
+    "name": "L&C Paint and Pressure Washing LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "L&C Paint and Pressure Washing — homes looking for a painter can't find you",
+      "body": "Homeowners around you search for painting and pressure washing online every week, and right now nothing points them to L&C Paint and Pressure Washing.\n\nWhen a neighbor searches for painting or pressure washing near you, they find competitors, not you. I build your site so you get found and win the work.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a painting or washing search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "lees-decks-and-more",
+    "name": "Lees Decks and More",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Lee's Decks and More — deck jobs are searching for you and can't find you",
+      "body": "I help Upstate deck and fence builders get found online, and right now Lee's Decks and More has no web presence ready to catch those projects.\n\nWhen a neighbor near you searches for a deck builder, they land on competitors — not you. I build your site so you get found and land those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to take a quick look at how you show up for a deck-search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "maid-spotless",
+    "name": "Maid Spotless",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Maid Spotless — busy households booking a cleaner can't find you",
+      "body": "Busy households in your area search for a cleaning service online, and right now Maid Spotless isn't in front of them.\n\nWhen a neighbor searches for house cleaning near you, they find competitors, not you. I build your site so you get found and keep your calendar full.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how people find you when they search for a cleaner near you.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "omars-tree-service",
+    "name": "Omars Tree Service",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Omars Tree Service — let's make sure tree work can find you",
+      "body": "Storm season brings steady tree work, but only if homeowners can find you. Right now Omars Tree Service has no real presence ready to catch those calls.\n\nWhen a neighbor searches for tree service near you, they find competitors, not you. I build your site so you get found and win more of those jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up when a neighbor searches for tree service.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "parkers-pressure-washing-llc",
+    "name": "Parkers Pressure Washing LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Parkers Pressure Washing — a 4.9-star reputation (144 Google reviews) nobody searching can see",
+      "body": "You've built a strong 4.9-star rating from 144 Google reviews — real social proof. The problem is new customers rarely find you online to see it.\n\nWhen a neighbor searches for pressure washing near you, they hit competitors first. I build your site so that powerful reputation actually lands you the jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through putting those 144 reviews in front of more neighbors.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "r-r-lawn-llc",
+    "name": "R&R Lawn LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "R&R Lawn — neighbors searching for lawn care can't find you",
+      "body": "Homeowners in your area search for lawn care online every week, and right now nothing points them to R&R Lawn.\n\nWhen a neighbor searches for lawn care near you, they find competitors, not you. I build your site so you get found and start filling your schedule.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a lawn-care search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "rig-line-tree-service",
+    "name": "Rig Line Tree Service",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "Rig Line Tree Service — 79 five-star reviews nobody searching for tree work can see",
+      "body": "You have a strong 5-star rating from 79 Google reviews — that should pull in steady tree work. The problem is homeowners rarely find you online to see it.\n\nWhen a neighbor searches for tree service near you, they find competitors first. I build your site so that great reputation actually wins you the jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through putting those 79 reviews in front of more neighbors.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "sent",
+      "sentDate": "2026-08-23"
+    }
+  },
+  {
+    "id": "sasquatch-tree-services-llc",
+    "name": "Sasquatch Tree Services LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Sasquatch Tree Services — 33 five-star reviews nobody searching can see",
+      "body": "You have a strong 5-star rating from 33 Google reviews — great trust signal. The problem is homeowners rarely find you online to see it when they need tree work.\n\nWhen a neighbor searches for tree service near you, they find competitors first. I build your site so that reputation actually wins you the jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through getting found for tree work.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "simpsonville-cleaning-authority",
+    "name": "Simpsonville Cleaning Authority",
+    "stage": "contacted",
+    "pitchDraft": {
+      "subject": "Simpsonville Cleaning Authority — cleaned-up homes start with getting found",
+      "body": "Homeowners around you search for a cleaning service online, and right now Simpsonville Cleaning Authority isn't showing up in front of them.\n\nWhen a neighbor searches for cleaning services near you, they find competitors, not you. I build your site so you get found and fill your schedule.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll take a quick look at how you show up for a cleaning search near you.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "sent",
+      "sentDate": "2026-08-27"
+    }
+  },
+  {
+    "id": "sterling-home-services-llc",
+    "name": "Sterling Home Services LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Sterling Home Services — homeowners looking for help around the house can't find you",
+      "body": "I help Upstate home-service businesses get found online, and right now Sterling Home Services has no web presence ready to catch those searches.\n\nWhen a neighbor searches for home services near you, they find competitors, not you. I build your site so you get found and win those projects.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to take a quick look at how you show up when a neighbor searches for home help near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "superior-fix",
+    "name": "Superior Fix",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Superior Fix — homeowners searching for a reliable fix-it pro can't find you",
+      "body": "Homeowners search for repair and handyman help online, and right now Superior Fix has no way to catch those jobs when they search.\n\nWhen a neighbor searches for repair services near you, they find competitors, not you. I build your site so you get found and win the work.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a repair search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "the-pack-landscaping-and-lawn-care",
+    "name": "The Pack Landscaping and Lawn Care",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "The Pack Landscaping — your 5-star rep (7 Google reviews) should be winning you lawn jobs",
+      "body": "You have a clean 5-star rating from 7 Google reviews and a solid local following on Facebook. The issue: neither converts until people can find you online.\n\nWhen a neighbor searches for landscaping near you, they find competitors first. I build your site so that reputation and following actually pull in lawn jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through putting that reputation to work finding more jobs.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  },
+  {
+    "id": "turners-touch-detailing-pressure-washing",
+    "name": "Turners Touch Detailing & Pressure Washing",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Turners Touch — your detailing and washing jobs are searching for you",
+      "body": "Customers search for detailing and pressure washing online, and right now Turners Touch has no real web presence ready to catch those jobs.\n\nWhen a neighbor searches for detailing or pressure washing near you, they find competitors, not you. I build your site so you get found and win the work.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nWant me to check how you show up for a detailing or washing search near you? Call or text Local Launch at (503) 358-5860 and I'll walk you through it.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review",
+      "email": "turnerstouchcleaning@gmail.com"
+    }
+  },
+  {
+    "id": "wilkins-lawn-services-llc",
+    "name": "Wilkins Lawn Services LLC",
+    "stage": "pitch",
+    "pitchDraft": {
+      "subject": "Wilkins Lawn Services — your 5-star rating (2 Google reviews) deserves to be seen",
+      "body": "You've built a perfect 5-star start from 2 Google reviews. The problem is new customers rarely find you online to see it.\n\nWhen a neighbor searches for lawn care near you, they find competitors, not you. I build your site so that reputation actually brings in lawn jobs.\n\n$300 one-time — a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $49/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through getting found for lawn care.",
+      "channel": "Phone/SMS",
+      "confidence": null,
+      "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
+      "status": "pending-review"
+    }
+  }
+]

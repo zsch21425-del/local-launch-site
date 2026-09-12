@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   BarChart3,
-  Bot,
   ChevronLeft,
   ChevronRight,
   ClipboardCheck,
@@ -34,7 +33,6 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Home", icon: Home },
   { href: "/pipeline", label: "Pipeline", icon: KanbanSquare },
-  { href: "/jobs", label: "Work queue", icon: Bot },
   { href: "/clients", label: "Clients", icon: Users },
   { href: "/demos", label: "Demos", icon: MonitorPlay },
   { href: "/fleet", label: "Fleet", icon: Cpu },

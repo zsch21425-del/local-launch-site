@@ -2,17 +2,17 @@
  * Stage-transition policy + gate evaluator (the "hard rules" in code).
  *
  * This is the SINGLE source of truth for what it takes to legally advance a
- * company from one funnel stage to the next. Every mutation path — the batch
- * button, POST /api/pipeline/move, and the autonomous proposal executor —
- * MUST consult `evaluateTransition()` before writing a stage. Auth + ETag
- * alone do not enforce workflow correctness; these gates do.
+ * company from one funnel stage to the next. Every mutation path — the
+ * stage-advance action and any other stage write — MUST consult
+ * `evaluateTransition()` before writing a stage. Auth + ETag alone do not
+ * enforce workflow correctness; these gates do.
  *
  * Design authority: `references/autonomous-work-and-gates.md` (Astra, Sep 11 2026).
  *
  * Two tiers, per Astra:
  *  - CHEAP gates (below): deterministic, serverless-safe, run on EVERY action.
  *  - DELIVERABLE gates (9.5 critic / 8.5 visual / blind critic / 6-pass audit):
- *    those run on the Supervisor/workers (they have vision + fresh-context
+ *    those run on the local Hermes agent (it has vision + fresh-context
  *    reviewer jobs); their OUTPUT lands here as evidence fields, and the
  *    deterministic evaluator only checks that the evidence EXISTS and is
  *    consistent — it never re-runs the subjective review.

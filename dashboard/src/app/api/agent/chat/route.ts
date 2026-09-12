@@ -6,41 +6,6 @@ import { isObject, badField, str, optional } from "@/lib/validate";
 const RELAY_NOT_CONFIGURED = "relay not configured (HTTPS required)";
 
 /**
- * Strictly validate a typed proposal envelope from the relay. Returns a
- * sanitized copy (only known fields, exact shapes) or null if anything is off.
- * The proposal is DATA to render, never executable commands. The executor
- * re-validates everything against the live pipeline before any mutation.
- */
-function validateProposalEnvelope(raw: unknown): {
-  actionType: string;
-  companyIds: string[];
-  targetStage?: string;
-  summary?: string;
-} | null {
-  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
-  const p = raw as Record<string, unknown>;
-  const actionType = p.actionType;
-  if (typeof actionType !== "string") return null;
-  if (!["move", "audit", "build-demo", "write-pitch", "monthly-seo"].includes(actionType)) {
-    return null;
-  }
-  const companyIds = p.companyIds;
-  if (!Array.isArray(companyIds) || companyIds.length === 0) return null;
-  if (!companyIds.every((x) => typeof x === "string" && x.trim())) return null;
-  const targetStage = p.targetStage;
-  if (targetStage !== undefined && typeof targetStage !== "string") return null;
-  const summary = p.summary;
-  if (summary !== undefined && typeof summary !== "string") return null;
-
-  return {
-    actionType,
-    companyIds: companyIds.map((x: string) => x.trim()),
-    ...(typeof targetStage === "string" ? { targetStage: targetStage.trim() } : {}),
-    ...(typeof summary === "string" ? { summary: summary.slice(0, 500) } : {}),
-  };
-}
-
-/**
  * Builds the full context frame for a single client — "everything current to
  * the stage they're in": identity, stage + playbook, pitch (full body),
  * demo state, review feedback, and next steps. Missing fields are omitted,
@@ -213,16 +178,9 @@ export async function POST(request: Request) {
         { status: 200 },
       );
     }
-    // Typed proposal envelope (Stage 3a). The relay MAY return a structured
-    // `proposal` alongside prose. We validate it strictly and return it as a
-    // SEPARATE field — the UI renders it as a confirm card, and the executor
-    // consumes the server-stored proposal. We NEVER derive executable actions
-    // from the reply prose (a chat message is untrusted data, not commands).
-    const proposal = validateProposalEnvelope(data.proposal);
     return NextResponse.json({
       reply: data.reply ?? data.message ?? "(empty reply)",
       connected: true,
-      ...(proposal ? { proposal } : {}),
     });
   } catch (e: any) {
     return NextResponse.json(

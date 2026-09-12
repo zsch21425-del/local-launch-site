@@ -19,7 +19,7 @@ export function AppChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <SidebarNav />
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="relative z-10 flex min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-20 border-b border-border/70 bg-card/85 backdrop-blur-md">
           <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 pl-14 sm:px-6 sm:pl-6 lg:px-8">
             <Link

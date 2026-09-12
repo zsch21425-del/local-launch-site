@@ -405,7 +405,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                 disabled={loading}
                 className="flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted disabled:opacity-50"
               >
-                <X className="size-4" /> Disapprove
+                <X className="size-4" /> Reject
               </button>
             </div>
             </>
@@ -473,7 +473,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
                     disabled={loading || !reason.trim()}
                     className="flex items-center gap-2 rounded-lg bg-destructive px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-destructive/90 disabled:opacity-50"
                   >
-                    {loading ? "Sending to agent…" : "Disapprove & send notes"}
+                    {loading ? "Sending to agent…" : "Reject & send notes"}
                   </button>
                 )}
                 <button
@@ -513,7 +513,7 @@ export function ClientApprovalPanel({ company }: ApprovalPanelProps) {
             </p>
           ) : (
             <p className="flex items-center gap-1.5 font-medium">
-              <X className="size-4" /> Disapproved — feedback is on the
+              <X className="size-4" /> Rejected — feedback is on the
               record for the agent.
             </p>
           )}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
 
 import { AppChrome } from "@/components/app-chrome";
+import { SlideshowBackground } from "@/components/slideshow-background";
 import { getAgency } from "@/lib/data";
 import "./globals.css";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
       className={`${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full bg-background font-sans text-foreground">
+        <SlideshowBackground />
         <AppChrome>{children}</AppChrome>
       </body>
     </html>
