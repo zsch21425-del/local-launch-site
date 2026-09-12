@@ -121,12 +121,11 @@ export async function POST(
   let dispatched = false;
   let relayError: string | null = null;
   try {
-    // Fire-and-forget dispatch: the relay /chat waits for the agent to REPLY,
-    // which can take minutes of real work. We must NOT hold the serverless
-    // request open for that — persist the receipt, send the order, and return
-    // immediately. A short timeout means "delivered, work in progress", not a
-    // failure. Hermes reports completion separately via the capability-bound
-    // /complete callback.
+    // Fire-and-forget dispatch. The relay /chat waits for the agent to REPLY
+    // (minutes of real work), so we must NOT hold the serverless request open.
+    // A timeout here means DELIVERY IS UNKNOWN (the relay may have accepted the
+    // order or never received it) — NOT "delivered". Hermes must dedupe on runId
+    // before executing, so a safe re-dispatch never double-runs the work.
     const res = await fetch(`${relayBase}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-Relay-Token": getRelayToken() },
@@ -136,11 +135,10 @@ export async function POST(
     dispatched = res.ok;
     if (!res.ok) relayError = `relay HTTP ${res.status}`;
   } catch (e: any) {
-    // A timeout here is EXPECTED (the agent is still working) — not an error.
     relayError = e?.name === "TimeoutError" || e?.name === "AbortError"
-      ? null
+      ? "delivery uncertain (relay did not ack)"
       : e?.message || "relay timeout";
-    dispatched = relayError == null;
+    dispatched = false;
   }
 
   return NextResponse.json({
@@ -150,6 +148,8 @@ export async function POST(
     inputRevision,
     dispatched,
     relayError,
-    note: dispatched ? "Work order dispatched — Hermes will submit evidence when done." : "Work order queued; relay may be unreachable.",
+    note: dispatched
+      ? "Work order dispatched — Hermes will submit evidence when done."
+      : "Work order queued; delivery uncertain. Re-run if no evidence arrives (Hermes dedupes on runId).",
   });
 }

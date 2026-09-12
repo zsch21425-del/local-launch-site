@@ -42,19 +42,18 @@ export async function setStageRun(
 ): Promise<{ ok: boolean; error?: string }> {
   const r = await mutatePipeline((data: any) => {
     const c = data.companies?.find((x: any) => x.id === companyId);
-    if (!c) throw new Error("__NOTFOUND__");
+    if (!c) return { code: "__NOTFOUND__" as const };
     const existing = c.stageRun;
     if (existing && !replace && existing.status === "requested") {
-      throw new Error("__OVERLAP__");
+      return { code: "__OVERLAP__" as const };
     }
     c.stageRun = run;
-    return run;
+    return { code: "__OK__" as const };
   });
-  if (!r.ok) {
-    if (r.error === "__NOTFOUND__") return { ok: false, error: "company not found" };
-    if (r.error === "__OVERLAP__") return { ok: false, error: "a run is already in progress" };
-    return { ok: false, error: r.error };
-  }
+  if (!r.ok) return { ok: false, error: r.error };
+  const outcome = r.result as { code: string };
+  if (outcome.code === "__NOTFOUND__") return { ok: false, error: "company not found" };
+  if (outcome.code === "__OVERLAP__") return { ok: false, error: "a run is already in progress" };
   return { ok: true };
 }
 
@@ -68,19 +67,25 @@ export async function completeStageRun(
 ): Promise<{ ok: boolean; error?: string }> {
   const r = await mutatePipeline((data: any) => {
     const c = data.companies?.find((x: any) => x.id === companyId);
-    if (!c) throw new Error("__NOTFOUND__");
-    if (!c.stageRun || c.stageRun.runId !== runId) throw new Error("__STALE__");
+    if (!c) return { code: "__NOTFOUND__" as const };
+    if (!c.stageRun || c.stageRun.runId !== runId) return { code: "__STALE__" as const };
+    // Idempotency: an identical re-submission is a no-op success; a DIFFERENT
+    // digest after completion is rejected (evidence for a run is final once set).
+    if (c.stageRun.status === "completed" || c.stageRun.status === "approved") {
+      if (c.stageRun.resultDigest === resultDigest) return { code: "__OK__" as const };
+      return { code: "__CONFLICT__" as const };
+    }
     c.stageRun.status = status;
     c.stageRun.resultDigest = resultDigest;
     c.stageRun.completedAt = new Date().toISOString();
     if (error) c.stageRun.error = error;
-    return c.stageRun;
+    return { code: "__OK__" as const };
   });
-  if (!r.ok) {
-    if (r.error === "__NOTFOUND__") return { ok: false, error: "company not found" };
-    if (r.error === "__STALE__") return { ok: false, error: "run id mismatch (stale submission)" };
-    return { ok: false, error: r.error };
-  }
+  if (!r.ok) return { ok: false, error: r.error };
+  const outcome = r.result as { code: string };
+  if (outcome.code === "__NOTFOUND__") return { ok: false, error: "company not found" };
+  if (outcome.code === "__STALE__") return { ok: false, error: "run id mismatch (stale submission)" };
+  if (outcome.code === "__CONFLICT__") return { ok: false, error: "run already completed with different evidence" };
   return { ok: true };
 }
 
@@ -91,16 +96,15 @@ export async function approveStageRun(
 ): Promise<{ ok: boolean; error?: string }> {
   const r = await mutatePipeline((data: any) => {
     const c = data.companies?.find((x: any) => x.id === companyId);
-    if (!c) throw new Error("__NOTFOUND__");
-    if (!c.stageRun || c.stageRun.runId !== runId) throw new Error("__STALE__");
+    if (!c) return { code: "__NOTFOUND__" as const };
+    if (!c.stageRun || c.stageRun.runId !== runId) return { code: "__STALE__" as const };
     c.stageRun.status = "approved";
     c.stageRun.approvedAt = new Date().toISOString();
-    return c.stageRun;
+    return { code: "__OK__" as const };
   });
-  if (!r.ok) {
-    if (r.error === "__NOTFOUND__") return { ok: false, error: "company not found" };
-    if (r.error === "__STALE__") return { ok: false, error: "run id mismatch (stale submission)" };
-    return { ok: false, error: r.error };
-  }
+  if (!r.ok) return { ok: false, error: r.error };
+  const outcome = r.result as { code: string };
+  if (outcome.code === "__NOTFOUND__") return { ok: false, error: "company not found" };
+  if (outcome.code === "__STALE__") return { ok: false, error: "run id mismatch (stale submission)" };
   return { ok: true };
 }
