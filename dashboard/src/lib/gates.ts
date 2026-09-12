@@ -82,12 +82,19 @@ export function evaluateTransition(c: any, toStage: string): TransitionResult {
     if (from !== "follow-up") {
       return { ok: false, error: `can only enter ${TERMINAL_STAGE} (Clients) from follow-up` };
     }
-    const won = c?.revenue != null || c?.saleValue != null;
-    if (!won) {
+    // Won evidence must be a real, positive monetary amount — not an empty
+    // string, false, zero, or arbitrary text (Astra recheck).
+    const mrr = c?.revenue?.mrr;
+    const oneTime = c?.revenue?.oneTime;
+    const saleValue = c?.saleValue;
+    const hasMrr = typeof mrr === "number" && mrr > 0;
+    const hasOneTime = typeof oneTime === "number" && oneTime > 0;
+    const hasSale = typeof saleValue === "number" && saleValue > 0;
+    if (!(hasMrr || hasOneTime || hasSale)) {
       return {
         ok: false,
         error: "missing evidence to advance follow-up → sale",
-        missing: ["won evidence (revenue / saleValue recorded)"],
+        missing: ["won evidence (positive revenue.mrr / revenue.oneTime / saleValue)"],
       };
     }
     return { ok: true };
