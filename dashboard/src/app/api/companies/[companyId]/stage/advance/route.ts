@@ -3,7 +3,7 @@ import { isRequestAuthed } from "@/lib/session";
 import { mutatePipeline, readPipelineSafe } from "@/lib/pipeline-store";
 import { evaluateTransition, FUNNEL_ORDER, TERMINAL_STAGE } from "@/lib/gates";
 import { hashCompanyInputs, verifyRequiredChecks } from "@/lib/stage-orders";
-import { isObject, badField, str } from "@/lib/validate";
+import { isObject } from "@/lib/validate";
 
 /** The deliverable checks each stage's run must have attested (mirrors run route). */
 const STAGE_CHECKS: Record<string, string[]> = {
@@ -15,13 +15,28 @@ const STAGE_CHECKS: Record<string, string[]> = {
 };
 
 /**
+ * Stages whose exit is a HUMAN decision (Zach's click), not machine work — so
+ * they have NO run operation and advance WITHOUT a completed run. These are the
+ * transitions where "the work" is Zach signing off or marking won, not Hermes
+ * producing an artifact.
+ *
+ *   prospect → audit:      "start working on this lead" (no evidence needed)
+ *   approval → outreach:   Zach's explicit sign-off on the final pitch/demo
+ *   follow-up → sale:      Zach marks it WON (with positive revenue evidence)
+ */
+const HUMAN_ONLY_STAGES = new Set(["prospect", "approval", "follow-up"]);
+
+/**
  * POST /api/companies/[companyId]/stage/advance
  *
- * PIN-ONLY (Zach). "Approve checks & advance": atomically re-verify the
- * transition gates against the exact completed run + result digest, record
- * Zach's approval, and advance exactly ONE stage. Does NOT start work in the
- * next stage. Duplicate requests must not advance twice (the stage has already
- * moved, so the re-verify fails adjacency).
+ * PIN-ONLY (Zach). Two modes:
+ *   - MACHINE stage (audit/pitch/quality-check/outreach/sale): requires the
+ *     completed run + matching digest; verifies the run's attestations satisfy
+ *     the deliverable checks AND the transition gates pass, then advances ONE
+ *     stage.
+ *   - HUMAN stage (prospect/approval/follow-up): NO run required — Zach's
+ *     authenticated click IS the decision. The gate is still verified (e.g.
+ *     follow-up→sale requires positive won-evidence), then advances one stage.
  */
 export async function POST(
   req: NextRequest,
@@ -35,25 +50,50 @@ export async function POST(
   if (!isObject(body)) {
     return NextResponse.json({ error: "Body must be a JSON object", field: "body" }, { status: 400 });
   }
-  const bad = badField(body, { runId: str, resultDigest: str });
-  if (bad) {
-    return NextResponse.json({ error: `Invalid or missing field: ${bad}`, field: bad }, { status: 400 });
-  }
-  const { runId, resultDigest } = body as { runId: string; resultDigest: string };
 
-  // Read-only pre-check for a clean error message.
+  // runId/resultDigest are REQUIRED for machine stages, absent for human stages.
+  // We do NOT enforce them here — the precise requirement is enforced inside the
+  // atomic mutation based on the company's actual (fresh) stage.
+  const runId = typeof (body as any).runId === "string" ? (body as any).runId : undefined;
+  const resultDigest = typeof (body as any).resultDigest === "string" ? (body as any).resultDigest : undefined;
+
+  // Read-only pre-check for a clean "not found" + the current stage.
   const pre: any = await readPipelineSafe();
   const preCompany = pre.companies?.find((x: any) => x.id === companyId);
   if (!preCompany) return NextResponse.json({ error: "company not found" }, { status: 404 });
-
   const fromStage = preCompany.stage;
-  const nextStage = FUNNEL_ORDER[FUNNEL_ORDER.indexOf(fromStage) + 1] ?? TERMINAL_STAGE;
 
   const r = await mutatePipeline((data: any) => {
     const c = data.companies?.find((x: any) => x.id === companyId);
     if (!c) return { code: "__NOTFOUND__" as const };
 
-    // The run must be the one Zach reviewed, completed, with a matching digest.
+    // Derive nextStage INSIDE the mutation from the fresh company stage (not the
+    // pre-read) so a concurrent stage change can't cause a skip.
+    const currentStage = c.stage;
+    const nextStage = FUNNEL_ORDER[FUNNEL_ORDER.indexOf(currentStage) + 1] ?? TERMINAL_STAGE;
+    const human = HUMAN_ONLY_STAGES.has(currentStage);
+
+    if (human) {
+      // Human decision: no run. Zach's authenticated click IS the decision.
+      // For approval→outreach, record the sign-off; for follow-up→sale, the gate
+      // (positive won-evidence) is what verifies "won".
+      if (currentStage === "approval") {
+        c.zachApproval = "approved";
+        c.zachApprovedAt = new Date().toISOString();
+      }
+      const gate = evaluateTransition(c, nextStage);
+      if (!gate.ok) {
+        return { code: "__GATE__" as const, error: gate.error, missing: gate.missing ?? [] };
+      }
+      c.stage = nextStage;
+      c.lastUpdated = new Date().toISOString().slice(0, 10);
+      return { code: "__OK__" as const, nextStage };
+    }
+
+    // Machine stage: require a completed, digest-matched run for THIS stage.
+    if (!runId || !resultDigest) {
+      return { code: "__MISSING_RUN__" as const };
+    }
     if (!c.stageRun || c.stageRun.runId !== runId) {
       return { code: "__STALE_RUN__" as const };
     }
@@ -63,10 +103,7 @@ export async function POST(
     if (c.stageRun.resultDigest !== resultDigest) {
       return { code: "__DIGEST_MISMATCH__" as const };
     }
-    // Stale-advance guard: the run must be for the company's CURRENT stage and
-    // the inputs must be unchanged since dispatch — otherwise Zach could advance
-    // against evidence produced for a different stage or an edited company.
-    if (c.stageRun.stage !== c.stage) {
+    if (c.stageRun.stage !== currentStage) {
       return { code: "__STALE_STAGE__" as const };
     }
     if (c.stageRun.inputRevision !== hashCompanyInputs(c)) {
@@ -75,7 +112,7 @@ export async function POST(
 
     // Evidence-bound checks: the run's attestations must actually satisfy the
     // stage's required deliverable checks (not just pre-existing company flags).
-    const requiredChecks = STAGE_CHECKS[c.stage];
+    const requiredChecks = STAGE_CHECKS[currentStage];
     if (requiredChecks && requiredChecks.length) {
       const verdict = verifyRequiredChecks(requiredChecks, c.stageRun.attestations ?? []);
       if (!verdict.ok) {
@@ -93,14 +130,15 @@ export async function POST(
     c.stageRun.approvedAt = new Date().toISOString();
     c.stage = nextStage;
     c.lastUpdated = new Date().toISOString().slice(0, 10);
-    return { code: "__OK__" as const };
+    return { code: "__OK__" as const, nextStage };
   });
 
   if (!r.ok) {
     return NextResponse.json({ error: r.error, ok: false }, { status: 500 });
   }
-  const outcome = r.result as { code: string; error?: string; missing?: string[] };
+  const outcome = r.result as { code: string; error?: string; missing?: string[]; nextStage?: string };
   if (outcome.code === "__NOTFOUND__") return NextResponse.json({ error: "company not found" }, { status: 404 });
+  if (outcome.code === "__MISSING_RUN__") return NextResponse.json({ error: "runId and resultDigest required for this stage" }, { status: 400 });
   if (outcome.code === "__STALE_RUN__") return NextResponse.json({ error: "run id mismatch (stale)" }, { status: 409 });
   if (outcome.code === "__NOT_COMPLETE__") return NextResponse.json({ error: "run not completed yet" }, { status: 409 });
   if (outcome.code === "__DIGEST_MISMATCH__") return NextResponse.json({ error: "result digest mismatch" }, { status: 409 });
@@ -123,7 +161,7 @@ export async function POST(
     ok: true,
     companyId,
     from: fromStage,
-    to: nextStage,
+    to: outcome.nextStage,
     approved: true,
   });
 }

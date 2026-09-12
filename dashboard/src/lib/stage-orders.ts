@@ -148,7 +148,9 @@ export function computeEvidenceDigest(evidence: {
       artifactHash: t.artifactHash,
     })),
   };
-  return createHmac("sha256", SECRET || "no-secret")
+  // Fail-closed: without the secret, we cannot produce a stable bound digest.
+  if (!SECRET) return "";
+  return createHmac("sha256", SECRET)
     .update(JSON.stringify(stable))
     .digest("hex");
 }
@@ -174,7 +176,7 @@ export function verifyRequiredChecks(
     attestations.filter((t) => t.reviewerRole === role && t.verdict === "pass");
 
   const allAtLeast = (scores: Record<string, number>, min: number) =>
-    Object.values(scores).length > 0 && Object.values(scores).every((s) => typeof s === "number" && s >= min);
+    Object.values(scores).length > 0 && Object.values(scores).every((s) => typeof s === "number" && Number.isFinite(s) && s >= min);
 
   for (const check of requiredChecks) {
     switch (check) {
