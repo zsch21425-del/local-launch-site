@@ -27,6 +27,12 @@ export interface StageRun {
   error?: string;
   completedAt?: string;
   approvedAt?: string;
+  /** Pull-queue lease (claim/lease/retry). Populated by work-queue claim. */
+  claimedAt?: string;
+  leaseExpiresAt?: string;
+  claimedBy?: string;
+  attempts?: number;
+  claimedRunId?: string;
 }
 
 /** Get the current stageRun for a company (or null). */
