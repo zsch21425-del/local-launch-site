@@ -25,6 +25,7 @@ export default function StagePage() {
   const { id } = useParams<{ id: string }>();
   const { companies, stages, loading } = usePipeline();
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [confirming, setConfirming] = useState(false);
   const [moving, setMoving] = useState(false);
   const [moveResult, setMoveResult] = useState<string | null>(null);
   const [moveError, setMoveError] = useState<string | null>(null);
@@ -69,31 +70,34 @@ export default function StagePage() {
     setMoving(true);
     setMoveResult(null);
     setMoveError(null);
-    let ok = 0;
-    const failures: string[] = [];
-    for (const companyId of Array.from(selected)) {
-      const c = stageCompanies.find((x) => x.id === companyId);
-      try {
-        const res = await fetch("/api/pipeline/move", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ companyId, stage: nextStageId }),
-        });
-        const json = await res.json().catch(() => ({}));
-        if (!res.ok || !json.ok) {
-          throw new Error(json.error || `move HTTP ${res.status}`);
-        }
-        ok += 1;
-      } catch (e) {
-        failures.push(`${c?.name ?? companyId} (${e instanceof Error ? e.message : "unknown"})`);
+    try {
+      const res = await fetch("/api/agent/proposals/execute", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          companyIds: Array.from(selected),
+          toStage: nextStageId,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.ok) {
+        throw new Error(json.error || `execute HTTP ${res.status}`);
       }
-    }
-    setSelected(new Set());
-    setMoving(false);
-    if (failures.length) {
-      setMoveError(`${ok} moved · ${failures.length} failed: ${failures.join("; ")}`);
-    } else {
-      setMoveResult(`${ok} moved → ${nextStage?.label ?? nextStageId}.`);
+      const blocked = (json.outcomes ?? []).filter((o: any) => !o.ok);
+      setSelected(new Set());
+      setMoving(false);
+      if (blocked.length) {
+        setMoveError(
+          `${json.moved} moved · ${blocked.length} blocked: ${blocked
+            .map((o: any) => o.error)
+            .join("; ")}`,
+        );
+      } else {
+        setMoveResult(`${json.moved} moved → ${nextStage?.label ?? nextStageId}.`);
+      }
+    } catch (e) {
+      setMoving(false);
+      setMoveError(e instanceof Error ? e.message : "Batch move failed");
     }
   }
 
@@ -163,17 +167,39 @@ export default function StagePage() {
                   Select all
                 </button>
                 {selected.size > 0 ? (
-                  <button
-                    type="button"
-                    onClick={() => void advanceBatch()}
-                    disabled={moving}
-                    className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
-                  >
-                    <Rocket className="size-3.5" />
-                    {moving
-                      ? "Moving…"
-                      : `Move ${selected.size} → ${nextStage?.label ?? nextStageId}`}
-                  </button>
+                  confirming ? (
+                    <div className="ml-auto flex items-center gap-2">
+                      <span className="text-sm font-semibold text-foreground">
+                        Move {selected.size} → {nextStage?.label ?? nextStageId}?
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => void advanceBatch()}
+                        disabled={moving}
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+                      >
+                        <Rocket className="size-3.5" />
+                        {moving ? "Moving…" : "Confirm"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setConfirming(false)}
+                        disabled={moving}
+                        className="rounded-lg border border-border px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground disabled:opacity-50"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setConfirming(true)}
+                      className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-violet-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white"
+                    >
+                      <Rocket className="size-3.5" />
+                      Review {selected.size} → {nextStage?.label ?? nextStageId}
+                    </button>
+                  )
                 ) : null}
                 {selected.size > 0 ? (
                   <button
