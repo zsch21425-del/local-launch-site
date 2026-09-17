@@ -1630,24 +1630,27 @@
       "location": "Anderson, SC",
       "phone": "(864) 225-0325",
       "website": "",
-      "summary": "Tree service in Anderson SC. No website. GBP unconfirmed. Tree service = urgent/high-intent. Tier A pitch ($300 Launch). Source: Aug 10 Scout batch.",
+      "summary": "SECOND-PASS 2026-09-16: GBP LOCKED Lands Tree Care @ 2711 Linmar Cir, Anderson SC 29621 \u2014 31 reviews / 5.0\u2605, phone (864) 225-0325, website field=Facebook only (facebook.com/landstreecareservice/). Owned domains NXDOMAIN; treecareanderson.com=114B park shell. andersonarborists.com = DIFFERENT co (no phone match). Tier A $599 build (no owned site). G 29\u219246.",
       "lastContact": "",
-      "lastUpdated": "2026-08-20",
-      "priority": "medium",
+      "lastUpdated": "2026-09-16",
+      "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "\u2705 Auditor R6 approved \u2014 Tier A pitch",
-        "Closer: draft site-build pitch"
+        "\u2705 Second-pass verified (2026-09-16): GBP 31/5.0\u2605 phone-locked; no owned website (FB only)",
+        "Closer: draft Pitch A ($599 build + get-found) \u2014 SC email-only",
+        "Note: SERP also shows (864) 844-4125 for Land's Tree Care \u2014 confirm primary before send"
       ],
       "seoScore": {
-        "current": 29,
+        "current": 46,
         "max": 100,
-        "label": "G-SCORE"
+        "label": "G-SCORE",
+        "previous": 29,
+        "notes": "gScore/seoScore synced second-pass 2026-09-16"
       },
       "prospectScore": "MEDIUM",
       "pitchDraft": {
-        "subject": "Lands Tree Care \u2014 your 5-star rep (29 Google reviews) should be winning you jobs",
-        "body": "A 5-star rating from 29 Google reviews is gold for a tree company \u2014 but it only converts if homeowners can find you when they need tree work.\n\nWhen a neighbor searches for tree service near you, they find competitors before you. I build your site so that great reputation actually lands you the job.\n\n$599 one-time \u2014 a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $149/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through getting those 29 reviews in front of more neighbors.",
+        "subject": "Lands Tree Care \u2014 your 5-star rep (31 Google reviews) should be winning you jobs",
+        "body": "A 5-star rating from 31 Google reviews is gold for a tree company \u2014 but it only converts if homeowners can find you when they need tree work.\n\nWhen a neighbor searches for tree service near you, they find competitors before you. I build your site so that great reputation actually lands you the job.\n\n$599 one-time \u2014 a business website, basic SEO, and your Google Business Profile set up. Monthly care is optional from $149/mo, and there's a one-time-only path so you pay once and own it.\n\nCall or text Local Launch at (503) 358-5860 and I'll walk you through getting those 31 reviews in front of more neighbors.",
         "channel": "Phone/SMS",
         "confidence": null,
         "notes": "Drafted 2026-08-20 (pitch-batch-2026-08-20). Awaiting Zach/Supervisor approval. CTA corrected to Local Launch line per feedback-closer-2026-08-20.",
@@ -1655,7 +1658,7 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "gScore": 29,
+      "gScore": 46,
       "zachApproval": null,
       "email": "landstreecare@yahoo.com",
       "demoUrl": "https://lands-tree-care-demo-iota.vercel.app",
@@ -3564,21 +3567,21 @@
       "location": "Taylors, SC",
       "phone": "(864) 691-6001",
       "website": "",
-      "summary": "Tree service (24/7 emergency), Taylors SC. No website, no GBP. Distinct from Taylor's Tree Service Spartanburg. G-SCORE 8. Audit approved 2026-08-10.",
+      "summary": "Tier A no-site tree service Taylors SC. Phone (864) 691-6001. gosom: NO GBP match for name or phone. Name collision: Signature Tree Service Simpsonville (864-999-0132, signaturetreeservices.com) is DIFFERENT. tjtreeservice.com = Boston MA collision. Camoufox GBP signal weak (0 reviews). G-SCORE 3 (honest component sum; thin footprint). GBP create is core offer. Second-pass verified 2026-09-15.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-15",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "Closer: draft Pitch A ($300 build)",
-        "Create GBP as part of offer"
+        "\u2705 Second-pass verified (2026-09-15): no website; GBP not found for this entity; G=3",
+        "Closer: draft Pitch A ($599 build + create GBP) \u2014 distinguish from Signature Tree Service Simpsonville"
       ],
       "seoScore": {
-        "current": 8,
+        "current": 3,
         "max": 100,
         "label": "G-SCORE"
       },
-      "gScore": 8,
+      "gScore": 3,
       "pitchDraft": {
         "status": "pending-review"
       },
@@ -3665,24 +3668,25 @@
       "name": "Devil Dog Fencing",
       "category": "Fencing Contractor",
       "stage": "prospect",
-      "location": "Greenville, SC",
-      "phone": "(864) 243-1069",
+      "location": "Greenville, SC (6 Chatham Dr, Greenville SC 29605)",
+      "phone": "(864) 354-4007",
       "website": "",
-      "summary": "Fencing + deck renovation, Greenville SC. No website. GBP 3.9\u2605/24 reviews. PHONE MISMATCH: GBP 864-354-4007 vs lead 864-243-1069 \u2014 verify before outreach. G-SCORE 28. Audit approved 2026-08-10.",
+      "summary": "Tier A no-site fencing. GBP Devil Dog Fencing @ 6 Chatham Dr Greenville SC 29605 \u2014 24 reviews / 3.9\u2605, phone (864) 354-4007, website=\"\" (gosom+Camoufox 2026-09-15). PHONE CORRECTION: prior lead phone (864) 243-1069 resolves to Effiserver (unrelated) \u2014 do NOT use that number. FB DevilDogFencing veteran-owned. G-SCORE 38 (was 28). Second-pass verified 2026-09-15.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-15",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "\u26a0\ufe0f Verify phone (864-354-4007 vs 864-243-1069) before outreach",
-        "Closer: draft Pitch A ($300 build)"
+        "\u2705 Second-pass verified (2026-09-15): GBP 24/3.9\u2605 @ 6 Chatham Dr; no website",
+        "Use GBP phone (864) 354-4007 ONLY \u2014 243-1069 is Effiserver collision",
+        "Closer: draft Pitch A ($599 build) \u2014 SC email-only outreach"
       ],
       "seoScore": {
-        "current": 28,
+        "current": 38,
         "max": 100,
         "label": "G-SCORE"
       },
-      "gScore": 28,
+      "gScore": 38,
       "pitchDraft": {
         "status": "pending-review"
       },
@@ -3752,23 +3756,26 @@
       "category": "Tree Service",
       "stage": "prospect",
       "location": "Spartanburg, SC",
-      "phone": "(864) 595-6900",
+      "phone": "(864) 205-2764",
       "website": "",
-      "summary": "Tree service, Spartanburg SC. No website. GBP 5.0\u2605 exists, FB-link only. PHONE MISMATCH: GBP 864-205-2764 vs lead 864-595-6900 \u2014 verify. G-SCORE 12. Audit approved 2026-08-10.",
+      "summary": "SECOND-PASS 2026-09-16: PHONE CORRECTED. Lead (864) 595-6900 = Gunter's Gardens (NOT SA Tree). Real GBP: SA Tree Services & More \u2014 13 reviews / 5.0\u2605, phone (864) 205-2764, website=Facebook only. OpenSERP also lists 864-612-7723. No owned .com (all NXDOMAIN). Tier A $599 build. G 12\u219238.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-16",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "\u26a0\ufe0f Verify phone (864-205-2764 vs 864-595-6900) before outreach",
-        "Closer: draft Pitch A ($300 build)"
+        "\u2705 Second-pass verified (2026-09-16): GBP 13/5.0\u2605; PRIMARY phone (864) 205-2764",
+        "\u26d4 Do NOT call/text (864) 595-6900 \u2014 that is Gunter's Gardens",
+        "Closer: draft Pitch A ($599 build) \u2014 SC email-only; use 205-2764 only"
       ],
       "seoScore": {
-        "current": 12,
+        "current": 38,
         "max": 100,
-        "label": "G-SCORE"
+        "label": "G-SCORE",
+        "previous": 12,
+        "notes": "gScore/seoScore synced second-pass 2026-09-16"
       },
-      "gScore": 12,
+      "gScore": 38,
       "pitchDraft": {
         "status": "pending-review"
       }
@@ -3813,21 +3820,24 @@
       "location": "Spartanburg, SC",
       "phone": "(864) 809-7164",
       "website": "",
-      "summary": "General contractor/remodeling, Spartanburg SC, since 1976. No website (westconstruction.com = unrelated national developer). G-SCORE 12. Audit approved 2026-08-10.",
+      "summary": "SECOND-PASS 2026-09-16: GBP West Construction @ 2366 S Pine St C, Spartanburg SC 29302 \u2014 1 review / 5.0\u2605, GBP phone (864) 583-8061, website=\"\". Lead phone (864) 809-7164 confirmed on Buzzfile/YellowPages for same Spartanburg West Construction. westconstruction.com = national 'West builds' collision (not SC). Tier A $599 build. G 12\u219222. Thin reviews \u2014 medium priority.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-16",
       "priority": "medium",
       "playbook": [],
       "nextSteps": [
-        "Closer: draft Pitch A ($300 build)",
-        "Differentiate from West Builds collision"
+        "\u2705 Second-pass verified (2026-09-16): GBP 1 review @ 2366 S Pine St C; no website",
+        "\u26d4 NO pitch draft until primary phone confirmed: lead (864) 809-7164 vs GBP (864) 583-8061",
+        "Closer: hold Pitch A until phone lock \u2014 SC email-only; differentiate from westconstruction.com national"
       ],
       "seoScore": {
-        "current": 12,
+        "current": 22,
         "max": 100,
-        "label": "G-SCORE"
+        "label": "G-SCORE",
+        "previous": 12,
+        "notes": "gScore/seoScore synced second-pass 2026-09-16"
       },
-      "gScore": 12,
+      "gScore": 22,
       "pitchDraft": {
         "status": "pending-review"
       },
@@ -5001,21 +5011,21 @@
       "location": "Easley, SC",
       "phone": "(864) 419-5562",
       "website": "",
-      "summary": "Tier A no-site. Claimed 5.0\u2605 GBP, owner-confirmed (Nextdoor), in-region 864. Competitive niche \u2192 SEO/GEO 'get found' angle. G-SCORE 37. Audit APPROVED 2026-08-11.",
+      "summary": "Tier A no-site. GBP claimed 17 reviews / 5.0\u2605 phone-match (864) 419-5562 (gosom+Camoufox 2026-09-15). website=\"\" on GBP. kwcleaning.com = CA collision (Sonoma). Nextdoor owner-confirmed KWCS LLC. G-SCORE 40 (was 37). Second-pass verified 2026-09-15.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-15",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "Closer: draft Tier A pitch (get-found angle)",
-        "Route pitch to Supervisor \u2192 Zach approval"
+        "\u2705 Second-pass verified (2026-09-15): GBP 17/5.0\u2605 phone-locked; no owned website",
+        "Closer: draft Tier A pitch ($599 build + get-found) \u2014 route Supervisor \u2192 Zach"
       ],
       "seoScore": {
-        "current": 37,
+        "current": 40,
         "max": 100,
         "label": "G-SCORE"
       },
-      "gScore": 37,
+      "gScore": 40,
       "pitchDraft": {
         "status": "pending-review"
       },
@@ -5067,21 +5077,22 @@
       "location": "Mauldin, SC",
       "phone": "(864) 525-0813",
       "website": "",
-      "summary": "Tier A no-site, no GBP. Veterans-run team (Ted Adamcryk), in-region 864 \u2014 strong trust/pitch fit. G-SCORE 17. Audit APPROVED 2026-08-11.",
+      "summary": "Tier A no-site handyman Mauldin SC. Phone (864) 525-0813 on Yelp/Nextdoor/MapQuest (veterans team). gosom phone-search 0 hits \u2014 NO confirmed GBP place_id. Camoufox SERP false-positive: schandy911.wixsite.com = Around the House Service (101 rev, 864-707-1140) NOT Ted's. No owned domain. G-SCORE 13 (directories only). Second-pass verified 2026-09-15.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-15",
       "priority": "high",
       "playbook": [],
       "nextSteps": [
-        "Closer: draft Tier A pitch (veterans/get-found angle)",
-        "Route pitch to Supervisor \u2192 Zach approval"
+        "\u2705 Second-pass verified (2026-09-15): no owned site; GBP not phone-locked (directories only)",
+        "Closer: draft Tier A veterans/get-found pitch ($599) \u2014 Supervisor \u2192 Zach",
+        "Do not cite schandy911.wixsite.com \u2014 competitor Around the House Service"
       ],
       "seoScore": {
-        "current": 17,
+        "current": 13,
         "max": 100,
         "label": "G-SCORE"
       },
-      "gScore": 17,
+      "gScore": 13,
       "pitchDraft": {
         "status": "pending-review"
       },
@@ -5172,9 +5183,9 @@
       "location": "Spartanburg, SC",
       "phone": "(864) 494-1276",
       "website": "",
-      "summary": "NO SITE, GBP 5.0\u2605 (claimed, 494-1276 exact phone). Every Spartanburg junk competitor has a site; Woodies is the only one with none despite a strong GBP. PURSUE HIGH, Pitch A (no-site build).",
+      "summary": "Tier A no-site. GBP 'Woodies junk removal' 4 reviews / 5.0\u2605, phone (864) 494-1276 exact (gosom+Camoufox 2026-09-15). website=\"\". All woodies*.com permutations dead. Competitors (Wilk's) have sites. G-SCORE 28 (was 31 \u2014 review count corrected to 4). Second-pass verified 2026-09-15.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-15",
       "priority": "high",
       "playbook": [
         {
@@ -5186,10 +5197,11 @@
         }
       ],
       "nextSteps": [
-        "Closer to draft pitch (Supervisor trigger)"
+        "\u2705 Second-pass verified (2026-09-15): GBP 4/5.0\u2605 phone-locked; no website",
+        "Closer: draft Pitch A ($599 build) \u2014 Supervisor trigger"
       ],
       "seoScore": {
-        "current": 31,
+        "current": 28,
         "max": 100,
         "label": "G-SCORE"
       },
@@ -5198,7 +5210,7 @@
       },
       "responseStatus": null,
       "saleValue": null,
-      "gScore": 31,
+      "gScore": 28,
       "zachApproval": null
     },
     {
@@ -5258,9 +5270,9 @@
       "location": "Easley, SC",
       "phone": "(864) 884-5266",
       "website": "",
-      "summary": "BROKEN-DOMAIN rebuild: greenvillepaintingservice.com serves Web.com 'Domain Not Valid' parked page (extracted live). NO GBP for lead's number. Do NOT confuse with different 'Rodriguez Painting' GBP (9 Ridgeside Ct, 214-0507). PURSUE MEDIUM, Pitch B.",
+      "summary": "SECOND-PASS 2026-09-16: NO phone-locked GBP for (864) 884-5266. greenvillepaintingservice.com = COLLISION Rodriguez Painting Greenville (864) 214-0507 @ 9 Ridgeside Ct \u2014 site 403 Forbidden, NOT this lead's site (corrects prior 'broken-domain rebuild' framing). No owned domains. Camoufox SERP noise (directory pages) not phone-locked. Tier A no-site. G 18\u219210.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
+      "lastUpdated": "2026-09-16",
       "priority": "medium",
       "playbook": [
         {
@@ -5272,19 +5284,23 @@
         }
       ],
       "nextSteps": [
-        "Closer to draft pitch (Supervisor trigger)"
+        "\u2705 Second-pass verified (2026-09-16): no owned site; no GBP phone-lock for 884-5266",
+        "\u26d4 Do NOT pitch greenvillepaintingservice.com as theirs \u2014 Greenville collision (214-0507)",
+        "Closer: draft Pitch A ($599 build) \u2014 SC email-only; weak digital footprint \u2014 medium/low"
       ],
       "seoScore": {
-        "current": 18,
+        "current": 10,
         "max": 100,
-        "label": "G-SCORE"
+        "label": "G-SCORE",
+        "previous": 18,
+        "notes": "gScore/seoScore synced second-pass 2026-09-16"
       },
       "pitchDraft": {
         "status": "pending-review"
       },
       "responseStatus": null,
       "saleValue": null,
-      "gScore": 18,
+      "gScore": 10,
       "zachApproval": null
     },
     {
@@ -5295,10 +5311,10 @@
       "location": "Easley, SC",
       "phone": "(864) 516-3040",
       "website": "",
-      "summary": "NO SITE (FB only, 463 likes), NO GBP. Solo painter Bill, 40+ yrs experience. PURSUE MEDIUM, Pitch A.",
+      "summary": "SECOND-PASS 2026-09-16: NO GBP for (864) 516-3040. Name collisions only (Inman B&B Painting 864-472-3992; MI/Columbia others). bbpainting.com/bandbpainting.com = HugeDomains for-sale; bbpaintingllc.com = Squarespace 'Pr\u00f3ximamente' placeholder. Prior FB likes claim NOT re-verified this pass (no FB URL locked) \u2014 social scored conservatively. Tier A weak. G 12\u21924.",
       "lastContact": "",
-      "lastUpdated": "2026-09-01",
-      "priority": "medium",
+      "lastUpdated": "2026-09-16",
+      "priority": "low",
       "playbook": [
         {
           "id": "bb-painting-audit",
@@ -5309,19 +5325,23 @@
         }
       ],
       "nextSteps": [
-        "Closer to draft pitch (Supervisor trigger)"
+        "\u2705 Second-pass verified (2026-09-16): no GBP phone-lock; no usable website; FB likes unverified this pass",
+        "Closer: draft Pitch A ($599 build) only if pursuing FB-only painters \u2014 low priority",
+        "SC email-only"
       ],
       "seoScore": {
-        "current": 12,
+        "current": 4,
         "max": 100,
-        "label": "G-SCORE"
+        "label": "G-SCORE",
+        "previous": 12,
+        "notes": "gScore/seoScore synced second-pass 2026-09-16 (social conservative after critic)"
       },
       "pitchDraft": {
         "status": "pending-review"
       },
       "responseStatus": null,
       "saleValue": null,
-      "gScore": 12,
+      "gScore": 4,
       "zachApproval": null
     },
     {
@@ -10766,42 +10786,50 @@
       "stage": "audit",
       "location": "Simpsonville, SC",
       "phone": "(864) 382-7506",
-      "website": "",
-      "summary": "Old 'weak SEO' claim no longer verifiable (title/meta/H1/schema all present).",
+      "website": "https://integrityplumbingsc.com/",
+      "summary": "Integrity Plumbing of the Upstate LLC \u2014 1011 Old Stage Rd Simpsonville SC 29681. GBP 362 reviews / 5.0\u2605 (gosom maps 2026-09-12). Live site integrityplumbingsc.com (~394KB, title/meta/H1/schema). Owner-active GBP. Tier C/D only \u2014 NOT a $599 no-site build.",
       "lastContact": "",
-      "lastUpdated": "2026-09-10",
+      "lastUpdated": "2026-09-12T14:53:45Z",
       "priority": "low",
       "playbook": {},
-      "nextSteps": "Re-audit \u2014 site healthy",
-      "seoScore": {},
+      "nextSteps": "\u2705 Second-pass verified (2026-09-12): HAS SITE + 362 GBP reviews. Block Tier A build. Care/SEO-GEO only if pursuing. Email info@integrityplumbingsc.com",
+      "seoScore": {
+        "current": 85,
+        "max": 100
+      },
       "pitchDraft": {},
       "responseStatus": "",
       "saleValue": null,
-      "gScore": 0,
+      "gScore": 85,
       "zachApproval": "",
-      "ownerName": ""
+      "ownerName": "",
+      "email": "info@integrityplumbingsc.com"
     },
     {
       "id": "hipps-automotive",
       "name": "Hipps Automotive",
       "category": "Auto Repair",
-      "stage": "prospect",
+      "stage": "audit",
       "location": "Simpsonville, SC",
       "phone": "(864) 967-0050",
-      "website": "",
-      "summary": "'403 to Google' claim FALSE today (HTTP 200). Schema IS missing.",
+      "website": "https://hippsautomotive.com/",
+      "summary": "Hipps Automotive Services Center \u2014 904 NE Main St Simpsonville SC 29681. Live site hippsautomotive.com (~99KB, H1+meta+viewport; NO JSON-LD schema). Phone lock (864) 967-0050. Email hippsautomotive@gmail.com. ~109 Birdeye reviews (GBP count not re-locked this pass \u2014 Camoufox captcha + maps timeout). Schema-gap SEO pitch stands; NOT no-site.",
       "lastContact": "",
-      "lastUpdated": "2026-09-10",
+      "lastUpdated": "2026-09-12T14:53:45Z",
       "priority": "low",
       "playbook": {},
-      "nextSteps": "Re-pitch on schema gap",
-      "seoScore": {},
+      "nextSteps": "\u2705 Second-pass verified (2026-09-12): HAS SITE hippsautomotive.com; schema missing confirmed. Re-pitch schema/SEO gap \u2014 not build. Email hippsautomotive@gmail.com. \u26a0\ufe0f GBP review count not Maps-locked this pass (captcha/timeout).",
+      "seoScore": {
+        "current": 60,
+        "max": 100
+      },
       "pitchDraft": {},
       "responseStatus": "",
       "saleValue": null,
-      "gScore": 0,
+      "gScore": 60,
       "zachApproval": "",
-      "ownerName": ""
+      "ownerName": "",
+      "email": "hippsautomotive@gmail.com"
     },
     {
       "id": "carolina-paint-body",
@@ -10810,20 +10838,24 @@
       "stage": "audit",
       "location": "Simpsonville, SC",
       "phone": "(864) 963-3072",
-      "website": "",
-      "summary": "Call-ready list, pitch card ready.",
+      "website": "https://autobodysimpsonville.com/",
+      "summary": "Carolina Paint & Body Shop \u2014 115 Ayers Dr Simpsonville SC 29681. GBP ~43 Google reviews (Camoufox SERP); Birdeye lists ~45. Live site autobodysimpsonville.com (phone lock). Email peted@myexcel.com. Sister/towing domain upstatecarolinapaintandbody.com also live. HAS SITE \u2014 not Tier A.",
       "lastContact": "",
-      "lastUpdated": "2026-09-10",
+      "lastUpdated": "2026-09-12T14:53:45Z",
       "priority": "low",
       "playbook": {},
-      "nextSteps": "TBD",
-      "seoScore": {},
+      "nextSteps": "\u2705 Second-pass verified (2026-09-12): HAS SITE + ~43 GBP reviews. Email peted@myexcel.com. Tier B/C SEO/rebuild only \u2014 no $599 no-site pitch.",
+      "seoScore": {
+        "current": 68,
+        "max": 100
+      },
       "pitchDraft": {},
       "responseStatus": "",
       "saleValue": null,
-      "gScore": 0,
+      "gScore": 68,
       "zachApproval": "",
-      "ownerName": ""
+      "ownerName": "",
+      "email": "peted@myexcel.com"
     },
     {
       "id": "sanford-son-plumbing",
@@ -10831,19 +10863,22 @@
       "category": "Plumbing",
       "stage": "audit",
       "location": "Greenville, SC",
-      "phone": "",
-      "website": "",
-      "summary": "Research phone, then demo build.",
+      "phone": "(864) 444-2870",
+      "website": "https://www.sanfordsonplumbing.info/",
+      "summary": "Sanford & Son Plumbing & Drain Service LLC (Fountain Inn / Greenville market). GBP 79 reviews / 5.0\u2605 (gosom 2026-09-12). Phone gap closed: (864) 444-2870. Live Jobber-style site sanfordsonplumbing.info (~560KB, meta+schema, no H1). HAS SITE \u2014 not Tier A demo-first.",
       "lastContact": "",
-      "lastUpdated": "2026-09-10",
+      "lastUpdated": "2026-09-12T14:53:45Z",
       "priority": "low",
       "playbook": {},
-      "nextSteps": "TBD \u2014 need phone",
-      "seoScore": {},
+      "nextSteps": "\u2705 Second-pass verified (2026-09-12): phone filled (864) 444-2870; HAS SITE. Route Closer Tier B/C if pursuing \u2014 block no-site pitch.",
+      "seoScore": {
+        "current": 70,
+        "max": 100
+      },
       "pitchDraft": {},
       "responseStatus": "",
       "saleValue": null,
-      "gScore": 0,
+      "gScore": 70,
       "zachApproval": "",
       "ownerName": ""
     },
@@ -10853,19 +10888,22 @@
       "category": "HVAC",
       "stage": "audit",
       "location": "Greenville, SC",
-      "phone": "",
-      "website": "",
-      "summary": "Research phone, then demo build.",
+      "phone": "(864) 305-5714",
+      "website": "https://sandersac.com/",
+      "summary": "Sanders Heating & Cooling \u2014 26 Boland Ct Greenville SC 29615. Since 1953 incumbent. GBP ~1,379 Google reviews (Camoufox SERP). Dual phone: GBP (864) 305-5714; site (864) 807-6970. Live sandersac.com. TIER D \u2014 do NOT pitch $599 build.",
       "lastContact": "",
-      "lastUpdated": "2026-09-10",
+      "lastUpdated": "2026-09-12T14:53:45Z",
       "priority": "low",
       "playbook": {},
-      "nextSteps": "TBD \u2014 need phone",
-      "seoScore": {},
+      "nextSteps": "\u2705 Second-pass verified (2026-09-12): TIER D incumbent (1379 reviews + strong site). SKIP/$hold unless Zach wants GEO-only. Primary phone (864) 305-5714.",
+      "seoScore": {
+        "current": 88,
+        "max": 100
+      },
       "pitchDraft": {},
       "responseStatus": "",
       "saleValue": null,
-      "gScore": 0,
+      "gScore": 88,
       "zachApproval": "",
       "ownerName": ""
     }
