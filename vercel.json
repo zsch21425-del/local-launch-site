@@ -1,4 +1,5 @@
 {
+  "functionFailoverRegions": ["iad1", "sfo1"],
   "redirects": [
     {
       "source": "/(.*)",
@@ -16,6 +17,20 @@
     "api/contact.js": {
       "memory": 256,
       "maxDuration": 10
+    },
+    "api/visualize.js": {
+      "memory": 256,
+      "maxDuration": 60
+    },
+    "api/score.py": {
+      "runtime": "@vercel/python@14.2.1",
+      "memory": 512,
+      "maxDuration": 30
+    },
+    "api/search.py": {
+      "runtime": "@vercel/python@14.2.1",
+      "memory": 512,
+      "maxDuration": 30
     }
   }
 }

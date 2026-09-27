@@ -2,7 +2,7 @@
   "name": "local-launch",
   "private": true,
   "engines": {
-    "node": "20.x"
+    "node": ">=24.0.0"
   },
   "dependencies": {
     "nodemailer": "^9.0.4",
