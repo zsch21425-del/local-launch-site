@@ -1,5 +1,4 @@
 {
-  "functionFailoverRegions": ["iad1", "sfo1"],
   "redirects": [
     {
       "source": "/(.*)",
