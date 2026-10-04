@@ -10,6 +10,22 @@
       ],
       "destination": "https://locallaunchupstate.com/$1",
       "statusCode": 301
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
     }
   ],
   "functions": {
@@ -22,14 +38,14 @@
       "maxDuration": 60
     },
     "api/score.py": {
-      "runtime": "@vercel/python@14.2.1",
       "memory": 512,
-      "maxDuration": 30
+      "maxDuration": 30,
+      "runtime": "@vercel/python@18.0.0"
     },
     "api/search.py": {
-      "runtime": "@vercel/python@14.2.1",
       "memory": 512,
-      "maxDuration": 30
+      "maxDuration": 30,
+      "runtime": "@vercel/python@18.0.0"
     }
   }
 }
